@@ -1,5 +1,6 @@
 ﻿#include "AstTest/AstTestMacro.h"
 #include "AstUtil/IO.hpp"
+#include "AstCore/RunTime.hpp"
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -47,4 +48,37 @@ TEST(IO, printf)
     testPrintf();
 }
 
+TEST(IO, getFilePath)
+{
+    {
+        std::string datadir = aDataDirGet();
+        EXPECT_FALSE(datadir.empty());
+        datadir += "/README.md";
+        FILE* file = posix::fopen(datadir.c_str(), "r");
+        EXPECT_TRUE(file != nullptr);
+
+        std::string filepath;
+        auto rc = aGetFilePath(file, filepath);
+        printf("filepath: %s\n", filepath.c_str());
+        EXPECT_EQ(rc, eNoError);
+        EXPECT_FALSE(filepath.empty());
+        FILE* file2 = posix::fopen(filepath.c_str(), "r");
+        EXPECT_TRUE(file2 != nullptr);
+    }
+    {
+        std::string filepath;
+        auto rc = aGetFilePath(stdin, filepath);
+        printf("rc: %d\n", rc);
+        printf("stdin filepath: %s\n", filepath.c_str());
+    }
+    {
+        std::string filepath;
+        auto rc = aGetFilePath(stdout, filepath);
+        printf("rc: %d\n", rc);
+        printf("stdout filepath: %s\n", filepath.c_str());
+    }
+}
+
+
 GTEST_MAIN();
+
