@@ -119,6 +119,8 @@ $(function(){initNavTree('group__Orbit.html',''); initResizable(true); });
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1RepeatingOrbitDesigner.html">ast::RepeatingOrbitDesigner</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1RepeatingSunSyncOrbitDesigner.html">ast::RepeatingSunSyncOrbitDesigner</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1SimpleOrbitDesigner.html">ast::SimpleOrbitDesigner</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1StationaryOrbitDesigner.html">ast::StationaryOrbitDesigner</a></td></tr>
@@ -146,8 +148,18 @@ $(function(){initNavTree('group__Orbit.html',''); initResizable(true); });
 <tr class="separator:ga095aa04fb967809214eb5a676d6ec165"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga22cff0fd5d8473d6eae063a291a868e7" id="r_ga22cff0fd5d8473d6eae063a291a868e7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga22cff0fd5d8473d6eae063a291a868e7">ast::aMeanAnomalyRate</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
 <tr class="separator:ga22cff0fd5d8473d6eae063a291a868e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6176aa1e4cad1b99a8bea44244dbe0f7" id="r_ga6176aa1e4cad1b99a8bea44244dbe0f7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga6176aa1e4cad1b99a8bea44244dbe0f7">ast::aMeanArgLatRate</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
+<tr class="separator:ga6176aa1e4cad1b99a8bea44244dbe0f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac4d6914c90df0d4ca29864f0c1d9568f" id="r_gac4d6914c90df0d4ca29864f0c1d9568f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gac4d6914c90df0d4ca29864f0c1d9568f">ast::aJ2Period</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
 <tr class="separator:gac4d6914c90df0d4ca29864f0c1d9568f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga58f1119853851294e80e4e65d697f956" id="r_ga58f1119853851294e80e4e65d697f956"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga58f1119853851294e80e4e65d697f956">ast::aSunSynchronousInclination</a> (double gm, double j2, double rb, double bodyMeanMotion, double a, double ecc, double &amp;inc)</td></tr>
+<tr class="separator:ga58f1119853851294e80e4e65d697f956"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6bbef5d625cc72718cd31d374287b300" id="r_ga6bbef5d625cc72718cd31d374287b300"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga6bbef5d625cc72718cd31d374287b300">ast::aSunSynchronousSemiMajorAxis</a> (double gm, double j2, double rb, double bodyMeanMotion, double inc, double ecc, double &amp;semiMajorAxis)</td></tr>
+<tr class="separator:ga6bbef5d625cc72718cd31d374287b300"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaade62de67dff12b7b7959b00db311f1a" id="r_gaade62de67dff12b7b7959b00db311f1a"><td class="memItemLeft" align="right" valign="top">A_ALWAYS_INLINE double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaade62de67dff12b7b7959b00db311f1a">ast::aSunSynchronousInclination</a> (double gm, double j2, double rb, double bodyMeanMotion, double a, double ecc)</td></tr>
+<tr class="separator:gaade62de67dff12b7b7959b00db311f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5d30ae87d8900bf3e2117efe0a490b8f" id="r_ga5d30ae87d8900bf3e2117efe0a490b8f"><td class="memItemLeft" align="right" valign="top">A_ALWAYS_INLINE double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga5d30ae87d8900bf3e2117efe0a490b8f">ast::aSunSynchronousSemiMajorAxis</a> (double gm, double j2, double rb, double bodyMeanMotion, double inc, double ecc)</td></tr>
+<tr class="separator:ga5d30ae87d8900bf3e2117efe0a490b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae7dc4e2ce06a816d4a72f5583b787b14" id="r_gae7dc4e2ce06a816d4a72f5583b787b14"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gae7dc4e2ce06a816d4a72f5583b787b14">ast::coe2rv</a> (const double *coe, double gm, double *pos, double *vel)</td></tr>
 <tr class="separator:gae7dc4e2ce06a816d4a72f5583b787b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac33a5cab3147ae6ef5de7d276446e559" id="r_gac33a5cab3147ae6ef5de7d276446e559"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gac33a5cab3147ae6ef5de7d276446e559">ast::coe2mee</a> (const double *coe, double *mee)</td></tr>
@@ -1516,6 +1528,61 @@ $(function(){initNavTree('group__Orbit.html',''); initResizable(true); });
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>轨道平近点角变化率 </dd></dl>
+
+</div>
+</div>
+<a id="ga6176aa1e4cad1b99a8bea44244dbe0f7" name="ga6176aa1e4cad1b99a8bea44244dbe0f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6176aa1e4cad1b99a8bea44244dbe0f7">&#9670;&#160;</a></span>aMeanArgLatRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI double ast::aMeanArgLatRate </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>gm</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>j2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>rb</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>ecc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>inc</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算维度幅角平均变化率(平近点角变化率 + 近点幅角变化率) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gm</td><td>天体的引力参数 </td></tr>
+    <tr><td class="paramname">j2</td><td>天体的J2项 </td></tr>
+    <tr><td class="paramname">rb</td><td>天体的半径 </td></tr>
+    <tr><td class="paramname">a</td><td>轨道的半长轴 </td></tr>
+    <tr><td class="paramname">ecc</td><td>轨道的偏心率 </td></tr>
+    <tr><td class="paramname">inc</td><td>轨道的倾角 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>轨道平近点幅角变化率 </dd></dl>
 
 </div>
 </div>
@@ -3230,6 +3297,238 @@ $(function(){initNavTree('group__Orbit.html',''); initResizable(true); });
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>长半轴 [m] </dd></dl>
+
+</div>
+</div>
+<a id="gaade62de67dff12b7b7959b00db311f1a" name="gaade62de67dff12b7b7959b00db311f1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaade62de67dff12b7b7959b00db311f1a">&#9670;&#160;</a></span>aSunSynchronousInclination() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">A_ALWAYS_INLINE double ast::aSunSynchronousInclination </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>gm</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>j2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>rb</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>bodyMeanMotion</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>ecc</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算太阳同步轨道的倾角 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">gm</td><td>天体引力系数 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">j2</td><td>天体J2项 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>天体半径 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bodyMeanMotion</td><td>天体平均公转角速度 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>轨道半长轴 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ecc</td><td>轨道偏心率 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>double 轨道倾角，如果计算失败，则为NaN </dd></dl>
+
+</div>
+</div>
+<a id="ga58f1119853851294e80e4e65d697f956" name="ga58f1119853851294e80e4e65d697f956"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga58f1119853851294e80e4e65d697f956">&#9670;&#160;</a></span>aSunSynchronousInclination() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::aSunSynchronousInclination </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>gm</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>j2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>rb</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>bodyMeanMotion</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>ecc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;</td>          <td class="paramname"><span class="paramname"><em>inc</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算太阳同步轨道的倾角 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">gm</td><td>天体引力系数 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">j2</td><td>天体J2项 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>天体半径 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bodyMeanMotion</td><td>天体平均公转角速度 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>轨道半长轴 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ecc</td><td>轨道偏心率 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">inc</td><td>轨道倾角，如果计算失败，则为NaN </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>err_t 错误码 </dd></dl>
+
+</div>
+</div>
+<a id="ga5d30ae87d8900bf3e2117efe0a490b8f" name="ga5d30ae87d8900bf3e2117efe0a490b8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5d30ae87d8900bf3e2117efe0a490b8f">&#9670;&#160;</a></span>aSunSynchronousSemiMajorAxis() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">A_ALWAYS_INLINE double ast::aSunSynchronousSemiMajorAxis </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>gm</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>j2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>rb</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>bodyMeanMotion</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>inc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>ecc</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算太阳同步轨道的半长轴 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">gm</td><td>天体引力系数 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">j2</td><td>天体J2项 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>天体半径 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bodyMeanMotion</td><td>天体平均公转角速度 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">inc</td><td>轨道倾角 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ecc</td><td>轨道偏心率 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>double 轨道半长轴，如果计算失败，则为NaN </dd></dl>
+
+</div>
+</div>
+<a id="ga6bbef5d625cc72718cd31d374287b300" name="ga6bbef5d625cc72718cd31d374287b300"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6bbef5d625cc72718cd31d374287b300">&#9670;&#160;</a></span>aSunSynchronousSemiMajorAxis() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::aSunSynchronousSemiMajorAxis </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>gm</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>j2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>rb</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>bodyMeanMotion</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>inc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>ecc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;</td>          <td class="paramname"><span class="paramname"><em>semiMajorAxis</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算太阳同步轨道的半长轴 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">gm</td><td>天体引力系数 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">j2</td><td>天体J2项 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>天体半径 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bodyMeanMotion</td><td>天体平均公转角速度 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">inc</td><td>轨道倾角 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ecc</td><td>轨道偏心率 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">semiMajorAxis</td><td>轨道半长轴，如果计算失败，则为NaN </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>err_t 错误码 </dd></dl>
 
 </div>
 </div>

@@ -224,6 +224,7 @@ var annotated_dup =
       [ "Quantity", "classast_1_1Quantity.html", "classast_1_1Quantity" ],
       [ "Quaternion", "classast_1_1Quaternion.html", "classast_1_1Quaternion" ],
       [ "RepeatingOrbitDesigner", "classast_1_1RepeatingOrbitDesigner.html", "classast_1_1RepeatingOrbitDesigner" ],
+      [ "RepeatingSunSyncOrbitDesigner", "classast_1_1RepeatingSunSyncOrbitDesigner.html", "classast_1_1RepeatingSunSyncOrbitDesigner" ],
       [ "RidderSolver", "classast_1_1RidderSolver.html", "classast_1_1RidderSolver" ],
       [ "RK4", "classast_1_1RK4.html", "classast_1_1RK4" ],
       [ "RK8", "classast_1_1RK8.html", "classast_1_1RK8" ],
