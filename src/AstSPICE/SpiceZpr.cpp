@@ -22,6 +22,7 @@
 #include "AstMath/AttitudeConvert.hpp"
 #include "AstMath/AngleAxis.hpp"
 #include "AstMath/Euler.hpp"
+#include "AstMath/Quaternion.hpp"
 #include "AstUtil/Constants.h"
 #include "AstUtil/Math.hpp"
 
@@ -32,6 +33,7 @@ using SpiceInt = int;
 
 void axisar(const Vector3d & axis, double angle, Matrix3d & r)
 {
+    // @todo
     aAngleAxisToMatrix(AngleAxis(-angle, axis), r);
 }
 
@@ -87,6 +89,12 @@ void m2eul(const Matrix3d &r, int axis3, int axis2, int axis1, double &angle3, d
     angle1 = euler.angle1();
 }
 
+void m2q(const Matrix3d &r, Quaternion &q)
+{
+    // @todo
+    aMatrixToQuat(r.transpose(), q);
+}
+
 void mxm(const Matrix3d &m1, const Matrix3d &m2, Matrix3d &mout)
 {
     mout = m1 * m2;
@@ -107,6 +115,12 @@ void mxvg(const void *m1, const void *v2, int nr1, int nc1r2, void *vout)
         }
         vecout[row] = innerProduct;
     }
+}
+
+void q2m(const Quaternion &q, Matrix3d &r)
+{
+    // @todo
+    aQuatToMatrix(q.conjugate(), r);
 }
 
 void radrec(double range, double ra, double dec, Vector3d &rectan)

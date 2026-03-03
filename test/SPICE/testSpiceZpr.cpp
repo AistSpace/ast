@@ -1695,6 +1695,27 @@ TEST(SpiceZpr, m2eul)
 
 TEST(SpiceZpr, m2q)
 {
+    aInitialize();
+    double mtx[3][3];
+    aICRFToECFMatrix(TimePoint::FromUTC(2022, 1, 2, 3, 0, 0), mtx);
+    double q[4];
+    double q_c[4];
+    m2q(mtx, q);
+    m2q_c(mtx, q_c);
+    
+    printf("q  : %lf, %lf, %lf, %lf\n", q[0], q[1], q[2], q[3]);
+    printf("q_c: %lf, %lf, %lf, %lf\n", q_c[0], q_c[1], q_c[2], q_c[3]);
+    if(std::signbit(q[0]) != std::signbit(q_c[0]))
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            q[i] = -q[i];
+        }
+    }
+    for(int i = 0; i < 4; i++)
+    {
+        EXPECT_NEAR(q[i], q_c[i], 1e-12);
+    }
 }
 
 TEST(SpiceZpr, matchi)
@@ -1987,6 +2008,31 @@ TEST(SpiceZpr, pxfrm2)
 
 TEST(SpiceZpr, q2m)
 {
+    static const struct{
+        Quaternion q;
+    } testData[] = {
+        {1.0,  0.0,  0.0,  0.0},
+        {0.0,  1.0,  0.0,  0.0},
+        {0.0,  0.0,  1.0,  0.0},
+        {0.0,  0.0,  0.0,  1.0},
+        {1.0,  2.0,  3.0,  4.0},
+        {-5.0, -5.0, 3.0, -6.0},
+    };
+    for(auto& data: testData)
+    {
+        double mtx[3][3];
+        double mtx_c[3][3];
+        Quaternion q = data.q.normalized();
+        q2m(q.data(), mtx);
+        q2m_c(q.data(), mtx_c);
+        for(int i = 0; i < 3; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                EXPECT_NEAR(mtx[i][j], mtx_c[i][j], 1e-12);
+            }
+        }
+    }
 }
 
 TEST(SpiceZpr, qcktrc)

@@ -825,7 +825,13 @@ AST_SPICE_CAPI void  m2eul(
     double        & angle1
 );
 
-// m2q
+/// @brief 将旋转矩阵转换为四元数(Matrix to quaternion)
+/// @param r 旋转矩阵
+/// @param q 输出四元数
+AST_SPICE_CAPI void m2q(
+    const Matrix3d&  r,
+    Quaternion&      q
+);
 
 // matchi
 
@@ -992,7 +998,13 @@ AST_SPICE_CAPI void mxvg(
 
 // pxfrm2
 
-// q2m
+/// @brief 将四元数转换为旋转矩阵(Quaternion to matrix)
+/// @param q 四元数
+/// @param r 输出旋转矩阵
+AST_SPICE_CAPI void q2m(
+    const Quaternion&  q,
+    Matrix3d&       r 
+);
 
 // qcktrc
 

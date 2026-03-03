@@ -21,6 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstSPICE/SpiceZpr.hpp"
 
 AST_NAMESPACE_BEGIN
 

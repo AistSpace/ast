@@ -762,7 +762,11 @@ void m2eul(
     double        * angle1  
 );
 
-// m2q
+
+void m2q(
+    const double  r[3][3],
+    double       q[4]     
+);
 
 // matchi
 
@@ -918,7 +922,10 @@ void mxvg(
 
 // pxfrm2
 
-// q2m
+void q2m(
+    const double  q[4],
+    double        r[3][3] 
+);
 
 // qcktrc
 
