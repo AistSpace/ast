@@ -14,7 +14,9 @@ var SpiceZpr_8cpp =
     [ "jyear", "SpiceZpr_8cpp.html#gae378623c62ab40755fb7a3e2782611a5", null ],
     [ "latrec", "SpiceZpr_8cpp.html#ga681668a99acdec72888a3ee355098016", null ],
     [ "m2eul", "SpiceZpr_8cpp.html#gae64d4b9ccf02cdb3ca2e46d24351dc07", null ],
+    [ "m2q", "SpiceZpr_8cpp.html#gac01f9b58731969aaab459cdd8fb9de56", null ],
     [ "mxm", "SpiceZpr_8cpp.html#ga186312adcab3a6cc586e7affaa431d69", null ],
     [ "mxvg", "SpiceZpr_8cpp.html#gad90e6b55870d2a694400ebc5c8c6548f", null ],
+    [ "q2m", "SpiceZpr_8cpp.html#ga627c43ef632cc13d3e38a11ff1c80254", null ],
     [ "radrec", "SpiceZpr_8cpp.html#ga925fcb5be8351292ea60a4b53e1aadd5", null ]
 ];
