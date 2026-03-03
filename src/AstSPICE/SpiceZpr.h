@@ -25,7 +25,7 @@ A_CLINKAGE_BEGIN
 
 
 /*!
-    @addtogroup Spice
+    @addtogroup 
     @{
 */
 
@@ -604,7 +604,7 @@ double dpr();
 
 // hx2dp
 
-// ident
+void ident(double matrix[3][3]);
 
 // illumf
 
@@ -664,7 +664,7 @@ double j2000();
 
 double j2100();
 
-// jyear
+double jyear();
 
 // kclear
 
@@ -779,9 +779,19 @@ void latrec(
 
 // mxmt
 
-// mxm
+void mxm(
+    const double  m1[3][3],
+    const double  m2[3][3],
+    double        mout[3][3] 
+);
 
-// mxvg
+void mxvg(
+    const void   * m1,
+    const void   * v2,
+    int            nr1,
+    int            nc1r2,
+    void         * vout
+);
 
 // mxv
 
@@ -901,9 +911,18 @@ void latrec(
 
 // qxq
 
-// radrec
+void radrec( 
+    double range,
+    double ra,
+    double dec,
+    double rectan[3] 
+);
 
-// rav2xf
+void rav2xf(
+    const double rot   [3][3],
+    const double av    [3],
+    double       xform [6][6]  
+);
 
 // raxisa
 

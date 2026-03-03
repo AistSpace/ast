@@ -199,9 +199,11 @@ constexpr double kSecToPicoSec = 1.0e+12;                 ///< 秒到皮秒
 // 天数、秒数相关常量
 
 constexpr double kDaysPerJulianCentury = 36525.0;          ///< 儒略世纪天数
+constexpr double kDaysPerJulianYear = 365.25;              ///< 儒略年天数
 constexpr double kSecondsPerDay   = 86400.0;               ///< 一天的秒数
 constexpr double kSecondsPerHour = 3600.0;                 ///< 一小时的秒数
 constexpr double kSecondsPerMinute = 60.0;                 ///< 一分钟的秒数
+constexpr double kSecondsPerJulianYear = 31557600.0;        ///< 儒略年秒数(kDaysPerJulianYear * kSecondsPerDay)
 
 // 角度单位转换常数
 

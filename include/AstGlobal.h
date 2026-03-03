@@ -283,6 +283,9 @@ typedef VectorN<double, 3> Vector3d;
 
 typedef MatrixMN<double, 3, 3> Matrix3d;
 
+typedef MatrixMN<double, 6, 6> Matrix6d;
+
+
 template<typename _Char>
 class StringViewBasic;
 

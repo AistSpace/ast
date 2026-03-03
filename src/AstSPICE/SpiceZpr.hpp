@@ -51,13 +51,13 @@ AST_SPICE_CAPI void axisar(
 // azlcpo
 
 
-/// @brief 将极坐标转换为矩形坐标(AZ/EL to rectangular coordinates)
+/// @brief 将极坐标转换为直角坐标(AZ/EL to rectangular coordinates)
 /// @param[in] range 范围（距离）
 /// @param[in] az 方位角（弧度）
 /// @param[in] el 俯仰角（弧度）
 /// @param[in] azccw 如果为真，则方位角按逆时针方向计算，否则按顺时针方向计算
 /// @param[in] elplsz 如果为真，则俯仰角按正值上增加，否则按负值上增加
-/// @param[out] rectan 输出矩形坐标（x, y, z）
+/// @param[out] rectan 输出直角坐标（x, y, z）
 AST_SPICE_CAPI void azlrec(
     double     range,
     double     az,
@@ -636,7 +636,9 @@ AST_SPICE_CAPI double dpr();
 
 // hx2dp
 
-// ident
+/// @brief 获取单位矩阵(Identity Matrix)
+/// @param matrix 输出单位矩阵
+AST_SPICE_CAPI void ident(Matrix3d& matrix);
 
 // illumf
 
@@ -702,7 +704,9 @@ AST_SPICE_CAPI double j2000();
 /// @brief J2100.0历元(Julian Date of 2100 JAN 1.5)
 AST_SPICE_CAPI double j2100();
 
-// jyear
+
+/// @brief  儒略年秒数(Seconds per julian year)
+AST_SPICE_CAPI double jyear();
 
 // kclear
 
@@ -720,11 +724,11 @@ AST_SPICE_CAPI double j2100();
 
 // latcyl
 
-/// @brief 将纬度经度转换为矩形坐标(Latitudinal to rectangular coordinates)
+/// @brief 将纬度经度转换为直角坐标(Latitudinal to rectangular coordinates)
 /// @param[in] radius 半径
 /// @param[in] lon 经度（弧度）
 /// @param[in] lat 纬度（弧度）
-/// @param[out] rectan 输出矩形坐标（x, y, z）
+/// @param[out] rectan 输出直角坐标（x, y, z）
 AST_SPICE_CAPI 
 void latrec(
     double    radius,
@@ -823,9 +827,30 @@ void latrec(
 
 // mxmt
 
-// mxm
+/// @brief 矩阵乘法(Matrix times matrix, 3x3)
+/// @param m1 矩阵1
+/// @param m2 矩阵2
+/// @param mout 输出矩阵
+AST_SPICE_CAPI void mxm(
+    const Matrix3d&   m1,
+    const Matrix3d&   m2,
+    Matrix3d&         mout 
+);
 
-// mxvg
+/// @brief 矩阵向量乘法(Matrix times vector, general dimension)
+/// @param m1 矩阵1
+/// @param v2 向量2
+/// @param nr1 矩阵1的行数
+/// @param nc1r2 矩阵1的列数（等于向量2的长度）
+/// @param vout 输出向量
+AST_SPICE_CAPI void mxvg(
+    const void   * m1,
+    const void   * v2,
+    int            nr1,
+    int            nc1r2,
+    void         * vout
+);
+
 
 // mxv
 
@@ -945,9 +970,26 @@ void latrec(
 
 // qxq
 
-// radrec
+/// @brief 从距离、赤经和赤纬计算该点的直角坐标( Range, RA and DEC to rectangular coordinates ) 
+/// 赤经从 +X 轴向 +Y 轴方向测量，赤纬是点相对于 XY 平面的角度。
+/// @param range 距离
+/// @param ra 赤经（弧度）
+/// @param dec 赤纬（弧度）
+/// @param rectan 输出直角坐标（x, y, z）
+AST_SPICE_CAPI void radrec( 
+    double range,
+    double ra,
+    double dec,
+    Vector3d& rectan
+);
 
-// rav2xf
+
+
+AST_SPICE_CAPI void rav2xf( 
+    const Matrix3d&     rot,
+    const Vector3d&     av,
+    Matrix6d&           xform
+);
 
 // raxisa
 

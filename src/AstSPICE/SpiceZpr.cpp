@@ -26,6 +26,9 @@
 
 AST_NAMESPACE_BEGIN
 
+using SpiceDouble = double;
+using SpiceInt = int;
+
 void axisar(const Vector3d & axis, double angle, Matrix3d & r)
 {
     aAngleAxisToMatrix(AngleAxis(-angle, axis), r);
@@ -72,6 +75,60 @@ void latrec(double radius, double lon, double lat, Vector3d &rectan)
     rectan[2] = radius * sin_lat;
 }
 
+void mxm(const Matrix3d &m1, const Matrix3d &m2, Matrix3d &mout)
+{
+    mout = m1 * m2;
+}
+
+void mxvg(const void *m1, const void *v2, int nr1, int nc1r2, void *vout)
+{
+    double *mtx1 = (double *) m1;
+    double *vec2 = (double *) v2;
+    double *vecout = (double *) vout;
+
+    for(int row=0; row<nr1; row++ )
+    {
+        double innerProduct = 0.0;
+        for(int i=0; i<nc1r2; i++ )
+        {
+           innerProduct += mtx1[row*nc1r2 + i] * vec2[i];
+        }
+        vecout[row] = innerProduct;
+    }
+}
+
+void radrec(double range, double ra, double dec, Vector3d &rectan)
+{
+    latrec(range, ra, dec, rectan);
+}
+
+void rav2xf(const Matrix3d &rot, const Vector3d &av, Matrix6d &xform)
+{
+    Matrix3d omegat {
+        0,      av[2], -av[1],
+        -av[2], 0,      av[0],
+        av[1],  -av[0], 0
+    };
+
+    Matrix3d drdt = rot * omegat;
+
+    for(int i=0; i<3; i++ )
+    {
+        for(int j=0; j<3; j++ )
+        {
+            xform(i  ,j  ) = rot(i,j);
+            xform(i+3,j+3) = rot(i,j);
+            xform(i  ,j+3) = 0.;
+            xform(i+3, j)  = drdt(i, j);
+        }
+    }
+}
+
+void ident(Matrix3d &matrix)
+{
+    matrix.setIdentity();
+}
+
 double j1900()
 {
     return kJ1900Epoch;
@@ -90,6 +147,11 @@ double j2000()
 double j2100()
 {
     return kJ2100Epoch;
+}
+
+double jyear()
+{
+    return kSecondsPerJulianYear;
 }
 
 AST_NAMESPACE_END
