@@ -100,6 +100,7 @@ $(function(){initNavTree('SpiceZpr_8cpp.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#namespaces">命名空间</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle"><div class="title">SpiceZpr.cpp 文件参考</div></div>
 </div><!--header-->
@@ -114,6 +115,15 @@ $(function(){initNavTree('SpiceZpr_8cpp.html',''); initResizable(true); });
 命名空间</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html">ast</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:a606a268e2ce5778cddaa5724bd9f8d23" id="r_a606a268e2ce5778cddaa5724bd9f8d23"><td class="memItemLeft" align="right" valign="top"><a id="a606a268e2ce5778cddaa5724bd9f8d23" name="a606a268e2ce5778cddaa5724bd9f8d23"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ast::SpiceDouble</b> = double</td></tr>
+<tr class="separator:a606a268e2ce5778cddaa5724bd9f8d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fa539ef205cdc24b5d1151798002026" id="r_a7fa539ef205cdc24b5d1151798002026"><td class="memItemLeft" align="right" valign="top"><a id="a7fa539ef205cdc24b5d1151798002026" name="a7fa539ef205cdc24b5d1151798002026"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ast::SpiceInt</b> = int</td></tr>
+<tr class="separator:a7fa539ef205cdc24b5d1151798002026"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
@@ -132,12 +142,32 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>ast::dpr</b> ()</td
 <tr class="separator:gae84bbf14131d083d3886978ca516e180"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga681668a99acdec72888a3ee355098016" id="r_ga681668a99acdec72888a3ee355098016"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga681668a99acdec72888a3ee355098016">ast::latrec</a> (double radius, double lon, double lat, Vector3d &amp;rectan)</td></tr>
 <tr class="separator:ga681668a99acdec72888a3ee355098016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga186312adcab3a6cc586e7affaa431d69" id="r_ga186312adcab3a6cc586e7affaa431d69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga186312adcab3a6cc586e7affaa431d69">ast::mxm</a> (const <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;m1, const <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;m2, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;mout)</td></tr>
+<tr class="separator:ga186312adcab3a6cc586e7affaa431d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad90e6b55870d2a694400ebc5c8c6548f" id="r_gad90e6b55870d2a694400ebc5c8c6548f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#gad90e6b55870d2a694400ebc5c8c6548f">ast::mxvg</a> (const void *m1, const void *v2, int nr1, int nc1r2, void *vout)</td></tr>
+<tr class="separator:gad90e6b55870d2a694400ebc5c8c6548f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga925fcb5be8351292ea60a4b53e1aadd5" id="r_ga925fcb5be8351292ea60a4b53e1aadd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga925fcb5be8351292ea60a4b53e1aadd5">ast::radrec</a> (double range, double ra, double dec, Vector3d &amp;rectan)</td></tr>
+<tr class="separator:ga925fcb5be8351292ea60a4b53e1aadd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae4ad791279dc2d35f3ee9497a9b24160" id="r_gae4ad791279dc2d35f3ee9497a9b24160"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::rav2xf</b> (const <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;rot, const Vector3d &amp;av, Matrix6d &amp;xform)</td></tr>
+<tr class="separator:gae4ad791279dc2d35f3ee9497a9b24160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga69e7485a9fbd13916ae87dbf0ba84562" id="r_ga69e7485a9fbd13916ae87dbf0ba84562"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga69e7485a9fbd13916ae87dbf0ba84562">ast::ident</a> (<a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;matrix)</td></tr>
+<tr class="separator:ga69e7485a9fbd13916ae87dbf0ba84562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga03c40552799c64c5894b07ed280c2bc0" id="r_ga03c40552799c64c5894b07ed280c2bc0"><td class="memItemLeft" align="right" valign="top">
+double&#160;</td><td class="memItemRight" valign="bottom"><b>ast::j1900</b> ()</td></tr>
+<tr class="separator:ga03c40552799c64c5894b07ed280c2bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga806d626961b828d740df3e5efd12a9dc" id="r_ga806d626961b828d740df3e5efd12a9dc"><td class="memItemLeft" align="right" valign="top">
+double&#160;</td><td class="memItemRight" valign="bottom"><b>ast::j1950</b> ()</td></tr>
+<tr class="separator:ga806d626961b828d740df3e5efd12a9dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0be90b1e3a056875b9818c355406be70" id="r_ga0be90b1e3a056875b9818c355406be70"><td class="memItemLeft" align="right" valign="top">
 double&#160;</td><td class="memItemRight" valign="bottom"><b>ast::j2000</b> ()</td></tr>
 <tr class="separator:ga0be90b1e3a056875b9818c355406be70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7106a408072e99f310464bc658ebe97b" id="r_ga7106a408072e99f310464bc658ebe97b"><td class="memItemLeft" align="right" valign="top">
 double&#160;</td><td class="memItemRight" valign="bottom"><b>ast::j2100</b> ()</td></tr>
 <tr class="separator:ga7106a408072e99f310464bc658ebe97b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae378623c62ab40755fb7a3e2782611a5" id="r_gae378623c62ab40755fb7a3e2782611a5"><td class="memItemLeft" align="right" valign="top">
+double&#160;</td><td class="memItemRight" valign="bottom"><b>ast::jyear</b> ()</td></tr>
+<tr class="separator:gae378623c62ab40755fb7a3e2782611a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p><br  />

@@ -1,5 +1,16 @@
 var NAVTREEINDEX20 =
 {
+"namespaceast_1_1literals.html#ae60947175eaa8faac7143fd5f60b8997":[2,0,0,1,44],
+"namespaceast_1_1literals.html#ae75856045494bc38a64e4e4fa2b86da9":[2,0,0,1,41],
+"namespaceast_1_1literals.html#af11fab1d040c1dfc47d10aa468c4ca6f":[2,0,0,1,5],
+"namespaceast_1_1literals.html#af2c6bf04dacf1e87018f6b42ed46f9ec":[2,0,0,1,8],
+"namespaceast_1_1math.html":[0,2,0,0],
+"namespaceast_1_1math.html#a04a4b8d988da2035897df6832c1182d5":[2,0,0,2,8],
+"namespaceast_1_1math.html#a762ef5701ce8b50600daa804623886da":[2,0,0,2,1],
+"namespaceast_1_1math.html#a7cdd6932f756ddd49b3afe080e33d857":[2,0,0,2,5],
+"namespaceast_1_1math.html#aca33d22882041673d4a2e218e052cc3e":[2,0,0,2,3],
+"namespaceast_1_1math.html#ad55476707790d13c96d9eef28526cbcf":[2,0,0,2,4],
+"namespaceast_1_1math.html#ad7d48b99658c1144283823aa76621adf":[2,0,0,2,7],
 "namespaceast_1_1math.html#af4d91cee65bbdc213a65c66832b1dd8c":[2,0,0,2,6],
 "namespaceast_1_1math.html#af5311f732f050ddd8e2bc5884e38b3da":[2,0,0,2,9],
 "namespaceast_1_1math.html#afe4763a2a941b3324f166f3377767b77":[2,0,0,2,2],

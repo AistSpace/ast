@@ -25,5 +25,7 @@ var searchData=
   ['monthfullname_22',['monthFullName',['../group__Time.html#ga95499f86d2d87bfc8ff285d1a66800b7',1,'ast::Date']]],
   ['monthshortname_23',['monthShortName',['../group__Time.html#ga88179430870464cb8b0160c2ca7bfe99',1,'ast::Date']]],
   ['mtimes_24',['mtimes',['../namespaceast_1_1math.html#ad55476707790d13c96d9eef28526cbcf',1,'ast::math']]],
-  ['multiply_25',['multiply',['../classast_1_1Unit.html#a0f7366299cdf6a6875300179457b57ee',1,'ast::Unit']]]
+  ['multiply_25',['multiply',['../classast_1_1Unit.html#a0f7366299cdf6a6875300179457b57ee',1,'ast::Unit']]],
+  ['mxm_26',['mxm',['../group__Spice.html#ga186312adcab3a6cc586e7affaa431d69',1,'ast']]],
+  ['mxvg_27',['mxvg',['../group__Spice.html#gad90e6b55870d2a694400ebc5c8c6548f',1,'ast']]]
 ];
