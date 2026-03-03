@@ -72,6 +72,16 @@ void latrec(double radius, double lon, double lat, Vector3d &rectan)
     rectan[2] = radius * sin_lat;
 }
 
+double j1900()
+{
+    return kJ1900Epoch;
+}
+
+double j1950()
+{
+    return kJ1950Epoch;
+}
+
 double j2000()
 {
     return kJ2000Epoch;

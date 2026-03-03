@@ -195,6 +195,17 @@ TEST(SpiceZpr, latrec)
     }
 }
 
+TEST(SpiceZpr, j1900)
+{
+    EXPECT_EQ(j1900(), j1900_c());
+}
+
+TEST(SpiceZpr, j1950)
+{
+    EXPECT_EQ(j1950(), j1950_c());
+}
+
+
 TEST(SpiceZpr, j2000)
 {
     EXPECT_EQ(j2000(), j2000_c());

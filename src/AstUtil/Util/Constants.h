@@ -32,6 +32,7 @@ AST_NAMESPACE_BEGIN
 
 // 时间系统常量
 
+constexpr double kJ1900Epoch      = 2415020.0;        ///< J1900历元
 constexpr double kJ1950Epoch      = 2433282.5;        ///< J1950历元
 constexpr double kJ2000Epoch      = 2451545.0;        ///< J2000历元
 constexpr double kJ2100Epoch      = 2488070.0;        ///< J2100历元
