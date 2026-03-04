@@ -10,13 +10,5 @@ var searchData=
   ['ap_5farray_7',['ap_array',['../structap__array.html',1,'']]],
   ['args_5ft_8',['args_t',['../structast_1_1args__t.html',1,'ast']]],
   ['astgfxapi_9',['AstGfxAPI',['../classast_1_1AstGfxAPI.html',1,'ast']]],
-  ['avector3d_10',['AVector3d',['../structAVector3d.html',1,'']]],
-  ['axes_11',['Axes',['../classast_1_1Axes.html',1,'ast']]],
-  ['axesecf_12',['AxesECF',['../classast_1_1AxesECF.html',1,'ast']]],
-  ['axesgtod_13',['AxesGTOD',['../classast_1_1AxesGTOD.html',1,'ast']]],
-  ['axesicrf_14',['AxesICRF',['../classast_1_1AxesICRF.html',1,'ast']]],
-  ['axesj2000_15',['AxesJ2000',['../classast_1_1AxesJ2000.html',1,'ast']]],
-  ['axesmod_16',['AxesMOD',['../classast_1_1AxesMOD.html',1,'ast']]],
-  ['axesroot_17',['AxesRoot',['../classast_1_1AxesRoot.html',1,'ast']]],
-  ['axestod_18',['AxesTOD',['../classast_1_1AxesTOD.html',1,'ast']]]
+  ['avector3d_10',['AVector3d',['../structAVector3d.html',1,'']]]
 ];

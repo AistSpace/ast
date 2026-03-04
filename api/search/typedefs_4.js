@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['ode_0',['ODE',['../namespaceast.html#a556c864e79d6a749bb7e2aae55fcac57',1,'ast']]],
-  ['opassignfunc_1',['OpAssignFunc',['../group__Script.html#ga4a3435fb2657aa607b7c2dab49eb8cc4',1,'ast']]],
-  ['opbinfunc_2',['OpBinFunc',['../group__Script.html#ga33b0083252c4606fe2c63aa003f3bc91',1,'ast']]],
-  ['opunaryfunc_3',['OpUnaryFunc',['../group__Script.html#gacc5dc8960c6ca177acf0d937517f9a0e',1,'ast']]]
+  ['solverstats_0',['SolverStats',['../group__NLE.html#ga771d73ba9a27d2e576e456870e706c69',1,'ast']]],
+  ['subunitlist_1',['SubUnitList',['../classast_1_1Unit.html#a01b17f5310556fe6de956612053581eb',1,'ast::Unit']]],
+  ['subunitlistconst_2',['SubUnitListConst',['../classast_1_1Unit.html#a1deb9340a4f6a0844a583001edf41593',1,'ast::Unit']]]
 ];

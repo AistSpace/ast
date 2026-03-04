@@ -1,9 +1,6 @@
 var dir_d4f37a8c842ac907ebbff47eaf6f4e6a =
 [
-    [ "Axes", "dir_76c72d9a785286fd1276578b7b3202c1.html", "dir_76c72d9a785286fd1276578b7b3202c1" ],
     [ "IERS", "dir_3728ca657bd5157f99a2657b076b2898.html", "dir_3728ca657bd5157f99a2657b076b2898" ],
-    [ "AxesTransform.cpp", "AxesTransform_8cpp.html", null ],
-    [ "AxesTransform.hpp", "AxesTransform_8hpp.html", null ],
     [ "EarthFrame.cpp", "EarthFrame_8cpp.html", "EarthFrame_8cpp" ],
     [ "EarthFrame.hpp", "EarthFrame_8hpp.html", "EarthFrame_8hpp" ],
     [ "FrameTransform.cpp", "FrameTransform_8cpp.html", null ],
