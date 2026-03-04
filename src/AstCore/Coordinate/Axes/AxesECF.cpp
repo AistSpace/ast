@@ -1,9 +1,9 @@
 ///
-/// @file      KinematicRotation.cpp
-/// @brief     ~
-/// @details   ~
+/// @file      AxesECF.cpp
+/// @brief     
+/// @details   
 /// @author    axel
-/// @date      2026-01-05
+/// @date      2026-03-04
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,11 +18,36 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "KinematicRotation.hpp"
+#include "AxesECF.hpp"
+#include "AxesICRF.hpp"
+#include "AstCore/EarthFrame.hpp"
 
 AST_NAMESPACE_BEGIN
 
 
+AxesECF *AxesECF::Instance()
+{
+    static SharedPtr<AxesECF> instance(new AxesECF());
+    return instance.get();
+}
+
+Axes *AxesECF::getParent() const
+{
+    return AxesICRF::Instance();
+}
+
+err_t AxesECF::getTransform(const TimePoint& tp, Rotation &rotation) const
+{
+    aICRFToECFTransform(tp, rotation);
+    return eNoError;
+}
+
+err_t AxesECF::getTransform(const TimePoint& tp, KinematicRotation &rotation) const
+{
+    aICRFToECFTransform(tp, rotation);
+    return eNoError;
+}
 
 AST_NAMESPACE_END
+
 

@@ -1,9 +1,9 @@
 ///
-/// @file      KinematicRotation.cpp
-/// @brief     ~
-/// @details   ~
+/// @file      AxesECF.hpp
+/// @brief     
+/// @details   
 /// @author    axel
-/// @date      2026-01-05
+/// @date      2026-03-04
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,11 +18,30 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "KinematicRotation.hpp"
+#pragma once
+
+#include "AstGlobal.h"
+#include "AstCore/Axes.hpp"
 
 AST_NAMESPACE_BEGIN
 
+/*!
+    @addtogroup Coordinate
+    @{
+*/
 
+/// @brief  ECF 轴系
+class AxesECF : public Axes
+{
+public:
+    AxesECF() = default;
+    ~AxesECF() override = default; 
+    static AxesECF* Instance();
+    Axes* getParent() const override;
+    err_t getTransform(const TimePoint& tp, Rotation& rotation) const override;
+    err_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const override;
+};
+
+/*! @} */
 
 AST_NAMESPACE_END
-

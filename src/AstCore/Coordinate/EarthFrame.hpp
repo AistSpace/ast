@@ -179,6 +179,53 @@ AST_CORE_API void aJ2000ToECF(
 
 
 //----------------
+// ECF -> J2000
+//----------------
+
+/// @brief     从ECF转换为J2000的坐标旋转变换
+/// @details   ~
+/// @param     tp  时间点
+/// @param     rotation  坐标旋转变换
+AST_CORE_API void aECFToJ2000Transform(const TimePoint& tp, Rotation& rotation);
+
+/// @brief     从ECF转换为J2000的坐标旋转变换
+/// @details   ~
+/// @param     tp  时间点
+/// @param     rotation  坐标旋转变换，带角速度信息
+AST_CORE_API void aECFToJ2000Transform(const TimePoint& tp, KinematicRotation& rotation);
+
+/// @brief     从ECF转换为J2000的坐标转换矩阵
+/// @details   ~
+/// @param     tp  时间点
+/// @param     matrix  坐标转换矩阵
+AST_CORE_API void aECFToJ2000Matrix(const TimePoint& tp, Matrix3d& matrix);
+
+
+/// @brief     从ECF转换为J2000的坐标转换
+/// @details   ~
+/// @param     tp  时间点
+/// @param     vecECF  ECF坐标
+/// @param     vecJ2000  J2000坐标
+AST_CORE_API void aECFToJ2000(const TimePoint& tp, const Vector3d& vecECF, Vector3d& vecJ2000);
+
+
+/// @brief     从ECF转换为J2000的坐标转换
+/// @details   ~
+/// @param     tp  时间点
+/// @param     vecECF  ECF坐标
+/// @param     velECF  ECF速度
+/// @param     vecJ2000  J2000坐标
+/// @param     velJ2000  J2000速度
+AST_CORE_API void aECFToJ2000(
+    const TimePoint& tp, 
+    const Vector3d& vecECF, 
+    const Vector3d& velECF, 
+    Vector3d& vecJ2000, 
+    Vector3d& velJ2000
+);
+
+
+//----------------
 // J2000 -> MOD
 //----------------
 
