@@ -1,9 +1,9 @@
 ///
-/// @file      KinematicRotation.cpp
-/// @brief     ~
-/// @details   ~
+/// @file      AxesRoot.hpp
+/// @brief     
+/// @details   
 /// @author    axel
-/// @date      2026-01-05
+/// @date      2026-03-04
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,11 +18,31 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "KinematicRotation.hpp"
+#pragma once
+
+#include "AstGlobal.h"
+#include "AstCore/Axes.hpp"
 
 AST_NAMESPACE_BEGIN
 
+/*!
+    @addtogroup Coordinate
+    @{
+*/
 
+
+/// @brief 根轴系
+class AST_CORE_API AxesRoot : public Axes
+{
+public:
+    AxesRoot() = default;
+    ~AxesRoot() override = default;
+    static Axes* Instance();
+    Axes* getParent() const override;
+    err_t getTransform(const TimePoint& tp, Rotation& rotation) const override;
+    err_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const override;
+};
+
+/*! @} */
 
 AST_NAMESPACE_END
-

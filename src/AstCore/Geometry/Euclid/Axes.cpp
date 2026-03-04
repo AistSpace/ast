@@ -1,0 +1,153 @@
+///
+/// @file      Axes.cpp
+/// @brief     
+/// @details   
+/// @author    axel
+/// @date      2026-03-04
+/// @copyright 版权所有 (C) 2026-present, ast项目.
+///
+/// ast项目（https://github.com/space-ast/ast）
+/// 本项目基于 Apache 2.0 开源许可证分发。
+/// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
+/// 许可证全文请见：
+/// 
+///    http://www.apache.org/licenses/LICENSE-2.0
+/// 
+/// 重要须知：
+/// 软件按"现有状态"提供，无任何明示或暗示的担保条件。
+/// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
+/// 使用本软件所产生的风险，需由您自行承担。
+
+#include "Axes.hpp"
+#include "AstMath/Rotation.hpp"
+#include "AstMath/KinematicRotation.hpp"
+#include <cmath>
+#include <limits>
+
+AST_NAMESPACE_BEGIN
+
+static int aAxesDepth(const Axes* axes)
+{
+    int depth = 0;
+    while (axes != nullptr)
+    {
+        depth++;
+        axes = axes->getParent();
+    }
+    return depth;
+}
+
+int Axes::getDepth() const
+{
+    return aAxesDepth(this);
+}
+
+Axes* Axes::getAncestor(int depth) const{
+    
+    Axes* ancestor = const_cast<Axes*>(this);
+    for (int i = 0; i < depth; i++)
+    {
+        if(ancestor == nullptr)
+            return nullptr;
+        ancestor = ancestor->getParent();
+    }
+    return ancestor;
+}
+
+
+template<typename RotationType>
+A_ALWAYS_INLINE err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, RotationType &rotation)
+{
+    if (A_UNLIKELY(source == nullptr || target == nullptr))
+    {
+        return eErrorNullInput;
+    }
+    
+    /*!
+        计算出源坐标系和目标坐标系的深度，
+        同时分别填充源坐标系路径和目标坐标系路径。
+        最后从源坐标系路径和目标坐标系路径的末尾开始比较，
+        找到第一个相同的坐标系，
+        则该坐标系为最近公共祖先
+
+        假设坐标系的深度不会超过256层，
+        因此使用了一个256层的栈数组来存储源坐标系路径和目标坐标系路径。
+        为了避免缓冲区溢出，我们使用uint8_t类型来存储深度
+        
+        @todo
+        在寻找最近公共祖先时，如果出现了超过256层的意外情况（非常非常罕见），
+        需要进入动态分配内存的计算模式
+    */
+
+    uint8_t sourceDepth = 0;         // 源坐标系深度
+    uint8_t targetDepth = 0;         // 目标坐标系深度
+    PAxes sourcePath[256];           // 源坐标系路径
+    PAxes targetPath[256];           // 目标坐标系路径
+    // 1. 填充源坐标系路径和目标坐标系路径
+    {
+        // 填充源坐标系路径
+        Axes* current = source;
+        do
+        {
+            sourcePath[sourceDepth++] = current;
+            current = current->getParent();
+        }while (current != nullptr);
+        // 填充目标坐标系路径
+        current = target;
+        do
+        {
+            targetPath[targetDepth++] = current;
+            current = current->getParent();
+        }while (current != nullptr);
+    }
+    // 2. 寻找最近的公共祖先
+    {
+        if(sourceDepth > targetDepth){
+            sourceDepth = sourceDepth - targetDepth;
+            targetDepth = 0;
+        }else{
+            targetDepth = targetDepth - sourceDepth;
+            sourceDepth = 0;
+        }
+        while(sourcePath[sourceDepth] != targetPath[targetDepth]){
+            sourceDepth++;
+            targetDepth++;
+        }
+    }
+    // 3. 计算旋转变换
+    {
+        RotationType commonToSource = RotationType::Identity();
+        for (int i = 0; i < sourceDepth; i++)
+        {
+            RotationType tempRot;
+            err_t rc = sourcePath[i]->getTransform(tp, tempRot);
+            if(A_UNLIKELY(rc != eNoError))
+                return rc;
+            commonToSource = tempRot * commonToSource;
+        }
+        RotationType commonToTarget = RotationType::Identity();
+        for (int i = 0; i < targetDepth; i++)
+        {
+            RotationType tempRot;
+            err_t rc = targetPath[i]->getTransform(tp, tempRot);
+            if(A_UNLIKELY(rc != eNoError))
+                return rc;
+            commonToTarget = tempRot * commonToTarget;
+        }
+        rotation = commonToSource.inverse() * commonToTarget;
+    }
+    return eNoError;
+}
+
+err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, Rotation &rotation)
+{
+    return aAxesTransform<Rotation>(source, target, tp, rotation);
+}
+
+err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, KinematicRotation &rotation)
+{
+    return aAxesTransform<KinematicRotation>(source, target, tp, rotation);
+}
+
+AST_NAMESPACE_END
+

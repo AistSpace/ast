@@ -28,6 +28,7 @@
 #include "AstCore/RunTime.hpp"
 #include "AstUtil/Math.hpp"
 #include "AstCore/SOFA.hpp"
+#include "EarthFrame.hpp"
 
 // #define AST_DEBUG_FRAME 1
 
@@ -78,7 +79,7 @@ void aJ2000ToECFTransform(const TimePoint & tp, KinematicRotation & rotationOut)
     rotation.setRotationRate(temp.getRotationRate() * rotation.getRotation().getMatrix());
     rotation.getRotation() *= temp.getRotation();
 
-    aGTODToECFTransform(tp, temp);
+    aGTODToECFTransform(tp, temp.getRotation());
     rotation.getRotation() *= temp.getRotation();
 
     rotationOut = rotation;
@@ -110,6 +111,38 @@ void aJ2000ToECF(const TimePoint &tp, const Vector3d &vecJ2000, const Vector3d &
     KinematicRotation rotation;
     aJ2000ToECFTransform(tp, rotation);
     rotation.transformVectorVelocity(vecJ2000, velJ2000, vecECF, velECF);
+}
+
+void aECFToJ2000Transform(const TimePoint &tp, Rotation &rotation)
+{
+    aECFToJ2000Matrix(tp, rotation.getMatrix());
+}
+
+void aECFToJ2000Transform(const TimePoint &tp, KinematicRotation &rotation)
+{
+    KinematicRotation temp;
+    aJ2000ToECFTransform(tp, temp);
+    rotation = temp.inverse();
+}
+
+void aECFToJ2000Matrix(const TimePoint &tp, Matrix3d &matrix)
+{
+    aJ2000ToECFMatrix(tp, matrix);
+    matrix.transposeInPlace();
+}
+
+void aECFToJ2000(const TimePoint &tp, const Vector3d &vecECF, Vector3d &vecJ2000)
+{
+    Rotation rotation;
+    aECFToJ2000Transform(tp, rotation);
+    rotation.transformVector(vecECF, vecJ2000);
+}
+
+void aECFToJ2000(const TimePoint &tp, const Vector3d &vecECF, const Vector3d &velECF, Vector3d &vecJ2000, Vector3d &velJ2000)
+{
+    KinematicRotation rotation;
+    aECFToJ2000Transform(tp, rotation);
+    rotation.transformVectorVelocity(vecECF, velECF, vecJ2000, velJ2000);
 }
 
 // J2000 -> MOD 转换
@@ -286,7 +319,7 @@ void aICRFToECFTransform(const TimePoint &tp, KinematicRotation &rotationOut)
     rotation.setRotationRate(temp.getRotationRate() * rotation.getRotation().getMatrix());
     rotation.getRotation() *= temp.getRotation();
 
-    aTIRFToECFTransform(tp, temp);
+    aTIRFToECFTransform(tp, temp.getRotation());
     rotation.getRotation() *= temp.getRotation();
 
     rotationOut = rotation;

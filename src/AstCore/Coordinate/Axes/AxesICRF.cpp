@@ -1,5 +1,5 @@
 ///
-/// @file      Frame.cpp
+/// @file      AxesICRF.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,18 +18,36 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "Frame.hpp"
+#include "AxesICRF.hpp"
+#include "AxesRoot.hpp"
+#include "AstMath/Rotation.hpp"
+#include "AstMath/KinematicRotation.hpp"
 
 AST_NAMESPACE_BEGIN
 
-err_t aFrameTransform(Frame* source, Frame* target, Transform& transform)
+AxesICRF *AxesICRF::Instance()
 {
-    return -1;
+    static SharedPtr<AxesICRF> instance(new AxesICRF());
+    return instance.get();
 }
 
-err_t aFrameTransform(Frame *source, Frame *target, KinematicTransform &transform)
+Axes *AxesICRF::getParent() const
 {
-    return -1;
+    return AxesRoot::Instance();
+}
+
+err_t AxesICRF::getTransform(const TimePoint &tp, Rotation &rotation) const
+{
+    rotation = Rotation::Identity();
+    return 0;
+}
+
+err_t AxesICRF::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
+{
+    rotation = KinematicRotation::Identity();
+    return 0;
 }
 
 AST_NAMESPACE_END
+
+

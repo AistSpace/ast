@@ -28,7 +28,7 @@ AST_NAMESPACE_BEGIN
 
 /// @brief 运动学变换
 /// @details 在静态变换的基础上，添加了旋转角速度和平移速度。
-class KinematicTransform : public Transform
+class KinematicTransform : protected Transform
 {
 public:
     KinematicTransform() = default;

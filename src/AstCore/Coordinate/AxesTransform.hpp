@@ -1,9 +1,9 @@
 ///
-/// @file      KinematicRotation.cpp
-/// @brief     ~
-/// @details   ~
+/// @file      AxesTransform.hpp
+/// @brief     
+/// @details   
 /// @author    axel
-/// @date      2026-01-05
+/// @date      2026-03-04
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,11 +18,28 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "KinematicRotation.hpp"
+#pragma once
+
+#include "AstGlobal.h"
 
 AST_NAMESPACE_BEGIN
 
+/*!
+    @addtogroup Coordinate
+    @{
+*/
 
+class Axes;
+
+
+AST_CORE_CAPI Axes* aAxesRoot();
+AST_CORE_CAPI Axes* aAxesICRF();
+AST_CORE_CAPI Axes* aAxesECF();
+AST_CORE_CAPI Axes* aAxesJ2000();
+AST_CORE_CAPI Axes* aAxesMOD();
+AST_CORE_CAPI Axes* aAxesTOD();
+AST_CORE_CAPI Axes* aAxesGTOD();
+
+/*! @} */
 
 AST_NAMESPACE_END
-
