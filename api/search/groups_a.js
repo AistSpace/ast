@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['工具模块_0',['工具模块',['../group__Util.html',1,'']]]
+  ['平台相关接口_0',['平台相关接口',['../group__Platform.html',1,'']]]
 ];

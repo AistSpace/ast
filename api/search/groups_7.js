@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['太阳系_0',['太阳系',['../group__SolarSystem.html',1,'']]]
+  ['字符串相关函数_0',['字符串相关函数',['../group__String.html',1,'']]]
 ];
