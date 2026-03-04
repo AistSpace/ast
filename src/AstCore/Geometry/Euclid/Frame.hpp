@@ -30,11 +30,92 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class Transform;
+class KinematicTransform;
+class Frame;
+class Axes;
+class Point;
+
+/// @brief 计算坐标系之间的变换。
+/// @param source 源坐标系
+/// @param target 目标坐标系
+/// @param tp 时间点
+/// @param transform 输出的变换
+/// @return 错误码
+AST_CORE_API err_t aFrameTransform(Frame* source, Frame* target, const TimePoint& tp, Transform& transform);
+
+/// @brief 计算坐标系之间的运动学变换。
+/// @param source 源坐标系
+/// @param target 目标坐标系
+/// @param tp 时间点
+/// @param transform 输出的运动学变换
+/// @return 错误码
+AST_CORE_API err_t aFrameTransform(Frame* source, Frame* target, const TimePoint& tp, KinematicTransform& transform);
+
+
+/// @brief 坐标系类
+/// @details 坐标系类表示一个三维空间中的坐标系，包含了坐标系的变换信息。
 class Frame: public Object
 {
 public:
     Frame() = default;
-    ~Frame() = default;
+    ~Frame() override= default;
+    /// @brief 获取当前坐标系的父坐标系
+    /// @return 父坐标系
+    virtual Frame* getParent() const = 0;
+    /// @brief 获取当前坐标系相对于父坐标系的变换
+    /// @param tp 时间点
+    /// @param transform 输出的变换
+    /// @return 错误码
+    virtual err_t getTransform(Transform& transform) const = 0;
+    /// @brief 获取当前坐标系相对于父坐标系的运动学变换
+    /// @param tp 时间点
+    /// @param transform 输出的运动学变换
+    /// @return 错误码
+    virtual err_t getTransform(const TimePoint& tp, KinematicTransform& transform) const = 0;
+    /// @brief 获取当前坐标系的轴系。
+    /// @return 轴系
+    virtual Axes* getAxes() const = 0;
+    /// @brief 获取当前坐标系的原点。
+    /// @return 原点
+    virtual Point* getOrigin() const = 0;
+public:
+    /// @brief 获取当前坐标系到目标坐标系的变换。
+    /// @param target 目标坐标系
+    /// @param tp 时间点
+    /// @param transform 输出的变换
+    /// @return 错误码
+    err_t getTransformTo(Frame* target, const TimePoint& tp, Transform& transform) const
+    {
+        return aFrameTransform(const_cast<Frame*>(this), target, tp, transform);
+    }
+    /// @brief 获取当前坐标系到目标坐标系的运动学变换。
+    /// @param target 目标坐标系
+    /// @param tp 时间点
+    /// @param transform 输出的运动学变换
+    /// @return 错误码
+    err_t getTransformTo(Frame* target, const TimePoint& tp, KinematicTransform& transform) const
+    {
+        return aFrameTransform(const_cast<Frame*>(this), target, tp, transform);
+    }
+    /// @brief 获取源坐标系到当前坐标系的变换。
+    /// @param source 源坐标系
+    /// @param tp 时间点
+    /// @param transform 输出的变换
+    /// @return 错误码
+    err_t getTransformFrom(Frame* source, const TimePoint& tp, Transform& transform) const
+    {
+        return aFrameTransform(source, const_cast<Frame*>(this), tp, transform);
+    }
+    /// @brief 获取源坐标系到当前坐标系的运动学变换。
+    /// @param source 源坐标系
+    /// @param tp 时间点
+    /// @param transform 输出的运动学变换
+    /// @return 错误码
+    err_t getTransformFrom(Frame* source, const TimePoint& tp, KinematicTransform& transform) const
+    {
+        return aFrameTransform(source, const_cast<Frame*>(this), tp, transform);
+    }
 };
 
 

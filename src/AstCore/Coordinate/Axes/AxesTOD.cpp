@@ -1,5 +1,5 @@
 ///
-/// @file      Frame.cpp
+/// @file      AxesTOD.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,18 +18,38 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "Frame.hpp"
+#include "AxesTOD.hpp"
+#include "AxesMOD.hpp"
+#include "AstCore/EarthFrame.hpp"
+#include "AstMath/KinematicRotation.hpp"
 
 AST_NAMESPACE_BEGIN
 
-err_t aFrameTransform(Frame* source, Frame* target, Transform& transform)
+
+AxesTOD *AxesTOD::Instance()
 {
-    return -1;
+    static SharedPtr<AxesTOD> instance(new AxesTOD());
+    return instance.get();
 }
 
-err_t aFrameTransform(Frame *source, Frame *target, KinematicTransform &transform)
+
+Axes *AxesTOD::getParent() const
 {
-    return -1;
+    return AxesMOD::Instance();
+}
+
+err_t AxesTOD::getTransform(const TimePoint &tp, Rotation &rotation) const
+{
+    aMODToTODTransform(tp, rotation);
+    return eNoError;
+}
+
+err_t AxesTOD::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
+{
+    aMODToTODTransform(tp, rotation.getRotation());
+    rotation.setRotationRate(Vector3d::Zero());
+    return eNoError;
 }
 
 AST_NAMESPACE_END
+

@@ -27,11 +27,29 @@ AST_NAMESPACE_BEGIN
 
 /// @brief     运动学旋转
 /// @details   在静态旋转的基础上，增加了旋转的角速度信息
-class KinematicRotation: public Rotation
+class KinematicRotation: protected Rotation
 {
 public:
+    using Rotation::getMatrix;
+    using Rotation::transformVector;
+    using Rotation::getQuaternion;
+
+    /// @brief 获取单位运动学旋转
+    static KinematicRotation Identity();
+
     /// @brief 运动学旋转默认构造函数
     KinematicRotation() = default;
+
+    /// @brief 运动学旋转构造函数
+    /// @param rot 旋转
+    /// @param angvel 旋转角速度
+    KinematicRotation(const Rotation& rot, const Vector3d& angvel);
+
+
+    /// @brief 运动学旋转构造函数
+    /// @param mat 旋转矩阵
+    /// @param angvel 旋转角速度
+    KinematicRotation(const Matrix3d& mat, const Vector3d& angvel);
 
     /// @brief 获取旋转角速度
     /// @return 旋转角速度
@@ -54,25 +72,25 @@ public:
     /// @brief 组合下一个旋转
     /// @warning 组合旋转是先应用当前旋转，再应用下一个旋转。
     /// @param next 下一个旋转
-    Rotation& compose(const KinematicRotation& next);
+    KinematicRotation& compose(const KinematicRotation& next);
 
     /// @brief 组合下一个旋转
     /// @warning 组合旋转是先应用当前旋转，再应用下一个旋转。
     /// @param next 下一个旋转
     /// @return 组合旋转
-    Rotation composed(const KinematicRotation& next) const;
+    KinematicRotation composed(const KinematicRotation& next) const;
 
     /// @brief 组合下一个旋转
     /// @warning 组合旋转是先应用当前旋转，再应用下一个旋转。
     /// @param next 下一个旋转
     /// @return 组合旋转
-    Rotation operator*(const KinematicRotation& next) const;
+    KinematicRotation operator*(const KinematicRotation& next) const;
 
     /// @brief 组合下一个旋转
     /// @warning 组合旋转是先应用当前旋转，再应用下一个旋转。
     /// @param next 下一个旋转
     /// @return 组合旋转
-    Rotation& operator*=(const KinematicRotation& next);
+    KinematicRotation& operator*=(const KinematicRotation& next);
 
     /// @brief 获取逆旋转
     /// @param inversed 逆旋转
@@ -94,6 +112,44 @@ protected:
     Vector3d angvel_;       ///< 角速度
 };
 
+A_ALWAYS_INLINE KinematicRotation KinematicRotation::Identity()
+{
+    return KinematicRotation(Matrix3d::Identity(), Vector3d::Zero());
+}
+
+A_ALWAYS_INLINE KinematicRotation::KinematicRotation(const Matrix3d &mat, const Vector3d &angvel)
+    : Rotation(mat)
+    , angvel_(angvel)
+{
+}
+
+A_ALWAYS_INLINE KinematicRotation::KinematicRotation(const Rotation &rot, const Vector3d &angvel)
+    : Rotation(rot)
+    , angvel_(angvel)
+{
+}
+
+A_ALWAYS_INLINE KinematicRotation &KinematicRotation::compose(const KinematicRotation &next)
+{
+    angvel_ = this->angvel_ + next.angvel_ * this->matrix_;
+    matrix_ = next.matrix_ * this->matrix_;
+    return *this;
+}
+
+A_ALWAYS_INLINE KinematicRotation KinematicRotation::composed(const KinematicRotation &next) const
+{
+    return KinematicRotation(next.matrix_ * this->matrix_, this->angvel_ + next.angvel_ * this->matrix_);
+}
+
+A_ALWAYS_INLINE KinematicRotation KinematicRotation::operator*(const KinematicRotation &next) const
+{
+    return composed(next);
+}
+
+A_ALWAYS_INLINE KinematicRotation &KinematicRotation::operator*=(const KinematicRotation &next)
+{
+    return compose(next);
+}
 
 A_ALWAYS_INLINE void KinematicRotation::getInverse(KinematicRotation &inversed) const
 {

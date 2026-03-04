@@ -38,6 +38,9 @@ AST_NAMESPACE_BEGIN
 class Rotation
 {
 public:
+    /// @brief 单位旋转
+    static Rotation Identity();
+
     /// @brief 旋转类默认构造函数
     Rotation() = default;
 
@@ -176,6 +179,11 @@ A_ALWAYS_INLINE Rotation::Rotation(double angle, const Vector3d &axis)
 A_ALWAYS_INLINE Rotation::Rotation(const AngleAxis &aa)
     : matrix_(aa.toRotationMatrix())
 {
+}
+
+A_ALWAYS_INLINE Rotation Rotation::Identity()
+{
+    return Rotation(Matrix3d::Identity());
 }
 
 A_ALWAYS_INLINE Quaternion Rotation::getQuaternion() const

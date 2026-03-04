@@ -1,5 +1,5 @@
 ///
-/// @file      Frame.cpp
+/// @file      AxesJ2000.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,18 +18,36 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "Frame.hpp"
+#include "AxesJ2000.hpp"
+#include "AxesECF.hpp"
+#include "AstCore/EarthFrame.hpp"
 
 AST_NAMESPACE_BEGIN
 
-err_t aFrameTransform(Frame* source, Frame* target, Transform& transform)
+AxesJ2000 *AxesJ2000::Instance()
 {
-    return -1;
+    static SharedPtr<AxesJ2000> instance(new AxesJ2000());
+    return instance.get();
 }
 
-err_t aFrameTransform(Frame *source, Frame *target, KinematicTransform &transform)
+
+Axes *AxesJ2000::getParent() const
 {
-    return -1;
+    return AxesECF::Instance();
+}
+
+err_t AxesJ2000::getTransform(const TimePoint &tp, Rotation &rotation) const
+{
+    aECFToJ2000Transform(tp, rotation);
+    return eNoError;
+}
+
+err_t AxesJ2000::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
+{
+    aECFToJ2000Transform(tp, rotation);
+    return eNoError;
 }
 
 AST_NAMESPACE_END
+
+

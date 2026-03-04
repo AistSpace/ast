@@ -1,9 +1,9 @@
 ///
-/// @file      KinematicRotation.cpp
-/// @brief     ~
-/// @details   ~
+/// @file      AxesRoot.cpp
+/// @brief     
+/// @details   
 /// @author    axel
-/// @date      2026-01-05
+/// @date      2026-03-04
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,11 +18,34 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "KinematicRotation.hpp"
+#include "AxesRoot.hpp"
+#include "AstMath/Rotation.hpp"
+#include "AstMath/KinematicRotation.hpp"
 
 AST_NAMESPACE_BEGIN
 
+Axes *AxesRoot::Instance()
+{
+    static SharedPtr<AxesRoot> instance(new AxesRoot());
+    return instance.get();
+}
 
+Axes *AxesRoot::getParent() const
+{
+    return nullptr;
+}
+
+err_t AxesRoot::getTransform(const TimePoint &tp, Rotation &rotation) const
+{
+    rotation = Rotation::Identity();
+    return eNoError;
+}
+
+err_t AxesRoot::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
+{
+    rotation = KinematicRotation::Identity();
+    return eNoError;
+}
 
 AST_NAMESPACE_END
 
