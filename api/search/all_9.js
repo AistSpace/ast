@@ -17,7 +17,7 @@ var searchData=
   ['identifiertable_14',['IdentifierTable',['../classast_1_1IdentifierTable.html',1,'ast']]],
   ['identifiertable_2ecpp_15',['IdentifierTable.cpp',['../IdentifierTable_8cpp.html',1,'']]],
   ['identifiertable_2ehpp_16',['IdentifierTable.hpp',['../IdentifierTable_8hpp.html',1,'']]],
-  ['identity_17',['Identity',['../classast_1_1Quaternion.html#ab77f0158cc2057dacbcaf0a52e4da28c',1,'ast::Quaternion']]],
+  ['identity_17',['Identity',['../classast_1_1Quaternion.html#ab77f0158cc2057dacbcaf0a52e4da28c',1,'ast::Quaternion::Identity()'],['../classast_1_1KinematicRotation.html#ace8ecd9d480ea1ed50c245bc69c06192',1,'ast::KinematicRotation::Identity()'],['../classast_1_1Rotation.html#a6d5b4a22ae6e6b331152c7964cf01fb6',1,'ast::Rotation::Identity()']]],
   ['igrf_2ecpp_18',['igrf.cpp',['../igrf_8cpp.html',1,'']]],
   ['igrf_2ehpp_19',['igrf.hpp',['../igrf_8hpp.html',1,'']]],
   ['igrf13syn_20',['igrf13syn',['../group__Magnetosphere.html#ga76146fe3ab6056e3b54dc09881c96058',1,'ast']]],

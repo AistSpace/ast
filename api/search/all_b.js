@@ -37,7 +37,7 @@ var searchData=
   ['kilogram_34',['Kilogram',['../classast_1_1Unit.html#aec399856d09d9b65e099f12b0daf5ba5',1,'ast::Unit']]],
   ['kilometer_35',['Kilometer',['../classast_1_1Unit.html#a81374cdbe33bf972adffe1d846491694',1,'ast::Unit']]],
   ['kilometerperhour_36',['KilometerPerHour',['../classast_1_1Unit.html#af192060a344a3f2fe8ab2eb700c93c84',1,'ast::Unit']]],
-  ['kinematicrotation_37',['KinematicRotation',['../classast_1_1KinematicRotation.html',1,'ast::KinematicRotation'],['../classast_1_1KinematicRotation.html#a7a7cf3a0ee52f90857a27348663ae289',1,'ast::KinematicRotation::KinematicRotation()']]],
+  ['kinematicrotation_37',['KinematicRotation',['../classast_1_1KinematicRotation.html',1,'ast::KinematicRotation'],['../classast_1_1KinematicRotation.html#a7a7cf3a0ee52f90857a27348663ae289',1,'ast::KinematicRotation::KinematicRotation()=default'],['../classast_1_1KinematicRotation.html#acfc1d8217c1e6a2d28a887ec6b5bad43',1,'ast::KinematicRotation::KinematicRotation(const Rotation &amp;rot, const Vector3d &amp;angvel)'],['../classast_1_1KinematicRotation.html#a262da130868caf4121f044987790da1f',1,'ast::KinematicRotation::KinematicRotation(const Matrix3d &amp;mat, const Vector3d &amp;angvel)']]],
   ['kinematicrotation_2ecpp_38',['KinematicRotation.cpp',['../KinematicRotation_8cpp.html',1,'']]],
   ['kinematicrotation_2ehpp_39',['KinematicRotation.hpp',['../KinematicRotation_8hpp.html',1,'']]],
   ['kinematictransform_40',['KinematicTransform',['../classast_1_1KinematicTransform.html',1,'ast']]],

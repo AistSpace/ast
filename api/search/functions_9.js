@@ -3,7 +3,7 @@ var searchData=
   ['iauxys_0',['iauXYS',['../classast_1_1GlobalContext.html#a788925c4722877fbb344ab5712b1f7b9',1,'ast::GlobalContext']]],
   ['iauxysprecomputed_1',['iauXYSPrecomputed',['../classast_1_1DataContext.html#a53d2c48438a7b873c00a0f31900f7dbe',1,'ast::DataContext']]],
   ['ident_2',['ident',['../group__Spice.html#ga69e7485a9fbd13916ae87dbf0ba84562',1,'ast']]],
-  ['identity_3',['Identity',['../classast_1_1Quaternion.html#ab77f0158cc2057dacbcaf0a52e4da28c',1,'ast::Quaternion']]],
+  ['identity_3',['Identity',['../classast_1_1Quaternion.html#ab77f0158cc2057dacbcaf0a52e4da28c',1,'ast::Quaternion::Identity()'],['../classast_1_1KinematicRotation.html#ace8ecd9d480ea1ed50c245bc69c06192',1,'ast::KinematicRotation::Identity()'],['../classast_1_1Rotation.html#a6d5b4a22ae6e6b331152c7964cf01fb6',1,'ast::Rotation::Identity()']]],
   ['igrf13syn_4',['igrf13syn',['../group__Magnetosphere.html#ga76146fe3ab6056e3b54dc09881c96058',1,'ast']]],
   ['impreciseday_5',['impreciseDay',['../classast_1_1JulianDate.html#a5aca597dc00265b589bb18a8c8ee3cb8',1,'ast::JulianDate::impreciseDay()'],['../classast_1_1ModJulianDate.html#a5aca597dc00265b589bb18a8c8ee3cb8',1,'ast::ModJulianDate::impreciseDay()']]],
   ['inch_6',['Inch',['../classast_1_1Unit.html#acfcc867cd4f2e389ed3f1552443221f3',1,'ast::Unit']]],
