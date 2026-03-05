@@ -22,6 +22,6 @@
 
 AST_NAMESPACE_BEGIN
 
-
+static_assert(sizeof(Rotation) == sizeof(Matrix3d), "Rotation class must be 3x3 matrix");
 
 AST_NAMESPACE_END

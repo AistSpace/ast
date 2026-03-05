@@ -1,9 +1,9 @@
 ///
-/// @file      AxesICRF.cpp
+/// @file      SpiceRunTime.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-04
+/// @date      2026-03-05
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,36 +18,22 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AxesICRF.hpp"
-#include "AxesRoot.hpp"
-#include "AstMath/Rotation.hpp"
-#include "AstMath/KinematicRotation.hpp"
+#include "SpiceRunTime.hpp"
+#include "SpiceAxesRegistry.hpp"
+#include "AstUtil/StringView.hpp"
+#include "AstCore/TimePoint.hpp"
 
 AST_NAMESPACE_BEGIN
 
-AxesICRF *AxesICRF::Instance()
+Axes *aSpiceFindAxes(StringView name)
 {
-    static SharedPtr<AxesICRF> instance(new AxesICRF());
-    return instance.get();
+    return SpiceAxesRegistry::Instance().findAxes(name);
 }
 
-Axes *AxesICRF::getParent() const
+TimePoint aSpiceEtToTimePoint(double et)
 {
-    return AxesRoot::Instance();
-}
-
-err_t AxesICRF::getTransform(const TimePoint &tp, Rotation &rotation) const
-{
-    rotation = Rotation::Identity();
-    return eNoError;
-}
-
-err_t AxesICRF::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
-{
-    rotation = KinematicRotation::Identity();
-    return eNoError;
+    return TimePoint::J2000TT() + et;
 }
 
 AST_NAMESPACE_END
-
 

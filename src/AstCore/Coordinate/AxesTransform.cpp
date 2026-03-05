@@ -26,6 +26,9 @@
 #include "AstCore/AxesMOD.hpp"
 #include "AstCore/AxesTOD.hpp"
 #include "AstCore/AxesGTOD.hpp"
+#include "AstCore/AxesB1950.hpp"
+#include "AstCore/AxesB1950Spice.hpp"
+#
 
 
 AST_NAMESPACE_BEGIN
@@ -66,5 +69,14 @@ Axes *aAxesGTOD()
     return AxesGTOD::Instance();
 }
 
+Axes *aAxesB1950()
+{
+    return AxesB1950::Instance();
+}
+
+Axes* aAxesB1950Spice()
+{
+    return AxesB1950Spice::Instance();
+}
 
 AST_NAMESPACE_END

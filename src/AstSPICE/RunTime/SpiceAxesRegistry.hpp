@@ -1,9 +1,9 @@
 ///
-/// @file      AxesICRF.cpp
+/// @file      SpiceAxesRegister.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-04
+/// @date      2026-03-05
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,36 +18,37 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AxesICRF.hpp"
-#include "AxesRoot.hpp"
-#include "AstMath/Rotation.hpp"
-#include "AstMath/KinematicRotation.hpp"
+#pragma once
+
+#include "AstGlobal.h"
+#include "AstCore/Axes.hpp"
+#include <unordered_map>
+#include <string>
+
 
 AST_NAMESPACE_BEGIN
 
-AxesICRF *AxesICRF::Instance()
-{
-    static SharedPtr<AxesICRF> instance(new AxesICRF());
-    return instance.get();
-}
+/*!
+    @addtogroup Spice
+    @{
+*/
 
-Axes *AxesICRF::getParent() const
+/// @brief      SPICE 轴系注册器
+class SpiceAxesRegistry
 {
-    return AxesRoot::Instance();
-}
+public:
+    SpiceAxesRegistry() = default;
+    SpiceAxesRegistry(bool whetherInit);
+    ~SpiceAxesRegistry() = default;
+    static SpiceAxesRegistry& Instance();
 
-err_t AxesICRF::getTransform(const TimePoint &tp, Rotation &rotation) const
-{
-    rotation = Rotation::Identity();
-    return eNoError;
-}
+    PAxes findAxes(StringView name) const;
+    err_t init();
+protected:
+    using AxesMap = std::unordered_map<std::string, HAxes>;
+    AxesMap axesMap_;
+};
 
-err_t AxesICRF::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
-{
-    rotation = KinematicRotation::Identity();
-    return eNoError;
-}
+/*! @} */
 
 AST_NAMESPACE_END
-
-

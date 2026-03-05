@@ -63,7 +63,7 @@
 // #define AST_USE_STD_FILESYSTEM_EXPERIMENTAL   // 是否选择使用 std::experimental::filesystem 的c++实验特性，如果存在的话
 
 /// ast项目专用宏
-#if defined AST_ENABLE_NAMESPACE && defined __cplusplus 
+#if defined AST_ENABLE_NAMESPACE && defined(__cplusplus) 
 #   define _AST ::ast:: 
 #	define AST_NAMESPACE ast
 #	define AST_NAMESPACE_BEGIN namespace AST_NAMESPACE{

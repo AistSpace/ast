@@ -1,9 +1,9 @@
 ///
-/// @file      AxesICRF.cpp
+/// @file      AxesB1950Spice.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-04
+/// @date      2026-03-05
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,33 +18,38 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AxesICRF.hpp"
-#include "AxesRoot.hpp"
+#include "AxesB1950Spice.hpp"
+#include "AxesJ2000.hpp"
+#include "AstCore/InertialFrame.hpp"
 #include "AstMath/Rotation.hpp"
 #include "AstMath/KinematicRotation.hpp"
 
+
 AST_NAMESPACE_BEGIN
 
-AxesICRF *AxesICRF::Instance()
+AxesB1950Spice *AxesB1950Spice::Instance()
 {
-    static SharedPtr<AxesICRF> instance(new AxesICRF());
+    static SharedPtr<AxesB1950Spice> instance(new AxesB1950Spice);
     return instance.get();
 }
 
-Axes *AxesICRF::getParent() const
+Axes *AxesB1950Spice::getParent() const
 {
-    return AxesRoot::Instance();
+    return AxesJ2000::Instance();
 }
 
-err_t AxesICRF::getTransform(const TimePoint &tp, Rotation &rotation) const
+err_t AxesB1950Spice::getTransform(const TimePoint &tp, Rotation &rotation) const
 {
-    rotation = Rotation::Identity();
+    A_UNUSED(tp);
+    aJ2000ToB1950Matrix_SPICE(rotation.getMatrix());
     return eNoError;
 }
 
-err_t AxesICRF::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
+err_t AxesB1950Spice::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
 {
-    rotation = KinematicRotation::Identity();
+    A_UNUSED(tp);
+    aJ2000ToB1950Matrix_SPICE(rotation.getMatrix());
+    rotation.setRotationRate(Vector3d::Zero());
     return eNoError;
 }
 

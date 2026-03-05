@@ -144,6 +144,11 @@ err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, Rotation &
     return aAxesTransform<Rotation>(source, target, tp, rotation);
 }
 
+err_t aAxesTransform(Axes *source, Axes *target, const TimePoint &tp, Matrix3d &matrix)
+{
+    return aAxesTransform(source, target, tp, Rotation::CastFrom(matrix));
+}
+
 err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, KinematicRotation &rotation)
 {
     return aAxesTransform<KinematicRotation>(source, target, tp, rotation);

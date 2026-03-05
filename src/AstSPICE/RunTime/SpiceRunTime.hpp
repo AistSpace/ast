@@ -1,9 +1,9 @@
 ///
-/// @file      AxesTransform.hpp
+/// @file      SpiceRunTime.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-04
+/// @date      2026-03-05
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -25,39 +25,22 @@
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup Coordinate
+    @addtogroup Spice
     @{
 */
-
 class Axes;
+class TimePoint;
+
+/// @brief 查找指定名称的参考系统轴
+/// @param name 参考系统名称
+/// @return 指向 Axes 实例的指针，如果未找到则为 nullptr
+AST_SPICE_CAPI Axes* aSpiceFindAxes(StringView name);
 
 
-/// @brief      根轴系
-AST_CORE_CAPI Axes* aAxesRoot();
-
-/// @brief      国际天球参考系轴系（ICRF）
-AST_CORE_CAPI Axes* aAxesICRF();
-
-/// @brief      地球固连参考系轴系（ECF）
-AST_CORE_CAPI Axes* aAxesECF();
-
-/// @brief      J2000 轴系
-AST_CORE_CAPI Axes* aAxesJ2000();
-
-/// @brief       MOD 轴系
-AST_CORE_CAPI Axes* aAxesMOD();
-
-/// @brief       TOD 轴系
-AST_CORE_CAPI Axes* aAxesTOD();
-
-/// @brief       GTOD 轴系
-AST_CORE_CAPI Axes* aAxesGTOD();
-
-/// @brief       B1950 轴系
-AST_CORE_CAPI Axes* aAxesB1950();
-
-/// @brief       B1950 轴系（基于SPICE工具的算法计算）
-AST_CORE_CAPI Axes* aAxesB1950Spice();
+/// @brief 将 SPICE 时间转换为 TimePoint
+/// @param et SPICE 时间（秒）
+/// @return 对应的 TimePoint 实例
+AST_SPICE_API TimePoint aSpiceEtToTimePoint(double et);
 
 
 /*! @} */

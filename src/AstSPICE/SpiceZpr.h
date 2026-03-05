@@ -21,8 +21,8 @@
 #pragma once
 #include "AstGlobal.h"
 
+AST_NAMESPACE_BEGIN
 A_CLINKAGE_BEGIN
-
 
 /*!
     @addtogroup 
@@ -919,6 +919,12 @@ void mxvg(
 // putcml
 
 // pxform
+err_t pxform(
+    const char   * from,
+    const char   * to,
+    double         et,
+    double         rotate[3][3] 
+);
 
 // pxfrm2
 
@@ -1390,5 +1396,5 @@ void rav2xf(
 
 /*! @} */
 
-
 A_CLINKAGE_END
+AST_NAMESPACE_END

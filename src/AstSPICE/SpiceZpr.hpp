@@ -994,7 +994,19 @@ AST_SPICE_CAPI void mxvg(
 
 // putcml
 
-// pxform
+/// @brief 计算从一个参考系统到另一个参考系统的旋转矩阵(Position Transformation Matrix)
+/// @param from 源参考系统
+/// @param to 目标参考系统
+/// @param et 时间点
+/// @param rotate 输出旋转矩阵
+/// @return 
+AST_SPICE_API err_t pxform(
+    StringView          from,
+    StringView          to,
+    const TimePoint&    et,
+    Matrix3d&           rotate 
+);
+
 
 // pxfrm2
 
@@ -1003,7 +1015,7 @@ AST_SPICE_CAPI void mxvg(
 /// @param r 输出旋转矩阵
 AST_SPICE_CAPI void q2m(
     const Quaternion&  q,
-    Matrix3d&       r 
+    Matrix3d&          r 
 );
 
 // qcktrc

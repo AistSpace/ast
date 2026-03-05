@@ -19,12 +19,17 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "SpiceZpr.hpp"
+#include "AstCore/AxesTransform.hpp"
+#include "AstCore/Axes.hpp"
+#include "AstCore/TimePoint.hpp"
 #include "AstMath/AttitudeConvert.hpp"
 #include "AstMath/AngleAxis.hpp"
 #include "AstMath/Euler.hpp"
 #include "AstMath/Quaternion.hpp"
 #include "AstUtil/Constants.h"
 #include "AstUtil/Math.hpp"
+#include "AstUtil/StringView.hpp"
+#include "AstSPICE/SpiceRunTime.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -115,6 +120,29 @@ void mxvg(const void *m1, const void *v2, int nr1, int nc1r2, void *vout)
         }
         vecout[row] = innerProduct;
     }
+}
+
+err_t pxform(StringView from, StringView to, const TimePoint &et, Matrix3d &rotate)
+{
+    Axes *fromAxes = aSpiceFindAxes(from);
+    if ( fromAxes == nullptr )
+        return -1;
+    
+    Axes *toAxes = aSpiceFindAxes(to);
+    if ( toAxes == nullptr )
+        return -1;
+    return aAxesTransform(fromAxes, toAxes, et, rotate);
+}
+
+AST_SPICE_CAPI
+err_t pxform(
+    const char   * from,
+    const char   * to,
+    double         et,
+    Matrix3d&      rotate
+)
+{
+    return pxform(from, to, aSpiceEtToTimePoint(et), rotate);
 }
 
 void q2m(const Quaternion &q, Matrix3d &r)

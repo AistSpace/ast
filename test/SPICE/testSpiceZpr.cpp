@@ -2021,6 +2021,19 @@ TEST(SpiceZpr, pxform)
             }
         }
     }
+    {
+        double mtx_c[3][3];
+        double mtx[3][3];
+        pxform_c("J2000", "B1950", 0, mtx_c);
+        pxform("J2000", "B1950", 0, mtx);
+        for(int i = 0; i < 3; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                EXPECT_DOUBLE_EQ(mtx_c[i][j], mtx[i][j]);
+            }
+        }
+    }
 }
 
 TEST(SpiceZpr, pxfrm2)

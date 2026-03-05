@@ -1,9 +1,9 @@
 ///
-/// @file      AxesTransform.hpp
+/// @file      AxesB1950Spice.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-04
+/// @date      2026-03-05
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -21,6 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstCore/Axes.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -29,35 +30,17 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class Axes;
 
-
-/// @brief      根轴系
-AST_CORE_CAPI Axes* aAxesRoot();
-
-/// @brief      国际天球参考系轴系（ICRF）
-AST_CORE_CAPI Axes* aAxesICRF();
-
-/// @brief      地球固连参考系轴系（ECF）
-AST_CORE_CAPI Axes* aAxesECF();
-
-/// @brief      J2000 轴系
-AST_CORE_CAPI Axes* aAxesJ2000();
-
-/// @brief       MOD 轴系
-AST_CORE_CAPI Axes* aAxesMOD();
-
-/// @brief       TOD 轴系
-AST_CORE_CAPI Axes* aAxesTOD();
-
-/// @brief       GTOD 轴系
-AST_CORE_CAPI Axes* aAxesGTOD();
-
-/// @brief       B1950 轴系
-AST_CORE_CAPI Axes* aAxesB1950();
-
-/// @brief       B1950 轴系（基于SPICE工具的算法计算）
-AST_CORE_CAPI Axes* aAxesB1950Spice();
+class AxesB1950Spice : public Axes
+{
+public:
+    AxesB1950Spice() = default;
+    ~AxesB1950Spice() override = default;
+    static AxesB1950Spice* Instance();
+    Axes* getParent() const override;
+    err_t getTransform(const TimePoint& tp, Rotation& rotation) const override;
+    err_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const override;
+};
 
 
 /*! @} */
