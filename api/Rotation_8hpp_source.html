@@ -125,14 +125,14 @@ $(function(){initNavTree('Rotation_8hpp_source.html',''); initResizable(true); }
 <div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classast_1_1Rotation.html#ae51f2c442c74d8c0455f9ba2d1986df8">   45</a></span>    <span class="keyword">static</span> <a class="code hl_class" href="classast_1_1Rotation.html">Rotation</a>&amp; <a class="code hl_function" href="classast_1_1Rotation.html#ae51f2c442c74d8c0455f9ba2d1986df8">CastFrom</a>(<a class="code hl_class" href="classast_1_1MatrixMN.html">Matrix3d</a>&amp; mat)</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> (<a class="code hl_class" href="classast_1_1Rotation.html">Rotation</a>&amp;) mat;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> *<span class="keyword">reinterpret_cast&lt;</span><a class="code hl_class" href="classast_1_1Rotation.html">Rotation</a>*<span class="keyword">&gt;</span>(&amp;mat);</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
 </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
 <div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classast_1_1Rotation.html#a41af8dd2728c96dcbaa2458e405b5e06">   51</a></span>    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_class" href="classast_1_1Rotation.html">Rotation</a>&amp; <a class="code hl_function" href="classast_1_1Rotation.html#a41af8dd2728c96dcbaa2458e405b5e06">CastFrom</a>(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1MatrixMN.html">Matrix3d</a>&amp; mat)</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">return</span> (<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1Rotation.html">Rotation</a>&amp;) mat;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">return</span> *<span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><a class="code hl_class" href="classast_1_1Rotation.html">Rotation</a>*<span class="keyword">&gt;</span>(&amp;mat);</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
 </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
