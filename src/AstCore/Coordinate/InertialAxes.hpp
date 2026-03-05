@@ -1,5 +1,5 @@
 ///
-/// @file      InertialFrame.cpp
+/// @file      InertialAxes.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,12 +18,33 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "InertialFrame.hpp"
+#pragma once
+
+#include "AstGlobal.h"
 
 AST_NAMESPACE_BEGIN
 
+/*!
+    @addtogroup Coordinate
+    @{
+*/
 
+
+/// @brief      J2000 到 B1950 转换矩阵
+AST_CORE_CAPI void aJ2000ToB1950Matrix(Matrix3d& m);
+
+/// @brief      B1950 到 J2000 转换矩阵
+AST_CORE_CAPI void aB1950ToJ2000Matrix(Matrix3d& m);
+
+
+/// @brief      J2000 到 B1950 转换矩阵（SPICE 版本）
+AST_CORE_CAPI void aJ2000ToB1950Matrix_SPICE(Matrix3d& m);
+
+
+/// @brief      B1950 到 J2000 转换矩阵（SPICE 版本）
+AST_CORE_CAPI void aB1950ToJ2000Matrix_SPICE(Matrix3d& m);
+
+
+/*! @} */
 
 AST_NAMESPACE_END
-
-
