@@ -63,7 +63,7 @@
 // #define AST_USE_STD_FILESYSTEM_EXPERIMENTAL   // 是否选择使用 std::experimental::filesystem 的c++实验特性，如果存在的话
 
 /// ast项目专用宏
-#if defined AST_ENABLE_NAMESPACE && defined __cplusplus 
+#if defined AST_ENABLE_NAMESPACE && defined(__cplusplus) 
 #   define _AST ::ast:: 
 #	define AST_NAMESPACE ast
 #	define AST_NAMESPACE_BEGIN namespace AST_NAMESPACE{
@@ -206,6 +206,16 @@
 #define AST_WEATHER_CAPI A_DECL_EXTERN_C AST_WEATHER_API
 
 
+/// ast项目SPICE模块导出声明
+#ifdef AST_BUILD_LIB_SPICE
+#    define AST_SPICE_API A_DECL_EXPORT
+#else
+#    define AST_SPICE_API A_DECL_IMPORT
+#endif
+#define AST_SPICE_CAPI A_DECL_EXTERN_C AST_SPICE_API
+
+
+
 AST_NAMESPACE_BEGIN
 
 /// ast项目公共枚举
@@ -272,6 +282,9 @@ class MatrixMN;
 typedef VectorN<double, 3> Vector3d;
 
 typedef MatrixMN<double, 3, 3> Matrix3d;
+
+typedef MatrixMN<double, 6, 6> Matrix6d;
+
 
 template<typename _Char>
 class StringViewBasic;

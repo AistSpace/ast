@@ -21,6 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstCore/BuiltinAxes.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -32,13 +33,6 @@ AST_NAMESPACE_BEGIN
 class Axes;
 
 
-AST_CORE_CAPI Axes* aAxesRoot();
-AST_CORE_CAPI Axes* aAxesICRF();
-AST_CORE_CAPI Axes* aAxesECF();
-AST_CORE_CAPI Axes* aAxesJ2000();
-AST_CORE_CAPI Axes* aAxesMOD();
-AST_CORE_CAPI Axes* aAxesTOD();
-AST_CORE_CAPI Axes* aAxesGTOD();
 
 /*! @} */
 

@@ -43,6 +43,15 @@ class Axes;
 AST_CORE_API err_t aAxesTransform(Axes* source, Axes* target, const TimePoint& tp, Rotation& rotation);
 
 
+/// @brief 计算轴系之间的转换矩阵。
+/// @param source 源轴系
+/// @param target 目标轴系
+/// @param tp 时间点
+/// @param matrix 输出的转换矩阵
+/// @return 错误码
+AST_CORE_API err_t aAxesTransform(Axes* source, Axes* target, const TimePoint& tp, Matrix3d& matrix);
+
+
 /// @brief 计算轴系之间的运动学旋转变换
 /// @param source 源轴系
 /// @param target 目标轴系

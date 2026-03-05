@@ -25,6 +25,7 @@
 AST_NAMESPACE_BEGIN
 
 /*!
+    @ingroup Core
     @defgroup Geometry 几何
 */
 

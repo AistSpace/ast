@@ -32,9 +32,16 @@ AST_NAMESPACE_BEGIN
 
 // 时间系统常量
 
-constexpr double kJ2000Epoch      = 2451545.0;        ///< J2000历元
-constexpr double kB1950Epoch      = 2433282.4234591;  ///< B1950历元
+constexpr double kJ1900Epoch      = 2415020.0;        ///< J1900历元
 constexpr double kJ1950Epoch      = 2433282.5;        ///< J1950历元
+constexpr double kJ2000Epoch      = 2451545.0;        ///< J2000历元
+constexpr double kJ2100Epoch      = 2488070.0;        ///< J2100历元
+
+constexpr double kB1900Epoch      = 2415020.31352;    ///< B1900历元
+// 原本定义为 2433282.4234591, 后改为SPICE中的定义 2433282.42345905
+constexpr double kB1950Epoch      = 2433282.42345905; ///< B1950历元
+
+
 constexpr double kTTMinusTAI      = 32.184;           ///< 地球时相对原子时的偏置[s]
 constexpr double kGPSMinusTAI     = 19.0;             ///< GPS 时间相对原子时的偏置[s]
 constexpr double kTTMinusTAIInDay = 32.184/86400;     ///< 地球时相对原子时的偏置[day]
@@ -192,9 +199,11 @@ constexpr double kSecToPicoSec = 1.0e+12;                 ///< 秒到皮秒
 // 天数、秒数相关常量
 
 constexpr double kDaysPerJulianCentury = 36525.0;          ///< 儒略世纪天数
+constexpr double kDaysPerJulianYear = 365.25;              ///< 儒略年天数
 constexpr double kSecondsPerDay   = 86400.0;               ///< 一天的秒数
 constexpr double kSecondsPerHour = 3600.0;                 ///< 一小时的秒数
 constexpr double kSecondsPerMinute = 60.0;                 ///< 一分钟的秒数
+constexpr double kSecondsPerJulianYear = 31557600.0;        ///< 儒略年秒数(kDaysPerJulianYear * kSecondsPerDay)
 
 // 角度单位转换常数
 
