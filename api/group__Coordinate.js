@@ -1,49 +1,14 @@
 var group__Coordinate =
 [
-    [ "ast::AxesB1950", "classast_1_1AxesB1950.html", [
-      [ "getParent", "classast_1_1AxesB1950.html#a409f0249a4e0ecf4591b712c065a7bb4", null ],
-      [ "getTransform", "classast_1_1AxesB1950.html#adec8eeaec24992cf92e06656a0b17ff5", null ],
-      [ "getTransform", "classast_1_1AxesB1950.html#aa7afdeccb01351fbb67c4a28e176e4ae", null ]
-    ] ],
-    [ "ast::AxesB1950Spice", "classast_1_1AxesB1950Spice.html", [
-      [ "getParent", "classast_1_1AxesB1950Spice.html#ac800c2f9d4b3c66283b972f9dfefaf79", null ],
-      [ "getTransform", "classast_1_1AxesB1950Spice.html#a86aedd89228f83d2966170d3e380a827", null ],
-      [ "getTransform", "classast_1_1AxesB1950Spice.html#a80f398c06b6ae7e3620f62aa698d403c", null ]
-    ] ],
-    [ "ast::AxesECF", "classast_1_1AxesECF.html", [
-      [ "getParent", "classast_1_1AxesECF.html#ad64cd7b258c1f1f4d2a1d44a7f1caea8", null ],
-      [ "getTransform", "classast_1_1AxesECF.html#aff29b4409ccded0f64368099188ca173", null ],
-      [ "getTransform", "classast_1_1AxesECF.html#a1cf35ee639512b2d18513c9d06ee3c8b", null ]
-    ] ],
-    [ "ast::AxesGTOD", "classast_1_1AxesGTOD.html", [
-      [ "getParent", "classast_1_1AxesGTOD.html#a606c0a9fc0f6b04f3ab8e21a2945dd06", null ],
-      [ "getTransform", "classast_1_1AxesGTOD.html#a82e02ed1b789871c4184544cf0ed86e7", null ],
-      [ "getTransform", "classast_1_1AxesGTOD.html#a166b33d752ae9c7365e211bcce66c740", null ]
-    ] ],
     [ "ast::AxesICRF", "classast_1_1AxesICRF.html", [
       [ "getParent", "classast_1_1AxesICRF.html#a7d358e5e6e3e6c58ac9f865723fd8feb", null ],
       [ "getTransform", "classast_1_1AxesICRF.html#a1b3826f4bca86b3e23351ceb60797087", null ],
       [ "getTransform", "classast_1_1AxesICRF.html#a69a3cf2b8a6afeb07c15074a0740a058", null ]
     ] ],
-    [ "ast::AxesJ2000", "classast_1_1AxesJ2000.html", [
-      [ "getParent", "classast_1_1AxesJ2000.html#a18a3d98908cfdf27a0eb37f95351114f", null ],
-      [ "getTransform", "classast_1_1AxesJ2000.html#a1bac9e5e057dcf436e4f4df8baa657a6", null ],
-      [ "getTransform", "classast_1_1AxesJ2000.html#a7b2da8dace514514bceb52b820e7ba3a", null ]
-    ] ],
-    [ "ast::AxesMOD", "classast_1_1AxesMOD.html", [
-      [ "getParent", "classast_1_1AxesMOD.html#ac858fcd1c32284b37df85c02c65542c0", null ],
-      [ "getTransform", "classast_1_1AxesMOD.html#a8d084bf0674173e775b3f824ebf71914", null ],
-      [ "getTransform", "classast_1_1AxesMOD.html#a423495a56be36f2167d689832aa1c42b", null ]
-    ] ],
     [ "ast::AxesRoot", "classast_1_1AxesRoot.html", [
       [ "getParent", "classast_1_1AxesRoot.html#abb4cab385bf21851f374dcd045c8cc77", null ],
       [ "getTransform", "classast_1_1AxesRoot.html#ac4e8b8fd37bf9f581ec9a2ec4baa48c7", null ],
       [ "getTransform", "classast_1_1AxesRoot.html#a11bfd82f159a9c5e2b31173e197882c0", null ]
-    ] ],
-    [ "ast::AxesTOD", "classast_1_1AxesTOD.html", [
-      [ "getParent", "classast_1_1AxesTOD.html#a2f528be5e48b389e5b188c7bd5243235", null ],
-      [ "getTransform", "classast_1_1AxesTOD.html#aeca88ce2baf247baaf2c1985a6e3071b", null ],
-      [ "getTransform", "classast_1_1AxesTOD.html#a9a655abd51f5ad516076373ed213a5e2", null ]
     ] ],
     [ "ast::aAxesB1950", "group__Coordinate.html#ga9f6742a6d4c94db55a8cb21de4d7c680", null ],
     [ "ast::aAxesB1950Spice", "group__Coordinate.html#ga0538628426d2ca5626ca75f92ead86d4", null ],
@@ -54,8 +19,11 @@ var group__Coordinate =
     [ "ast::aAxesMOD", "group__Coordinate.html#gad5cbb1ea6d920ab9432f174819e2687d", null ],
     [ "ast::aAxesRoot", "group__Coordinate.html#gaae5acb8a6fc562202647e24a31461e07", null ],
     [ "ast::aAxesTOD", "group__Coordinate.html#gadbca59b8ca76891bc3e8ac8230486b26", null ],
+    [ "ast::aB1950ToFK4Transform", "group__Coordinate.html#ga8d28d6b7fadc6fe1ac2df94e7c36d4b3", null ],
     [ "ast::aB1950ToJ2000Matrix", "group__Coordinate.html#ga27ceff8d3da8f2ba58d64dfb021b1651", null ],
     [ "ast::aB1950ToJ2000Matrix_SPICE", "group__Coordinate.html#ga0aedd84fa6eb79b9d553bf53bda7fe4b", null ],
+    [ "ast::aB1950ToJ2000Transform", "group__Coordinate.html#ga5c30fcbe4ad81186b3a517f1474af0b2", null ],
+    [ "ast::aB1950ToJ2000Transform_SPICE", "group__Coordinate.html#ga332bd68489c97efde0ed6d890e7e8fd3", null ],
     [ "ast::aCIRFToTIRF", "group__Coordinate.html#ga226c2de1691c1af853b19016b1d00a7a", null ],
     [ "ast::aCIRFToTIRF", "group__Coordinate.html#ga18a2c3242d54eaa3cacf45030c570bd9", null ],
     [ "ast::aCIRFToTIRFMatrix", "group__Coordinate.html#gaeec537394f88d81bb75d0dff584f3408", null ],
@@ -97,6 +65,8 @@ var group__Coordinate =
     [ "ast::aICRFToMoonPrincipalAxesTransform", "group__Coordinate.html#gaebc526d740c21e27b1231aa43638b30b", null ],
     [ "ast::aJ2000ToB1950Matrix", "group__Coordinate.html#gaf5cbe6bbfcd24c2856b7f096d3276195", null ],
     [ "ast::aJ2000ToB1950Matrix_SPICE", "group__Coordinate.html#gac7104d1ef4b5ae7f47b456704f56687c", null ],
+    [ "ast::aJ2000ToB1950Transform", "group__Coordinate.html#ga37d13b180d1136ed81efe27126a5ce65", null ],
+    [ "ast::aJ2000ToB1950Transform_SPICE", "group__Coordinate.html#gaf4bf9d50600f2535d6c6b24d237d4e2c", null ],
     [ "ast::aJ2000ToECF", "group__Coordinate.html#ga497a07c3248fd6dd0d78535e144dda2d", null ],
     [ "ast::aJ2000ToECF", "group__Coordinate.html#ga4a584928352d273f8d1746829858e4a2", null ],
     [ "ast::aJ2000ToECFMatrix", "group__Coordinate.html#ga27c8cca4e2542e9623118d3ae06b5573", null ],

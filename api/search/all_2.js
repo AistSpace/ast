@@ -138,5 +138,7 @@ var searchData=
   ['brentqsolver_135',['BrentqSolver',['../classast_1_1BrentqSolver.html',1,'ast']]],
   ['brentsolver_2ecpp_136',['BrentSolver.cpp',['../BrentSolver_8cpp.html',1,'']]],
   ['brentsolver_2ehpp_137',['BrentSolver.hpp',['../BrentSolver_8hpp.html',1,'']]],
-  ['bug_20列表_138',['Bug 列表',['../bug.html',1,'']]]
+  ['bug_20列表_138',['Bug 列表',['../bug.html',1,'']]],
+  ['builtinaxes_2ecpp_139',['BuiltinAxes.cpp',['../BuiltinAxes_8cpp.html',1,'']]],
+  ['builtinaxes_2ehpp_140',['BuiltinAxes.hpp',['../BuiltinAxes_8hpp.html',1,'']]]
 ];

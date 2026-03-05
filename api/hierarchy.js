@@ -239,15 +239,8 @@ var hierarchy =
     [ "ast::NutationTerm", "classast_1_1NutationTerm.html", null ],
     [ "ast::Object", "classast_1_1Object.html", [
       [ "ast::Axes", "classast_1_1Axes.html", [
-        [ "ast::AxesB1950", "classast_1_1AxesB1950.html", null ],
-        [ "ast::AxesB1950Spice", "classast_1_1AxesB1950Spice.html", null ],
-        [ "ast::AxesECF", "classast_1_1AxesECF.html", null ],
-        [ "ast::AxesGTOD", "classast_1_1AxesGTOD.html", null ],
         [ "ast::AxesICRF", "classast_1_1AxesICRF.html", null ],
-        [ "ast::AxesJ2000", "classast_1_1AxesJ2000.html", null ],
-        [ "ast::AxesMOD", "classast_1_1AxesMOD.html", null ],
-        [ "ast::AxesRoot", "classast_1_1AxesRoot.html", null ],
-        [ "ast::AxesTOD", "classast_1_1AxesTOD.html", null ]
+        [ "ast::AxesRoot", "classast_1_1AxesRoot.html", null ]
       ] ],
       [ "ast::BodyShape", "classast_1_1BodyShape.html", [
         [ "ast::EllipsoidShape", "classast_1_1EllipsoidShape.html", null ],

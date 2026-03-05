@@ -85,5 +85,7 @@ var searchData=
   ['bodyshape_2ehpp_82',['BodyShape.hpp',['../BodyShape_8hpp.html',1,'']]],
   ['breakpoint_2ecpp_83',['Breakpoint.cpp',['../Breakpoint_8cpp.html',1,'']]],
   ['brentsolver_2ecpp_84',['BrentSolver.cpp',['../BrentSolver_8cpp.html',1,'']]],
-  ['brentsolver_2ehpp_85',['BrentSolver.hpp',['../BrentSolver_8hpp.html',1,'']]]
+  ['brentsolver_2ehpp_85',['BrentSolver.hpp',['../BrentSolver_8hpp.html',1,'']]],
+  ['builtinaxes_2ecpp_86',['BuiltinAxes.cpp',['../BuiltinAxes_8cpp.html',1,'']]],
+  ['builtinaxes_2ehpp_87',['BuiltinAxes.hpp',['../BuiltinAxes_8hpp.html',1,'']]]
 ];
