@@ -44,13 +44,13 @@ public:
     /// @brief 从矩阵转换为旋转对象
     static Rotation& CastFrom(Matrix3d& mat)
     {
-        return (Rotation&) mat;
+        return *reinterpret_cast<Rotation*>(&mat);
     }
 
     /// @brief 从矩阵转换为旋转对象（常量版本）
     static const Rotation& CastFrom(const Matrix3d& mat)
     {
-        return (const Rotation&) mat;
+        return *reinterpret_cast<const Rotation*>(&mat);
     }
 
     /// @brief 从矩阵转换为旋转对象
