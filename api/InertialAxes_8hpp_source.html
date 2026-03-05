@@ -109,47 +109,22 @@ $(function(){initNavTree('InertialAxes_8hpp_source.html',''); initResizable(true
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>AST_NAMESPACE_BEGIN</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">class </span>Rotation;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#gaf5cbe6bbfcd24c2856b7f096d3276195">aJ2000ToB1950Matrix</a>(Matrix3d&amp; m);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#gaf5cbe6bbfcd24c2856b7f096d3276195">aJ2000ToB1950Matrix</a>(Matrix3d&amp; m);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#ga27ceff8d3da8f2ba58d64dfb021b1651">aB1950ToJ2000Matrix</a>(Matrix3d&amp; m);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#ga37d13b180d1136ed81efe27126a5ce65">aJ2000ToB1950Transform</a>(Rotation&amp; rotation);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#gac7104d1ef4b5ae7f47b456704f56687c">aJ2000ToB1950Matrix_SPICE</a>(Matrix3d&amp; m);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#ga27ceff8d3da8f2ba58d64dfb021b1651">aB1950ToJ2000Matrix</a>(Matrix3d&amp; m);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#ga0aedd84fa6eb79b9d553bf53bda7fe4b">aB1950ToJ2000Matrix_SPICE</a>(Matrix3d&amp; m);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#ga5c30fcbe4ad81186b3a517f1474af0b2">aB1950ToJ2000Transform</a>(Rotation&amp; rotation);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#gac7104d1ef4b5ae7f47b456704f56687c">aJ2000ToB1950Matrix_SPICE</a>(Matrix3d&amp; m);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#gaf4bf9d50600f2535d6c6b24d237d4e2c">aJ2000ToB1950Transform_SPICE</a>(Rotation&amp; rotation);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#ga0aedd84fa6eb79b9d553bf53bda7fe4b">aB1950ToJ2000Matrix_SPICE</a>(Matrix3d&amp; m);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#ga332bd68489c97efde0ed6d890e7e8fd3">aB1950ToJ2000Transform_SPICE</a>(Rotation&amp; rotation);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="group__Coordinate.html#ga8d28d6b7fadc6fe1ac2df94e7c36d4b3">   68</a></span>AST_CORE_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__Coordinate.html#ga8d28d6b7fadc6fe1ac2df94e7c36d4b3">aB1950ToFK4Transform</a>(<a class="code hl_class" href="classast_1_1Rotation.html">Rotation</a>&amp; rotation);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>AST_NAMESPACE_END</div>
-<div class="ttc" id="aclassast_1_1Rotation_html"><div class="ttname"><a href="classast_1_1Rotation.html">ast::Rotation</a></div><div class="ttdoc">旋转类</div><div class="ttdef"><b>定义</b> Rotation.hpp:39</div></div>
-<div class="ttc" id="agroup__Coordinate_html_ga0aedd84fa6eb79b9d553bf53bda7fe4b"><div class="ttname"><a href="group__Coordinate.html#ga0aedd84fa6eb79b9d553bf53bda7fe4b">ast::aB1950ToJ2000Matrix_SPICE</a></div><div class="ttdeci">void aB1950ToJ2000Matrix_SPICE(Matrix3d &amp;m)</div><div class="ttdoc">B1950 到 J2000 转换矩阵（SPICE 版本）</div><div class="ttdef"><b>定义</b> InertialAxes.cpp:82</div></div>
-<div class="ttc" id="agroup__Coordinate_html_ga27ceff8d3da8f2ba58d64dfb021b1651"><div class="ttname"><a href="group__Coordinate.html#ga27ceff8d3da8f2ba58d64dfb021b1651">ast::aB1950ToJ2000Matrix</a></div><div class="ttdeci">void aB1950ToJ2000Matrix(Matrix3d &amp;m)</div><div class="ttdoc">B1950 到 J2000 的转换矩阵</div><div class="ttdef"><b>定义</b> InertialAxes.cpp:50</div></div>
-<div class="ttc" id="agroup__Coordinate_html_ga332bd68489c97efde0ed6d890e7e8fd3"><div class="ttname"><a href="group__Coordinate.html#ga332bd68489c97efde0ed6d890e7e8fd3">ast::aB1950ToJ2000Transform_SPICE</a></div><div class="ttdeci">void aB1950ToJ2000Transform_SPICE(Rotation &amp;rotation)</div><div class="ttdoc">B1950 到 J2000 的坐标旋转变换（SPICE 版本）</div><div class="ttdef"><b>定义</b> InertialAxes.cpp:88</div></div>
-<div class="ttc" id="agroup__Coordinate_html_ga37d13b180d1136ed81efe27126a5ce65"><div class="ttname"><a href="group__Coordinate.html#ga37d13b180d1136ed81efe27126a5ce65">ast::aJ2000ToB1950Transform</a></div><div class="ttdeci">void aJ2000ToB1950Transform(Rotation &amp;rotation)</div><div class="ttdoc">J2000 到 B1950 的坐标旋转变换</div><div class="ttdef"><b>定义</b> InertialAxes.cpp:45</div></div>
-<div class="ttc" id="agroup__Coordinate_html_ga5c30fcbe4ad81186b3a517f1474af0b2"><div class="ttname"><a href="group__Coordinate.html#ga5c30fcbe4ad81186b3a517f1474af0b2">ast::aB1950ToJ2000Transform</a></div><div class="ttdeci">void aB1950ToJ2000Transform(Rotation &amp;rotation)</div><div class="ttdoc">B1950 到 J2000 的坐标旋转变换</div><div class="ttdef"><b>定义</b> InertialAxes.cpp:59</div></div>
-<div class="ttc" id="agroup__Coordinate_html_ga8d28d6b7fadc6fe1ac2df94e7c36d4b3"><div class="ttname"><a href="group__Coordinate.html#ga8d28d6b7fadc6fe1ac2df94e7c36d4b3">ast::aB1950ToFK4Transform</a></div><div class="ttdeci">AST_CORE_CAPI void aB1950ToFK4Transform(Rotation &amp;rotation)</div><div class="ttdoc">B1950 到 FK4 的坐标旋转变换</div></div>
-<div class="ttc" id="agroup__Coordinate_html_gac7104d1ef4b5ae7f47b456704f56687c"><div class="ttname"><a href="group__Coordinate.html#gac7104d1ef4b5ae7f47b456704f56687c">ast::aJ2000ToB1950Matrix_SPICE</a></div><div class="ttdeci">void aJ2000ToB1950Matrix_SPICE(Matrix3d &amp;m)</div><div class="ttdoc">J2000 到 B1950 转换矩阵（SPICE 版本）</div><div class="ttdef"><b>定义</b> InertialAxes.cpp:64</div></div>
-<div class="ttc" id="agroup__Coordinate_html_gaf4bf9d50600f2535d6c6b24d237d4e2c"><div class="ttname"><a href="group__Coordinate.html#gaf4bf9d50600f2535d6c6b24d237d4e2c">ast::aJ2000ToB1950Transform_SPICE</a></div><div class="ttdeci">void aJ2000ToB1950Transform_SPICE(Rotation &amp;rotation)</div><div class="ttdoc">J2000 到 B1950 的坐标旋转变换（SPICE 版本）</div><div class="ttdef"><b>定义</b> InertialAxes.cpp:77</div></div>
-<div class="ttc" id="agroup__Coordinate_html_gaf5cbe6bbfcd24c2856b7f096d3276195"><div class="ttname"><a href="group__Coordinate.html#gaf5cbe6bbfcd24c2856b7f096d3276195">ast::aJ2000ToB1950Matrix</a></div><div class="ttdeci">void aJ2000ToB1950Matrix(Matrix3d &amp;m)</div><div class="ttdoc">J2000 到 B1950 的转换矩阵</div><div class="ttdef"><b>定义</b> InertialAxes.cpp:32</div></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>AST_NAMESPACE_END</div>
+<div class="ttc" id="agroup__Coordinate_html_ga0aedd84fa6eb79b9d553bf53bda7fe4b"><div class="ttname"><a href="group__Coordinate.html#ga0aedd84fa6eb79b9d553bf53bda7fe4b">ast::aB1950ToJ2000Matrix_SPICE</a></div><div class="ttdeci">void aB1950ToJ2000Matrix_SPICE(Matrix3d &amp;m)</div><div class="ttdoc">B1950 到 J2000 转换矩阵（SPICE 版本）</div><div class="ttdef"><b>定义</b> InertialAxes.cpp:66</div></div>
+<div class="ttc" id="agroup__Coordinate_html_ga27ceff8d3da8f2ba58d64dfb021b1651"><div class="ttname"><a href="group__Coordinate.html#ga27ceff8d3da8f2ba58d64dfb021b1651">ast::aB1950ToJ2000Matrix</a></div><div class="ttdeci">void aB1950ToJ2000Matrix(Matrix3d &amp;m)</div><div class="ttdoc">B1950 到 J2000 转换矩阵</div><div class="ttdef"><b>定义</b> InertialAxes.cpp:44</div></div>
+<div class="ttc" id="agroup__Coordinate_html_gac7104d1ef4b5ae7f47b456704f56687c"><div class="ttname"><a href="group__Coordinate.html#gac7104d1ef4b5ae7f47b456704f56687c">ast::aJ2000ToB1950Matrix_SPICE</a></div><div class="ttdeci">void aJ2000ToB1950Matrix_SPICE(Matrix3d &amp;m)</div><div class="ttdoc">J2000 到 B1950 转换矩阵（SPICE 版本）</div><div class="ttdef"><b>定义</b> InertialAxes.cpp:53</div></div>
+<div class="ttc" id="agroup__Coordinate_html_gaf5cbe6bbfcd24c2856b7f096d3276195"><div class="ttname"><a href="group__Coordinate.html#gaf5cbe6bbfcd24c2856b7f096d3276195">ast::aJ2000ToB1950Matrix</a></div><div class="ttdeci">void aJ2000ToB1950Matrix(Matrix3d &amp;m)</div><div class="ttdoc">J2000 到 B1950 转换矩阵</div><div class="ttdef"><b>定义</b> InertialAxes.cpp:31</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

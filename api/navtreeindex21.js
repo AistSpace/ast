@@ -1,10 +1,5 @@
 var NAVTREEINDEX21 =
 {
-"secant_8c.html":[4,0,0,5,4,0,0,0],
-"snopt__ast_8h_source.html":[4,0,0,8,17],
-"structAMatrix3d.html":[3,0,3],
-"structAVector3d.html":[3,0,5],
-"structNamelist.html":[3,0,16],
 "structVardesc.html":[3,0,23],
 "structalist.html":[3,0,2],
 "structap__array.html":[3,0,4],
