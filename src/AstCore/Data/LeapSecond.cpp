@@ -27,6 +27,7 @@
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/IO.hpp"
 #include "AstUtil/ScopedPtr.hpp"
+#include "AstUtil/StringView.hpp"
 #include <assert.h>
 #include <fstream>
 #include <cmath>
@@ -42,9 +43,8 @@ LeapSecond::LeapSecond()
 
 
 
-err_t LeapSecond::loadATK(const char* filepath)
+err_t LeapSecond::loadATK(FILE* file)
 {
-    ScopedPtr<std::FILE> file(ast_fopen(filepath, "r"));
     if (file == NULL) {
         return eErrorNullInput;
     }
@@ -93,9 +93,8 @@ err_t LeapSecond::loadATK(const char* filepath)
 }
 
 
-err_t LeapSecond::loadHPIERS(const char* filepath)
+err_t LeapSecond::loadHPIERS(FILE* file)
 {
-    ScopedPtr<std::FILE> file(ast_fopen(filepath, "r"));
     if (file == NULL) {
         return eErrorNullInput;
     }
@@ -150,11 +149,47 @@ err_t LeapSecond::loadHPIERS(const char* filepath)
     return eNoError;
 }
 
-err_t LeapSecond::load(const char* filepath)
+err_t LeapSecond::loadSpice(FILE* file)
 {
-    return loadHPIERS(filepath);
+    return err_t();
 }
 
+err_t LeapSecond::load(StringView filepath)
+{
+    // 1. 打开文件
+    ScopedPtr<std::FILE> file(ast_fopen(filepath.data(), "r"));
+    if (file == NULL) {
+        return eErrorNullInput;
+    }
+    // 2. 读取第一行
+    char linebuf[2048];
+    if (!fgets(linebuf, sizeof(linebuf), file)) {
+        return eErrorInvalidFile;
+    }
+    // 3. 通过第一行来判断文件格式
+    
+
+    return loadHPIERS(file);
+}
+
+
+err_t LeapSecond::loadHPIERS(StringView filepath)
+{
+    ScopedPtr<std::FILE> file(ast_fopen(filepath.data(), "r"));
+    if (file == NULL) {
+        return eErrorNullInput;
+    }
+    return loadHPIERS(file);
+}
+
+err_t LeapSecond::loadATK(StringView filepath)
+{
+    ScopedPtr<std::FILE> file(ast_fopen(filepath.data(), "r"));
+    if (file == NULL) {
+        return eErrorNullInput;
+    }
+    return loadATK(file);
+}
 
 void LeapSecond::setDefaultData()
 {

@@ -151,13 +151,23 @@ public:
     /// @return 当前文件路径
     std::string getFilePath() const;
 
+    /// @brief 设置外部借用的文件指针，不转移文件指针的所有权。
+    /// @details 设置当前解析器使用的文件指针为外部借用的文件指针。
+    /// @param file 外部借用的文件指针
+    void setBorrowedFile(FILE* file);
+
+    /// @brief 设置文件指针，将文件指针的所有权转移给解析器。
+    /// @details 设置当前解析器使用的文件指针，并将文件指针的所有权转移给解析器。
+    /// @param file 文件指针
+    void setOwnedFile(FILE* file);
 protected:
     FILE* getFile() const { return file_; }
 protected:
-    FILE*             file_;            ///< 文件指针
-    bool              allowComment_;    ///< 是否允许注释行
-    std::vector<char> keyBuffer;        ///< 内存缓冲区 for key
-    std::vector<char> valueBuffer;      ///< 内存缓冲区 for value
+    FILE*             file_;                    ///< 文件指针
+    bool              fileBorrowed_{false};     ///< 是否从外部借用文件指针
+    bool              allowComment_;            ///< 是否允许注释行
+    std::vector<char> keyBuffer;                ///< 内存缓冲区 for key
+    std::vector<char> valueBuffer;              ///< 内存缓冲区 for value
 };
 
 

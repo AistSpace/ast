@@ -1,5 +1,5 @@
 ///
-/// @file      SpiceFrameRegistry.cpp
+/// @file      StringSplitter.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,39 +18,10 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "SpiceFrameRegistry.hpp"
-#include "AstUtil/StringView.hpp"
+#include "StringSplitter.hpp"
 
 AST_NAMESPACE_BEGIN
 
-SpiceFrameRegistry::SpiceFrameRegistry(bool whetherInit)
-{
-    if (whetherInit)
-    {
-        init();
-    }
-}
 
-SpiceFrameRegistry &SpiceFrameRegistry::Instance()
-{
-    static SpiceFrameRegistry instance(true);
-    return instance;
-}
-
-err_t SpiceFrameRegistry::init()
-{
-    return eNoError;
-}
-
-PFrame SpiceFrameRegistry::findFrame(StringView name) const
-{
-    auto it = frameMap_.find(std::string(name));
-    if (it == frameMap_.end())
-    {
-        return PFrame();
-    }
-    return it->second;
-}
 
 AST_NAMESPACE_END
-

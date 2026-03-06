@@ -95,7 +95,7 @@ err_t _aParseInt_LibC_1(StringView sv, int& value)
 
     // @fixme: 如果StringView 是取了字符串中的一段，可能会有问题，所以在这里先转换为string
     // @todo: 这里的效率有待提升
-    std::string str = sv.to_string();
+    std::string str(sv);
     
     // 使用标准库函数strtol进行转换
     char* endptr = nullptr;
@@ -128,7 +128,7 @@ err_t _aParseInt_LibC_2(StringView sv, int& value)
 err_t _aParseInt_FromChars(StringView str, int &value)
 {
     str = aStripAsciiWhitespace(str);
-    auto result = std::from_chars(str.begin(), str.end(), value);
+    auto result = std::from_chars(str.data(), str.data() + str.size(), value);
     return result.ec == std::errc() ? eNoError : eErrorParse;
 }
 #endif
@@ -232,7 +232,7 @@ err_t _aParseDouble_LibC_1(StringView sv, double& value)
 
     // @fixme: 如果StringView 是取了字符串中的一段，可能会有问题，所以在这里先转换为string
     // @todo: 这里的效率有待提升
-    std::string str = sv.to_string();
+    std::string str(sv);
 
     // 使用标准库函数strtod进行转换
     char* endptr = nullptr;
@@ -259,7 +259,7 @@ err_t _aParseDouble_LibC_2(StringView sv, double& value)
 err_t _aParseDouble_FromChars(StringView str, double &value)
 {
     str = aStripAsciiWhitespace(str);
-    auto result = std::from_chars(str.begin(), str.end(), value);
+    auto result = std::from_chars(str.data(), str.data() + str.size(), value);
     return result.ec == std::errc() ? eNoError : eErrorParse;
 }
 
@@ -269,7 +269,7 @@ err_t _aParseDouble_FromChars(StringView str, double &value)
 err_t _aParseDouble_FromChars_Abseil(StringView str, double &value)
 {
     str = aStripAsciiWhitespace(str);
-    auto result = absl::from_chars(str.begin(), str.end(), value);
+    auto result = absl::from_chars(str.data(), str.data() + str.size(), value);
     return result.ec == std::errc() ? eNoError : eErrorParse;
 }
 #endif

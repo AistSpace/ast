@@ -45,7 +45,7 @@ CelestialBody::CelestialBody()
 
 err_t CelestialBody::load(StringView filepath)
 {
-    fs::path path = filepath.to_string();
+    fs::path path = std::string(filepath);
     if(!fs::is_regular_file(path))
     {
         path = path / (path.filename().string() + ".cb");
@@ -100,10 +100,10 @@ err_t CelestialBody::setGravityModel(StringView model)
 {
     err_t rc = this->loadGravityModel(model);
     if(rc){
-        fs::path filepath = fs::path(SolarSystem::defaultSolarSystemDir()) / this->name_ / model.to_string();
+        fs::path filepath = fs::path(SolarSystem::defaultSolarSystemDir()) / this->name_ / std::string(model);
         rc = this->loadGravityModel(filepath.string());
         if(rc){
-            aError("failed to load gravity model %s", model.to_string().c_str());
+            aError("failed to load gravity model %.*s", (int)model.size(), model.data());
         }
     }
     return rc;

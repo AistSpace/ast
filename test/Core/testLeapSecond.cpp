@@ -237,7 +237,7 @@ TEST(LeapSecond, fileLoading) {
     std::remove(tempFilePath.c_str());
     
     // 测试空指针和不存在的文件
-    EXPECT_EQ(leapSecond.loadHPIERS(nullptr), eErrorNullInput);
+    EXPECT_EQ(leapSecond.loadHPIERS((const char*)nullptr), eErrorNullInput);
     EXPECT_NE(leapSecond.loadHPIERS("non_existent_file.dat"), 0);
 }
 
@@ -248,7 +248,7 @@ TEST(LeapSecond, loadATK)
     auto filepath = fs::path(aDataDirGet()) / "Test/LeapSecond.dat";
     err_t err = leapSecond.loadATK(filepath.c_str());
     EXPECT_EQ(err, 0);
-    EXPECT_EQ(leapSecond.loadATK(nullptr), eErrorNullInput);
+    EXPECT_EQ(leapSecond.loadATK((const char*)nullptr), eErrorNullInput);
     EXPECT_NE(leapSecond.loadATK("non_existent_file.dat"), 0);
 }
 // 测试边界情况 - 空数据

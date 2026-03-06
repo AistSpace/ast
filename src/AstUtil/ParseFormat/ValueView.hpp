@@ -65,8 +65,8 @@ public:
     err_t toColor(Color& value) const { return aParseColor(value_, value); }
     
     /// @brief 转换为字符串
-    std::string toString() const { return value_.to_string(); }
-    void toString(std::string& value) const { value = value_.to_string(); }
+    std::string toString() const { return std::string(value_); }
+    void toString(std::string& value) const { value = value_; }
     
     /// @brief 转换为字符串视图
     const StringView& toStringView() const { return value_; }

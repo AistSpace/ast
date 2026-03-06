@@ -240,7 +240,10 @@ void BKVParser::close()
 {
     if (file_ != stdout && file_ != nullptr && file_ != stderr)
     {
-        fclose(file_);
+        if(!fileBorrowed_)
+        {
+            fclose(file_);
+        }
     }
     file_ = nullptr;
 }
@@ -264,6 +267,24 @@ std::streamoff BKVParser::tell()
 std::string BKVParser::getFilePath() const
 {
     return aGetFilePath(file_);
+}
+
+void BKVParser::setBorrowedFile(FILE *file)
+{
+    if(file_ == file)
+        return;
+    this->close();
+    file_ = file;
+    fileBorrowed_ = true;
+}
+
+void BKVParser::setOwnedFile(FILE *file)
+{
+    if(file_ == file)
+        return;
+    this->close();
+    file_ = file;
+    fileBorrowed_ = false;
 }
 
 AST_NAMESPACE_END

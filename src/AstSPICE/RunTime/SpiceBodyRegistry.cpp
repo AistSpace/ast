@@ -42,7 +42,7 @@ SpiceBodyRegistry::SpiceBodyRegistry(bool whetherInit)
 
 PBody SpiceBodyRegistry::findBody(StringView name) const
 {
-    auto it = bodyMap_.find(name.to_string());
+    auto it = bodyMap_.find(std::string(name));
     if (it == bodyMap_.end())
     {
         return PBody();
