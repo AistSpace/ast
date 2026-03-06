@@ -17,9 +17,11 @@ var searchData=
   ['loadgravitymodel_14',['loadGravityModel',['../classast_1_1CelestialBody.html#ae7d3d7c1c92f69d792ebe383cc45e34f',1,'ast::CelestialBody']]],
   ['loadhpiers_15',['loadHPIERS',['../classast_1_1LeapSecond.html#a8ca1e1a8bef4ece7e81b4055ed9f408a',1,'ast::LeapSecond']]],
   ['loadiers_16',['loadIERS',['../classast_1_1NutationSeries.html#a120126fdd82ed0d91ddc848728f016de',1,'ast::NutationSeries']]],
-  ['loadspaceweather_17',['loadSpaceWeather',['../namespaceast.html#a94f4cf75f889ec56c67b248dea11ef71',1,'ast']]],
-  ['loadspindata_18',['loadSpinData',['../classast_1_1CelestialBody.html#aedb5faa6c8ec0dba3f23f97b04c93dbb',1,'ast::CelestialBody']]],
-  ['loadstk_19',['loadSTK',['../classast_1_1NutationSeries.html#a869cd5a209a9a95fe59635e8960a886b',1,'ast::NutationSeries']]],
-  ['longitude_20',['longitude',['../classast_1_1GeoCoordinate.html#a372ddc25c669aebc1d37e1d21837b8a9',1,'ast::GeoCoordinate::longitude() const'],['../classast_1_1GeoCoordinate.html#a4abf5d3b8a40f6e5284799bbd0664280',1,'ast::GeoCoordinate::longitude()'],['../classast_1_1LatLonAlt.html#a77ac2552ea9ebde8c3be5886a7f911ed',1,'ast::LatLonAlt::longitude() const'],['../classast_1_1LatLonAlt.html#aacdeccd7f62b46738ee57bc706824dcc',1,'ast::LatLonAlt::longitude()']]],
-  ['luminous_21',['Luminous',['../classast_1_1Dimension.html#aa286c4f20064706f87d5427291f4c978',1,'ast::Dimension']]]
+  ['loadmeanearthdefinition_17',['loadMeanEarthDefinition',['../classast_1_1CelestialBody.html#a45a136ca7647b82e2147a8cad39aa8a1',1,'ast::CelestialBody']]],
+  ['loadmoon_18',['loadMoon',['../classast_1_1CelestialBody.html#aa85c8765d7adeb912bfe9f0d7c28f4d5',1,'ast::CelestialBody']]],
+  ['loadspaceweather_19',['loadSpaceWeather',['../namespaceast.html#a94f4cf75f889ec56c67b248dea11ef71',1,'ast']]],
+  ['loadspindata_20',['loadSpinData',['../classast_1_1CelestialBody.html#aedb5faa6c8ec0dba3f23f97b04c93dbb',1,'ast::CelestialBody']]],
+  ['loadstk_21',['loadSTK',['../classast_1_1NutationSeries.html#a869cd5a209a9a95fe59635e8960a886b',1,'ast::NutationSeries']]],
+  ['longitude_22',['longitude',['../classast_1_1GeoCoordinate.html#a372ddc25c669aebc1d37e1d21837b8a9',1,'ast::GeoCoordinate::longitude() const'],['../classast_1_1GeoCoordinate.html#a4abf5d3b8a40f6e5284799bbd0664280',1,'ast::GeoCoordinate::longitude()'],['../classast_1_1LatLonAlt.html#a77ac2552ea9ebde8c3be5886a7f911ed',1,'ast::LatLonAlt::longitude() const'],['../classast_1_1LatLonAlt.html#aacdeccd7f62b46738ee57bc706824dcc',1,'ast::LatLonAlt::longitude()']]],
+  ['luminous_23',['Luminous',['../classast_1_1Dimension.html#aa286c4f20064706f87d5427291f4c978',1,'ast::Dimension']]]
 ];

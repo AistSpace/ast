@@ -1,5 +1,8 @@
 var NAVTREEINDEX3 =
 {
+"Literals_8hpp.html#ae60947175eaa8faac7143fd5f60b8997":[4,0,0,12,6,5,44],
+"Literals_8hpp.html#ae75856045494bc38a64e4e4fa2b86da9":[4,0,0,12,6,5,41],
+"Literals_8hpp.html#af11fab1d040c1dfc47d10aa468c4ca6f":[4,0,0,12,6,5,5],
 "Literals_8hpp.html#af2c6bf04dacf1e87018f6b42ed46f9ec":[4,0,0,12,6,5,8],
 "Literals_8hpp_source.html":[4,0,0,12,6,5],
 "LocalBuffer_8hpp_source.html":[4,0,0,12,6,6],
@@ -85,6 +88,9 @@ var NAVTREEINDEX3 =
 "NoPlot_8hpp.html#a07b0b7977be73a8f2f992e02faf01357":[4,0,0,9,1,0],
 "NoPlot_8hpp.html#ab315664950797c9f47a9d58604332b95":[4,0,0,9,1,1],
 "NoPlot_8hpp_source.html":[4,0,0,9,1],
+"NoopOrientation_8cpp.html":[4,0,0,2,8,1,5],
+"NoopOrientation_8hpp.html":[4,0,0,2,8,1,6],
+"NoopOrientation_8hpp_source.html":[4,0,0,2,8,1,6],
 "NutationSeries_8cpp.html":[4,0,0,2,2,2,5],
 "NutationSeries_8hpp.html":[4,0,0,2,2,2,6],
 "NutationSeries_8hpp_source.html":[4,0,0,2,2,2,6],
@@ -243,11 +249,5 @@ var NAVTREEINDEX3 =
 "RK4_8hpp.html":[4,0,0,5,5,0,1],
 "RK4_8hpp_source.html":[4,0,0,5,5,0,1],
 "RK8_8cpp.html":[4,0,0,5,5,0,2],
-"RK8_8hpp.html":[4,0,0,5,5,0,3],
-"RK8_8hpp_source.html":[4,0,0,5,5,0,3],
-"RKCK_8cpp.html":[4,0,0,5,5,0,4],
-"RKCK_8hpp.html":[4,0,0,5,5,0,5],
-"RKCK_8hpp_source.html":[4,0,0,5,5,0,5],
-"RKF45_8cpp.html":[4,0,0,5,5,0,6],
-"RKF45_8hpp.html":[4,0,0,5,5,0,7]
+"RK8_8hpp.html":[4,0,0,5,5,0,3]
 };

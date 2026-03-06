@@ -5,6 +5,8 @@ var dir_289a06db8913b8ab1cde044a5c07f0d4 =
     [ "EarthOrientation.hpp", "EarthOrientation_8hpp.html", null ],
     [ "MoonOrientation.cpp", "MoonOrientation_8cpp.html", null ],
     [ "MoonOrientation.hpp", "MoonOrientation_8hpp.html", null ],
+    [ "NoopOrientation.cpp", "NoopOrientation_8cpp.html", null ],
+    [ "NoopOrientation.hpp", "NoopOrientation_8hpp.html", null ],
     [ "RotationalData.cpp", "RotationalData_8cpp.html", null ],
     [ "RotationalData.hpp", "RotationalData_8hpp.html", null ],
     [ "RotationElement.cpp", "RotationElement_8cpp.html", null ],

@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>🛰️航天仿真算法库 SpaceAST: src/AstCore/SolarSystem/Orientation/NoopOrientation.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">🛰️航天仿真算法库 SpaceAST<span id="projectnumber">&#160;0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('NoopOrientation_8hpp_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">NoopOrientation.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="NoopOrientation_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;AstGlobal.h&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;AstCore/BodyOrientation.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;AstCore/BuiltinAxes.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>AST_NAMESPACE_BEGIN</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classast_1_1NoopOrientation.html">   35</a></span><span class="keyword">class </span><a class="code hl_class" href="classast_1_1NoopOrientation.html">NoopOrientation</a> final: <span class="keyword">public</span> <a class="code hl_class" href="classast_1_1BodyOrientation.html">BodyOrientation</a></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_class" href="classast_1_1NoopOrientation.html">NoopOrientation</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_class" href="classast_1_1NoopOrientation.html">~NoopOrientation</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classast_1_1NoopOrientation.html#a6694c10816f47c243acfad4be034f5e7">   40</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classast_1_1NoopOrientation.html#a6694c10816f47c243acfad4be034f5e7">getICRFToFixedTransform</a>(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1TimePoint.html">TimePoint</a>&amp; tp, <a class="code hl_class" href="classast_1_1Rotation.html">Rotation</a> &amp;rotation)<span class="keyword"> const override </span>{};</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classast_1_1NoopOrientation.html#a4b18fa6b9a422946932d54fcfa85e4e9">   41</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classast_1_1NoopOrientation.html#a4b18fa6b9a422946932d54fcfa85e4e9">getICRFToFixedTransform</a>(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1TimePoint.html">TimePoint</a>&amp; tp, <a class="code hl_class" href="classast_1_1KinematicRotation.html">KinematicRotation</a> &amp;rotation)<span class="keyword"> const override </span>{};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classast_1_1NoopOrientation.html#adebec4d7e34b361560dd2520567ccdd8">   42</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classast_1_1NoopOrientation.html#adebec4d7e34b361560dd2520567ccdd8">getICRFToInertialTransform</a>(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1TimePoint.html">TimePoint</a>&amp; tp, <a class="code hl_class" href="classast_1_1Rotation.html">Rotation</a> &amp;rotation)<span class="keyword"> const override </span>{};</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classast_1_1NoopOrientation.html#a1dbfc984762283ba9ed7012f74f8d269">   43</a></span>    <a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* <a class="code hl_function" href="classast_1_1NoopOrientation.html#a1dbfc984762283ba9ed7012f74f8d269">getMODParent</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> aAxesICRF(); }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classast_1_1NoopOrientation.html#a3664ea00b92d1fecc537d91607b978af">   44</a></span>    <a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* <a class="code hl_function" href="classast_1_1NoopOrientation.html#a3664ea00b92d1fecc537d91607b978af">getTODParent</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> aAxesICRF(); }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classast_1_1NoopOrientation.html#a7c1a9f85ca3ace16eff1f9ccbf119560">   45</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classast_1_1NoopOrientation.html#a7c1a9f85ca3ace16eff1f9ccbf119560">getMODTransform</a>(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1TimePoint.html">TimePoint</a>&amp; tp, <a class="code hl_class" href="classast_1_1Rotation.html">Rotation</a> &amp;rot)<span class="keyword"> const override </span>{};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classast_1_1NoopOrientation.html#a93e1d1f978bc560b4da58cc9c3742dd7">   46</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classast_1_1NoopOrientation.html#a93e1d1f978bc560b4da58cc9c3742dd7">getTODTransform</a>(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1TimePoint.html">TimePoint</a>&amp; tp, <a class="code hl_class" href="classast_1_1Rotation.html">Rotation</a> &amp;rot)<span class="keyword"> const override </span>{};</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
+</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>AST_NAMESPACE_END</div>
+<div class="ttc" id="aclassast_1_1Axes_html"><div class="ttname"><a href="classast_1_1Axes.html">ast::Axes</a></div><div class="ttdoc">轴系类</div><div class="ttdef"><b>定义</b> Axes.hpp:67</div></div>
+<div class="ttc" id="aclassast_1_1BodyOrientation_html"><div class="ttname"><a href="classast_1_1BodyOrientation.html">ast::BodyOrientation</a></div><div class="ttdoc">天体姿态/指向</div><div class="ttdef"><b>定义</b> BodyOrientation.hpp:37</div></div>
+<div class="ttc" id="aclassast_1_1KinematicRotation_html"><div class="ttname"><a href="classast_1_1KinematicRotation.html">ast::KinematicRotation</a></div><div class="ttdoc">运动学旋转</div><div class="ttdef"><b>定义</b> KinematicRotation.hpp:31</div></div>
+<div class="ttc" id="aclassast_1_1NoopOrientation_html"><div class="ttname"><a href="classast_1_1NoopOrientation.html">ast::NoopOrientation</a></div><div class="ttdoc">空操作旋转类</div><div class="ttdef"><b>定义</b> NoopOrientation.hpp:36</div></div>
+<div class="ttc" id="aclassast_1_1NoopOrientation_html_a1dbfc984762283ba9ed7012f74f8d269"><div class="ttname"><a href="classast_1_1NoopOrientation.html#a1dbfc984762283ba9ed7012f74f8d269">ast::NoopOrientation::getMODParent</a></div><div class="ttdeci">Axes * getMODParent() const override</div><div class="ttdoc">获取MOD系的父系</div><div class="ttdef"><b>定义</b> NoopOrientation.hpp:43</div></div>
+<div class="ttc" id="aclassast_1_1NoopOrientation_html_a3664ea00b92d1fecc537d91607b978af"><div class="ttname"><a href="classast_1_1NoopOrientation.html#a3664ea00b92d1fecc537d91607b978af">ast::NoopOrientation::getTODParent</a></div><div class="ttdeci">Axes * getTODParent() const override</div><div class="ttdoc">获取TOD系的父系</div><div class="ttdef"><b>定义</b> NoopOrientation.hpp:44</div></div>
+<div class="ttc" id="aclassast_1_1NoopOrientation_html_a4b18fa6b9a422946932d54fcfa85e4e9"><div class="ttname"><a href="classast_1_1NoopOrientation.html#a4b18fa6b9a422946932d54fcfa85e4e9">ast::NoopOrientation::getICRFToFixedTransform</a></div><div class="ttdeci">void getICRFToFixedTransform(const TimePoint &amp;tp, KinematicRotation &amp;rotation) const override</div><div class="ttdoc">获取ICRF到天体固连系的旋转变换</div><div class="ttdef"><b>定义</b> NoopOrientation.hpp:41</div></div>
+<div class="ttc" id="aclassast_1_1NoopOrientation_html_a6694c10816f47c243acfad4be034f5e7"><div class="ttname"><a href="classast_1_1NoopOrientation.html#a6694c10816f47c243acfad4be034f5e7">ast::NoopOrientation::getICRFToFixedTransform</a></div><div class="ttdeci">void getICRFToFixedTransform(const TimePoint &amp;tp, Rotation &amp;rotation) const override</div><div class="ttdoc">获取ICRF到天体固连系的旋转变换</div><div class="ttdef"><b>定义</b> NoopOrientation.hpp:40</div></div>
+<div class="ttc" id="aclassast_1_1NoopOrientation_html_a7c1a9f85ca3ace16eff1f9ccbf119560"><div class="ttname"><a href="classast_1_1NoopOrientation.html#a7c1a9f85ca3ace16eff1f9ccbf119560">ast::NoopOrientation::getMODTransform</a></div><div class="ttdeci">void getMODTransform(const TimePoint &amp;tp, Rotation &amp;rot) const override</div><div class="ttdoc">获取MOD系的旋转变换</div><div class="ttdef"><b>定义</b> NoopOrientation.hpp:45</div></div>
+<div class="ttc" id="aclassast_1_1NoopOrientation_html_a93e1d1f978bc560b4da58cc9c3742dd7"><div class="ttname"><a href="classast_1_1NoopOrientation.html#a93e1d1f978bc560b4da58cc9c3742dd7">ast::NoopOrientation::getTODTransform</a></div><div class="ttdeci">void getTODTransform(const TimePoint &amp;tp, Rotation &amp;rot) const override</div><div class="ttdoc">获取TOD系的旋转变换</div><div class="ttdef"><b>定义</b> NoopOrientation.hpp:46</div></div>
+<div class="ttc" id="aclassast_1_1NoopOrientation_html_adebec4d7e34b361560dd2520567ccdd8"><div class="ttname"><a href="classast_1_1NoopOrientation.html#adebec4d7e34b361560dd2520567ccdd8">ast::NoopOrientation::getICRFToInertialTransform</a></div><div class="ttdeci">void getICRFToInertialTransform(const TimePoint &amp;tp, Rotation &amp;rotation) const override</div><div class="ttdoc">获取ICRF到天体惯性系的旋转变换</div><div class="ttdef"><b>定义</b> NoopOrientation.hpp:42</div></div>
+<div class="ttc" id="aclassast_1_1Rotation_html"><div class="ttname"><a href="classast_1_1Rotation.html">ast::Rotation</a></div><div class="ttdoc">旋转类</div><div class="ttdef"><b>定义</b> Rotation.hpp:39</div></div>
+<div class="ttc" id="aclassast_1_1TimePoint_html"><div class="ttname"><a href="classast_1_1TimePoint.html">ast::TimePoint</a></div><div class="ttdoc">绝对时间点</div><div class="ttdef"><b>定义</b> TimePoint.hpp:105</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_ba29613c1d0899bb7dd064b57f92f413.html">AstCore</a></li><li class="navelem"><a class="el" href="dir_5e18b0e3c7e597f0270d6c7f05b2b910.html">SolarSystem</a></li><li class="navelem"><a class="el" href="dir_289a06db8913b8ab1cde044a5c07f0d4.html">Orientation</a></li><li class="navelem"><a class="el" href="NoopOrientation_8hpp.html">NoopOrientation.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

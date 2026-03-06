@@ -24,6 +24,8 @@ var group__SolarSystem =
       [ "loadEarth", "classast_1_1CelestialBody.html#ad5b66f1b2b4431668c2807f4b80c2846", null ],
       [ "loadEphemerisData", "classast_1_1CelestialBody.html#a6a624ea14aa4c5552b9eb22a5ed8b249", null ],
       [ "loadGravityModel", "classast_1_1CelestialBody.html#ae7d3d7c1c92f69d792ebe383cc45e34f", null ],
+      [ "loadMeanEarthDefinition", "classast_1_1CelestialBody.html#a45a136ca7647b82e2147a8cad39aa8a1", null ],
+      [ "loadMoon", "classast_1_1CelestialBody.html#aa85c8765d7adeb912bfe9f0d7c28f4d5", null ],
       [ "loadSpinData", "classast_1_1CelestialBody.html#aedb5faa6c8ec0dba3f23f97b04c93dbb", null ],
       [ "setGravityModel", "classast_1_1CelestialBody.html#acd582f585f803952c1855a4f439e2248", null ],
       [ "__pad0__", "classast_1_1CelestialBody.html#a48afe6423f3c1eaf4dc1c30a1abc9c52", null ],
@@ -46,8 +48,37 @@ var group__SolarSystem =
       [ "getICRFToFixedTransform", "classast_1_1BodyOrientation.html#a2384e0907e2ce282265581d576e43dd9", null ],
       [ "getICRFToFixedTransform", "classast_1_1BodyOrientation.html#ac6b4ec0c002d4e10bcca42111c326952", null ],
       [ "getICRFToInertialTransform", "classast_1_1BodyOrientation.html#a68325f0d68bc3d217a516b4810db0b77", null ],
-      [ "getICRFToMODTransform", "classast_1_1BodyOrientation.html#a844b503bb07277b0d9f80216a2337b45", null ],
-      [ "getICRFToTODTransform", "classast_1_1BodyOrientation.html#a753187b5ce5df12594d22e4e57d0fd05", null ]
+      [ "getMODParent", "classast_1_1BodyOrientation.html#ab910ef0fdb7315a3283984b23f87f50e", null ],
+      [ "getMODTransform", "classast_1_1BodyOrientation.html#af02c96b6f8dc5731b4ef95f4735ba843", null ],
+      [ "getTODParent", "classast_1_1BodyOrientation.html#a942f024773def64e955703df743f27ad", null ],
+      [ "getTODTransform", "classast_1_1BodyOrientation.html#afa783a708e6ca3d84323e4eaca50a4b0", null ]
+    ] ],
+    [ "ast::EarthOrientation", "classast_1_1EarthOrientation.html", [
+      [ "getICRFToFixedTransform", "classast_1_1EarthOrientation.html#af2cff63ce55bdb31827b9f03eb5c70fd", null ],
+      [ "getICRFToFixedTransform", "classast_1_1EarthOrientation.html#a740482c16504a5474e2f65d0e6c1a546", null ],
+      [ "getICRFToInertialTransform", "classast_1_1EarthOrientation.html#ae37b11bf358fae818ce7d2d76ef17d3f", null ],
+      [ "getMODParent", "classast_1_1EarthOrientation.html#adcec153e802cb6d744d5bcabbf412a39", null ],
+      [ "getMODTransform", "classast_1_1EarthOrientation.html#a17f8b328e4e15b616a805497bc2d2fae", null ],
+      [ "getTODParent", "classast_1_1EarthOrientation.html#a24c66e505b56f5c4f14bc51edab75e3b", null ],
+      [ "getTODTransform", "classast_1_1EarthOrientation.html#af0865280fd51a3dfc0d64f8219d9173b", null ]
+    ] ],
+    [ "ast::MoonOrientation", "classast_1_1MoonOrientation.html", [
+      [ "getICRFToFixedTransform", "classast_1_1MoonOrientation.html#a3c583bbf0989cf29af7b5b62aa023d7f", null ],
+      [ "getICRFToFixedTransform", "classast_1_1MoonOrientation.html#ab5ab8d421b17409403b68174a24fdf20", null ],
+      [ "getICRFToInertialTransform", "classast_1_1MoonOrientation.html#a14397e7b351e059ad629ce1d34f19a88", null ],
+      [ "getMODParent", "classast_1_1MoonOrientation.html#afb1e92d6587c2ff2f73320fdc092e3d8", null ],
+      [ "getMODTransform", "classast_1_1MoonOrientation.html#a744f53da522e19289fa35a9ffdbf8143", null ],
+      [ "getTODParent", "classast_1_1MoonOrientation.html#a95ff4e7143ba828d4bcc5483ce0d3fc2", null ],
+      [ "getTODTransform", "classast_1_1MoonOrientation.html#ac6e51e2190c8184f2813817ab4403e35", null ]
+    ] ],
+    [ "ast::NoopOrientation", "classast_1_1NoopOrientation.html", [
+      [ "getICRFToFixedTransform", "classast_1_1NoopOrientation.html#a4b18fa6b9a422946932d54fcfa85e4e9", null ],
+      [ "getICRFToFixedTransform", "classast_1_1NoopOrientation.html#a6694c10816f47c243acfad4be034f5e7", null ],
+      [ "getICRFToInertialTransform", "classast_1_1NoopOrientation.html#adebec4d7e34b361560dd2520567ccdd8", null ],
+      [ "getMODParent", "classast_1_1NoopOrientation.html#a1dbfc984762283ba9ed7012f74f8d269", null ],
+      [ "getMODTransform", "classast_1_1NoopOrientation.html#a7c1a9f85ca3ace16eff1f9ccbf119560", null ],
+      [ "getTODParent", "classast_1_1NoopOrientation.html#a3664ea00b92d1fecc537d91607b978af", null ],
+      [ "getTODTransform", "classast_1_1NoopOrientation.html#a93e1d1f978bc560b4da58cc9c3742dd7", null ]
     ] ],
     [ "ast::RotationalData", "classast_1_1RotationalData.html", [
       [ "getICRFToFixedMatrix", "classast_1_1RotationalData.html#a4add2cb3f94273a4a9fcdd5f0fd6f7b8", null ],
@@ -56,9 +87,13 @@ var group__SolarSystem =
       [ "getICRFToInertialMatrix", "classast_1_1RotationalData.html#ad9b765d7aa4c8ba674a60c8b12a873a8", null ],
       [ "getICRFToInertialTransform", "classast_1_1RotationalData.html#aa3f2af2ba353bfcf94cb2fe3d2832f82", null ],
       [ "getICRFToMODMatrix", "classast_1_1RotationalData.html#a06565ba128d461612a7ccbb4e3c01bc7", null ],
-      [ "getICRFToMODTransform", "classast_1_1RotationalData.html#a7eca34b737ac4639bd4274f46f5bf994", null ],
+      [ "getICRFToMODTransform", "classast_1_1RotationalData.html#af604f05383e45174d48a8a0349eed22e", null ],
       [ "getICRFToTODMatrix", "classast_1_1RotationalData.html#a9fd1934f4a84de53f775eff4bea83133", null ],
-      [ "getICRFToTODTransform", "classast_1_1RotationalData.html#ad6f2bc5f9c7c373f54887d9394dd8964", null ],
+      [ "getICRFToTODTransform", "classast_1_1RotationalData.html#ae7a7c59053b64a5402cb277548c01693", null ],
+      [ "getMODParent", "classast_1_1RotationalData.html#adac71698b6ff3fdb6d3b5e871342b55a", null ],
+      [ "getMODTransform", "classast_1_1RotationalData.html#a751b9b138b1e4b2e2131ea7a5671cf81", null ],
+      [ "getTODParent", "classast_1_1RotationalData.html#a652e889362570b8d3622b9ee033dcaf9", null ],
+      [ "getTODTransform", "classast_1_1RotationalData.html#a2d08f17696c20b3267953e9c60514979", null ],
       [ "rotationEpoch_", "classast_1_1RotationalData.html#ad567fc0272d196bb6d630c93a97dd91f", null ]
     ] ],
     [ "ast::RotationElement", "classast_1_1RotationElement.html", [
@@ -102,5 +137,9 @@ var group__SolarSystem =
       [ "sun_", "classast_1_1SolarSystem.html#ae0679a4c0eedb7641a108d8d9769d2d2", null ],
       [ "uranus_", "classast_1_1SolarSystem.html#abfe7eccf6394b60c3d5bf653c63e937d", null ],
       [ "venus_", "classast_1_1SolarSystem.html#aba889e171b8c4b1f085d5f4223c0caf8", null ]
-    ] ]
+    ] ],
+    [ "ast::HBody", "group__SolarSystem.html#ga35a10ba44906eac17ad0bfd991d04a9e", null ],
+    [ "ast::HCelestialBody", "group__SolarSystem.html#ga3b2fe87cceca735335ef7ade4e48add5", null ],
+    [ "ast::PBody", "group__SolarSystem.html#gac670e719678a85c5d087d62383061f8f", null ],
+    [ "ast::PCelestialBody", "group__SolarSystem.html#ga37239c4cb3486ba286d79abaf2070c74", null ]
 ];

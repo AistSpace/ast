@@ -51,6 +51,9 @@ var NAVTREEINDEX1 =
 "CallStack_8cpp.html":[4,0,0,10,4,1],
 "CallStack_8hpp.html":[4,0,0,10,4,2],
 "CallStack_8hpp_source.html":[4,0,0,10,4,2],
+"CelestialBodyLoader_8cpp.html":[4,0,0,2,8,4],
+"CelestialBodyLoader_8hpp.html":[4,0,0,2,8,5],
+"CelestialBodyLoader_8hpp_source.html":[4,0,0,2,8,5],
 "CelestialBody_8cpp.html":[4,0,0,2,8,2],
 "CelestialBody_8hpp.html":[4,0,0,2,8,3],
 "CelestialBody_8hpp_source.html":[4,0,0,2,8,3],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "GFAngularSeparationSearch_8cpp.html":[4,0,0,0,1,2],
 "GFAngularSeparationSearch_8hpp.html":[4,0,0,0,1,3],
 "GFAngularSeparationSearch_8hpp_source.html":[4,0,0,0,1,3],
-"GFCoordinateSearch_8cpp.html":[4,0,0,0,1,4],
-"GFCoordinateSearch_8hpp.html":[4,0,0,0,1,5],
-"GFCoordinateSearch_8hpp_source.html":[4,0,0,0,1,5],
-"GFDistanceSearch_8cpp.html":[4,0,0,0,1,6]
+"GFCoordinateSearch_8cpp.html":[4,0,0,0,1,4]
 };

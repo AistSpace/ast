@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"GFCoordinateSearch_8hpp.html":[4,0,0,0,1,5],
+"GFCoordinateSearch_8hpp_source.html":[4,0,0,0,1,5],
+"GFDistanceSearch_8cpp.html":[4,0,0,0,1,6],
 "GFDistanceSearch_8hpp.html":[4,0,0,0,1,7],
 "GFDistanceSearch_8hpp_source.html":[4,0,0,0,1,7],
 "GFIlluminationAnglesSearch_8cpp.html":[4,0,0,0,1,8],
@@ -246,8 +249,5 @@ var NAVTREEINDEX2 =
 "Literals_8hpp.html#ad4a530d5fcb3c2c2343def8dcbde3aa2":[4,0,0,12,6,5,11],
 "Literals_8hpp.html#ad6b2feff329f085cdb765ce3fcd1294a":[4,0,0,12,6,5,25],
 "Literals_8hpp.html#adb47150baf194db232bdbb92a39efadd":[4,0,0,12,6,5,23],
-"Literals_8hpp.html#ae3596dc7462fbadb4b38dc55878c074e":[4,0,0,12,6,5,7],
-"Literals_8hpp.html#ae60947175eaa8faac7143fd5f60b8997":[4,0,0,12,6,5,44],
-"Literals_8hpp.html#ae75856045494bc38a64e4e4fa2b86da9":[4,0,0,12,6,5,41],
-"Literals_8hpp.html#af11fab1d040c1dfc47d10aa468c4ca6f":[4,0,0,12,6,5,5]
+"Literals_8hpp.html#ae3596dc7462fbadb4b38dc55878c074e":[4,0,0,12,6,5,7]
 };

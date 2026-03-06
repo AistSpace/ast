@@ -110,17 +110,23 @@ $(function(){initNavTree('SpiceRunTime_8hpp_source.html',''); initResizable(true
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>AST_NAMESPACE_BEGIN</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">class </span>Axes;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">class </span>TimePoint;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>AST_SPICE_CAPI Axes* <a class="code hl_function" href="group__Spice.html#ga3245987ee7f10c497082ce21a60c4857">aSpiceFindAxes</a>(StringView name);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">class </span>CelestialBody;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">class </span>TimePoint;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>AST_SPICE_CAPI Axes* <a class="code hl_function" href="group__Spice.html#ga3245987ee7f10c497082ce21a60c4857">aSpiceFindAxes</a>(StringView name);</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>AST_SPICE_API TimePoint <a class="code hl_function" href="group__Spice.html#ga28fa4207db53a0374e67d175d4177703">aSpiceEtToTimePoint</a>(<span class="keywordtype">double</span> et);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>AST_SPICE_API CelestialBody* <a class="code hl_function" href="group__Spice.html#ga12f41a902b92a5041319c0929ea394b8">aSpiceFindBody</a>(StringView name);</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>AST_NAMESPACE_END</div>
-<div class="ttc" id="agroup__Spice_html_ga28fa4207db53a0374e67d175d4177703"><div class="ttname"><a href="group__Spice.html#ga28fa4207db53a0374e67d175d4177703">ast::aSpiceEtToTimePoint</a></div><div class="ttdeci">TimePoint aSpiceEtToTimePoint(double et)</div><div class="ttdoc">将 SPICE 时间转换为 TimePoint</div><div class="ttdef"><b>定义</b> SpiceRunTime.cpp:33</div></div>
-<div class="ttc" id="agroup__Spice_html_ga3245987ee7f10c497082ce21a60c4857"><div class="ttname"><a href="group__Spice.html#ga3245987ee7f10c497082ce21a60c4857">ast::aSpiceFindAxes</a></div><div class="ttdeci">Axes * aSpiceFindAxes(StringView name)</div><div class="ttdoc">查找指定名称的参考系统轴</div><div class="ttdef"><b>定义</b> SpiceRunTime.cpp:28</div></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>AST_SPICE_API CelestialBody* <a class="code hl_function" href="group__Spice.html#ga12f41a902b92a5041319c0929ea394b8">aSpiceFindBody</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>AST_SPICE_API TimePoint <a class="code hl_function" href="group__Spice.html#ga28fa4207db53a0374e67d175d4177703">aSpiceEtToTimePoint</a>(<span class="keywordtype">double</span> et);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>AST_NAMESPACE_END</div>
+<div class="ttc" id="agroup__Spice_html_ga12f41a902b92a5041319c0929ea394b8"><div class="ttname"><a href="group__Spice.html#ga12f41a902b92a5041319c0929ea394b8">ast::aSpiceFindBody</a></div><div class="ttdeci">CelestialBody * aSpiceFindBody(StringView name)</div><div class="ttdoc">查找指定名称的天体</div><div class="ttdef"><b>定义</b> SpiceRunTime.cpp:34</div></div>
+<div class="ttc" id="agroup__Spice_html_ga28fa4207db53a0374e67d175d4177703"><div class="ttname"><a href="group__Spice.html#ga28fa4207db53a0374e67d175d4177703">ast::aSpiceEtToTimePoint</a></div><div class="ttdeci">TimePoint aSpiceEtToTimePoint(double et)</div><div class="ttdoc">将 SPICE 时间转换为 TimePoint</div><div class="ttdef"><b>定义</b> SpiceRunTime.cpp:44</div></div>
+<div class="ttc" id="agroup__Spice_html_ga3245987ee7f10c497082ce21a60c4857"><div class="ttname"><a href="group__Spice.html#ga3245987ee7f10c497082ce21a60c4857">ast::aSpiceFindAxes</a></div><div class="ttdeci">Axes * aSpiceFindAxes(StringView name)</div><div class="ttdoc">查找指定名称的参考系统轴</div><div class="ttdef"><b>定义</b> SpiceRunTime.cpp:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

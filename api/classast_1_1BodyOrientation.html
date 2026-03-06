@@ -114,7 +114,10 @@ $(function(){initNavTree('classast_1_1BodyOrientation.html',''); initResizable(t
  <div class="center">
   <img src="classast_1_1BodyOrientation.png" usemap="#ast::BodyOrientation_map" alt=""/>
   <map id="ast::BodyOrientation_map" name="ast::BodyOrientation_map">
-<area href="classast_1_1RotationalData.html" title="行星旋转数据" alt="ast::RotationalData" shape="rect" coords="0,56,125,80"/>
+<area href="classast_1_1EarthOrientation.html" title="地球旋转类" alt="ast::EarthOrientation" shape="rect" coords="0,56,128,80"/>
+<area href="classast_1_1MoonOrientation.html" alt="ast::MoonOrientation" shape="rect" coords="138,56,266,80"/>
+<area href="classast_1_1NoopOrientation.html" title="空操作旋转类" alt="ast::NoopOrientation" shape="rect" coords="276,56,404,80"/>
+<area href="classast_1_1RotationalData.html" title="行星旋转数据" alt="ast::RotationalData" shape="rect" coords="414,56,542,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -126,10 +129,14 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a2384e0907e2ce282265581d576e43dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68325f0d68bc3d217a516b4810db0b77" id="r_a68325f0d68bc3d217a516b4810db0b77"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68325f0d68bc3d217a516b4810db0b77">getICRFToInertialTransform</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Rotation.html">Rotation</a> &amp;rotation) const =0</td></tr>
 <tr class="separator:a68325f0d68bc3d217a516b4810db0b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a844b503bb07277b0d9f80216a2337b45" id="r_a844b503bb07277b0d9f80216a2337b45"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a844b503bb07277b0d9f80216a2337b45">getICRFToMODTransform</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Rotation.html">Rotation</a> &amp;rot) const =0</td></tr>
-<tr class="separator:a844b503bb07277b0d9f80216a2337b45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a753187b5ce5df12594d22e4e57d0fd05" id="r_a753187b5ce5df12594d22e4e57d0fd05"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a753187b5ce5df12594d22e4e57d0fd05">getICRFToTODTransform</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Rotation.html">Rotation</a> &amp;rot) const =0</td></tr>
-<tr class="separator:a753187b5ce5df12594d22e4e57d0fd05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab910ef0fdb7315a3283984b23f87f50e" id="r_ab910ef0fdb7315a3283984b23f87f50e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab910ef0fdb7315a3283984b23f87f50e">getMODParent</a> () const =0</td></tr>
+<tr class="separator:ab910ef0fdb7315a3283984b23f87f50e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af02c96b6f8dc5731b4ef95f4735ba843" id="r_af02c96b6f8dc5731b4ef95f4735ba843"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af02c96b6f8dc5731b4ef95f4735ba843">getMODTransform</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Rotation.html">Rotation</a> &amp;rot) const =0</td></tr>
+<tr class="separator:af02c96b6f8dc5731b4ef95f4735ba843"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a942f024773def64e955703df743f27ad" id="r_a942f024773def64e955703df743f27ad"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a942f024773def64e955703df743f27ad">getTODParent</a> () const =0</td></tr>
+<tr class="separator:a942f024773def64e955703df743f27ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa783a708e6ca3d84323e4eaca50a4b0" id="r_afa783a708e6ca3d84323e4eaca50a4b0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa783a708e6ca3d84323e4eaca50a4b0">getTODTransform</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Rotation.html">Rotation</a> &amp;rot) const =0</td></tr>
+<tr class="separator:afa783a708e6ca3d84323e4eaca50a4b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>天体姿态/指向 </p>
@@ -170,7 +177,7 @@ Public 成员函数</h2></td></tr>
   </dd>
 </dl>
 
-<p>在 <a class="el" href="classast_1_1RotationalData.html#a8f3a713383752955b620a7e8246d9f25">ast::RotationalData</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1EarthOrientation.html#af2cff63ce55bdb31827b9f03eb5c70fd">ast::EarthOrientation</a>, <a class="el" href="classast_1_1MoonOrientation.html#a3c583bbf0989cf29af7b5b62aa023d7f">ast::MoonOrientation</a>, <a class="el" href="classast_1_1NoopOrientation.html#a4b18fa6b9a422946932d54fcfa85e4e9">ast::NoopOrientation</a> , 以及 <a class="el" href="classast_1_1RotationalData.html#a8f3a713383752955b620a7e8246d9f25">ast::RotationalData</a> 内被实现.</p>
 
 </div>
 </div>
@@ -210,7 +217,7 @@ Public 成员函数</h2></td></tr>
   </dd>
 </dl>
 
-<p>在 <a class="el" href="classast_1_1RotationalData.html#a342f66f4e5a4bcdeed3d9df2114dd311">ast::RotationalData</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1EarthOrientation.html#a740482c16504a5474e2f65d0e6c1a546">ast::EarthOrientation</a>, <a class="el" href="classast_1_1MoonOrientation.html#ab5ab8d421b17409403b68174a24fdf20">ast::MoonOrientation</a>, <a class="el" href="classast_1_1NoopOrientation.html#a6694c10816f47c243acfad4be034f5e7">ast::NoopOrientation</a> , 以及 <a class="el" href="classast_1_1RotationalData.html#a342f66f4e5a4bcdeed3d9df2114dd311">ast::RotationalData</a> 内被实现.</p>
 
 </div>
 </div>
@@ -250,12 +257,12 @@ Public 成员函数</h2></td></tr>
   </dd>
 </dl>
 
-<p>在 <a class="el" href="classast_1_1RotationalData.html#aa3f2af2ba353bfcf94cb2fe3d2832f82">ast::RotationalData</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1EarthOrientation.html#ae37b11bf358fae818ce7d2d76ef17d3f">ast::EarthOrientation</a>, <a class="el" href="classast_1_1MoonOrientation.html#a14397e7b351e059ad629ce1d34f19a88">ast::MoonOrientation</a>, <a class="el" href="classast_1_1NoopOrientation.html#adebec4d7e34b361560dd2520567ccdd8">ast::NoopOrientation</a> , 以及 <a class="el" href="classast_1_1RotationalData.html#aa3f2af2ba353bfcf94cb2fe3d2832f82">ast::RotationalData</a> 内被实现.</p>
 
 </div>
 </div>
-<a id="a844b503bb07277b0d9f80216a2337b45" name="a844b503bb07277b0d9f80216a2337b45"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a844b503bb07277b0d9f80216a2337b45">&#9670;&#160;</a></span>getICRFToMODTransform()</h2>
+<a id="ab910ef0fdb7315a3283984b23f87f50e" name="ab910ef0fdb7315a3283984b23f87f50e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab910ef0fdb7315a3283984b23f87f50e">&#9670;&#160;</a></span>getMODParent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,7 +271,37 @@ Public 成员函数</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void ast::BodyOrientation::getICRFToMODTransform </td>
+          <td class="memname">virtual <a class="el" href="classast_1_1Axes.html">Axes</a> * ast::BodyOrientation::getMODParent </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取MOD系的父系 </p>
+<dl class="section return"><dt>返回</dt><dd>Axes* 内置轴系 </dd></dl>
+
+<p>在 <a class="el" href="classast_1_1EarthOrientation.html#adcec153e802cb6d744d5bcabbf412a39">ast::EarthOrientation</a>, <a class="el" href="classast_1_1MoonOrientation.html#afb1e92d6587c2ff2f73320fdc092e3d8">ast::MoonOrientation</a>, <a class="el" href="classast_1_1NoopOrientation.html#a1dbfc984762283ba9ed7012f74f8d269">ast::NoopOrientation</a> , 以及 <a class="el" href="classast_1_1RotationalData.html#adac71698b6ff3fdb6d3b5e871342b55a">ast::RotationalData</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="af02c96b6f8dc5731b4ef95f4735ba843" name="af02c96b6f8dc5731b4ef95f4735ba843"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af02c96b6f8dc5731b4ef95f4735ba843">&#9670;&#160;</a></span>getMODTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ast::BodyOrientation::getMODTransform </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
         </tr>
@@ -281,7 +318,7 @@ Public 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>获取ICRF到MOD系的旋转变换 </p>
+<p>获取MOD系的旋转变换 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">tp</td><td>时间点 </td></tr>
@@ -290,12 +327,12 @@ Public 成员函数</h2></td></tr>
   </dd>
 </dl>
 
-<p>在 <a class="el" href="classast_1_1RotationalData.html#a7eca34b737ac4639bd4274f46f5bf994">ast::RotationalData</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1EarthOrientation.html#a17f8b328e4e15b616a805497bc2d2fae">ast::EarthOrientation</a>, <a class="el" href="classast_1_1MoonOrientation.html#a744f53da522e19289fa35a9ffdbf8143">ast::MoonOrientation</a>, <a class="el" href="classast_1_1NoopOrientation.html#a7c1a9f85ca3ace16eff1f9ccbf119560">ast::NoopOrientation</a> , 以及 <a class="el" href="classast_1_1RotationalData.html#a751b9b138b1e4b2e2131ea7a5671cf81">ast::RotationalData</a> 内被实现.</p>
 
 </div>
 </div>
-<a id="a753187b5ce5df12594d22e4e57d0fd05" name="a753187b5ce5df12594d22e4e57d0fd05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a753187b5ce5df12594d22e4e57d0fd05">&#9670;&#160;</a></span>getICRFToTODTransform()</h2>
+<a id="a942f024773def64e955703df743f27ad" name="a942f024773def64e955703df743f27ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a942f024773def64e955703df743f27ad">&#9670;&#160;</a></span>getTODParent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -304,7 +341,37 @@ Public 成员函数</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void ast::BodyOrientation::getICRFToTODTransform </td>
+          <td class="memname">virtual <a class="el" href="classast_1_1Axes.html">Axes</a> * ast::BodyOrientation::getTODParent </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取TOD系的父系 </p>
+<dl class="section return"><dt>返回</dt><dd>Axes* 内置轴系 </dd></dl>
+
+<p>在 <a class="el" href="classast_1_1EarthOrientation.html#a24c66e505b56f5c4f14bc51edab75e3b">ast::EarthOrientation</a>, <a class="el" href="classast_1_1MoonOrientation.html#a95ff4e7143ba828d4bcc5483ce0d3fc2">ast::MoonOrientation</a>, <a class="el" href="classast_1_1NoopOrientation.html#a3664ea00b92d1fecc537d91607b978af">ast::NoopOrientation</a> , 以及 <a class="el" href="classast_1_1RotationalData.html#a652e889362570b8d3622b9ee033dcaf9">ast::RotationalData</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="afa783a708e6ca3d84323e4eaca50a4b0" name="afa783a708e6ca3d84323e4eaca50a4b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa783a708e6ca3d84323e4eaca50a4b0">&#9670;&#160;</a></span>getTODTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ast::BodyOrientation::getTODTransform </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
         </tr>
@@ -321,7 +388,7 @@ Public 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>获取ICRF到TOD系的旋转变换 </p>
+<p>获取TOD系的旋转变换 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">tp</td><td>时间点 </td></tr>
@@ -330,7 +397,7 @@ Public 成员函数</h2></td></tr>
   </dd>
 </dl>
 
-<p>在 <a class="el" href="classast_1_1RotationalData.html#ad6f2bc5f9c7c373f54887d9394dd8964">ast::RotationalData</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1EarthOrientation.html#af0865280fd51a3dfc0d64f8219d9173b">ast::EarthOrientation</a>, <a class="el" href="classast_1_1MoonOrientation.html#ac6e51e2190c8184f2813817ab4403e35">ast::MoonOrientation</a>, <a class="el" href="classast_1_1NoopOrientation.html#a93e1d1f978bc560b4da58cc9c3742dd7">ast::NoopOrientation</a> , 以及 <a class="el" href="classast_1_1RotationalData.html#a2d08f17696c20b3267953e9c60514979">ast::RotationalData</a> 内被实现.</p>
 
 </div>
 </div>

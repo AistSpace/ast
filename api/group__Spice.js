@@ -1,8 +1,12 @@
 var group__Spice =
 [
     [ "ast::SpiceAxesRegistry", "classast_1_1SpiceAxesRegistry.html", null ],
+    [ "ast::SpiceBodyRegistry", "classast_1_1SpiceBodyRegistry.html", null ],
+    [ "ast::SpiceFrameRegistry", "classast_1_1SpiceFrameRegistry.html", null ],
     [ "ast::aSpiceEtToTimePoint", "group__Spice.html#ga28fa4207db53a0374e67d175d4177703", null ],
     [ "ast::aSpiceFindAxes", "group__Spice.html#ga3245987ee7f10c497082ce21a60c4857", null ],
+    [ "ast::aSpiceFindBody", "group__Spice.html#gadf49677a9b4e1aaf420ed77715228f43", null ],
+    [ "ast::aSpiceFindBody", "group__Spice.html#ga12f41a902b92a5041319c0929ea394b8", null ],
     [ "ast::axisar", "group__Spice.html#gaa492a6a07aed235f9ef4ea65c0ec1017", null ],
     [ "ast::azlrec", "group__Spice.html#ga70544ad5025e6d1ee6668980a7ec6230", null ],
     [ "ast::eul2m", "group__Spice.html#ga5e731824b990e410fb69e97f5f05c283", null ],

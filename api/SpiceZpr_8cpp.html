@@ -109,6 +109,7 @@ $(function(){initNavTree('SpiceZpr_8cpp.html',''); initResizable(true); });
 <code>#include &quot;AstCore/AxesTransform.hpp&quot;</code><br />
 <code>#include &quot;AstCore/Axes.hpp&quot;</code><br />
 <code>#include &quot;AstCore/TimePoint.hpp&quot;</code><br />
+<code>#include &quot;AstCore/CelestialBody.hpp&quot;</code><br />
 <code>#include &quot;AstMath/AttitudeConvert.hpp&quot;</code><br />
 <code>#include &quot;AstMath/AngleAxis.hpp&quot;</code><br />
 <code>#include &quot;AstMath/Euler.hpp&quot;</code><br />
@@ -169,6 +170,12 @@ AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::
 <tr class="memitem:gae4ad791279dc2d35f3ee9497a9b24160" id="r_gae4ad791279dc2d35f3ee9497a9b24160"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::rav2xf</b> (const <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;rot, const Vector3d &amp;av, Matrix6d &amp;xform)</td></tr>
 <tr class="separator:gae4ad791279dc2d35f3ee9497a9b24160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa4fbfc98a7be17ac50afdb3630462ad1" id="r_gaa4fbfc98a7be17ac50afdb3630462ad1"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::tipbod</b> (<a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *body, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;tipm)</td></tr>
+<tr class="separator:gaa4fbfc98a7be17ac50afdb3630462ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade34ab294fd9c8d4b39a853527fa22ca" id="r_ade34ab294fd9c8d4b39a853527fa22ca"><td class="memItemLeft" align="right" valign="top"><a id="ade34ab294fd9c8d4b39a853527fa22ca" name="ade34ab294fd9c8d4b39a853527fa22ca"></a>
+AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::tipbod</b> (const char *ref, int body, double et, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;tipm)</td></tr>
+<tr class="separator:ade34ab294fd9c8d4b39a853527fa22ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5e731824b990e410fb69e97f5f05c283" id="r_ga5e731824b990e410fb69e97f5f05c283"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga5e731824b990e410fb69e97f5f05c283">ast::eul2m</a> (double angle3, double angle2, double angle1, int axis3, int axis2, int axis1, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;r)</td></tr>
 <tr class="separator:ga5e731824b990e410fb69e97f5f05c283"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga69e7485a9fbd13916ae87dbf0ba84562" id="r_ga69e7485a9fbd13916ae87dbf0ba84562"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga69e7485a9fbd13916ae87dbf0ba84562">ast::ident</a> (<a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;matrix)</td></tr>

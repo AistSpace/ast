@@ -25,6 +25,9 @@ var hierarchy =
     [ "ast::BKVTree", "classast_1_1BKVTree.html", null ],
     [ "ast::BodyEphemeris", "classast_1_1BodyEphemeris.html", null ],
     [ "ast::BodyOrientation", "classast_1_1BodyOrientation.html", [
+      [ "ast::EarthOrientation", "classast_1_1EarthOrientation.html", null ],
+      [ "ast::MoonOrientation", "classast_1_1MoonOrientation.html", null ],
+      [ "ast::NoopOrientation", "classast_1_1NoopOrientation.html", null ],
       [ "ast::RotationalData", "classast_1_1RotationalData.html", null ]
     ] ],
     [ "ast::Breakpoint", "classast_1_1Breakpoint.html", null ],
@@ -386,6 +389,8 @@ var hierarchy =
     [ "ast::SpanStorage< T, dynamic_extent >", "classast_1_1SpanStorage_3_01T_00_01dynamic__extent_01_4.html", null ],
     [ "ast::Sparse", "classast_1_1Sparse.html", null ],
     [ "ast::SpiceAxesRegistry", "classast_1_1SpiceAxesRegistry.html", null ],
+    [ "ast::SpiceBodyRegistry", "classast_1_1SpiceBodyRegistry.html", null ],
+    [ "ast::SpiceFrameRegistry", "classast_1_1SpiceFrameRegistry.html", null ],
     [ "ast::SpiceParser", "classast_1_1SpiceParser.html", null ],
     [ "ast::HPOPForceModel::SRP", "structast_1_1HPOPForceModel_1_1SRP.html", null ],
     [ "ast::StackFrame", "classast_1_1StackFrame.html", null ],

@@ -13,5 +13,6 @@ var searchData=
   ['modjuliandate_10',['ModJulianDate',['../classast_1_1ModJulianDate.html',1,'ast']]],
   ['modorbelem_11',['ModOrbElem',['../classast_1_1ModOrbElem.html',1,'ast']]],
   ['molniyaorbitdesigner_12',['MolniyaOrbitDesigner',['../classast_1_1MolniyaOrbitDesigner.html',1,'ast']]],
-  ['multitype_13',['Multitype',['../unionMultitype.html',1,'']]]
+  ['moonorientation_13',['MoonOrientation',['../classast_1_1MoonOrientation.html',1,'ast']]],
+  ['multitype_14',['Multitype',['../unionMultitype.html',1,'']]]
 ];
