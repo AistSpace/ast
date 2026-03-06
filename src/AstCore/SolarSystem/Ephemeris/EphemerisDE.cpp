@@ -1,5 +1,5 @@
 ///
-/// @file      BodyEphemeris.cpp
+/// @file      EphemerisDE.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,7 +18,7 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "BodyEphemeris.hpp"
+#include "EphemerisDE.hpp"
 
 AST_NAMESPACE_BEGIN
 

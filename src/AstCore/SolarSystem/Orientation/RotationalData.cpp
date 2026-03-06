@@ -22,6 +22,7 @@
 #include "AstUtil/BKVParser.hpp"
 #include "AstUtil/String.hpp"
 #include "AstMath/Euler.hpp"
+#include "AstMath/KinematicRotation.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -130,6 +131,13 @@ void RotationalData::getICRFToFixedMatrix(const TimePoint &tp, Matrix3d &matrix)
 void RotationalData::getICRFToFixedTransform(const TimePoint &tp, Rotation &rotation) const
 {
     this->getICRFToFixedMatrix(tp, rotation.getMatrix());
+}
+
+void RotationalData::getICRFToFixedTransform(const TimePoint& tp, KinematicRotation &rotation) const
+{
+    this->getICRFToFixedMatrix(tp, rotation.getMatrix());
+    /// @bug 这里需要实现角速度的计算
+    rotation.setRotationRate(Vector3d::Zero());
 }
 
 void RotationalData::getICRFToInertialMatrix(const TimePoint &tp, Matrix3d &matrix) const

@@ -1,5 +1,5 @@
 ///
-/// @file      BodyEphemeris.cpp
+/// @file      AxesBodyRelated.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,10 +18,21 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "BodyEphemeris.hpp"
+#include "AxesBodyRelated.hpp"
+#include "AstCore/CelestialBody.hpp"
 
 AST_NAMESPACE_BEGIN
 
+AxesBodyRelated::AxesBodyRelated(CelestialBody *body)
+    : body_(body)
+{
+}
 
+BodyOrientation *AxesBodyRelated::getBodyOrientation() const
+{
+    return body_->getOrientation();
+}
 
 AST_NAMESPACE_END
+
+

@@ -1,5 +1,5 @@
 ///
-/// @file      BodyEphemeris.cpp
+/// @file      AxesBodyTOD.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,10 +18,32 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "BodyEphemeris.hpp"
+#include "AxesBodyTOD.hpp"
+#include "AstCore/AxesICRF.hpp"
+#include "AstCore/BodyOrientation.hpp"
+#include "AstMath/KinematicRotation.hpp"
+
 
 AST_NAMESPACE_BEGIN
 
+Axes *AxesBodyTOD::getParent() const
+{
+    return AxesICRF::Instance();
+}
 
+err_t AxesBodyTOD::getTransform(const TimePoint &tp, Rotation &rotation) const
+{
+    getBodyOrientation()->getICRFToTODTransform(tp, rotation);
+    return eNoError;
+}
+
+err_t AxesBodyTOD::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
+{
+    getBodyOrientation()->getICRFToTODTransform(tp, rotation.getRotation());
+    rotation.setRotationRate(Vector3d::Zero());
+    return eNoError;
+}
 
 AST_NAMESPACE_END
+
+

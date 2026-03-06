@@ -1,5 +1,5 @@
 ///
-/// @file      BodyEphemeris.cpp
+/// @file      AxesBodyRelated.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,10 +18,33 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "BodyEphemeris.hpp"
+#pragma once
+
+#include "AstGlobal.h"
+#include "AstCore/Axes.hpp"
 
 AST_NAMESPACE_BEGIN
 
+/*!
+    @addtogroup Coordinate
+    @{
+*/
+class CelestialBody;
+class BodyOrientation;
 
+/// @brief  天体相关的轴系
+class AST_CORE_API AxesBodyRelated : public Axes
+{
+public:
+    AxesBodyRelated(CelestialBody* body);
+    ~AxesBodyRelated() override = default;
+protected:
+    /// @brief 获取天体的姿态/指向
+    BodyOrientation* getBodyOrientation() const;
+protected:
+    CelestialBody* body_;       ///< 天体
+};
+
+/*! @} */
 
 AST_NAMESPACE_END

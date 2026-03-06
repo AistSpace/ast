@@ -25,11 +25,53 @@
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup 
+    @addtogroup SolarSystem
     @{
 */
 
+class Rotation;
+class KinematicRotation;
 
+/// @brief 天体姿态/指向
+class AST_CORE_API BodyOrientation
+{
+public:
+    BodyOrientation() = default;
+    
+
+    virtual ~BodyOrientation() = default;
+
+
+    /// @brief 获取ICRF到天体固连系的旋转变换
+    /// @param tp 时间点
+    /// @param rotation 旋转变换
+    virtual void getICRFToFixedTransform(const TimePoint& tp, Rotation &rotation) const = 0;
+
+
+    /// @brief 获取ICRF到天体固连系的旋转变换
+    /// @param tp 时间点
+    /// @param rotation 旋转变换
+    virtual void getICRFToFixedTransform(const TimePoint& tp, KinematicRotation &rotation) const = 0;
+    
+
+    /// @brief 获取ICRF到天体惯性系的旋转变换
+    /// @param tp 时间点
+    /// @param rotation 旋转变换
+    virtual void getICRFToInertialTransform(const TimePoint& tp, Rotation &rotation) const = 0;
+
+
+    /// @brief 获取ICRF到MOD系的旋转变换
+    /// @param tp 时间点
+    /// @param rot 旋转变换
+    virtual void getICRFToMODTransform(const TimePoint& tp, Rotation &rot) const = 0;
+
+
+    /// @brief 获取ICRF到TOD系的旋转变换
+    /// @param tp 时间点
+    /// @param rot 旋转变换
+    virtual void getICRFToTODTransform(const TimePoint& tp, Rotation &rot) const = 0;
+        
+};
 
 /*! @} */
 
