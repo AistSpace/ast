@@ -1,9 +1,9 @@
 ///
-/// @file      SpiceRunTime.cpp
+/// @file      SpiceFrameRegistry.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-05
+/// @date      2026-03-06
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,32 +18,38 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "SpiceRunTime.hpp"
-#include "SpiceAxesRegistry.hpp"
-#include "SpiceBodyRegistry.hpp"
+#include "SpiceFrameRegistry.hpp"
 #include "AstUtil/StringView.hpp"
-#include "AstCore/TimePoint.hpp"
 
 AST_NAMESPACE_BEGIN
 
-Axes *aSpiceFindAxes(StringView name)
+SpiceFrameRegistry::SpiceFrameRegistry(bool whetherInit)
 {
-    return SpiceAxesRegistry::Instance().findAxes(name);
+    if (whetherInit)
+    {
+        init();
+    }
 }
 
-CelestialBody *aSpiceFindBody(StringView name)
+SpiceFrameRegistry &SpiceFrameRegistry::Instance()
 {
-    return SpiceBodyRegistry::Instance().findBody(name);
+    static SpiceFrameRegistry instance(true);
+    return instance;
 }
 
-CelestialBody *aSpiceFindBody(int id)
+err_t SpiceFrameRegistry::init()
 {
-    return SpiceBodyRegistry::Instance().findBody(id);
+    return eNoError;
 }
 
-TimePoint aSpiceEtToTimePoint(double et)
+PFrame SpiceFrameRegistry::findFrame(StringView name) const
 {
-    return TimePoint::J2000TT() + et;
+    auto it = frameMap_.find(name.to_string());
+    if (it == frameMap_.end())
+    {
+        return PFrame();
+    }
+    return it->second;
 }
 
 AST_NAMESPACE_END

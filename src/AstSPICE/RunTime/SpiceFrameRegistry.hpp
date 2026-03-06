@@ -1,5 +1,5 @@
 ///
-/// @file      MoonOrientation.hpp
+/// @file      SpiceFrameRegistry.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -21,28 +21,35 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "BodyOrientation.hpp"
+#include "AstCore/Frame.hpp"
+#include <unordered_map>
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup SolarSystem
+    @addtogroup Spice
     @{
 */
 
-class AST_CORE_API MoonOrientation : public BodyOrientation
+class AST_SPICE_API SpiceFrameRegistry
 {
 public:
-    MoonOrientation() = default;
-    ~MoonOrientation() override = default;
-    void getICRFToFixedTransform(const TimePoint& tp, Rotation &rotation) const override;
-    void getICRFToFixedTransform(const TimePoint& tp, KinematicRotation &rotation) const override;
-    void getICRFToInertialTransform(const TimePoint& tp, Rotation &rotation) const override;
-    Axes* getMODParent() const override;
-    void getMODTransform(const TimePoint& tp, Rotation &rot) const override;
-    Axes* getTODParent() const override;
-    void getTODTransform(const TimePoint& tp, Rotation &rot) const override;
+    SpiceFrameRegistry() = default;
+    SpiceFrameRegistry(bool whetherInit);
+    ~SpiceFrameRegistry() = default;
+
+    static SpiceFrameRegistry& Instance();
+
+    err_t init();
+
+    PFrame findFrame(StringView name) const;
+
+private:
+    using FrameMap = std::unordered_map<std::string, HFrame>;
+    FrameMap frameMap_;
 };
+
+
 
 /*! @} */
 

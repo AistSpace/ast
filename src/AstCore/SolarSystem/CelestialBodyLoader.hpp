@@ -1,5 +1,5 @@
 ///
-/// @file      MoonOrientation.hpp
+/// @file      CelestialBodyLoader.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -21,28 +21,16 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "BodyOrientation.hpp"
+#include "CelestialBody.hpp"
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup SolarSystem
+    @addtogroup 
     @{
 */
 
-class AST_CORE_API MoonOrientation : public BodyOrientation
-{
-public:
-    MoonOrientation() = default;
-    ~MoonOrientation() override = default;
-    void getICRFToFixedTransform(const TimePoint& tp, Rotation &rotation) const override;
-    void getICRFToFixedTransform(const TimePoint& tp, KinematicRotation &rotation) const override;
-    void getICRFToInertialTransform(const TimePoint& tp, Rotation &rotation) const override;
-    Axes* getMODParent() const override;
-    void getMODTransform(const TimePoint& tp, Rotation &rot) const override;
-    Axes* getTODParent() const override;
-    void getTODTransform(const TimePoint& tp, Rotation &rot) const override;
-};
+
 
 /*! @} */
 

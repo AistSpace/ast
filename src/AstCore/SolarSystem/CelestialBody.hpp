@@ -45,7 +45,7 @@ class AST_CORE_API CelestialBody : public Object
 {
     AST_OBJECT(CelestialBody)
 public:
-    CelestialBody() = default;
+    CelestialBody();
     ~CelestialBody() = default;
 
     /// @brief 获取天体名称
@@ -126,7 +126,13 @@ protected:
     err_t loadEphemerisData(BKVParser& parser);
 
     /// @brief 加载地球相关参数
-    err_t loadEarth(BKVParser& parser);    
+    err_t loadEarth(BKVParser& parser);   
+    
+    /// @brief 加载月球相关参数
+    err_t loadMoon(BKVParser& parser);   
+
+    /// @brief 加载MeanEarth定义
+    err_t loadMeanEarthDefinition(BKVParser& parser);
 
     A_DISABLE_COPY(CelestialBody)
 PROPERTIES:
@@ -145,6 +151,13 @@ PROPERTIES:
     SharedPtr<AxesBodyMOD>      axesMOD_;                  ///< 天体MOD轴
     SharedPtr<AxesBodyTOD>      axesTOD_;                  ///< 天体TOD轴
 };
+
+
+using HCelestialBody = SharedPtr<CelestialBody>;        ///< 天体句柄
+using HBody = HCelestialBody;                           ///< 天体句柄
+
+using PCelestialBody = CelestialBody*;                  ///< 天体指针
+using PBody = PCelestialBody;                           ///< 天体指针
 
 
 /*! @} */

@@ -19,9 +19,46 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "MoonOrientation.hpp"
+#include "AstCore/BuiltinAxes.hpp"
+#include "AstCore/MoonFrame.hpp"
 
 AST_NAMESPACE_BEGIN
 
+void MoonOrientation::getICRFToFixedTransform(const TimePoint &tp, Rotation &rotation) const
+{
+    aICRFToMoonMeanEarthTransform(tp, rotation);
+}
 
+void MoonOrientation::getICRFToFixedTransform(const TimePoint &tp, KinematicRotation &rotation) const
+{
+    aICRFToMoonMeanEarthTransform(tp, rotation.getRotation());
+    /// @todo 实现动力学旋转
+    rotation.setRotationRate(Vector3d::Zero());
+}
+
+void MoonOrientation::getICRFToInertialTransform(const TimePoint &tp, Rotation &rotation) const
+{
+    /// @todo 实现月球惯性系变换
+}
+
+Axes *MoonOrientation::getMODParent() const
+{
+    return aAxesICRF();
+}
+
+void MoonOrientation::getMODTransform(const TimePoint &tp, Rotation &rot) const
+{
+    /// @todo 实现月球MOD系变换
+}
+
+Axes *MoonOrientation::getTODParent() const
+{
+    return aAxesICRF();
+}
+
+void MoonOrientation::getTODTransform(const TimePoint &tp, Rotation &rot) const
+{
+    /// @todo 实现月球TOD系变换
+}
 
 AST_NAMESPACE_END

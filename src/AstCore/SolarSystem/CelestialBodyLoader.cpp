@@ -1,9 +1,9 @@
 ///
-/// @file      SpiceRunTime.cpp
+/// @file      CelestialBodyLoader.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-05
+/// @date      2026-03-06
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,33 +18,10 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "SpiceRunTime.hpp"
-#include "SpiceAxesRegistry.hpp"
-#include "SpiceBodyRegistry.hpp"
-#include "AstUtil/StringView.hpp"
-#include "AstCore/TimePoint.hpp"
+#include "CelestialBodyLoader.hpp"
 
 AST_NAMESPACE_BEGIN
 
-Axes *aSpiceFindAxes(StringView name)
-{
-    return SpiceAxesRegistry::Instance().findAxes(name);
-}
 
-CelestialBody *aSpiceFindBody(StringView name)
-{
-    return SpiceBodyRegistry::Instance().findBody(name);
-}
-
-CelestialBody *aSpiceFindBody(int id)
-{
-    return SpiceBodyRegistry::Instance().findBody(id);
-}
-
-TimePoint aSpiceEtToTimePoint(double et)
-{
-    return TimePoint::J2000TT() + et;
-}
 
 AST_NAMESPACE_END
-

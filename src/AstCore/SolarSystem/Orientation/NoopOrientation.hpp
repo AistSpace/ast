@@ -1,5 +1,5 @@
 ///
-/// @file      EarthOrientation.hpp
+/// @file      NoopOrientation.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstCore/BodyOrientation.hpp"
+#include "AstCore/BuiltinAxes.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,22 +31,20 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-
-/// @brief 地球旋转类
-class EarthOrientation final: public BodyOrientation
+/// @brief 空操作旋转类
+class NoopOrientation final: public BodyOrientation
 {
 public:
-    EarthOrientation() = default;
-    ~EarthOrientation() override = default;
-    void getICRFToFixedTransform(const TimePoint& tp, Rotation &rotation) const override;
-    void getICRFToFixedTransform(const TimePoint& tp, KinematicRotation &rotation) const override;
-    void getICRFToInertialTransform(const TimePoint& tp, Rotation &rotation) const override;
-    Axes* getMODParent() const override;
-    void getMODTransform(const TimePoint& tp, Rotation &rot) const override;
-    Axes* getTODParent() const override;
-    void getTODTransform(const TimePoint& tp, Rotation &rot) const override;
+    NoopOrientation() = default;
+    ~NoopOrientation() override = default;
+    void getICRFToFixedTransform(const TimePoint& tp, Rotation &rotation) const override {};
+    void getICRFToFixedTransform(const TimePoint& tp, KinematicRotation &rotation) const override {};
+    void getICRFToInertialTransform(const TimePoint& tp, Rotation &rotation) const override {};
+    Axes* getMODParent() const override { return aAxesICRF(); }
+    Axes* getTODParent() const override { return aAxesICRF(); }
+    void getMODTransform(const TimePoint& tp, Rotation &rot) const override {};
+    void getTODTransform(const TimePoint& tp, Rotation &rot) const override {};
 };
-
 
 
 /*! @} */

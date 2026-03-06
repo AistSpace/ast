@@ -27,18 +27,18 @@ AST_NAMESPACE_BEGIN
 
 Axes *AxesBodyMOD::getParent() const
 {
-    return AxesICRF::Instance();
+    return getBodyOrientation()->getMODParent();
 }
 
 err_t AxesBodyMOD::getTransform(const TimePoint &tp, Rotation &rotation) const
 {
-    getBodyOrientation()->getICRFToMODTransform(tp, rotation);
+    getBodyOrientation()->getMODTransform(tp, rotation);
     return eNoError;
 }
 
 err_t AxesBodyMOD::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
 {
-    getBodyOrientation()->getICRFToMODTransform(tp, rotation.getRotation());
+    getBodyOrientation()->getMODTransform(tp, rotation.getRotation());
     rotation.setRotationRate(Vector3d::Zero());
     return eNoError;
 }

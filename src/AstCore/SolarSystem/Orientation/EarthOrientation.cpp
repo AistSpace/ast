@@ -19,9 +19,46 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "EarthOrientation.hpp"
+#include "AstCore/EarthFrame.hpp"
+#include "AstCore/BuiltinAxes.hpp"
 
 AST_NAMESPACE_BEGIN
 
+void EarthOrientation::getICRFToFixedTransform(const TimePoint &tp, Rotation &rotation) const
+{
+    aICRFToECFTransform(tp, rotation);
+}
 
+void EarthOrientation::getICRFToFixedTransform(const TimePoint &tp, KinematicRotation &rotation) const
+{
+    aICRFToECFTransform(tp, rotation);
+}
+
+void EarthOrientation::getICRFToInertialTransform(const TimePoint &tp, Rotation &rotation) const
+{
+    rotation = Rotation::Identity();
+}
+
+Axes *EarthOrientation::getMODParent() const
+{
+    return aAxesJ2000();
+}
+
+void EarthOrientation::getMODTransform(const TimePoint &tp, Rotation &rot) const
+{
+    aJ2000ToMODTransform(tp, rot);
+}
+
+Axes *EarthOrientation::getTODParent() const
+{
+    return aAxesMOD();
+}
+
+void EarthOrientation::getTODTransform(const TimePoint &tp, Rotation &rot) const
+{
+    aMODToTODTransform(tp, rot);
+}
 
 AST_NAMESPACE_END
+
+

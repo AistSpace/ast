@@ -309,6 +309,7 @@ class ModJulianDate;        ///< 简约儒略日
 class System;
 class Axes;
 class Point;
+class CelestialBody;
 
 class Identifier;           ///< 标识符
 class BKVParser;            ///< BKV解析器

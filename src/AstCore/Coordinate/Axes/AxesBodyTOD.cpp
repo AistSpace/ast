@@ -28,18 +28,18 @@ AST_NAMESPACE_BEGIN
 
 Axes *AxesBodyTOD::getParent() const
 {
-    return AxesICRF::Instance();
+    return getBodyOrientation()->getTODParent();
 }
 
 err_t AxesBodyTOD::getTransform(const TimePoint &tp, Rotation &rotation) const
 {
-    getBodyOrientation()->getICRFToTODTransform(tp, rotation);
+    getBodyOrientation()->getTODTransform(tp, rotation);
     return eNoError;
 }
 
 err_t AxesBodyTOD::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
 {
-    getBodyOrientation()->getICRFToTODTransform(tp, rotation.getRotation());
+    getBodyOrientation()->getTODTransform(tp, rotation.getRotation());
     rotation.setRotationRate(Vector3d::Zero());
     return eNoError;
 }

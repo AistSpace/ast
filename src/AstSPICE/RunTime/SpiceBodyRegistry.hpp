@@ -1,5 +1,5 @@
 ///
-/// @file      MoonOrientation.hpp
+/// @file      SpiceBodyRegistry.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -21,27 +21,32 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "BodyOrientation.hpp"
+#include "AstCore/CelestialBody.hpp"
+#include <unordered_map>
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup SolarSystem
+    @addtogroup Spice
     @{
 */
 
-class AST_CORE_API MoonOrientation : public BodyOrientation
+class AST_SPICE_API SpiceBodyRegistry
 {
 public:
-    MoonOrientation() = default;
-    ~MoonOrientation() override = default;
-    void getICRFToFixedTransform(const TimePoint& tp, Rotation &rotation) const override;
-    void getICRFToFixedTransform(const TimePoint& tp, KinematicRotation &rotation) const override;
-    void getICRFToInertialTransform(const TimePoint& tp, Rotation &rotation) const override;
-    Axes* getMODParent() const override;
-    void getMODTransform(const TimePoint& tp, Rotation &rot) const override;
-    Axes* getTODParent() const override;
-    void getTODTransform(const TimePoint& tp, Rotation &rot) const override;
+    SpiceBodyRegistry() = default;
+    SpiceBodyRegistry(bool whetherInit);
+    ~SpiceBodyRegistry() = default;
+    static SpiceBodyRegistry& Instance();
+
+    PBody findBody(StringView name) const;
+    PBody findBody(int id) const;
+    err_t init();
+protected:
+    using BodyNameMap = std::unordered_map<std::string, HBody>;
+    using BodyIDMap = std::unordered_map<int, HBody>;
+    BodyNameMap bodyMap_;
+    BodyIDMap   bodyIDMap_;
 };
 
 /*! @} */

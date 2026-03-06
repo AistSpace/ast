@@ -60,16 +60,26 @@ public:
     virtual void getICRFToInertialTransform(const TimePoint& tp, Rotation &rotation) const = 0;
 
 
-    /// @brief 获取ICRF到MOD系的旋转变换
+    /// @brief 获取MOD系的父系
+    /// @return Axes* 内置轴系
+    virtual Axes* getMODParent() const = 0;
+
+    
+    /// @brief 获取MOD系的旋转变换
     /// @param tp 时间点
     /// @param rot 旋转变换
-    virtual void getICRFToMODTransform(const TimePoint& tp, Rotation &rot) const = 0;
+    virtual void getMODTransform(const TimePoint& tp, Rotation &rot) const = 0;
 
 
-    /// @brief 获取ICRF到TOD系的旋转变换
+    /// @brief 获取TOD系的父系
+    /// @return Axes* 内置轴系
+    virtual Axes* getTODParent() const = 0;
+
+
+    /// @brief 获取TOD系的旋转变换
     /// @param tp 时间点
     /// @param rot 旋转变换
-    virtual void getICRFToTODTransform(const TimePoint& tp, Rotation &rot) const = 0;
+    virtual void getTODTransform(const TimePoint& tp, Rotation &rot) const = 0;
         
 };
 

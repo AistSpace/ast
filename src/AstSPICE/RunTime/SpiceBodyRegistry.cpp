@@ -1,9 +1,9 @@
 ///
-/// @file      SpiceRunTime.cpp
+/// @file      SpiceBodyRegistry.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-05
+/// @date      2026-03-06
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,33 +18,50 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "SpiceRunTime.hpp"
-#include "SpiceAxesRegistry.hpp"
 #include "SpiceBodyRegistry.hpp"
 #include "AstUtil/StringView.hpp"
-#include "AstCore/TimePoint.hpp"
+
 
 AST_NAMESPACE_BEGIN
 
-Axes *aSpiceFindAxes(StringView name)
+SpiceBodyRegistry &SpiceBodyRegistry::Instance()
 {
-    return SpiceAxesRegistry::Instance().findAxes(name);
+    static SpiceBodyRegistry instance(true);
+    return instance;
 }
 
-CelestialBody *aSpiceFindBody(StringView name)
+SpiceBodyRegistry::SpiceBodyRegistry(bool whetherInit)
 {
-    return SpiceBodyRegistry::Instance().findBody(name);
+    if (whetherInit)
+    {
+        init();
+    }
 }
 
-CelestialBody *aSpiceFindBody(int id)
+
+PBody SpiceBodyRegistry::findBody(StringView name) const
 {
-    return SpiceBodyRegistry::Instance().findBody(id);
+    auto it = bodyMap_.find(name.to_string());
+    if (it == bodyMap_.end())
+    {
+        return PBody();
+    }
+    return it->second;
 }
 
-TimePoint aSpiceEtToTimePoint(double et)
+PBody SpiceBodyRegistry::findBody(int id) const
 {
-    return TimePoint::J2000TT() + et;
+    auto it = bodyIDMap_.find(id);
+    if (it == bodyIDMap_.end())
+    {
+        return PBody();
+    }
+    return it->second;
+}
+
+err_t SpiceBodyRegistry::init()
+{
+    return eNoError;
 }
 
 AST_NAMESPACE_END
-
