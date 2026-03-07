@@ -73,8 +73,14 @@ err_t SpiceParser::getNext(BKVItemView &item)
                         valueBuffer_.assign(value.begin(), value.size());
                         // 继续读取，直到找到完整的括号表达式
                         StringView lineStrip;
+                        const size_t maxsize = valueBuffer_.max_size();
                         do{
                             StringView line = getLineWithNewline();
+                            if(valueBuffer_.size() + line.size() >= maxsize)
+                            {
+                                aError("value buffer overflow for key: %.*s", (int)item.key().size(), item.key().data());
+                                break;
+                            }
                             valueBuffer_.append(line.begin(), line.size());
                             lineStrip = aStripTrailingAsciiWhitespace(line);
                         }while(lineStrip.back() != ')');

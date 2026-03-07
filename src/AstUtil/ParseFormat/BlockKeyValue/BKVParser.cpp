@@ -72,7 +72,7 @@ BKVParser::EToken BKVParser::getNext(StringView &key, ValueView &value)
 {
 start:
     // #pragma warning(suppress: 4996)
-    if(fscanf(file_, "%1024s", keyBuffer_.data()) != EOF)
+    if(fscanf(file_, "%1023s", keyBuffer_.data()) != EOF)
     {
         if(keyBuffer_[0] == '#' && allowComment_)
         {

@@ -44,6 +44,8 @@ static char* fgetline(char* buffer, int size, FILE* file)
 
 char* fgetlinetrim(char* buffer, int size, FILE* file)
 {
+    if(A_UNLIKELY(size <= 0))
+        return nullptr;
     int c;
     while ((c = fgetc(file)) != EOF && isspace(static_cast<unsigned char>(c)) && c != '\n') {
         // 跳过空白
@@ -56,15 +58,17 @@ char* fgetlinetrim(char* buffer, int size, FILE* file)
         return nullptr;
     }else{
         buffer[0] = static_cast<char>(c);
-        char* ret = fgets(buffer + 1, size - 1, file);
-        if(ret != nullptr)
-        {
-            size_t len = strlen(ret);
-            char* end = ret + len - 1;
-            while(end > buffer && isspace(static_cast<unsigned char>(*end)))
+        if(A_LIKELY(size > 1)){
+            char* ret = fgets(buffer + 1, size - 1, file);
+            if(ret != nullptr)
             {
-                *end = '\0';
-                end--;
+                size_t len = strlen(ret);
+                char* end = ret + len - 1;
+                while(end > buffer && isspace(static_cast<unsigned char>(*end)))
+                {
+                    *end = '\0';
+                    end--;
+                }
             }
         }
         return buffer;

@@ -75,7 +75,7 @@ public:
     
     /// @brief 转换为字符串
     std::string toString() const { return std::string(value_); }
-    void toString(std::string& value) const { value = value_; }
+    void toString(std::string& value) const { value = std::string(value_); }
 
     /// @brief 转换为值视图向量
     std::vector<ValueView> toVector() const;

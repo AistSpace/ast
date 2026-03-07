@@ -44,6 +44,7 @@ LeapSecond::LeapSecond()
     
 }
 
+constexpr int MAX_EXPECTED_LINES = 10000000;  
 
 
 err_t LeapSecond::loadATK(FILE* file)
@@ -56,6 +57,10 @@ err_t LeapSecond::loadATK(FILE* file)
     // #pragma warning(suppress: 4996)
     status = fscanf(file, "%d", &line);
     if (status == EOF) {
+        return eErrorInvalidFile;
+    }
+    if(line > MAX_EXPECTED_LINES){
+        aError("line number %d is too large", line);
         return eErrorInvalidFile;
     }
     data.reserve(line);
@@ -82,7 +87,7 @@ err_t LeapSecond::loadATK(FILE* file)
                 &year, month_str, &day
             );
             entry.leapSecond = static_cast<int>(leapsec);
-            if (status == EOF) {
+            if (status != 5) {
                 return eErrorInvalidFile;
             }
             data.push_back(entry);
@@ -105,6 +110,10 @@ err_t LeapSecond::loadSTK(FILE *file)
     // #pragma warning(suppress: 4996)
     status = fscanf(file, "%d", &line);
     if (status == EOF) {
+        return eErrorInvalidFile;
+    }
+    if(line > MAX_EXPECTED_LINES){
+        aError("line number %d is too large", line);
         return eErrorInvalidFile;
     }
     data.reserve(line);
@@ -134,7 +143,7 @@ err_t LeapSecond::loadSTK(FILE *file)
             );
             entry.mjd = static_cast<int>(mjd);
             entry.leapSecond = static_cast<int>(leapsec);
-            if (status == EOF) {
+            if (status != 7) {
                 return eErrorInvalidFile;
             }
             data.push_back(entry);
@@ -211,7 +220,10 @@ err_t LeapSecond::loadSpice(FILE* file)
     err_t rc;
     while(1){
         rc = parser.getNext(item);
-        if(rc){
+        if(rc == EOF) { // 文件结束但未找到
+            break;
+        }
+        if(rc) { // 其他解析错误
             return rc;
         }
         else if(item.key() == "DELTET/DELTA_AT"){
@@ -243,7 +255,7 @@ err_t LeapSecond::loadSpice(FILE* file)
 err_t LeapSecond::load(StringView filepath)
 {
     // 1. 打开文件
-    ScopedPtr<std::FILE> file(ast_fopen(filepath.data(), "r"));
+    ScopedPtr<std::FILE> file(ast_fopen(std::string(filepath).c_str(), "r"));
     if (file == NULL) {
         return eErrorNullInput;
     }
@@ -280,7 +292,7 @@ err_t LeapSecond::load(StringView filepath)
 
 err_t LeapSecond::loadHPIERS(StringView filepath)
 {
-    ScopedPtr<std::FILE> file(ast_fopen(filepath.data(), "r"));
+    ScopedPtr<std::FILE> file(ast_fopen(std::string(filepath).c_str(), "r"));
     if (file == NULL) {
         return eErrorNullInput;
     }
@@ -289,7 +301,7 @@ err_t LeapSecond::loadHPIERS(StringView filepath)
 
 err_t LeapSecond::loadATK(StringView filepath)
 {
-    ScopedPtr<std::FILE> file(ast_fopen(filepath.data(), "r"));
+    ScopedPtr<std::FILE> file(ast_fopen(std::string(filepath).c_str(), "r"));
     if (file == NULL) {
         return eErrorNullInput;
     }

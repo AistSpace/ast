@@ -340,8 +340,8 @@ public:
     //     return std::basic_string<_Char>(m_data, m_size);
     // }
 
-    // 隐式转换到 std::string
-    // explicit 
+    // 显式转换到 std::string
+    explicit 
     operator std::basic_string<_Char>() const noexcept
     {
         return std::basic_string<_Char>(m_data, m_size);

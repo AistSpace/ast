@@ -124,6 +124,12 @@ err_t CelestialBody::loadAstroDefinition(BKVParser &parser)
             if(aEqualsIgnoreCase(item.key(), "GravityModel")){
                 std::string model = item.value().toString();
                 fs::path filepath = parser.getFilePath();
+                /*!
+                @bug
+                如果model 被恶意写成 ../../../../etc/passwd，
+                拼接后就成了 /home/user/project/configs/../../../../etc/passwd，
+                经过路径解析后可能指向 /etc/passwd，从而读取系统关键文件。
+                */
                 filepath = filepath.parent_path() / model;
                 err_t rc = this->loadGravityModel(filepath.string());
                 if(rc) return rc;

@@ -115,7 +115,7 @@ static err_t openGravityFile(BKVParser &parser, StringView model, std::string& f
         }
         return eErrorInvalidFile;
     }
-    filepath = model;
+    filepath = std::string(model);
     return 0;
 }
 

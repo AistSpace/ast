@@ -139,6 +139,9 @@ err_t _aParseInt_LibC_3(StringView sv, int &value)
         std::memcpy(buf, sv.data(), sv.size());
         buf[sv.size()] = '\0';
     }else{
+        /*!
+        @bug 如果输入的字符串很长很长，可能会导致栈溢出
+        */
         p = (char*)alloca(sv.size() + 1);
         std::memcpy(p, sv.data(), sv.size());
         p[sv.size()] = '\0';
