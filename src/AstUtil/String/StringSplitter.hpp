@@ -248,7 +248,12 @@ struct SelectDelimiter<std::string> {
     using type = ByString;
 };
 
-// 核心分割器模板
+/// @brief 字符串分隔器
+/// @details 该类用于将字符串 text 按照分隔符 delimiter 进行分割,
+///          并根据分割条件 predicate 进行筛选。
+/// @tparam  Delimiter -  分隔符类型
+/// @tparam  Predicate -  分割条件类型
+/// @tparam  StringType -  字符串类型
 template <typename Delimiter, typename Predicate, typename StringType=StringView>
 class Splitter {
 public:
@@ -258,7 +263,7 @@ public:
         , predicate_(std::move(predicate)) 
     {}
 
-    // 迭代器
+    /// @brief 字符串分割迭代器
     class Iterator {
     public:
         using value_type = StringType;
@@ -347,15 +352,17 @@ public:
     };
     // end of iterator
 
+    /// @brief 开始迭代器
     Iterator begin() const {
         return Iterator(this);
     }
 
+    /// @brief 结束迭代器
     Iterator end() const {
         return Iterator(this, nullptr);
     }
 
-    // 转换为容器
+    /// @brief 转换为容器类型
     template <typename Container>
     operator Container() const {
         Container result;
@@ -366,12 +373,12 @@ public:
         }
         return result;
     }
-    // 转换为 std::vector<std::string>
+    /// @brief 转换为 std::vector<std::string>
     operator std::vector<std::string>() const{
         const std::vector<StringView> v = this->operator std::vector<StringView>();
         return std::vector<std::string>(v.begin(), v.end());
     }
-    // 转换为 std::vector<StringView>
+    /// @brief 转换为 std::vector<StringView>
     operator std::vector<StringView>() const {
         struct raw_view {
             const char* data;
@@ -418,7 +425,7 @@ using AllowEmpty = strings_internal::AllowEmpty;
 using SkipEmpty = strings_internal::SkipEmpty;
 using SkipWhitespace = strings_internal::SkipWhitespace;
 
-// MaxSplits 函数
+/// @brief  最大分割次数条件
 template <typename Delimiter>
 inline strings_internal::MaxSplitsImpl<typename strings_internal::SelectDelimiter<Delimiter>::type>
 MaxSplits(Delimiter delimiter, int limit) {
