@@ -288,6 +288,21 @@ double aParseDouble(StringView str)
     return value;
 }
 
+/// @brief 按 Fortran 格式将字符串转换为双精度浮点数
+/// @param str 输入字符串
+/// @return 转换后的双精度浮点数
+A_ALWAYS_INLINE
+double aParseFortranDouble(StringView str)
+{
+    double value;
+    err_t err = aParseFortranDouble(str, value);
+    if (A_UNLIKELY(err != eNoError))
+    {
+        aWarning("failed to parse fortran double value from '%.*s', err = %d", str.size(), str.data(), err);
+    }
+    return value;
+}
+
 
 /// @brief 将字符串转换为颜色值
 /// @param str 输入字符串

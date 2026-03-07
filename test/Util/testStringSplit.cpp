@@ -166,6 +166,21 @@ TEST(StringSplit, Delimiters) {
         std::vector<std::string> v = aStrSplit(("a,b,c"), MaxSplits(',', 1));
         ExpectElementsAre(v, {"a", "b,c"});
     }
+    {
+        // ByRepeatedWhitespace
+        std::vector<std::string> v = aStrSplit(("a b c"), ByRepeatedWhitespace());
+        ExpectElementsAre(v, {"a", "b", "c"});
+    }
+    {
+        // ByRepeatedWhitespace
+        std::vector<std::string> v = aStrSplit(("a \n b c \r"), ByRepeatedWhitespace());
+        ExpectElementsAre(v, {"a", "b", "c", ""});
+    }
+    {
+        // ByRepeatedChar
+        std::vector<std::string> v = aStrSplit(("a,,b"), ByRepeatedChar(','));
+        ExpectElementsAre(v, {"a", "b"});
+    }
 }
 
 // 测试谓词

@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "StringView.hpp"
 #include <vector>
+#include <cctype>
 
 AST_NAMESPACE_BEGIN
 
@@ -66,18 +67,20 @@ class ByRepeatedWhitespace {
 public:
     StringView Find(StringView text, size_t pos) const {
         // 查找第一个空白字符
-        while (pos < text.size() && !std::isspace(static_cast<unsigned char>(text[pos]))) {
+        while (pos < text.size()) {
+            if(std::isspace(static_cast<unsigned char>(text[pos])))
+            {
+                size_t start = pos;
+                // 连续跳过所有空白字符
+                while (pos < text.size() && std::isspace(static_cast<unsigned char>(text[pos]))) {
+                    ++pos;
+                }
+                return text.substr(start, pos - start);
+            }
             ++pos;
         }
-        if (pos >= text.size()) {
-            return StringView(text.data() + text.size(), 0); // 未找到
-        }
-        size_t start = pos;
-        // 连续跳过所有空白字符
-        while (pos < text.size() && std::isspace(static_cast<unsigned char>(text[pos]))) {
-            ++pos;
-        }
-        return text.substr(start, pos - start);
+        // 未找到分隔符，返回文本末尾的空视图
+        return StringView(text.data() + text.size(), 0);
     }
 };
 
@@ -424,6 +427,9 @@ using ByRepeatedChar = strings_internal::ByRepeatedChar;
 using AllowEmpty = strings_internal::AllowEmpty;
 using SkipEmpty = strings_internal::SkipEmpty;
 using SkipWhitespace = strings_internal::SkipWhitespace;
+
+// 字符串分割器
+using strings_internal::Splitter;
 
 /// @brief  最大分割次数条件
 template <typename Delimiter>

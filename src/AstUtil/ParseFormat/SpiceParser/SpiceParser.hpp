@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/BaseParser.hpp"
+#include "AstUtil/BKVItemView.hpp"
 #include <cstdio>
 
 AST_NAMESPACE_BEGIN
@@ -31,14 +32,23 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class BKVItemView;
+
 /// @brief SPICE内核文件解析器(parser for SPICE kernel file)
 class AST_UTIL_API SpiceParser: public BaseParser
 {
 public:
     using BaseParser::BaseParser;
     ~SpiceParser() = default;
-protected:
+
+    /// @brief 获取下一个键值对项
+    /// @param item 输出参数，用于存储获取到的键值对项
+    /// @return 错误码
+    err_t   getNext(BKVItemView& item);  
     
+protected:
+    std::vector<char>  keybuffer_;
+    std::vector<char>  valuebuffer_;
 };
 
 /*! @} */

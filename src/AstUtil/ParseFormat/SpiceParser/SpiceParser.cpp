@@ -23,6 +23,11 @@
 
 AST_NAMESPACE_BEGIN
 
-
+err_t SpiceParser::getNext(BKVItemView &item)
+{
+    return err_t();
+}
 
 AST_NAMESPACE_END
+
+
