@@ -73,7 +73,7 @@ char* fgetlinetrim(char* buffer, int size, FILE* file)
 
 
 BaseParser::BaseParser()
-    : lineBuffer(1024)
+    : lineBuffer_(1024)
 {
 }
 
@@ -130,19 +130,19 @@ std::streamoff BaseParser::tell()
 
 StringView BaseParser::getLineWithNewline()
 {
-    char* line = fgets(lineBuffer.data(), (int)lineBuffer.size(), file_);
+    char* line = fgets(lineBuffer_.data(), (int)lineBuffer_.size(), file_);
     return StringView(line);
 }
 
 StringView BaseParser::getLine()
 {
-    char* line = fgetline(lineBuffer.data(), (int)lineBuffer.size(), file_);
+    char* line = fgetline(lineBuffer_.data(), (int)lineBuffer_.size(), file_);
     return StringView(line);
 }
 
 StringView BaseParser::getLineTrim()
 {
-    char* line = fgetlinetrim(lineBuffer.data(), (int)lineBuffer.size(), file_);
+    char* line = fgetlinetrim(lineBuffer_.data(), (int)lineBuffer_.size(), file_);
     return StringView(line);
 }
 

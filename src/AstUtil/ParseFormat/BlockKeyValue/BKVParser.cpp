@@ -47,16 +47,16 @@ static bool isCommentLine(StringView line)
 BKVParser::BKVParser()
     : BaseParser()
     , allowComment_(true)
-    , keyBuffer(1024)
-    , valueBuffer(1024)
+    , keyBuffer_(1024)
+    , valueBuffer_(1024)
 {
 }
 
 BKVParser::BKVParser(StringView filepath)
     : BaseParser{filepath}
     , allowComment_(true)
-    , keyBuffer(1024)
-    , valueBuffer(1024)
+    , keyBuffer_(1024)
+    , valueBuffer_(1024)
 {
 }
 
@@ -72,33 +72,33 @@ BKVParser::EToken BKVParser::getNext(StringView &key, ValueView &value)
 {
 start:
     // #pragma warning(suppress: 4996)
-    if(fscanf(file_, "%1024s", keyBuffer.data()) != EOF)
+    if(fscanf(file_, "%1024s", keyBuffer_.data()) != EOF)
     {
-        if(keyBuffer[0] == '#' && allowComment_)
+        if(keyBuffer_[0] == '#' && allowComment_)
         {
             // fscanf(file_, "%*[^\n]%*c");                           // 跳过注释行
-            char* str = fgets(valueBuffer.data(), (int)valueBuffer.size(), file_);     // 跳过注释行
+            char* str = fgets(valueBuffer_.data(), (int)valueBuffer_.size(), file_);     // 跳过注释行
             A_UNUSED(str);
             // printf("comment left parts: %s", value);
             // continue;
             goto start;
         }
-        key = StringView(keyBuffer.data());
-        if(strcasecmp(keyBuffer.data(), "BEGIN") == 0)
+        key = StringView(keyBuffer_.data());
+        if(strcasecmp(keyBuffer_.data(), "BEGIN") == 0)
         {
 
-            char* line = fgetlinetrim(valueBuffer.data(), (int)valueBuffer.size(), file_);
+            char* line = fgetlinetrim(valueBuffer_.data(), (int)valueBuffer_.size(), file_);
             value = StringView(line);
             return eBlockBegin;
         }
-        else if(strcasecmp(keyBuffer.data(), "END") == 0)
+        else if(strcasecmp(keyBuffer_.data(), "END") == 0)
         {
-            char* line = fgetlinetrim(valueBuffer.data(), (int)valueBuffer.size(), file_);
+            char* line = fgetlinetrim(valueBuffer_.data(), (int)valueBuffer_.size(), file_);
             value = StringView(line);
             return eBlockEnd;
         }else{
             long pos = ftell(file_);        // 记录当前位置
-            char* line = fgetlinetrim(valueBuffer.data(), (int)valueBuffer.size(), file_);
+            char* line = fgetlinetrim(valueBuffer_.data(), (int)valueBuffer_.size(), file_);
             if(line && strncasecmp(line, "END ", 4) == 0){
                 fseek(file_, pos, SEEK_SET); // 回退到记录位置
                 value = nullptr;

@@ -127,7 +127,7 @@ protected:
 protected:
     FILE*             file_{nullptr};           ///< 文件指针
     bool              fileBorrowed_{false};     ///< 是否从外部借用文件指针
-    std::vector<char> lineBuffer;               ///< 行缓冲区
+    std::vector<char> lineBuffer_;               ///< 行缓冲区
 };
 
 

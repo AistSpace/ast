@@ -38,17 +38,19 @@ class BKVItemView;
 class AST_UTIL_API SpiceParser: public BaseParser
 {
 public:
-    using BaseParser::BaseParser;
+    SpiceParser();
+    SpiceParser(StringView filepath);
     ~SpiceParser() = default;
 
     /// @brief 获取下一个键值对项
     /// @param item 输出参数，用于存储获取到的键值对项
-    /// @return 错误码
+    /// @return 错误码，-1(EOF) 表示文件结束
     err_t   getNext(BKVItemView& item);  
     
 protected:
-    std::vector<char>  keybuffer_;
-    std::vector<char>  valuebuffer_;
+    std::vector<char>  keyBuffer_;              ///< 键缓冲区
+    std::string        valueBuffer_;            ///< 值缓冲区
+    bool               inDataBlock_{false};     ///< 是否在数据块中
 };
 
 /*! @} */

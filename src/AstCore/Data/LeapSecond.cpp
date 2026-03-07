@@ -23,12 +23,14 @@
 #include "AstCore/RunTime.hpp"
 #include "AstCore/Date.hpp"
 #include "AstCore/JulianDate.hpp"
+#include "AstCore/DateTime.hpp"
 #include "AstUtil/FileSystem.hpp"
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/IO.hpp"
 #include "AstUtil/ScopedPtr.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/StringSplit.hpp"
+#include "AstUtil/SpiceParser.hpp"
 #include <assert.h>
 #include <fstream>
 #include <cmath>
@@ -203,7 +205,39 @@ err_t LeapSecond::loadHPIERS(FILE* file)
 
 err_t LeapSecond::loadSpice(FILE* file)
 {
-    return err_t();
+    SpiceParser parser;
+    parser.setBorrowedFile(file);
+    BKVItemView item;
+    err_t rc;
+    while(1){
+        rc = parser.getNext(item);
+        if(rc){
+            return rc;
+        }
+        else if(item.key() == "DELTET/DELTA_AT"){
+            std::vector<ValueView> values = item.value().toVector();
+            size_t count = values.size() / 2;
+            std::vector<Entry> data;
+            for(size_t i = 0; i < count; i++){
+                Entry entry{};
+                DateTime dttm;
+                StringView datesv = values[i * 2 + 1].value();
+                ValueView leapsec = values[i * 2];
+                err_t rc = aDateTimeParse(datesv, "@%Y-%h-%d", dttm);
+                if(rc){
+                    aError("failed to parse date string = %.*s", datesv.size(), datesv.data());
+                    return rc;
+                }
+                entry.mjd = aDateToMJD(dttm.date());
+                entry.leapSecond = leapsec.toInt();
+                data.push_back(entry);
+            }
+            m_data = std::move(data);
+            return eNoError;
+        }
+    };
+    aError("failed to load leap second file, with format = spice");
+    return eErrorInvalidFile;
 }
 
 err_t LeapSecond::load(StringView filepath)
@@ -233,7 +267,10 @@ err_t LeapSecond::load(StringView filepath)
         }else if(cols.size() == 7){
             return loadSTK(file);
         }
-    }else{
+    }else if(strncmp(linebuf, "KPL/LSK", 7) == 0){
+        return loadSpice(file);
+    }
+    else{
         return loadHPIERS(file);
     }
     aError("failed to load leap second file, with format = unknown");

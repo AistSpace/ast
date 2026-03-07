@@ -23,9 +23,76 @@
 
 AST_NAMESPACE_BEGIN
 
+SpiceParser::SpiceParser()
+    : BaseParser()
+    , keyBuffer_(1024)
+    //, valueBuffer_(2048)
+    , inDataBlock_(false)
+{
+
+}
+
+SpiceParser::SpiceParser(StringView filepath)
+    : BaseParser(filepath)
+    , keyBuffer_(1024)
+    // , valueBuffer_(2048)
+    , inDataBlock_(false)
+{
+
+}
+
 err_t SpiceParser::getNext(BKVItemView &item)
 {
-    return err_t();
+    while(fgets(keyBuffer_.data(), (int)keyBuffer_.size(), file_))
+    {
+        if(keyBuffer_[0] == '\\')
+        {
+            if(strncmp(keyBuffer_.data(), "\\begindata", 10) == 0)
+            {
+                inDataBlock_ = true;
+            }else if(strncmp(keyBuffer_.data(), "\\begintext", 10) == 0)
+            {
+                inDataBlock_ = false;
+            }
+        }else{
+            if(inDataBlock_)
+            {
+                StringView line = keyBuffer_.data();
+                // 解析数据块中的键值对项
+                auto pos = line.find('=');
+                if(pos != StringView::npos)
+                {
+                    item.key() = aStripAsciiWhitespace(line.substr(0, pos));
+                    StringView value = line.substr(pos + 1);
+                    StringView valueStrip = aStripAsciiWhitespace(value);
+                    item.value() = valueStrip;
+                    if(valueStrip.empty())
+                    {
+                        aWarning("value is whitespace for key: %.*s", (int)item.key().size(), item.key().data());
+                    }else if(valueStrip[0] == '(' && valueStrip.back() != ')'){
+                        valueBuffer_.assign(value.begin(), value.size());
+                        // 继续读取，直到找到完整的括号表达式
+                        StringView lineStrip;
+                        do{
+                            StringView line = getLineWithNewline();
+                            valueBuffer_.append(line.begin(), line.size());
+                            lineStrip = aStripTrailingAsciiWhitespace(line);
+                        }while(lineStrip.back() != ')');
+                        item.value() = valueBuffer_;
+                    }
+                    // {
+                    //     printf("key: '%.*s'\n", (int)item.key().size(), item.key().data());
+                    //     printf("value: '%.*s'\n", (int)item.value().size(), item.value().data());
+                    // }
+                    return eNoError;
+                }else{
+                    continue;
+                }
+            }
+        }
+    }
+    static_assert(EOF != 0, "EOF must be non-zero");
+    return EOF;
 }
 
 AST_NAMESPACE_END

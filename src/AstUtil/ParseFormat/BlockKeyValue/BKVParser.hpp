@@ -48,7 +48,7 @@ public:
         eBlockBegin,         ///< 块开始
         eBlockEnd,           ///< 块结束
         eKeyValue,           ///< 键值对
-        eEOF,                ///< 文件结束
+        eEOF=EOF,            ///< 文件结束
     };
 
     BKVParser();
@@ -98,8 +98,8 @@ public:
  
 protected:
     bool              allowComment_;            ///< 是否允许注释行
-    std::vector<char> keyBuffer;                ///< 内存缓冲区 for key
-    std::vector<char> valueBuffer;              ///< 内存缓冲区 for value
+    std::vector<char> keyBuffer_;                ///< 内存缓冲区 for key
+    std::vector<char> valueBuffer_;              ///< 内存缓冲区 for value
 };
 
 

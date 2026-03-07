@@ -57,11 +57,11 @@ public:
     int toInt() const { return aParseInt(value_); }
     err_t toInt(int& value) const { return aParseInt(value_, value); }
 
-    /// @brief 转换为浮点数，不支持 Fortran 格式
+    /// @brief 转换为浮点数，不支持 Fortran 格式浮点数
     double toDouble() const { return aParseDouble(value_); }
     err_t toDouble(double& value) const { return aParseDouble(value_, value); }
     
-    /// @brief 转换浮点数，支持 Fortran 格式，例如 "1.23D2"，"-1.23d3"
+    /// @brief 转换为浮点数，支持 Fortran 格式浮点数，例如 "1.23D2"，"-1.23d3"
     double toFortranDouble() const { return aParseFortranDouble(value_); }
     err_t toFortranDouble(double& value) const { return aParseFortranDouble(value_, value); }
 
@@ -80,6 +80,10 @@ public:
     /// @brief 转换为值视图向量
     std::vector<ValueView> toVector() const;
     void toVector(std::vector<ValueView>& value) const;
+
+    /// @brief 转换为浮点数向量，支持 Fortran 格式浮点数，例如 "1.23D2"，"-1.23d3"
+    std::vector<double> toFortranDoubleVector() const;
+    err_t toFortranDoubleVector(std::vector<double>& value) const;
 
     /// @brief 转换为浮点数向量
     std::vector<double> toDoubleVector() const;
@@ -176,6 +180,25 @@ struct SkipBracket
 inline void ValueView::toVector(std::vector<ValueView>& value) const
 {
     value = split().operator std::vector<ValueView>();
+}
+
+inline std::vector<double> ValueView::toFortranDoubleVector() const
+{
+    std::vector<double> value;
+    this->toFortranDoubleVector(value);
+    return value;
+}
+
+inline err_t ValueView::toFortranDoubleVector(std::vector<double> &value) const
+{
+    for (auto& v : split()) {
+        double d;
+        if (err_t rc = ValueView(v).toFortranDouble(d)) {
+            return rc;
+        }
+        value.push_back(d);
+    }
+    return eNoError;
 }
 
 inline std::vector<double> ValueView::toDoubleVector() const
