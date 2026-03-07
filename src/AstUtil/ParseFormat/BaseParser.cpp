@@ -24,15 +24,70 @@
 
 AST_NAMESPACE_BEGIN
 
+
+/// @brief     从文件中读取一行文本，移除行尾的换行符。
+/// @param     buffer  用于存储读取文本的缓冲区。
+/// @param     size    缓冲区的大小。
+/// @param     file    文件指针，指向要读取的文件。
+/// @return    如果成功读取到一行文本，返回指向缓冲区的指针；否则返回 nullptr。
+static char* fgetline(char* buffer, int size, FILE* file)
+{
+    char* ret = fgets(buffer, size, file);
+    if(ret != nullptr)
+    {
+        buffer[strcspn(buffer, "\n")] = '\0';
+    }
+    return ret;
+}
+
+
+
+char* fgetlinetrim(char* buffer, int size, FILE* file)
+{
+    int c;
+    while ((c = fgetc(file)) != EOF && isspace(static_cast<unsigned char>(c)) && c != '\n') {
+        // 跳过空白
+    }
+    
+    if (c == EOF || c == '\n') {
+        // 没有更多内容，返回空字符串
+        if(size > 0)
+            buffer[0] = '\0';
+        return nullptr;
+    }else{
+        buffer[0] = static_cast<char>(c);
+        char* ret = fgets(buffer + 1, size - 1, file);
+        if(ret != nullptr)
+        {
+            size_t len = strlen(ret);
+            char* end = ret + len - 1;
+            while(end > buffer && isspace(static_cast<unsigned char>(*end)))
+            {
+                *end = '\0';
+                end--;
+            }
+        }
+        return buffer;
+    }
+}
+
+
+BaseParser::BaseParser()
+    : lineBuffer(1024)
+{
+}
+
+BaseParser::BaseParser(StringView filepath) 
+    : BaseParser()
+{
+    open(filepath);
+}
+
 BaseParser::~BaseParser()
 {
     close();
 }
 
-BaseParser::BaseParser(StringView filepath)
-{
-    open(filepath);
-}
 
 void BaseParser::open(StringView filepath)
 {
@@ -70,6 +125,27 @@ std::streamoff BaseParser::tell()
 {
     return std::streamoff(ftell(file_));
 }
+
+
+
+StringView BaseParser::getLineWithNewline()
+{
+    char* line = fgets(lineBuffer.data(), (int)lineBuffer.size(), file_);
+    return StringView(line);
+}
+
+StringView BaseParser::getLine()
+{
+    char* line = fgetline(lineBuffer.data(), (int)lineBuffer.size(), file_);
+    return StringView(line);
+}
+
+StringView BaseParser::getLineTrim()
+{
+    char* line = fgetlinetrim(lineBuffer.data(), (int)lineBuffer.size(), file_);
+    return StringView(line);
+}
+
 
 int BaseParser::getLineNumber()
 {

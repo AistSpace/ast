@@ -30,55 +30,6 @@ AST_NAMESPACE_BEGIN
 // #define AST_DEBUG_PARSER 1
 
 
-/// @brief     从文件中读取一行文本，移除行尾的换行符。
-/// @param     buffer  用于存储读取文本的缓冲区。
-/// @param     size    缓冲区的大小。
-/// @param     file    文件指针，指向要读取的文件。
-/// @return    如果成功读取到一行文本，返回指向缓冲区的指针；否则返回 nullptr。
-static char* fgetline(char* buffer, int size, FILE* file)
-{
-    char* ret = fgets(buffer, size, file);
-    if(ret != nullptr)
-    {
-        buffer[strcspn(buffer, "\n")] = '\0';
-    }
-    return ret;
-}
-
-
-/// @brief     从文件中读取一行文本，跳过行首的空白字符，移除行尾的换行符。
-/// @param     buffer  用于存储读取文本的缓冲区。
-/// @param     size    缓冲区的大小。
-/// @param     file    文件指针，指向要读取的文件。
-/// @return    如果成功读取到一行文本，返回指向缓冲区的指针；否则返回 nullptr。
-static char* fgetlinetrim(char* buffer, int size, FILE* file)
-{
-    int c;
-    while ((c = fgetc(file)) != EOF && isspace(static_cast<unsigned char>(c)) && c != '\n') {
-        // 跳过空白
-    }
-    
-    if (c == EOF || c == '\n') {
-        // 没有更多内容，返回空字符串
-        if(size > 0)
-            buffer[0] = '\0';
-        return nullptr;
-    }else{
-        buffer[0] = static_cast<char>(c);
-        char* ret = fgets(buffer + 1, size - 1, file);
-        if(ret != nullptr)
-        {
-            size_t len = strlen(ret);
-            char* end = ret + len - 1;
-            while(end > buffer && isspace(static_cast<unsigned char>(*end)))
-            {
-                *end = '\0';
-                end--;
-            }
-        }
-        return buffer;
-    }
-}
 
 
 static bool isCommentLine(StringView line)
@@ -103,6 +54,9 @@ BKVParser::BKVParser()
 
 BKVParser::BKVParser(StringView filepath)
     : BaseParser{filepath}
+    , allowComment_(true)
+    , keyBuffer(1024)
+    , valueBuffer(1024)
 {
 }
 
@@ -160,24 +114,6 @@ start:
 BKVParser::EToken BKVParser::getNext(BKVItemView &item)
 {
     return getNext(item.key(), item.value());
-}
-
-StringView BKVParser::getLineWithNewline()
-{
-    char* line = fgets(valueBuffer.data(), (int)valueBuffer.size(), file_);
-    return StringView(line);
-}
-
-StringView BKVParser::getLine()
-{
-    char* line = fgetline(valueBuffer.data(), (int)valueBuffer.size(), file_);
-    return StringView(line);
-}
-
-StringView BKVParser::getLineTrim()
-{
-    char* line = fgetlinetrim(valueBuffer.data(), (int)valueBuffer.size(), file_);
-    return StringView(line);
 }
 
 StringView BKVParser::getLineSkipComment()

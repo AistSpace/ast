@@ -19,6 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "SpiceParser.hpp"
+#include "AstUtil/StringView.hpp"
 
 AST_NAMESPACE_BEGIN
 

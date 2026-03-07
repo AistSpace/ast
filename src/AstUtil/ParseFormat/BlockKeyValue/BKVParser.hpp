@@ -55,9 +55,6 @@ public:
     BKVParser(StringView filepath);
     ~BKVParser();
 
-
-
-
     /// @brief 设置是否允许注释
     /// @details 设置是否允许解析注释行。
     /// @param allow 是否允许注释
@@ -80,21 +77,6 @@ public:
     /// @param item 键值对项视图，用于存储键值对项的键和值。
     /// @return 键值对项的类型（EToken）。
     EToken getNext(BKVItemView& item);
-
-    /// @brief 获取当前行（包含行结束符）
-    /// @details 获取当前行的内容，包含行结束符。
-    /// @return 当前行的内容（包含行结束符）
-    StringView getLineWithNewline();
-
-    /// @brief 获取当前行
-    /// @details 获取当前行的内容，不包含行结束符。
-    /// @return 当前行的内容
-    StringView getLine();
-
-    /// @brief 获取当前行（去除首尾空格）
-    /// @details 获取当前行的内容，不包含行结束符。
-    /// @return 当前行的内容（去除首尾空格）
-    StringView getLineTrim();
 
     /// @brief 获取当前行（跳过注释行）
     /// @details 获取当前行的内容，不包含行结束符。
