@@ -63,15 +63,21 @@ var group__ParseFormat =
     ] ],
     [ "ast::BKVTree", "classast_1_1BKVTree.html", null ],
     [ "ast::GenericValue", "classast_1_1GenericValue.html", null ],
-    [ "ast::SpiceParser", "classast_1_1SpiceParser.html", null ],
+    [ "ast::SpiceParser", "classast_1_1SpiceParser.html", [
+      [ "getNext", "classast_1_1SpiceParser.html#a4f5ca2916eeafc3c294460be3477e1e8", null ]
+    ] ],
     [ "ast::ValueView", "classast_1_1ValueView.html", [
       [ "toBool", "classast_1_1ValueView.html#aecb93813bb4b92c0c6d364bc65fbda4f", null ],
       [ "toColor", "classast_1_1ValueView.html#a7b0fe3305619e8aab325c50a0c8522dd", null ],
       [ "toDouble", "classast_1_1ValueView.html#a2f703fc1e95c184a6598a97f561fc145", null ],
+      [ "toDoubleVector", "classast_1_1ValueView.html#a6254d08909602681b4808c50b35aa2a3", null ],
+      [ "toFortranDouble", "classast_1_1ValueView.html#aeb34767d69b7ca549c392c3388dc9f8d", null ],
       [ "toInt", "classast_1_1ValueView.html#a8bfa2f2a77f2f561d3dd546a0445d038", null ],
+      [ "toIntVector", "classast_1_1ValueView.html#a98eb9843a72306a467d400d8be9cef26", null ],
       [ "toString", "classast_1_1ValueView.html#a539bd800e0a7ed48725edddb176780b4", null ],
       [ "toStringView", "classast_1_1ValueView.html#aa6a86cf966fce62980d1dab94da32c3b", null ],
       [ "toValue", "classast_1_1ValueView.html#a3989220af89b9fba208f81d5ca6033a6", null ],
+      [ "toVector", "classast_1_1ValueView.html#afb05148a545f5b3c2a1e6626eb3c8468", null ],
       [ "value", "classast_1_1ValueView.html#acdd1db334acdd72a72ab11f8480b6762", null ]
     ] ],
     [ "ast::_aParseDouble_LibC_1", "group__ParseFormat.html#gac62a5833e74695f1eca1c11e875f34b4", null ],
@@ -95,6 +101,7 @@ var group__ParseFormat =
     [ "ast::aParseColor", "group__ParseFormat.html#ga20d11068e57303bfdc08dee58ac74f5b", null ],
     [ "ast::aParseDouble", "group__ParseFormat.html#ga4c89ec12f4f456cdb8ff0b250710a858", null ],
     [ "ast::aParseDouble", "group__ParseFormat.html#ga2755892db63f0090449b00f4db59e4d8", null ],
+    [ "ast::aParseFortranDouble", "group__ParseFormat.html#ga3da146e5bf25b1d0bd220e879d9eaa25", null ],
     [ "ast::aParseFortranDouble", "group__ParseFormat.html#gaca98816c4ad9ff294b409612262e7198", null ],
     [ "ast::aParseInt", "group__ParseFormat.html#gafa3bc05b20e1307e5911f952efe5cbbc", null ],
     [ "ast::aParseInt", "group__ParseFormat.html#gaf44a279042760faa6761c53920365cf8", null ],

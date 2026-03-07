@@ -140,7 +140,7 @@ var searchData=
   ['getnadir_137',['getNadir',['../classast_1_1GeoCoordinate.html#ac7308e4b46151940a86af9ec8a3afe8f',1,'ast::GeoCoordinate']]],
   ['getname_138',['getName',['../classast_1_1CelestialBody.html#aabf36d0dd7857c676e2d19a13c9c9291',1,'ast::CelestialBody::getName()'],['../classast_1_1GfxCelestialBody.html#a8005458e81715b3ec1032f50560e0094',1,'ast::GfxCelestialBody::getName()']]],
   ['getneptune_139',['getNeptune',['../classast_1_1SolarSystem.html#a54578aee92704a294903e9944e1cc833',1,'ast::SolarSystem']]],
-  ['getnext_140',['getNext',['../classast_1_1BKVParser.html#a5ca7454cc8a700a271a76f81e7c5d5c9',1,'ast::BKVParser::getNext(StringView &amp;key, ValueView &amp;value)'],['../classast_1_1BKVParser.html#a17f23e91ec51777fd6db5638e89f6351',1,'ast::BKVParser::getNext(BKVItemView &amp;item)']]],
+  ['getnext_140',['getNext',['../classast_1_1BKVParser.html#a5ca7454cc8a700a271a76f81e7c5d5c9',1,'ast::BKVParser::getNext(StringView &amp;key, ValueView &amp;value)'],['../classast_1_1BKVParser.html#a17f23e91ec51777fd6db5638e89f6351',1,'ast::BKVParser::getNext(BKVItemView &amp;item)'],['../classast_1_1SpiceParser.html#a4f5ca2916eeafc3c294460be3477e1e8',1,'ast::SpiceParser::getNext()']]],
   ['getnexttoken_141',['getNextToken',['../classast_1_1Lexer.html#a567c38703d76f1de7033140236a829ad',1,'ast::Lexer']]],
   ['getnode_142',['getNode',['../classast_1_1GfxCelestialBody.html#a87eae4f6704180db4bcfbd467a7673a1',1,'ast::GfxCelestialBody::getNode()'],['../classast_1_1GfxSolarSystem.html#adbce60753911b91b0b497d9f4e4d92c8',1,'ast::GfxSolarSystem::getNode()']]],
   ['getnodedefinition_143',['getNodeDefinition',['../classast_1_1SunSynchronousOrbitDesigner.html#a41e17cb88d6004a7eb2439adc6a6a925',1,'ast::SunSynchronousOrbitDesigner']]],

@@ -48,8 +48,9 @@ var searchData=
   ['byanychar_45',['ByAnyChar',['../classast_1_1strings__internal_1_1ByAnyChar.html',1,'ast::strings_internal']]],
   ['byasciiwhitespace_46',['ByAsciiWhitespace',['../classast_1_1strings__internal_1_1ByAsciiWhitespace.html',1,'ast::strings_internal']]],
   ['bychar_47',['ByChar',['../classast_1_1strings__internal_1_1ByChar.html',1,'ast::strings_internal']]],
-  ['bylength_48',['ByLength',['../classast_1_1strings__internal_1_1ByLength.html',1,'ast::strings_internal']]],
-  ['byrepeatedchar_49',['ByRepeatedChar',['../classast_1_1strings__internal_1_1ByRepeatedChar.html',1,'ast::strings_internal']]],
-  ['byrepeatedwhitespace_50',['ByRepeatedWhitespace',['../classast_1_1strings__internal_1_1ByRepeatedWhitespace.html',1,'ast::strings_internal']]],
-  ['bystring_51',['ByString',['../classast_1_1strings__internal_1_1ByString.html',1,'ast::strings_internal']]]
+  ['bycommaandrepeatedwhitespace_48',['ByCommaAndRepeatedWhitespace',['../classast_1_1ByCommaAndRepeatedWhitespace.html',1,'ast']]],
+  ['bylength_49',['ByLength',['../classast_1_1strings__internal_1_1ByLength.html',1,'ast::strings_internal']]],
+  ['byrepeatedchar_50',['ByRepeatedChar',['../classast_1_1strings__internal_1_1ByRepeatedChar.html',1,'ast::strings_internal']]],
+  ['byrepeatedwhitespace_51',['ByRepeatedWhitespace',['../classast_1_1strings__internal_1_1ByRepeatedWhitespace.html',1,'ast::strings_internal']]],
+  ['bystring_52',['ByString',['../classast_1_1strings__internal_1_1ByString.html',1,'ast::strings_internal']]]
 ];
