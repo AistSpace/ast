@@ -94,7 +94,7 @@ static bool isCommentLine(StringView line)
 }
 
 BKVParser::BKVParser()
-    : file_(nullptr)
+    : BaseParser()
     , allowComment_(true)
     , keyBuffer(1024)
     , valueBuffer(1024)
@@ -102,23 +102,17 @@ BKVParser::BKVParser()
 }
 
 BKVParser::BKVParser(StringView filepath)
-    : BKVParser{}
+    : BaseParser{filepath}
 {
-    open(filepath);
 }
 
 
 
 BKVParser::~BKVParser()
 {
-    close();
 }
 
 
-int BKVParser::getLineNumber()
-{
-    return aCurrentLineNumber(file_);
-}
 
 BKVParser::EToken BKVParser::getNext(StringView &key, ValueView &value)
 {
@@ -225,66 +219,6 @@ err_t BKVParser::parse(BKVSax &sax)
         }
     }while(token != eEOF);
     return eNoError;
-}
-
-void BKVParser::open(StringView filepath)
-{
-    if(isOpen())
-    {
-        close();
-    }
-    file_ = ast_fopen(filepath.data(), "rb");  // 注意：这里使用二进制模式读取，避免文本模式下的ftell和fseek行为不一致
-}
-
-void BKVParser::close()
-{
-    if (file_ != stdout && file_ != nullptr && file_ != stderr)
-    {
-        if(!fileBorrowed_)
-        {
-            fclose(file_);
-        }
-    }
-    file_ = nullptr;
-}
-
-void BKVParser::seek(std::streamoff pos, std::ios::seekdir dir)
-{
-    if (file_ != nullptr)
-    {
-        fseek(file_, (long)pos, (int)dir);
-    }
-    static_assert(std::ios::beg == SEEK_SET, "value not correct");
-    static_assert(std::ios::cur == SEEK_CUR, "value not correct");
-    static_assert(std::ios::end == SEEK_END, "value not correct");
-}
-
-std::streamoff BKVParser::tell()
-{
-    return std::streamoff(ftell(file_));
-}
-
-std::string BKVParser::getFilePath() const
-{
-    return aGetFilePath(file_);
-}
-
-void BKVParser::setBorrowedFile(FILE *file)
-{
-    if(file_ == file)
-        return;
-    this->close();
-    file_ = file;
-    fileBorrowed_ = true;
-}
-
-void BKVParser::setOwnedFile(FILE *file)
-{
-    if(file_ == file)
-        return;
-    this->close();
-    file_ = file;
-    fileBorrowed_ = false;
 }
 
 AST_NAMESPACE_END

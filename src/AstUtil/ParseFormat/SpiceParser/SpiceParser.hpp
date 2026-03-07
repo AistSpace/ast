@@ -21,6 +21,8 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstUtil/BaseParser.hpp"
+#include <cstdio>
 
 AST_NAMESPACE_BEGIN
 
@@ -30,11 +32,13 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief SPICE内核文件解析器(parser for SPICE kernel file)
-class AST_UTIL_API SpiceParser
+class AST_UTIL_API SpiceParser: public BaseParser
 {
 public:
-    SpiceParser() = default;
+    using BaseParser::BaseParser;
     ~SpiceParser() = default;
+protected:
+    
 };
 
 /*! @} */

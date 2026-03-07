@@ -40,7 +40,7 @@ TEST(LeapSecond, load) {
     const auto atkfile = fs::path(aDataDirGet()) / "Test/LeapSecond.dat";
     const auto stkfile = fs::path(aDataDirGet()) / "Test/STK/LeapSecond.dat";
     const auto hiersfile = fs::path(aDataDirGet()) / "Time/Leap_Second.dat";
-
+    const auto spicefile = fs::path(aDataDirGet()) / "Test/kernels/lsk/naif0012.tls";
     {
         LeapSecond leapSecond;
         leapSecond.data().clear();
@@ -61,6 +61,14 @@ TEST(LeapSecond, load) {
         LeapSecond leapSecond;
         leapSecond.data().clear();
         err_t rc = leapSecond.load(hiersfile.string());
+        EXPECT_EQ(rc, eNoError);
+        size_t size = leapSecond.data().size();
+        EXPECT_GT(size, 0);
+    }
+    {
+        LeapSecond leapSecond;
+        leapSecond.data().clear();
+        err_t rc = leapSecond.load(spicefile.string());
         EXPECT_EQ(rc, eNoError);
         size_t size = leapSecond.data().size();
         EXPECT_GT(size, 0);
