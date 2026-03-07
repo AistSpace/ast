@@ -5,6 +5,7 @@ var classast_1_1ValueView =
     [ "toDouble", "classast_1_1ValueView.html#a2f703fc1e95c184a6598a97f561fc145", null ],
     [ "toDoubleVector", "classast_1_1ValueView.html#a6254d08909602681b4808c50b35aa2a3", null ],
     [ "toFortranDouble", "classast_1_1ValueView.html#aeb34767d69b7ca549c392c3388dc9f8d", null ],
+    [ "toFortranDoubleVector", "classast_1_1ValueView.html#a3c33e5c796fb2c4805aa42bc7021999f", null ],
     [ "toInt", "classast_1_1ValueView.html#a8bfa2f2a77f2f561d3dd546a0445d038", null ],
     [ "toIntVector", "classast_1_1ValueView.html#a98eb9843a72306a467d400d8be9cef26", null ],
     [ "toString", "classast_1_1ValueView.html#a539bd800e0a7ed48725edddb176780b4", null ],

@@ -16,7 +16,7 @@ var group__ParseFormat =
       [ "tell", "classast_1_1BaseParser.html#ac368ef116424352bb0ad91ca29b49ded", null ],
       [ "file_", "classast_1_1BaseParser.html#acf99ca176b2891a208cc64b66768ad1f", null ],
       [ "fileBorrowed_", "classast_1_1BaseParser.html#af38d5b757affee30e69dfb7615d2acdc", null ],
-      [ "lineBuffer", "classast_1_1BaseParser.html#a1c1070c8df817e6c049ec2870bcad91f", null ]
+      [ "lineBuffer_", "classast_1_1BaseParser.html#a29df168554b0f72f93c1bc9fb88bcca4", null ]
     ] ],
     [ "ast::BKVBlock", "classast_1_1BKVBlock.html", null ],
     [ "ast::BKVItem", "classast_1_1BKVItem.html", [
@@ -46,8 +46,8 @@ var group__ParseFormat =
       [ "parseFile", "classast_1_1BKVParser.html#a8d7f34e1b4134168462d9b2f578c90bb", null ],
       [ "setAllowComment", "classast_1_1BKVParser.html#ac3b3fda438e76bbc8d86755773dc1d8a", null ],
       [ "allowComment_", "classast_1_1BKVParser.html#a738ba19baafea456ca1eae248f2c750a", null ],
-      [ "keyBuffer", "classast_1_1BKVParser.html#a65a55897a4546955337443cd7d9ae1f6", null ],
-      [ "valueBuffer", "classast_1_1BKVParser.html#aa31776af959e457628ab241ff94cdf49", null ]
+      [ "keyBuffer_", "classast_1_1BKVParser.html#a5d178ad4b4782095d511102b36ce8eb0", null ],
+      [ "valueBuffer_", "classast_1_1BKVParser.html#ab2399856ad1d4bf109ad9ae3d19c39bb", null ]
     ] ],
     [ "ast::BKVSax", "classast_1_1BKVSax.html", [
       [ "~BKVSax", "classast_1_1BKVSax.html#a3cb9c3a0d53532b6faa4b7a1200e517d", null ],
@@ -64,7 +64,10 @@ var group__ParseFormat =
     [ "ast::BKVTree", "classast_1_1BKVTree.html", null ],
     [ "ast::GenericValue", "classast_1_1GenericValue.html", null ],
     [ "ast::SpiceParser", "classast_1_1SpiceParser.html", [
-      [ "getNext", "classast_1_1SpiceParser.html#a4f5ca2916eeafc3c294460be3477e1e8", null ]
+      [ "getNext", "classast_1_1SpiceParser.html#a4f5ca2916eeafc3c294460be3477e1e8", null ],
+      [ "inDataBlock_", "classast_1_1SpiceParser.html#a0924fe19265e7b2d8aacbe2a5a87b86c", null ],
+      [ "keyBuffer_", "classast_1_1SpiceParser.html#afa19a4e3e1cf561b3860e6fe80085ce0", null ],
+      [ "valueBuffer_", "classast_1_1SpiceParser.html#a478861ec82fa66de99ce6b1971ebbdf6", null ]
     ] ],
     [ "ast::ValueView", "classast_1_1ValueView.html", [
       [ "toBool", "classast_1_1ValueView.html#aecb93813bb4b92c0c6d364bc65fbda4f", null ],
@@ -72,6 +75,7 @@ var group__ParseFormat =
       [ "toDouble", "classast_1_1ValueView.html#a2f703fc1e95c184a6598a97f561fc145", null ],
       [ "toDoubleVector", "classast_1_1ValueView.html#a6254d08909602681b4808c50b35aa2a3", null ],
       [ "toFortranDouble", "classast_1_1ValueView.html#aeb34767d69b7ca549c392c3388dc9f8d", null ],
+      [ "toFortranDoubleVector", "classast_1_1ValueView.html#a3c33e5c796fb2c4805aa42bc7021999f", null ],
       [ "toInt", "classast_1_1ValueView.html#a8bfa2f2a77f2f561d3dd546a0445d038", null ],
       [ "toIntVector", "classast_1_1ValueView.html#a98eb9843a72306a467d400d8be9cef26", null ],
       [ "toString", "classast_1_1ValueView.html#a539bd800e0a7ed48725edddb176780b4", null ],

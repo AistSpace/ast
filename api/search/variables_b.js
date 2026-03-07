@@ -22,7 +22,7 @@ var searchData=
   ['kearthsiderealday_19',['kEarthSiderealDay',['../group__Util.html#ga47ee52a201a06156d648414de6e9d9b5',1,'ast']]],
   ['kearthsiderealyear_20',['kEarthSiderealYear',['../group__Util.html#ga81933df01c4a0ba8fb026b7930d784d9',1,'ast']]],
   ['key_5f_21',['key_',['../classast_1_1BKVItemView.html#a3d70059c080e2a312518e758feda6529',1,'ast::BKVItemView']]],
-  ['keybuffer_22',['keyBuffer',['../classast_1_1BKVParser.html#a65a55897a4546955337443cd7d9ae1f6',1,'ast::BKVParser']]],
+  ['keybuffer_5f_22',['keyBuffer_',['../classast_1_1BKVParser.html#a5d178ad4b4782095d511102b36ce8eb0',1,'ast::BKVParser::keyBuffer_'],['../classast_1_1SpiceParser.html#afa19a4e3e1cf561b3860e6fe80085ce0',1,'ast::SpiceParser::keyBuffer_']]],
   ['kfourpi_23',['kFourPI',['../group__Util.html#ga87fa556b51c766a874cf0fc0c5e44aa3',1,'ast']]],
   ['kg_24',['kg',['../Unit_8cpp.html#a34c503b9f029b3c97b145fd0a2bb7acd',1,'ast::units']]],
   ['kgpsminustai_25',['kGPSMinusTAI',['../group__Util.html#ga5084fe0fbe637100fa5eae1906113454',1,'ast']]],

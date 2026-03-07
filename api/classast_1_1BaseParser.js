@@ -15,5 +15,5 @@ var classast_1_1BaseParser =
     [ "tell", "classast_1_1BaseParser.html#ac368ef116424352bb0ad91ca29b49ded", null ],
     [ "file_", "classast_1_1BaseParser.html#acf99ca176b2891a208cc64b66768ad1f", null ],
     [ "fileBorrowed_", "classast_1_1BaseParser.html#af38d5b757affee30e69dfb7615d2acdc", null ],
-    [ "lineBuffer", "classast_1_1BaseParser.html#a1c1070c8df817e6c049ec2870bcad91f", null ]
+    [ "lineBuffer_", "classast_1_1BaseParser.html#a29df168554b0f72f93c1bc9fb88bcca4", null ]
 ];

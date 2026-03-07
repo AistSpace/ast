@@ -35,7 +35,7 @@ var searchData=
   ['value_2ecpp_32',['Value.cpp',['../Value_8cpp.html',1,'']]],
   ['value_2ehpp_33',['Value.hpp',['../Value_8hpp.html',1,'']]],
   ['value_5f_34',['value_',['../classast_1_1BKVItemView.html#ad928159f3b3ea45268618ce2e35f27a9',1,'ast::BKVItemView']]],
-  ['valuebuffer_35',['valueBuffer',['../classast_1_1BKVParser.html#aa31776af959e457628ab241ff94cdf49',1,'ast::BKVParser']]],
+  ['valuebuffer_5f_35',['valueBuffer_',['../classast_1_1BKVParser.html#ab2399856ad1d4bf109ad9ae3d19c39bb',1,'ast::BKVParser::valueBuffer_'],['../classast_1_1SpiceParser.html#a478861ec82fa66de99ce6b1971ebbdf6',1,'ast::SpiceParser::valueBuffer_']]],
   ['valueview_36',['ValueView',['../classast_1_1ValueView.html',1,'ast']]],
   ['valueview_2ecpp_37',['ValueView.cpp',['../ValueView_8cpp.html',1,'']]],
   ['valueview_2ehpp_38',['ValueView.hpp',['../ValueView_8hpp.html',1,'']]],

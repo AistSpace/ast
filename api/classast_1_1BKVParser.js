@@ -14,6 +14,6 @@ var classast_1_1BKVParser =
     [ "parseFile", "classast_1_1BKVParser.html#a8d7f34e1b4134168462d9b2f578c90bb", null ],
     [ "setAllowComment", "classast_1_1BKVParser.html#ac3b3fda438e76bbc8d86755773dc1d8a", null ],
     [ "allowComment_", "classast_1_1BKVParser.html#a738ba19baafea456ca1eae248f2c750a", null ],
-    [ "keyBuffer", "classast_1_1BKVParser.html#a65a55897a4546955337443cd7d9ae1f6", null ],
-    [ "valueBuffer", "classast_1_1BKVParser.html#aa31776af959e457628ab241ff94cdf49", null ]
+    [ "keyBuffer_", "classast_1_1BKVParser.html#a5d178ad4b4782095d511102b36ce8eb0", null ],
+    [ "valueBuffer_", "classast_1_1BKVParser.html#ab2399856ad1d4bf109ad9ae3d19c39bb", null ]
 ];
