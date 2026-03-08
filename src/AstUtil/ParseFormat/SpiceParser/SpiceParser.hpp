@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "AstUtil/BaseParser.hpp"
 #include "AstUtil/BKVItemView.hpp"
+#include "AstUtil/SpiceKernelPool.hpp"
 #include <cstdio>
 
 AST_NAMESPACE_BEGIN
@@ -45,7 +46,12 @@ public:
     /// @brief 获取下一个键值对项
     /// @param item 输出参数，用于存储获取到的键值对项
     /// @return 错误码，-1(EOF) 表示文件结束
-    err_t   getNext(BKVItemView& item);  
+    err_t   getNext(BKVItemView& item);
+
+    /// @brief 读取SPICE内核文件数据
+    /// @param kernelPool 输出参数，用于存储读取到的SPICE内核数据
+    /// @return 错误码，-1(EOF) 表示文件结束
+    err_t   readData(SpiceKernelPool& kernelPool);
     
 protected:
     std::vector<char>  keyBuffer_;              ///< 键缓冲区

@@ -101,6 +101,38 @@ err_t SpiceParser::getNext(BKVItemView &item)
     return EOF;
 }
 
+err_t SpiceParser::readData(SpiceKernelPool &kernelPool)
+{
+    if(!isOpen())
+    {
+        aError("file is not open");
+        return eErrorInvalidFile;
+    }
+    BKVItemView item;
+    while(1){
+        err_t rc = getNext(item);
+        if(rc == EOF)
+            break;
+        if(rc != eNoError)
+            return rc;
+        auto key = item.key();
+        if(key.empty())
+        {
+            continue;
+        }
+        auto value = item.value();
+        {
+            std::vector<double> d;
+            if(value.toFortranDoubleVector(d) == eNoError){
+                kernelPool.setData(key, d);
+            }else{
+                aError("value is not double for key: %.*s", (int)key.size(), key.data());
+            }
+        }
+    };
+    return eNoError;
+}
+
 AST_NAMESPACE_END
 
 
