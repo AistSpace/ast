@@ -37,6 +37,14 @@ TEST(SolarSystem, load)
     EXPECT_EQ(rc, 0);
 }
 
+TEST(SolarSystem, loadPCK)
+{
+    SolarSystem system;
+    err_t rc = system.loadPCK(aDataDirGet() + "/Test/kernels/pck/pck00011.tpc");
+    // EXPECT_EQ(rc, 0);
+    A_UNUSED(rc);
+}
+
 TEST(SolarSystem, getBody)
 {
     SolarSystem system;
@@ -46,6 +54,8 @@ TEST(SolarSystem, getBody)
     EXPECT_NE(ariel, nullptr);
     auto earth = system.getBody("Earth");
     EXPECT_NE(earth, nullptr);
+    auto earth2 = system.getEarth();
+    EXPECT_EQ(earth2, earth);
 }
 
 TEST(CelestialBody, loadEarth)

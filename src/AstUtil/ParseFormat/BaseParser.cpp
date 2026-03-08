@@ -99,7 +99,7 @@ void BaseParser::open(StringView filepath)
     {
         close();
     }
-    file_ = ast_fopen(filepath.data(), "rb");  // 注意：这里使用二进制模式读取，避免文本模式下的ftell和fseek行为不一致
+    file_ = ast_fopen(std::string(filepath).c_str(), "rb");  // 注意：这里使用二进制模式读取，避免文本模式下的ftell和fseek行为不一致
 }
 
 void BaseParser::close()

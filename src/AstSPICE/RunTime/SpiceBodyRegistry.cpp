@@ -60,19 +60,7 @@ PBody SpiceBodyRegistry::findBody(int id) const
     return it->second;
 }
 
-enum ESpiceId
-{
-    eMercury    = 199,
-    eVenus      = 299,
-    eEarth      = 399,
-    eMoon       = 301,
-    eMars       = 499,
-    eJupiter    = 599,
-    eSaturn     = 699,
-    eUranus     = 799,
-    eNeptune    = 899,
-    ePluto      = 999
-};
+
 
 err_t SpiceBodyRegistry::init()
 {

@@ -35,6 +35,13 @@
 AST_NAMESPACE_BEGIN
 
 CelestialBody::CelestialBody()
+    : CelestialBody(StringView{})
+{
+    
+}
+
+CelestialBody::CelestialBody(StringView name)
+    : name_(name)
 {
     orientation_  = new NoopOrientation();
     axesFixed_    = new AxesBodyFixed(this);
