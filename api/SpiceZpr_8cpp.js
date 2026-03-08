@@ -21,5 +21,6 @@ var SpiceZpr_8cpp =
     [ "q2m", "SpiceZpr_8cpp.html#ga627c43ef632cc13d3e38a11ff1c80254", null ],
     [ "radrec", "SpiceZpr_8cpp.html#ga925fcb5be8351292ea60a4b53e1aadd5", null ],
     [ "spkpos", "SpiceZpr_8cpp.html#ga1ca1a0891d3cd67d545a68f198f74c5e", null ],
+    [ "spkssb", "SpiceZpr_8cpp.html#ga34a872d2605586fdd54e408bdff55ef8", null ],
     [ "utc2et", "SpiceZpr_8cpp.html#ga372beff32468bfc206138633363a6cf1", null ]
 ];

@@ -3040,6 +3040,25 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>b1950</b> ()</td></
 <tr class="memitem:ga9be32a1020b0fb8e90a049a8ec7b957a" id="r_ga9be32a1020b0fb8e90a049a8ec7b957a"><td class="memItemLeft" align="right" valign="top">
 double&#160;</td><td class="memItemRight" valign="bottom"><b>dpr</b> ()</td></tr>
 <tr class="separator:ga9be32a1020b0fb8e90a049a8ec7b957a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5e731824b990e410fb69e97f5f05c283" id="r_ga5e731824b990e410fb69e97f5f05c283"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga5e731824b990e410fb69e97f5f05c283">eul2m</a> (double angle3, double angle2, double angle1, int axis3, int axis2, int axis1, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;r)</td></tr>
+<tr class="separator:ga5e731824b990e410fb69e97f5f05c283"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga69e7485a9fbd13916ae87dbf0ba84562" id="r_ga69e7485a9fbd13916ae87dbf0ba84562"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga69e7485a9fbd13916ae87dbf0ba84562">ident</a> (<a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;matrix)</td></tr>
+<tr class="separator:ga69e7485a9fbd13916ae87dbf0ba84562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2408d5adf2439ec405d3534528413be0" id="r_ga2408d5adf2439ec405d3534528413be0"><td class="memItemLeft" align="right" valign="top">
+double&#160;</td><td class="memItemRight" valign="bottom"><b>j1900</b> ()</td></tr>
+<tr class="separator:ga2408d5adf2439ec405d3534528413be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad1653664d9915e0bacd8e9293b2086e8" id="r_gad1653664d9915e0bacd8e9293b2086e8"><td class="memItemLeft" align="right" valign="top">
+double&#160;</td><td class="memItemRight" valign="bottom"><b>j1950</b> ()</td></tr>
+<tr class="separator:gad1653664d9915e0bacd8e9293b2086e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8db06c886dd7bd8546e0156d3f6130b9" id="r_ga8db06c886dd7bd8546e0156d3f6130b9"><td class="memItemLeft" align="right" valign="top">
+double&#160;</td><td class="memItemRight" valign="bottom"><b>j2000</b> ()</td></tr>
+<tr class="separator:ga8db06c886dd7bd8546e0156d3f6130b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga80a928b1ba888f2eac5799fe0b012f96" id="r_ga80a928b1ba888f2eac5799fe0b012f96"><td class="memItemLeft" align="right" valign="top">
+double&#160;</td><td class="memItemRight" valign="bottom"><b>j2100</b> ()</td></tr>
+<tr class="separator:ga80a928b1ba888f2eac5799fe0b012f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0f9fa567a2f572d47a9877342bece878" id="r_ga0f9fa567a2f572d47a9877342bece878"><td class="memItemLeft" align="right" valign="top">
+double&#160;</td><td class="memItemRight" valign="bottom"><b>jyear</b> ()</td></tr>
+<tr class="separator:ga0f9fa567a2f572d47a9877342bece878"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga681668a99acdec72888a3ee355098016" id="r_ga681668a99acdec72888a3ee355098016"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga681668a99acdec72888a3ee355098016">latrec</a> (double radius, double lon, double lat, Vector3d &amp;rectan)</td></tr>
 <tr class="separator:ga681668a99acdec72888a3ee355098016"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae64d4b9ccf02cdb3ca2e46d24351dc07" id="r_gae64d4b9ccf02cdb3ca2e46d24351dc07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#gae64d4b9ccf02cdb3ca2e46d24351dc07">m2eul</a> (const <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;r, int axis3, int axis2, int axis1, double &amp;angle3, double &amp;angle2, double &amp;angle1)</td></tr>
@@ -3070,31 +3089,17 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>spkpos</b> (<a class
 <tr class="memitem:ac1cba274f223ed5cb0e33a1949e12668" id="r_ac1cba274f223ed5cb0e33a1949e12668"><td class="memItemLeft" align="right" valign="top"><a id="ac1cba274f223ed5cb0e33a1949e12668" name="ac1cba274f223ed5cb0e33a1949e12668"></a>
 AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>spkpos</b> (const char *targ, double et, const char *ref, const char *abcorr, const char *obs, Vector3d &amp;ptarg, double *lt)</td></tr>
 <tr class="separator:ac1cba274f223ed5cb0e33a1949e12668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga34a872d2605586fdd54e408bdff55ef8" id="r_ga34a872d2605586fdd54e408bdff55ef8"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga34a872d2605586fdd54e408bdff55ef8">spkssb</a> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;starg)</td></tr>
+<tr class="separator:ga34a872d2605586fdd54e408bdff55ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38411cafe8c34f517d747bd967ea9a91" id="r_a38411cafe8c34f517d747bd967ea9a91"><td class="memItemLeft" align="right" valign="top"><a id="a38411cafe8c34f517d747bd967ea9a91" name="a38411cafe8c34f517d747bd967ea9a91"></a>
+AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>spkssb</b> (int targ, double et, const char *ref, <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;starg)</td></tr>
+<tr class="separator:a38411cafe8c34f517d747bd967ea9a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa4fbfc98a7be17ac50afdb3630462ad1" id="r_gaa4fbfc98a7be17ac50afdb3630462ad1"><td class="memItemLeft" align="right" valign="top">
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>tipbod</b> (<a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *body, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;tipm)</td></tr>
 <tr class="separator:gaa4fbfc98a7be17ac50afdb3630462ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade34ab294fd9c8d4b39a853527fa22ca" id="r_ade34ab294fd9c8d4b39a853527fa22ca"><td class="memItemLeft" align="right" valign="top"><a id="ade34ab294fd9c8d4b39a853527fa22ca" name="ade34ab294fd9c8d4b39a853527fa22ca"></a>
 AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>tipbod</b> (const char *ref, int body, double et, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;tipm)</td></tr>
 <tr class="separator:ade34ab294fd9c8d4b39a853527fa22ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5e731824b990e410fb69e97f5f05c283" id="r_ga5e731824b990e410fb69e97f5f05c283"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga5e731824b990e410fb69e97f5f05c283">eul2m</a> (double angle3, double angle2, double angle1, int axis3, int axis2, int axis1, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;r)</td></tr>
-<tr class="separator:ga5e731824b990e410fb69e97f5f05c283"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga69e7485a9fbd13916ae87dbf0ba84562" id="r_ga69e7485a9fbd13916ae87dbf0ba84562"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga69e7485a9fbd13916ae87dbf0ba84562">ident</a> (<a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;matrix)</td></tr>
-<tr class="separator:ga69e7485a9fbd13916ae87dbf0ba84562"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2408d5adf2439ec405d3534528413be0" id="r_ga2408d5adf2439ec405d3534528413be0"><td class="memItemLeft" align="right" valign="top">
-double&#160;</td><td class="memItemRight" valign="bottom"><b>j1900</b> ()</td></tr>
-<tr class="separator:ga2408d5adf2439ec405d3534528413be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad1653664d9915e0bacd8e9293b2086e8" id="r_gad1653664d9915e0bacd8e9293b2086e8"><td class="memItemLeft" align="right" valign="top">
-double&#160;</td><td class="memItemRight" valign="bottom"><b>j1950</b> ()</td></tr>
-<tr class="separator:gad1653664d9915e0bacd8e9293b2086e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8db06c886dd7bd8546e0156d3f6130b9" id="r_ga8db06c886dd7bd8546e0156d3f6130b9"><td class="memItemLeft" align="right" valign="top">
-double&#160;</td><td class="memItemRight" valign="bottom"><b>j2000</b> ()</td></tr>
-<tr class="separator:ga8db06c886dd7bd8546e0156d3f6130b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga80a928b1ba888f2eac5799fe0b012f96" id="r_ga80a928b1ba888f2eac5799fe0b012f96"><td class="memItemLeft" align="right" valign="top">
-double&#160;</td><td class="memItemRight" valign="bottom"><b>j2100</b> ()</td></tr>
-<tr class="separator:ga80a928b1ba888f2eac5799fe0b012f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0f9fa567a2f572d47a9877342bece878" id="r_ga0f9fa567a2f572d47a9877342bece878"><td class="memItemLeft" align="right" valign="top">
-double&#160;</td><td class="memItemRight" valign="bottom"><b>jyear</b> ()</td></tr>
-<tr class="separator:ga0f9fa567a2f572d47a9877342bece878"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga372beff32468bfc206138633363a6cf1" id="r_ga372beff32468bfc206138633363a6cf1"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga372beff32468bfc206138633363a6cf1">utc2et</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> utcstr, double &amp;et)</td></tr>
 <tr class="separator:ga372beff32468bfc206138633363a6cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a223ede147787fd346a2e8e0dddf1a033" id="r_a223ede147787fd346a2e8e0dddf1a033"><td class="memItemLeft" align="right" valign="top"><a id="a223ede147787fd346a2e8e0dddf1a033" name="a223ede147787fd346a2e8e0dddf1a033"></a>
@@ -3139,6 +3144,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rav2xf</b> (const dou
 <tr class="memitem:gadd651bdbfb2c712e8ba6deee87139361" id="r_gadd651bdbfb2c712e8ba6deee87139361"><td class="memItemLeft" align="right" valign="top">
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>spkpos</b> (const char *targ, double et, const char *ref, const char *abcorr, const char *obs, double ptarg[3], double *lt)</td></tr>
 <tr class="separator:gadd651bdbfb2c712e8ba6deee87139361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafe66a4b3ea519805a4d4be032fca7662" id="r_gafe66a4b3ea519805a4d4be032fca7662"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>spkssb</b> (int targ, double et, const char *ref, double starg[6])</td></tr>
+<tr class="separator:gafe66a4b3ea519805a4d4be032fca7662"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga16dcc4830ac266ccd3cf8ef013a15aef" id="r_ga16dcc4830ac266ccd3cf8ef013a15aef"><td class="memItemLeft" align="right" valign="top">
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>tipbod</b> (const char *ref, int body, double et, double tipm[3][3])</td></tr>
 <tr class="separator:ga16dcc4830ac266ccd3cf8ef013a15aef"><td class="memSeparator" colspan="2">&#160;</td></tr>

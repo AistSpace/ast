@@ -1450,6 +1450,7 @@ var namespaceast =
     [ "sincos", "group__Util.html#gafc70c145323140f0099c8226ab2161b5", null ],
     [ "sind", "group__Util.html#gaea030a8c994fded58797a7e7eefa3bfc", null ],
     [ "spkpos", "group__Spice.html#ga1ca1a0891d3cd67d545a68f198f74c5e", null ],
+    [ "spkssb", "group__Spice.html#ga34a872d2605586fdd54e408bdff55ef8", null ],
     [ "stricmp", "namespaceast.html#a2dbc046c9cca54d791ab5bd5739c8953", null ],
     [ "strnicmp", "namespaceast.html#ab44707fb5f9cdfc8eaa97a54c0f65fdc", null ],
     [ "tand", "group__Util.html#gab01c93ce1b8246baa2288ed6ec0efd60", null ],

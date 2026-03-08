@@ -158,6 +158,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::rav2xf</b> (cons
 <tr class="memitem:gaeeb8c50fa747472e92a5cc55fea8424c" id="r_gaeeb8c50fa747472e92a5cc55fea8424c"><td class="memItemLeft" align="right" valign="top"><a id="gaeeb8c50fa747472e92a5cc55fea8424c" name="gaeeb8c50fa747472e92a5cc55fea8424c"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::spkpos</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> ref, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> abcorr, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> obs, Vector3d &amp;ptarg, double *lt)</td></tr>
 <tr class="separator:gaeeb8c50fa747472e92a5cc55fea8424c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga34a872d2605586fdd54e408bdff55ef8" id="r_ga34a872d2605586fdd54e408bdff55ef8"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga34a872d2605586fdd54e408bdff55ef8">ast::spkssb</a> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;starg)</td></tr>
+<tr class="separator:ga34a872d2605586fdd54e408bdff55ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa4fbfc98a7be17ac50afdb3630462ad1" id="r_gaa4fbfc98a7be17ac50afdb3630462ad1"><td class="memItemLeft" align="right" valign="top"><a id="gaa4fbfc98a7be17ac50afdb3630462ad1" name="gaa4fbfc98a7be17ac50afdb3630462ad1"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::tipbod</b> (<a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *body, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;tipm)</td></tr>
 <tr class="separator:gaa4fbfc98a7be17ac50afdb3630462ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -798,16 +800,60 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::tipbod</b> (<a 
       </table>
 </div><div class="memdoc">
 
-<p>计算天体位置( S/P Kernel, position) </p>
+<p>计算返回目标天体相对于观测天体的位置，可进行光行时（行星光行差）和恒星像差修正( S/P Kernel, position) </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">targ</td><td>目标天体 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">et</td><td>时间点 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ref</td><td>参考系 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ref</td><td>参考轴系 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">abcorr</td><td>像差校正选项 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">obs</td><td>观察者 </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">ptarg</td><td>输出位置（直角坐标） </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">lt</td><td>光行时 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><br  />
+ </dd></dl>
+
+</div>
+</div>
+<a id="ga34a872d2605586fdd54e408bdff55ef8" name="ga34a872d2605586fdd54e408bdff55ef8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga34a872d2605586fdd54e408bdff55ef8">&#9670;&#160;</a></span>spkssb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_SPICE_API err_t ast::spkssb </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *</td>          <td class="paramname"><span class="paramname"><em>targ</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>et</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>ref</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1CartState.html">CartState</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>starg</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算天体相对于太阳系质心的位置速度( S/P Kernel, solar system barycenter) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targ</td><td>目标天体 </td></tr>
+    <tr><td class="paramname">et</td><td>时间点 </td></tr>
+    <tr><td class="paramname">ref</td><td>参考轴系 </td></tr>
+    <tr><td class="paramname">starg</td><td>输出位置速度（直角坐标） </td></tr>
   </table>
   </dd>
 </dl>
