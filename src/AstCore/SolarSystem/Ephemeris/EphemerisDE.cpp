@@ -19,9 +19,21 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "EphemerisDE.hpp"
+#include "AstCore/RunTime.hpp"
+#include "AstCore/JplDe.hpp"
 
 AST_NAMESPACE_BEGIN
 
+err_t EphemerisDE::getPosICRF(const TimePoint &tp, Vector3d &pos) const
+{
+    return aJplDeGetPosICRF(tp, jplIndex_, JplDe::eSSBarycenter, pos);
+}
 
+err_t EphemerisDE::getPosVelICRF(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+{
+    return aJplDeGetPosVelICRF(tp, jplIndex_, JplDe::eSSBarycenter, pos, vel);
+}
 
 AST_NAMESPACE_END
+
+

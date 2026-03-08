@@ -32,7 +32,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 空操作旋转类
-class NoopOrientation final: public BodyOrientation
+class AST_CORE_API NoopOrientation final: public BodyOrientation
 {
 public:
     NoopOrientation() = default;

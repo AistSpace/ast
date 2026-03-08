@@ -48,7 +48,7 @@ void SolarSystem::init()
         earthMoonBarycenter_->name_ = "EarthMoonBarycenter";
         earthMoonBarycenter_->jplIndex_ = JplDe::eEMBaryCenter;
         earthMoonBarycenter_->jplSpiceId_ = ESpiceId::eEarthBarycenter;
-        bodies_.push_back(solarSystemBarycenter_);
+        bodies_.push_back(earthMoonBarycenter_);
         nameMap_["EARTH MOON BARYCENTER"] = earthMoonBarycenter_;
         nameMap_["EARTH-MOON BARYCENTER"] = earthMoonBarycenter_;
         nameMap_["EARTH BARYCENTER"] = earthMoonBarycenter_;

@@ -21,14 +21,37 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstCore/BodyEphemeris.hpp"
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup 
+    @addtogroup SolarSystem
     @{
 */
 
+
+class AST_CORE_API EphemerisDE : public BodyEphemeris
+{
+public:
+    EphemerisDE() = default;
+
+    EphemerisDE(int jplIndex)
+        : jplIndex_(jplIndex)
+    {}
+
+    ~EphemerisDE() override = default;
+
+    int getJplIndex() const{return jplIndex_;}
+
+    void setJplIndex(int jplIndex){jplIndex_ = jplIndex;}
+
+    err_t getPosICRF(const TimePoint& tp, Vector3d& pos) const override;
+
+    err_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
+protected:
+    int jplIndex_{-1};
+};
 
 
 /*! @} */

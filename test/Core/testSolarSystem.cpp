@@ -24,6 +24,8 @@
 #include "AstCore/BuiltinAxes.hpp"
 #include "AstCore/FrameTransform.hpp"
 #include "AstCore/TimePoint.hpp"
+#include "AstCore/JplDe.hpp"
+#include "AstCore/RunTime.hpp"
 #include "AstTest/Test.hpp"
 
 
@@ -64,7 +66,29 @@ TEST(CelestialBody, loadEarth)
     err_t rc = earth.load(aDataDirGet() + "/SolarSystem/Earth/Earth.cb");
     EXPECT_EQ(rc, 0);
     EXPECT_EQ(earth.getName(), "Earth");
+}
 
+TEST(CelestialBody, getPosVel)
+{
+    aInitialize();
+    CelestialBody* earth = aGetEarth();
+    Vector3d pos1, vel1;
+    Vector3d pos2, vel2;
+    auto tp = TimePoint::FromUTC(2022, 3, 8, 3, 11, 3);
+    err_t rc = earth->getPosVelICRF(tp, pos2, vel2);
+    EXPECT_EQ(rc, 0);
+    rc = aJplDeGetPosVelICRF(tp, JplDe::eEarth, JplDe::eSSBarycenter, pos1, vel1);
+    EXPECT_EQ(rc, 0);
+    for(int i = 0; i < 3; i++)
+    {
+        EXPECT_DOUBLE_EQ(pos2[i], pos1[i]);
+        EXPECT_DOUBLE_EQ(vel2[i], vel1[i]);
+    }
+    for(int i =0; i < 3; i++)
+    {
+        printf("pos2[%d] = %f, pos1[%d] = %f, vel2[%d] = %f, vel1[%d] = %f\n",
+            i, pos2[i], i, pos1[i], i, vel2[i], i, vel1[i]);
+    }
 }
 
 

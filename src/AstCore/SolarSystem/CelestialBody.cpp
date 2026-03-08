@@ -24,6 +24,8 @@
 #include "AstCore/RotationalData.hpp"
 #include "AstCore/EarthOrientation.hpp"
 #include "AstCore/MoonOrientation.hpp"
+#include "AstCore/EphemerisDE.hpp"
+#include "AstCore/EphemerisNoop.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/String.hpp"
 #include "AstUtil/BKVParser.hpp"
@@ -44,10 +46,19 @@ CelestialBody::CelestialBody(StringView name)
     : name_(name)
 {
     orientation_  = new NoopOrientation();
+    ephemeris_    = new EphemerisNoop();
     axesFixed_    = new AxesBodyFixed(this);
     axesInertial_ = new AxesBodyInertial(this);
     axesMOD_      = new AxesBodyMOD(this);
     axesTOD_      = new AxesBodyTOD(this);
+}
+
+void CelestialBody::setJplIndex(int index)
+{
+    jplIndex_ = index;
+    if(auto de =  dynamic_cast<EphemerisDE*>(ephemeris_.get())){
+        de->setJplIndex(index);
+    }
 }
 
 err_t CelestialBody::load(StringView filepath)
@@ -114,6 +125,16 @@ err_t CelestialBody::setGravityModel(StringView model)
         }
     }
     return rc;
+}
+
+err_t CelestialBody::getPosICRF(TimePoint tp, Vector3d &pos) const
+{
+    return ephemeris_->getPosICRF(tp, pos);
+}
+
+err_t CelestialBody::getPosVelICRF(TimePoint tp, Vector3d &pos, Vector3d &vel) const
+{
+    return ephemeris_->getPosVelICRF(tp, pos, vel);
 }
 
 err_t CelestialBody::loadGravityModel(StringView model)
@@ -219,7 +240,7 @@ err_t CelestialBody::loadEphemerisData(BKVParser & parser)
         token = parser.getNext(item);
         if(token == BKVParser::eKeyValue){
             if(aEqualsIgnoreCase(item.key(), "EphemerisSource")){
-                // todo
+                ephemeris_ = new EphemerisDE(jplIndex_);
             }else if(aEqualsIgnoreCase(item.key(), "JplSpiceId")){
                 jplSpiceId_ = item.value().toInt();
             }else if(aEqualsIgnoreCase(item.key(), "JplIndex")){

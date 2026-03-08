@@ -1,9 +1,9 @@
 ///
-/// @file      SpiceBodyRegistry.hpp
+/// @file      EphemerisNoop.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-06
+/// @date      2026-03-08
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -21,31 +21,25 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstCore/CelestialBody.hpp"
-#include "AstCore/SolarSystem.hpp"
-#include <unordered_map>
+#include "AstCore/BodyEphemeris.hpp"
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup Spice
+    @addtogroup SolarSystem
     @{
 */
 
-class AST_SPICE_API SpiceBodyRegistry
+
+class AST_CORE_API EphemerisNoop : public BodyEphemeris
 {
 public:
-    SpiceBodyRegistry() = default;
-    SpiceBodyRegistry(bool whetherInit);
-    ~SpiceBodyRegistry() = default;
-    static SpiceBodyRegistry& Instance();
-
-    PBody findBody(StringView name) const;
-    PBody findBody(int id) const;
-    err_t init();
-protected:
-    SolarSystem solarSystem_;
+    EphemerisNoop() = default;
+    ~EphemerisNoop() = default;
+    err_t getPosICRF(const TimePoint& time, Vector3d& pos) const override;
+    err_t getPosVelICRF(const TimePoint& time, Vector3d& pos, Vector3d& vel) const override;
 };
+
 
 /*! @} */
 

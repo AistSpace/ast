@@ -59,7 +59,7 @@ public:
 
     /// @brief 获取JPL索引
     int getJplIndex() const { return jplIndex_; }
-    void setJplIndex(int index) { jplIndex_ = index; }
+    void setJplIndex(int index);
 
     /// @brief 获取重力模型名称
     const std::string& getGravityModel() const{ return gravityField_.getModelName(); }
@@ -98,6 +98,21 @@ public:
 
     /// @brief 是否为地球
     bool isEarth() const { return jplIndex_ == JplDe::eEarth; }
+
+    /// @brief 获取天体位置（ICRF）
+    /// @param  tp          - 时间点
+    /// @param  pos         - 输出位置（ICRF）
+    /// @retval             - 错误码
+    err_t getPosICRF(TimePoint tp, Vector3d& pos) const;
+
+
+    /// @brief 获取天体位置和速度（ICRF）
+    /// @param  tp          - 时间点
+    /// @param  pos         - 输出位置（ICRF）
+    /// @param  vel         - 输出速度（ICRF）
+    /// @retval             - 错误码
+    err_t getPosVelICRF(TimePoint tp, Vector3d& pos, Vector3d& vel) const;
+    
 
     /// @brief 获取天体姿态
     BodyOrientation* getOrientation() const { return orientation_.get(); }
