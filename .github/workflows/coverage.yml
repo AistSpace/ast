@@ -59,6 +59,7 @@ jobs:
         run: |
           lcov --directory . --zerocounters
           xmake cpdata
+          xmake r testSpiceZpr
           xmake test
           lcov --directory . --capture --include */src/* --output-file coverage.info 
       
