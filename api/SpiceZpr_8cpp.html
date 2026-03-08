@@ -170,6 +170,14 @@ AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::
 <tr class="memitem:gae4ad791279dc2d35f3ee9497a9b24160" id="r_gae4ad791279dc2d35f3ee9497a9b24160"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::rav2xf</b> (const <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;rot, const Vector3d &amp;av, Matrix6d &amp;xform)</td></tr>
 <tr class="separator:gae4ad791279dc2d35f3ee9497a9b24160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1ca1a0891d3cd67d545a68f198f74c5e" id="r_ga1ca1a0891d3cd67d545a68f198f74c5e"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga1ca1a0891d3cd67d545a68f198f74c5e">ast::spkpos</a> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> abcorr, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *obs, Vector3d &amp;ptarg, double *lt=nullptr)</td></tr>
+<tr class="separator:ga1ca1a0891d3cd67d545a68f198f74c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeeb8c50fa747472e92a5cc55fea8424c" id="r_gaeeb8c50fa747472e92a5cc55fea8424c"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::spkpos</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> ref, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> abcorr, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> obs, Vector3d &amp;ptarg, double *lt)</td></tr>
+<tr class="separator:gaeeb8c50fa747472e92a5cc55fea8424c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1cba274f223ed5cb0e33a1949e12668" id="r_ac1cba274f223ed5cb0e33a1949e12668"><td class="memItemLeft" align="right" valign="top"><a id="ac1cba274f223ed5cb0e33a1949e12668" name="ac1cba274f223ed5cb0e33a1949e12668"></a>
+AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::spkpos</b> (const char *targ, double et, const char *ref, const char *abcorr, const char *obs, Vector3d &amp;ptarg, double *lt)</td></tr>
+<tr class="separator:ac1cba274f223ed5cb0e33a1949e12668"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa4fbfc98a7be17ac50afdb3630462ad1" id="r_gaa4fbfc98a7be17ac50afdb3630462ad1"><td class="memItemLeft" align="right" valign="top">
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::tipbod</b> (<a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *body, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;tipm)</td></tr>
 <tr class="separator:gaa4fbfc98a7be17ac50afdb3630462ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,6 +203,11 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>ast::j2100</b> ()</
 <tr class="memitem:ga0f9fa567a2f572d47a9877342bece878" id="r_ga0f9fa567a2f572d47a9877342bece878"><td class="memItemLeft" align="right" valign="top">
 double&#160;</td><td class="memItemRight" valign="bottom"><b>ast::jyear</b> ()</td></tr>
 <tr class="separator:ga0f9fa567a2f572d47a9877342bece878"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga372beff32468bfc206138633363a6cf1" id="r_ga372beff32468bfc206138633363a6cf1"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga372beff32468bfc206138633363a6cf1">ast::utc2et</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> utcstr, double &amp;et)</td></tr>
+<tr class="separator:ga372beff32468bfc206138633363a6cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a223ede147787fd346a2e8e0dddf1a033" id="r_a223ede147787fd346a2e8e0dddf1a033"><td class="memItemLeft" align="right" valign="top"><a id="a223ede147787fd346a2e8e0dddf1a033" name="a223ede147787fd346a2e8e0dddf1a033"></a>
+AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::utc2et</b> (const char *utcstr, double &amp;et)</td></tr>
+<tr class="separator:a223ede147787fd346a2e8e0dddf1a033"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p><br  />

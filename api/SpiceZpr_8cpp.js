@@ -19,5 +19,7 @@ var SpiceZpr_8cpp =
     [ "mxvg", "SpiceZpr_8cpp.html#ga9eb15e905fc60681ba3f67aab5183492", null ],
     [ "pxform", "SpiceZpr_8cpp.html#ga5751be1205b7faa7f89fdda7fd242ea8", null ],
     [ "q2m", "SpiceZpr_8cpp.html#ga627c43ef632cc13d3e38a11ff1c80254", null ],
-    [ "radrec", "SpiceZpr_8cpp.html#ga925fcb5be8351292ea60a4b53e1aadd5", null ]
+    [ "radrec", "SpiceZpr_8cpp.html#ga925fcb5be8351292ea60a4b53e1aadd5", null ],
+    [ "spkpos", "SpiceZpr_8cpp.html#ga1ca1a0891d3cd67d545a68f198f74c5e", null ],
+    [ "utc2et", "SpiceZpr_8cpp.html#ga372beff32468bfc206138633363a6cf1", null ]
 ];

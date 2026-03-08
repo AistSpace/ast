@@ -6,6 +6,7 @@ var TimeSystem_8hpp =
     [ "aTAIToTT", "TimeSystem_8hpp.html#gaa6bf9ef3b76fdb0610cfb64300306039", null ],
     [ "aTAIToUTC", "TimeSystem_8hpp.html#ga1bc96d9158bdcbabecbba670dceeced3", null ],
     [ "aTDBMinusTT", "TimeSystem_8hpp.html#gab4397fac34d74477cfa5c0807e7c07ed", null ],
+    [ "aTTMinusTDB", "TimeSystem_8hpp.html#ga25ea2bbf4fb12700e240244f04513cbc", null ],
     [ "aTTToTAI", "TimeSystem_8hpp.html#gab3ceebedb7ef5971f124fe9fdf9811ae", null ],
     [ "aTTToTDB", "TimeSystem_8hpp.html#gacc7ba905b0072e09b8b6c599491d1850", null ],
     [ "aTTToUTC", "TimeSystem_8hpp.html#ga98088e571167c6a650c6f6964e97d801", null ],

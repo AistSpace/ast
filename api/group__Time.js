@@ -69,10 +69,11 @@ var group__Time =
     ] ],
     [ "ast::JulianDate", "classast_1_1JulianDate.html", [
       [ "dayFractional", "classast_1_1JulianDate.html#a84787d21f050ff5bafec038662a82316", null ],
-      [ "daysFromJ2000TT", "classast_1_1JulianDate.html#a1fb5798bddb95f47de9c8621c45b3ee8", null ],
+      [ "daysFromJ2000", "classast_1_1JulianDate.html#a1b8919d5d7d7431a64b6f75b2bc8d7cc", null ],
       [ "getDaySecond", "classast_1_1JulianDate.html#af47f69daa5495951188d61deee09bf3a", null ],
       [ "impreciseDay", "classast_1_1JulianDate.html#a5aca597dc00265b589bb18a8c8ee3cb8", null ],
       [ "julianCenturyFromJ2000", "classast_1_1JulianDate.html#a78f5cb882407ed72bdae2df223968ee1", null ],
+      [ "secondsFromJ2000", "classast_1_1JulianDate.html#a7fedf3b700c471b228abf1dd7487b30b", null ],
       [ "setDayFractional", "classast_1_1JulianDate.html#addfe786b99fd2337bf91b32158b8d62c", null ],
       [ "setDaySecond", "classast_1_1JulianDate.html#adf1272b09b6178310814e64c8559dd71", null ],
       [ "setImpreciseDay", "classast_1_1JulianDate.html#a87055b6bc22499096b60dac1ce0f67dc", null ]
@@ -211,6 +212,7 @@ var group__Time =
     [ "ast::aTimePointToUT1", "group__Time.html#ga75ce1901b3cae1292cfd714d1c2d6711", null ],
     [ "ast::aTimePointToUTC", "group__Time.html#ga0418cfc5f9a2d78a15fbdf2d7a8540e2", null ],
     [ "ast::aTimePointToUTC", "group__Time.html#ga71924ae7a77279ed8203166c618a49df", null ],
+    [ "ast::aTTMinusTDB", "group__Time.html#ga25ea2bbf4fb12700e240244f04513cbc", null ],
     [ "ast::aTTToTAI", "group__Time.html#gab3ceebedb7ef5971f124fe9fdf9811ae", null ],
     [ "ast::aTTToTDB", "group__Time.html#gacc7ba905b0072e09b8b6c599491d1850", null ],
     [ "ast::aTTToUTC", "group__Time.html#ga98088e571167c6a650c6f6964e97d801", null ],

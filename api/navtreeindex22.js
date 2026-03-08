@@ -1,5 +1,10 @@
 var NAVTREEINDEX22 =
 {
+"structast_1_1OpUnaryRegister_1_1OpUnaryKeyHash.html":[3,0,0,212,0],
+"structast_1_1PoleMotion.html":[0,0,1,2],
+"structast_1_1PoleMotion.html#abdf343d69c38122f6a70fec7df6975e4":[0,0,1,2,0],
+"structast_1_1PoleMotionSXY.html":[2,0,0,218],
+"structast_1_1PoleMotionSXY.html":[3,0,0,217],
 "structast_1_1RotationElement_1_1Coefficient.html":[0,0,5,9,0],
 "structast_1_1ScopedPtrDeleter.html":[2,0,0,247],
 "structast_1_1ScopedPtrDeleter.html":[3,0,0,246],

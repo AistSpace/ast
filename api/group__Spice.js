@@ -7,6 +7,7 @@ var group__Spice =
     [ "ast::aSpiceFindAxes", "group__Spice.html#ga3245987ee7f10c497082ce21a60c4857", null ],
     [ "ast::aSpiceFindBody", "group__Spice.html#gadf49677a9b4e1aaf420ed77715228f43", null ],
     [ "ast::aSpiceFindBody", "group__Spice.html#ga12f41a902b92a5041319c0929ea394b8", null ],
+    [ "ast::aTimePointToSpiceEt", "group__Spice.html#ga3558747ca0fbfda64a15f91f8fc5b64c", null ],
     [ "ast::axisar", "group__Spice.html#gaa492a6a07aed235f9ef4ea65c0ec1017", null ],
     [ "ast::azlrec", "group__Spice.html#ga70544ad5025e6d1ee6668980a7ec6230", null ],
     [ "ast::eul2m", "group__Spice.html#ga5e731824b990e410fb69e97f5f05c283", null ],
@@ -17,5 +18,7 @@ var group__Spice =
     [ "ast::mxm", "group__Spice.html#ga186312adcab3a6cc586e7affaa431d69", null ],
     [ "ast::pxform", "group__Spice.html#ga5751be1205b7faa7f89fdda7fd242ea8", null ],
     [ "ast::q2m", "group__Spice.html#ga627c43ef632cc13d3e38a11ff1c80254", null ],
-    [ "ast::radrec", "group__Spice.html#ga925fcb5be8351292ea60a4b53e1aadd5", null ]
+    [ "ast::radrec", "group__Spice.html#ga925fcb5be8351292ea60a4b53e1aadd5", null ],
+    [ "ast::spkpos", "group__Spice.html#ga1ca1a0891d3cd67d545a68f198f74c5e", null ],
+    [ "ast::utc2et", "group__Spice.html#ga372beff32468bfc206138633363a6cf1", null ]
 ];
