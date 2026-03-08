@@ -100,7 +100,8 @@ $(function(){initNavTree('group__SolarSystem.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">类</a> &#124;
-<a href="#typedef-members">类型定义</a>  </div>
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#enum-members">枚举</a>  </div>
   <div class="headertitle"><div class="title">太阳系<div class="ingroups"><a class="el" href="group__Core.html">航天模块</a></div></div></div>
 </div><!--header-->
 <div class="contents">
@@ -142,7 +143,140 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ast::PCelestialBody<
 <tr class="memitem:gac670e719678a85c5d087d62383061f8f" id="r_gac670e719678a85c5d087d62383061f8f"><td class="memItemLeft" align="right" valign="top"><a id="gac670e719678a85c5d087d62383061f8f" name="gac670e719678a85c5d087d62383061f8f"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>ast::PBody</b> = <a class="el" href="#ga37239c4cb3486ba286d79abaf2070c74">PCelestialBody</a></td></tr>
 <tr class="separator:gac670e719678a85c5d087d62383061f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:ga8222cfd87a81c1bb00e762d67be68f1c" id="r_ga8222cfd87a81c1bb00e762d67be68f1c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga8222cfd87a81c1bb00e762d67be68f1c">ast::ESpiceId</a> { <br />
+&#160;&#160;<b>eSolarSystemBarycenter</b> = 0
+, <b>eMercuryBarycenter</b> = 1
+, <b>eVenusBarycenter</b> = 2
+, <b>eEarthBarycenter</b> = 3
+, <br />
+&#160;&#160;<b>eMarsBarycenter</b> = 4
+, <b>eJupiterBarycenter</b> = 5
+, <b>eSaturnBarycenter</b> = 6
+, <b>eUranusBarycenter</b> = 7
+, <br />
+&#160;&#160;<b>eNeptuneBarycenter</b> = 8
+, <b>ePlutoBarycenter</b> = 9
+, <b>eSun</b> = 10
+, <b>eMercury</b> = 199
+, <br />
+&#160;&#160;<b>eVenus</b> = 299
+, <b>eEarth</b> = 399
+, <b>eMoon</b> = 301
+, <b>eMars</b> = 499
+, <br />
+&#160;&#160;<b>ePhobos</b> = 401
+, <b>eDeimos</b> = 402
+, <b>eJupiter</b> = 599
+, <b>eIo</b> = 501
+, <br />
+&#160;&#160;<b>eEuropa</b> = 502
+, <b>eGanymede</b> = 503
+, <b>eCallisto</b> = 504
+, <b>eAmalthea</b> = 505
+, <br />
+&#160;&#160;<b>eHimalia</b> = 506
+, <b>eElara</b> = 507
+, <b>ePasiphae</b> = 508
+, <b>eSinope</b> = 509
+, <br />
+&#160;&#160;<b>eLysithea</b> = 510
+, <b>eCarme</b> = 511
+, <b>eAnanke</b> = 512
+, <b>eLeda</b> = 513
+, <br />
+&#160;&#160;<b>eThebe</b> = 514
+, <b>eAdrastea</b> = 515
+, <b>eMetis</b> = 516
+, <b>eSaturn</b> = 699
+, <br />
+&#160;&#160;<b>eMimas</b> = 601
+, <b>eEnceladus</b> = 602
+, <b>eTethys</b> = 603
+, <b>eDione</b> = 604
+, <br />
+&#160;&#160;<b>eRhea</b> = 605
+, <b>eTitan</b> = 606
+, <b>eHyperion</b> = 607
+, <b>eIapetus</b> = 608
+, <br />
+&#160;&#160;<b>ePhoebe</b> = 609
+, <b>eJanus</b> = 610
+, <b>eEpimetheus</b> = 611
+, <b>eHelene</b> = 612
+, <br />
+&#160;&#160;<b>eTelesto</b> = 613
+, <b>eCalypso</b> = 614
+, <b>eAtlas</b> = 615
+, <b>ePrometheus</b> = 616
+, <br />
+&#160;&#160;<b>ePandora</b> = 617
+, <b>ePan</b> = 618
+, <b>eMethone</b> = 632
+, <b>ePallene</b> = 633
+, <br />
+&#160;&#160;<b>ePolydeuces</b> = 634
+, <b>eDaphnis</b> = 635
+, <b>eAnthe</b> = 649
+, <b>eAegaeon</b> = 653
+, <br />
+&#160;&#160;<b>eUranus</b> = 799
+, <b>eAriel</b> = 701
+, <b>eUmbriel</b> = 702
+, <b>eTitania</b> = 703
+, <br />
+&#160;&#160;<b>eOberon</b> = 704
+, <b>eMiranda</b> = 705
+, <b>eCordelia</b> = 706
+, <b>eOphelia</b> = 707
+, <br />
+&#160;&#160;<b>eBianca</b> = 708
+, <b>eCressida</b> = 709
+, <b>eDesdemona</b> = 710
+, <b>eJuliet</b> = 711
+, <br />
+&#160;&#160;<b>ePortia</b> = 712
+, <b>eRosalind</b> = 713
+, <b>eBelinda</b> = 714
+, <b>ePuck</b> = 715
+, <br />
+&#160;&#160;<b>eNeptune</b> = 899
+, <b>eTriton</b> = 801
+, <b>eNereid</b> = 802
+, <b>eNaiad</b> = 803
+, <br />
+&#160;&#160;<b>eThalassa</b> = 804
+, <b>eDespina</b> = 805
+, <b>eGalatea</b> = 806
+, <b>eLarissa</b> = 807
+, <br />
+&#160;&#160;<b>eProteus</b> = 808
+, <b>ePluto</b> = 999
+, <b>eCharon</b> = 901
+<br />
+ }</td></tr>
+<tr class="separator:ga8222cfd87a81c1bb00e762d67be68f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">枚举类型说明</h2>
+<a id="ga8222cfd87a81c1bb00e762d67be68f1c" name="ga8222cfd87a81c1bb00e762d67be68f1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8222cfd87a81c1bb00e762d67be68f1c">&#9670;&#160;</a></span>ESpiceId</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ga8222cfd87a81c1bb00e762d67be68f1c">ast::ESpiceId</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SPICE 天体ID </p>
+<dl class="section see"><dt>参见</dt><dd>spicelib/zzidmap.for </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

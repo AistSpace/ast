@@ -13,6 +13,8 @@ var classast_1_1CelestialBody =
     [ "getJ5", "classast_1_1CelestialBody.html#aea5b357c8bad555dffc0ef8e83427f46", null ],
     [ "getJ6", "classast_1_1CelestialBody.html#abcc9862be93820611004ab535ea41d93", null ],
     [ "getJn", "classast_1_1CelestialBody.html#a1f7101ee589b855385bcfa3e074a07d8", null ],
+    [ "getJplIndex", "classast_1_1CelestialBody.html#a08d858b6ef5a4022d61bac5a7d3db1be", null ],
+    [ "getJplSpiceId", "classast_1_1CelestialBody.html#ad97ffad75d805afca9119ca411b94daa", null ],
     [ "getName", "classast_1_1CelestialBody.html#aabf36d0dd7857c676e2d19a13c9c9291", null ],
     [ "getOrientation", "classast_1_1CelestialBody.html#aac2be47141564e831fde370631d78f49", null ],
     [ "getRadius", "classast_1_1CelestialBody.html#a9a88a639e22509c81821b0e0c134f767", null ],

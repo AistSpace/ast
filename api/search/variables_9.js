@@ -7,5 +7,6 @@ var searchData=
   ['indatablock_5f_4',['inDataBlock_',['../classast_1_1SpiceParser.html#a0924fe19265e7b2d8aacbe2a5a87b86c',1,'ast::SpiceParser']]],
   ['innerstateobserver_5f_5',['innerStateObserver_',['../classast_1_1ODEIntegrator.html#a09e2e3ede74c260accbc0e365628d5a9',1,'ast::ODEIntegrator']]],
   ['integrator_5f_6',['integrator_',['../classast_1_1HPOP.html#a976ebf7b57933ac1e476ee098d95e467',1,'ast::HPOP']]],
-  ['isloaded_5f_7',['isLoaded_',['../classast_1_1IAUXYS.html#ab8872368ab4a6040eded4117a44484fd',1,'ast::IAUXYS']]]
+  ['isinit_5f_7',['isInit_',['../classast_1_1SolarSystem.html#a62116574b5a26af266075674c9c6722a',1,'ast::SolarSystem']]],
+  ['isloaded_5f_8',['isLoaded_',['../classast_1_1IAUXYS.html#ab8872368ab4a6040eded4117a44484fd',1,'ast::IAUXYS']]]
 ];

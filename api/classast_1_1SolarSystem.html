@@ -117,6 +117,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
 <tr class="separator:adf0f60d31d769b957dbe1a193df19eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1578ab5b567bc17c056ef87c9ea717c9" id="r_a1578ab5b567bc17c056ef87c9ea717c9"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1578ab5b567bc17c056ef87c9ea717c9">load</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> dirpath)</td></tr>
 <tr class="separator:a1578ab5b567bc17c056ef87c9ea717c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a489b125c105371950182356a0d7875ad" id="r_a489b125c105371950182356a0d7875ad"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a489b125c105371950182356a0d7875ad">loadPCK</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath)</td></tr>
+<tr class="separator:a489b125c105371950182356a0d7875ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff303030ede3db3a326e13d50e3cc63b" id="r_aff303030ede3db3a326e13d50e3cc63b"><td class="memItemLeft" align="right" valign="top"><a id="aff303030ede3db3a326e13d50e3cc63b" name="aff303030ede3db3a326e13d50e3cc63b"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>loadDefault</b> ()</td></tr>
 <tr class="separator:aff303030ede3db3a326e13d50e3cc63b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,6 +163,10 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>loadDefault</b> ()</
 <tr class="separator:af6350a447e1fbe7fcc6def88f9f965a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d2635b97e1b7ab2ef413401a57e3f03" id="r_a6d2635b97e1b7ab2ef413401a57e3f03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d2635b97e1b7ab2ef413401a57e3f03">getBody</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name) const</td></tr>
 <tr class="separator:a6d2635b97e1b7ab2ef413401a57e3f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0107e9e57231843a22c4f7950becdbf3" id="r_a0107e9e57231843a22c4f7950becdbf3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0107e9e57231843a22c4f7950becdbf3">getBodyByJplIndex</a> (int index) const</td></tr>
+<tr class="separator:a0107e9e57231843a22c4f7950becdbf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fb3cf27dc05816acef8408497ff2095" id="r_a8fb3cf27dc05816acef8408497ff2095"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fb3cf27dc05816acef8408497ff2095">getBodyBySpiceId</a> (int id) const</td></tr>
+<tr class="separator:a8fb3cf27dc05816acef8408497ff2095"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad340db934e89550a5e9b276f8a022a2f" id="r_ad340db934e89550a5e9b276f8a022a2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad340db934e89550a5e9b276f8a022a2f">addBody</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
 <tr class="separator:ad340db934e89550a5e9b276f8a022a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44ac1bb328585c3176f3b50fd7a30613" id="r_a44ac1bb328585c3176f3b50fd7a30613"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44ac1bb328585c3176f3b50fd7a30613">getOrAddBody</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
@@ -174,9 +180,15 @@ static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>default
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected 类型</h2></td></tr>
-<tr class="memitem:ae68d701b113ca5fd10ea58959aa8dcd6" id="r_ae68d701b113ca5fd10ea58959aa8dcd6"><td class="memItemLeft" align="right" valign="top"><a id="ae68d701b113ca5fd10ea58959aa8dcd6" name="ae68d701b113ca5fd10ea58959aa8dcd6"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>CelestialBodyMap</b> = std::unordered_map&lt;std::string, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt;<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a>&gt;&gt;</td></tr>
-<tr class="separator:ae68d701b113ca5fd10ea58959aa8dcd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6676fe71215c24aeedb4b05fb7dc3adf" id="r_a6676fe71215c24aeedb4b05fb7dc3adf"><td class="memItemLeft" align="right" valign="top"><a id="a6676fe71215c24aeedb4b05fb7dc3adf" name="a6676fe71215c24aeedb4b05fb7dc3adf"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>BodyNameMap</b> = std::unordered_map&lt;std::string, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a>*&gt;</td></tr>
+<tr class="separator:a6676fe71215c24aeedb4b05fb7dc3adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a6994c37cff7b540a49955a43e4c4ed" id="r_a5a6994c37cff7b540a49955a43e4c4ed"><td class="memItemLeft" align="right" valign="top"><a id="a5a6994c37cff7b540a49955a43e4c4ed" name="a5a6994c37cff7b540a49955a43e4c4ed"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>BodyIndexMap</b> = std::unordered_map&lt;int, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a>*&gt;</td></tr>
+<tr class="separator:a5a6994c37cff7b540a49955a43e4c4ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab39771f9ae427bdbcb6a21d3cbedff13" id="r_ab39771f9ae427bdbcb6a21d3cbedff13"><td class="memItemLeft" align="right" valign="top"><a id="ab39771f9ae427bdbcb6a21d3cbedff13" name="ab39771f9ae427bdbcb6a21d3cbedff13"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>BodyVector</b> = std::vector&lt;<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a>*&gt;</td></tr>
+<tr class="separator:ab39771f9ae427bdbcb6a21d3cbedff13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
@@ -219,9 +231,21 @@ Protected 属性</h2></td></tr>
 <tr class="memitem:ae0679a4c0eedb7641a108d8d9769d2d2" id="r_ae0679a4c0eedb7641a108d8d9769d2d2"><td class="memItemLeft" align="right" valign="top"><a id="ae0679a4c0eedb7641a108d8d9769d2d2" name="ae0679a4c0eedb7641a108d8d9769d2d2"></a>
 <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>sun_</b></td></tr>
 <tr class="separator:ae0679a4c0eedb7641a108d8d9769d2d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07c952bd9165e376d047b5975aeeef0c" id="r_a07c952bd9165e376d047b5975aeeef0c"><td class="memItemLeft" align="right" valign="top"><a id="a07c952bd9165e376d047b5975aeeef0c" name="a07c952bd9165e376d047b5975aeeef0c"></a>
-CelestialBodyMap&#160;</td><td class="memItemRight" valign="bottom"><b>bodies_</b></td></tr>
-<tr class="separator:a07c952bd9165e376d047b5975aeeef0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab431f0285e308b74be6b52e4763d0926" id="r_ab431f0285e308b74be6b52e4763d0926"><td class="memItemLeft" align="right" valign="top"><a id="ab431f0285e308b74be6b52e4763d0926" name="ab431f0285e308b74be6b52e4763d0926"></a>
+BodyVector&#160;</td><td class="memItemRight" valign="bottom"><b>bodies_</b></td></tr>
+<tr class="separator:ab431f0285e308b74be6b52e4763d0926"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e7cf298e05d18c3678a2b3da9a22370" id="r_a3e7cf298e05d18c3678a2b3da9a22370"><td class="memItemLeft" align="right" valign="top"><a id="a3e7cf298e05d18c3678a2b3da9a22370" name="a3e7cf298e05d18c3678a2b3da9a22370"></a>
+BodyNameMap&#160;</td><td class="memItemRight" valign="bottom"><b>nameMap_</b></td></tr>
+<tr class="separator:a3e7cf298e05d18c3678a2b3da9a22370"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e218b19775bea73cb014daabc8a5be0" id="r_a0e218b19775bea73cb014daabc8a5be0"><td class="memItemLeft" align="right" valign="top"><a id="a0e218b19775bea73cb014daabc8a5be0" name="a0e218b19775bea73cb014daabc8a5be0"></a>
+BodyIndexMap&#160;</td><td class="memItemRight" valign="bottom"><b>jplIndexMap_</b></td></tr>
+<tr class="separator:a0e218b19775bea73cb014daabc8a5be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd6cf8eaa34d8846faeb93846b98ffc3" id="r_abd6cf8eaa34d8846faeb93846b98ffc3"><td class="memItemLeft" align="right" valign="top"><a id="abd6cf8eaa34d8846faeb93846b98ffc3" name="abd6cf8eaa34d8846faeb93846b98ffc3"></a>
+BodyIndexMap&#160;</td><td class="memItemRight" valign="bottom"><b>spiceIdMap_</b></td></tr>
+<tr class="separator:abd6cf8eaa34d8846faeb93846b98ffc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62116574b5a26af266075674c9c6722a" id="r_a62116574b5a26af266075674c9c6722a"><td class="memItemLeft" align="right" valign="top"><a id="a62116574b5a26af266075674c9c6722a" name="a62116574b5a26af266075674c9c6722a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isInit_</b> {false}</td></tr>
+<tr class="separator:a62116574b5a26af266075674c9c6722a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>太阳系 </p>
@@ -289,6 +313,68 @@ CelestialBodyMap&#160;</td><td class="memItemRight" valign="bottom"><b>bodies_</
 
 </div>
 </div>
+<a id="a0107e9e57231843a22c4f7950becdbf3" name="a0107e9e57231843a22c4f7950becdbf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0107e9e57231843a22c4f7950becdbf3">&#9670;&#160;</a></span>getBodyByJplIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> * ast::SolarSystem::getBodyByJplIndex </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取指定JPL索引的天体 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>- JPL索引 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">-</td><td>天体指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8fb3cf27dc05816acef8408497ff2095" name="a8fb3cf27dc05816acef8408497ff2095"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fb3cf27dc05816acef8408497ff2095">&#9670;&#160;</a></span>getBodyBySpiceId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> * ast::SolarSystem::getBodyBySpiceId </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取指定SPICE ID的天体 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>- SPICE ID </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">-</td><td>天体指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a44ac1bb328585c3176f3b50fd7a30613" name="a44ac1bb328585c3176f3b50fd7a30613"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a44ac1bb328585c3176f3b50fd7a30613">&#9670;&#160;</a></span>getOrAddBody()</h2>
 
@@ -335,10 +421,43 @@ CelestialBodyMap&#160;</td><td class="memItemRight" valign="bottom"><b>bodies_</
       </table>
 </div><div class="memdoc">
 
-<p>加载指定目录下的太阳系数据 </p>
+<p>加载指定目录下的太阳系天体数据 </p>
+<dl class="section warning"><dt>警告</dt><dd>该方法会覆盖已加载的天体数据 </dd></dl>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">dirpath</td><td>- 数据目录路径 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">-</td><td>错误码 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a489b125c105371950182356a0d7875ad" name="a489b125c105371950182356a0d7875ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a489b125c105371950182356a0d7875ad">&#9670;&#160;</a></span>loadPCK()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::SolarSystem::loadPCK </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>filepath</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>通过PCK文件加载太阳系天体数据 </p>
+<dl class="section warning"><dt>警告</dt><dd>该方法会覆盖已加载的天体数据 </dd></dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>- PCK文件路径 </td></tr>
   </table>
   </dd>
 </dl>
@@ -355,6 +474,7 @@ CelestialBodyMap&#160;</td><td class="memItemRight" valign="bottom"><b>bodies_</
 <li>src/AstCore/SolarSystem/<a class="el" href="SolarSystem_8hpp_source.html">SolarSystem.hpp</a></li>
 <li>src/AstCore/Data/Context/<a class="el" href="AstCore_2Data_2Context_2RunTime_8cpp.html">RunTime.cpp</a></li>
 <li>src/AstCore/SolarSystem/<a class="el" href="SolarSystem_8cpp.html">SolarSystem.cpp</a></li>
+<li>src/AstCore/SolarSystem/<a class="el" href="SolarSystemLoader_8cpp.html">SolarSystemLoader.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
