@@ -219,8 +219,11 @@ TEST(TimeSystem, TTToTDB)
     
     // 计算差值（TDB - TT）
     double diff = aTDBMinusTT(jdTT);
+    double diff1 = -aTTMinusTDB(jdTDB);
+    EXPECT_NEAR(diff1, diff, 1e-16);
+
+
     double diff2 = (jdTDB - jdTT).second();
-    
     // 验证两种方式计算的差值是否一致
     EXPECT_NEAR(diff, diff2, 1e-11);
     

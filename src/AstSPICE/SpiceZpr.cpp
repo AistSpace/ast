@@ -179,6 +179,75 @@ void rav2xf(const Matrix3d &rot, const Vector3d &av, Matrix6d &xform)
     }
 }
 
+err_t spkpos(
+    CelestialBody *targ, 
+    const TimePoint &et, 
+    Axes *ref, 
+    StringView abcorr, 
+    CelestialBody *obs, 
+    Vector3d &ptarg, 
+    double *lt
+)
+{
+    if ( targ == nullptr || obs == nullptr )
+        return eErrorNullInput;
+    Vector3d posTarg;
+    Vector3d posObs;
+    err_t rc = targ->getPosICRF(et, posTarg);
+    if ( rc != 0 )
+        return rc;
+    rc = obs->getPosICRF(et, posObs);
+    if ( rc != 0 )
+        return rc;
+    ptarg = posTarg - posObs;
+    auto icrf = aAxesICRF();
+    if(ref != icrf && ref != nullptr){
+        Rotation rot;
+        rc = aAxesTransform(icrf, ref, et, rot);
+        if ( rc != 0 )
+            return rc;
+        ptarg = rot.transformVector(ptarg);
+    }
+    if ( lt != nullptr )
+        *lt = (posTarg - posObs).norm() / kLightSpeed;
+    return 0;
+}
+
+err_t spkpos(
+    StringView targ,     
+    const TimePoint&   et,
+    StringView ref, 
+    StringView abcorr, 
+    StringView obs, 
+    Vector3d &ptarg, 
+    double *lt)
+{
+    CelestialBody *targIns = aSpiceFindBody(targ);
+    if ( targIns == nullptr )
+        return -1;
+    CelestialBody *obsIns = aSpiceFindBody(obs);
+    if ( obsIns == nullptr )
+        return -1;
+    Axes *refAxes = aSpiceFindAxes(ref);
+    if ( refAxes == nullptr )
+        return -1;
+    return spkpos(targIns, et, refAxes, abcorr, obsIns, ptarg, lt);
+}
+
+AST_SPICE_CAPI
+err_t spkpos(
+    const char   * targ,
+    double         et,
+    const char   * ref,
+    const char   * abcorr,
+    const char   * obs,
+    Vector3d&      ptarg,
+    double      *  lt        
+)
+{
+    return spkpos(targ, aSpiceEtToTimePoint(et), ref, abcorr, obs, ptarg, lt);
+}
+
 err_t tipbod(Axes *ref, CelestialBody *body, const TimePoint &et, Matrix3d &tipm)
 {
     if ( ref == nullptr || body == nullptr )
@@ -245,5 +314,26 @@ double jyear()
 {
     return kSecondsPerJulianYear;
 }
+
+err_t utc2et(StringView utcstr, double &et)
+{
+    DateTime dttm;
+    err_t rc = aDateTimeParseAny(utcstr, dttm);
+    if ( rc != 0 )
+        return rc;
+    TimePoint tp = TimePoint::FromUTC(dttm);
+    et = aTimePointToSpiceEt(tp);
+    return eNoError;
+}
+
+AST_SPICE_CAPI 
+err_t utc2et(
+    const char * utcstr,
+    double &et
+)
+{
+    return utc2et(StringView(utcstr), et);
+}
+
 
 AST_NAMESPACE_END

@@ -1112,7 +1112,15 @@ void rav2xf(
 
 // spkpds
 
-// spkpos
+err_t spkpos(
+    const char   * targ,
+    double         et,
+    const char   * ref,
+    const char   * abcorr,
+    const char   * obs,
+    double         ptarg[3],
+    double       * lt        
+);
 
 // spkpvn
 
@@ -1271,7 +1279,10 @@ err_t tipbod(
 
 // unorm
 
-// utc2et
+err_t utc2et(
+    const char * utcstr,
+    double     * et
+);
 
 // vaddg
 

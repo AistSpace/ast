@@ -1205,7 +1205,36 @@ AST_SPICE_CAPI void rav2xf(
 
 // spkpds
 
-// spkpos
+
+/// @brief 计算天体位置( S/P Kernel, position)
+/// @param[in] targ 目标天体
+/// @param[in] et 时间点
+/// @param[in] ref 参考系
+/// @param[in] abcorr 像差校正选项
+/// @param[in] obs 观察者
+/// @param[out] ptarg 输出位置（直角坐标）
+/// @param[out] lt 光行时
+/// @return 
+AST_SPICE_API err_t spkpos(
+    CelestialBody    * targ,
+    const TimePoint&   et,
+    Axes             * ref,
+    StringView         abcorr,
+    CelestialBody    * obs,
+    Vector3d&          ptarg,
+    double           * lt=nullptr
+);
+
+AST_SPICE_API
+err_t spkpos(
+    StringView         targ,
+    const TimePoint&   et,
+    StringView         ref,
+    StringView         abcorr,
+    StringView         obs,
+    Vector3d&          ptarg,
+    double           * lt        
+);
 
 // spkpvn
 
@@ -1366,7 +1395,11 @@ AST_SPICE_API err_t tipbod(
 
 // unorm
 
-// utc2et
+/// @brief 
+/// @param utcstr 
+/// @param et 
+/// @return 
+AST_SPICE_API err_t utc2et(StringView utcstr, double &et);
 
 // vaddg
 

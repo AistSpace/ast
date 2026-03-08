@@ -2570,6 +2570,45 @@ TEST(SpiceZpr, spkpds)
 
 TEST(SpiceZpr, spkpos)
 {
+    furnsh_c("data/Test/kernels/spk/de430.bsp");
+    aInitialize();
+
+    {
+        double et = 0.0;
+        const char * ref = "J2000";
+        const char * abcorr = "NONE";
+        const char * obs = "Earth";
+        double ptarg_c[3];
+        double lt_c;
+        spkpos_c("JUPITER Barycenter", et, ref, abcorr, obs, ptarg_c, &lt_c);
+        for(int i = 0; i < 3; i++)
+        {
+            ptarg_c[i] *= 1e3;
+        }
+        printf("ptarg: %.15g %.15g %.15g\n", ptarg_c[0], ptarg_c[1], ptarg_c[2]);
+        printf("lt: %.15g\n", lt_c);
+
+        
+        /*!
+        @bug Barycenter 的名称问题应该怎么解决？怎么区分天体系质心和天体中心
+        */
+
+        double ptarg[3];
+        double lt;
+        spkpos("Jupiter", et, "ICRF", abcorr, obs, ptarg, &lt);
+        printf("ptarg: %.15g %.15g %.15g\n", ptarg[0], ptarg[1], ptarg[2]);
+        printf("lt: %.15g\n", lt);
+
+        /*!
+        @!bug[已解决] 与SPICE的时间系统转换算法存在不一致，导致了星历计算结果2m的误差
+        */
+
+        for(int i = 0; i < 3; i++)
+        {
+            EXPECT_DOUBLE_EQ(ptarg_c[i], ptarg[i]);
+        }
+        EXPECT_DOUBLE_EQ(lt_c, lt);
+    }
 }
 
 TEST(SpiceZpr, spkpvn)
@@ -2887,6 +2926,17 @@ TEST(SpiceZpr, unorm)
 
 TEST(SpiceZpr, utc2et)
 {
+    furnsh_c("data/Test/kernels/lsk/naif0012.tls");
+    aInitialize();
+    double et_c;
+    double et;
+    const char * utcstr = "2023-01-01 00:00:00";
+    err_t rc = utc2et(utcstr, &et);
+    EXPECT_EQ(rc, 0);
+    utc2et_c(utcstr, &et_c);
+    EXPECT_NEAR(et, et_c, 1e-8);
+    printf("et: %.16g\n", et);
+    printf("et_c: %.16g\n", et_c);
 }
 
 TEST(SpiceZpr, vaddg)
