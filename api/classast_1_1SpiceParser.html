@@ -126,6 +126,8 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a3e5593f18e76834cdaf2c97e3ca47050"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f5ca2916eeafc3c294460be3477e1e8" id="r_a4f5ca2916eeafc3c294460be3477e1e8"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f5ca2916eeafc3c294460be3477e1e8">getNext</a> (<a class="el" href="classast_1_1BKVItemView.html">BKVItemView</a> &amp;item)</td></tr>
 <tr class="separator:a4f5ca2916eeafc3c294460be3477e1e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a547f07b6829fd3152825a983a58343b8" id="r_a547f07b6829fd3152825a983a58343b8"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a547f07b6829fd3152825a983a58343b8">readData</a> (<a class="el" href="classast_1_1SpiceKernelPool.html">SpiceKernelPool</a> &amp;kernelPool)</td></tr>
+<tr class="separator:a547f07b6829fd3152825a983a58343b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classast_1_1BaseParser"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1BaseParser')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1BaseParser.html">ast::BaseParser</a></td></tr>
 <tr class="memitem:acb772a638cdba05ae44dd5b9a9c045bb inherit pub_methods_classast_1_1BaseParser" id="r_acb772a638cdba05ae44dd5b9a9c045bb"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>BaseParser</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath)</td></tr>
@@ -208,6 +210,32 @@ FILE *&#160;</td><td class="memItemRight" valign="bottom"><b>getFile</b> () cons
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">item</td><td>输出参数，用于存储获取到的键值对项 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码，-1(EOF) 表示文件结束 </dd></dl>
+
+</div>
+</div>
+<a id="a547f07b6829fd3152825a983a58343b8" name="a547f07b6829fd3152825a983a58343b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a547f07b6829fd3152825a983a58343b8">&#9670;&#160;</a></span>readData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::SpiceParser::readData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1SpiceKernelPool.html">SpiceKernelPool</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>kernelPool</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>读取SPICE内核文件数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kernelPool</td><td>输出参数，用于存储读取到的SPICE内核数据 </td></tr>
   </table>
   </dd>
 </dl>

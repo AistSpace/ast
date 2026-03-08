@@ -1,5 +1,8 @@
 var NAVTREEINDEX8 =
 {
+"classast_1_1Dimension.html#a996ce7c6aeac24387203c07f642ef377":[3,0,0,85,3],
+"classast_1_1Dimension.html#aa5cfe8a6d98a281788ba4c96d6978866":[2,0,0,86,22],
+"classast_1_1Dimension.html#aa5cfe8a6d98a281788ba4c96d6978866":[3,0,0,85,22],
 "classast_1_1Dimension.html#aa6ac148c647b51db6a38d367b128eb5c":[2,0,0,86,2],
 "classast_1_1Dimension.html#aa6ac148c647b51db6a38d367b128eb5c":[3,0,0,85,2],
 "classast_1_1Dimension.html#ab9e34c4d9e12aa4583a8b9e45b48e04c":[2,0,0,86,29],
@@ -246,8 +249,5 @@ var NAVTREEINDEX8 =
 "classast_1_1FundamentalArguments.html#af4544fa68e7a015f0486718fe18f6a78":[3,0,0,114,6],
 "classast_1_1GenericValue.html":[0,4,0,10],
 "classast_1_1GeoCoordinate.html":[2,0,0,118],
-"classast_1_1GeoCoordinate.html":[3,0,0,117],
-"classast_1_1GeoCoordinate.html#a0c6652ca9f4286c1efa4eb1bdcc7a660":[2,0,0,118,5],
-"classast_1_1GeoCoordinate.html#a0c6652ca9f4286c1efa4eb1bdcc7a660":[3,0,0,117,5],
-"classast_1_1GeoCoordinate.html#a1eb1cd7503699576de23e1bb5153ceae":[2,0,0,118,2]
+"classast_1_1GeoCoordinate.html":[3,0,0,117]
 };
