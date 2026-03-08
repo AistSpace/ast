@@ -1126,7 +1126,12 @@ err_t spkpos(
 
 // spksfs
 
-// spkssb
+err_t spkssb(
+    int           targ,
+    double        et,
+    const char   * ref,
+    double        starg[6]
+);
 
 // spksub
 

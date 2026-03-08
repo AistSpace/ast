@@ -25,6 +25,7 @@
 #include "AstCore/FrameTransform.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/RunTime.hpp"
+#include "AstCore/CelestialBody.hpp"
 #include "AstMath/KinematicRotation.hpp"
 #include "AstMath/MathOperator.hpp"
 #include <cmath>
@@ -2571,6 +2572,7 @@ TEST(SpiceZpr, spkpds)
 TEST(SpiceZpr, spkpos)
 {
     furnsh_c("data/Test/kernels/spk/de430.bsp");
+    furnsh_c("data/Test/kernels/lsk/naif0012.tls");
     aInitialize();
 
     {
@@ -2581,13 +2583,7 @@ TEST(SpiceZpr, spkpos)
         double ptarg_c[3];
         double lt_c;
         spkpos_c("JUPITER Barycenter", et, ref, abcorr, obs, ptarg_c, &lt_c);
-        for(int i = 0; i < 3; i++)
-        {
-            ptarg_c[i] *= 1e3;
-        }
-        printf("ptarg: %.15g %.15g %.15g\n", ptarg_c[0], ptarg_c[1], ptarg_c[2]);
-        printf("lt: %.15g\n", lt_c);
-
+        for(int i = 0; i < 3; i++) ptarg_c[i] *= 1e3;
         
         /*!
         @bug Barycenter 的名称问题应该怎么解决？怎么区分天体系质心和天体中心
@@ -2595,13 +2591,38 @@ TEST(SpiceZpr, spkpos)
 
         double ptarg[3];
         double lt;
-        spkpos("Jupiter", et, "ICRF", abcorr, obs, ptarg, &lt);
-        printf("ptarg: %.15g %.15g %.15g\n", ptarg[0], ptarg[1], ptarg[2]);
-        printf("lt: %.15g\n", lt);
+        err_t rc = spkpos("Jupiter", et, "ICRF", abcorr, obs, ptarg, &lt);
+        EXPECT_EQ(rc, 0);
 
         /*!
         @!bug[已解决] 与SPICE的时间系统转换算法存在不一致，导致了星历计算结果2m的误差
         */
+
+        for(int i = 0; i < 3; i++)
+        {
+            EXPECT_DOUBLE_EQ(ptarg_c[i], ptarg[i]);
+        }
+        EXPECT_DOUBLE_EQ(lt_c, lt);
+    }
+    {
+        double et = 10000;
+        const char * ref = "J2000";
+        const char * abcorr = "None";
+        const char * obs = "Earth";
+        double ptarg_c[3];
+        double lt_c;
+        spkpos_c("JUPITER Barycenter", et, ref, abcorr, obs, ptarg_c, &lt_c);
+        for(int i = 0; i < 3; i++) ptarg_c[i] *= 1e3;
+        printf("ptarg: %.15g %.15g %.15g\n", ptarg_c[0], ptarg_c[1], ptarg_c[2]);
+        printf("lt: %.15g\n", lt_c);
+
+
+        double ptarg[3];
+        double lt;
+        err_t rc = spkpos("Jupiter", et, "ICRF", abcorr, obs, ptarg, &lt);
+        EXPECT_EQ(rc, 0);
+        printf("ptarg: %.15g %.15g %.15g\n", ptarg[0], ptarg[1], ptarg[2]);
+        printf("lt: %.15g\n", lt);
 
         for(int i = 0; i < 3; i++)
         {
@@ -2621,6 +2642,21 @@ TEST(SpiceZpr, spksfs)
 
 TEST(SpiceZpr, spkssb)
 {
+    furnsh_c("data/Test/kernels/spk/de430.bsp");
+    aInitialize();
+    {
+        double et = 3000;
+        const char* ref = "J2000";
+        double starg_c[6];
+        double starg[6];
+        spkssb_c(ESpiceId::eJupiterBarycenter, et, ref, starg_c);
+        for(auto& d : starg_c) d *= 1e3;
+        spkssb(ESpiceId::eJupiter, et, "ICRF", starg);
+        for(int i = 0; i < 6; i++)
+        {
+            EXPECT_DOUBLE_EQ(starg_c[i], starg[i]);
+        }
+    }
 }
 
 TEST(SpiceZpr, spksub)

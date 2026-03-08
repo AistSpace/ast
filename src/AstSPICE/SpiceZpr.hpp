@@ -1206,10 +1206,10 @@ AST_SPICE_CAPI void rav2xf(
 // spkpds
 
 
-/// @brief 计算天体位置( S/P Kernel, position)
+/// @brief 计算返回目标天体相对于观测天体的位置，可进行光行时（行星光行差）和恒星像差修正( S/P Kernel, position)
 /// @param[in] targ 目标天体
 /// @param[in] et 时间点
-/// @param[in] ref 参考系
+/// @param[in] ref 参考轴系
 /// @param[in] abcorr 像差校正选项
 /// @param[in] obs 观察者
 /// @param[out] ptarg 输出位置（直角坐标）
@@ -1240,7 +1240,18 @@ err_t spkpos(
 
 // spksfs
 
-// spkssb
+/// @brief 计算天体相对于太阳系质心的位置速度( S/P Kernel, solar system barycenter)
+/// @param targ 目标天体
+/// @param et 时间点
+/// @param ref 参考轴系
+/// @param starg 输出位置速度（直角坐标）
+/// @return 
+AST_SPICE_API err_t spkssb(
+    CelestialBody*     targ,
+    const TimePoint&   et,
+    Axes             * ref,
+    CartState&         starg
+);
 
 // spksub
 

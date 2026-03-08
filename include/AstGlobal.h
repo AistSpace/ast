@@ -304,6 +304,8 @@ class Quaternion;            ///< 四元数
 
 class Euler;                 ///< 欧拉角
 
+class CartState;             ///< 直角坐标
+
 class Object;                ///< 对象
 class Class;                 ///< 类
 using Type = Class;          ///< 类型
