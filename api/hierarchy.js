@@ -27,7 +27,10 @@ var hierarchy =
       [ "ast::BKVSaxPrint", "classast_1_1BKVSaxPrint.html", null ]
     ] ],
     [ "ast::BKVTree", "classast_1_1BKVTree.html", null ],
-    [ "ast::BodyEphemeris", "classast_1_1BodyEphemeris.html", null ],
+    [ "ast::BodyEphemeris", "classast_1_1BodyEphemeris.html", [
+      [ "ast::EphemerisDE", "classast_1_1EphemerisDE.html", null ],
+      [ "ast::EphemerisNoop", "classast_1_1EphemerisNoop.html", null ]
+    ] ],
     [ "ast::BodyOrientation", "classast_1_1BodyOrientation.html", [
       [ "ast::EarthOrientation", "classast_1_1EarthOrientation.html", null ],
       [ "ast::MoonOrientation", "classast_1_1MoonOrientation.html", null ],

@@ -18,6 +18,8 @@ var group__SolarSystem =
       [ "getJplSpiceId", "classast_1_1CelestialBody.html#ad97ffad75d805afca9119ca411b94daa", null ],
       [ "getName", "classast_1_1CelestialBody.html#aabf36d0dd7857c676e2d19a13c9c9291", null ],
       [ "getOrientation", "classast_1_1CelestialBody.html#aac2be47141564e831fde370631d78f49", null ],
+      [ "getPosICRF", "classast_1_1CelestialBody.html#a1682fe75c3016668f7f6d9acabd9ec78", null ],
+      [ "getPosVelICRF", "classast_1_1CelestialBody.html#a05cf6b13751d9be2e5c86b8c758f49c8", null ],
       [ "getRadius", "classast_1_1CelestialBody.html#a9a88a639e22509c81821b0e0c134f767", null ],
       [ "getSystemGM", "classast_1_1CelestialBody.html#a9234119f1b8c604e8c2a0531e6ebc55b", null ],
       [ "isEarth", "classast_1_1CelestialBody.html#aa929791242e4840e147e5c7d6c8a96cf", null ],
@@ -45,7 +47,18 @@ var group__SolarSystem =
       [ "radius_", "classast_1_1CelestialBody.html#a87d4a909c92bfadee894f42cd5175838", null ],
       [ "systemGM_", "classast_1_1CelestialBody.html#af7315bf6731ca1a1af2cfa28dde3edbf", null ]
     ] ],
-    [ "ast::BodyEphemeris", "classast_1_1BodyEphemeris.html", null ],
+    [ "ast::BodyEphemeris", "classast_1_1BodyEphemeris.html", [
+      [ "getPosICRF", "classast_1_1BodyEphemeris.html#ad5f246b6d9ed53136bb585b2318c34ce", null ],
+      [ "getPosVelICRF", "classast_1_1BodyEphemeris.html#a49d6c99d843a8a8906af1ce5eb1015ba", null ]
+    ] ],
+    [ "ast::EphemerisDE", "classast_1_1EphemerisDE.html", [
+      [ "getPosICRF", "classast_1_1EphemerisDE.html#a185895c3ce3964b081cbd076b8a93c2e", null ],
+      [ "getPosVelICRF", "classast_1_1EphemerisDE.html#a488ef74f048a74aa4808f386bb382bad", null ]
+    ] ],
+    [ "ast::EphemerisNoop", "classast_1_1EphemerisNoop.html", [
+      [ "getPosICRF", "classast_1_1EphemerisNoop.html#a81898318df37a70baa8d45875d226278", null ],
+      [ "getPosVelICRF", "classast_1_1EphemerisNoop.html#a0e6b66fc226af15921be180739677e9e", null ]
+    ] ],
     [ "ast::BodyOrientation", "classast_1_1BodyOrientation.html", [
       [ "getICRFToFixedTransform", "classast_1_1BodyOrientation.html#a2384e0907e2ce282265581d576e43dd9", null ],
       [ "getICRFToFixedTransform", "classast_1_1BodyOrientation.html#ac6b4ec0c002d4e10bcca42111c326952", null ],

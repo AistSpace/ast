@@ -72,7 +72,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('classast_1_1SpiceBodyRegistry.html',''); initResizable(true); });
+$(function(){initNavTree('classast_1_1EphemerisNoop.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -98,20 +98,18 @@ $(function(){initNavTree('classast_1_1SpiceBodyRegistry.html',''); initResizable
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ast::SpiceBodyRegistry 成员列表</div></div>
+  <div class="headertitle"><div class="title">ast::EphemerisNoop 成员列表</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>成员的完整列表，这些成员属于 <a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a>,包括所有继承而来的类成员</p>
+<p>成员的完整列表，这些成员属于 <a class="el" href="classast_1_1EphemerisNoop.html">ast::EphemerisNoop</a>,包括所有继承而来的类成员</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>findBody</b>(StringView name) const (定义于 <a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a>)</td><td class="entry"><a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>findBody</b>(int id) const (定义于 <a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a>)</td><td class="entry"><a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>init</b>() (定义于 <a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a>)</td><td class="entry"><a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>Instance</b>() (定义于 <a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a>)</td><td class="entry"><a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>solarSystem_</b> (定义于 <a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a>)</td><td class="entry"><a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>SpiceBodyRegistry</b>()=default (定义于 <a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a>)</td><td class="entry"><a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>SpiceBodyRegistry</b>(bool whetherInit) (定义于 <a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a>)</td><td class="entry"><a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>~SpiceBodyRegistry</b>()=default (定义于 <a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a>)</td><td class="entry"><a class="el" href="classast_1_1SpiceBodyRegistry.html">ast::SpiceBodyRegistry</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>BodyEphemeris</b>()=default (定义于 <a class="el" href="classast_1_1BodyEphemeris.html">ast::BodyEphemeris</a>)</td><td class="entry"><a class="el" href="classast_1_1BodyEphemeris.html">ast::BodyEphemeris</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>EphemerisNoop</b>()=default (定义于 <a class="el" href="classast_1_1EphemerisNoop.html">ast::EphemerisNoop</a>)</td><td class="entry"><a class="el" href="classast_1_1EphemerisNoop.html">ast::EphemerisNoop</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classast_1_1EphemerisNoop.html#a81898318df37a70baa8d45875d226278">getPosICRF</a>(const TimePoint &amp;time, Vector3d &amp;pos) const override</td><td class="entry"><a class="el" href="classast_1_1EphemerisNoop.html">ast::EphemerisNoop</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classast_1_1EphemerisNoop.html#a0e6b66fc226af15921be180739677e9e">getPosVelICRF</a>(const TimePoint &amp;time, Vector3d &amp;pos, Vector3d &amp;vel) const override</td><td class="entry"><a class="el" href="classast_1_1EphemerisNoop.html">ast::EphemerisNoop</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~BodyEphemeris</b>()=default (定义于 <a class="el" href="classast_1_1BodyEphemeris.html">ast::BodyEphemeris</a>)</td><td class="entry"><a class="el" href="classast_1_1BodyEphemeris.html">ast::BodyEphemeris</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>~EphemerisNoop</b>()=default (定义于 <a class="el" href="classast_1_1EphemerisNoop.html">ast::EphemerisNoop</a>)</td><td class="entry"><a class="el" href="classast_1_1EphemerisNoop.html">ast::EphemerisNoop</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,5 +1,8 @@
 var NAVTREEINDEX4 =
 {
+"Quaternion_8cpp.html":[4,0,0,5,1,9],
+"RK4_8cpp.html":[4,0,0,5,5,0,0],
+"RK4_8hpp.html":[4,0,0,5,5,0,1],
 "RK4_8hpp_source.html":[4,0,0,5,5,0,1],
 "RK8_8cpp.html":[4,0,0,5,5,0,2],
 "RK8_8hpp.html":[4,0,0,5,5,0,3],
@@ -246,8 +249,5 @@ var NAVTREEINDEX4 =
 "TangentPoint_8cpp.html":[4,0,0,0,0,24],
 "TangentPoint_8hpp.html":[4,0,0,0,0,25],
 "TangentPoint_8hpp_source.html":[4,0,0,0,0,25],
-"Terminal_8cpp.html":[4,0,0,12,2,21],
-"Terminal_8hpp.html":[4,0,0,12,2,22],
-"Terminal_8hpp_source.html":[4,0,0,12,2,22],
-"ThirdBody_8hpp_source.html":[4,0,0,2,4,3]
+"Terminal_8cpp.html":[4,0,0,12,2,21]
 };
