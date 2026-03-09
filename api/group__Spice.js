@@ -19,6 +19,7 @@ var group__Spice =
     [ "ast::pxform", "group__Spice.html#ga5751be1205b7faa7f89fdda7fd242ea8", null ],
     [ "ast::q2m", "group__Spice.html#ga627c43ef632cc13d3e38a11ff1c80254", null ],
     [ "ast::radrec", "group__Spice.html#ga925fcb5be8351292ea60a4b53e1aadd5", null ],
+    [ "ast::spkapo", "group__Spice.html#ga2290dd9d542c794b8ff1e3f5404fcc48", null ],
     [ "ast::spkpos", "group__Spice.html#ga1ca1a0891d3cd67d545a68f198f74c5e", null ],
     [ "ast::spkssb", "group__Spice.html#ga34a872d2605586fdd54e408bdff55ef8", null ],
     [ "ast::utc2et", "group__Spice.html#ga372beff32468bfc206138633363a6cf1", null ]

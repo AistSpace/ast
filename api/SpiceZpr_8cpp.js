@@ -4,6 +4,7 @@ var SpiceZpr_8cpp =
     [ "azlrec", "SpiceZpr_8cpp.html#ga70544ad5025e6d1ee6668980a7ec6230", null ],
     [ "b1900", "SpiceZpr_8cpp.html#gab5390b7ed0c1c1088d0dfdd6803ffbb7", null ],
     [ "b1950", "SpiceZpr_8cpp.html#gac99546520a2498b865578a108413b350", null ],
+    [ "clight", "SpiceZpr_8cpp.html#ga99cc0a918b37635320cef6e4d932ba49", null ],
     [ "dpr", "SpiceZpr_8cpp.html#ga9be32a1020b0fb8e90a049a8ec7b957a", null ],
     [ "eul2m", "SpiceZpr_8cpp.html#ga5e731824b990e410fb69e97f5f05c283", null ],
     [ "ident", "SpiceZpr_8cpp.html#ga69e7485a9fbd13916ae87dbf0ba84562", null ],
@@ -20,6 +21,7 @@ var SpiceZpr_8cpp =
     [ "pxform", "SpiceZpr_8cpp.html#ga5751be1205b7faa7f89fdda7fd242ea8", null ],
     [ "q2m", "SpiceZpr_8cpp.html#ga627c43ef632cc13d3e38a11ff1c80254", null ],
     [ "radrec", "SpiceZpr_8cpp.html#ga925fcb5be8351292ea60a4b53e1aadd5", null ],
+    [ "spkapo", "SpiceZpr_8cpp.html#ga2290dd9d542c794b8ff1e3f5404fcc48", null ],
     [ "spkpos", "SpiceZpr_8cpp.html#ga1ca1a0891d3cd67d545a68f198f74c5e", null ],
     [ "spkssb", "SpiceZpr_8cpp.html#ga34a872d2605586fdd54e408bdff55ef8", null ],
     [ "utc2et", "SpiceZpr_8cpp.html#ga372beff32468bfc206138633363a6cf1", null ]

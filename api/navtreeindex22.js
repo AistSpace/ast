@@ -1,5 +1,13 @@
 var NAVTREEINDEX22 =
 {
+"structast_1_1NLPVector.html":[2,0,0,185],
+"structast_1_1NLPVector.html":[3,0,0,184],
+"structast_1_1NLPVectorBounds.html":[2,0,0,186],
+"structast_1_1NLPVectorBounds.html":[3,0,0,185],
+"structast_1_1NutationCache.html":[2,0,0,189],
+"structast_1_1NutationCache.html":[3,0,0,188],
+"structast_1_1OpBinRegistry_1_1OpBinKeyHash.html":[2,0,0,211,0],
+"structast_1_1OpBinRegistry_1_1OpBinKeyHash.html":[3,0,0,210,0],
 "structast_1_1OpUnaryRegister_1_1OpUnaryKeyHash.html":[2,0,0,213,0],
 "structast_1_1OpUnaryRegister_1_1OpUnaryKeyHash.html":[3,0,0,212,0],
 "structast_1_1PoleMotion.html":[0,0,1,2],

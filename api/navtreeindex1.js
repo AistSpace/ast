@@ -70,6 +70,8 @@ var NAVTREEINDEX1 =
 "ColorNamed_8hpp_source.html":[4,0,0,12,6,1],
 "Color_8hpp.html":[4,0,0,12,6,0],
 "Color_8hpp_source.html":[4,0,0,12,6,0],
+"Constants_8hpp.html":[4,0,0,12,6,3],
+"Constants_8hpp_source.html":[4,0,0,12,6,3],
 "CoordTransform_8cpp.html":[4,0,0,2,2,8],
 "CoordTransform_8hpp.html":[4,0,0,2,2,9],
 "CoordTransform_8hpp_source.html":[4,0,0,2,2,9],
@@ -95,9 +97,9 @@ var NAVTREEINDEX1 =
 "Date_8hpp_source.html":[4,0,0,2,9,1],
 "Debris_8hpp.html":[4,0,0,13,1,0],
 "Debris_8hpp_source.html":[4,0,0,13,1,0],
-"Debug_8cpp.html":[4,0,0,12,6,3],
-"Debug_8hpp.html":[4,0,0,12,6,4],
-"Debug_8hpp_source.html":[4,0,0,12,6,4],
+"Debug_8cpp.html":[4,0,0,12,6,4],
+"Debug_8hpp.html":[4,0,0,12,6,5],
+"Debug_8hpp_source.html":[4,0,0,12,6,5],
 "Debugger_8cpp.html":[4,0,0,10,1,2],
 "Debugger_8hpp.html":[4,0,0,10,1,3],
 "Debugger_8hpp_source.html":[4,0,0,10,1,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "FundamentalArguments_8cpp.html#a172620ae0b5ae03e7ab90c426f27ae85":[4,0,0,2,2,2,0,0],
 "FundamentalArguments_8cpp.html#a1b9159b0e123b3109b2efc385bd6c8f9":[4,0,0,2,2,2,0,1],
 "FundamentalArguments_8cpp.html#a8eae24d01051b469c69252dbdaff3236":[4,0,0,2,2,2,0,2],
-"FundamentalArguments_8hpp.html":[4,0,0,2,2,2,1],
-"FundamentalArguments_8hpp.html#a172620ae0b5ae03e7ab90c426f27ae85":[4,0,0,2,2,2,1,1],
-"FundamentalArguments_8hpp.html#a1b9159b0e123b3109b2efc385bd6c8f9":[4,0,0,2,2,2,1,2]
+"FundamentalArguments_8hpp.html":[4,0,0,2,2,2,1]
 };

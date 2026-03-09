@@ -154,6 +154,10 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>daysFrom</b> (const
 <tr class="separator:a6cea9ade35ef061d16beeab1e0b48708"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcd52a7e2f0e8c0627ccf3918d2c2011" id="r_afcd52a7e2f0e8c0627ccf3918d2c2011"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcd52a7e2f0e8c0627ccf3918d2c2011">toString</a> (int precision=kTimePointDefaultFormatPrecision) const</td></tr>
 <tr class="separator:afcd52a7e2f0e8c0627ccf3918d2c2011"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27c238cc13dc80d5497ffa4f07cd4414" id="r_a27c238cc13dc80d5497ffa4f07cd4414"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1TimePoint.html">TimePoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27c238cc13dc80d5497ffa4f07cd4414">shiftedBySecond</a> (double second) const</td></tr>
+<tr class="separator:a27c238cc13dc80d5497ffa4f07cd4414"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab835bcc2d27d002dde4a4789a2f0e94f" id="r_ab835bcc2d27d002dde4a4789a2f0e94f"><td class="memItemLeft" align="right" valign="top">AST_CORE_API <a class="el" href="classast_1_1TimePoint.html">TimePoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab835bcc2d27d002dde4a4789a2f0e94f">shiftedBySecondInTDB</a> (double second) const</td></tr>
+<tr class="separator:ab835bcc2d27d002dde4a4789a2f0e94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
@@ -295,6 +299,66 @@ static <a class="el" href="classast_1_1TimePoint.html">TimePoint</a>&#160;</td><
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd><a class="el" href="classast_1_1TimePoint.html" title="绝对时间点">TimePoint</a> 解析后的时间点对象 </dd></dl>
+
+</div>
+</div>
+<a id="a27c238cc13dc80d5497ffa4f07cd4414" name="a27c238cc13dc80d5497ffa4f07cd4414"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27c238cc13dc80d5497ffa4f07cd4414">&#9670;&#160;</a></span>shiftedBySecond()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1TimePoint.html">TimePoint</a> ast::TimePoint::shiftedBySecond </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>second</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>计算时间点偏移后的新时间点，按默认时间尺度进行时间偏移 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">second</td><td>偏移秒数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>偏移后的新时间点 </dd></dl>
+
+</div>
+</div>
+<a id="ab835bcc2d27d002dde4a4789a2f0e94f" name="ab835bcc2d27d002dde4a4789a2f0e94f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab835bcc2d27d002dde4a4789a2f0e94f">&#9670;&#160;</a></span>shiftedBySecondInTDB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1TimePoint.html">TimePoint</a> ast::TimePoint::shiftedBySecondInTDB </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>second</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算时间点偏移后的新时间点，按TDB时间尺度进行时间偏移 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">second</td><td>TDB秒数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>偏移后的新时间点 </dd></dl>
 
 </div>
 </div>

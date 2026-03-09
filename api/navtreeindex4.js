@@ -1,5 +1,7 @@
 var NAVTREEINDEX4 =
 {
+"Quantity_8hpp.html":[4,0,0,12,3,3],
+"Quantity_8hpp_source.html":[4,0,0,12,3,3],
 "Quaternion_8cpp.html":[4,0,0,5,1,9],
 "RK4_8cpp.html":[4,0,0,5,5,0,0],
 "RK4_8hpp.html":[4,0,0,5,5,0,1],
@@ -158,9 +160,9 @@ var NAVTREEINDEX4 =
 "SpaceWeather_8cpp.html#a94f4cf75f889ec56c67b248dea11ef71":[4,0,0,2,3,7,0],
 "SpaceWeather_8hpp.html":[4,0,0,2,3,8],
 "SpaceWeather_8hpp_source.html":[4,0,0,2,3,8],
-"Span_8cpp.html":[4,0,0,12,6,15],
-"Span_8hpp.html":[4,0,0,12,6,16],
-"Span_8hpp_source.html":[4,0,0,12,6,16],
+"Span_8cpp.html":[4,0,0,12,6,16],
+"Span_8hpp.html":[4,0,0,12,6,17],
+"Span_8hpp_source.html":[4,0,0,12,6,17],
 "Sparse_8hpp.html":[4,0,0,5,0,3],
 "Sparse_8hpp_source.html":[4,0,0,5,0,3],
 "SphereShape_8hpp.html":[4,0,0,2,5,2,0,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX4 =
 "Symbol_8hpp.html":[4,0,0,10,9,1],
 "Symbol_8hpp_source.html":[4,0,0,10,9,1],
 "TangentPoint_8cpp.html":[4,0,0,0,0,24],
-"TangentPoint_8hpp.html":[4,0,0,0,0,25],
-"TangentPoint_8hpp_source.html":[4,0,0,0,0,25],
-"Terminal_8cpp.html":[4,0,0,12,2,21]
+"TangentPoint_8hpp.html":[4,0,0,0,0,25]
 };

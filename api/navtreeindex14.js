@@ -1,5 +1,8 @@
 var NAVTREEINDEX14 =
 {
+"classast_1_1Rotation.html#af23a0573077dd94dc06f82b871ffff37":[3,0,0,241,15],
+"classast_1_1Rotation.html#affa7511f3d325c6c9d767f78ff921575":[2,0,0,242,17],
+"classast_1_1Rotation.html#affa7511f3d325c6c9d767f78ff921575":[3,0,0,241,17],
 "classast_1_1RotationElement.html":[0,0,5,9],
 "classast_1_1RotationElement.html#a087ffed37fee180ca5a767ef0160e034":[0,0,5,9,1],
 "classast_1_1RotationElement.html#a63c1349c0602031e346d5c1cf5026965":[0,0,5,9,2],
@@ -246,8 +249,5 @@ var NAVTREEINDEX14 =
 "classast_1_1Time.html#a81796002df5e60cd6ebe140719b40772":[0,0,6,7,3],
 "classast_1_1Time.html#a885467b02749d0e4bf1fe4962da41419":[0,0,6,7,2],
 "classast_1_1Time.html#a8ef96b44c3526232fa295e974468167d":[0,0,6,7,0],
-"classast_1_1Time.html#a9669dcec160398e0355504ca161072b0":[0,0,6,7,4],
-"classast_1_1Time.html#ab145e10ac9b7c1cdc75ddfad9ee3eebe":[0,0,6,7,1],
-"classast_1_1TimeInterval.html":[0,0,6,8],
-"classast_1_1TimeInterval.html#a1a5f26b896f1ae87f625b2c7935ab420":[0,0,6,8,2]
+"classast_1_1Time.html#a9669dcec160398e0355504ca161072b0":[0,0,6,7,4]
 };

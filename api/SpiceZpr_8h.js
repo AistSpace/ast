@@ -2,6 +2,7 @@ var SpiceZpr_8h =
 [
     [ "b1900", "SpiceZpr_8h.html#gab5390b7ed0c1c1088d0dfdd6803ffbb7", null ],
     [ "b1950", "SpiceZpr_8h.html#gac99546520a2498b865578a108413b350", null ],
+    [ "clight", "SpiceZpr_8h.html#ga99cc0a918b37635320cef6e4d932ba49", null ],
     [ "dpr", "SpiceZpr_8h.html#ga9be32a1020b0fb8e90a049a8ec7b957a", null ],
     [ "j1900", "SpiceZpr_8h.html#ga2408d5adf2439ec405d3534528413be0", null ],
     [ "j1950", "SpiceZpr_8h.html#gad1653664d9915e0bacd8e9293b2086e8", null ],

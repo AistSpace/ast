@@ -153,6 +153,14 @@ $(function(){initNavTree('group__Spice.html',''); initResizable(true); });
 <tr class="memitem:gae4ad791279dc2d35f3ee9497a9b24160" id="r_gae4ad791279dc2d35f3ee9497a9b24160"><td class="memItemLeft" align="right" valign="top"><a id="gae4ad791279dc2d35f3ee9497a9b24160" name="gae4ad791279dc2d35f3ee9497a9b24160"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::rav2xf</b> (const <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;rot, const Vector3d &amp;av, Matrix6d &amp;xform)</td></tr>
 <tr class="separator:gae4ad791279dc2d35f3ee9497a9b24160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2290dd9d542c794b8ff1e3f5404fcc48" id="r_ga2290dd9d542c794b8ff1e3f5404fcc48"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga2290dd9d542c794b8ff1e3f5404fcc48">ast::spkapo</a> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1Axes.html">Axes</a> *ref, const <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;sobs, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> abcorr, Vector3d &amp;ptarg, double *lt=nullptr)</td></tr>
+<tr class="separator:ga2290dd9d542c794b8ff1e3f5404fcc48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6d93d745d8f917a7fd17f3a0e1651c8e" id="r_ga6d93d745d8f917a7fd17f3a0e1651c8e"><td class="memItemLeft" align="right" valign="top"><a id="ga6d93d745d8f917a7fd17f3a0e1651c8e" name="ga6d93d745d8f917a7fd17f3a0e1651c8e"></a>
+AST_SPICE_API void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::spkgeo</b> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *obs, <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;state, double *lt=nullptr)</td></tr>
+<tr class="separator:ga6d93d745d8f917a7fd17f3a0e1651c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeec3c2d0173bb2ecff524dcaddc4af61" id="r_gaeec3c2d0173bb2ecff524dcaddc4af61"><td class="memItemLeft" align="right" valign="top"><a id="gaeec3c2d0173bb2ecff524dcaddc4af61" name="gaeec3c2d0173bb2ecff524dcaddc4af61"></a>
+AST_SPICE_API void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::spkgps</b> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *obs, Vector3d &amp;pos, double *lt=nullptr)</td></tr>
+<tr class="separator:gaeec3c2d0173bb2ecff524dcaddc4af61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1ca1a0891d3cd67d545a68f198f74c5e" id="r_ga1ca1a0891d3cd67d545a68f198f74c5e"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1ca1a0891d3cd67d545a68f198f74c5e">ast::spkpos</a> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> abcorr, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *obs, Vector3d &amp;ptarg, double *lt=nullptr)</td></tr>
 <tr class="separator:ga1ca1a0891d3cd67d545a68f198f74c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaeeb8c50fa747472e92a5cc55fea8424c" id="r_gaeeb8c50fa747472e92a5cc55fea8424c"><td class="memItemLeft" align="right" valign="top"><a id="gaeeb8c50fa747472e92a5cc55fea8424c" name="gaeeb8c50fa747472e92a5cc55fea8424c"></a>
@@ -160,11 +168,20 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::spkpos</b> (<a 
 <tr class="separator:gaeeb8c50fa747472e92a5cc55fea8424c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga34a872d2605586fdd54e408bdff55ef8" id="r_ga34a872d2605586fdd54e408bdff55ef8"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga34a872d2605586fdd54e408bdff55ef8">ast::spkssb</a> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;starg)</td></tr>
 <tr class="separator:ga34a872d2605586fdd54e408bdff55ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga11d9b81fe31c625e597ff6dd96515bde" id="r_ga11d9b81fe31c625e597ff6dd96515bde"><td class="memItemLeft" align="right" valign="top"><a id="ga11d9b81fe31c625e597ff6dd96515bde" name="ga11d9b81fe31c625e597ff6dd96515bde"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::stelab</b> (const Vector3d &amp;pobj, const Vector3d &amp;vobs, Vector3d &amp;appobj)</td></tr>
+<tr class="separator:ga11d9b81fe31c625e597ff6dd96515bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5380caa8aec3d287496f9954f828fef1" id="r_ga5380caa8aec3d287496f9954f828fef1"><td class="memItemLeft" align="right" valign="top"><a id="ga5380caa8aec3d287496f9954f828fef1" name="ga5380caa8aec3d287496f9954f828fef1"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::stlabx</b> (const Vector3d &amp;pobj, const Vector3d &amp;vobs, Vector3d &amp;appobj)</td></tr>
+<tr class="separator:ga5380caa8aec3d287496f9954f828fef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa4fbfc98a7be17ac50afdb3630462ad1" id="r_gaa4fbfc98a7be17ac50afdb3630462ad1"><td class="memItemLeft" align="right" valign="top"><a id="gaa4fbfc98a7be17ac50afdb3630462ad1" name="gaa4fbfc98a7be17ac50afdb3630462ad1"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::tipbod</b> (<a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *body, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;tipm)</td></tr>
 <tr class="separator:gaa4fbfc98a7be17ac50afdb3630462ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga372beff32468bfc206138633363a6cf1" id="r_ga372beff32468bfc206138633363a6cf1"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga372beff32468bfc206138633363a6cf1">ast::utc2et</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> utcstr, double &amp;et)</td></tr>
 <tr class="separator:ga372beff32468bfc206138633363a6cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga75714f9c2dbc696555d3abd96e88b9ae" id="r_ga75714f9c2dbc696555d3abd96e88b9ae"><td class="memItemLeft" align="right" valign="top"><a id="ga75714f9c2dbc696555d3abd96e88b9ae" name="ga75714f9c2dbc696555d3abd96e88b9ae"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::vrotv</b> (const Vector3d &amp;v, const Vector3d &amp;axis, double theta, Vector3d &amp;r)</td></tr>
+<tr class="separator:ga75714f9c2dbc696555d3abd96e88b9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">函数说明</h2>
 <a id="ga28fa4207db53a0374e67d175d4177703" name="ga28fa4207db53a0374e67d175d4177703"></a>
@@ -756,6 +773,69 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::tipbod</b> (<a 
 
 </div>
 </div>
+<a id="ga2290dd9d542c794b8ff1e3f5404fcc48" name="ga2290dd9d542c794b8ff1e3f5404fcc48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2290dd9d542c794b8ff1e3f5404fcc48">&#9670;&#160;</a></span>spkapo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_SPICE_API err_t ast::spkapo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *</td>          <td class="paramname"><span class="paramname"><em>targ</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>et</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>ref</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sobs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>abcorr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>ptarg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>lt</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算目标天体相对于观测者的位置，可进行光行时（行星光行差）和恒星像差修正(S/P Kernel, apparent position only) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targ</td><td>目标天体 </td></tr>
+    <tr><td class="paramname">et</td><td>时间点 </td></tr>
+    <tr><td class="paramname">ref</td><td>参考轴系 </td></tr>
+    <tr><td class="paramname">sobs</td><td>观测者状态 </td></tr>
+    <tr><td class="paramname">abcorr</td><td>像差校正选项 </td></tr>
+    <tr><td class="paramname">ptarg</td><td>输出位置（直角坐标） </td></tr>
+    <tr><td class="paramname">lt</td><td>光行时 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><br  />
+ </dd></dl>
+<dl class="section note"><dt>注解</dt><dd>SPICE 中的时间系统按照 TDB 时间尺度进行推进</dd></dl>
+
+</div>
+</div>
 <a id="ga1ca1a0891d3cd67d545a68f198f74c5e" name="ga1ca1a0891d3cd67d545a68f198f74c5e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga1ca1a0891d3cd67d545a68f198f74c5e">&#9670;&#160;</a></span>spkpos()</h2>
 
@@ -800,7 +880,7 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::tipbod</b> (<a 
       </table>
 </div><div class="memdoc">
 
-<p>计算返回目标天体相对于观测天体的位置，可进行光行时（行星光行差）和恒星像差修正( S/P Kernel, position) </p>
+<p>计算目标天体相对于观测天体的位置，可进行光行时（行星光行差）和恒星像差修正(S/P Kernel, position) </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">targ</td><td>目标天体 </td></tr>

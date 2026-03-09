@@ -115,9 +115,12 @@ $(function(){initNavTree('SpiceZpr_8cpp.html',''); initResizable(true); });
 <code>#include &quot;AstMath/AngleAxis.hpp&quot;</code><br />
 <code>#include &quot;AstMath/Euler.hpp&quot;</code><br />
 <code>#include &quot;AstMath/Quaternion.hpp&quot;</code><br />
+<code>#include &quot;AstMath/MathOperator.hpp&quot;</code><br />
 <code>#include &quot;AstUtil/Constants.h&quot;</code><br />
 <code>#include &quot;AstUtil/Math.hpp&quot;</code><br />
 <code>#include &quot;AstUtil/StringView.hpp&quot;</code><br />
+<code>#include &quot;AstUtil/StringUtil.hpp&quot;</code><br />
+<code>#include &quot;AstUtil/Logger.hpp&quot;</code><br />
 <code>#include &quot;AstSPICE/SpiceRunTime.hpp&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -146,6 +149,8 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>ast::b1900</b> ()</
 <tr class="memitem:gac99546520a2498b865578a108413b350" id="r_gac99546520a2498b865578a108413b350"><td class="memItemLeft" align="right" valign="top">
 double&#160;</td><td class="memItemRight" valign="bottom"><b>ast::b1950</b> ()</td></tr>
 <tr class="separator:gac99546520a2498b865578a108413b350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga99cc0a918b37635320cef6e4d932ba49" id="r_ga99cc0a918b37635320cef6e4d932ba49"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__A__CLINKAGE__BEGIN.html#ga99cc0a918b37635320cef6e4d932ba49">ast::clight</a> ()</td></tr>
+<tr class="separator:ga99cc0a918b37635320cef6e4d932ba49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9be32a1020b0fb8e90a049a8ec7b957a" id="r_ga9be32a1020b0fb8e90a049a8ec7b957a"><td class="memItemLeft" align="right" valign="top">
 double&#160;</td><td class="memItemRight" valign="bottom"><b>ast::dpr</b> ()</td></tr>
 <tr class="separator:ga9be32a1020b0fb8e90a049a8ec7b957a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,6 +195,8 @@ AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::
 <tr class="memitem:gae4ad791279dc2d35f3ee9497a9b24160" id="r_gae4ad791279dc2d35f3ee9497a9b24160"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::rav2xf</b> (const <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;rot, const Vector3d &amp;av, Matrix6d &amp;xform)</td></tr>
 <tr class="separator:gae4ad791279dc2d35f3ee9497a9b24160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2290dd9d542c794b8ff1e3f5404fcc48" id="r_ga2290dd9d542c794b8ff1e3f5404fcc48"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga2290dd9d542c794b8ff1e3f5404fcc48">ast::spkapo</a> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1Axes.html">Axes</a> *ref, const <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;sobs, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> abcorr, Vector3d &amp;ptarg, double *lt=nullptr)</td></tr>
+<tr class="separator:ga2290dd9d542c794b8ff1e3f5404fcc48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1ca1a0891d3cd67d545a68f198f74c5e" id="r_ga1ca1a0891d3cd67d545a68f198f74c5e"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga1ca1a0891d3cd67d545a68f198f74c5e">ast::spkpos</a> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> abcorr, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *obs, Vector3d &amp;ptarg, double *lt=nullptr)</td></tr>
 <tr class="separator:ga1ca1a0891d3cd67d545a68f198f74c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaeeb8c50fa747472e92a5cc55fea8424c" id="r_gaeeb8c50fa747472e92a5cc55fea8424c"><td class="memItemLeft" align="right" valign="top">
@@ -203,6 +210,12 @@ AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::
 <tr class="memitem:a38411cafe8c34f517d747bd967ea9a91" id="r_a38411cafe8c34f517d747bd967ea9a91"><td class="memItemLeft" align="right" valign="top"><a id="a38411cafe8c34f517d747bd967ea9a91" name="a38411cafe8c34f517d747bd967ea9a91"></a>
 AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::spkssb</b> (int targ, double et, const char *ref, <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;starg)</td></tr>
 <tr class="separator:a38411cafe8c34f517d747bd967ea9a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga11d9b81fe31c625e597ff6dd96515bde" id="r_ga11d9b81fe31c625e597ff6dd96515bde"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::stelab</b> (const Vector3d &amp;pobj, const Vector3d &amp;vobs, Vector3d &amp;appobj)</td></tr>
+<tr class="separator:ga11d9b81fe31c625e597ff6dd96515bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5380caa8aec3d287496f9954f828fef1" id="r_ga5380caa8aec3d287496f9954f828fef1"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::stlabx</b> (const Vector3d &amp;pobj, const Vector3d &amp;vobs, Vector3d &amp;appobj)</td></tr>
+<tr class="separator:ga5380caa8aec3d287496f9954f828fef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa4fbfc98a7be17ac50afdb3630462ad1" id="r_gaa4fbfc98a7be17ac50afdb3630462ad1"><td class="memItemLeft" align="right" valign="top">
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::tipbod</b> (<a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *body, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;tipm)</td></tr>
 <tr class="separator:gaa4fbfc98a7be17ac50afdb3630462ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -214,6 +227,9 @@ AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::
 <tr class="memitem:a223ede147787fd346a2e8e0dddf1a033" id="r_a223ede147787fd346a2e8e0dddf1a033"><td class="memItemLeft" align="right" valign="top"><a id="a223ede147787fd346a2e8e0dddf1a033" name="a223ede147787fd346a2e8e0dddf1a033"></a>
 AST_SPICE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::utc2et</b> (const char *utcstr, double &amp;et)</td></tr>
 <tr class="separator:a223ede147787fd346a2e8e0dddf1a033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga75714f9c2dbc696555d3abd96e88b9ae" id="r_ga75714f9c2dbc696555d3abd96e88b9ae"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::vrotv</b> (const Vector3d &amp;v, const Vector3d &amp;axis, double theta, Vector3d &amp;r)</td></tr>
+<tr class="separator:ga75714f9c2dbc696555d3abd96e88b9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p><br  />

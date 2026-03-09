@@ -8,5 +8,6 @@ var classast_1_1JulianDate =
     [ "secondsFromJ2000", "classast_1_1JulianDate.html#a7fedf3b700c471b228abf1dd7487b30b", null ],
     [ "setDayFractional", "classast_1_1JulianDate.html#addfe786b99fd2337bf91b32158b8d62c", null ],
     [ "setDaySecond", "classast_1_1JulianDate.html#adf1272b09b6178310814e64c8559dd71", null ],
-    [ "setImpreciseDay", "classast_1_1JulianDate.html#a87055b6bc22499096b60dac1ce0f67dc", null ]
+    [ "setImpreciseDay", "classast_1_1JulianDate.html#a87055b6bc22499096b60dac1ce0f67dc", null ],
+    [ "shiftedBySecond", "classast_1_1JulianDate.html#acd8181371856325ed60df9079ba61cde", null ]
 ];

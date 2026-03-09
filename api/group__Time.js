@@ -76,7 +76,8 @@ var group__Time =
       [ "secondsFromJ2000", "classast_1_1JulianDate.html#a7fedf3b700c471b228abf1dd7487b30b", null ],
       [ "setDayFractional", "classast_1_1JulianDate.html#addfe786b99fd2337bf91b32158b8d62c", null ],
       [ "setDaySecond", "classast_1_1JulianDate.html#adf1272b09b6178310814e64c8559dd71", null ],
-      [ "setImpreciseDay", "classast_1_1JulianDate.html#a87055b6bc22499096b60dac1ce0f67dc", null ]
+      [ "setImpreciseDay", "classast_1_1JulianDate.html#a87055b6bc22499096b60dac1ce0f67dc", null ],
+      [ "shiftedBySecond", "classast_1_1JulianDate.html#acd8181371856325ed60df9079ba61cde", null ]
     ] ],
     [ "ast::ModJulianDate", "classast_1_1ModJulianDate.html", [
       [ "dayFractional", "classast_1_1ModJulianDate.html#a84787d21f050ff5bafec038662a82316", null ],
@@ -116,6 +117,8 @@ var group__Time =
       [ "julianCenturyFromJ2000TT", "classast_1_1TimePoint.html#a179367da0b2cd785b6e15474a1372090", null ],
       [ "operator+", "classast_1_1TimePoint.html#a6cea9ade35ef061d16beeab1e0b48708", null ],
       [ "operator-", "classast_1_1TimePoint.html#af5ff4430264ef41942db80d0fd8fcdd2", null ],
+      [ "shiftedBySecond", "classast_1_1TimePoint.html#a27c238cc13dc80d5497ffa4f07cd4414", null ],
+      [ "shiftedBySecondInTDB", "classast_1_1TimePoint.html#ab835bcc2d27d002dde4a4789a2f0e94f", null ],
       [ "toString", "classast_1_1TimePoint.html#afcd52a7e2f0e8c0627ccf3918d2c2011", null ],
       [ "toTAI", "classast_1_1TimePoint.html#a14f2bfb1304169854d3aa37cfc47e269", null ],
       [ "toTAI", "classast_1_1TimePoint.html#afd12e985220adfd9743435f0ebd55f5b", null ],

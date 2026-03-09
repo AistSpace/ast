@@ -1,5 +1,7 @@
 var NAVTREEINDEX5 =
 {
+"TangentPoint_8hpp_source.html":[4,0,0,0,0,25],
+"Terminal_8cpp.html":[4,0,0,12,2,21],
 "Terminal_8hpp.html":[4,0,0,12,2,22],
 "Terminal_8hpp_source.html":[4,0,0,12,2,22],
 "ThirdBody_8hpp_source.html":[4,0,0,2,4,3],
@@ -33,7 +35,7 @@ var NAVTREEINDEX5 =
 "TwoBody_8cpp.html#a576e27d6ac7a3bed49e448e9b092a4ba":[4,0,0,2,7,8,0],
 "TwoBody_8hpp.html":[4,0,0,2,7,9],
 "TwoBody_8hpp_source.html":[4,0,0,2,7,9],
-"TypeTraits_8hpp_source.html":[4,0,0,12,6,17],
+"TypeTraits_8hpp_source.html":[4,0,0,12,6,18],
 "Type_8hpp.html":[4,0,0,12,4,5],
 "Type_8hpp_source.html":[4,0,0,12,4,5],
 "Types_8cpp.html":[4,0,0,10,0,4],
@@ -152,9 +154,9 @@ var NAVTREEINDEX5 =
 "Variable_8hpp_source.html":[4,0,0,10,9,3],
 "VectorFunc_8hpp.html":[4,0,0,5,2,4],
 "VectorFunc_8hpp_source.html":[4,0,0,5,2,4],
-"WorkingDirectory_8cpp.html":[4,0,0,12,6,18],
-"WorkingDirectory_8hpp.html":[4,0,0,12,6,19],
-"WorkingDirectory_8hpp_source.html":[4,0,0,12,6,19],
+"WorkingDirectory_8cpp.html":[4,0,0,12,6,19],
+"WorkingDirectory_8hpp.html":[4,0,0,12,6,20],
+"WorkingDirectory_8hpp_source.html":[4,0,0,12,6,20],
 "Zeros_8hpp.html":[4,0,0,5,4,0,0,2],
 "Zeros_8hpp_source.html":[4,0,0,5,4,0,0,2],
 "_2github_2workspace_2src_2AstUtil_2Util_2Literals_8hpp-example.html":[5,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX5 =
 "classast_1_1BKVNode.html#aa764560a757a7aa7e1ea9628b4ff8e3d":[0,4,0,4,0],
 "classast_1_1BKVParser.html":[0,4,0,5],
 "classast_1_1BKVParser.html#a17f23e91ec51777fd6db5638e89f6351":[0,4,0,5,3],
-"classast_1_1BKVParser.html#a5ca7454cc8a700a271a76f81e7c5d5c9":[0,4,0,5,4],
-"classast_1_1BKVParser.html#a5d178ad4b4782095d511102b36ce8eb0":[0,4,0,5,9],
-"classast_1_1BKVParser.html#a63a52ed4f2a7c565015901f9bc82f385":[0,4,0,5,1]
+"classast_1_1BKVParser.html#a5ca7454cc8a700a271a76f81e7c5d5c9":[0,4,0,5,4]
 };
