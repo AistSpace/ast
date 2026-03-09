@@ -1,6 +1,13 @@
 ﻿set_group("thirdparty")
-includes("*/xmake.lua")
 set_warnings("more")
+
+includes("*/xmake.lua|cspice-*/xmake.lua")
+
+if is_plat("windows", "mingw") then
+    includes("cspice-windows/xmake.lua")
+elseif is_plat("linux") then
+    includes("cspice-linux/xmake.lua")
+end
 
 -- replace cminpack target with cminpack package in xmake-repo
 -- target("cminpack")

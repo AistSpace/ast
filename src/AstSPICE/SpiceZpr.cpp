@@ -1221,7 +1221,7 @@ err_t spkapo(
     }
     else{
         int sign = abcorr[0] == 'X' ? 1 : -1;
-        int maxIter;
+        int maxIter=0;
 
         if(abcorr.starts_with("LT") || abcorr.starts_with("XLT"))
         {

@@ -1,5 +1,11 @@
 package("cspice")
-    set_sourcedir(path.join(os.scriptdir(), "../../../../thirdparty/cspice"))
+    if is_plat("windows", "mingw") then
+        set_sourcedir(path.join(os.scriptdir(), "../../../../thirdparty/cspice-windows"))
+    elseif is_plat("linux") then
+        set_sourcedir(path.join(os.scriptdir(), "../../../../thirdparty/cspice-linux"))
+    else
+        set_sourcedir(path.join(os.scriptdir(), "../../../../thirdparty/cspice"))
+    end
     on_install(function (package)
         local configs = {}
         if package:config("shared") then

@@ -21,13 +21,14 @@
 #define _USE_MATH_DEFINES
 #include "AstSPICE/SpiceZpr.h"
 #include "AstTest/Test.h"
-#include "AstUtil/Literals.hpp"
 #include "AstCore/FrameTransform.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/RunTime.hpp"
 #include "AstCore/CelestialBody.hpp"
 #include "AstMath/KinematicRotation.hpp"
 #include "AstMath/MathOperator.hpp"
+#include "AstUtil/Literals.hpp"
+#include "AstUtil/IO.hpp"
 #include <cmath>
 #include <cstdio>
 #include <array>
@@ -2571,8 +2572,31 @@ TEST(SpiceZpr, spkpds)
 
 TEST(SpiceZpr, spkpos)
 {
-    furnsh_c("data/Test/kernels/spk/de430.bsp");
-    furnsh_c("data/Test/kernels/lsk/naif0012.tls");
+    std::string spkFile = aDataDir() + "/Test/kernels/spk/de430.bsp";
+    SpiceInt handle;
+    spklef_c(spkFile.c_str(), &handle );
+    //furnsh_c(spkFile.c_str());
+    furnsh_c((aDataDir() + "/Test/kernels/lsk/naif0012.tls").c_str());
+    {
+        SpiceInt i, n;
+        SpiceChar file[256];
+        SpiceChar filtyp[32];
+        SpiceChar source[256];
+        SpiceInt handle;
+        SpiceBoolean found;
+
+
+        ktotal_c("ALL", &n);
+        ast_printf("当前已加载的内核数量: %d\n", (int)n);
+
+        for (i = 0; i < n; i++) {
+            // 通过索引 i 获取第 i+1 个内核的信息
+            kdata_c(i, "ALL", 256, 32, 256, file, filtyp, source, &handle, &found);
+            if (found) {
+                ast_printf("内核 %d: %s (类型: %s)\n", (int)i+1, file, filtyp);
+            }
+        }
+    }
     aInitialize();
     static const char* abcorrList[] = {
         "NONE", 

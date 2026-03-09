@@ -55,46 +55,42 @@ err_t SpiceParser::getNext(BKVItemView &item)
                 inDataBlock_ = false;
             }
         }else{
-            if(inDataBlock_)
+            if(!inDataBlock_)
+                continue;
+            StringView line = keyBuffer_.data();
+            // 解析数据块中的键值对项
+            auto pos = line.find('=');
+            if(pos == StringView::npos)
+                continue;
+            item.key() = aStripAsciiWhitespace(line.substr(0, pos));
+            StringView value = line.substr(pos + 1);
+            StringView valueStrip = aStripAsciiWhitespace(value);
+            item.value() = valueStrip;
+            if(valueStrip.empty())
             {
-                StringView line = keyBuffer_.data();
-                // 解析数据块中的键值对项
-                auto pos = line.find('=');
-                if(pos != StringView::npos)
-                {
-                    item.key() = aStripAsciiWhitespace(line.substr(0, pos));
-                    StringView value = line.substr(pos + 1);
-                    StringView valueStrip = aStripAsciiWhitespace(value);
-                    item.value() = valueStrip;
-                    if(valueStrip.empty())
+                aWarning("value is whitespace for key: %.*s", (int)item.key().size(), item.key().data());
+            }else if(valueStrip[0] == '(' && valueStrip.back() != ')'){
+                valueBuffer_.assign(value.begin(), value.size());
+                // 继续读取，直到找到完整的括号表达式
+                StringView lineStrip;
+                const size_t maxsize = valueBuffer_.max_size();
+                do{
+                    StringView line = getLineWithNewline();
+                    if(valueBuffer_.size() + line.size() >= maxsize)
                     {
-                        aWarning("value is whitespace for key: %.*s", (int)item.key().size(), item.key().data());
-                    }else if(valueStrip[0] == '(' && valueStrip.back() != ')'){
-                        valueBuffer_.assign(value.begin(), value.size());
-                        // 继续读取，直到找到完整的括号表达式
-                        StringView lineStrip;
-                        const size_t maxsize = valueBuffer_.max_size();
-                        do{
-                            StringView line = getLineWithNewline();
-                            if(valueBuffer_.size() + line.size() >= maxsize)
-                            {
-                                aError("value buffer overflow for key: %.*s", (int)item.key().size(), item.key().data());
-                                break;
-                            }
-                            valueBuffer_.append(line.begin(), line.size());
-                            lineStrip = aStripTrailingAsciiWhitespace(line);
-                        }while(lineStrip.back() != ')');
-                        item.value() = valueBuffer_;
+                        aError("value buffer overflow for key: %.*s", (int)item.key().size(), item.key().data());
+                        break;
                     }
-                    // {
-                    //     printf("key: '%.*s'\n", (int)item.key().size(), item.key().data());
-                    //     printf("value: '%.*s'\n", (int)item.value().size(), item.value().data());
-                    // }
-                    return eNoError;
-                }else{
-                    continue;
-                }
+                    valueBuffer_.append(line.begin(), line.size());
+                    lineStrip = aStripTrailingAsciiWhitespace(line);
+                }while(lineStrip.back() != ')');
+                item.value() = valueBuffer_;
             }
+            // {
+            //     printf("key: '%.*s'\n", (int)item.key().size(), item.key().data());
+            //     printf("value: '%.*s'\n", (int)item.value().size(), item.value().data());
+            // }
+            return eNoError;
         }
     }
     static_assert(EOF != 0, "EOF must be non-zero");

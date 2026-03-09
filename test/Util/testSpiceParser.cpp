@@ -24,6 +24,21 @@
 
 AST_USING_NAMESPACE
 
+TEST(SpiceParser, SpiceData)
+{
+    {
+        char buf[] = "KEY1 = VALUE1\n";
+        SpiceData data = std::vector<char>(buf, buf + sizeof(buf));
+        auto doubleData = data.getDoubleData();
+        printf("size: %d\n", (int)doubleData.size());
+    }
+    {
+        SpiceData data = std::vector<double>{1.0, 2.0, 3.0};
+        auto charData = data.getCharData();
+        printf("size: %d\n", (int)charData.size());
+    }
+}
+
 TEST(SpiceParser, readData)
 {
     SpiceParser parser(aDataDir() + "/Test/kernels/pck/pck00011.tpc");
