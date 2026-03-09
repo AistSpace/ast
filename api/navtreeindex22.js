@@ -1,5 +1,8 @@
 var NAVTREEINDEX22 =
 {
+"structast_1_1NLPJacInfo.html":[3,0,0,181],
+"structast_1_1NLPOutput.html":[2,0,0,183],
+"structast_1_1NLPOutput.html":[3,0,0,182],
 "structast_1_1NLPVector.html":[2,0,0,185],
 "structast_1_1NLPVector.html":[3,0,0,184],
 "structast_1_1NLPVectorBounds.html":[2,0,0,186],
@@ -27,8 +30,8 @@ var NAVTREEINDEX22 =
 "structast_1_1SnoptCAPI.html":[3,0,0,257],
 "structast_1_1SolverStats.html":[0,1,3,5],
 "structast_1_1SpaceWeather_1_1Entry.html":[0,0,1,6,0],
-"structast_1_1XYSCache.html":[2,0,0,321],
-"structast_1_1XYSCache.html":[3,0,0,320],
+"structast_1_1XYSCache.html":[2,0,0,322],
+"structast_1_1XYSCache.html":[3,0,0,321],
 "structast_1_1args__t.html":[2,0,0,9],
 "structast_1_1args__t.html":[3,0,0,8],
 "structast_1_1debin__header.html":[2,0,0,82],

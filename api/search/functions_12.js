@@ -3,7 +3,7 @@ var searchData=
   ['rad2deg_0',['rad2deg',['../group__Util.html#ga820cdafe9d38c66c5c0736d429aafabd',1,'ast']]],
   ['radian_1',['Radian',['../classast_1_1Unit.html#ac2cd6e4ca65e96a425e4da2f437e7a89',1,'ast::Unit']]],
   ['radrec_2',['radrec',['../group__Spice.html#ga925fcb5be8351292ea60a4b53e1aadd5',1,'ast']]],
-  ['readdata_3',['readData',['../classast_1_1SpiceParser.html#a547f07b6829fd3152825a983a58343b8',1,'ast::SpiceParser']]],
+  ['readdata_3',['readData',['../classast_1_1SpiceTextParser.html#ae192ca7c2892bf8566e40ee0d6c42ea4',1,'ast::SpiceTextParser']]],
   ['refcount_4',['refCount',['../classast_1_1Object.html#a91ca8d28b3a279e60ce673d69b5a545b',1,'ast::Object']]],
   ['removecelestialbody_5',['removeCelestialBody',['../classast_1_1GfxSolarSystem.html#a1ad0adc0276764b9798e67664326440c',1,'ast::GfxSolarSystem']]],
   ['removeeventdetector_6',['removeEventDetector',['../classast_1_1ODEIntegrator.html#a478f0a75349ed585fa0b7133c549b7ea',1,'ast::ODEIntegrator']]],

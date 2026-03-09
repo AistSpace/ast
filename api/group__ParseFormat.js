@@ -63,12 +63,12 @@ var group__ParseFormat =
     ] ],
     [ "ast::BKVTree", "classast_1_1BKVTree.html", null ],
     [ "ast::GenericValue", "classast_1_1GenericValue.html", null ],
-    [ "ast::SpiceParser", "classast_1_1SpiceParser.html", [
-      [ "getNext", "classast_1_1SpiceParser.html#a4f5ca2916eeafc3c294460be3477e1e8", null ],
-      [ "readData", "classast_1_1SpiceParser.html#a547f07b6829fd3152825a983a58343b8", null ],
-      [ "inDataBlock_", "classast_1_1SpiceParser.html#a0924fe19265e7b2d8aacbe2a5a87b86c", null ],
-      [ "keyBuffer_", "classast_1_1SpiceParser.html#afa19a4e3e1cf561b3860e6fe80085ce0", null ],
-      [ "valueBuffer_", "classast_1_1SpiceParser.html#a478861ec82fa66de99ce6b1971ebbdf6", null ]
+    [ "ast::SpiceTextParser", "classast_1_1SpiceTextParser.html", [
+      [ "getNext", "classast_1_1SpiceTextParser.html#aa8b704db332291101e46e896aa59a1ef", null ],
+      [ "readData", "classast_1_1SpiceTextParser.html#ae192ca7c2892bf8566e40ee0d6c42ea4", null ],
+      [ "inDataBlock_", "classast_1_1SpiceTextParser.html#a6dd69bcea554ffab9a0b1c4482d653a5", null ],
+      [ "keyBuffer_", "classast_1_1SpiceTextParser.html#a6ff845df8ff7e6e416e67d225fa580a6", null ],
+      [ "valueBuffer_", "classast_1_1SpiceTextParser.html#a61a427b29cdabeef2bf45db7f73a1ef8", null ]
     ] ],
     [ "ast::ValueView", "classast_1_1ValueView.html", [
       [ "toBool", "classast_1_1ValueView.html#aecb93813bb4b92c0c6d364bc65fbda4f", null ],

@@ -15,7 +15,7 @@ var hierarchy =
     [ "ast::BackTrace", "classast_1_1BackTrace.html", null ],
     [ "ast::BaseParser", "classast_1_1BaseParser.html", [
       [ "ast::BKVParser", "classast_1_1BKVParser.html", null ],
-      [ "ast::SpiceParser", "classast_1_1SpiceParser.html", null ]
+      [ "ast::SpiceTextParser", "classast_1_1SpiceTextParser.html", null ]
     ] ],
     [ "ast::BKVItemView", "classast_1_1BKVItemView.html", null ],
     [ "ast::BKVNode", "classast_1_1BKVNode.html", [
@@ -416,6 +416,7 @@ var hierarchy =
     [ "ast::Sparse", "classast_1_1Sparse.html", null ],
     [ "ast::SpiceAxesRegistry", "classast_1_1SpiceAxesRegistry.html", null ],
     [ "ast::SpiceBodyRegistry", "classast_1_1SpiceBodyRegistry.html", null ],
+    [ "ast::SpiceDAFParser", "classast_1_1SpiceDAFParser.html", null ],
     [ "ast::SpiceData", "classast_1_1SpiceData.html", null ],
     [ "ast::SpiceFrameRegistry", "classast_1_1SpiceFrameRegistry.html", null ],
     [ "ast::SpiceKernelPool", "classast_1_1SpiceKernelPool.html", null ],
