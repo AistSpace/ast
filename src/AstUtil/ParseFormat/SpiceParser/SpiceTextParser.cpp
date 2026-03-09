@@ -18,12 +18,12 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "SpiceParser.hpp"
+#include "SpiceTextParser.hpp"
 #include "AstUtil/StringView.hpp"
 
 AST_NAMESPACE_BEGIN
 
-SpiceParser::SpiceParser()
+SpiceTextParser::SpiceTextParser()
     : BaseParser()
     , keyBuffer_(1024)
     //, valueBuffer_(2048)
@@ -32,7 +32,7 @@ SpiceParser::SpiceParser()
 
 }
 
-SpiceParser::SpiceParser(StringView filepath)
+SpiceTextParser::SpiceTextParser(StringView filepath)
     : BaseParser(filepath)
     , keyBuffer_(1024)
     // , valueBuffer_(2048)
@@ -41,7 +41,7 @@ SpiceParser::SpiceParser(StringView filepath)
 
 }
 
-err_t SpiceParser::getNext(BKVItemView &item)
+err_t SpiceTextParser::getNext(BKVItemView &item)
 {
     while(fgets(keyBuffer_.data(), (int)keyBuffer_.size(), file_))
     {
@@ -97,7 +97,7 @@ err_t SpiceParser::getNext(BKVItemView &item)
     return EOF;
 }
 
-err_t SpiceParser::readData(SpiceKernelPool &kernelPool)
+err_t SpiceTextParser::readData(SpiceKernelPool &kernelPool)
 {
     if(!isOpen())
     {

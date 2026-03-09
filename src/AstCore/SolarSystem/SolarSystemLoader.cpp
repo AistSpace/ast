@@ -20,7 +20,7 @@
 
 #include "SolarSystemLoader.hpp"
 #include "AstUtil/FileSystem.hpp"
-#include "AstUtil/SpiceParser.hpp"
+#include "AstUtil/SpiceTextParser.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -41,7 +41,7 @@ err_t SolarSystem::load(StringView dirpath)
 
 err_t SolarSystem::loadPCK(StringView filepath)
 {
-    SpiceParser parser(filepath);
+    SpiceTextParser parser(filepath);
     if(!parser.isOpen()){
         return eErrorInvalidFile;
     }

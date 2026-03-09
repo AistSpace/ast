@@ -40,8 +40,8 @@ int igrf13syn(
 )
 {
 #ifndef AST_NO_LIBF2C
-    long isv_ = isv;
-    long itype_ = itype;
+    integer isv_ = isv;
+    integer itype_ = itype;
     return igrf13syn_(&isv_, &date, &itype_, &alt, &colat, &elong, &x, &y, &z, &f);
 #else
     aError("function 'igrf13syn' is not implemented, please check whether libf2c package is enabled.");

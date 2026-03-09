@@ -2572,10 +2572,10 @@ TEST(SpiceZpr, spkpds)
 
 TEST(SpiceZpr, spkpos)
 {
-    std::string spkFile = aDataDir() + "/Test/kernels/spk/de430.bsp";
-    SpiceInt handle;
-    spklef_c(spkFile.c_str(), &handle );
-    //furnsh_c(spkFile.c_str());
+    const std::string spkFile = aDataDir() + "/Test/kernels/spk/de430.bsp";
+    // SpiceInt handle;
+    // spklef_c(spkFile.c_str(), &handle );
+    furnsh_c(spkFile.c_str());
     furnsh_c((aDataDir() + "/Test/kernels/lsk/naif0012.tls").c_str());
     {
         SpiceInt i, n;

@@ -57,7 +57,7 @@ void igrf(double lon, double lat, double height, double year, double &xl, double
     feldcof_(&year, &dimo);
     double bnorth, beast, bdown, babs;
     feldg_(&lat, &lon, &height, &bnorth, &beast, &bdown, &babs);
-    long icode = 0;
+    integer icode = 0;
     double bab1;
     shellg_(&lat, &lon, &height, &dimo, &xl, &icode, &bab1);
     double bequ = dimo / (xl * xl * xl);

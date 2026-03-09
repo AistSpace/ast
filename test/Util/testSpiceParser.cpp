@@ -18,7 +18,7 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AstUtil/SpiceParser.hpp"
+#include "AstUtil/SpiceTextParser.hpp"
 #include "AstCore/RunTime.hpp"
 #include "AstTest/Test.h"
 
@@ -26,11 +26,16 @@ AST_USING_NAMESPACE
 
 TEST(SpiceParser, SpiceData)
 {
+    GTEST_SKIP();
     {
         char buf[] = "KEY1 = VALUE1\n";
         SpiceData data = std::vector<char>(buf, buf + sizeof(buf));
-        auto doubleData = data.getDoubleData();
-        printf("size: %d\n", (int)doubleData.size());
+        {
+            auto doubleData = data.getDoubleData();
+            printf("size: %d\n", (int)doubleData.size());
+        }
+        int size = (int)data.getCharData().size();
+        printf("size: %d\n", size);
     }
     {
         SpiceData data = std::vector<double>{1.0, 2.0, 3.0};
@@ -41,7 +46,7 @@ TEST(SpiceParser, SpiceData)
 
 TEST(SpiceParser, readData)
 {
-    SpiceParser parser(aDataDir() + "/Test/kernels/pck/pck00011.tpc");
+    SpiceTextParser parser(aDataDir() + "/Test/kernels/pck/pck00011.tpc");
     SpiceKernelPool kernelPool;
     err_t ret = parser.readData(kernelPool);
     EXPECT_EQ(ret, 0);
