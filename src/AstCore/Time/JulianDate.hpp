@@ -183,6 +183,13 @@ public:
         return {day() - other.day(), second() - other.second()};
     }
 public:
+    /// @brief 计算儒略日偏移后的新儒略日
+    /// @param second 偏移秒数
+    /// @return 偏移后的新儒略日
+    JulianDate shiftedBySecond(double second) const{
+        return JulianDate::FromDaySecond(day_, second_ + second);
+    }
+public:
     int    day_;     // 天数部分 day part of julian date
     double second_;  // 秒数部分 second part of julia date
 };

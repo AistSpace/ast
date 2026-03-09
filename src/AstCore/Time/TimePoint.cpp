@@ -143,6 +143,11 @@ TimePoint TimePoint::FromImpreciseJDTT(double jdTT)
     return TimePoint::FromTT(JulianDate::FromImpreciseDay(jdTT));
 }
 
+TimePoint TimePoint::shiftedBySecondInTDB(double second) const
+{
+    return TimePoint::FromTDB(toTDB().shiftedBySecond(second));
+}
+
 TimePoint TimePoint::FromIntegerFractional(int64_t integer, double fractional)
 {
     return {integer, fractional};

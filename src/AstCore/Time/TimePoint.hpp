@@ -221,6 +221,19 @@ public:
         aTimePointFormat(*this, str, precision);
         return str;
     }
+public:
+    /// @brief 计算时间点偏移后的新时间点，按默认时间尺度进行时间偏移
+    /// @param second 偏移秒数
+    /// @return 偏移后的新时间点
+    TimePoint shiftedBySecond(double second) const{
+        return {integerPart(), fractionalPart() + second};
+    }
+    
+    /// @brief 计算时间点偏移后的新时间点，按TDB时间尺度进行时间偏移
+    /// @param second TDB秒数
+    /// @return 偏移后的新时间点
+    AST_CORE_API TimePoint shiftedBySecondInTDB(double second) const;
+    
 protected:
     static TimePoint FromIntegerFractional(int64_t integer, double fractional);
 public:

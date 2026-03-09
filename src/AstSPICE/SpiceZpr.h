@@ -148,7 +148,7 @@ double b1950();
 
 // cleari
 
-// clight
+double clight();
 
 // clpool
 

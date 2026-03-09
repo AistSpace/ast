@@ -28,12 +28,17 @@
 #include "AstMath/AngleAxis.hpp"
 #include "AstMath/Euler.hpp"
 #include "AstMath/Quaternion.hpp"
+#include "AstMath/MathOperator.hpp"
 #include "AstUtil/Constants.h"
 #include "AstUtil/Math.hpp"
 #include "AstUtil/StringView.hpp"
+#include "AstUtil/StringUtil.hpp"
+#include "AstUtil/Logger.hpp"
 #include "AstSPICE/SpiceRunTime.hpp"
 
 AST_NAMESPACE_BEGIN
+
+using namespace math;
 
 using SpiceDouble = double;
 using SpiceInt = int;
@@ -182,7 +187,10 @@ double b1950()
 
 // cleari
 
-// clight
+double clight()
+{
+    return aLightSpeed();
+}
 
 // clpool
 
@@ -1185,7 +1193,82 @@ void rav2xf(const Matrix3d &rot, const Vector3d &av, Matrix6d &xform)
 
 // spkacs
 
-// spkapo
+err_t spkapo(
+    CelestialBody      * targ,
+    const TimePoint&     et,
+    Axes               * ref,
+    const CartState&     sobs,
+    StringView           abcorr,
+    Vector3d&            ptarg,
+    double             * lt       
+){
+    if ( targ == nullptr || ref == nullptr)
+        return eErrorNullInput;
+    double temp;
+    if(!lt)
+        lt = &temp;
+
+    Vector3d posTarg;
+    err_t rc = targ->getPosICRF(et, posTarg);
+    if ( rc != 0 )
+        return rc;
+    ptarg = posTarg - sobs.pos();
+    *lt = ptarg.norm() / aLightSpeed();
+        
+    if(abcorr.empty() || aEqualsIgnoreCase(abcorr, "None"))
+    {
+        // pass
+    }
+    else{
+        int sign = abcorr[0] == 'X' ? 1 : -1;
+        int maxIter;
+
+        if(abcorr.starts_with("LT") || abcorr.starts_with("XLT"))
+        {
+            maxIter = 1;
+        }
+        else if(abcorr.starts_with("CN") || abcorr.starts_with("XCN"))
+        {
+            maxIter = 3;
+        }
+
+        for(int i=0; i<maxIter; i++)
+        {
+            double dt = sign * (*lt);
+            /*!
+            @note SPICE 中的时间系统按照 TDB 时间尺度进行推进
+            */
+            err_t rc = targ->getPosICRF(et.shiftedBySecondInTDB(dt), posTarg);
+            if ( rc != 0 )
+                return rc;
+            ptarg = posTarg - sobs.pos();
+            *lt = ptarg.norm() / aLightSpeed();
+        }
+        if(abcorr.ends_with("+S"))
+        {
+            if(abcorr[0] == 'X' ){
+                stlabx(ptarg, sobs.vel(), ptarg);
+            }
+            else{
+                stelab(ptarg, sobs.vel(), ptarg);
+            }
+        }
+    }
+
+    // 转换参考轴系
+    {
+        auto icrf = aAxesICRF();
+        if(ref != icrf && ref != nullptr){
+            Rotation rot;
+            rc = aAxesTransform(icrf, ref, et, rot);
+            if ( rc != 0 )
+                return rc;
+            ptarg = rot.transformVector(ptarg);
+        }
+    }
+    return eNoError;
+}
+
 
 // spkapp
 
@@ -1239,26 +1322,11 @@ err_t spkpos(
 {
     if ( targ == nullptr || obs == nullptr )
         return eErrorNullInput;
-    Vector3d posTarg;
-    Vector3d posObs;
-    err_t rc = targ->getPosICRF(et, posTarg);
+    CartState staObs;
+    err_t rc  = obs->getPosVelICRF(et, staObs.pos(), staObs.vel());
     if ( rc != 0 )
         return rc;
-    rc = obs->getPosICRF(et, posObs);
-    if ( rc != 0 )
-        return rc;
-    ptarg = posTarg - posObs;
-    auto icrf = aAxesICRF();
-    if(ref != icrf && ref != nullptr){
-        Rotation rot;
-        rc = aAxesTransform(icrf, ref, et, rot);
-        if ( rc != 0 )
-            return rc;
-        ptarg = rot.transformVector(ptarg);
-    }
-    if ( lt != nullptr )
-        *lt = (posTarg - posObs).norm() / kLightSpeed;
-    return eNoError;
+    return spkapo(targ, et, ref, staObs, abcorr, ptarg, lt);
 }
 
 err_t spkpos(
@@ -1386,7 +1454,51 @@ err_t spkssb(
 
 // stelab
 
+err_t stelab(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj)
+{
+    // 计算目标方向的单位向量
+    double normPobj = pobj.norm();
+    if (normPobj == 0.0) {
+        // 目标恰好位于观测者处，无需校正
+        appobj = pobj;
+        return eNoError;
+    }
+    Vector3d u = pobj / normPobj;
+
+    // 速度与光速的比值 v/c
+    Vector3d vbyc = vobs / aLightSpeed();
+
+    // 检查观测者速度是否超光速
+    double lensqr = vbyc.squaredNorm();
+    if (lensqr >= 1.0) {
+        aError("observer speed >= speed of light");
+        return -1;
+    }
+
+    // 计算叉积 H = U × (v/c)
+    Vector3d h = u.cross(vbyc);
+
+    double sinphi = h.norm();
+    if (sinphi != 0.0) {
+        // 像差角 φ = arcsin(|h|)
+        double phi = std::asin(sinphi);
+        // 绕旋转轴 h 旋转 phi(φ) 弧度
+        vrotv(pobj, h, phi, appobj);
+    } else {
+        // 运动方向与视线重合，无需校正
+        appobj = pobj;
+    }
+    return eNoError;
+}
+
 // stlabx
+
+err_t stlabx(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj)
+{
+    // 发射情况的校正是接收情况的逆校正，只需将速度取反
+    Vector3d negVel = -vobs;
+    return stelab(pobj, negVel, appobj);
+}
 
 // stpool
 
@@ -1588,6 +1700,35 @@ err_t utc2et(
 // vrel
 
 // vrotv
+void vrotv(const Vector3d& v, const Vector3d& axis, double theta, Vector3d& r)
+{
+    double axisNorm = axis.norm();
+    if (axisNorm == 0.0) {
+        r = v;
+        return;
+    }
+
+    // 单位轴
+    Vector3d x = axis / axisNorm;
+
+    // 投影到轴上的分量
+    Vector3d p = v.dot(x) * x;
+
+    // 垂直轴的分量
+    Vector3d v1 = v - p;
+
+    // 将垂直分量绕轴旋转 90° 所得向量
+    Vector3d v2 = x.cross(v1);
+
+    double c = std::cos(theta);
+    double s = std::sin(theta);
+
+    // 旋转后的垂直分量
+    Vector3d rplane = c * v1 + s * v2;
+
+    // 最终结果 = 旋转后的垂直分量 + 轴向分量
+    r = rplane + p;
+}
 
 // vsclg
 

@@ -178,7 +178,9 @@ AST_SPICE_CAPI double b1950();
 
 // cleari
 
-// clight
+/// @brief 获取真空中的光速
+/// @return 光速
+AST_SPICE_CAPI double clight();
 
 // clpool
 
@@ -1165,7 +1167,24 @@ AST_SPICE_CAPI void rav2xf(
 
 // spkacs
 
-// spkapo
+/// @brief 计算目标天体相对于观测者的位置，可进行光行时（行星光行差）和恒星像差修正(S/P Kernel, apparent position only)
+/// @param targ 目标天体
+/// @param et 时间点
+/// @param ref 参考轴系
+/// @param sobs 观测者状态
+/// @param abcorr 像差校正选项
+/// @param ptarg 输出位置（直角坐标）
+/// @param lt 光行时
+/// @return 
+AST_SPICE_API err_t spkapo(
+    CelestialBody      * targ,
+    const TimePoint&     et,
+    Axes               * ref,
+    const CartState&     sobs,
+    StringView           abcorr,
+    Vector3d&            ptarg,
+    double             * lt=nullptr       
+);
 
 // spkapp
 
@@ -1190,8 +1209,24 @@ AST_SPICE_CAPI void rav2xf(
 // spkez
 
 // spkgeo
+AST_SPICE_API void spkgeo(
+    CelestialBody*    targ,
+    const TimePoint&  et,
+    Axes            * ref,
+    CelestialBody*    obs,
+    CartState&        state,
+    double          * lt=nullptr       
+);
 
 // spkgps
+AST_SPICE_API void spkgps(
+    CelestialBody*     targ,
+    const TimePoint&   et,
+    Axes             * ref,
+    CelestialBody*     obs,
+    Vector3d&          pos,
+    double           * lt=nullptr     
+);
 
 // spklef
 
@@ -1206,7 +1241,7 @@ AST_SPICE_CAPI void rav2xf(
 // spkpds
 
 
-/// @brief 计算返回目标天体相对于观测天体的位置，可进行光行时（行星光行差）和恒星像差修正( S/P Kernel, position)
+/// @brief 计算目标天体相对于观测天体的位置，可进行光行时（行星光行差）和恒星像差修正(S/P Kernel, position)
 /// @param[in] targ 目标天体
 /// @param[in] et 时间点
 /// @param[in] ref 参考轴系
@@ -1300,8 +1335,10 @@ AST_SPICE_API err_t spkssb(
 // ssize
 
 // stelab
+err_t stelab(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj);
 
 // stlabx
+err_t stlabx(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj);
 
 // stpool
 
@@ -1467,6 +1504,7 @@ AST_SPICE_API err_t utc2et(StringView utcstr, double &et);
 // vrel
 
 // vrotv
+AST_SPICE_CAPI void vrotv(const Vector3d& v, const Vector3d& axis, double theta, Vector3d& r);
 
 // vsclg
 
