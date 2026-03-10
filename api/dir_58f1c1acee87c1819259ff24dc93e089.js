@@ -2,6 +2,8 @@ var dir_58f1c1acee87c1819259ff24dc93e089 =
 [
     [ "CRT.cpp", "CRT_8cpp.html", null ],
     [ "CRT.hpp", "CRT_8hpp.html", "CRT_8hpp" ],
+    [ "Endian.cpp", "Endian_8cpp.html", "Endian_8cpp" ],
+    [ "Endian.hpp", "Endian_8hpp.html", "Endian_8hpp" ],
     [ "Environment.cpp", "Environment_8cpp.html", "Environment_8cpp" ],
     [ "Environment.hpp", "Environment_8hpp.html", "Environment_8hpp" ],
     [ "FileSystem.cpp", "FileSystem_8cpp.html", "FileSystem_8cpp" ],

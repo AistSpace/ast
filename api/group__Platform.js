@@ -2,11 +2,16 @@ var group__Platform =
 [
     [ "ast::fs_simple", "namespaceast_1_1fs__simple.html", null ],
     [ "ast::posix", "namespaceast_1_1posix.html", null ],
+    [ "ast::EEndian", "group__Platform.html#gae5cf4de7adb0a012861b982458f81526", [
+      [ "ast::eLittleEndian", "group__Platform.html#ggae5cf4de7adb0a012861b982458f81526ae3046b598c718c3efb499423ed6272ec", null ],
+      [ "ast::eBigEndian", "group__Platform.html#ggae5cf4de7adb0a012861b982458f81526aa62c0343340b8ffd29f021d1546be637", null ]
+    ] ],
     [ "ast::aCanDisplayGUI", "group__Platform.html#ga612f98b50735562fce328f4ad172a8de", null ],
     [ "ast::aCurrentLineNumber", "group__Platform.html#ga19bcda407eb5e7e67ab74ccc0f8f5a23", null ],
     [ "ast::aExeDir", "group__Platform.html#ga524821ccab59a9b4bc923f26dd3d3660", null ],
     [ "ast::aExePath", "group__Platform.html#ga39dda408be669b8f5c88e097b0c73ca3", null ],
     [ "ast::aFreeLibrary", "group__Platform.html#gabd86d9dd3fbee4adba535098848a1790", null ],
+    [ "ast::aGetEndian", "group__Platform.html#ga12c79e8e850e12d6ae0b9277d83ec0cb", null ],
     [ "ast::aGetFilePath", "group__Platform.html#ga696e5be3337a541eac1e81388379802f", null ],
     [ "ast::aGetFilePath", "group__Platform.html#ga94be012c6354bd2451f5d3bd19cbdc96", null ],
     [ "ast::aGetLoadError", "group__Platform.html#ga792d6e546f624b93c64487c04deac344", null ],

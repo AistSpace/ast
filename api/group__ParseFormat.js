@@ -10,6 +10,7 @@ var group__ParseFormat =
       [ "getLineWithNewline", "classast_1_1BaseParser.html#a8d27e9f9940a2cdf8416c7f4de164ea8", null ],
       [ "isOpen", "classast_1_1BaseParser.html#a24d5391a1aea013594950400a030065c", null ],
       [ "open", "classast_1_1BaseParser.html#a668c69dc73c3e8e0ed327e6af19d569d", null ],
+      [ "read", "classast_1_1BaseParser.html#a7ac170ef6035641cae5e3c7a9843c9c5", null ],
       [ "seek", "classast_1_1BaseParser.html#a8198c9c0e1d48ecbcef8dc936a57b1ac", null ],
       [ "setBorrowedFile", "classast_1_1BaseParser.html#a0ffc6e1ebca53ddfe3f0b78dd6dd8307", null ],
       [ "setOwnedFile", "classast_1_1BaseParser.html#af4e9236f80e0c1d50aa87bd46180d500", null ],
@@ -63,7 +64,14 @@ var group__ParseFormat =
     ] ],
     [ "ast::BKVTree", "classast_1_1BKVTree.html", null ],
     [ "ast::GenericValue", "classast_1_1GenericValue.html", null ],
-    [ "ast::SpiceSPKParser", "classast_1_1SpiceSPKParser.html", null ],
+    [ "ast::SPK_Descriptor", "structast_1_1SPK__Descriptor.html", null ],
+    [ "ast::SpiceSPKParser", "classast_1_1SpiceSPKParser.html", [
+      [ "findSpkDescriptor", "classast_1_1SpiceSPKParser.html#ad7e2ca19679a0dd813ec93b219055fad", null ],
+      [ "getPosNative", "classast_1_1SpiceSPKParser.html#a5512afbf5b4070d8c8b5203f0dec0169", null ],
+      [ "getPosVelNative", "classast_1_1SpiceSPKParser.html#a6dca0ef991ac01d58dbcb19b5abaa285", null ],
+      [ "buffer_", "classast_1_1SpiceSPKParser.html#a07878088bf8ef991b81fb2ed4f15aeed", null ],
+      [ "spkDescriptors_", "classast_1_1SpiceSPKParser.html#af4fa7ebbf7624802acb031758914cb62", null ]
+    ] ],
     [ "ast::SpiceTextParser", "classast_1_1SpiceTextParser.html", [
       [ "getNext", "classast_1_1SpiceTextParser.html#aa8b704db332291101e46e896aa59a1ef", null ],
       [ "readData", "classast_1_1SpiceTextParser.html#ae192ca7c2892bf8566e40ee0d6c42ea4", null ],

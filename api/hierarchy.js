@@ -61,6 +61,7 @@ var hierarchy =
     [ "ast::DAF_ElementRecords", "structast_1_1DAF__ElementRecords.html", null ],
     [ "ast::DAF_FileRecord", "structast_1_1DAF__FileRecord.html", null ],
     [ "ast::DAF_NameRecords", "structast_1_1DAF__NameRecords.html", null ],
+    [ "ast::DAF_SPKSummaryRecords", "structast_1_1DAF__SPKSummaryRecords.html", null ],
     [ "ast::DAF_SummaryRecords", "structast_1_1DAF__SummaryRecords.html", null ],
     [ "ast::DataContext", "classast_1_1DataContext.html", null ],
     [ "ast::DataPort", "classast_1_1DataPort.html", null ],

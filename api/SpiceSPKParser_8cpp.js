@@ -1,8 +1,8 @@
 var SpiceSPKParser_8cpp =
 [
-    [ "ast::SPK_Descriptor", "structast_1_1SPK__Descriptor.html", null ],
-    [ "ast::SPK_Type2_Record", "structast_1_1SPK__Type2__Record.html", null ],
-    [ "ast::SPK_Type2_Trailer", "structast_1_1SPK__Type2__Trailer.html", null ],
+    [ "ast::DAF_SPKSummaryRecords", "structast_1_1DAF__SPKSummaryRecords.html", "structast_1_1DAF__SPKSummaryRecords" ],
+    [ "ast::SPK_Type2_Record", "structast_1_1SPK__Type2__Record.html", "structast_1_1SPK__Type2__Record" ],
+    [ "ast::SPK_Type2_Trailer", "structast_1_1SPK__Type2__Trailer.html", "structast_1_1SPK__Type2__Trailer" ],
     [ "ast::SPK_Type5_State", "structast_1_1SPK__Type5__State.html", null ],
     [ "ast::SPK_Type5_Trailer", "structast_1_1SPK__Type5__Trailer.html", null ],
     [ "ast::SPK_State", "structast_1_1SPK__State.html", null ],

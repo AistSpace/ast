@@ -11,6 +11,6 @@ var searchData=
   ['poscbi_8',['posCBI',['../classast_1_1BlockGravity.html#a6ba510a84e05648c87daa380a5e09743',1,'ast::BlockGravity::posCBI'],['../classast_1_1BlockThirdBody.html#a4694a96c154588f7ee52df40b9e6a74c',1,'ast::BlockThirdBody::posCBI']]],
   ['positionderivative_5f_9',['positionDerivative_',['../classast_1_1BlockMotion.html#a2d9cd111f95d6dcb19bf48907ee08680',1,'ast::BlockMotion']]],
   ['prenul_10',['prenul',['../structast_1_1DAF__FileRecord.html#a67f959bd98d9af4fd5297bd4e17c4925',1,'ast::DAF_FileRecord']]],
-  ['prev_11',['prev',['../structast_1_1DAF__SummaryRecords.html#a871379b7c3dd3b1b37a043f028fad978',1,'ast::DAF_SummaryRecords']]],
+  ['prev_11',['prev',['../structast_1_1DAF__SummaryRecords.html#a871379b7c3dd3b1b37a043f028fad978',1,'ast::DAF_SummaryRecords::prev'],['../structast_1_1DAF__SPKSummaryRecords.html#a30b79ae6a343e644e3fcdc4d8f1ece50',1,'ast::DAF_SPKSummaryRecords::prev']]],
   ['pstnul_12',['pstnul',['../structast_1_1DAF__FileRecord.html#ad311bd512ed672bee5193b0e30fef442',1,'ast::DAF_FileRecord']]]
 ];

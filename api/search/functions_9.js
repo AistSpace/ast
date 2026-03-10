@@ -39,7 +39,8 @@ var searchData=
   ['isunit_36',['isUnit',['../classast_1_1Dimension.html#a5b13432f8daf056d966cb4d5f38fa210',1,'ast::Dimension']]],
   ['isvalid_37',['isValid',['../classast_1_1Quantity.html#abcff1fb55869dbd60709752c0ec663c2',1,'ast::Quantity::isValid()'],['../classast_1_1Unit.html#aa588eedf33c16b12c0001ad440f6f32c',1,'ast::Unit::isValid()']]],
   ['isvaliddegreeorder_38',['isValidDegreeOrder',['../classast_1_1GravityField.html#ace7869e6a5481612ef36ba1480ce1b7f',1,'ast::GravityField']]],
-  ['iterate_5fbegin_39',['iterate_begin',['../namespaceast.html#a62018e586bdff7fd154f7c71b4bd6af2',1,'ast']]],
-  ['iterate_5fget_5ffunc_40',['iterate_get_func',['../namespaceast.html#a236320bc52680eb15582c6283715aa95',1,'ast']]],
-  ['iterate_5fnext_41',['iterate_next',['../namespaceast.html#a0fa8c52209d153fb8e308c1473b3960f',1,'ast']]]
+  ['isvalidfile_39',['isValidFile',['../classast_1_1SpiceDAFParser.html#accf0cca27c52ee9cd6178b6d50ad2acd',1,'ast::SpiceDAFParser']]],
+  ['iterate_5fbegin_40',['iterate_begin',['../namespaceast.html#a62018e586bdff7fd154f7c71b4bd6af2',1,'ast']]],
+  ['iterate_5fget_5ffunc_41',['iterate_get_func',['../namespaceast.html#a236320bc52680eb15582c6283715aa95',1,'ast']]],
+  ['iterate_5fnext_42',['iterate_next',['../namespaceast.html#a0fa8c52209d153fb8e308c1473b3960f',1,'ast']]]
 ];

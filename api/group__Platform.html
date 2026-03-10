@@ -101,6 +101,7 @@ $(function(){initNavTree('group__Platform.html',''); initResizable(true); });
   <div class="summary">
 <a href="#namespaces">命名空间</a> &#124;
 <a href="#typedef-members">类型定义</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle"><div class="title">平台相关接口<div class="ingroups"><a class="el" href="group__Util.html">工具模块</a></div></div></div>
 </div><!--header-->
@@ -121,8 +122,17 @@ $(function(){initNavTree('group__Platform.html',''); initResizable(true); });
 typedef <a class="el" href="classast_1_1UiWidget.html">UiWidget</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><b>ast::UiWidgetFactory</b>) (<a class="el" href="classast_1_1Object.html">Object</a> *object)</td></tr>
 <tr class="separator:ga698189029704d7c19176e82dd509e66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:gae5cf4de7adb0a012861b982458f81526" id="r_gae5cf4de7adb0a012861b982458f81526"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gae5cf4de7adb0a012861b982458f81526">ast::EEndian</a> { <a class="el" href="#ggae5cf4de7adb0a012861b982458f81526ae3046b598c718c3efb499423ed6272ec">ast::eLittleEndian</a>
+, <a class="el" href="#ggae5cf4de7adb0a012861b982458f81526aa62c0343340b8ffd29f021d1546be637">ast::eBigEndian</a>
+ }</td></tr>
+<tr class="separator:gae5cf4de7adb0a012861b982458f81526"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
+<tr class="memitem:ga12c79e8e850e12d6ae0b9277d83ec0cb" id="r_ga12c79e8e850e12d6ae0b9277d83ec0cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#gae5cf4de7adb0a012861b982458f81526">EEndian</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga12c79e8e850e12d6ae0b9277d83ec0cb">ast::aGetEndian</a> ()</td></tr>
+<tr class="separator:ga12c79e8e850e12d6ae0b9277d83ec0cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1b536eb0b193fd88914dd12e6895c229" id="r_ga1b536eb0b193fd88914dd12e6895c229"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1b536eb0b193fd88914dd12e6895c229">ast::aIsCI</a> ()</td></tr>
 <tr class="separator:ga1b536eb0b193fd88914dd12e6895c229"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga895a0d59cc088ec5dc894a34864c3ffc" id="r_ga895a0d59cc088ec5dc894a34864c3ffc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga895a0d59cc088ec5dc894a34864c3ffc">ast::aIsTerminal</a> (FILE *file)</td></tr>
@@ -188,6 +198,27 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>ast::ast_printf</b> (c
 <tr class="memitem:ga9d38a8540eaa686e730caab9e588e35f" id="r_ga9d38a8540eaa686e730caab9e588e35f"><td class="memItemLeft" align="right" valign="top">AST_UTIL_CAPI <a class="el" href="classast_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga9d38a8540eaa686e730caab9e588e35f">ast::aUiSelectObject</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> typeName)</td></tr>
 <tr class="separator:ga9d38a8540eaa686e730caab9e588e35f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">枚举类型说明</h2>
+<a id="gae5cf4de7adb0a012861b982458f81526" name="gae5cf4de7adb0a012861b982458f81526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae5cf4de7adb0a012861b982458f81526">&#9670;&#160;</a></span>EEndian</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#gae5cf4de7adb0a012861b982458f81526">ast::EEndian</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ggae5cf4de7adb0a012861b982458f81526ae3046b598c718c3efb499423ed6272ec" name="ggae5cf4de7adb0a012861b982458f81526ae3046b598c718c3efb499423ed6272ec"></a>eLittleEndian&#160;</td><td class="fielddoc"><p>小端字节序 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae5cf4de7adb0a012861b982458f81526aa62c0343340b8ffd29f021d1546be637" name="ggae5cf4de7adb0a012861b982458f81526aa62c0343340b8ffd29f021d1546be637"></a>eBigEndian&#160;</td><td class="fielddoc"><p>大端字节序 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">函数说明</h2>
 <a id="ga612f98b50735562fce328f4ad172a8de" name="ga612f98b50735562fce328f4ad172a8de"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga612f98b50735562fce328f4ad172a8de">&#9670;&#160;</a></span>aCanDisplayGUI()</h2>
@@ -300,6 +331,26 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>ast::ast_printf</b> (c
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>0: 成功 </dd></dl>
+
+</div>
+</div>
+<a id="ga12c79e8e850e12d6ae0b9277d83ec0cb" name="ga12c79e8e850e12d6ae0b9277d83ec0cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga12c79e8e850e12d6ae0b9277d83ec0cb">&#9670;&#160;</a></span>aGetEndian()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_UTIL_CAPI <a class="el" href="#gae5cf4de7adb0a012861b982458f81526">EEndian</a> ast::aGetEndian </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取当前系统的字节序 </p>
+<dl class="section return"><dt>返回</dt><dd>EEndian 当前系统的字节序 </dd></dl>
 
 </div>
 </div>

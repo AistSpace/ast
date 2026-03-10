@@ -140,6 +140,8 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:ac368ef116424352bb0ad91ca29b49ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4807b86dfe5303eba5a8701cd9ad9f2d" id="r_a4807b86dfe5303eba5a8701cd9ad9f2d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4807b86dfe5303eba5a8701cd9ad9f2d">eof</a> () const</td></tr>
 <tr class="separator:a4807b86dfe5303eba5a8701cd9ad9f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac170ef6035641cae5e3c7a9843c9c5" id="r_a7ac170ef6035641cae5e3c7a9843c9c5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ac170ef6035641cae5e3c7a9843c9c5">read</a> (void *buffer, size_t size, size_t pos) const</td></tr>
+<tr class="separator:a7ac170ef6035641cae5e3c7a9843c9c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d27e9f9940a2cdf8416c7f4de164ea8" id="r_a8d27e9f9940a2cdf8416c7f4de164ea8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d27e9f9940a2cdf8416c7f4de164ea8">getLineWithNewline</a> ()</td></tr>
 <tr class="separator:a8d27e9f9940a2cdf8416c7f4de164ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bfcd16c7414029bccdd5eafb8d409b8" id="r_a5bfcd16c7414029bccdd5eafb8d409b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bfcd16c7414029bccdd5eafb8d409b8">getLine</a> ()</td></tr>
@@ -374,6 +376,44 @@ std::vector&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a7ac170ef6035641cae5e3c7a9843c9c5" name="a7ac170ef6035641cae5e3c7a9843c9c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ac170ef6035641cae5e3c7a9843c9c5">&#9670;&#160;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t ast::BaseParser::read </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>读取文件内容 </p>
+<p>从当前文件指针位置读取指定数量的字节到缓冲区。 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>用于存储读取内容的缓冲区。 </td></tr>
+    <tr><td class="paramname">size</td><td>要读取的字节数。 </td></tr>
+    <tr><td class="paramname">pos</td><td>读取的起始位置，从文件开头开始计算。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>实际读取的字节数。 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">待办事项</a></b></dt><dd>当前的函数实现未考虑线程安全问题，该接口需要线程安全的实现，考虑在linux下使用pread函数 </dd></dl>
 
 </div>
 </div>
