@@ -15,6 +15,7 @@ var searchData=
   ['direction_5f_12',['direction_',['../classast_1_1CriticallyInclinedOrbitDesigner.html#a771ab05caca4a307e4f15692d6ee96ae',1,'ast::CriticallyInclinedOrbitDesigner']]],
   ['dm_13',['dm',['../Unit_8cpp.html#a567c78044182d62bdfd482ade453488f',1,'ast::units']]],
   ['drag_5f_14',['drag_',['../classast_1_1HPOPForceModel.html#a54f4de37fd487f9c72b7ce79eb3bd2c9',1,'ast::HPOPForceModel']]],
-  ['dy_15',['dy',['../structast_1_1EOP_1_1Entry.html#aad4654f312619fbc29165539a7d27ea4',1,'ast::EOP::Entry']]],
-  ['dynamicsystem_5f_16',['dynamicSystem_',['../classast_1_1HPOPEquation.html#ad0c20d16cce4c511c79c09f464fb49d6',1,'ast::HPOPEquation']]]
+  ['dval_15',['dval',['../structast_1_1DAF__SummaryRecords.html#a0971b46fa87ae11370503bd017ddfa1b',1,'ast::DAF_SummaryRecords']]],
+  ['dy_16',['dy',['../structast_1_1EOP_1_1Entry.html#aad4654f312619fbc29165539a7d27ea4',1,'ast::EOP::Entry']]],
+  ['dynamicsystem_5f_17',['dynamicSystem_',['../classast_1_1HPOPEquation.html#ad0c20d16cce4c511c79c09f464fb49d6',1,'ast::HPOPEquation']]]
 ];

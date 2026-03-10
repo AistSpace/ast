@@ -1,5 +1,8 @@
 var NAVTREEINDEX5 =
 {
+"Symbol_8hpp.html":[4,0,0,10,9,1],
+"Symbol_8hpp_source.html":[4,0,0,10,9,1],
+"TangentPoint_8cpp.html":[4,0,0,0,0,24],
 "TangentPoint_8hpp.html":[4,0,0,0,0,25],
 "TangentPoint_8hpp_source.html":[4,0,0,0,0,25],
 "Terminal_8cpp.html":[4,0,0,12,2,21],
@@ -246,8 +249,5 @@ var NAVTREEINDEX5 =
 "classast_1_1BKVItemView.html#a3d70059c080e2a312518e758feda6529":[0,4,0,3,2],
 "classast_1_1BKVItemView.html#ad928159f3b3ea45268618ce2e35f27a9":[0,4,0,3,3],
 "classast_1_1BKVItemView.html#add0d25682e8dd0d088cf22e5c9e71a79":[0,4,0,3,1],
-"classast_1_1BKVNode.html":[0,4,0,4],
-"classast_1_1BKVNode.html#aa764560a757a7aa7e1ea9628b4ff8e3d":[0,4,0,4,0],
-"classast_1_1BKVParser.html":[0,4,0,5],
-"classast_1_1BKVParser.html#a17f23e91ec51777fd6db5638e89f6351":[0,4,0,5,3]
+"classast_1_1BKVNode.html":[0,4,0,4]
 };

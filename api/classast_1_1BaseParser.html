@@ -116,8 +116,10 @@ $(function(){initNavTree('classast_1_1BaseParser.html',''); initResizable(true);
  <div class="center">
   <img src="classast_1_1BaseParser.png" usemap="#ast::BaseParser_map" alt=""/>
   <map id="ast::BaseParser_map" name="ast::BaseParser_map">
-<area href="classast_1_1BKVParser.html" title="键值对解析器（BlockKeyValueParser）" alt="ast::BKVParser" shape="rect" coords="0,56,127,80"/>
-<area href="classast_1_1SpiceTextParser.html" title="SPICE文本内核文件解析器(parser for SPICE text kernel file)" alt="ast::SpiceTextParser" shape="rect" coords="137,56,264,80"/>
+<area href="classast_1_1BKVParser.html" title="键值对解析器（BlockKeyValueParser）" alt="ast::BKVParser" shape="rect" coords="0,56,130,80"/>
+<area href="classast_1_1SpiceDAFParser.html" title="SPICE 双精度数组文件解析器 DAF（Double Precision Array File，双精度数组文件）" alt="ast::SpiceDAFParser" shape="rect" coords="140,56,270,80"/>
+<area href="classast_1_1SpiceTextParser.html" title="SPICE文本内核文件解析器(parser for SPICE text kernel file)" alt="ast::SpiceTextParser" shape="rect" coords="280,56,410,80"/>
+<area href="classast_1_1SpiceSPKParser.html" title="SPICE二进制SPK内核文件解析器(parser for SPICE SPK kernel file)" alt="ast::SpiceSPKParser" shape="rect" coords="140,112,270,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -421,6 +423,7 @@ std::vector&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>
 </div><div class="memdoc">
 
 <p>设置外部借用的文件指针，不转移文件指针的所有权。 </p>
+<dl class="section warning"><dt>警告</dt><dd>外部借用的文件指针必须在解析器生命周期内有效，否则会导致未定义行为 文件的打开模式必须与所使用解析器的打开模式一致，否则会导致未定义行为</dd></dl>
 <p>设置当前解析器使用的文件指针为外部借用的文件指针。 </p><dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">file</td><td>外部借用的文件指针 </td></tr>
@@ -446,6 +449,7 @@ std::vector&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>
 </div><div class="memdoc">
 
 <p>设置文件指针，将文件指针的所有权转移给解析器。 </p>
+<dl class="section warning"><dt>警告</dt><dd>调用该方法后，解析器将接管文件指针的所有权，外部不应再操作该文件指针 文件的打开模式必须与所使用解析器的打开模式一致，否则会导致未定义行为</dd></dl>
 <p>设置当前解析器使用的文件指针，并将文件指针的所有权转移给解析器。 </p><dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">file</td><td>文件指针 </td></tr>
