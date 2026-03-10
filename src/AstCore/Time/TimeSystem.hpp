@@ -198,10 +198,35 @@ A_ALWAYS_INLINE DateTime aTTToTDB(const DateTime& dttmTT)
 }
 
 
+AST_CORE_API void aTDBToTT(const JulianDate& jdTDB, JulianDate& jdTT);
+AST_CORE_API void aTDBToTT(const DateTime& dttmTDB, DateTime& dttmTT);
+A_ALWAYS_INLINE JulianDate aTDBToTT(const JulianDate& jdTDB)
+{
+    JulianDate jdTT;
+    aTDBToTT(jdTDB, jdTT);
+    return jdTT;
+}
+A_ALWAYS_INLINE DateTime aTDBToTT(const DateTime& dttmTDB)
+{
+    DateTime dttmTT;
+    aTDBToTT(dttmTDB, dttmTT);
+    return dttmTT;
+}
+
+
+
 /// @brief 计算 质心动力学时(TDB) 时间与 地球时(TT) 时间的差值
 /// @param jdTT 地球时(TT)
+/// @warning 注意输入的时间必须是 地球时(TT) 时间
 /// @return 质心动力学时(TDB) 时间与 地球时(TT) 时间的差值
 AST_CORE_CAPI double aTDBMinusTT(const JulianDate& jdTT);
+
+
+/// @brief 计算 地球时(TT) 时间与 质心动力学时(TDB) 时间的差值
+/// @param jdTDB 质心动力学时(TDB)
+/// @warning 注意输入的时间必须是 质心动力学时(TDB) 时间
+/// @return 地球时(TT) 时间与 质心动力学时(TDB) 时间的差值
+AST_CORE_CAPI double aTTMinusTDB(const JulianDate& jdTDB);
 
 
 /// @brief 计算儒略世纪数，以 J2000.0 为基准

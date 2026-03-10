@@ -23,6 +23,7 @@
 #include "SpiceBodyRegistry.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstCore/TimePoint.hpp"
+#include "AstCore/TimeSystem.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -43,7 +44,14 @@ CelestialBody *aSpiceFindBody(int id)
 
 TimePoint aSpiceEtToTimePoint(double et)
 {
-    return TimePoint::J2000TT() + et;
+    JulianDate jdTDB{static_cast<int>(kJ2000Epoch), et};
+    return TimePoint::FromTDB(jdTDB);
+}
+
+double aTimePointToSpiceEt(const TimePoint &tp)
+{
+    JulianDate jdTDB = tp.toTDB();
+    return jdTDB.secondsFromJ2000();
 }
 
 AST_NAMESPACE_END

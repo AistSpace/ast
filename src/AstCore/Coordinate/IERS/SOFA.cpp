@@ -549,7 +549,7 @@ double aEarthRotationAngleUT1_IAU2000(const JulianDate &jdUT1)
 
     /* Days since fundamental epoch. */
    
-    t = jdUT1.daysFromJ2000TT();
+    t = jdUT1.daysFromJ2000();
 
     /* Fractional part of T (days). */
     f = jdUT1.dayFractional();

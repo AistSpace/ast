@@ -120,6 +120,10 @@ public:
     AST_CORE_API
     static TimePoint FromTT(const JulianDate& jdTT);
 
+    /// @brief 从质心动力学时TDB创建时间点
+    AST_CORE_API 
+    static TimePoint FromTDB(const JulianDate& jdTDB);
+
     /// @brief 从不精确的儒略日数（地球时TT）创建时间点
     AST_CORE_API
     static TimePoint FromImpreciseJDTT(double jdTT);
@@ -217,6 +221,19 @@ public:
         aTimePointFormat(*this, str, precision);
         return str;
     }
+public:
+    /// @brief 计算时间点偏移后的新时间点，按默认时间尺度进行时间偏移
+    /// @param second 偏移秒数
+    /// @return 偏移后的新时间点
+    TimePoint shiftedBySecond(double second) const{
+        return {integerPart(), fractionalPart() + second};
+    }
+    
+    /// @brief 计算时间点偏移后的新时间点，按TDB时间尺度进行时间偏移
+    /// @param second TDB秒数
+    /// @return 偏移后的新时间点
+    AST_CORE_API TimePoint shiftedBySecondInTDB(double second) const;
+    
 protected:
     static TimePoint FromIntegerFractional(int64_t integer, double fractional);
 public:

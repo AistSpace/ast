@@ -42,55 +42,18 @@ SpiceBodyRegistry::SpiceBodyRegistry(bool whetherInit)
 
 PBody SpiceBodyRegistry::findBody(StringView name) const
 {
-    auto it = bodyMap_.find(std::string(name));
-    if (it == bodyMap_.end())
-    {
-        return PBody();
-    }
-    return it->second;
+    return solarSystem_.getBody(name);
 }
 
 PBody SpiceBodyRegistry::findBody(int id) const
 {
-    auto it = bodyIDMap_.find(id);
-    if (it == bodyIDMap_.end())
-    {
-        return PBody();
-    }
-    return it->second;
+    return solarSystem_.getBodyBySpiceId(id);
 }
 
-enum ESpiceId
-{
-    eMercury    = 199,
-    eVenus      = 299,
-    eEarth      = 399,
-    eMoon       = 301,
-    eMars       = 499,
-    eJupiter    = 599,
-    eSaturn     = 699,
-    eUranus     = 799,
-    eNeptune    = 899,
-    ePluto      = 999
-};
 
 err_t SpiceBodyRegistry::init()
 {
-    /// @todo 在SPICE这里使用另一套太阳系数据会比较合适
-    aInitialize();
-    auto ss = aDataContext_GetSolarSystem();
-
-    bodyIDMap_[eMercury] = ss->getMercury();
-    bodyIDMap_[eVenus]   = ss->getVenus();
-    bodyIDMap_[eEarth]   = ss->getEarth();
-    bodyIDMap_[eMoon]    = ss->getMoon();
-    bodyIDMap_[eJupiter] = ss->getJupiter();
-    bodyIDMap_[eSaturn]  = ss->getSaturn();
-    bodyIDMap_[eUranus]  = ss->getUranus();
-    bodyIDMap_[eNeptune] = ss->getNeptune();
-    bodyIDMap_[ePluto]   = ss->getPluto();
-
-    return eNoError;
+    return solarSystem_.loadDefault();
 }
 
 AST_NAMESPACE_END

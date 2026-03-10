@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstCore/CelestialBody.hpp"
+#include "AstCore/SolarSystem.hpp"
 #include <unordered_map>
 
 AST_NAMESPACE_BEGIN
@@ -43,10 +44,7 @@ public:
     PBody findBody(int id) const;
     err_t init();
 protected:
-    using BodyNameMap = std::unordered_map<std::string, HBody>;
-    using BodyIDMap = std::unordered_map<int, HBody>;
-    BodyNameMap bodyMap_;
-    BodyIDMap   bodyIDMap_;
+    SolarSystem solarSystem_;
 };
 
 /*! @} */

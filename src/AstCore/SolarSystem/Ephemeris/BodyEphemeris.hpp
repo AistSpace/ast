@@ -37,6 +37,19 @@ public:
 
     virtual ~BodyEphemeris() = default;
 
+    /// @brief 获取天体在ICRF坐标系下的位置
+    /// @param tp 时间点
+    /// @param pos 输出位置
+    /// @return err_t 错误码
+    virtual err_t getPosICRF(const TimePoint& tp, Vector3d& pos) const = 0;
+
+    /// @brief 获取天体在ICRF坐标系下的位置和速度
+    /// @param tp 时间点
+    /// @param pos 输出位置
+    /// @param vel 输出速度
+    /// @return err_t 错误码
+    virtual err_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const = 0;
+
 };
 
 /*! @} */

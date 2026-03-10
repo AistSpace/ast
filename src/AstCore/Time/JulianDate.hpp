@@ -98,6 +98,10 @@ public:
         aDateTimeToJD(dttm, jd);
         return jd;
     }
+    /// @brief 获取 J2000.0 历元的儒略日对象
+    static JulianDate J2000(){
+        return JulianDate::FromDaySecond(static_cast<int>(kJ2000Epoch), 0.0);
+    }
     AST_CORE_API
     static JulianDate FromDateTime(int year, int month, int day, int hour, int minute, double second);
 public:
@@ -141,11 +145,15 @@ public:
 public:
     /// @brief 计算儒略日与 J2000.0 历元的时间差（儒略世纪）
     double julianCenturyFromJ2000() const{
-        return daysFromJ2000TT() / kDaysPerJulianCentury;
+        return daysFromJ2000() / kDaysPerJulianCentury;
     }
     /// @brief 计算儒略日与 J2000.0 历元的时间差（儒略日）
-    double daysFromJ2000TT() const{
+    double daysFromJ2000() const{
         return ((day_ - kJ2000Epoch) + dayFractional());
+    }
+    /// @brief 计算儒略日与 J2000.0 历元的时间差（秒）
+    double secondsFromJ2000() const{
+        return (day_ - kJ2000Epoch) * kSecondsPerDay + second_;
     }
 public:
     JulianDate& operator += (double sec)
@@ -173,6 +181,13 @@ public:
     DaySecDuration operator - (const JulianDate& other) const
     {
         return {day() - other.day(), second() - other.second()};
+    }
+public:
+    /// @brief 计算儒略日偏移后的新儒略日
+    /// @param second 偏移秒数
+    /// @return 偏移后的新儒略日
+    JulianDate shiftedBySecond(double second) const{
+        return JulianDate::FromDaySecond(day_, second_ + second);
     }
 public:
     int    day_;     // 天数部分 day part of julian date

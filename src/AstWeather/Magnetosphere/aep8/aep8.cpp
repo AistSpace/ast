@@ -210,6 +210,7 @@ double aep8(double e, double l, double bb0, int iname)
     long* header = d.header_.data();
     double flux = 0.0;
     long n = 1;
+    static_assert(sizeof(long) == sizeof(integer), "integer size error");
     trara1_(header, map, &l, &bb0, &e, &flux, &n);
     if(flux > 0.0)
         flux = std::pow(10.0, flux);

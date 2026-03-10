@@ -148,7 +148,7 @@ double b1950();
 
 // cleari
 
-// clight
+double clight();
 
 // clpool
 
@@ -1112,13 +1112,26 @@ void rav2xf(
 
 // spkpds
 
-// spkpos
+err_t spkpos(
+    const char   * targ,
+    double         et,
+    const char   * ref,
+    const char   * abcorr,
+    const char   * obs,
+    double         ptarg[3],
+    double       * lt        
+);
 
 // spkpvn
 
 // spksfs
 
-// spkssb
+err_t spkssb(
+    int           targ,
+    double        et,
+    const char   * ref,
+    double        starg[6]
+);
 
 // spksub
 
@@ -1271,7 +1284,10 @@ err_t tipbod(
 
 // unorm
 
-// utc2et
+err_t utc2et(
+    const char * utcstr,
+    double     * et
+);
 
 // vaddg
 

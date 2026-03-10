@@ -152,7 +152,7 @@ public:
     StringView Find(StringView text, size_t pos) const {
         auto found = text.find_first_of(delimiters_, pos);
         if (found == StringView::npos) {
-            return text.substr(text.size());
+            return StringView(text.data() + text.size(), 0);
         }
         return text.substr(found, 1);
     }

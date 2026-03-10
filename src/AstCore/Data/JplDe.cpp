@@ -142,7 +142,8 @@ static int dimension(const int idx)
     return(rval);
 }
 
-#pragma pack(1)
+// 强制 1 字节对齐
+#pragma pack(push, 1)
 /// @brief De系列星历的二进制头
 struct debin_header
 {
@@ -174,7 +175,7 @@ struct debin_header
         };
     };
 };
-#pragma pack()
+#pragma pack(pop)
 
 static_assert(
     offsetof(debin_header, numde) == 2840, 

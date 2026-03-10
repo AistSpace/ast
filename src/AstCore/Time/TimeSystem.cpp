@@ -112,11 +112,41 @@ void aTTToTDB(const DateTime& dttmTT, DateTime& dttmTDB)
     dttmTDB.addSeconds(tdb_tt);
 }
 
+void aTDBToTT(const JulianDate &jdTDB, JulianDate &jdTT)
+{
+    double tt_tdb = aTTMinusTDB(jdTDB);
+    jdTT = jdTDB + tt_tdb;
+}
+
+void aTDBToTT(const DateTime &dttmTDB, DateTime &dttmTT)
+{
+    double tt_tdb = aTTMinusTDB(JulianDate::FromDateTime(dttmTDB));
+    dttmTT = dttmTDB;
+    dttmTT.addSeconds(tt_tdb);
+}
+
+double aTTMinusTDB(const JulianDate &jdTDB)
+{
+    double secfromj2000TDB = jdTDB.secondsFromJ2000();
+    double secfromj2000TT = secfromj2000TDB;
+    double tdb_tt;
+    for(int i=0;i<3;i++)
+    {
+        double arg = 1.99096871e-7 * secfromj2000TT + 6.239996;
+	    tdb_tt = 0.001657 * sin(arg + 0.01671*sin(arg));
+        secfromj2000TT = secfromj2000TDB - tdb_tt;
+    }
+    return -tdb_tt;
+}
 
 double aTDBMinusTT(const JulianDate& jdTT)
 {
-#define USE_X -3
-#if (USE_X == -3)
+#define USE_X -4
+#if (USE_X == -4)
+    double secfromj2000TT = jdTT.secondsFromJ2000();
+    double arg = 1.99096871e-7 * secfromj2000TT + 6.239996;
+	return 0.001657 * sin(arg + 0.01671*sin(arg));
+#elif (USE_X == -3)
 	double jdfromj2000 = aJulianDayFromJ2000(jdTT);
 	double arg = (0.01720197 * jdfromj2000 + 6.239996);
 	return 0.001657 * sin(arg + 0.01671*sin(arg));

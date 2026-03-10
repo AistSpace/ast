@@ -1,0 +1,100 @@
+///
+/// @file      testSpiceDAFParser.cpp
+/// @brief     
+/// @details   
+/// @author    axel
+/// @date      2026-03-09
+/// @copyright 版权所有 (C) 2026-present, ast项目.
+///
+/// ast项目（https://github.com/space-ast/ast）
+/// 本项目基于 Apache 2.0 开源许可证分发。
+/// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
+/// 许可证全文请见：
+/// 
+///    http://www.apache.org/licenses/LICENSE-2.0
+/// 
+/// 重要须知：
+/// 软件按"现有状态"提供，无任何明示或暗示的担保条件。
+/// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
+/// 使用本软件所产生的风险，需由您自行承担。
+
+#include "AstUtil/SpiceDAFParser.hpp"
+#include "AstUtil/SpiceSPKParser.hpp"
+#include "AstCore/RunTime.hpp"
+#include "AstCore/CelestialBody.hpp"
+#include "AstMath/Vector.hpp"
+#include "AstTest/Test.hpp"
+#include <iostream>
+
+#ifndef AST_NO_CSPICE
+#include "SpiceUsr.h"
+#endif
+
+
+AST_USING_NAMESPACE
+
+TEST(SpiceSPKParser, getComment)
+{
+    SpiceSPKParser parser(aDataDirGet() + "/Test/kernels/spk/de430.bsp");
+    parser.printComment();
+    std::vector<std::string> comments;
+    parser.getComment(comments);
+    for(const auto& comment : comments)
+        printf("\n\"%s\"", comment.c_str());
+}
+
+TEST(SpiceSPKParser, getPosNative)
+{
+    const std::string kernel = aDataDirGet() + "/Test/kernels/spk/de430.bsp";
+
+    SpiceSPKParser parser(kernel);
+    #ifndef AST_NO_CSPICE
+    furnsh_c(kernel.c_str());
+    #endif
+
+    const static struct {
+        double et;
+        int bodid;
+    } testData[]{
+        {0.0      , (int)ESpiceId::eJupiterBarycenter},
+        {100000   , (int)ESpiceId::eMarsBarycenter},
+        {2345434  , (int)ESpiceId::eVenusBarycenter},
+        {12345434 , (int)ESpiceId::ePlutoBarycenter},
+    };
+    for(const auto& data : testData)
+    {
+        double et = data.et;
+        int bodid = data.bodid;
+        printf("-------------------------------\n");
+        printf("et = %f, bodid = %d\n", et, bodid);
+        
+        Vector3d pos, vel;
+        err_t err = parser.getPosVelNative(et, bodid, pos, vel);
+        EXPECT_EQ(err, eNoError);
+    #ifndef AST_NO_CSPICE
+        furnsh_c(kernel.c_str());
+        double posvel_c[6];
+        spkssb_c(bodid, et, "J2000", posvel_c);
+        for(int i=0; i<6; i++)
+        {
+            posvel_c[i] *= 1e3;
+            printf("posvel_c(%d) = %f\n", i, posvel_c[i]);
+        }
+        for(int i=0; i<3; i++)
+        {
+            printf("pos     (%d) = %f\n", i, pos(i));
+        }
+        for(int i=0; i<3; i++)
+        {
+            printf("vel     (%d) = %f\n", i, vel(i));
+        }
+        for(int i=0; i<3; i++)
+        {
+            EXPECT_DOUBLE_EQ(pos(i), posvel_c[i]);
+            EXPECT_DOUBLE_EQ(vel(i), posvel_c[i + 3]);
+        }
+    #endif
+    }
+}
+
+GTEST_MAIN()

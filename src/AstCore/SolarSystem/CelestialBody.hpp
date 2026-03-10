@@ -46,10 +46,20 @@ class AST_CORE_API CelestialBody : public Object
     AST_OBJECT(CelestialBody)
 public:
     CelestialBody();
+    CelestialBody(StringView name);
     ~CelestialBody() = default;
 
     /// @brief 获取天体名称
     const std::string& getName() const { return name_; }
+    void setName(StringView name) { name_ = std::string(name); }
+    
+    /// @brief 获取JPL SPICE ID
+    int getJplSpiceId() const { return jplSpiceId_; }
+    void setJplSpiceId(int id) { jplSpiceId_ = id; }
+
+    /// @brief 获取JPL索引
+    int getJplIndex() const { return jplIndex_; }
+    void setJplIndex(int index);
 
     /// @brief 获取重力模型名称
     const std::string& getGravityModel() const{ return gravityField_.getModelName(); }
@@ -88,6 +98,21 @@ public:
 
     /// @brief 是否为地球
     bool isEarth() const { return jplIndex_ == JplDe::eEarth; }
+
+    /// @brief 获取天体位置（ICRF）
+    /// @param  tp          - 时间点
+    /// @param  pos         - 输出位置（ICRF）
+    /// @retval             - 错误码
+    err_t getPosICRF(TimePoint tp, Vector3d& pos) const;
+
+
+    /// @brief 获取天体位置和速度（ICRF）
+    /// @param  tp          - 时间点
+    /// @param  pos         - 输出位置（ICRF）
+    /// @param  vel         - 输出速度（ICRF）
+    /// @retval             - 错误码
+    err_t getPosVelICRF(TimePoint tp, Vector3d& pos, Vector3d& vel) const;
+    
 
     /// @brief 获取天体姿态
     BodyOrientation* getOrientation() const { return orientation_.get(); }
@@ -151,6 +176,114 @@ PROPERTIES:
     SharedPtr<AxesBodyMOD>      axesMOD_;                  ///< 天体MOD轴
     SharedPtr<AxesBodyTOD>      axesTOD_;                  ///< 天体TOD轴
 };
+
+
+
+/// @brief  SPICE 天体ID
+/// @see spicelib/zzidmap.for
+enum ESpiceId
+{
+    eSolarSystemBarycenter  = 0,
+    eMercuryBarycenter      = 1,
+    eVenusBarycenter        = 2,
+    eEarthBarycenter        = 3,
+    eMarsBarycenter         = 4,
+    eJupiterBarycenter      = 5,
+    eSaturnBarycenter       = 6,
+    eUranusBarycenter       = 7,
+    eNeptuneBarycenter      = 8,
+    ePlutoBarycenter        = 9,
+    eSun                    = 10,
+
+    eMercury                = 199,
+
+    eVenus                  = 299,
+
+    eEarth                  = 399,
+    eMoon                   = 301,
+
+    eMars                   = 499,
+    ePhobos                 = 401,
+    eDeimos                 = 402,
+
+
+    eJupiter                = 599,
+    eIo                     = 501,
+    eEuropa                 = 502,
+    eGanymede               = 503,
+    eCallisto               = 504,
+    eAmalthea               = 505,
+    eHimalia                = 506,
+    eElara                  = 507,
+    ePasiphae               = 508,
+    eSinope                 = 509,
+    eLysithea               = 510,
+    eCarme                  = 511,
+    eAnanke                 = 512,
+    eLeda                   = 513,
+    eThebe                  = 514,
+    eAdrastea               = 515,
+    eMetis                  = 516,
+
+    eSaturn                 = 699,
+    eMimas                  = 601,
+    eEnceladus              = 602,
+    eTethys                 = 603,
+    eDione                  = 604,
+    eRhea                   = 605,
+    eTitan                  = 606,
+    eHyperion               = 607,
+    eIapetus                = 608,
+    ePhoebe                 = 609,
+    eJanus                  = 610,
+    eEpimetheus             = 611,
+    eHelene                 = 612,
+    eTelesto                = 613,
+    eCalypso                = 614,
+    eAtlas                  = 615,
+    ePrometheus             = 616,
+    ePandora                = 617,
+    ePan                    = 618,
+    eMethone                = 632,
+    ePallene                = 633,
+    ePolydeuces             = 634,
+    eDaphnis                = 635,
+    eAnthe                  = 649,
+    eAegaeon                = 653,
+
+
+    eUranus                 = 799,
+    eAriel                  = 701,
+    eUmbriel                = 702,
+    eTitania                = 703,
+    eOberon                 = 704,
+    eMiranda                = 705,
+    eCordelia               = 706,
+    eOphelia                = 707,
+    eBianca                 = 708,
+    eCressida               = 709,
+    eDesdemona              = 710,
+    eJuliet                 = 711,
+    ePortia                 = 712,
+    eRosalind               = 713,
+    eBelinda                = 714,
+    ePuck                   = 715,
+
+
+    eNeptune                = 899,
+    eTriton                 = 801,
+    eNereid                 = 802,
+    eNaiad                  = 803,
+    eThalassa               = 804,
+    eDespina                = 805,
+    eGalatea                = 806,
+    eLarissa                = 807,
+    eProteus                = 808,
+
+    ePluto                  = 999,
+    eCharon                 = 901,
+};
+
 
 
 using HCelestialBody = SharedPtr<CelestialBody>;        ///< 天体句柄

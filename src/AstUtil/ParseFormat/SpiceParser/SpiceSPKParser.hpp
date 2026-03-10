@@ -1,0 +1,98 @@
+///
+/// @file      SpiceSPKParser.hpp
+/// @brief     
+/// @details   
+/// @author    axel
+/// @date      2026-03-10
+/// @copyright 版权所有 (C) 2026-present, ast项目.
+///
+/// ast项目（https://github.com/space-ast/ast）
+/// 本项目基于 Apache 2.0 开源许可证分发。
+/// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
+/// 许可证全文请见：
+/// 
+///    http://www.apache.org/licenses/LICENSE-2.0
+/// 
+/// 重要须知：
+/// 软件按"现有状态"提供，无任何明示或暗示的担保条件。
+/// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
+/// 使用本软件所产生的风险，需由您自行承担。
+
+#pragma once
+
+#include "AstGlobal.h"
+#include "SpiceDAFParser.hpp"
+
+AST_NAMESPACE_BEGIN
+
+/*!
+    @addtogroup ParseFormat
+    @{
+*/
+
+
+#pragma pack(push, 1)
+
+/// @brief SPK 段描述符
+/// 解包后的 SPK 段摘要信息
+struct SPK_Descriptor
+{
+    double start_time;          // 开始时间 (ET)
+    double end_time;            // 结束时间
+    int32_t target;             // 目标体 ID
+    int32_t center;             // 中心体 ID
+    int32_t frame;              // 参考系 ID
+    int32_t type;               // 数据类型
+    int32_t begin_addr;         // 数据起始字地址
+    int32_t end_addr;           // 数据结束字地址
+};
+
+#pragma pack(pop)
+
+/// @brief SPICE二进制SPK内核文件解析器(parser for SPICE SPK kernel file)
+/// @details 用于解析SPICE二进制SPK内核文件（.bsp），提供获取目标在指定时刻的原始位置和速度的功能。
+///          “原始”意味着直接返回SPK文件中存储的相对于相应参考系的位置和速度，不进行任何额外的坐标转换。
+///          使用前需通过 SpiceDAFParser::parse() 等方法打开并解析SPK文件。
+class AST_UTIL_API SpiceSPKParser: public SpiceDAFParser
+{
+public:
+    SpiceSPKParser();
+    SpiceSPKParser(StringView filepath);
+    ~SpiceSPKParser() = default;
+
+    err_t parse(StringView filepath);
+
+    err_t parse();
+    
+public:
+    /// @brief 获取目标在指定时刻的原始位置和速度（相对于其星历参考系）
+    /// @details 直接从SPK内核文件中读取数据，返回目标在给定时刻相对于该段定义的参考系的位置和速度。
+    ///          不执行任何坐标转换
+    /// @param et      相对于J2000 TDB的历元（秒）
+    /// @param target  目标的NAIF ID代码（如399代表地球）
+    /// @param[out] pos  位置向量 (x, y, z)，单位公里(km)
+    /// @param[out] vel  速度向量 (vx, vy, vz)，单位公里/秒(km/s)
+    /// @return 错误码，成功返回0，失败返回非0值（如时间超出覆盖区间、目标不存在等）
+    err_t getPosVelNative(double et, int target, Vector3d& pos, Vector3d& vel) const;
+    
+    /// @brief 获取目标在指定时刻的原始位置（相对于其星历参考系）
+    /// @details 直接从SPK内核文件中读取数据，返回目标在给定时刻相对于该段定义的参考系的位置。
+    ///          不执行任何坐标转换
+    /// @param et      相对于J2000 TDB的历元（秒）
+    /// @param target  目标的NAIF ID代码
+    /// @param[out] pos  位置向量 (x, y, z)，单位公里(km)
+    /// @return 错误码，成功返回0，失败返回非0值（如时间超出覆盖区间、目标不存在等）
+    err_t getPosNative(double et, int target, Vector3d& pos) const;
+protected:
+    const SPK_Descriptor* findSpkDescriptor(int target, double et) const;
+    
+    err_t getStateNative(double et, int target, Vector3d& pos, Vector3d* vel) const;
+
+protected:
+    std::vector<SPK_Descriptor> spkDescriptors_;     ///< SPK 段描述符数组
+    mutable std::vector<double> buffer_;             ///< 数据读取缓冲区
+};
+
+/*! @} */
+
+AST_NAMESPACE_END

@@ -21,12 +21,14 @@
 #define _USE_MATH_DEFINES
 #include "AstSPICE/SpiceZpr.h"
 #include "AstTest/Test.h"
-#include "AstUtil/Literals.hpp"
 #include "AstCore/FrameTransform.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/RunTime.hpp"
+#include "AstCore/CelestialBody.hpp"
 #include "AstMath/KinematicRotation.hpp"
 #include "AstMath/MathOperator.hpp"
+#include "AstUtil/Literals.hpp"
+#include "AstUtil/IO.hpp"
 #include <cmath>
 #include <cstdio>
 #include <array>
@@ -2570,6 +2572,75 @@ TEST(SpiceZpr, spkpds)
 
 TEST(SpiceZpr, spkpos)
 {
+    const std::string spkFile = aDataDir() + "/Test/kernels/spk/de430.bsp";
+    // SpiceInt handle;
+    // spklef_c(spkFile.c_str(), &handle );
+    furnsh_c(spkFile.c_str());
+    furnsh_c((aDataDir() + "/Test/kernels/lsk/naif0012.tls").c_str());
+    {
+        SpiceInt i, n;
+        SpiceChar file[256];
+        SpiceChar filtyp[32];
+        SpiceChar source[256];
+        SpiceInt handle;
+        SpiceBoolean found;
+
+
+        ktotal_c("ALL", &n);
+        ast_printf("当前已加载的内核数量: %d\n", (int)n);
+
+        for (i = 0; i < n; i++) {
+            // 通过索引 i 获取第 i+1 个内核的信息
+            kdata_c(i, "ALL", 256, 32, 256, file, filtyp, source, &handle, &found);
+            if (found) {
+                ast_printf("内核 %d: %s (类型: %s)\n", (int)i+1, file, filtyp);
+            }
+        }
+    }
+    aInitialize();
+    static const char* abcorrList[] = {
+        "NONE", 
+        "LT", "LT+S", 
+        "CN", "CN+S", 
+        "XLT", "XLT+S", 
+        "XCN", "XCN+S"
+    };
+    for(auto abcorr : abcorrList)
+    {
+        printf("abcorr: %s\n", abcorr);
+        double et = 123456789;
+        const char * ref = "J2000";
+        const char * obs = "Earth";
+        double ptarg_c[3];
+        double lt_c;
+        spkpos_c("JUPITER Barycenter", et, ref, abcorr, obs, ptarg_c, &lt_c);
+        for(int i = 0; i < 3; i++) ptarg_c[i] *= 1e3;
+        
+        /*!
+        @bug Barycenter 的名称问题应该怎么解决？怎么区分天体系质心和天体中心
+        */
+
+        double ptarg[3];
+        double lt;
+        err_t rc = spkpos("Jupiter", et, "ICRF", abcorr, obs, ptarg, &lt);
+        EXPECT_EQ(rc, 0);
+
+        printf("ptarg_c: %.15g %.15g %.15g\n", ptarg_c[0], ptarg_c[1], ptarg_c[2]);
+        printf("ptarg  : %.15g %.15g %.15g\n", ptarg[0], ptarg[1], ptarg[2]);
+        printf("lt_c: %.15g\n", lt_c);
+        printf("lt  : %.15g\n", lt);
+
+        /*!
+        @!bug[已解决] 与SPICE的时间系统转换算法存在不一致，导致了星历计算结果2m的误差
+        */
+
+        for(int i = 0; i < 3; i++)
+        {
+            EXPECT_DOUBLE_EQ(ptarg_c[i], ptarg[i]);
+        }
+        EXPECT_DOUBLE_EQ(lt_c, lt);
+    }
+    
 }
 
 TEST(SpiceZpr, spkpvn)
@@ -2582,6 +2653,21 @@ TEST(SpiceZpr, spksfs)
 
 TEST(SpiceZpr, spkssb)
 {
+    furnsh_c("data/Test/kernels/spk/de430.bsp");
+    aInitialize();
+    {
+        double et = 3000;
+        const char* ref = "J2000";
+        double starg_c[6];
+        double starg[6];
+        spkssb_c(ESpiceId::eJupiterBarycenter, et, ref, starg_c);
+        for(auto& d : starg_c) d *= 1e3;
+        spkssb(ESpiceId::eJupiter, et, "ICRF", starg);
+        for(int i = 0; i < 6; i++)
+        {
+            EXPECT_DOUBLE_EQ(starg_c[i], starg[i]);
+        }
+    }
 }
 
 TEST(SpiceZpr, spksub)
@@ -2887,6 +2973,17 @@ TEST(SpiceZpr, unorm)
 
 TEST(SpiceZpr, utc2et)
 {
+    furnsh_c("data/Test/kernels/lsk/naif0012.tls");
+    aInitialize();
+    double et_c;
+    double et;
+    const char * utcstr = "2023-01-01 00:00:00";
+    err_t rc = utc2et(utcstr, &et);
+    EXPECT_EQ(rc, 0);
+    utc2et_c(utcstr, &et_c);
+    EXPECT_NEAR(et, et_c, 1e-8);
+    printf("et: %.16g\n", et);
+    printf("et_c: %.16g\n", et_c);
 }
 
 TEST(SpiceZpr, vaddg)

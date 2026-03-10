@@ -11,7 +11,8 @@ jobs:
           # WyriHaximus/github-action-get-previous-tag@master need it
           fetch-depth: 0
           submodules: true      
-      
+          lfs: true
+
       - uses: xmake-io/github-action-setup-xmake@v1
         with:
           # this is not supported, use dev branch instead
@@ -59,6 +60,7 @@ jobs:
         run: |
           lcov --directory . --zerocounters
           xmake cpdata
+          xmake r testSpiceZpr
           xmake test
           lcov --directory . --capture --include */src/* --output-file coverage.info 
       

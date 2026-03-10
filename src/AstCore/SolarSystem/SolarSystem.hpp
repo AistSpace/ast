@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "AstCore/CelestialBody.hpp"
 #include <unordered_map>
+#include <vector>
  
 AST_NAMESPACE_BEGIN
 
@@ -56,10 +57,17 @@ public:
 	/// @brief 初始化太阳系
 	void init();
 
-	/// @brief 加载指定目录下的太阳系数据
+	/// @brief 加载指定目录下的太阳系天体数据
+	/// @warning 该方法会覆盖已加载的天体数据
 	/// @param  dirpath     - 数据目录路径
 	/// @retval             - 错误码
 	err_t load(StringView dirpath);
+
+	/// @brief 通过PCK文件加载太阳系天体数据
+	/// @warning 该方法会覆盖已加载的天体数据
+	/// @param  filepath    - PCK文件路径
+	/// @retval             - 错误码
+	err_t loadPCK(StringView filepath);
 
 	/// @brief 加载默认的太阳系数据
 	err_t loadDefault();
@@ -111,6 +119,17 @@ public:
 	/// @retval             - 天体指针
 	CelestialBody* getBody(StringView name) const;
 
+
+	/// @brief 获取指定JPL索引的天体
+	/// @param  index       - JPL索引
+	/// @retval             - 天体指针
+	CelestialBody* getBodyByJplIndex(int index) const;
+
+	/// @brief 获取指定SPICE ID的天体
+	/// @param  id          - SPICE ID
+	/// @retval             - 天体指针
+	CelestialBody* getBodyBySpiceId(int id) const;
+
 	/// @brief 添加一个新的天体
 	/// @param  name        - 天体名称
 	/// @retval             - 天体指针
@@ -122,7 +141,10 @@ public:
 	CelestialBody* getOrAddBody(StringView name);
 		
 protected:
-	using CelestialBodyMap = std::unordered_map<std::string, SharedPtr<CelestialBody>>;
+	using BodyNameMap = std::unordered_map<std::string, CelestialBody*>;
+	using BodyIndexMap = std::unordered_map<int, CelestialBody*>;
+	using BodyVector = std::vector<CelestialBody*>;
+
 	
 	SharedPtr<CelestialBody> solarSystemBarycenter_; ///< 太阳系质心
 	SharedPtr<CelestialBody> earthMoonBarycenter_;	 ///< 地月质心
@@ -139,8 +161,14 @@ protected:
     SharedPtr<CelestialBody> moon_;					 ///< 月球
 	SharedPtr<CelestialBody> sun_;					 ///< 太阳
  
-	CelestialBodyMap bodies_;						 ///< 太阳系天体映射表
+	BodyVector bodies_;							 	 ///< 太阳系天体集合
+	mutable BodyNameMap  nameMap_;					 ///< 太阳系天体映射表，可能存在别名映射
+	mutable BodyIndexMap jplIndexMap_;				 ///< 太阳系天体映射表，根据JPL索引映射
+	mutable BodyIndexMap spiceIdMap_;				 ///< 太阳系天体映射表，根据SPICE ID映射
+	bool			     isInit_{false};			 ///<  是否已初始化
 };
+
+
 
 /*! @} */
 

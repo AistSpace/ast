@@ -83,6 +83,14 @@ public:
     /// @return 如果到达文件末尾则返回 true，否则返回 false。
     bool eof() const { return feof(file_); }
 
+    /// @brief 读取文件内容
+    /// @details 从当前文件指针位置读取指定数量的字节到缓冲区。
+    /// @param buffer 用于存储读取内容的缓冲区。
+    /// @param size 要读取的字节数。
+    /// @param pos 读取的起始位置，从文件开头开始计算。
+    /// @return 实际读取的字节数。
+    size_t read(void* buffer, size_t size, size_t pos) const;
+
 public:
     /// @brief 获取当前行（包含行结束符）
     /// @details 获取当前行的内容，包含行结束符。
@@ -112,11 +120,15 @@ public:
     std::string getFilePath() const;
 
     /// @brief 设置外部借用的文件指针，不转移文件指针的所有权。
+    /// @warning 外部借用的文件指针必须在解析器生命周期内有效，否则会导致未定义行为
+    ///          文件的打开模式必须与所使用解析器的打开模式一致，否则会导致未定义行为
     /// @details 设置当前解析器使用的文件指针为外部借用的文件指针。
     /// @param file 外部借用的文件指针
     void setBorrowedFile(FILE* file);
 
     /// @brief 设置文件指针，将文件指针的所有权转移给解析器。
+    /// @warning 调用该方法后，解析器将接管文件指针的所有权，外部不应再操作该文件指针
+    ///          文件的打开模式必须与所使用解析器的打开模式一致，否则会导致未定义行为
     /// @details 设置当前解析器使用的文件指针，并将文件指针的所有权转移给解析器。
     /// @param file 文件指针
     void setOwnedFile(FILE* file);
