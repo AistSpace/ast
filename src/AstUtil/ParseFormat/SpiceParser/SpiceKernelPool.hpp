@@ -52,29 +52,39 @@ public:
     }
     SpiceData(const SpiceData& other)
     {
-        new (&doubleData_) std::vector<double>(other.doubleData_);
+        new (&charData_) std::vector<char>(other.charData_);
     }
     SpiceData(SpiceData&& other)
     {
-        new (&doubleData_) std::vector<double>(std::move(other.doubleData_));
+        new (&charData_) std::vector<char>(std::move(other.charData_));
     }
     SpiceData& operator=(const SpiceData& other)
     {
-        doubleData_ = other.doubleData_;
+        charData_ = other.charData_;
         return *this;
     }
     SpiceData& operator=(SpiceData&& other)
     {
-        doubleData_ = std::move(other.doubleData_);
+        charData_ = std::move(other.charData_);
         return *this;
     }
     ~SpiceData()
     {
-        doubleData_.~vector<double>();
+        charData_.~vector<char>();
     }
-    const std::vector<double>& getDoubleData() const { return doubleData_; }
-    const std::vector<int>& getIntData() const { return intData_; }
-    const std::vector<char>& getCharData() const { return charData_; }
+    const std::vector<double>* getDoubleData() const { 
+        if(charData_.size() == doubleData_.size() * sizeof(double))
+            return &doubleData_; 
+        return nullptr;
+    }
+    const std::vector<int>* getIntData() const {
+        if(charData_.size() == intData_.size() * sizeof(int))
+            return &intData_; 
+        return nullptr;
+    }
+    const std::vector<char>* getCharData() const { 
+        return &charData_; 
+    }
 
     enum DataType
     {
@@ -82,6 +92,7 @@ public:
         eInt = 1,
         eChar = 2,
     };
+protected:
     // DataType type_;
     union{
         std::vector<double> doubleData_;
