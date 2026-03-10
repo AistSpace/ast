@@ -1,9 +1,9 @@
 ///
-/// @file      SpiceDAFParser.hpp
+/// @file      SpiceSPKParser.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-09
+/// @date      2026-03-10
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -21,23 +21,22 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstUtil/BaseParser.hpp"
+#include "SpiceDAFParser.hpp"
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup 
+    @addtogroup ParseFormat
     @{
 */
 
-/// @brief SPICE 双精度数组文件解析器 DAF（Double Precision Array File，双精度数组文件）
-/// @details 该类用于解析SPICE的双精度数组文件（DAF），提取其中的数组数据。
-class AST_UTIL_API SpiceDAFParser: public BaseParser
+
+/// @brief SPICE二进制SPK内核文件解析器(parser for SPICE SPK kernel file)
+class SpiceSPKParser: public SpiceDAFParser
 {
 public:
-    using BaseParser::BaseParser;
-    ~SpiceDAFParser()=default;
-    err_t runTest();
+    SpiceSPKParser() = default;
+    ~SpiceSPKParser() = default;
 protected:
     
 };

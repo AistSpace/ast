@@ -24,7 +24,7 @@
 
 AST_USING_NAMESPACE
 
-TEST(SpiceParser, SpiceData)
+TEST(SpiceTextParser, SpiceData)
 {
     GTEST_SKIP();
     {
@@ -44,7 +44,7 @@ TEST(SpiceParser, SpiceData)
     }
 }
 
-TEST(SpiceParser, readData)
+TEST(SpiceTextParser, readData)
 {
     SpiceTextParser parser(aDataDir() + "/Test/kernels/pck/pck00011.tpc");
     SpiceKernelPool kernelPool;
