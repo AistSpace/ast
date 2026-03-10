@@ -19,6 +19,8 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "SpiceDAFParser.hpp"
+#include "AstUtil/Logger.hpp"
+#include "AstUtil/StringSplit.hpp"
 #include <cstdint>
 #include <iostream>
 
@@ -88,6 +90,7 @@ struct DAF_ElementRecords{
 
 static_assert(offsetof(DAF_FileRecord, locifn) == 16, "offset of locifn must be 16");
 static_assert(sizeof(DAF_FileRecord) == 1024, "DAF_FileRecord size must be 1024");
+static_assert(sizeof(DAF_CommentArea) == 1024, "DAF_CommentArea size must be 1024");
 static_assert(sizeof(DAF_SummaryRecords) == 1024, "DAF_SummaryRecords size must be 1024");
 static_assert(sizeof(DAF_NameRecords) == 1024, "DAF_NameRecords size must be 1024");
 static_assert(sizeof(DAF_ElementRecords) == 1024, "DAF_ElementRecords size must be 1024");
@@ -99,6 +102,143 @@ static_assert(sizeof(DAF_ElementRecords) == 1024, "DAF_ElementRecords size must 
 // 具体布局参照类型 1，但此处不固定
 
 #pragma pack(pop)
+
+SpiceDAFParser::SpiceDAFParser(StringView filepath)
+{
+    this->parse(filepath);
+}
+
+err_t SpiceDAFParser::parse()
+{
+    isValidFile_ = false;
+    if(!file_)
+        return eErrorInvalidFile;
+    static_assert(sizeof(DAF_FileRecord) == sizeof(fileRecord_), "fileRecord_ size must be 1024");
+    readFileRecord(fileRecord_.data(), fileRecord_.size());
+    const DAF_FileRecord* fileRec = getFileRecord();
+    int nd = fileRec->nd;
+    int ni = fileRec->ni;
+
+    int ss = nd + (ni + 1) / 2;     /// 摘要大小 (size of a single summary)
+    int ns = 125 / ss;              /// 每个摘要记录可存储的摘要个数 (number of summaries)
+    int nc = 8 * ss;                /// 每个名称长度 (number of characters in a single name)
+    A_UNUSED(ns);
+    A_UNUSED(nc);
+
+    // 检查参数是否合法
+    if(strncmp(fileRecord_.data(), "DAF", 3) != 0)
+    {
+        aError("invalid DAF file, locidw is not \"DAF\"");
+        return eErrorInvalidFile;
+    }
+    if(nd < 0 || nd > 124)
+    {
+        aError("invalid DAF file, nd is %d, must be in [0, 124]", nd);
+        return eErrorInvalidFile;
+    }
+    if(ni < 2 || ni > 250)
+    {
+        aError("invalid DAF file, ni is %d, must be in [2, 250]", ni);
+        return eErrorInvalidFile;
+    }
+    if(ss > 125)
+    {
+        aError("invalid DAF file, ss is %d, must be in [0, 125]", ss);
+        return eErrorInvalidFile;
+    }
+
+    isValidFile_ = true;
+    return eNoError;
+}
+
+err_t SpiceDAFParser::parse(StringView filepath)
+{
+    open(filepath);
+    return parse();
+}
+
+bool SpiceDAFParser::isValidFile() const
+{
+    return isValidFile_;
+}
+
+size_t SpiceDAFParser::readRecord(int recordIndex, void *buffer, size_t size) const
+{
+    if(recordIndex < 0)
+        return 0;
+    return read(buffer, size, recordIndex * sizeof(Record));
+}
+
+size_t SpiceDAFParser::readFileRecord(void *buffer, size_t size) const
+{
+    return readRecord(0, buffer, size);
+}
+
+err_t SpiceDAFParser::getFileRecord(Record &fileRecord) const
+{
+    if(!isValidFile_)
+        return eErrorInvalidFile;
+    fileRecord = fileRecord_;
+    return eNoError;
+}
+
+
+err_t SpiceDAFParser::getSummaryRecords(std::vector<Record> &summaryRecords) const
+{
+    if(!isValidFile_)
+        return eErrorInvalidFile;
+    const DAF_FileRecord* fileRec = getFileRecord();
+    int fward = fileRec->fward;
+    int bward = fileRec->bward;
+    return readSummaryRecords(fward, bward, summaryRecords);
+}
+
+err_t SpiceDAFParser::getFileRecord(int &nd, int &ni, int &fward, int &bward, int &free) const
+{
+    if(!isValidFile_)
+        return eErrorInvalidFile;
+    const DAF_FileRecord* fileRec = reinterpret_cast<const DAF_FileRecord*>(fileRecord_.data());
+    nd = fileRec->nd;
+    ni = fileRec->ni;
+    fward = fileRec->fward;
+    bward = fileRec->bward;
+    free = fileRec->free;
+    return eNoError;
+}
+
+err_t SpiceDAFParser::getComment(std::string &comment) const
+{
+    if(!isValidFile_)
+        return eErrorInvalidFile;
+    const DAF_FileRecord* fileRec = getFileRecord();
+    int fward = fileRec->fward;
+    size_t size = (fward - 2) * 1024;
+    std::vector<char> data(size);
+    readRecord(1, data.data(), size);
+    for(auto& c : data)
+        if(c == '\4') c = '\0';
+    comment = std::string(data.data(), size);
+    return eNoError;
+}
+
+err_t SpiceDAFParser::getComment(std::vector<std::string> &comments) const
+{
+    std::string comment;
+    err_t rc = getComment(comment);
+    if(rc != eNoError)
+        return rc;
+    comments = aStrSplit(comment, '\0', SkipWhitespace()).operator std::vector<std::string>();
+    return eNoError;
+}
+
+void SpiceDAFParser::printComment(std::FILE *fp) const
+{
+    std::string comment;
+    err_t rc = getComment(comment);
+    if(rc != eNoError)
+        return;
+    std::fwrite(comment.data(), 1, comment.size(), fp);
+}
 
 err_t SpiceDAFParser::runTest()
 {
@@ -115,13 +255,13 @@ err_t SpiceDAFParser::runTest()
     size = fread(&commentRec2, sizeof(DAF_CommentArea), 1, file_);
     size = fread(&summaryRec1, sizeof(DAF_SummaryRecords), 1, file_);
     size = fread(&nameRec1, sizeof(DAF_NameRecords), 1, file_);
-    //SPK_Descriptor spkDesc[14];
-    //memcpy(spkDesc, summaryRec1.summaries, sizeof(SPK_Descriptor) * 14);
+    // SPK_Descriptor spkDesc[14];
+    // memcpy(spkDesc, summaryRec1.summaries, sizeof(SPK_Descriptor) * 14);
 
 
     // 假设已根据 fileRec.locfmt 判断字节序，并将整数转换为主机序（此处省略转换代码）
-    int nd = fileRec.nd;   // 需转换
-    int ni = fileRec.ni;   // 需转换
+    int nd = fileRec.nd;            // 需转换
+    int ni = fileRec.ni;            // 需转换
 
     int ss = nd + (ni + 1) / 2;     /// 摘要大小 (size of a single summary)
     int ns = 125 / ss;              /// 每个摘要记录可存储的摘要个数 (number of summaries)
@@ -131,7 +271,36 @@ err_t SpiceDAFParser::runTest()
 
     A_UNUSED(size);
     A_UNUSED(ns);
+
     return 0;
+}
+
+
+err_t SpiceDAFParser::readSummaryRecords(int fward, int bward, std::vector<Record>& summaryRecords) const
+{
+    int recordIndex = fward;
+    while(1)
+    {
+        Record record;
+        size_t size = readRecord(recordIndex - 1, &record, sizeof(Record));
+        if(size != sizeof(Record))
+        {
+            aError("read record %d failed, size=%d", recordIndex, size);
+            return -1;
+        }
+        static_assert(sizeof(DAF_SummaryRecords) == sizeof(Record), "DAF_SummaryRecords size must be 1024");
+        summaryRecords.push_back(record);
+        int next = reinterpret_cast<const DAF_SummaryRecords*>(record.data())->next;
+        if(next == recordIndex || next == 0 || recordIndex == bward)
+            break;
+        recordIndex = next;
+    }
+    return eNoError;
+}
+
+const DAF_FileRecord *SpiceDAFParser::getFileRecord() const
+{
+    return reinterpret_cast<const DAF_FileRecord*>(fileRecord_.data());
 }
 
 AST_NAMESPACE_END

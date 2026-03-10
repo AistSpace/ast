@@ -130,7 +130,14 @@ std::streamoff BaseParser::tell()
     return std::streamoff(ftell(file_));
 }
 
-
+size_t BaseParser::read(void *buffer, size_t size, size_t pos) const
+{
+    /*!
+    @todo 当前的函数实现未考虑线程安全问题，该接口需要线程安全的实现，考虑在linux下使用pread函数
+    */
+    fseek(file_, (long)pos, SEEK_SET);
+    return fread(buffer, 1, size, file_);
+}
 
 StringView BaseParser::getLineWithNewline()
 {

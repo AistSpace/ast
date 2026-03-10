@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/BaseParser.hpp"
+#include <vector>
 
 AST_NAMESPACE_BEGIN
 
@@ -30,16 +31,100 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+struct DAF_FileRecord;
+struct DAF_CommentArea;
+struct DAF_SummaryRecords;
+struct DAF_NameRecords;
+struct DAF_ElementRecords;
+
+
 /// @brief SPICE 双精度数组文件解析器 DAF（Double Precision Array File，双精度数组文件）
+/// @todo 在读取数据时需要处理数据的大小端问题
 /// @details 该类用于解析SPICE的双精度数组文件（DAF），提取其中的数组数据。
 class AST_UTIL_API SpiceDAFParser: public BaseParser
 {
 public:
-    using BaseParser::BaseParser;
+    using Record = std::array<char, 1024>;            ///< 记录缓冲区
+
+    SpiceDAFParser()=default;
+    SpiceDAFParser(StringView filepath);
     ~SpiceDAFParser()=default;
-    err_t runTest();
-protected:
+
+    using BaseParser::open;
     
+    /// @brief 解析DAF文件
+    /// @details 读取文件记录头、摘要记录和名称记录。
+    /// @return 成功返回0，否则返回错误码
+    err_t parse();
+
+    /// @brief 解析指定路径的DAF文件
+    /// @details 打开文件、解析文件记录头、摘要记录和名称记录。
+    /// @param filepath 文件路径
+    /// @return 成功返回0，否则返回错误码
+    err_t parse(StringView filepath);
+
+    /// @brief 检查解析结果是否有效
+    /// @return 如果DAF文件解析成功且包含有效数据，则返回true；否则返回false
+    bool isValidFile() const;
+
+    /// @brief 读取指定记录索引的数据到缓冲区
+    /// @param recordIndex 记录索引，从0开始
+    /// @param buffer 指向接收数据的缓冲区指针
+    /// @param size 缓冲区大小，单位为字节
+    /// @return 成功返回实际读取的字节数
+    size_t readRecord(int recordIndex, void* buffer, size_t size) const;
+
+    /// @brief 读取文件记录头到缓冲区
+    /// @param buffer 指向接收数据的缓冲区指针
+    /// @param size 缓冲区大小，单位为字节
+    /// @return 成功返回实际读取的字节数
+    size_t readFileRecord(void* buffer, size_t size) const;
+
+    /// @brief 获取文件记录头
+    /// @param fileRecord 接收文件记录头的引用
+    /// @return 成功返回0，否则返回错误码
+    err_t getFileRecord(Record& fileRecord) const;
+
+
+    /// @brief 获取所有摘要记录
+    /// @param summaryRecords 接收摘要记录的向量
+    /// @return 成功返回实际读取的字节数
+    err_t getSummaryRecords(std::vector<Record>& summaryRecords) const;
+
+
+    /// @brief 获取文件记录头信息
+    /// @param nd 双精度分量个数 ND
+    /// @param ni 整型分量个数 NI
+    /// @param fward 第一个摘要记录号
+    /// @param bward 最后一个摘要记录号
+    /// @param free 第一个空闲字地址
+    /// @return 成功返回0，否则返回错误码
+    err_t getFileRecord(int& nd, int& ni, int& fward, int& bward, int& free) const;
+
+
+    /// @brief 获取文件注释
+    /// @param comment 接收文件注释的字符串引用
+    /// @return 成功返回0，否则返回错误码
+    err_t getComment(std::string& comment) const;
+
+    /// @brief 获取文件注释
+    /// @param comment 接收文件注释的字符串向量引用
+    /// @return 成功返回0，否则返回错误码
+    err_t getComment(std::vector<std::string>& comments) const;
+
+    /// @brief 打印文件注释到指定文件流
+    /// @param fp 文件流指针，默认输出到标准输出
+    void printComment(std::FILE* fp=stdout) const;
+
+protected:
+    err_t runTest();
+    err_t readSummaryRecords(int fward, int bward, std::vector<Record>& summaryRecords) const;
+    const DAF_FileRecord* getFileRecord() const;
+    
+protected:
+    Record                      fileRecord_;                ///< 文件记录头
+    bool                        isValidFile_=false;         ///< 文件是否有效
+    bool                        isSameEndian_=false;        ///< 是否与当前系统字节序相同
 };
 
 /*! @} */

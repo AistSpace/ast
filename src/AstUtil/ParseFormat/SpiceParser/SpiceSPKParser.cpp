@@ -19,29 +19,30 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "SpiceSPKParser.hpp"
+#include "AstUtil/Logger.hpp"
+#include "AstMath/Vector.hpp"
 
 AST_NAMESPACE_BEGIN
 
 
+#define MAX_CHEBY 20
+
 #pragma pack(push, 1)
 
 
-/// @brief SPK 段描述符
-/// 解包后的 SPK 段摘要信息
-struct SPK_Descriptor
-{
-    double start_time;          // 开始时间 (ET)
-    double end_time;            // 结束时间
-    int32_t target;             // 目标体 ID
-    int32_t center;             // 中心体 ID
-    int32_t frame;              // 参考系 ID
-    int32_t type;               // 数据类型
-    int32_t begin_addr;         // 数据起始字地址
-    int32_t end_addr;           // 数据结束字地址
-};
+struct SPK_Descriptor;
 
 static_assert(sizeof(SPK_Descriptor) == sizeof(double) * 2 + sizeof(int32_t) * 6, "SPK_Descriptor size must be 40");
 
+struct DAF_SPKSummaryRecords
+{
+    double next;                     ///< 下一个摘要记录号 (存储为 double)
+    double prev;                     ///< 上一个摘要记录号 (存储为 double)
+    double nsum;                     ///< 本记录中摘要个数 (存储为 double)
+    SPK_Descriptor descriptors[25];  ///< 摘要记录描述符数组
+};
+
+static_assert(sizeof(DAF_SPKSummaryRecords) == 1024, "DAF_SPKSummaryRecords size must be 1024");
 
 // -----------------------
 // 常用 SPK 数据类型内部布局 
@@ -50,17 +51,17 @@ static_assert(sizeof(SPK_Descriptor) == sizeof(double) * 2 + sizeof(int32_t) * 6
 
 // 类型 2/3 记录头部 (Chebyshev 多项式)
 struct SPK_Type2_Record {
-    double mid;                 // 区间中点
-    double radius;              // 区间半长
+    double mid;                 ///< 区间中点
+    double radius;              ///< 区间半长
     // 之后是系数，数量由记录大小决定
 };
 
 // 类型 2 段尾部目录
 struct SPK_Type2_Trailer {
-    double init;                // 第一个记录的起始时间
-    double intlen;              // 记录区间长度
-    double rsize;               // 记录大小（双精度个数）
-    double n;                   // 记录个数
+    double init;                ///< 第一个区间的起始时间(相对于J2000 TDB秒数)
+    double intlen;              ///< 每个区间时间长度(秒数)
+    double rsize;               ///< 每个区间的大小（双精度个数）
+    double n;                   ///< 记录区间个数
 };
 
 // 类型 5 离散状态 (二体传播)
@@ -187,6 +188,158 @@ struct SPK_Type20_Trailer {
 
 #pragma pack(pop)
 
+SpiceSPKParser::SpiceSPKParser()
+{
+}
 
+SpiceSPKParser::SpiceSPKParser(StringView filepath)
+{
+    parse(filepath);
+}
+
+err_t SpiceSPKParser::parse(StringView filepath)
+{
+    open(filepath);
+    return parse();
+}
+
+err_t SpiceSPKParser::parse()
+{
+    err_t rc;
+    rc = SpiceDAFParser::parse();
+    if(rc) return rc;
+    std::vector<DAF_SPKSummaryRecords> spkRecords;
+
+    static_assert(sizeof(DAF_SPKSummaryRecords) == sizeof(Record), "DAF_SPKSummaryRecords size must be 1024");
+    static_assert(std::is_pod<DAF_SPKSummaryRecords>::value, "DAF_SPKSummaryRecords must be POD");
+    static_assert(std::is_pod<Record>::value, "Record must be POD");
+
+    auto& records = reinterpret_cast<std::vector<Record>&>(spkRecords);
+    rc = this->getSummaryRecords(records);
+    if(rc) return rc;
+    std::vector<SPK_Descriptor> spkDescriptors;
+    int sum = 0;
+    for(auto& spkRecord : spkRecords)
+    {
+        sum += spkRecord.nsum;
+    }
+    spkDescriptors.reserve(sum);
+    for(auto& spkRecord : spkRecords)
+    {
+        spkDescriptors.insert(spkDescriptors.end(), spkRecord.descriptors, spkRecord.descriptors + (int)spkRecord.nsum);
+    }
+    spkDescriptors_ = std::move(spkDescriptors);
+    return rc;
+}
+
+err_t SpiceSPKParser::getPosVelNative(double et, int target, Vector3d &pos, Vector3d &vel) const
+{
+    return getStateNative(et, target, pos, &vel);
+}
+
+err_t SpiceSPKParser::getPosNative(double et, int target, Vector3d &pos) const
+{
+    return getStateNative(et, target, pos, nullptr);
+}
+
+const SPK_Descriptor *SpiceSPKParser::findSpkDescriptor(int target, double et) const
+{
+    /*!
+    @note 根据SPK星历规范，越后面的段优先级越高
+    */
+    for (int i = spkDescriptors_.size() - 1; i >= 0; --i) {
+        auto& descr = spkDescriptors_[i];
+        if(descr.target == target && descr.start_time <= et && descr.end_time >= et)
+        {
+            return &descr;
+        }
+    }
+    return nullptr;
+}
+
+err_t SpiceSPKParser::getStateNative(double et, int target, Vector3d &pos, Vector3d *vel) const
+{
+    const SPK_Descriptor* spkDescriptor = findSpkDescriptor(target, et);
+    if(!spkDescriptor)
+    {
+        aError("failed to find spk descriptor for target %d", target);
+        return eErrorNotFound;
+    }
+    if(spkDescriptor->type == 2)
+    {
+        size_t rsize;
+        {
+            SPK_Type2_Trailer trailer;
+            size_t offset = 8 * spkDescriptor->end_addr - sizeof(SPK_Type2_Trailer);
+            size_t size = read(&trailer, sizeof(SPK_Type2_Trailer), offset);
+            if(size != sizeof(SPK_Type2_Trailer))
+            {
+                aError("failed to read spk type 2 trailer for target %d", target);
+                return eErrorNotFound;
+            }
+            rsize = (size_t)trailer.rsize;
+            buffer_.resize(rsize);
+            size_t idxseg = (et - spkDescriptor->start_time) / trailer.intlen;
+            if(idxseg >= trailer.n)
+            {
+                aError("et %f out of range for target %d", et, target);
+                return eErrorNotFound;
+            }
+            size_t sseg = rsize * 8;
+            offset = 8 * (spkDescriptor->begin_addr-1) + idxseg * sseg;
+            size = read(buffer_.data(), sseg, offset);
+            if(size != sseg)
+            {
+                aError("failed to read spk type 2 record for target %d", target);
+                return eErrorNotFound;
+            }
+        }
+        const double mid = buffer_[0];
+        const double radius = buffer_[1];
+        // double tspan = radius * 2;
+        const double* coeff = buffer_.data() + 2;
+        const double tc = (et - mid) / radius;
+        const double twot = 2.0 * tc;
+        const int ncf = (rsize - 2) / 3;
+
+        assert(tc >= -1);
+        assert(tc <= 1);
+        assert(ncf < MAX_CHEBY);
+
+        double  pos_coeff[MAX_CHEBY];
+        pos_coeff[0] = 1.0;
+        pos_coeff[1] = tc;
+        for(int j = 2; j <= ncf; ++j)
+        {
+            pos_coeff[j] = twot * pos_coeff[j - 1] - pos_coeff[j - 2];
+        }
+        for(int i=0;i<3;i++){
+            double sum = 0;
+            for(int j = ncf - 1; j > -1; j--)
+                sum += coeff[j + i * ncf] * pos_coeff[j];
+            pos[i] = sum * 1e3;
+        }
+        if(!vel)
+            return eNoError;
+            
+        double  vel_coeff[MAX_CHEBY];
+        vel_coeff[0] = 0.0;
+        vel_coeff[1] = 1.0;
+        for(int j=2;j<=ncf;j++){
+            vel_coeff[j] = twot * vel_coeff[j - 1] + 2.0 * pos_coeff[j - 1] - vel_coeff[j - 2];
+        }
+        for(int i=0;i<3;i++){
+            double sum = 0;
+            for(int j = ncf - 1; j > -1; j--)
+                sum += coeff[j + i * ncf] * vel_coeff[j];
+            (*vel)[i] = sum / radius * 1e3;
+        }
+        return eNoError;
+    }else{
+        aError("spk type %d is not supported yet", spkDescriptor->type);
+    }
+    return -1;
+}
 
 AST_NAMESPACE_END
+

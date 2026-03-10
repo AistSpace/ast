@@ -83,6 +83,14 @@ public:
     /// @return 如果到达文件末尾则返回 true，否则返回 false。
     bool eof() const { return feof(file_); }
 
+    /// @brief 读取文件内容
+    /// @details 从当前文件指针位置读取指定数量的字节到缓冲区。
+    /// @param buffer 用于存储读取内容的缓冲区。
+    /// @param size 要读取的字节数。
+    /// @param pos 读取的起始位置，从文件开头开始计算。
+    /// @return 实际读取的字节数。
+    size_t read(void* buffer, size_t size, size_t pos) const;
+
 public:
     /// @brief 获取当前行（包含行结束符）
     /// @details 获取当前行的内容，包含行结束符。
