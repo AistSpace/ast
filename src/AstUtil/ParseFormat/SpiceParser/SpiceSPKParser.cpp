@@ -221,7 +221,7 @@ err_t SpiceSPKParser::parse()
     int sum = 0;
     for(auto& spkRecord : spkRecords)
     {
-        sum += spkRecord.nsum;
+        sum += (int)spkRecord.nsum;
     }
     spkDescriptors.reserve(sum);
     for(auto& spkRecord : spkRecords)
@@ -247,7 +247,7 @@ const SPK_Descriptor *SpiceSPKParser::findSpkDescriptor(int target, double et) c
     /*!
     @note 根据SPK星历规范，越后面的段优先级越高
     */
-    for (int i = spkDescriptors_.size() - 1; i >= 0; --i) {
+    for (int i = (int)spkDescriptors_.size() - 1; i >= 0; --i) {
         auto& descr = spkDescriptors_[i];
         if(descr.target == target && descr.start_time <= et && descr.end_time >= et)
         {
@@ -267,7 +267,7 @@ err_t SpiceSPKParser::getStateNative(double et, int target, Vector3d &pos, Vecto
     }
     if(spkDescriptor->type == 2)
     {
-        size_t rsize;
+        int rsize;
         {
             SPK_Type2_Trailer trailer;
             size_t offset = 8 * spkDescriptor->end_addr - sizeof(SPK_Type2_Trailer);
@@ -277,9 +277,9 @@ err_t SpiceSPKParser::getStateNative(double et, int target, Vector3d &pos, Vecto
                 aError("failed to read spk type 2 trailer for target %d", target);
                 return eErrorNotFound;
             }
-            rsize = (size_t)trailer.rsize;
+            rsize = (int)trailer.rsize;
             buffer_.resize(rsize);
-            size_t idxseg = (et - spkDescriptor->start_time) / trailer.intlen;
+            size_t idxseg = (size_t)((et - spkDescriptor->start_time) / trailer.intlen);
             if(idxseg >= trailer.n)
             {
                 aError("et %f out of range for target %d", et, target);

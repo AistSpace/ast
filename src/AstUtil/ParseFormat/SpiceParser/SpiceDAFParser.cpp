@@ -290,7 +290,7 @@ err_t SpiceDAFParser::readSummaryRecords(int fward, int bward, std::vector<Recor
         }
         static_assert(sizeof(DAF_SummaryRecords) == sizeof(Record), "DAF_SummaryRecords size must be 1024");
         summaryRecords.push_back(record);
-        int next = reinterpret_cast<const DAF_SummaryRecords*>(record.data())->next;
+        int next = (int)reinterpret_cast<const DAF_SummaryRecords*>(record.data())->next;
         if(next == recordIndex || next == 0 || recordIndex == bward)
             break;
         recordIndex = next;
