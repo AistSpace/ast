@@ -1,5 +1,5 @@
 ///
-/// @file      FrameICRF.cpp
+/// @file      PointMacro.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,37 +18,25 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "FrameICRF.hpp"
-#include "AstCore/FrameRoot.hpp"
-#include "AstCore/AxesICRF.hpp"
-#include "AstCore/PointSSBarycenter.hpp"
-#include "AstMath/KinematicTransform.hpp"
+#pragma once
+
+#include "AstGlobal.h"
 
 AST_NAMESPACE_BEGIN
 
-Frame *FrameICRF::getParent() const
-{
-    return aFrameRoot();
-}
+/*!
+    @addtogroup Coordinate
+    @{
+*/
 
-Axes *FrameICRF::getAxes() const
-{
-    return aAxesICRF();
-}
+#define _AST_DECL_POINT(NAME) \
+    class AST_CORE_API Point##NAME : public Point \
+    { \
+    public: \
+        Point##NAME() = default; \
+        ~Point##NAME() override= default; \
+    };
 
-Point *FrameICRF::getOrigin() const
-{
-    return aPointSSBarycenter();
-}
-
-err_t FrameICRF::getTransform(const TimePoint &tp, Transform &transform) const
-{
-    return eNoError;
-}
-
-err_t FrameICRF::getTransform(const TimePoint &tp, KinematicTransform &transform) const
-{
-    return eNoError;
-}
+/*! @} */
 
 AST_NAMESPACE_END

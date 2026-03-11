@@ -67,7 +67,7 @@ public:
     /// @param tp 时间点
     /// @param transform 输出的变换
     /// @return 错误码
-    virtual err_t getTransform(Transform& transform) const = 0;
+    virtual err_t getTransform(const TimePoint& tp, Transform& transform) const = 0;
     /// @brief 获取当前坐标系相对于父坐标系的运动学变换
     /// @param tp 时间点
     /// @param transform 输出的运动学变换

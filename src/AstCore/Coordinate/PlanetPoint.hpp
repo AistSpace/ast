@@ -1,5 +1,5 @@
 ///
-/// @file      FrameICRF.cpp
+/// @file      PlanetPoint.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,37 +18,34 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "FrameICRF.hpp"
-#include "AstCore/FrameRoot.hpp"
-#include "AstCore/AxesICRF.hpp"
-#include "AstCore/PointSSBarycenter.hpp"
-#include "AstMath/KinematicTransform.hpp"
+#pragma once
+
+#include "AstGlobal.h"
 
 AST_NAMESPACE_BEGIN
 
-Frame *FrameICRF::getParent() const
-{
-    return aFrameRoot();
-}
+/*!
+    @addtogroup Coordinate
+    @{
+*/
 
-Axes *FrameICRF::getAxes() const
-{
-    return aAxesICRF();
-}
+/// @brief 计算地球在ICRF坐标系中的位置。
+/// @param tp 时间点
+/// @param pos 输出的位置
+/// @return 错误码
+err_t aEarthPosInICRF(const TimePoint& tp, Vector3d& pos);
 
-Point *FrameICRF::getOrigin() const
-{
-    return aPointSSBarycenter();
-}
+/// @brief 计算地球在ICRF坐标系中的位置和速度。
+/// @param tp 时间点
+/// @param pos 输出的位置
+/// @param vel 输出的速度
+/// @return 错误码
+err_t aEarthPosVelInICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel);
 
-err_t FrameICRF::getTransform(const TimePoint &tp, Transform &transform) const
-{
-    return eNoError;
-}
 
-err_t FrameICRF::getTransform(const TimePoint &tp, KinematicTransform &transform) const
-{
-    return eNoError;
-}
+
+
+
+/*! @} */
 
 AST_NAMESPACE_END
