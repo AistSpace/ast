@@ -52,7 +52,8 @@ struct SPK_Descriptor
 /// @brief SPICE二进制SPK内核文件解析器(parser for SPICE SPK kernel file)
 /// @details 用于解析SPICE二进制SPK内核文件（.bsp），提供获取目标在指定时刻的原始位置和速度的功能。
 ///          “原始”意味着直接返回SPK文件中存储的相对于相应参考系的位置和速度，不进行任何额外的坐标转换。
-///          使用前需通过 SpiceDAFParser::parse() 等方法打开并解析SPK文件。
+///          使用前需通过 SpiceDAFParser::parse() 等方法打开并解析SPK文件
+/// @warning 该类型的单个实例暂不支持多线程并发访问
 class AST_UTIL_API SpiceSPKParser: public SpiceDAFParser
 {
 public:

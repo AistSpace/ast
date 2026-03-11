@@ -305,6 +305,10 @@ err_t SpiceSPKParser::getStateNative(double et, int target, Vector3d &pos, Vecto
         assert(tc >= -1);
         assert(tc <= 1);
         assert(ncf < MAX_CHEBY);
+        if (ncf >= MAX_CHEBY) {
+            aError("ncf %d exceeds MAX_CHEBY", ncf);
+            return eErrorNotFound;
+        }
 
         double  pos_coeff[MAX_CHEBY];
         pos_coeff[0] = 1.0;

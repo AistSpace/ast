@@ -32,6 +32,17 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+
+/// @brief  SPICE 数据容器
+/// @details 该类用于存储从 SPICE 内核文件加载的不同类型的数据
+/// 使得在 SPICE 内核文件中加载不同类型的数据变得更加方便和高效
+/// @note
+/// std::vector<double>, std::vector<int>, std::vector<char>的内存布局是相同的，都是3个指针
+/// 对于这个数据容器类型，统一通过charData_来进行复制、移动、析构
+/// 这确保了不同类型的数据容器可以在相同的内存布局下进行存储和操作
+/// 通过指针之间的地址差，判断是否可以安全地直接将一个数据容器转换为另一个数据容器
+/// 例如将一个char类型的数据容器转换为double类型的数据容器，
+/// 只需要判断地址差是否为sizeof(double)的整数倍即可
 class SpiceData
 {
 public:
