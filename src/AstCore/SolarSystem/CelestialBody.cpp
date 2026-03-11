@@ -46,7 +46,7 @@ CelestialBody::CelestialBody(StringView name)
     : name_(name)
 {
     orientation_  = new NoopOrientation();
-    ephemeris_    = new EphemerisNoop();
+    ephemeris_    = new EphemerisDE(this);
     axesFixed_    = new AxesBodyFixed(this);
     axesInertial_ = new AxesBodyInertial(this);
     axesMOD_      = new AxesBodyMOD(this);
@@ -127,12 +127,12 @@ err_t CelestialBody::setGravityModel(StringView model)
     return rc;
 }
 
-err_t CelestialBody::getPosICRF(TimePoint tp, Vector3d &pos) const
+err_t CelestialBody::getPosICRF(const TimePoint& tp, Vector3d &pos) const
 {
     return ephemeris_->getPosICRF(tp, pos);
 }
 
-err_t CelestialBody::getPosVelICRF(TimePoint tp, Vector3d &pos, Vector3d &vel) const
+err_t CelestialBody::getPosVelICRF(const TimePoint& tp, Vector3d &pos, Vector3d &vel) const
 {
     return ephemeris_->getPosVelICRF(tp, pos, vel);
 }

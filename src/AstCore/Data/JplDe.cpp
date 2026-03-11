@@ -411,7 +411,7 @@ err_t JplDe::getPosVelICRF(
 
 
     const int quantities = (vel ? 2 : 1);
-    double pv[eEMBaryCenter + 1][6];
+    double pv[eEMBarycenter + 1][6];
     int    list[eDeSun + 1];
     memset(list, 0, sizeof(list));
     memset(pv, 0, sizeof(pv));
@@ -431,7 +431,7 @@ err_t JplDe::getPosVelICRF(
             if (k <= eSun)           list[k] = quantities;            /* Major planets */
             if (k == eMoon)          list[eDeEMBaryCenter] = quantities;            /* for moon,  earth state is needed */
             if (k == eEarth)         list[eDeMoon] = quantities;            /* for earth,  moon state is needed */
-            if (k == eEMBaryCenter)  list[eDeEMBaryCenter] = quantities;            /* EMBary state additionally */
+            if (k == eEMBarycenter)  list[eDeEMBaryCenter] = quantities;            /* EMBary state additionally */
         }
     }
     int rval = this->getState(time, list, pv);
@@ -444,8 +444,8 @@ err_t JplDe::getPosVelICRF(
         if (ntarg == eSSBarycenter || ncent == eSSBarycenter)
             memset(pv[eSSBarycenter], 0, sizeof(pv[eSSBarycenter]));
         /* Solar System barycentric EMBary state:  */
-        if (ntarg == eEMBaryCenter || ncent == eEMBaryCenter)
-            memcpy(pv[eEMBaryCenter], pv[eDeEMBaryCenter], sizeof(pv[eEMBaryCenter]));
+        if (ntarg == eEMBarycenter || ncent == eEMBarycenter)
+            memcpy(pv[eEMBarycenter], pv[eDeEMBaryCenter], sizeof(pv[eEMBarycenter]));
 
         if (list[eEarth])           /* calculate earth state from EMBary */
             for (int i = 0; i < list[eDeEMBaryCenter] * 3; ++i)

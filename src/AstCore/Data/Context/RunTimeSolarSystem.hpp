@@ -71,6 +71,12 @@ AST_CORE_CAPI CelestialBody* aGetMoon();
 /// @brief 获取太阳
 AST_CORE_CAPI CelestialBody* aGetSun();
 
+/// @brief 获取太阳系质心
+AST_CORE_CAPI CelestialBody* aGetSSBarycenter();
+
+/// @brief 获取地月质心
+AST_CORE_CAPI CelestialBody* aGetEMBarycenter();
+
 
 
 /*! @} */

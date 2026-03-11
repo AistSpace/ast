@@ -46,7 +46,7 @@ void SolarSystem::init()
     if(!earthMoonBarycenter_){
         earthMoonBarycenter_ = new CelestialBody();
         earthMoonBarycenter_->name_ = "EarthMoonBarycenter";
-        earthMoonBarycenter_->jplIndex_ = JplDe::eEMBaryCenter;
+        earthMoonBarycenter_->jplIndex_ = JplDe::eEMBarycenter;
         earthMoonBarycenter_->jplSpiceId_ = ESpiceId::eEarthBarycenter;
         bodies_.push_back(earthMoonBarycenter_);
         nameMap_["EARTH MOON BARYCENTER"] = earthMoonBarycenter_;

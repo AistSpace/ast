@@ -103,7 +103,7 @@ public:
     /// @param  tp          - 时间点
     /// @param  pos         - 输出位置（ICRF）
     /// @retval             - 错误码
-    err_t getPosICRF(TimePoint tp, Vector3d& pos) const;
+    err_t getPosICRF(const TimePoint& tp, Vector3d& pos) const;
 
 
     /// @brief 获取天体位置和速度（ICRF）
@@ -111,7 +111,7 @@ public:
     /// @param  pos         - 输出位置（ICRF）
     /// @param  vel         - 输出速度（ICRF）
     /// @retval             - 错误码
-    err_t getPosVelICRF(TimePoint tp, Vector3d& pos, Vector3d& vel) const;
+    err_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const;
     
 
     /// @brief 获取天体姿态

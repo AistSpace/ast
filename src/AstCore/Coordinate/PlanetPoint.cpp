@@ -19,9 +19,49 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "PlanetPoint.hpp"
+#include "AstCore/CelestialBody.hpp"
+#include "AstCore/RunTime.hpp"
+#include "AstUtil/Logger.hpp"
 
 AST_NAMESPACE_BEGIN
+
+#define _AST_IMPL_PLANTET_POINT(NAME) \
+err_t a##NAME##PosInICRF(const TimePoint &tp, Vector3d &pos) \
+{ \
+    auto body = aGet##NAME(); \
+    if(!body){ \
+        aError(#NAME " is null, please ensure it is initialized by `aInitialize()`"); \
+        return eErrorInvalidParam; \
+    } \
+    return body->getPosICRF(tp, pos); \
+}\
+err_t a##NAME##PosVelInICRF(const TimePoint &tp, Vector3d &pos, Vector3d &vel) \
+{ \
+    auto body = aGet##NAME(); \
+    if(!body){ \
+        aError(#NAME " is null, please ensure it is initialized by `aInitialize()`"); \
+        return eErrorInvalidParam; \
+    } \
+    return body->getPosVelICRF(tp, pos, vel); \
+}
+
+_AST_IMPL_PLANTET_POINT(Mercury)
+_AST_IMPL_PLANTET_POINT(Venus)
+_AST_IMPL_PLANTET_POINT(Earth)
+_AST_IMPL_PLANTET_POINT(Mars)
+_AST_IMPL_PLANTET_POINT(Jupiter)
+_AST_IMPL_PLANTET_POINT(Saturn)
+_AST_IMPL_PLANTET_POINT(Uranus)
+_AST_IMPL_PLANTET_POINT(Neptune)
+_AST_IMPL_PLANTET_POINT(Pluto)
+_AST_IMPL_PLANTET_POINT(Moon)
+_AST_IMPL_PLANTET_POINT(Sun)
+_AST_IMPL_PLANTET_POINT(EMBarycenter)
+
+
+
 
 
 
 AST_NAMESPACE_END
+
