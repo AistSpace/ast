@@ -143,7 +143,7 @@ public:
 protected:
 	using BodyNameMap = std::unordered_map<std::string, CelestialBody*>;
 	using BodyIndexMap = std::unordered_map<int, CelestialBody*>;
-	using BodyVector = std::vector<CelestialBody*>;
+	using BodyVector = std::vector<SharedPtr<CelestialBody>>;
 
 	
 	SharedPtr<CelestialBody> solarSystemBarycenter_; ///< 太阳系质心

@@ -41,6 +41,7 @@ struct DAF_ElementRecords;
 /// @brief SPICE 双精度数组文件解析器 DAF（Double Precision Array File，双精度数组文件）
 /// @todo 在读取数据时需要处理数据的大小端问题
 /// @details 该类用于解析SPICE的双精度数组文件（DAF），提取其中的数组数据。
+/// @warning 该类型的单个实例暂不支持多线程并发访问
 class AST_UTIL_API SpiceDAFParser: public BaseParser
 {
 public:

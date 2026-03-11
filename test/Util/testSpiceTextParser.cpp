@@ -26,21 +26,22 @@ AST_USING_NAMESPACE
 
 TEST(SpiceTextParser, SpiceData)
 {
-    GTEST_SKIP();
     {
-        char buf[] = "KEY1 = VALUE1\n";
+        char buf[] = "KEY1 = VALUE12\n";
         SpiceData data = std::vector<char>(buf, buf + sizeof(buf));
         {
             auto doubleData = data.getDoubleData();
-            printf("size: %d\n", (int)doubleData.size());
+            EXPECT_TRUE(doubleData != nullptr);
+            std::vector<double> dData = *doubleData;
+            printf("dData.size(): %d\n", (int)dData.size());
         }
-        int size = (int)data.getCharData().size();
-        printf("size: %d\n", size);
+        int size = (int)data.getCharData()->size();
+        EXPECT_EQ(size, sizeof(buf));
     }
     {
         SpiceData data = std::vector<double>{1.0, 2.0, 3.0};
         auto charData = data.getCharData();
-        printf("size: %d\n", (int)charData.size());
+        EXPECT_EQ(charData->size(), 3 * sizeof(double));
     }
 }
 

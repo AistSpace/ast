@@ -20,8 +20,12 @@
 
 #include "SpiceTextParser.hpp"
 #include "AstUtil/StringView.hpp"
+#include <algorithm>
 
 AST_NAMESPACE_BEGIN
+
+static_assert(sizeof(std::vector<double>) == sizeof(std::vector<char>), "std::vector<double> and std::vector<char> must have the same size");
+static_assert(sizeof(std::vector<double>) == sizeof(std::vector<int>), "std::vector<double> and std::vector<int> must have the same size");
 
 SpiceTextParser::SpiceTextParser()
     : BaseParser()
@@ -73,17 +77,19 @@ err_t SpiceTextParser::getNext(BKVItemView &item)
                 valueBuffer_.assign(value.begin(), value.size());
                 // 继续读取，直到找到完整的括号表达式
                 StringView lineStrip;
-                const size_t maxsize = valueBuffer_.max_size();
+                constexpr size_t maxmem = 20 * 1024 * 1024; // 20 MB
+                const size_t maxsize = std::min(valueBuffer_.max_size(), maxmem);
                 do{
                     StringView line = getLineWithNewline();
                     if(valueBuffer_.size() + line.size() >= maxsize)
                     {
-                        aError("value buffer overflow for key: %.*s", (int)item.key().size(), item.key().data());
+                        aError("value buffer overflow (exceeds %zu bytes) for key: %.*s",
+                               maxsize, (int)item.key().size(), item.key().data());
                         break;
                     }
                     valueBuffer_.append(line.begin(), line.size());
                     lineStrip = aStripTrailingAsciiWhitespace(line);
-                }while(lineStrip.back() != ')');
+                }while(lineStrip.empty() || lineStrip.back() != ')');
                 item.value() = valueBuffer_;
             }
             // {

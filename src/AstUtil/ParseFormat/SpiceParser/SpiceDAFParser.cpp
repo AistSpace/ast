@@ -23,6 +23,7 @@
 #include "AstUtil/StringSplit.hpp"
 #include <cstdint>
 #include <iostream>
+#include <limits>
 
 AST_NAMESPACE_BEGIN
 
@@ -279,6 +280,8 @@ err_t SpiceDAFParser::runTest()
 err_t SpiceDAFParser::readSummaryRecords(int fward, int bward, std::vector<Record>& summaryRecords) const
 {
     int recordIndex = fward;
+    constexpr size_t max_elem = 1024 * 1024 * 1024 / sizeof(Record);    //  1GB
+    const size_t max_size = std::min(summaryRecords.max_size(), max_elem);
     while(1)
     {
         Record record;
@@ -289,9 +292,13 @@ err_t SpiceDAFParser::readSummaryRecords(int fward, int bward, std::vector<Recor
             return -1;
         }
         static_assert(sizeof(DAF_SummaryRecords) == sizeof(Record), "DAF_SummaryRecords size must be 1024");
+        if(summaryRecords.size() + 1 >= max_size) {
+            aError("summaryRecords size exceeds max_size");
+            return eErrorInvalidFile;
+        }
         summaryRecords.push_back(record);
         int next = (int)reinterpret_cast<const DAF_SummaryRecords*>(record.data())->next;
-        if(next == recordIndex || next == 0 || recordIndex == bward)
+        if(next == 0 || next == fward || next == recordIndex || recordIndex == bward)
             break;
         recordIndex = next;
     }

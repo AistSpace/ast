@@ -48,25 +48,32 @@ const SpiceData *SpiceKernelPool::getData(StringView name) const
 {
     auto it = dataMap_.find(std::string(name));
     if (it == dataMap_.end())
-    {
         return nullptr;
-    }
     return &it->second;
 }
 
 const std::vector<double> *SpiceKernelPool::getDoubleData(StringView name) const
 {
-    return &(getData(name)->doubleData_);
+    auto data = getData(name);
+    if (data == nullptr)
+        return nullptr;
+    return data->getDoubleData();
 }
 
 const std::vector<int> *SpiceKernelPool::getIntData(StringView name) const
 {
-    return &(getData(name)->intData_);
+    auto data = getData(name);
+    if (data == nullptr)
+        return nullptr;
+    return data->getIntData();
 }
 
 const std::vector<char> *SpiceKernelPool::getCharData(StringView name) const
 {
-    return &(getData(name)->charData_);
+    auto data = getData(name);
+    if (data == nullptr)
+        return nullptr;
+    return data->getCharData();
 }
 
 AST_NAMESPACE_END
