@@ -298,7 +298,7 @@ err_t SpiceDAFParser::readSummaryRecords(int fward, int bward, std::vector<Recor
         }
         summaryRecords.push_back(record);
         int next = (int)reinterpret_cast<const DAF_SummaryRecords*>(record.data())->next;
-        if(next == 0 || recordIndex == next || recordIndex == bward || recordIndex == fward)
+        if(next == 0 || next == fward || next == recordIndex || recordIndex == bward)
             break;
         recordIndex = next;
     }

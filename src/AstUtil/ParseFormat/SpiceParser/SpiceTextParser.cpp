@@ -20,9 +20,12 @@
 
 #include "SpiceTextParser.hpp"
 #include "AstUtil/StringView.hpp"
-#include <cmath>
+#include <algorithm>
 
 AST_NAMESPACE_BEGIN
+
+static_assert(sizeof(std::vector<double>) == sizeof(std::vector<char>), "std::vector<double> and std::vector<char> must have the same size");
+static_assert(sizeof(std::vector<double>) == sizeof(std::vector<int>), "std::vector<double> and std::vector<int> must have the same size");
 
 SpiceTextParser::SpiceTextParser()
     : BaseParser()
@@ -86,9 +89,7 @@ err_t SpiceTextParser::getNext(BKVItemView &item)
                     }
                     valueBuffer_.append(line.begin(), line.size());
                     lineStrip = aStripTrailingAsciiWhitespace(line);
-                    if(lineStrip.empty())
-                        continue;
-                }while(lineStrip.back() != ')');
+                }while(lineStrip.empty() || lineStrip.back() != ')');
                 item.value() = valueBuffer_;
             }
             // {
