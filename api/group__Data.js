@@ -70,7 +70,7 @@ var group__Data =
         [ "eMoon", "classast_1_1JplDe.html#a577b7b65a916a9c36041770f2fc5fef1adca14ce1f4d3a01b112fbde98be6301a", null ],
         [ "eSun", "classast_1_1JplDe.html#a577b7b65a916a9c36041770f2fc5fef1a2028c9fed07e32d803d7bbcb0aed4156", null ],
         [ "eSSBarycenter", "classast_1_1JplDe.html#a577b7b65a916a9c36041770f2fc5fef1ad61097daaaac19695685e86ad30d7976", null ],
-        [ "eEMBaryCenter", "classast_1_1JplDe.html#a577b7b65a916a9c36041770f2fc5fef1a9915ad10fcaf01987de3dcf8cbfe4512", null ]
+        [ "eEMBarycenter", "classast_1_1JplDe.html#a577b7b65a916a9c36041770f2fc5fef1a3768572247435bac5b1dec175336b186", null ]
       ] ],
       [ "close", "classast_1_1JplDe.html#a3195e2f276145ea57d57672b7b62d082", null ],
       [ "getEphemVersion", "classast_1_1JplDe.html#ab9160925a27f8e35768b5dc441f3bf94", null ],
@@ -123,6 +123,7 @@ var group__Data =
     [ "ast::aDataDirSet", "group__Data.html#ga178274c33d5da80112cf792bdbae6d9f", null ],
     [ "ast::aGetBody", "group__Data.html#gab5d0282ada45dcbf8c28009fc3c853bf", null ],
     [ "ast::aGetEarth", "group__Data.html#ga6a91df2c2ab249279ee7f949d16dce7d", null ],
+    [ "ast::aGetEMBarycenter", "group__Data.html#ga47273e9f78df27ff3d50232d7249ed16", null ],
     [ "ast::aGetJupiter", "group__Data.html#gaa946dd4a18e60a17709cdcb0ef01d867", null ],
     [ "ast::aGetMars", "group__Data.html#ga46f1d294e8e89a04cb3d8720721fc04c", null ],
     [ "ast::aGetMercury", "group__Data.html#gab2beaa2fb58589b75c8e8d943742d1e0", null ],
@@ -131,6 +132,7 @@ var group__Data =
     [ "ast::aGetPluto", "group__Data.html#ga9964cd04be056643339e57340ba71b71", null ],
     [ "ast::aGetSaturn", "group__Data.html#ga63e6186026fde76382aec3fca10b3a02", null ],
     [ "ast::aGetSolarSystem", "group__Data.html#gaf6a3c7cc9ccf2f22d0e1922a9f541bff", null ],
+    [ "ast::aGetSSBarycenter", "group__Data.html#gabed5bd7f30437ba58af926a65b684fe2", null ],
     [ "ast::aGetSun", "group__Data.html#gaaa2081372365f9b59aaa5fef917946d6", null ],
     [ "ast::aGetUranus", "group__Data.html#ga67b0370e6c92e1f5b51a18a97d729708", null ],
     [ "ast::aGetVenus", "group__Data.html#ga52e92d9e4b8f7aeb85cee5d714f269b0", null ],

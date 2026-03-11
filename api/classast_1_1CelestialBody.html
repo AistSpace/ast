@@ -179,10 +179,10 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>getJ6</b> () const<
 <tr class="memitem:aa929791242e4840e147e5c7d6c8a96cf" id="r_aa929791242e4840e147e5c7d6c8a96cf"><td class="memItemLeft" align="right" valign="top"><a id="aa929791242e4840e147e5c7d6c8a96cf" name="aa929791242e4840e147e5c7d6c8a96cf"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isEarth</b> () const</td></tr>
 <tr class="separator:aa929791242e4840e147e5c7d6c8a96cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1682fe75c3016668f7f6d9acabd9ec78" id="r_a1682fe75c3016668f7f6d9acabd9ec78"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1682fe75c3016668f7f6d9acabd9ec78">getPosICRF</a> (<a class="el" href="classast_1_1TimePoint.html">TimePoint</a> tp, Vector3d &amp;pos) const</td></tr>
-<tr class="separator:a1682fe75c3016668f7f6d9acabd9ec78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05cf6b13751d9be2e5c86b8c758f49c8" id="r_a05cf6b13751d9be2e5c86b8c758f49c8"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05cf6b13751d9be2e5c86b8c758f49c8">getPosVelICRF</a> (<a class="el" href="classast_1_1TimePoint.html">TimePoint</a> tp, Vector3d &amp;pos, Vector3d &amp;vel) const</td></tr>
-<tr class="separator:a05cf6b13751d9be2e5c86b8c758f49c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad00a85f3b14b8ffc2bd4a50c959811e0" id="r_ad00a85f3b14b8ffc2bd4a50c959811e0"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad00a85f3b14b8ffc2bd4a50c959811e0">getPosICRF</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos) const</td></tr>
+<tr class="separator:ad00a85f3b14b8ffc2bd4a50c959811e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae14ec2326791616d87c6ceb3e89145e3" id="r_ae14ec2326791616d87c6ceb3e89145e3"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae14ec2326791616d87c6ceb3e89145e3">getPosVelICRF</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) const</td></tr>
+<tr class="separator:ae14ec2326791616d87c6ceb3e89145e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac2be47141564e831fde370631d78f49" id="r_aac2be47141564e831fde370631d78f49"><td class="memItemLeft" align="right" valign="top"><a id="aac2be47141564e831fde370631d78f49" name="aac2be47141564e831fde370631d78f49"></a>
 <a class="el" href="classast_1_1BodyOrientation.html">BodyOrientation</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getOrientation</b> () const</td></tr>
 <tr class="separator:aac2be47141564e831fde370631d78f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -335,8 +335,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SolarSystem</b></td>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>天体 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="a1682fe75c3016668f7f6d9acabd9ec78" name="a1682fe75c3016668f7f6d9acabd9ec78"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1682fe75c3016668f7f6d9acabd9ec78">&#9670;&#160;</a></span>getPosICRF()</h2>
+<a id="ad00a85f3b14b8ffc2bd4a50c959811e0" name="ad00a85f3b14b8ffc2bd4a50c959811e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad00a85f3b14b8ffc2bd4a50c959811e0">&#9670;&#160;</a></span>getPosICRF()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -344,7 +344,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SolarSystem</b></td>
         <tr>
           <td class="memname">err_t ast::CelestialBody::getPosICRF </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classast_1_1TimePoint.html">TimePoint</a></td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -371,8 +371,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SolarSystem</b></td>
 
 </div>
 </div>
-<a id="a05cf6b13751d9be2e5c86b8c758f49c8" name="a05cf6b13751d9be2e5c86b8c758f49c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05cf6b13751d9be2e5c86b8c758f49c8">&#9670;&#160;</a></span>getPosVelICRF()</h2>
+<a id="ae14ec2326791616d87c6ceb3e89145e3" name="ae14ec2326791616d87c6ceb3e89145e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae14ec2326791616d87c6ceb3e89145e3">&#9670;&#160;</a></span>getPosVelICRF()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -380,7 +380,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SolarSystem</b></td>
         <tr>
           <td class="memname">err_t ast::CelestialBody::getPosVelICRF </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classast_1_1TimePoint.html">TimePoint</a></td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
