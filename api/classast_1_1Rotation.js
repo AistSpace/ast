@@ -23,5 +23,6 @@ var classast_1_1Rotation =
     [ "setMatrix", "classast_1_1Rotation.html#aacc0d41b87c3a9a786b44bfa22389c17", null ],
     [ "setQuaternion", "classast_1_1Rotation.html#a704b1e1b7ec3d0e94a7664da6e37a2ca", null ],
     [ "transformVector", "classast_1_1Rotation.html#a3d78420da24d3cc9fce0a5904b3fee34", null ],
-    [ "transformVector", "classast_1_1Rotation.html#a088bae2548fbc4d1153ceac5dd26882e", null ]
+    [ "transformVector", "classast_1_1Rotation.html#a088bae2548fbc4d1153ceac5dd26882e", null ],
+    [ "transformVectorInv", "classast_1_1Rotation.html#a0e2af3e0f26250f08eaf54655f6a57d1", null ]
 ];

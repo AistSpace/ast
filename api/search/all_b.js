@@ -40,7 +40,7 @@ var searchData=
   ['kinematicrotation_37',['KinematicRotation',['../classast_1_1KinematicRotation.html',1,'ast::KinematicRotation'],['../classast_1_1KinematicRotation.html#a7a7cf3a0ee52f90857a27348663ae289',1,'ast::KinematicRotation::KinematicRotation()=default'],['../classast_1_1KinematicRotation.html#acfc1d8217c1e6a2d28a887ec6b5bad43',1,'ast::KinematicRotation::KinematicRotation(const Rotation &amp;rot, const Vector3d &amp;angvel)'],['../classast_1_1KinematicRotation.html#a262da130868caf4121f044987790da1f',1,'ast::KinematicRotation::KinematicRotation(const Matrix3d &amp;mat, const Vector3d &amp;angvel)']]],
   ['kinematicrotation_2ecpp_38',['KinematicRotation.cpp',['../KinematicRotation_8cpp.html',1,'']]],
   ['kinematicrotation_2ehpp_39',['KinematicRotation.hpp',['../KinematicRotation_8hpp.html',1,'']]],
-  ['kinematictransform_40',['KinematicTransform',['../classast_1_1KinematicTransform.html',1,'ast']]],
+  ['kinematictransform_40',['KinematicTransform',['../classast_1_1KinematicTransform.html',1,'ast::KinematicTransform'],['../classast_1_1KinematicTransform.html#a072c335f11a11fac1af298526b88625b',1,'ast::KinematicTransform::KinematicTransform()']]],
   ['kinematictransform_2ecpp_41',['KinematicTransform.cpp',['../KinematicTransform_8cpp.html',1,'']]],
   ['kinematictransform_2ehpp_42',['KinematicTransform.hpp',['../KinematicTransform_8hpp.html',1,'']]],
   ['kj1900epoch_43',['kJ1900Epoch',['../group__Util.html#ga0ad40316f7c3639095a353233aa294f5',1,'ast']]],

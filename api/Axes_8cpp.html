@@ -105,8 +105,10 @@ $(function(){initNavTree('Axes_8cpp.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="Axes_8hpp_source.html">Axes.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Frame_8hpp_source.html">Frame.hpp</a>&quot;</code><br />
 <code>#include &quot;AstMath/Rotation.hpp&quot;</code><br />
 <code>#include &quot;AstMath/KinematicRotation.hpp&quot;</code><br />
+<code>#include &quot;AstMath/KinematicTransform.hpp&quot;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;limits&gt;</code><br />
 </div><table class="memberdecls">
@@ -117,9 +119,21 @@ $(function(){initNavTree('Axes_8cpp.html',''); initResizable(true); });
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:a3de3ee31c237c379d0f74c708ce5d073" id="r_a3de3ee31c237c379d0f74c708ce5d073"><td class="memTemplParams" colspan="2">template&lt;typename RotationType &gt; </td></tr>
-<tr class="memitem:a3de3ee31c237c379d0f74c708ce5d073"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE err_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceast.html#a3de3ee31c237c379d0f74c708ce5d073">ast::aAxesTransform</a> (<a class="el" href="classast_1_1Axes.html">Axes</a> *source, <a class="el" href="classast_1_1Axes.html">Axes</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, RotationType &amp;rotation)</td></tr>
-<tr class="separator:a3de3ee31c237c379d0f74c708ce5d073"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2143054c7fe496f1123328e32eb228a5" id="r_a2143054c7fe496f1123328e32eb228a5"><td class="memTemplParams" colspan="2"><a id="a2143054c7fe496f1123328e32eb228a5" name="a2143054c7fe496f1123328e32eb228a5"></a>
+template&lt;typename GeometryType &gt; </td></tr>
+<tr class="memitem:a2143054c7fe496f1123328e32eb228a5"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><b>ast::aGeometryDepth</b> (const GeometryType *geometry)</td></tr>
+<tr class="separator:a2143054c7fe496f1123328e32eb228a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38c30d921e79d18b3b32f4a8639f0808" id="r_a38c30d921e79d18b3b32f4a8639f0808"><td class="memTemplParams" colspan="2"><a id="a38c30d921e79d18b3b32f4a8639f0808" name="a38c30d921e79d18b3b32f4a8639f0808"></a>
+template&lt;typename GeometryType &gt; </td></tr>
+<tr class="memitem:a38c30d921e79d18b3b32f4a8639f0808"><td class="memTemplItemLeft" align="right" valign="top">GeometryType *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>ast::aGeometryAncestor</b> (const GeometryType *geometry, int depth)</td></tr>
+<tr class="separator:a38c30d921e79d18b3b32f4a8639f0808"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad6b49bf0170e8c84db4a94e7fb507f1" id="r_aad6b49bf0170e8c84db4a94e7fb507f1"><td class="memTemplParams" colspan="2">template&lt;typename GeometryType , typename RotationType &gt; </td></tr>
+<tr class="memitem:aad6b49bf0170e8c84db4a94e7fb507f1"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE err_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceast.html#aad6b49bf0170e8c84db4a94e7fb507f1">ast::aGeometryTransform</a> (GeometryType *source, GeometryType *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, RotationType &amp;rotation)</td></tr>
+<tr class="separator:aad6b49bf0170e8c84db4a94e7fb507f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga004ae9150f4360f07d00026a3378f81e" id="r_ga004ae9150f4360f07d00026a3378f81e"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Geometry.html#ga004ae9150f4360f07d00026a3378f81e">ast::aFrameTransform</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *source, <a class="el" href="classast_1_1Frame.html">Frame</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Transform.html">Transform</a> &amp;transform)</td></tr>
+<tr class="separator:ga004ae9150f4360f07d00026a3378f81e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeb5e9d90dc72b3072c519330ff312e37" id="r_gaeb5e9d90dc72b3072c519330ff312e37"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Geometry.html#gaeb5e9d90dc72b3072c519330ff312e37">ast::aFrameTransform</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *source, <a class="el" href="classast_1_1Frame.html">Frame</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1KinematicTransform.html">KinematicTransform</a> &amp;transform)</td></tr>
+<tr class="separator:gaeb5e9d90dc72b3072c519330ff312e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad752a4457ffba86f9908e0bc3a5a7939" id="r_gad752a4457ffba86f9908e0bc3a5a7939"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Geometry.html#gad752a4457ffba86f9908e0bc3a5a7939">ast::aAxesTransform</a> (<a class="el" href="classast_1_1Axes.html">Axes</a> *source, <a class="el" href="classast_1_1Axes.html">Axes</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Rotation.html">Rotation</a> &amp;rotation)</td></tr>
 <tr class="separator:gad752a4457ffba86f9908e0bc3a5a7939"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga040e91ddf3f1c730e3d25f9dd27f9798" id="r_ga040e91ddf3f1c730e3d25f9dd27f9798"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Geometry.html#ga040e91ddf3f1c730e3d25f9dd27f9798">ast::aAxesTransform</a> (<a class="el" href="classast_1_1Axes.html">Axes</a> *source, <a class="el" href="classast_1_1Axes.html">Axes</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;matrix)</td></tr>

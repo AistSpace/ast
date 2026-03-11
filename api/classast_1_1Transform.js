@@ -11,6 +11,7 @@ var classast_1_1Transform =
     [ "inverse", "classast_1_1Transform.html#adabce93ff2bb727d1668ee1990fdd3d3", null ],
     [ "operator*", "classast_1_1Transform.html#a157750866672c3eb52b8b2bdfcd280cd", null ],
     [ "operator*=", "classast_1_1Transform.html#ae950cc26bdf6d3045fec1f956ff07b9f", null ],
+    [ "setIdentity", "classast_1_1Transform.html#a76b4e91fd9b8090bc8a8094e9f8d6a6e", null ],
     [ "setRotation", "classast_1_1Transform.html#adfdc784c153e3da46da7216b4f5310b7", null ],
     [ "setTranslation", "classast_1_1Transform.html#a0d8c5f5d309b3814955ef1a3b788af25", null ],
     [ "transformPosition", "classast_1_1Transform.html#acd337e12691586e6ebf73c8a78bd183d", null ],

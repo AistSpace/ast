@@ -191,7 +191,7 @@ var searchData=
   ['getrightascensionofascendingnode_188',['getRightAscensionOfAscendingNode',['../classast_1_1SimpleOrbitDesigner.html#aa1b7ef98d029de099d4dd53de0f91079',1,'ast::SimpleOrbitDesigner']]],
   ['getrootnode_189',['getRootNode',['../classast_1_1GfxMain.html#aba123eb3843a5701d0139c5f3dac2aee',1,'ast::GfxMain']]],
   ['getrotation_190',['getRotation',['../classast_1_1KinematicRotation.html#a82779c2bb75c29307caf234dd954649d',1,'ast::KinematicRotation::getRotation()'],['../classast_1_1Transform.html#a3f752eca7fa58a1ea901488e708e9c5c',1,'ast::Transform::getRotation()']]],
-  ['getrotationrate_191',['getRotationRate',['../classast_1_1KinematicRotation.html#a5faeeda5e7a1db19b0b1cb74f9aea923',1,'ast::KinematicRotation']]],
+  ['getrotationrate_191',['getRotationRate',['../classast_1_1KinematicRotation.html#a5faeeda5e7a1db19b0b1cb74f9aea923',1,'ast::KinematicRotation::getRotationRate()'],['../classast_1_1KinematicTransform.html#a1dae9ac00cacb78d965f2db97402e4af',1,'ast::KinematicTransform::getRotationRate()']]],
   ['getrotationspeed_192',['getRotationSpeed',['../classast_1_1GfxCelestialBody.html#ac9b5a68069ef250ef882f746ea91197e',1,'ast::GfxCelestialBody']]],
   ['getsaturn_193',['getSaturn',['../classast_1_1SolarSystem.html#a53aa7479f71ef11c851e4bcc2f8c24f3',1,'ast::SolarSystem']]],
   ['getscale_194',['getScale',['../classast_1_1Unit.html#a2cb7d466a73c2e548d09ff3444f7dfb2',1,'ast::Unit']]],

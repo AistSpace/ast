@@ -1940,19 +1940,27 @@ A_ALWAYS_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><b>gfUnn
 <tr class="memitem:a7630f1c385e8365ccbe13a45d18f08bb" id="r_a7630f1c385e8365ccbe13a45d18f08bb"><td class="memItemLeft" align="right" valign="top"><a id="a7630f1c385e8365ccbe13a45d18f08bb" name="a7630f1c385e8365ccbe13a45d18f08bb"></a>
 A_ALWAYS_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><b>gfUnnormalize</b> (int n, int m, double &amp;value1, double &amp;value2)</td></tr>
 <tr class="separator:a7630f1c385e8365ccbe13a45d18f08bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3de3ee31c237c379d0f74c708ce5d073" id="r_a3de3ee31c237c379d0f74c708ce5d073"><td class="memTemplParams" colspan="2">template&lt;typename RotationType &gt; </td></tr>
-<tr class="memitem:a3de3ee31c237c379d0f74c708ce5d073"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE err_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a3de3ee31c237c379d0f74c708ce5d073">aAxesTransform</a> (<a class="el" href="classast_1_1Axes.html">Axes</a> *source, <a class="el" href="classast_1_1Axes.html">Axes</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, RotationType &amp;rotation)</td></tr>
-<tr class="separator:a3de3ee31c237c379d0f74c708ce5d073"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2143054c7fe496f1123328e32eb228a5" id="r_a2143054c7fe496f1123328e32eb228a5"><td class="memTemplParams" colspan="2"><a id="a2143054c7fe496f1123328e32eb228a5" name="a2143054c7fe496f1123328e32eb228a5"></a>
+template&lt;typename GeometryType &gt; </td></tr>
+<tr class="memitem:a2143054c7fe496f1123328e32eb228a5"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><b>aGeometryDepth</b> (const GeometryType *geometry)</td></tr>
+<tr class="separator:a2143054c7fe496f1123328e32eb228a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38c30d921e79d18b3b32f4a8639f0808" id="r_a38c30d921e79d18b3b32f4a8639f0808"><td class="memTemplParams" colspan="2"><a id="a38c30d921e79d18b3b32f4a8639f0808" name="a38c30d921e79d18b3b32f4a8639f0808"></a>
+template&lt;typename GeometryType &gt; </td></tr>
+<tr class="memitem:a38c30d921e79d18b3b32f4a8639f0808"><td class="memTemplItemLeft" align="right" valign="top">GeometryType *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>aGeometryAncestor</b> (const GeometryType *geometry, int depth)</td></tr>
+<tr class="separator:a38c30d921e79d18b3b32f4a8639f0808"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad6b49bf0170e8c84db4a94e7fb507f1" id="r_aad6b49bf0170e8c84db4a94e7fb507f1"><td class="memTemplParams" colspan="2">template&lt;typename GeometryType , typename RotationType &gt; </td></tr>
+<tr class="memitem:aad6b49bf0170e8c84db4a94e7fb507f1"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE err_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aad6b49bf0170e8c84db4a94e7fb507f1">aGeometryTransform</a> (GeometryType *source, GeometryType *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, RotationType &amp;rotation)</td></tr>
+<tr class="separator:aad6b49bf0170e8c84db4a94e7fb507f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga004ae9150f4360f07d00026a3378f81e" id="r_ga004ae9150f4360f07d00026a3378f81e"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Geometry.html#ga004ae9150f4360f07d00026a3378f81e">aFrameTransform</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *source, <a class="el" href="classast_1_1Frame.html">Frame</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Transform.html">Transform</a> &amp;transform)</td></tr>
+<tr class="separator:ga004ae9150f4360f07d00026a3378f81e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeb5e9d90dc72b3072c519330ff312e37" id="r_gaeb5e9d90dc72b3072c519330ff312e37"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Geometry.html#gaeb5e9d90dc72b3072c519330ff312e37">aFrameTransform</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *source, <a class="el" href="classast_1_1Frame.html">Frame</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1KinematicTransform.html">KinematicTransform</a> &amp;transform)</td></tr>
+<tr class="separator:gaeb5e9d90dc72b3072c519330ff312e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad752a4457ffba86f9908e0bc3a5a7939" id="r_gad752a4457ffba86f9908e0bc3a5a7939"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Geometry.html#gad752a4457ffba86f9908e0bc3a5a7939">aAxesTransform</a> (<a class="el" href="classast_1_1Axes.html">Axes</a> *source, <a class="el" href="classast_1_1Axes.html">Axes</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Rotation.html">Rotation</a> &amp;rotation)</td></tr>
 <tr class="separator:gad752a4457ffba86f9908e0bc3a5a7939"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga040e91ddf3f1c730e3d25f9dd27f9798" id="r_ga040e91ddf3f1c730e3d25f9dd27f9798"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Geometry.html#ga040e91ddf3f1c730e3d25f9dd27f9798">aAxesTransform</a> (<a class="el" href="classast_1_1Axes.html">Axes</a> *source, <a class="el" href="classast_1_1Axes.html">Axes</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;matrix)</td></tr>
 <tr class="separator:ga040e91ddf3f1c730e3d25f9dd27f9798"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4b00e9af0b74fe6473523d20b6c86b6c" id="r_ga4b00e9af0b74fe6473523d20b6c86b6c"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Geometry.html#ga4b00e9af0b74fe6473523d20b6c86b6c">aAxesTransform</a> (<a class="el" href="classast_1_1Axes.html">Axes</a> *source, <a class="el" href="classast_1_1Axes.html">Axes</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1KinematicRotation.html">KinematicRotation</a> &amp;rotation)</td></tr>
 <tr class="separator:ga4b00e9af0b74fe6473523d20b6c86b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga004ae9150f4360f07d00026a3378f81e" id="r_ga004ae9150f4360f07d00026a3378f81e"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Geometry.html#ga004ae9150f4360f07d00026a3378f81e">aFrameTransform</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *source, <a class="el" href="classast_1_1Frame.html">Frame</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Transform.html">Transform</a> &amp;transform)</td></tr>
-<tr class="separator:ga004ae9150f4360f07d00026a3378f81e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaeb5e9d90dc72b3072c519330ff312e37" id="r_gaeb5e9d90dc72b3072c519330ff312e37"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Geometry.html#gaeb5e9d90dc72b3072c519330ff312e37">aFrameTransform</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *source, <a class="el" href="classast_1_1Frame.html">Frame</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1KinematicTransform.html">KinematicTransform</a> &amp;transform)</td></tr>
-<tr class="separator:gaeb5e9d90dc72b3072c519330ff312e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67f30cea55bfebe12f59a82fcaeb1f1a" id="r_a67f30cea55bfebe12f59a82fcaeb1f1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67f30cea55bfebe12f59a82fcaeb1f1a">aSurfaceCentricToDetic</a> (const <a class="el" href="classast_1_1GeocentricPoint.html">GeocentricPoint</a> &amp;centric, double flatFact, <a class="el" href="classast_1_1GeodeticPoint.html">GeodeticPoint</a> &amp;detic)</td></tr>
 <tr class="separator:a67f30cea55bfebe12f59a82fcaeb1f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2716f3c71f6cd635ffaf3c4c76a2e667" id="r_a2716f3c71f6cd635ffaf3c4c76a2e667"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2716f3c71f6cd635ffaf3c4c76a2e667">aSurfaceDeticToCentric</a> (const <a class="el" href="classast_1_1GeodeticPoint.html">GeodeticPoint</a> &amp;detic, double flatFact, <a class="el" href="classast_1_1GeocentricPoint.html">GeocentricPoint</a> &amp;centric)</td></tr>
@@ -4230,7 +4238,8 @@ constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>dynamic_e
 <tr class="separator:ga82571ebfc5690da611193092874161d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>ast项目（https://github.com/space-ast/ast） 本项目基于 Apache 2.0 开源许可证分发。 您可在遵守许可证条款的前提下使用、修改和分发本软件。 许可证全文请见：</p>
+<div class="textblock"><p>@fixme 头文件依赖倒置 </p>
+<p>ast项目（https://github.com/space-ast/ast） 本项目基于 Apache 2.0 开源许可证分发。 您可在遵守许可证条款的前提下使用、修改和分发本软件。 许可证全文请见：</p>
 <p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>重要须知： 软件按“现有状态”提供，无任何明示或暗示的担保条件。 除非法律要求或书面同意，作者与贡献者不承担任何责任。 使用本软件所产生的风险，需由您自行承担。</p>
 <p>本项目基于 Apache 2.0 开源许可证分发。 您可在遵守许可证条款的前提下使用、修改和分发本软件。 许可证全文请见：</p>
@@ -4460,42 +4469,6 @@ constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>dynamic_e
 
 <p>获取命令行参数 </p>
 <dl class="section return"><dt>返回</dt><dd><a class="el" href="structast_1_1args__t.html">args_t</a> 命令行参数结构体 </dd></dl>
-
-</div>
-</div>
-<a id="a3de3ee31c237c379d0f74c708ce5d073" name="a3de3ee31c237c379d0f74c708ce5d073"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3de3ee31c237c379d0f74c708ce5d073">&#9670;&#160;</a></span>aAxesTransform()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RotationType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">A_ALWAYS_INLINE err_t ast::aAxesTransform </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>source</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>target</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">RotationType &amp;</td>          <td class="paramname"><span class="paramname"><em>rotation</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>计算出源坐标系和目标坐标系的深度， 同时分别填充源坐标系路径和目标坐标系路径。 最后从源坐标系路径和目标坐标系路径的末尾开始比较， 找到第一个相同的坐标系， 则该坐标系为最近公共祖先</p>
-<p>假设坐标系的深度不会超过256层， 因此使用了一个256层的栈数组来存储源坐标系路径和目标坐标系路径。 为了避免缓冲区溢出，我们使用uint8_t类型来存储深度</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">待办事项</a></b></dt><dd>在寻找最近公共祖先时，如果出现了超过256层的意外情况（非常非常罕见）， 需要进入动态分配内存的计算模式 </dd></dl>
 
 </div>
 </div>
@@ -4804,6 +4777,42 @@ template&lt;typename RotationType &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>对应时间点的格林尼治视恒星时 GAST（弧度） </dd></dl>
+
+</div>
+</div>
+<a id="aad6b49bf0170e8c84db4a94e7fb507f1" name="aad6b49bf0170e8c84db4a94e7fb507f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad6b49bf0170e8c84db4a94e7fb507f1">&#9670;&#160;</a></span>aGeometryTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename GeometryType , typename RotationType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">A_ALWAYS_INLINE err_t ast::aGeometryTransform </td>
+          <td>(</td>
+          <td class="paramtype">GeometryType *</td>          <td class="paramname"><span class="paramname"><em>source</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GeometryType *</td>          <td class="paramname"><span class="paramname"><em>target</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">RotationType &amp;</td>          <td class="paramname"><span class="paramname"><em>rotation</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>计算出源坐标系和目标坐标系的深度， 同时分别填充源坐标系路径和目标坐标系路径。 最后从源坐标系路径和目标坐标系路径的末尾开始比较， 找到第一个相同的坐标系， 则该坐标系为最近公共祖先</p>
+<p>假设坐标系的深度不会超过256层， 因此使用了一个256层的栈数组来存储源坐标系路径和目标坐标系路径。 为了避免缓冲区溢出，我们使用uint8_t类型来存储深度</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">待办事项</a></b></dt><dd>在寻找最近公共祖先时，如果出现了超过256层的意外情况（非常非常罕见）， 需要进入动态分配内存的计算模式 </dd></dl>
 
 </div>
 </div>

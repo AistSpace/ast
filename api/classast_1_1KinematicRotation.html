@@ -154,6 +154,10 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:ae2dc55434a6448e1af8948da2d4449df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a950848ca0984c4b5cfacf3614999a584" id="r_a950848ca0984c4b5cfacf3614999a584"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a950848ca0984c4b5cfacf3614999a584">transformVectorVelocity</a> (const Vector3d &amp;vector, const Vector3d &amp;velocity, Vector3d &amp;vectorOut, Vector3d &amp;velocityOut) const</td></tr>
 <tr class="separator:a950848ca0984c4b5cfacf3614999a584"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3beb4321f1643ac94191d8c1d98e5d13" id="r_a3beb4321f1643ac94191d8c1d98e5d13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1CartState.html">CartState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3beb4321f1643ac94191d8c1d98e5d13">transformCartState</a> (const <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;state) const</td></tr>
+<tr class="separator:a3beb4321f1643ac94191d8c1d98e5d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a710d49d2e5b51f6433181ecd97a7187a" id="r_a710d49d2e5b51f6433181ecd97a7187a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a710d49d2e5b51f6433181ecd97a7187a">transformVectorVelocityInv</a> (const Vector3d &amp;vector, const Vector3d &amp;velocity, Vector3d &amp;vectorOut, Vector3d &amp;velocityOut) const</td></tr>
+<tr class="separator:a710d49d2e5b51f6433181ecd97a7187a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a720283109431ea071832f1b863d9f4b8" id="r_a720283109431ea071832f1b863d9f4b8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a720283109431ea071832f1b863d9f4b8">getMatrix</a> () const</td></tr>
 <tr class="separator:a720283109431ea071832f1b863d9f4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab89e45c984fec5ea9fdfce9c8a52dcae" id="r_ab89e45c984fec5ea9fdfce9c8a52dcae"><td class="memItemLeft" align="right" valign="top"><a id="ab89e45c984fec5ea9fdfce9c8a52dcae" name="ab89e45c984fec5ea9fdfce9c8a52dcae"></a>
@@ -235,6 +239,8 @@ Vector3d&#160;</td><td class="memItemRight" valign="bottom"><b>angvel_</b></td><
 <tr class="separator:af23a0573077dd94dc06f82b871ffff37 inherit pro_methods_classast_1_1Rotation"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a088bae2548fbc4d1153ceac5dd26882e inherit pro_methods_classast_1_1Rotation" id="r_a088bae2548fbc4d1153ceac5dd26882e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Rotation.html#a088bae2548fbc4d1153ceac5dd26882e">transformVector</a> (const Vector3d &amp;vector, Vector3d &amp;vectorOut) const</td></tr>
 <tr class="separator:a088bae2548fbc4d1153ceac5dd26882e inherit pro_methods_classast_1_1Rotation"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e2af3e0f26250f08eaf54655f6a57d1 inherit pro_methods_classast_1_1Rotation" id="r_a0e2af3e0f26250f08eaf54655f6a57d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Rotation.html#a0e2af3e0f26250f08eaf54655f6a57d1">transformVectorInv</a> (const Vector3d &amp;vector, Vector3d &amp;vectorOut) const</td></tr>
+<tr class="separator:a0e2af3e0f26250f08eaf54655f6a57d1 inherit pro_methods_classast_1_1Rotation"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d78420da24d3cc9fce0a5904b3fee34 inherit pro_methods_classast_1_1Rotation" id="r_a3d78420da24d3cc9fce0a5904b3fee34"><td class="memItemLeft" align="right" valign="top">Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Rotation.html#a3d78420da24d3cc9fce0a5904b3fee34">transformVector</a> (const Vector3d &amp;vector) const</td></tr>
 <tr class="separator:a3d78420da24d3cc9fce0a5904b3fee34 inherit pro_methods_classast_1_1Rotation"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_methods_classast_1_1Rotation"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_static_methods_classast_1_1Rotation')"><img src="closed.png" alt="-"/>&#160;静态 Protected 成员函数 继承自 <a class="el" href="classast_1_1Rotation.html">ast::Rotation</a></td></tr>
@@ -637,6 +643,32 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
 
 </div>
 </div>
+<a id="a3beb4321f1643ac94191d8c1d98e5d13" name="a3beb4321f1643ac94191d8c1d98e5d13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3beb4321f1643ac94191d8c1d98e5d13">&#9670;&#160;</a></span>transformCartState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">A_ALWAYS_INLINE <a class="el" href="classast_1_1CartState.html">CartState</a> ast::KinematicRotation::transformCartState </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>变换状态向量和速度 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>状态向量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>变换后的状态向量 </dd></dl>
+
+</div>
+</div>
 <a id="a3d78420da24d3cc9fce0a5904b3fee34" name="a3d78420da24d3cc9fce0a5904b3fee34"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3d78420da24d3cc9fce0a5904b3fee34">&#9670;&#160;</a></span>transformVector() <span class="overload">[1/2]</span></h2>
 
@@ -723,6 +755,49 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
 </div><div class="memdoc">
 
 <p>变换向量和速度 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vector</td><td>向量 </td></tr>
+    <tr><td class="paramname">velocity</td><td>速度 </td></tr>
+    <tr><td class="paramname">vectorOut</td><td>变换后的向量 </td></tr>
+    <tr><td class="paramname">velocityOut</td><td>变换后的速度 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a710d49d2e5b51f6433181ecd97a7187a" name="a710d49d2e5b51f6433181ecd97a7187a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a710d49d2e5b51f6433181ecd97a7187a">&#9670;&#160;</a></span>transformVectorVelocityInv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">A_ALWAYS_INLINE void ast::KinematicRotation::transformVectorVelocityInv </td>
+          <td>(</td>
+          <td class="paramtype">const Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>vector</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>velocity</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>vectorOut</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>velocityOut</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>变换位置和速度（逆变换） </p>
+<dl class="section warning"><dt>警告</dt><dd>注意：这里是逆变换，等价于 <code><a class="el" href="#ae2dc55434a6448e1af8948da2d4449df" title="获取逆旋转">inverse()</a>.transformVectorVelocity(...)</code>; </dd></dl>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">vector</td><td>向量 </td></tr>
