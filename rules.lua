@@ -1,11 +1,19 @@
 rule("ast")
     on_load(function (target)
         if target:plat() == "wasm" then
+
+            -- import("core.cache.localcache")
+            -- local preloadfiles = localcache.get("rule.ast", "wasm.preloadfiles")
+            -- if not preloadfiles then
+            --     local files = os.files("data/**|**plneph.405|**leDE1900.421|**leDE1941.405|**leDE18002100.424")
+            --     preloadfiles = {}
+            --     for _, file in ipairs(files) do
+            --         table.insert(preloadfiles, file .. "@" .. file)
+            --     end
+            --     localcache.set("rule.ast", "wasm.preloadfiles", preloadfiles)
+            --     localcache.save()
+            -- end
             -- 添加wasm预加载文件
-            -- @todo: 这里执行太慢了，需要优化
-            local files = os.files("data/**|**plneph.405|**leDE1900.421|**leDE1941.405|**leDE18002100.424")
-            for _, file in ipairs(files) do
-                target:add("values", "wasm.preloadfiles", file .. "@" .. file)
-            end
+            target:set("values", "wasm.preloadfiles", "data")
         end
     end)

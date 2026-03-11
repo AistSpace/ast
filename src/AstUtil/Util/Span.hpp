@@ -184,7 +184,7 @@ public:
     }
 
     // 子视图
-    constexpr Span subspan(index_type offset, index_type count = static_cast<index_type>(-1)) const noexcept {
+    A_CONSTEXPR_CXX14 Span subspan(index_type offset, index_type count = static_cast<index_type>(-1)) const noexcept {
         if (count == static_cast<index_type>(-1)) {
             count = size() - offset;
         }
