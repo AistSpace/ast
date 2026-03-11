@@ -57,6 +57,11 @@ var group__Coordinate =
       [ "getTransform", "classast_1_1FrameRoot.html#a006ae9ab74d68a8b6dab89bf75075919", null ],
       [ "getTransform", "classast_1_1FrameRoot.html#a23f781ad78461644140863140cb5d820", null ]
     ] ],
+    [ "ast::PointBodyCenter", "classast_1_1PointBodyCenter.html", [
+      [ "getFrame", "classast_1_1PointBodyCenter.html#aa38534351e91427784e9a1285afab44a", null ],
+      [ "getPos", "classast_1_1PointBodyCenter.html#a860ddc734eef945a95f2ecfed4f02830", null ],
+      [ "getPosVel", "classast_1_1PointBodyCenter.html#aa18a46edc7e67bca2c4770cdfe083bcb", null ]
+    ] ],
     [ "ast::PointRoot", "classast_1_1PointRoot.html", [
       [ "getFrame", "classast_1_1PointRoot.html#aaa35c3d0d0df0d49adf0027f321b8f55", null ],
       [ "getPos", "classast_1_1PointRoot.html#aeed365622ce96ca28cf866665d6b51f3", null ],

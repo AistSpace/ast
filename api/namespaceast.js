@@ -283,6 +283,7 @@ var namespaceast =
     [ "OrdinaryDifferentialEquation", "classast_1_1OrdinaryDifferentialEquation.html", "classast_1_1OrdinaryDifferentialEquation" ],
     [ "Parser", "classast_1_1Parser.html", "classast_1_1Parser" ],
     [ "Point", "classast_1_1Point.html", "classast_1_1Point" ],
+    [ "PointBodyCenter", "classast_1_1PointBodyCenter.html", "classast_1_1PointBodyCenter" ],
     [ "PointRoot", "classast_1_1PointRoot.html", "classast_1_1PointRoot" ],
     [ "PointSSBarycenter", "classast_1_1PointSSBarycenter.html", "classast_1_1PointSSBarycenter" ],
     [ "PoleMotion", "structast_1_1PoleMotion.html", "structast_1_1PoleMotion" ],

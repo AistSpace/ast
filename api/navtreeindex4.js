@@ -1,5 +1,8 @@
 var NAVTREEINDEX4 =
 {
+"Polynomial_8hpp_source.html":[4,0,0,12,6,13],
+"PosixExt_8cpp.html":[4,0,0,12,2,19],
+"PosixExt_8hpp.html":[4,0,0,12,2,20],
 "PosixExt_8hpp.html#a9c97106431856ac3fd1b9ac8308f39b1":[4,0,0,12,2,20,0],
 "PosixExt_8hpp_source.html":[4,0,0,12,2,20],
 "Posix_8cpp.html":[4,0,0,12,2,17],
@@ -246,8 +249,5 @@ var NAVTREEINDEX4 =
 "StringPosix_8hpp.html#a2dbc046c9cca54d791ab5bd5739c8953":[4,0,0,12,2,22,0],
 "StringPosix_8hpp.html#ab44707fb5f9cdfc8eaa97a54c0f65fdc":[4,0,0,12,2,22,1],
 "StringPosix_8hpp_source.html":[4,0,0,12,2,22],
-"StringSplit_8cpp.html":[4,0,0,12,5,4],
-"StringSplit_8hpp.html":[4,0,0,12,5,5],
-"StringSplit_8hpp_source.html":[4,0,0,12,5,5],
-"StringSplitter_8cpp.html":[4,0,0,12,5,6]
+"StringSplit_8cpp.html":[4,0,0,12,5,4]
 };

@@ -1,5 +1,8 @@
 var NAVTREEINDEX7 =
 {
+"classast_1_1BlockSin.html":[3,0,0,48],
+"classast_1_1BlockSin.html#a5e730811b834eeb3fcd4e74070a5f15a":[2,0,0,49,0],
+"classast_1_1BlockSin.html#a5e730811b834eeb3fcd4e74070a5f15a":[3,0,0,48,0],
 "classast_1_1BlockSubtract.html":[2,0,0,50],
 "classast_1_1BlockSubtract.html":[3,0,0,49],
 "classast_1_1BlockSubtract.html#a61440ec9d5857c3d2c358fc068adebef":[2,0,0,50,0],
@@ -246,8 +249,5 @@ var NAVTREEINDEX7 =
 "classast_1_1DaySecDuration.html#a78f853897f1a959875a18d8d61db391e":[0,0,6,4,2],
 "classast_1_1DaySecDuration.html#a8fce61ded9db355640c584990ccae370":[0,0,6,4,0],
 "classast_1_1Debugger.html":[0,2,1],
-"classast_1_1DelaunayElem.html":[0,0,3,14],
-"classast_1_1DifferentialCorrector.html":[2,0,0,91],
-"classast_1_1DifferentialCorrector.html":[3,0,0,90],
-"classast_1_1Dimension.html":[2,0,0,92]
+"classast_1_1DelaunayElem.html":[0,0,3,14]
 };

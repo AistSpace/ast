@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>🛰️航天仿真算法库 SpaceAST: ast::FrameICRF类 参考</title>
+<title>🛰️航天仿真算法库 SpaceAST: ast::PointBodyCenter类 参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -72,7 +72,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('classast_1_1FrameICRF.html',''); initResizable(true); });
+$(function(){initNavTree('classast_1_1PointBodyCenter.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -100,45 +100,42 @@ $(function(){initNavTree('classast_1_1FrameICRF.html',''); initResizable(true); 
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
-<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
-<a href="classast_1_1FrameICRF-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">ast::FrameICRF类 参考<div class="ingroups"><a class="el" href="group__Core.html">航天模块</a> &raquo; <a class="el" href="group__Coordinate.html">坐标系统</a></div></div></div>
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classast_1_1PointBodyCenter-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ast::PointBodyCenter类 参考<span class="mlabels"><span class="mlabel">final</span></span><div class="ingroups"><a class="el" href="group__Core.html">航天模块</a> &raquo; <a class="el" href="group__Coordinate.html">坐标系统</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="PointBodyCenter_8hpp_source.html">PointBodyCenter.hpp</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> 类 ast::FrameICRF 继承关系图:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> 类 ast::PointBodyCenter 继承关系图:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
  <div class="center">
-  <img src="classast_1_1FrameICRF.png" usemap="#ast::FrameICRF_map" alt=""/>
-  <map id="ast::FrameICRF_map" name="ast::FrameICRF_map">
-<area href="classast_1_1Frame.html" title="坐标系类" alt="ast::Frame" shape="rect" coords="0,56,98,80"/>
-<area href="classast_1_1Object.html" title="对象基类，实现运行时元信息、强弱引用计数" alt="ast::Object" shape="rect" coords="0,0,98,24"/>
+  <img src="classast_1_1PointBodyCenter.png" usemap="#ast::PointBodyCenter_map" alt=""/>
+  <map id="ast::PointBodyCenter_map" name="ast::PointBodyCenter_map">
+<area href="classast_1_1Point.html" alt="ast::Point" shape="rect" coords="0,56,129,80"/>
+<area href="classast_1_1Object.html" title="对象基类，实现运行时元信息、强弱引用计数" alt="ast::Object" shape="rect" coords="0,0,129,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a6daa55a8192ea14876a7d71440c1f355" id="r_a6daa55a8192ea14876a7d71440c1f355"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Frame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6daa55a8192ea14876a7d71440c1f355">getParent</a> () const override</td></tr>
-<tr class="separator:a6daa55a8192ea14876a7d71440c1f355"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a260d7334947877b0bb213cb6ca49d034" id="r_a260d7334947877b0bb213cb6ca49d034"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a260d7334947877b0bb213cb6ca49d034">getAxes</a> () const override</td></tr>
-<tr class="separator:a260d7334947877b0bb213cb6ca49d034"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09dc67cccdf7b92d53a356594390d902" id="r_a09dc67cccdf7b92d53a356594390d902"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Point.html">Point</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09dc67cccdf7b92d53a356594390d902">getOrigin</a> () const override</td></tr>
-<tr class="separator:a09dc67cccdf7b92d53a356594390d902"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6904c2b7944d4bf57ed434deb62a3d47" id="r_a6904c2b7944d4bf57ed434deb62a3d47"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6904c2b7944d4bf57ed434deb62a3d47">getTransform</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Transform.html">Transform</a> &amp;transform) const override</td></tr>
-<tr class="separator:a6904c2b7944d4bf57ed434deb62a3d47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b81c1617dce6cdd68a3819f48d9692b" id="r_a1b81c1617dce6cdd68a3819f48d9692b"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b81c1617dce6cdd68a3819f48d9692b">getTransform</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1KinematicTransform.html">KinematicTransform</a> &amp;transform) const override</td></tr>
-<tr class="separator:a1b81c1617dce6cdd68a3819f48d9692b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classast_1_1Frame"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1Frame')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1Frame.html">ast::Frame</a></td></tr>
-<tr class="memitem:a95d56b0fd4ce30c692899797887e2a0b inherit pub_methods_classast_1_1Frame" id="r_a95d56b0fd4ce30c692899797887e2a0b"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Frame.html#a95d56b0fd4ce30c692899797887e2a0b">getTransformTo</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Transform.html">Transform</a> &amp;transform) const</td></tr>
-<tr class="separator:a95d56b0fd4ce30c692899797887e2a0b inherit pub_methods_classast_1_1Frame"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3dbe245095905ec781e96bd2a7614c8 inherit pub_methods_classast_1_1Frame" id="r_ab3dbe245095905ec781e96bd2a7614c8"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Frame.html#ab3dbe245095905ec781e96bd2a7614c8">getTransformTo</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *target, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1KinematicTransform.html">KinematicTransform</a> &amp;transform) const</td></tr>
-<tr class="separator:ab3dbe245095905ec781e96bd2a7614c8 inherit pub_methods_classast_1_1Frame"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92c89d1a776563df1f0f25a5f62f6c7e inherit pub_methods_classast_1_1Frame" id="r_a92c89d1a776563df1f0f25a5f62f6c7e"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Frame.html#a92c89d1a776563df1f0f25a5f62f6c7e">getTransformFrom</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *source, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Transform.html">Transform</a> &amp;transform) const</td></tr>
-<tr class="separator:a92c89d1a776563df1f0f25a5f62f6c7e inherit pub_methods_classast_1_1Frame"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56545a4a872b9a3efc530a934db332db inherit pub_methods_classast_1_1Frame" id="r_a56545a4a872b9a3efc530a934db332db"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Frame.html#a56545a4a872b9a3efc530a934db332db">getTransformFrom</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *source, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1KinematicTransform.html">KinematicTransform</a> &amp;transform) const</td></tr>
-<tr class="separator:a56545a4a872b9a3efc530a934db332db inherit pub_methods_classast_1_1Frame"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7046920013b2171c681fbd33b456feec" id="r_a7046920013b2171c681fbd33b456feec"><td class="memItemLeft" align="right" valign="top"><a id="a7046920013b2171c681fbd33b456feec" name="a7046920013b2171c681fbd33b456feec"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PointBodyCenter</b> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *body)</td></tr>
+<tr class="separator:a7046920013b2171c681fbd33b456feec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa38534351e91427784e9a1285afab44a" id="r_aa38534351e91427784e9a1285afab44a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Frame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa38534351e91427784e9a1285afab44a">getFrame</a> () const override</td></tr>
+<tr class="separator:aa38534351e91427784e9a1285afab44a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a860ddc734eef945a95f2ecfed4f02830" id="r_a860ddc734eef945a95f2ecfed4f02830"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a860ddc734eef945a95f2ecfed4f02830">getPos</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos) const override</td></tr>
+<tr class="separator:a860ddc734eef945a95f2ecfed4f02830"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa18a46edc7e67bca2c4770cdfe083bcb" id="r_aa18a46edc7e67bca2c4770cdfe083bcb"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa18a46edc7e67bca2c4770cdfe083bcb">getPosVel</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) const override</td></tr>
+<tr class="separator:aa18a46edc7e67bca2c4770cdfe083bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classast_1_1Point"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1Point')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1Point.html">ast::Point</a></td></tr>
+<tr class="memitem:a7376aae59202c374f225b11c80bf5e98 inherit pub_methods_classast_1_1Point" id="r_a7376aae59202c374f225b11c80bf5e98"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Point.html#a7376aae59202c374f225b11c80bf5e98">getPosIn</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos) const</td></tr>
+<tr class="separator:a7376aae59202c374f225b11c80bf5e98 inherit pub_methods_classast_1_1Point"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6f271aaabd7a51f9dce2754cc156a16 inherit pub_methods_classast_1_1Point" id="r_ab6f271aaabd7a51f9dce2754cc156a16"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Point.html#ab6f271aaabd7a51f9dce2754cc156a16">getPosVelIn</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) const</td></tr>
+<tr class="separator:ab6f271aaabd7a51f9dce2754cc156a16 inherit pub_methods_classast_1_1Point"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classast_1_1Object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1Object')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1Object.html">ast::Object</a></td></tr>
 <tr class="memitem:a50d47914de91782bc7ac06dad5ca1e39 inherit pub_methods_classast_1_1Object" id="r_a50d47914de91782bc7ac06dad5ca1e39"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>Object</b> (<a class="el" href="classast_1_1Class.html">Class</a> *tp)</td></tr>
@@ -182,15 +179,11 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:aecd84a95fab6db0c0efb7fb34863b11c inherit pub_methods_classast_1_1Object" id="r_aecd84a95fab6db0c0efb7fb34863b11c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Object.html#aecd84a95fab6db0c0efb7fb34863b11c">decRefNoDelete</a> ()</td></tr>
 <tr class="separator:aecd84a95fab6db0c0efb7fb34863b11c inherit pub_methods_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:ae1a422a700bcd03a1d441dfa82c22d31" id="r_ae1a422a700bcd03a1d441dfa82c22d31"><td class="memItemLeft" align="right" valign="top"><a id="ae1a422a700bcd03a1d441dfa82c22d31" name="ae1a422a700bcd03a1d441dfa82c22d31"></a>
-static <a class="el" href="classast_1_1FrameICRF.html">FrameICRF</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b> ()</td></tr>
-<tr class="separator:ae1a422a700bcd03a1d441dfa82c22d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
-额外继承的成员函数</h2></td></tr>
-<tr class="inherit_header pro_methods_classast_1_1Object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classast_1_1Object')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classast_1_1Object.html">ast::Object</a></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:ade4764ffa6bcff0433c01d3b04e16b8c" id="r_ade4764ffa6bcff0433c01d3b04e16b8c"><td class="memItemLeft" align="right" valign="top"><a id="ade4764ffa6bcff0433c01d3b04e16b8c" name="ade4764ffa6bcff0433c01d3b04e16b8c"></a>
+<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>body_</b> {nullptr}</td></tr>
+<tr class="separator:ade4764ffa6bcff0433c01d3b04e16b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classast_1_1Object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classast_1_1Object')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classast_1_1Object.html">ast::Object</a></td></tr>
 <tr class="memitem:a6c877404cdffe6b9ad0fe03755c57148 inherit pro_attribs_classast_1_1Object" id="r_a6c877404cdffe6b9ad0fe03755c57148"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classast_1_1Class.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_type</b></td></tr>
@@ -202,9 +195,11 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_weakrefcnt</b></td></tr>
 <tr class="separator:a1018e40b8a092cab4902b762d78458a7 inherit pro_attribs_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">成员函数说明</h2>
-<a id="a260d7334947877b0bb213cb6ca49d034" name="a260d7334947877b0bb213cb6ca49d034"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a260d7334947877b0bb213cb6ca49d034">&#9670;&#160;</a></span>getAxes()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>天体的中心点 </p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="aa38534351e91427784e9a1285afab44a" name="aa38534351e91427784e9a1285afab44a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa38534351e91427784e9a1285afab44a">&#9670;&#160;</a></span>getFrame()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -213,7 +208,7 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classast_1_1Axes.html">Axes</a> * ast::FrameICRF::getAxes </td>
+          <td class="memname"><a class="el" href="classast_1_1Frame.html">Frame</a> * ast::PointBodyCenter::getFrame </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -226,15 +221,15 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </table>
 </div><div class="memdoc">
 
-<p>获取当前坐标系的轴系。 </p>
-<dl class="section return"><dt>返回</dt><dd>轴系 </dd></dl>
+<p>获取点所在的参考坐标系 </p>
+<dl class="section return"><dt>返回</dt><dd>点所在的参考坐标系指针 </dd></dl>
 
-<p>实现了 <a class="el" href="classast_1_1Frame.html#afdd735ece565c5f8d73ecbc7cea7aef5">ast::Frame</a>.</p>
+<p>实现了 <a class="el" href="classast_1_1Point.html#a287f65e8827b82134ae01e0244385680">ast::Point</a>.</p>
 
 </div>
 </div>
-<a id="a09dc67cccdf7b92d53a356594390d902" name="a09dc67cccdf7b92d53a356594390d902"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09dc67cccdf7b92d53a356594390d902">&#9670;&#160;</a></span>getOrigin()</h2>
+<a id="a860ddc734eef945a95f2ecfed4f02830" name="a860ddc734eef945a95f2ecfed4f02830"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a860ddc734eef945a95f2ecfed4f02830">&#9670;&#160;</a></span>getPos()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,74 +238,14 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classast_1_1Point.html">Point</a> * ast::FrameICRF::getOrigin </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>获取当前坐标系的原点。 </p>
-<dl class="section return"><dt>返回</dt><dd>原点 </dd></dl>
-
-<p>实现了 <a class="el" href="classast_1_1Frame.html#adbc66bb7ac1cf9771f20a4a52ef6ec30">ast::Frame</a>.</p>
-
-</div>
-</div>
-<a id="a6daa55a8192ea14876a7d71440c1f355" name="a6daa55a8192ea14876a7d71440c1f355"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6daa55a8192ea14876a7d71440c1f355">&#9670;&#160;</a></span>getParent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classast_1_1Frame.html">Frame</a> * ast::FrameICRF::getParent </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>获取当前坐标系的父坐标系 </p>
-<dl class="section return"><dt>返回</dt><dd>父坐标系 </dd></dl>
-
-<p>实现了 <a class="el" href="classast_1_1Frame.html#a61faf1aa604480dc6474b26ddd95f7dc">ast::Frame</a>.</p>
-
-</div>
-</div>
-<a id="a1b81c1617dce6cdd68a3819f48d9692b" name="a1b81c1617dce6cdd68a3819f48d9692b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b81c1617dce6cdd68a3819f48d9692b">&#9670;&#160;</a></span>getTransform() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">err_t ast::FrameICRF::getTransform </td>
+          <td class="memname">err_t ast::PointBodyCenter::getPos </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classast_1_1KinematicTransform.html">KinematicTransform</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>transform</em></span>&#160;) const</td>
+          <td class="paramtype">Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>&#160;) const</td>
         </tr>
       </table>
   </td>
@@ -320,22 +255,22 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </table>
 </div><div class="memdoc">
 
-<p>获取当前坐标系相对于父坐标系的运动学变换 </p>
+<p>获取点在指定时间点的位置，相对于点的参考坐标系 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">tp</td><td>时间点 </td></tr>
-    <tr><td class="paramname">transform</td><td>输出的运动学变换 </td></tr>
+    <tr><td class="paramname">pos</td><td>输出参数，点的位置向量 </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
 
-<p>实现了 <a class="el" href="classast_1_1Frame.html#a56b767e3579b3a21551ea31e2417f815">ast::Frame</a>.</p>
+<p>实现了 <a class="el" href="classast_1_1Point.html#adf2bcb6b264a976a4a97ce13a6361501">ast::Point</a>.</p>
 
 </div>
 </div>
-<a id="a6904c2b7944d4bf57ed434deb62a3d47" name="a6904c2b7944d4bf57ed434deb62a3d47"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6904c2b7944d4bf57ed434deb62a3d47">&#9670;&#160;</a></span>getTransform() <span class="overload">[2/2]</span></h2>
+<a id="aa18a46edc7e67bca2c4770cdfe083bcb" name="aa18a46edc7e67bca2c4770cdfe083bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa18a46edc7e67bca2c4770cdfe083bcb">&#9670;&#160;</a></span>getPosVel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -344,14 +279,19 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">err_t ast::FrameICRF::getTransform </td>
+          <td class="memname">err_t ast::PointBodyCenter::getPosVel </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classast_1_1Transform.html">Transform</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>transform</em></span>&#160;) const</td>
+          <td class="paramtype">Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>&#160;) const</td>
         </tr>
       </table>
   </td>
@@ -361,30 +301,31 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </table>
 </div><div class="memdoc">
 
-<p>获取当前坐标系相对于父坐标系的变换 </p>
+<p>获取点在指定时间点的位置和速度，相对于点的参考坐标系 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">tp</td><td>时间点 </td></tr>
-    <tr><td class="paramname">transform</td><td>输出的变换 </td></tr>
+    <tr><td class="paramname">pos</td><td>输出参数，点的位置向量 </td></tr>
+    <tr><td class="paramname">vel</td><td>输出参数，点的速度向量 </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
 
-<p>实现了 <a class="el" href="classast_1_1Frame.html#a4a1973730c580aebb20658ace48c4bae">ast::Frame</a>.</p>
+<p>实现了 <a class="el" href="classast_1_1Point.html#a878c6836e637da7e16794d9e00a176e9">ast::Point</a>.</p>
 
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>src/AstCore/Coordinate/Frame/<a class="el" href="FrameICRF_8hpp_source.html">FrameICRF.hpp</a></li>
-<li>src/AstCore/Coordinate/Frame/<a class="el" href="FrameICRF_8cpp.html">FrameICRF.cpp</a></li>
+<li>src/AstCore/Coordinate/Point/<a class="el" href="PointBodyCenter_8hpp_source.html">PointBodyCenter.hpp</a></li>
+<li>src/AstCore/Coordinate/Point/<a class="el" href="PointBodyCenter_8cpp.html">PointBodyCenter.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="namespaceast.html">ast</a></li><li class="navelem"><a class="el" href="classast_1_1FrameICRF.html">FrameICRF</a></li>
+    <li class="navelem"><a class="el" href="namespaceast.html">ast</a></li><li class="navelem"><a class="el" href="classast_1_1PointBodyCenter.html">PointBodyCenter</a></li>
     <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>

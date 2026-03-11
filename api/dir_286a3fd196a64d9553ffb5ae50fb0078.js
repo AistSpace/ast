@@ -2,6 +2,8 @@ var dir_286a3fd196a64d9553ffb5ae50fb0078 =
 [
     [ "BuiltinPoint.cpp", "BuiltinPoint_8cpp.html", null ],
     [ "BuiltinPoint.hpp", "BuiltinPoint_8hpp.html", null ],
+    [ "PointBodyCenter.cpp", "PointBodyCenter_8cpp.html", null ],
+    [ "PointBodyCenter.hpp", "PointBodyCenter_8hpp.html", null ],
     [ "PointDE.hpp", "PointDE_8hpp_source.html", null ],
     [ "PointMacro.cpp", "PointMacro_8cpp.html", null ],
     [ "PointMacro.hpp", "PointMacro_8hpp.html", null ],

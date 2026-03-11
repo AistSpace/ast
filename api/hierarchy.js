@@ -342,6 +342,7 @@ var hierarchy =
         [ "ast::FrameRoot", "classast_1_1FrameRoot.html", null ]
       ] ],
       [ "ast::Point", "classast_1_1Point.html", [
+        [ "ast::PointBodyCenter", "classast_1_1PointBodyCenter.html", null ],
         [ "ast::PointRoot", "classast_1_1PointRoot.html", null ],
         [ "ast::PointSSBarycenter", "classast_1_1PointSSBarycenter.html", null ]
       ] ]
