@@ -55,7 +55,7 @@ AST_CORE_API err_t aFrameTransform(Frame* source, Frame* target, const TimePoint
 
 /// @brief 坐标系类
 /// @details 坐标系类表示一个三维空间中的坐标系，包含了坐标系的变换信息。
-class Frame: public Object
+class AST_CORE_API Frame: public Object
 {
 public:
     Frame() = default;

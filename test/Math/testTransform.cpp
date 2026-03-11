@@ -20,12 +20,75 @@
 
 #include "AstMath/Rotation.hpp"
 #include "AstMath/KinematicRotation.hpp"
+#include "AstMath/Transform.hpp"
+#include "AstMath/KinematicTransform.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/EarthFrame.hpp"
+#include "AstUtil/Literals.hpp"
 #include "AstMath/Vector.hpp"
 #include "AstTest/Test.h"
 
 AST_USING_NAMESPACE
+
+TEST(TransformTest, Transform_Identity)
+{
+    Transform transform = Transform::Identity();
+    Vector3d pos{1, 2, 3};
+    Vector3d posTrans = transform.transformPosition(pos);
+    printf("posTrans: %f, %f, %f\n", posTrans.x(), posTrans.y(), posTrans.z());
+    for(int i = 0; i < 3; i++)
+    {
+        EXPECT_DOUBLE_EQ(posTrans[i], pos[i]);
+    }
+}
+
+TEST(TransformTest, Transform_Inverse)
+{
+    Transform transform{Vector3d{-3, 2, 6}, Rotation(30_deg, Vector3d{4, -1, 2})};
+    Vector3d pos{1, 2, 3};
+    Transform transform_inv = transform.inverse();
+    Vector3d posInv = transform.transformPosition(pos);
+    Vector3d pos2 = transform_inv.transformPosition(posInv);
+    printf("posInv: %f, %f, %f\n", posInv.x(), posInv.y(), posInv.z());
+    printf("pos2: %f, %f, %f\n", pos2.x(), pos2.y(), pos2.z());
+    for(int i = 0; i < 3; i++)
+    {
+        EXPECT_DOUBLE_EQ(pos2[i], pos[i]);
+    }
+    Transform identity = transform.composed(transform_inv);
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++)
+        {
+            if(i == j) 
+                EXPECT_DOUBLE_EQ(identity.getMatrix()(i, i), 1.0);
+            else
+                EXPECT_NEAR(identity.getMatrix()(i, j), 0.0, 1e-15);
+        }
+        EXPECT_NEAR(identity.getTranslation()[i], 0.0, 1e-15);
+    }
+}
+
+
+TEST(TransformTest, Transform_compose)
+{
+    Transform transform1{Vector3d{1, 2, 3}, Rotation(30_deg, Vector3d{4, -1, 2})};
+    Transform transform2{Vector3d{-3, 2, 6}, Rotation(60_deg, Vector3d{1, 2, 3})};
+    Transform transform_compose1 = transform1.composed(transform2);
+    Transform transform_compose2(transform1);
+    transform_compose2.compose(transform2);
+    Vector3d pos{1, 2, 3};
+    Vector3d posTrans1 = transform_compose1.transformPosition(pos);
+    Vector3d posTrans2 = transform_compose2.transformPosition(pos);
+    Vector3d posTrans3 = transform2.transformPosition(transform1.transformPosition(pos));
+    printf("posTrans1: %f, %f, %f\n", posTrans1.x(), posTrans1.y(), posTrans1.z());
+    printf("posTrans2: %f, %f, %f\n", posTrans2.x(), posTrans2.y(), posTrans2.z());
+    printf("posTrans3: %f, %f, %f\n", posTrans3.x(), posTrans3.y(), posTrans3.z());
+    for(int i = 0; i < 3; i++)
+    {
+        EXPECT_DOUBLE_EQ(posTrans1[i], posTrans2[i]);
+        EXPECT_DOUBLE_EQ(posTrans1[i], posTrans3[i]);
+    }
+}
 
 TEST(TransformTest, Rotation)
 {

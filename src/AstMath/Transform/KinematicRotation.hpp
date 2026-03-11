@@ -25,8 +25,8 @@
 
 AST_NAMESPACE_BEGIN
 
-/// @brief     运动学旋转
-/// @details   在静态旋转的基础上，增加了旋转的角速度信息
+/// @brief     运动学坐标系旋转
+/// @details   在静态坐标系旋转的基础上，增加了坐标系旋转的角速度信息
 class KinematicRotation: protected Rotation
 {
 public:
@@ -40,55 +40,55 @@ public:
     /// @brief 运动学旋转默认构造函数
     KinematicRotation() = default;
 
-    /// @brief 运动学旋转构造函数
+    /// @brief 运动学坐标系旋转构造函数
     /// @param rot 旋转
     /// @param angvel 旋转角速度
     KinematicRotation(const Rotation& rot, const Vector3d& angvel);
 
 
-    /// @brief 运动学旋转构造函数
+    /// @brief 运动学坐标系旋转构造函数
     /// @param mat 旋转矩阵
     /// @param angvel 旋转角速度
     KinematicRotation(const Matrix3d& mat, const Vector3d& angvel);
 
-    /// @brief 获取旋转角速度
+    /// @brief 获取坐标系旋转角速度
     /// @return 旋转角速度
     const Vector3d& getRotationRate() const { return angvel_; }
 
-    /// @brief 设置旋转角速度
+    /// @brief 设置坐标系旋转角速度
     /// @param angvel 旋转角速度
     void setRotationRate(const Vector3d& angvel) { angvel_ = angvel; }
     
-    /// @brief 获取旋转
+    /// @brief 获取坐标系旋转
     /// @return 旋转
     const Rotation& getRotation() const { return *this; }
     Rotation& getRotation() { return *this; }
 
 
-    /// @brief 设置旋转
+    /// @brief 设置坐标系旋转
     /// @param rot 旋转
     void setRotation(const Rotation& rot) { (Rotation&)*this = rot; }
 
-    /// @brief 组合下一个旋转
-    /// @warning 组合旋转是先应用当前旋转，再应用下一个旋转。
-    /// @param next 下一个旋转
+    /// @brief 组合下一个坐标系旋转
+    /// @warning 组合旋转是先应用当前旋转，再应用下一个坐标系旋转。
+    /// @param next 下一个坐标系旋转
     KinematicRotation& compose(const KinematicRotation& next);
 
     /// @brief 组合下一个旋转
-    /// @warning 组合旋转是先应用当前旋转，再应用下一个旋转。
-    /// @param next 下一个旋转
+    /// @warning 组合旋转是先应用当前旋转，再应用下一个坐标系旋转。
+    /// @param next 下一个坐标系旋转
     /// @return 组合旋转
     KinematicRotation composed(const KinematicRotation& next) const;
 
     /// @brief 组合下一个旋转
-    /// @warning 组合旋转是先应用当前旋转，再应用下一个旋转。
-    /// @param next 下一个旋转
+    /// @warning 组合旋转是先应用当前旋转，再应用下一个坐标系旋转。
+    /// @param next 下一个坐标系旋转
     /// @return 组合旋转
     KinematicRotation operator*(const KinematicRotation& next) const;
 
-    /// @brief 组合下一个旋转
-    /// @warning 组合旋转是先应用当前旋转，再应用下一个旋转。
-    /// @param next 下一个旋转
+    /// @brief 组合下一个坐标系旋转
+    /// @warning 组合旋转是先应用当前旋转，再应用下一个坐标系旋转。
+    /// @param next 下一个坐标系旋转
     /// @return 组合旋转
     KinematicRotation& operator*=(const KinematicRotation& next);
 

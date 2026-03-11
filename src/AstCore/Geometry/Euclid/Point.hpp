@@ -32,7 +32,7 @@ AST_NAMESPACE_BEGIN
 
 class Frame;
 
-class Point: public Object
+class AST_CORE_API Point: public Object
 {
 public:
     Point() = default;
@@ -55,6 +55,21 @@ public:
     /// @return 错误码
     virtual err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const = 0;
     
+    /// @brief 获取点在指定时间点的位置，相对于指定参考坐标系
+    /// @param frame 参考坐标系指针
+    /// @param tp 时间点
+    /// @param pos 输出参数，点的位置向量
+    /// @return 错误码
+    err_t getPosIn(Frame* frame, const TimePoint& tp, Vector3d& pos) const;
+
+    /// @brief 获取点在指定时间点的位置和速度，相对于指定参考坐标系
+    /// @param frame 参考坐标系指针
+    /// @param tp 时间点
+    /// @param pos 输出参数，点的位置向量
+    /// @param vel 输出参数，点的速度向量
+    /// @return 错误码
+    err_t getPosVelIn(Frame* frame, const TimePoint& tp, Vector3d& pos, Vector3d& vel) const;
+
 };
 
 /*! @} */

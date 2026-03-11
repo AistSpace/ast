@@ -33,6 +33,8 @@ class KinematicTransform : protected Transform
 public:
     KinematicTransform() = default;
 
+    using Transform::getTranslation;
+
     /// @brief 获取变换
     /// @return 变换
     const Transform& getTransform() const { return *this; }
@@ -43,7 +45,8 @@ public:
 
     /// @brief 获取旋转
     /// @return 旋转
-    const KinematicRotation& getKinematicRotation() const { return const_cast<KinematicTransform&>(*this).kinematicRotation(); }
+    const KinematicRotation& getKinematicRotation() const { return kinematicRotation(); }
+    KinematicRotation& getKinematicRotation() { return kinematicRotation(); }
 
     /// @brief 设置旋转
     /// @param rot 旋转
@@ -52,6 +55,7 @@ public:
     /// @brief 获取平移速度
     /// @return 速度
     const Vector3d& getVelocity() const { return velocity_; }
+    Vector3d& getVelocity() { return velocity_; }
 
     /// @brief 设置平移速度
     /// @param vel 平移速度
@@ -98,7 +102,8 @@ public:
     void transformPositionVelocity(const Vector3d& position, const Vector3d& velocity, Vector3d& positionOut, Vector3d& velocityOut);
 
 private:
-    KinematicRotation& kinematicRotation() { return (KinematicRotation&)rotation_; }
+    KinematicRotation& kinematicRotation() { return reinterpret_cast<KinematicRotation&>(rotation_); }
+    const KinematicRotation& kinematicRotation() const { return reinterpret_cast<const KinematicRotation&>(rotation_); }
 protected:
     Vector3d angvel_;
     Vector3d velocity_;
