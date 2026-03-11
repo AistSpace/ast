@@ -336,7 +336,14 @@ var hierarchy =
         ] ],
         [ "ast::Variable", "classast_1_1Variable.html", null ]
       ] ],
-      [ "ast::Frame", "classast_1_1Frame.html", null ]
+      [ "ast::Frame", "classast_1_1Frame.html", [
+        [ "ast::FrameICRF", "classast_1_1FrameICRF.html", null ],
+        [ "ast::FrameRoot", "classast_1_1FrameRoot.html", null ]
+      ] ],
+      [ "ast::Point", "classast_1_1Point.html", [
+        [ "ast::PointRoot", "classast_1_1PointRoot.html", null ],
+        [ "ast::PointSSBarycenter", "classast_1_1PointSSBarycenter.html", null ]
+      ] ]
     ] ],
     [ "ast::ODEEventDetector", "classast_1_1ODEEventDetector.html", [
       [ "ast::ODEEventDetectorGeneric< Func >", "classast_1_1ODEEventDetectorGeneric.html", null ]

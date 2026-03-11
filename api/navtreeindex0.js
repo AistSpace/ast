@@ -29,7 +29,7 @@ var NAVTREEINDEX0 =
 "AstCore_2Data_2Context_2RunTime_8cpp.html#a5805211b4ae656f073656aa14cc7fd44":[4,0,0,2,3,0,4,1],
 "AstCore_2Data_2Context_2RunTime_8hpp.html":[4,0,0,2,3,0,5],
 "AstCore_2Data_2Context_2RunTime_8hpp_source.html":[4,0,0,2,3,0,5],
-"AstCore_2Geometry_2Euclid_2Vector_8hpp_source.html":[4,0,0,2,5,0,7],
+"AstCore_2Geometry_2Euclid_2Vector_8hpp_source.html":[4,0,0,2,5,0,8],
 "AstCore_8hpp.html":[4,0,0,2,11],
 "AstCore_8hpp_source.html":[4,0,0,2,11],
 "AstGfxAPI_8cpp.html":[4,0,0,3,0],

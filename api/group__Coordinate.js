@@ -34,6 +34,30 @@ var group__Coordinate =
       [ "getTransform", "classast_1_1AxesRoot.html#ac4e8b8fd37bf9f581ec9a2ec4baa48c7", null ],
       [ "getTransform", "classast_1_1AxesRoot.html#a11bfd82f159a9c5e2b31173e197882c0", null ]
     ] ],
+    [ "ast::FrameICRF", "classast_1_1FrameICRF.html", [
+      [ "getAxes", "classast_1_1FrameICRF.html#a260d7334947877b0bb213cb6ca49d034", null ],
+      [ "getOrigin", "classast_1_1FrameICRF.html#a09dc67cccdf7b92d53a356594390d902", null ],
+      [ "getParent", "classast_1_1FrameICRF.html#a6daa55a8192ea14876a7d71440c1f355", null ],
+      [ "getTransform", "classast_1_1FrameICRF.html#a1b81c1617dce6cdd68a3819f48d9692b", null ],
+      [ "getTransform", "classast_1_1FrameICRF.html#a6904c2b7944d4bf57ed434deb62a3d47", null ]
+    ] ],
+    [ "ast::FrameRoot", "classast_1_1FrameRoot.html", [
+      [ "getAxes", "classast_1_1FrameRoot.html#a33ecb5aa45fa06de1be92645e451ee0a", null ],
+      [ "getOrigin", "classast_1_1FrameRoot.html#a30da38b2a44ba8c769f903eeabe4c6d4", null ],
+      [ "getParent", "classast_1_1FrameRoot.html#afd13ab5a3e93641a0c55ee288ee3bdc8", null ],
+      [ "getTransform", "classast_1_1FrameRoot.html#a006ae9ab74d68a8b6dab89bf75075919", null ],
+      [ "getTransform", "classast_1_1FrameRoot.html#a23f781ad78461644140863140cb5d820", null ]
+    ] ],
+    [ "ast::PointRoot", "classast_1_1PointRoot.html", [
+      [ "getFrame", "classast_1_1PointRoot.html#aaa35c3d0d0df0d49adf0027f321b8f55", null ],
+      [ "getPos", "classast_1_1PointRoot.html#aeed365622ce96ca28cf866665d6b51f3", null ],
+      [ "getPosVel", "classast_1_1PointRoot.html#a9fb75865412fe13bd88b458ec7ee7f91", null ]
+    ] ],
+    [ "ast::PointSSBarycenter", "classast_1_1PointSSBarycenter.html", [
+      [ "getFrame", "classast_1_1PointSSBarycenter.html#a5b86fb5e195778b19bd6ddffa3d08950", null ],
+      [ "getPos", "classast_1_1PointSSBarycenter.html#a2b043dc4a8df8b5db845d5c1d7fc9205", null ],
+      [ "getPosVel", "classast_1_1PointSSBarycenter.html#af0d32780ced77f62044a231f13f1cb25", null ]
+    ] ],
     [ "ast::aB1950ToDE102Transform", "group__Coordinate.html#ga7e0f1e88784f013be51def70d67b4a52", null ],
     [ "ast::aB1950ToDE108Transform", "group__Coordinate.html#ga4a48a28e587d9d9b4b953049bc41d4fc", null ],
     [ "ast::aB1950ToDE111Transform", "group__Coordinate.html#ga8b8b4a07f6172335f043426d08bba304", null ],
@@ -52,6 +76,8 @@ var group__Coordinate =
     [ "ast::aCIRFToTIRFTransform", "group__Coordinate.html#ga11bd42fda73f858e027c2bed9cf4868b", null ],
     [ "ast::aEarthICRFToMoonICRF", "group__Coordinate.html#ga68ff7a4a53a486d067fc99f441e63405", null ],
     [ "ast::aEarthICRFToMoonICRF", "group__Coordinate.html#ga91d6cd70536ab87ab37193a3e0d97e8f", null ],
+    [ "ast::aEarthPosInICRF", "group__Coordinate.html#gabc3ba20952d99eb6a834b5ac28d628d1", null ],
+    [ "ast::aEarthPosVelInICRF", "group__Coordinate.html#ga821975f9e43332e1a8fd6ae0db33352f", null ],
     [ "ast::aECFToICRF", "group__Coordinate.html#gaca30e15e71105e546826cdc6a58ca105", null ],
     [ "ast::aECFToJ2000", "group__Coordinate.html#ga06772eaaef39724e76204b778b9caa7f", null ],
     [ "ast::aECFToJ2000", "group__Coordinate.html#gae98fec1874c4a2f3f608e1fb94bb1864", null ],

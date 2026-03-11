@@ -18,11 +18,16 @@ var group__Geometry =
       [ "getOrigin", "classast_1_1Frame.html#adbc66bb7ac1cf9771f20a4a52ef6ec30", null ],
       [ "getParent", "classast_1_1Frame.html#a61faf1aa604480dc6474b26ddd95f7dc", null ],
       [ "getTransform", "classast_1_1Frame.html#a56b767e3579b3a21551ea31e2417f815", null ],
-      [ "getTransform", "classast_1_1Frame.html#a78a098d1d17367622975ff1d9143844f", null ],
+      [ "getTransform", "classast_1_1Frame.html#a4a1973730c580aebb20658ace48c4bae", null ],
       [ "getTransformFrom", "classast_1_1Frame.html#a56545a4a872b9a3efc530a934db332db", null ],
       [ "getTransformFrom", "classast_1_1Frame.html#a92c89d1a776563df1f0f25a5f62f6c7e", null ],
       [ "getTransformTo", "classast_1_1Frame.html#ab3dbe245095905ec781e96bd2a7614c8", null ],
       [ "getTransformTo", "classast_1_1Frame.html#a95d56b0fd4ce30c692899797887e2a0b", null ]
+    ] ],
+    [ "ast::Point", "classast_1_1Point.html", [
+      [ "getFrame", "classast_1_1Point.html#a287f65e8827b82134ae01e0244385680", null ],
+      [ "getPos", "classast_1_1Point.html#adf2bcb6b264a976a4a97ce13a6361501", null ],
+      [ "getPosVel", "classast_1_1Point.html#a878c6836e637da7e16794d9e00a176e9", null ]
     ] ],
     [ "ast::HAxes", "group__Geometry.html#gaaab907250c9aee1581ceb9b9b6889fc1", null ],
     [ "ast::PAxes", "group__Geometry.html#ga6794e41c122afa91d068db80969a7e23", null ],

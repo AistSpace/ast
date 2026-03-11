@@ -27,5 +27,7 @@ var dir_d4f37a8c842ac907ebbff47eaf6f4e6a =
     [ "MoonFrame.hpp", "MoonFrame_8hpp.html", "MoonFrame_8hpp" ],
     [ "PlanetAxes.hpp", "PlanetAxes_8hpp_source.html", null ],
     [ "PlanetFrame.cpp", "PlanetFrame_8cpp.html", null ],
-    [ "PlanetFrame.hpp", "PlanetFrame_8hpp.html", null ]
+    [ "PlanetFrame.hpp", "PlanetFrame_8hpp.html", null ],
+    [ "PlanetPoint.cpp", "PlanetPoint_8cpp.html", null ],
+    [ "PlanetPoint.hpp", "PlanetPoint_8hpp.html", "PlanetPoint_8hpp" ]
 ];
