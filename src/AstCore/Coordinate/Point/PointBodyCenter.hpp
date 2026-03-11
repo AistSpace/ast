@@ -1,9 +1,9 @@
 ///
-/// @file      FrameICRF.hpp
+/// @file      PointBodyCenter.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-11
+/// @date      2026-03-12
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstCore/Frame.hpp"
+#include "AstCore/Point.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,27 +30,22 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class Point;
-class Axes;
+class CelestialBody;
 
-class FrameICRF : public Frame
+/// @brief 天体的中心点
+class AST_CORE_API PointBodyCenter final: public Point
 {
 public:
-    FrameICRF() = default;
-    ~FrameICRF() override = default;
-    static FrameICRF* Instance();
-    
-    Frame* getParent() const override;
-    Axes* getAxes() const override;
-    Point* getOrigin() const override;
-    err_t getTransform(const TimePoint& tp, Transform& transform) const override;
-    err_t getTransform(const TimePoint& tp, KinematicTransform& transform) const override;
+    PointBodyCenter() = default;
+    PointBodyCenter(CelestialBody* body);
+    ~PointBodyCenter() = default;
+    Frame* getFrame() const override;
+    err_t getPos(const TimePoint& tp, Vector3d& pos) const override;
+    err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
+protected:
+    CelestialBody* body_{nullptr};
 };
 
-A_ALWAYS_INLINE Frame* aFrameICRF()
-{
-    return FrameICRF::Instance();
-}
 
 /*! @} */
 

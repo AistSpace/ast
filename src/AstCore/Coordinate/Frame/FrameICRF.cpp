@@ -24,7 +24,15 @@
 #include "AstCore/PointSSBarycenter.hpp"
 #include "AstMath/KinematicTransform.hpp"
 
+
 AST_NAMESPACE_BEGIN
+
+FrameICRF *FrameICRF::Instance()
+{
+    static SharedPtr<FrameICRF> instance(new FrameICRF());
+    return instance.get();
+}
+
 
 Frame *FrameICRF::getParent() const
 {

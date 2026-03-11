@@ -35,7 +35,7 @@ AST_NAMESPACE_BEGIN
 /// @brief 组装坐标系
 /// @details 组装坐标系由轴系和原点组成
 /// 可以通过轴系和原点的灵活组合定义坐标系
-class FrameAssembly: public Frame
+class AST_CORE_API FrameAssembly: public Frame
 {
 public:
     FrameAssembly() = default;
