@@ -19,44 +19,52 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "Axes.hpp"
+#include "Frame.hpp"
 #include "AstMath/Rotation.hpp"
 #include "AstMath/KinematicRotation.hpp"
+#include "AstMath/KinematicTransform.hpp"
 #include <cmath>
 #include <limits>
 
 AST_NAMESPACE_BEGIN
 
-static int aAxesDepth(const Axes* axes)
+template<typename GeometryType>
+int aGeometryDepth(const GeometryType* geometry)
 {
     int depth = 0;
-    while (axes != nullptr)
+    while (geometry != nullptr)
     {
         depth++;
-        axes = axes->getParent();
+        geometry = geometry->getParent();
     }
     return depth;
 }
 
+template<typename GeometryType>
+GeometryType* aGeometryAncestor(const GeometryType* geometry, int depth)
+{
+    for (int i = 0; i < depth; i++)
+    {
+        if(geometry == nullptr)
+            return nullptr;
+        geometry = geometry->getParent();
+    }
+    return const_cast<GeometryType*>(geometry);
+}
+
 int Axes::getDepth() const
 {
-    return aAxesDepth(this);
+    return aGeometryDepth(this);
 }
 
 Axes* Axes::getAncestor(int depth) const{
     
-    Axes* ancestor = const_cast<Axes*>(this);
-    for (int i = 0; i < depth; i++)
-    {
-        if(ancestor == nullptr)
-            return nullptr;
-        ancestor = ancestor->getParent();
-    }
-    return ancestor;
+    return aGeometryAncestor(this, depth);
 }
 
 
-template<typename RotationType>
-A_ALWAYS_INLINE err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, RotationType &rotation)
+template<typename GeometryType, typename RotationType>
+A_ALWAYS_INLINE err_t aGeometryTransform(GeometryType *source, GeometryType *target, const TimePoint& tp, RotationType &rotation)
 {
     if (A_UNLIKELY(source == nullptr || target == nullptr))
     {
@@ -79,14 +87,14 @@ A_ALWAYS_INLINE err_t aAxesTransform(Axes *source, Axes *target, const TimePoint
         需要进入动态分配内存的计算模式
     */
 
-    uint8_t sourceDepth = 0;         // 源坐标系深度
-    uint8_t targetDepth = 0;         // 目标坐标系深度
-    PAxes sourcePath[256];           // 源坐标系路径
-    PAxes targetPath[256];           // 目标坐标系路径
+    uint8_t sourceDepth = 0;                 // 源坐标系深度
+    uint8_t targetDepth = 0;                 // 目标坐标系深度
+    GeometryType* sourcePath[256];           // 源坐标系路径
+    GeometryType* targetPath[256];           // 目标坐标系路径
     // 1. 填充源坐标系路径和目标坐标系路径
     {
         // 填充源坐标系路径
-        Axes* current = source;
+        GeometryType* current = source;
         do
         {
             sourcePath[sourceDepth++] = current;
@@ -139,9 +147,20 @@ A_ALWAYS_INLINE err_t aAxesTransform(Axes *source, Axes *target, const TimePoint
     return eNoError;
 }
 
+err_t aFrameTransform(Frame* source, Frame* target, const TimePoint &tp, Transform& transform)
+{
+    return aGeometryTransform<Frame, Transform>(source, target, tp, transform);
+}
+
+err_t aFrameTransform(Frame *source, Frame *target, const TimePoint &tp, KinematicTransform &transform)
+{
+    return aGeometryTransform<Frame, KinematicTransform>(source, target, tp, transform);
+}
+
+
 err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, Rotation &rotation)
 {
-    return aAxesTransform<Rotation>(source, target, tp, rotation);
+    return aGeometryTransform<Axes, Rotation>(source, target, tp, rotation);
 }
 
 err_t aAxesTransform(Axes *source, Axes *target, const TimePoint &tp, Matrix3d &matrix)
@@ -151,7 +170,7 @@ err_t aAxesTransform(Axes *source, Axes *target, const TimePoint &tp, Matrix3d &
 
 err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, KinematicRotation &rotation)
 {
-    return aAxesTransform<KinematicRotation>(source, target, tp, rotation);
+    return aGeometryTransform<Axes, KinematicRotation>(source, target, tp, rotation);
 }
 
 AST_NAMESPACE_END

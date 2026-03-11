@@ -97,6 +97,9 @@ public:
     /// @return 逆转换
     Transform inverse() const;
 
+    /// @brief 设置为单位转换
+    void setIdentity() { rotation_ = Rotation::Identity(); translation_ = Vector3d::Zero(); }
+
     /// @brief 转换位置
     /// @param position 位置
     /// @param positionOut 转换后的位置
@@ -131,6 +134,9 @@ A_ALWAYS_INLINE Transform &Transform::compose(const Transform &next)
 
 A_ALWAYS_INLINE Transform Transform::composed(const Transform &next) const
 {
+    /*!
+    也可以通过 getRotation().transformVectorInv() 来实现。
+    */
     return Transform(
         translation_ + next.getTranslation() * getMatrix(),
         rotation_.composed(next.getRotation())
@@ -149,8 +155,8 @@ A_ALWAYS_INLINE Transform &Transform::operator*=(const Transform &next)
 
 A_ALWAYS_INLINE void Transform::getInverse(Transform &inversed) const
 {
-    inversed.setTranslation(-(rotation_.transformVector(translation_)));
-    inversed.setRotation(rotation_.inverse());
+    rotation_.transformVector(-translation_, inversed.getTranslation());
+    rotation_.getInverse(inversed.getRotation());
 }
 
 A_ALWAYS_INLINE Transform Transform::inverse() const

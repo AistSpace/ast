@@ -33,7 +33,7 @@ AST_USING_NAMESPACE
 TEST(TransformTest, Transform_Identity)
 {
     Transform transform = Transform::Identity();
-    Vector3d pos{1, 2, 3};
+    Vector3d pos{4, -3, 8};
     Vector3d posTrans = transform.transformPosition(pos);
     printf("posTrans: %f, %f, %f\n", posTrans.x(), posTrans.y(), posTrans.z());
     for(int i = 0; i < 3; i++)
@@ -45,7 +45,7 @@ TEST(TransformTest, Transform_Identity)
 TEST(TransformTest, Transform_Inverse)
 {
     Transform transform{Vector3d{-3, 2, 6}, Rotation(30_deg, Vector3d{4, -1, 2})};
-    Vector3d pos{1, 2, 3};
+    Vector3d pos{4, -3, 8};
     Transform transform_inv = transform.inverse();
     Vector3d posInv = transform.transformPosition(pos);
     Vector3d pos2 = transform_inv.transformPosition(posInv);
@@ -71,12 +71,12 @@ TEST(TransformTest, Transform_Inverse)
 
 TEST(TransformTest, Transform_compose)
 {
-    Transform transform1{Vector3d{1, 2, 3}, Rotation(30_deg, Vector3d{4, -1, 2})};
-    Transform transform2{Vector3d{-3, 2, 6}, Rotation(60_deg, Vector3d{1, 2, 3})};
+    Transform transform1{Vector3d{1, -5, 3}, Rotation(30_deg, Vector3d{4, -1, 2})};
+    Transform transform2{Vector3d{-3, 2, 6}, Rotation(60_deg, Vector3d{1, -2, 7})};
     Transform transform_compose1 = transform1.composed(transform2);
     Transform transform_compose2(transform1);
     transform_compose2.compose(transform2);
-    Vector3d pos{1, 2, 3};
+    Vector3d pos{4, 2, 3};
     Vector3d posTrans1 = transform_compose1.transformPosition(pos);
     Vector3d posTrans2 = transform_compose2.transformPosition(pos);
     Vector3d posTrans3 = transform2.transformPosition(transform1.transformPosition(pos));
@@ -89,6 +89,52 @@ TEST(TransformTest, Transform_compose)
         EXPECT_DOUBLE_EQ(posTrans1[i], posTrans3[i]);
     }
 }
+
+TEST(TransformTest, KinematicTransform_compose)
+{
+    KinematicTransform transform1{Vector3d{11, -17, 13}, Vector3d{4, -11, 2},  KinematicRotation(Rotation(30_deg, Vector3d{4, 11, 12}), Vector3d{-11, -4, 7})};
+    KinematicTransform transform2{Vector3d{-13, 21, 11}, Vector3d{-1, -21, 7}, KinematicRotation(Rotation(50_deg, Vector3d{3, 21, 17}), Vector3d{ 13,  4, 5})};
+    KinematicTransform transform_compose1 = transform1.composed(transform2);
+    KinematicTransform transform_compose2(transform1);
+    transform_compose2.compose(transform2);
+    CartState posvel{3, 5, 7, -7, -12, 2};
+    auto posvel1 = transform_compose1.transformPositionVelocity(posvel);
+    auto posvel2 = transform_compose2.transformPositionVelocity(posvel);
+    auto posvel3 = transform2.transformPositionVelocity(transform1.transformPositionVelocity(posvel));
+    printf("posTrans1: %f, %f, %f\n", posvel1.pos().x(), posvel1.pos().y(), posvel1.pos().z());
+    printf("posTrans2: %f, %f, %f\n", posvel2.pos().x(), posvel2.pos().y(), posvel2.pos().z());
+    printf("posTrans3: %f, %f, %f\n", posvel3.pos().x(), posvel3.pos().y(), posvel3.pos().z());
+    printf("velTrans1: %f, %f, %f\n", posvel1.vel().x(), posvel1.vel().y(), posvel1.vel().z());
+    printf("velTrans2: %f, %f, %f\n", posvel2.vel().x(), posvel2.vel().y(), posvel2.vel().z());
+    printf("velTrans3: %f, %f, %f\n", posvel3.vel().x(), posvel3.vel().y(), posvel3.vel().z());
+    for(int i = 0; i < 3; i++)
+    {
+        EXPECT_NEAR(posvel1.pos()[i], posvel2.pos()[i], 1e-13);
+        EXPECT_NEAR(posvel1.vel()[i], posvel2.vel()[i], 1e-13);
+        EXPECT_NEAR(posvel3.pos()[i], posvel1.pos()[i], 1e-13);
+        EXPECT_NEAR(posvel3.vel()[i], posvel1.vel()[i], 1e-13);
+    }
+}
+
+
+TEST(TransformTest, KinematicTransform_inverse)
+{
+    KinematicTransform transform{Vector3d{11, -17, 13}, Vector3d{4, -11, 2},  KinematicRotation(Rotation(30_deg, Vector3d{4, 11, 12}), Vector3d{-11, -4, 7})};
+    KinematicTransform transform_inv = transform.inverse();
+    CartState posvel1{3, 5, 7, -7, -12, 2};
+    auto posvelTrans = transform.transformPositionVelocity(posvel1);
+    auto posvel2 = transform_inv.transformPositionVelocity(posvelTrans);
+    printf("pos1: %f, %f, %f\n", posvel1.pos().x(), posvel1.pos().y(), posvel1.pos().z());
+    printf("pos2: %f, %f, %f\n", posvel2.pos().x(), posvel2.pos().y(), posvel2.pos().z());
+    printf("vel1: %f, %f, %f\n", posvel1.vel().x(), posvel1.vel().y(), posvel1.vel().z());
+    printf("vel2: %f, %f, %f\n", posvel2.vel().x(), posvel2.vel().y(), posvel2.vel().z());
+    for(int i = 0; i < 3; i++)
+    {
+        EXPECT_NEAR(posvel1.pos()[i], posvel2.pos()[i], 2e-14);
+        EXPECT_NEAR(posvel1.vel()[i], posvel2.vel()[i], 2e-14);
+    }
+}
+
 
 TEST(TransformTest, Rotation)
 {
@@ -107,12 +153,31 @@ TEST(TransformTest, Rotation)
     }
 }
 
+TEST(TransformTest, KinematicRotation_transformVectorVelocity)
+{
+    KinematicRotation kinematicRotation{Rotation(30_deg, Vector3d{4, -1, 2}), Vector3d{-1, -2, 7}};
+    Vector3d vec1{1, -2, 3}, vel1{4, -5, 6};
+    Vector3d vecRot, vecvelRot;
+    Vector3d vec2, vel2;
+    kinematicRotation.transformVectorVelocity(vec1, vel1, vecRot, vecvelRot);
+    kinematicRotation.transformVectorVelocityInv(vecRot, vecvelRot, vec2, vel2);
+    printf("vecRot: %f, %f, %f\n", vecRot.x(), vecRot.y(), vecRot.z());
+    printf("vecvelRot: %f, %f, %f\n", vecvelRot.x(), vecvelRot.y(), vecvelRot.z());
+    printf("vec2: %f, %f, %f\n", vec2.x(), vec2.y(), vec2.z());
+    printf("vel2: %f, %f, %f\n", vel2.x(), vel2.y(), vel2.z());
+    for(int i = 0; i < 3; i++)
+    {
+        EXPECT_NEAR(vec1[i], vec2[i], 1e-14);
+        EXPECT_NEAR(vel1[i], vel2[i], 1e-14);
+    }
+}
+
 TEST(TransformTest, KinematicRotation_inverse)
 {
     KinematicRotation kinematicRotation;
     TimePoint tp = TimePoint::FromUTC(2000, 1, 2, 3, 4, 5.0);
     aJ2000ToECFTransform(tp, kinematicRotation);
-    Vector3d vec1{1, 2, 3}, vecvel1{4, 5, 6};
+    Vector3d vec1{1, 2, -3}, vecvel1{4, -5, 6};
     Vector3d vecRot, vecvelRot;
     Vector3d vec2, vecvel2;
     kinematicRotation.transformVectorVelocity(vec1, vecvel1, vecRot, vecvelRot);
@@ -142,7 +207,7 @@ TEST(TransformTest, KinematicRotation_compose)
     KinematicRotation kinematicRotationComposed1 = kinematicRotation1.composed(kinematicRotation2);
     KinematicRotation kinematicRotationComposed2 = kinematicRotation1;
     kinematicRotationComposed2.compose(kinematicRotation2);
-    Vector3d vec{1, 2, 3}, vel{4, 5, 6};
+    Vector3d vec{1, -2, 3}, vel{4, 5, -6};
     Vector3d vec1, vel1;
     Vector3d vec2, vel2;
     Vector3d vec3, vel3;

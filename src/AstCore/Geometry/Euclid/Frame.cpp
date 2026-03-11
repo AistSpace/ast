@@ -22,14 +22,6 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t aFrameTransform(Frame* source, Frame* target, const TimePoint &tp, Transform& transform)
-{
-    return -1;
-}
 
-err_t aFrameTransform(Frame *source, Frame *target, const TimePoint &tp, KinematicTransform &transform)
-{
-    return -1;
-}
 
 AST_NAMESPACE_END

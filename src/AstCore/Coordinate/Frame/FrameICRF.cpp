@@ -43,11 +43,13 @@ Point *FrameICRF::getOrigin() const
 
 err_t FrameICRF::getTransform(const TimePoint &tp, Transform &transform) const
 {
+    transform.setIdentity();
     return eNoError;
 }
 
 err_t FrameICRF::getTransform(const TimePoint &tp, KinematicTransform &transform) const
 {
+    transform.setIdentity();
     return eNoError;
 }
 

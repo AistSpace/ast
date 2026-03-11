@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "Rotation.hpp"
+#include "AstCore/OrbitElement.hpp"    /// @fixme 头文件依赖倒置
 
 AST_NAMESPACE_BEGIN
 
@@ -107,7 +108,18 @@ public:
     /// @param velocityOut 变换后的速度
     void transformVectorVelocity(const Vector3d& vector, const Vector3d& velocity, Vector3d& vectorOut, Vector3d& velocityOut) const;
 
+    /// @brief 变换状态向量和速度
+    /// @param state 状态向量
+    /// @return 变换后的状态向量
+    CartState transformCartState(const CartState& state) const;
 
+    /// @brief 变换位置和速度（逆变换）
+    /// @warning 注意：这里是逆变换，等价于 `inverse().transformVectorVelocity(...)`;
+    /// @param vector 向量
+    /// @param velocity 速度
+    /// @param vectorOut 变换后的向量
+    /// @param velocityOut 变换后的速度
+    void transformVectorVelocityInv(const Vector3d& vector, const Vector3d& velocity, Vector3d& vectorOut, Vector3d& velocityOut) const;
 protected:
     Vector3d angvel_;       ///< 角速度
 };
@@ -169,6 +181,19 @@ A_ALWAYS_INLINE void KinematicRotation::transformVectorVelocity(const Vector3d &
     // 注意：这里要先计算velocityOut，防止vector和vectorOut地址相同时值被覆盖
     velocityOut = this->matrix_ * (velocity - this->angvel_.cross(vector));
     vectorOut = this->matrix_ * vector;
+}
+
+A_ALWAYS_INLINE CartState KinematicRotation::transformCartState(const CartState &state) const
+{
+    CartState stateOut;
+    this->transformVectorVelocity(state.pos(), state.vel(), stateOut.pos(), stateOut.vel());
+    return stateOut;
+}
+
+A_ALWAYS_INLINE void KinematicRotation::transformVectorVelocityInv(const Vector3d &vector, const Vector3d &velocity, Vector3d &vectorOut, Vector3d &velocityOut) const
+{
+    vectorOut = vector * this->matrix_;
+    velocityOut = velocity* this->matrix_ + this->angvel_.cross(vectorOut);
 }
 
 AST_NAMESPACE_END

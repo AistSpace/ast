@@ -45,9 +45,19 @@ public:
     Vector3d pos_;   ///< 位置
     Vector3d vel_;   ///< 速度
 public:
+    /// @brief 获取零状态
+    /// @return 零状态
+    static CartState Zero() {return CartState{Vector3d::Zero(), Vector3d::Zero()};}
+
     A_DEF_POD_ITERABLE(double)
+    
+    /// @brief 获取位置
+    /// @return 位置
     const Vector3d& pos() const {return pos_;} 
     Vector3d& pos() {return pos_;}
+
+    /// @brief 获取速度
+    /// @return 速度
     const Vector3d& vel() const {return vel_;} 
     Vector3d& vel() {return vel_;}
 };

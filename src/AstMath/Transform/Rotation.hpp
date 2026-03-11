@@ -169,6 +169,13 @@ public:
     /// @param vectorOut 变换后的向量
     void transformVector(const Vector3d& vector, Vector3d& vectorOut) const;
 
+
+    /// @brief 变换向量（逆变换）
+    /// @warning 注意：这里是逆变换，等价于 `inverse().transformVector(...)`;
+    /// @param vector 向量
+    /// @param vectorOut 变换后的向量
+    void transformVectorInv(const Vector3d& vector, Vector3d& vectorOut) const;
+
     /// @brief 变换向量
     /// @param vector 向量
     /// @return 变换后的向量
@@ -289,6 +296,11 @@ A_ALWAYS_INLINE Rotation Rotation::inverse() const
 A_ALWAYS_INLINE void Rotation::transformVector(const Vector3d &vector, Vector3d &vectorOut) const
 {
     vectorOut = this->matrix_ * vector;
+}
+
+A_ALWAYS_INLINE void Rotation::transformVectorInv(const Vector3d &vector, Vector3d &vectorOut) const
+{
+    vectorOut = vector * this->matrix_;
 }
 
 A_ALWAYS_INLINE Vector3d Rotation::transformVector(const Vector3d& vector) const

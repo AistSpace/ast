@@ -49,11 +49,13 @@ Point *FrameRoot::getOrigin() const
 
 err_t FrameRoot::getTransform(const TimePoint &tp, Transform &transform) const
 {
+    transform.setIdentity();
     return eNoError;
 }
 
 err_t FrameRoot::getTransform(const TimePoint &tp, KinematicTransform &transform) const
 {
+    transform.setIdentity();
     return eNoError;
 }
 
