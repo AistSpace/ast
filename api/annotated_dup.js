@@ -149,6 +149,7 @@ var annotated_dup =
       [ "FieldOfView", "classast_1_1FieldOfView.html", null ],
       [ "FileScanner", "classast_1_1FileScanner.html", "classast_1_1FileScanner" ],
       [ "Frame", "classast_1_1Frame.html", "classast_1_1Frame" ],
+      [ "FrameAssembly", "classast_1_1FrameAssembly.html", "classast_1_1FrameAssembly" ],
       [ "FrameICRF", "classast_1_1FrameICRF.html", "classast_1_1FrameICRF" ],
       [ "FrameRoot", "classast_1_1FrameRoot.html", "classast_1_1FrameRoot" ],
       [ "FuncBlock", "classast_1_1FuncBlock.html", "classast_1_1FuncBlock" ],

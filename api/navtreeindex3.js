@@ -1,5 +1,8 @@
 var NAVTREEINDEX3 =
 {
+"Literals_8hpp.html#a58eb1f19f26b945026890176feb8da73":[4,0,0,12,6,6,40],
+"Literals_8hpp.html#a5ac22631ed69516e83cbe15f8e160959":[4,0,0,12,6,6,27],
+"Literals_8hpp.html#a637f6d2bc263cb33e423f4a2a15df982":[4,0,0,12,6,6,45],
 "Literals_8hpp.html#a681d0c30317193d2cc3fc33eb5a1c85d":[4,0,0,12,6,6,28],
 "Literals_8hpp.html#a6f45c99c232047cd88b0a8f9ca892387":[4,0,0,12,6,6,35],
 "Literals_8hpp.html#a78095a424fd22108911a0d85ae56d13f":[4,0,0,12,6,6,12],
@@ -246,8 +249,5 @@ var NAVTREEINDEX3 =
 "Polynomial_8hpp.html":[4,0,0,12,6,13],
 "Polynomial_8hpp_source.html":[4,0,0,12,6,13],
 "PosixExt_8cpp.html":[4,0,0,12,2,19],
-"PosixExt_8hpp.html":[4,0,0,12,2,20],
-"PosixExt_8hpp.html#a9c97106431856ac3fd1b9ac8308f39b1":[4,0,0,12,2,20,0],
-"PosixExt_8hpp_source.html":[4,0,0,12,2,20],
-"Posix_8cpp.html":[4,0,0,12,2,17]
+"PosixExt_8hpp.html":[4,0,0,12,2,20]
 };

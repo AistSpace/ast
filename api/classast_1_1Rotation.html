@@ -116,7 +116,7 @@ $(function(){initNavTree('classast_1_1Rotation.html',''); initResizable(true); }
  <div class="center">
   <img src="classast_1_1Rotation.png" usemap="#ast::Rotation_map" alt=""/>
   <map id="ast::Rotation_map" name="ast::Rotation_map">
-<area href="classast_1_1KinematicRotation.html" title="运动学旋转" alt="ast::KinematicRotation" shape="rect" coords="0,56,133,80"/>
+<area href="classast_1_1KinematicRotation.html" title="运动学坐标系旋转" alt="ast::KinematicRotation" shape="rect" coords="0,56,133,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -177,8 +177,7 @@ Public 成员函数</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:a6d5b4a22ae6e6b331152c7964cf01fb6" id="r_a6d5b4a22ae6e6b331152c7964cf01fb6"><td class="memItemLeft" align="right" valign="top"><a id="a6d5b4a22ae6e6b331152c7964cf01fb6" name="a6d5b4a22ae6e6b331152c7964cf01fb6"></a>
-static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Identity</b> ()</td></tr>
+<tr class="memitem:a6d5b4a22ae6e6b331152c7964cf01fb6" id="r_a6d5b4a22ae6e6b331152c7964cf01fb6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d5b4a22ae6e6b331152c7964cf01fb6">Identity</a> ()</td></tr>
 <tr class="separator:a6d5b4a22ae6e6b331152c7964cf01fb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae51f2c442c74d8c0455f9ba2d1986df8" id="r_ae51f2c442c74d8c0455f9ba2d1986df8"><td class="memItemLeft" align="right" valign="top"><a id="ae51f2c442c74d8c0455f9ba2d1986df8" name="ae51f2c442c74d8c0455f9ba2d1986df8"></a>
 static <a class="el" href="classast_1_1Rotation.html">Rotation</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>CastFrom</b> (<a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;mat)</td></tr>
@@ -197,8 +196,8 @@ Protected 属性</h2></td></tr>
 <tr class="separator:a98de52e84b4c571e5ae05836b1f08215"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>旋转类 </p>
-<p>旋转类表示三维空间的旋转。 旋转类当前是基于旋转矩阵实现的，未来也可能会切换到四元数进行实现。 但是你不用关心其内部实现细节，只需要关注并使用其公开接口，注意不要依赖其内部实现。 </p>
+<div class="textblock"><p>坐标系旋转类 </p>
+<p>表示三维空间内的坐标系旋转 坐标系旋转类当前是基于坐标转换矩阵实现的，未来也可能会切换到四元数进行实现。 但是你不用关心其内部实现细节，只需要关注并使用其公开接口，注意不要依赖其内部实现。 </p>
 </div><h2 class="groupheader">构造及析构函数说明</h2>
 <a id="adf36ce33841e51755e40463726c68fe7" name="adf36ce33841e51755e40463726c68fe7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adf36ce33841e51755e40463726c68fe7">&#9670;&#160;</a></span>Rotation() <span class="overload">[1/5]</span></h2>
@@ -226,7 +225,7 @@ Protected 属性</h2></td></tr>
 <p>复制构造函数 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>旋转对象 </td></tr>
+    <tr><td class="paramname">other</td><td>坐标系旋转对象 </td></tr>
   </table>
   </dd>
 </dl>
@@ -273,7 +272,7 @@ Protected 属性</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>从旋转矩阵构造旋转 </p>
+<p>从旋转矩阵构造坐标系旋转对象 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">mat</td><td>旋转矩阵 </td></tr>
@@ -302,7 +301,7 @@ Protected 属性</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>从轴角构造旋转 </p>
+<p>从轴角构造坐标系旋转对象 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">axis</td><td>旋转轴 </td></tr>
@@ -328,7 +327,7 @@ Protected 属性</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>从轴角构造旋转 </p>
+<p>从轴角构造坐标系旋转对象 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">aa</td><td>轴角 </td></tr>
@@ -557,6 +556,34 @@ Protected 属性</h2></td></tr>
 
 <p>获取四元数 </p>
 <dl class="section return"><dt>返回</dt><dd>四元数 </dd></dl>
+
+</div>
+</div>
+<a id="a6d5b4a22ae6e6b331152c7964cf01fb6" name="a6d5b4a22ae6e6b331152c7964cf01fb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d5b4a22ae6e6b331152c7964cf01fb6">&#9670;&#160;</a></span>Identity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">A_ALWAYS_INLINE <a class="el" href="classast_1_1Rotation.html">Rotation</a> ast::Rotation::Identity </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>单位旋转 </p>
+<p>单位旋转是指不进行任何旋转的旋转 </p><dl class="section return"><dt>返回</dt><dd>单位旋转 </dd></dl>
 
 </div>
 </div>

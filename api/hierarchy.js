@@ -337,6 +337,7 @@ var hierarchy =
         [ "ast::Variable", "classast_1_1Variable.html", null ]
       ] ],
       [ "ast::Frame", "classast_1_1Frame.html", [
+        [ "ast::FrameAssembly", "classast_1_1FrameAssembly.html", null ],
         [ "ast::FrameICRF", "classast_1_1FrameICRF.html", null ],
         [ "ast::FrameRoot", "classast_1_1FrameRoot.html", null ]
       ] ],
@@ -410,10 +411,12 @@ var hierarchy =
     [ "ast::strings_internal::SelectDelimiter< std::string >", "structast_1_1strings__internal_1_1SelectDelimiter_3_01std_1_1string_01_4.html", null ],
     [ "ast::strings_internal::SelectDelimiter< StringView >", "structast_1_1strings__internal_1_1SelectDelimiter_3_01StringView_01_4.html", null ],
     [ "ast::SharedPtr< _Object >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< ast::Axes >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::AxesBodyMOD >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::AxesBodyTOD >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::CelestialBody >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::Expr >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< ast::Point >", "classast_1_1SharedPtr.html", null ],
     [ "ast::ShortDuration", "classast_1_1ShortDuration.html", null ],
     [ "ast::SimEngine", "classast_1_1SimEngine.html", null ],
     [ "ast::SimTime", "classast_1_1SimTime.html", null ],

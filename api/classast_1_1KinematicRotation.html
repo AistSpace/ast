@@ -116,7 +116,7 @@ $(function(){initNavTree('classast_1_1KinematicRotation.html',''); initResizable
  <div class="center">
   <img src="classast_1_1KinematicRotation.png" usemap="#ast::KinematicRotation_map" alt=""/>
   <map id="ast::KinematicRotation_map" name="ast::KinematicRotation_map">
-<area href="classast_1_1Rotation.html" title="旋转类" alt="ast::Rotation" shape="rect" coords="0,0,133,24"/>
+<area href="classast_1_1Rotation.html" title="坐标系旋转类" alt="ast::Rotation" shape="rect" coords="0,0,133,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -238,8 +238,7 @@ Vector3d&#160;</td><td class="memItemRight" valign="bottom"><b>angvel_</b></td><
 <tr class="memitem:a3d78420da24d3cc9fce0a5904b3fee34 inherit pro_methods_classast_1_1Rotation" id="r_a3d78420da24d3cc9fce0a5904b3fee34"><td class="memItemLeft" align="right" valign="top">Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Rotation.html#a3d78420da24d3cc9fce0a5904b3fee34">transformVector</a> (const Vector3d &amp;vector) const</td></tr>
 <tr class="separator:a3d78420da24d3cc9fce0a5904b3fee34 inherit pro_methods_classast_1_1Rotation"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_methods_classast_1_1Rotation"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_static_methods_classast_1_1Rotation')"><img src="closed.png" alt="-"/>&#160;静态 Protected 成员函数 继承自 <a class="el" href="classast_1_1Rotation.html">ast::Rotation</a></td></tr>
-<tr class="memitem:a6d5b4a22ae6e6b331152c7964cf01fb6 inherit pro_static_methods_classast_1_1Rotation" id="r_a6d5b4a22ae6e6b331152c7964cf01fb6"><td class="memItemLeft" align="right" valign="top">
-static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Identity</b> ()</td></tr>
+<tr class="memitem:a6d5b4a22ae6e6b331152c7964cf01fb6 inherit pro_static_methods_classast_1_1Rotation" id="r_a6d5b4a22ae6e6b331152c7964cf01fb6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Rotation.html#a6d5b4a22ae6e6b331152c7964cf01fb6">Identity</a> ()</td></tr>
 <tr class="separator:a6d5b4a22ae6e6b331152c7964cf01fb6 inherit pro_static_methods_classast_1_1Rotation"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae51f2c442c74d8c0455f9ba2d1986df8 inherit pro_static_methods_classast_1_1Rotation" id="r_ae51f2c442c74d8c0455f9ba2d1986df8"><td class="memItemLeft" align="right" valign="top">
 static <a class="el" href="classast_1_1Rotation.html">Rotation</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>CastFrom</b> (<a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;mat)</td></tr>
@@ -252,8 +251,8 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
 <tr class="separator:a16d54a299695123c2dedf8774c4e7435 inherit pro_static_methods_classast_1_1Rotation"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>运动学旋转 </p>
-<p>在静态旋转的基础上，增加了旋转的角速度信息 </p>
+<div class="textblock"><p>运动学坐标系旋转 </p>
+<p>在静态坐标系旋转的基础上，增加了坐标系旋转的角速度信息 </p>
 </div><h2 class="groupheader">构造及析构函数说明</h2>
 <a id="acfc1d8217c1e6a2d28a887ec6b5bad43" name="acfc1d8217c1e6a2d28a887ec6b5bad43"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acfc1d8217c1e6a2d28a887ec6b5bad43">&#9670;&#160;</a></span>KinematicRotation() <span class="overload">[1/2]</span></h2>
@@ -274,7 +273,7 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
       </table>
 </div><div class="memdoc">
 
-<p>运动学旋转构造函数 </p>
+<p>运动学坐标系旋转构造函数 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">rot</td><td>旋转 </td></tr>
@@ -304,7 +303,7 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
       </table>
 </div><div class="memdoc">
 
-<p>运动学旋转构造函数 </p>
+<p>运动学坐标系旋转构造函数 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">mat</td><td>旋转矩阵 </td></tr>
@@ -331,11 +330,11 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
       </table>
 </div><div class="memdoc">
 
-<p>组合下一个旋转 </p>
-<dl class="section warning"><dt>警告</dt><dd>组合旋转是先应用当前旋转，再应用下一个旋转。 </dd></dl>
+<p>组合下一个坐标系旋转 </p>
+<dl class="section warning"><dt>警告</dt><dd>组合旋转是先应用当前旋转，再应用下一个坐标系旋转。 </dd></dl>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">next</td><td>下一个旋转 </td></tr>
+    <tr><td class="paramname">next</td><td>下一个坐标系旋转 </td></tr>
   </table>
   </dd>
 </dl>
@@ -358,10 +357,10 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
 </div><div class="memdoc">
 
 <p>组合下一个旋转 </p>
-<dl class="section warning"><dt>警告</dt><dd>组合旋转是先应用当前旋转，再应用下一个旋转。 </dd></dl>
+<dl class="section warning"><dt>警告</dt><dd>组合旋转是先应用当前旋转，再应用下一个坐标系旋转。 </dd></dl>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">next</td><td>下一个旋转 </td></tr>
+    <tr><td class="paramname">next</td><td>下一个坐标系旋转 </td></tr>
   </table>
   </dd>
 </dl>
@@ -465,7 +464,7 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
 </table>
 </div><div class="memdoc">
 
-<p>获取旋转 </p>
+<p>获取坐标系旋转 </p>
 <dl class="section return"><dt>返回</dt><dd>旋转 </dd></dl>
 
 </div>
@@ -493,7 +492,7 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
 </table>
 </div><div class="memdoc">
 
-<p>获取旋转角速度 </p>
+<p>获取坐标系旋转角速度 </p>
 <dl class="section return"><dt>返回</dt><dd>旋转角速度 </dd></dl>
 
 </div>
@@ -534,10 +533,10 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
 </div><div class="memdoc">
 
 <p>组合下一个旋转 </p>
-<dl class="section warning"><dt>警告</dt><dd>组合旋转是先应用当前旋转，再应用下一个旋转。 </dd></dl>
+<dl class="section warning"><dt>警告</dt><dd>组合旋转是先应用当前旋转，再应用下一个坐标系旋转。 </dd></dl>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">next</td><td>下一个旋转 </td></tr>
+    <tr><td class="paramname">next</td><td>下一个坐标系旋转 </td></tr>
   </table>
   </dd>
 </dl>
@@ -560,11 +559,11 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
       </table>
 </div><div class="memdoc">
 
-<p>组合下一个旋转 </p>
-<dl class="section warning"><dt>警告</dt><dd>组合旋转是先应用当前旋转，再应用下一个旋转。 </dd></dl>
+<p>组合下一个坐标系旋转 </p>
+<dl class="section warning"><dt>警告</dt><dd>组合旋转是先应用当前旋转，再应用下一个坐标系旋转。 </dd></dl>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">next</td><td>下一个旋转 </td></tr>
+    <tr><td class="paramname">next</td><td>下一个坐标系旋转 </td></tr>
   </table>
   </dd>
 </dl>
@@ -595,7 +594,7 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
 </table>
 </div><div class="memdoc">
 
-<p>设置旋转 </p>
+<p>设置坐标系旋转 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">rot</td><td>旋转 </td></tr>
@@ -628,7 +627,7 @@ static <a class="el" href="classast_1_1Rotation.html">Rotation</a>&#160;</td><td
 </table>
 </div><div class="memdoc">
 
-<p>设置旋转角速度 </p>
+<p>设置坐标系旋转角速度 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">angvel</td><td>旋转角速度 </td></tr>

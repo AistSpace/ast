@@ -68,7 +68,7 @@ var searchData=
   ['traitobject_3c_20ivalueprv_20_3e_65',['TraitObject&lt; IValuePrv &gt;',['../classast_1_1TraitObject.html',1,'ast']]],
   ['traitposvel_2ehpp_66',['TraitPosVel.hpp',['../TraitPosVel_8hpp.html',1,'']]],
   ['traitvalue_2ehpp_67',['TraitValue.hpp',['../TraitValue_8hpp.html',1,'']]],
-  ['transform_68',['Transform',['../classast_1_1Transform.html',1,'ast::Transform'],['../classast_1_1Transform.html#ac3d7d6330d800e82673d0eeb5db2a1fc',1,'ast::Transform::Transform()']]],
+  ['transform_68',['Transform',['../classast_1_1Transform.html',1,'ast::Transform'],['../classast_1_1Transform.html#ac3d7d6330d800e82673d0eeb5db2a1fc',1,'ast::Transform::Transform()=default'],['../classast_1_1Transform.html#a7be0c1a56f6d9462efa36561b793e723',1,'ast::Transform::Transform(const Vector3d &amp;trans, const Rotation &amp;rot)']]],
   ['transform_2ecpp_69',['Transform.cpp',['../Transform_8cpp.html',1,'']]],
   ['transform_2ehpp_70',['Transform.hpp',['../Transform_8hpp.html',1,'']]],
   ['transformposition_71',['transformPosition',['../classast_1_1Transform.html#a3471567e000ca0608bd4db29f82478f8',1,'ast::Transform::transformPosition(const Vector3d &amp;position, Vector3d &amp;positionOut) const'],['../classast_1_1Transform.html#acd337e12691586e6ebf73c8a78bd183d',1,'ast::Transform::transformPosition(const Vector3d &amp;position) const']]],

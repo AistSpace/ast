@@ -126,6 +126,10 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:adf2bcb6b264a976a4a97ce13a6361501"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a878c6836e637da7e16794d9e00a176e9" id="r_a878c6836e637da7e16794d9e00a176e9"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a878c6836e637da7e16794d9e00a176e9">getPosVel</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) const =0</td></tr>
 <tr class="separator:a878c6836e637da7e16794d9e00a176e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7376aae59202c374f225b11c80bf5e98" id="r_a7376aae59202c374f225b11c80bf5e98"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7376aae59202c374f225b11c80bf5e98">getPosIn</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos) const</td></tr>
+<tr class="separator:a7376aae59202c374f225b11c80bf5e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6f271aaabd7a51f9dce2754cc156a16" id="r_ab6f271aaabd7a51f9dce2754cc156a16"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6f271aaabd7a51f9dce2754cc156a16">getPosVelIn</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) const</td></tr>
+<tr class="separator:ab6f271aaabd7a51f9dce2754cc156a16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classast_1_1Object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1Object')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1Object.html">ast::Object</a></td></tr>
 <tr class="memitem:a50d47914de91782bc7ac06dad5ca1e39 inherit pub_methods_classast_1_1Object" id="r_a50d47914de91782bc7ac06dad5ca1e39"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>Object</b> (<a class="el" href="classast_1_1Class.html">Class</a> *tp)</td></tr>
@@ -255,6 +259,43 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 
 </div>
 </div>
+<a id="a7376aae59202c374f225b11c80bf5e98" name="a7376aae59202c374f225b11c80bf5e98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7376aae59202c374f225b11c80bf5e98">&#9670;&#160;</a></span>getPosIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::Point::getPosIn </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Frame.html">Frame</a> *</td>          <td class="paramname"><span class="paramname"><em>frame</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取点在指定时间点的位置，相对于指定参考坐标系 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frame</td><td>参考坐标系指针 </td></tr>
+    <tr><td class="paramname">tp</td><td>时间点 </td></tr>
+    <tr><td class="paramname">pos</td><td>输出参数，点的位置向量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+</div>
+</div>
 <a id="a878c6836e637da7e16794d9e00a176e9" name="a878c6836e637da7e16794d9e00a176e9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a878c6836e637da7e16794d9e00a176e9">&#9670;&#160;</a></span>getPosVel()</h2>
 
@@ -302,8 +343,52 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 
 </div>
 </div>
+<a id="ab6f271aaabd7a51f9dce2754cc156a16" name="ab6f271aaabd7a51f9dce2754cc156a16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6f271aaabd7a51f9dce2754cc156a16">&#9670;&#160;</a></span>getPosVelIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::Point::getPosVelIn </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Frame.html">Frame</a> *</td>          <td class="paramname"><span class="paramname"><em>frame</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取点在指定时间点的位置和速度，相对于指定参考坐标系 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frame</td><td>参考坐标系指针 </td></tr>
+    <tr><td class="paramname">tp</td><td>时间点 </td></tr>
+    <tr><td class="paramname">pos</td><td>输出参数，点的位置向量 </td></tr>
+    <tr><td class="paramname">vel</td><td>输出参数，点的速度向量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+</div>
+</div>
 <hr/>该类的文档由以下文件生成:<ul>
 <li>src/AstCore/Geometry/Euclid/<a class="el" href="Point_8hpp_source.html">Point.hpp</a></li>
+<li>src/AstCore/Geometry/Euclid/<a class="el" href="Point_8cpp.html">Point.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
