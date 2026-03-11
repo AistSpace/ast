@@ -265,7 +265,7 @@ $(function(){initNavTree('Span_8hpp_source.html',''); initResizable(true); });
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    }</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="comment">// 子视图</span></div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keyword">constexpr</span> <a class="code hl_class" href="classast_1_1Span.html">Span</a> subspan(index_type offset, index_type count = <span class="keyword">static_cast&lt;</span>index_type<span class="keyword">&gt;</span>(-1)) <span class="keyword">const</span> <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    A_CONSTEXPR_CXX14 <a class="code hl_class" href="classast_1_1Span.html">Span</a> subspan(index_type offset, index_type count = <span class="keyword">static_cast&lt;</span>index_type<span class="keyword">&gt;</span>(-1)) <span class="keyword">const</span> <span class="keyword">noexcept</span> {</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        <span class="keywordflow">if</span> (count == <span class="keyword">static_cast&lt;</span>index_type<span class="keyword">&gt;</span>(-1)) {</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>            count = size() - offset;</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        }</div>
