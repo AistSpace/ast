@@ -287,7 +287,6 @@ var hierarchy =
         [ "ast::SphereShape", "classast_1_1SphereShape.html", null ],
         [ "ast::SpheroidShape", "classast_1_1SpheroidShape.html", null ]
       ] ],
-      [ "ast::CelestialBody", "classast_1_1CelestialBody.html", null ],
       [ "ast::Expr", "classast_1_1Expr.html", [
         [ "ast::ExprCall", "classast_1_1ExprCall.html", null ],
         [ "ast::ExprCondition", "classast_1_1ExprCondition.html", null ],
@@ -342,6 +341,7 @@ var hierarchy =
         [ "ast::FrameRoot", "classast_1_1FrameRoot.html", null ]
       ] ],
       [ "ast::Point", "classast_1_1Point.html", [
+        [ "ast::CelestialBody", "classast_1_1CelestialBody.html", null ],
         [ "ast::PointBodyCenter", "classast_1_1PointBodyCenter.html", null ],
         [ "ast::PointRoot", "classast_1_1PointRoot.html", null ],
         [ "ast::PointSSBarycenter", "classast_1_1PointSSBarycenter.html", null ]
@@ -399,8 +399,6 @@ var hierarchy =
       [ "ast::StringScanner", "classast_1_1StringScanner.html", null ]
     ] ],
     [ "ast::ScopedPtr< T >", "classast_1_1ScopedPtr.html", null ],
-    [ "ast::ScopedPtr< ast::AxesBodyFixed >", "classast_1_1ScopedPtr.html", null ],
-    [ "ast::ScopedPtr< ast::AxesBodyInertial >", "classast_1_1ScopedPtr.html", null ],
     [ "ast::ScopedPtr< ast::BodyEphemeris >", "classast_1_1ScopedPtr.html", null ],
     [ "ast::ScopedPtr< ast::BodyOrientation >", "classast_1_1ScopedPtr.html", null ],
     [ "ast::ScopedPtrDeleter< T, typename >", "structast_1_1ScopedPtrDeleter.html", null ],
@@ -413,6 +411,8 @@ var hierarchy =
     [ "ast::strings_internal::SelectDelimiter< StringView >", "structast_1_1strings__internal_1_1SelectDelimiter_3_01StringView_01_4.html", null ],
     [ "ast::SharedPtr< _Object >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::Axes >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< ast::AxesBodyFixed >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< ast::AxesBodyInertial >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::AxesBodyMOD >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::AxesBodyTOD >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::CelestialBody >", "classast_1_1SharedPtr.html", null ],

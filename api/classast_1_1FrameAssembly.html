@@ -100,6 +100,7 @@ $(function(){initNavTree('classast_1_1FrameAssembly.html',''); initResizable(tru
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="#pro-attribs">Protected 属性</a> &#124;
 <a href="classast_1_1FrameAssembly-members.html">所有成员列表</a>  </div>
   <div class="headertitle"><div class="title">ast::FrameAssembly类 参考<div class="ingroups"><a class="el" href="group__Core.html">航天模块</a> &raquo; <a class="el" href="group__Coordinate.html">坐标系统</a></div></div></div>
@@ -122,13 +123,13 @@ $(function(){initNavTree('classast_1_1FrameAssembly.html',''); initResizable(tru
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:ac9bf54bd8dca8f4eb2072b21ea630627" id="r_ac9bf54bd8dca8f4eb2072b21ea630627"><td class="memItemLeft" align="right" valign="top"><a id="ac9bf54bd8dca8f4eb2072b21ea630627" name="ac9bf54bd8dca8f4eb2072b21ea630627"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>FrameAssembly</b> (<a class="el" href="classast_1_1Axes.html">Axes</a> *axes, <a class="el" href="classast_1_1Point.html">Point</a> *origin)</td></tr>
-<tr class="separator:ac9bf54bd8dca8f4eb2072b21ea630627"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa9b927fe8975779ff9d0ac06023da34" id="r_afa9b927fe8975779ff9d0ac06023da34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa9b927fe8975779ff9d0ac06023da34">getAxes</a> () const override</td></tr>
-<tr class="separator:afa9b927fe8975779ff9d0ac06023da34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a047a78012168c8f1a02d7ed00331bc54" id="r_a047a78012168c8f1a02d7ed00331bc54"><td class="memItemLeft" align="right" valign="top"><a id="a047a78012168c8f1a02d7ed00331bc54" name="a047a78012168c8f1a02d7ed00331bc54"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>FrameAssembly</b> (<a class="el" href="classast_1_1Point.html">Point</a> *origin, <a class="el" href="classast_1_1Axes.html">Axes</a> *axes)</td></tr>
+<tr class="separator:a047a78012168c8f1a02d7ed00331bc54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e1233387d11b9d8806830f3fe5dec07" id="r_a6e1233387d11b9d8806830f3fe5dec07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Point.html">Point</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e1233387d11b9d8806830f3fe5dec07">getOrigin</a> () const override</td></tr>
 <tr class="separator:a6e1233387d11b9d8806830f3fe5dec07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa9b927fe8975779ff9d0ac06023da34" id="r_afa9b927fe8975779ff9d0ac06023da34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa9b927fe8975779ff9d0ac06023da34">getAxes</a> () const override</td></tr>
+<tr class="separator:afa9b927fe8975779ff9d0ac06023da34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ec19be4faa3c5b6516ad9ed4f712b7d" id="r_a0ec19be4faa3c5b6516ad9ed4f712b7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Frame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ec19be4faa3c5b6516ad9ed4f712b7d">getParent</a> () const override</td></tr>
 <tr class="separator:a0ec19be4faa3c5b6516ad9ed4f712b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2906374ab59d6907ef5768f2abc5ab1" id="r_ab2906374ab59d6907ef5768f2abc5ab1"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2906374ab59d6907ef5768f2abc5ab1">getTransform</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Transform.html">Transform</a> &amp;transform) const override</td></tr>
@@ -187,14 +188,23 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:aecd84a95fab6db0c0efb7fb34863b11c inherit pub_methods_classast_1_1Object" id="r_aecd84a95fab6db0c0efb7fb34863b11c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Object.html#aecd84a95fab6db0c0efb7fb34863b11c">decRefNoDelete</a> ()</td></tr>
 <tr class="separator:aecd84a95fab6db0c0efb7fb34863b11c inherit pub_methods_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:aaa170465952e01602af11052880dc39a" id="r_aaa170465952e01602af11052880dc39a"><td class="memItemLeft" align="right" valign="top"><a id="aaa170465952e01602af11052880dc39a" name="aaa170465952e01602af11052880dc39a"></a>
+static <a class="el" href="classast_1_1FrameAssembly.html">PFrameAssembly</a>&#160;</td><td class="memItemRight" valign="bottom"><b>New</b> (<a class="el" href="classast_1_1Point.html">Point</a> *origin, <a class="el" href="classast_1_1Axes.html">Axes</a> *axes)</td></tr>
+<tr class="separator:aaa170465952e01602af11052880dc39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c9b4dc9b53ca9776f82f3cb3620d2ac" id="r_a6c9b4dc9b53ca9776f82f3cb3620d2ac"><td class="memItemLeft" align="right" valign="top"><a id="a6c9b4dc9b53ca9776f82f3cb3620d2ac" name="a6c9b4dc9b53ca9776f82f3cb3620d2ac"></a>
+static <a class="el" href="classast_1_1SharedPtr.html">HFrameAssembly</a>&#160;</td><td class="memItemRight" valign="bottom"><b>MakeShared</b> (<a class="el" href="classast_1_1Point.html">Point</a> *origin, <a class="el" href="classast_1_1Axes.html">Axes</a> *axes)</td></tr>
+<tr class="separator:a6c9b4dc9b53ca9776f82f3cb3620d2ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
-<tr class="memitem:a0d929700481c1b4f191a791d71d9b42e" id="r_a0d929700481c1b4f191a791d71d9b42e"><td class="memItemLeft" align="right" valign="top"><a id="a0d929700481c1b4f191a791d71d9b42e" name="a0d929700481c1b4f191a791d71d9b42e"></a>
-<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Axes.html">Axes</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>axes_</b></td></tr>
-<tr class="separator:a0d929700481c1b4f191a791d71d9b42e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a153f06ae7eb2d61d664281e07050fa17" id="r_a153f06ae7eb2d61d664281e07050fa17"><td class="memItemLeft" align="right" valign="top"><a id="a153f06ae7eb2d61d664281e07050fa17" name="a153f06ae7eb2d61d664281e07050fa17"></a>
 <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Point.html">Point</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>origin_</b></td></tr>
 <tr class="separator:a153f06ae7eb2d61d664281e07050fa17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d929700481c1b4f191a791d71d9b42e" id="r_a0d929700481c1b4f191a791d71d9b42e"><td class="memItemLeft" align="right" valign="top"><a id="a0d929700481c1b4f191a791d71d9b42e" name="a0d929700481c1b4f191a791d71d9b42e"></a>
+<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Axes.html">Axes</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>axes_</b></td></tr>
+<tr class="separator:a0d929700481c1b4f191a791d71d9b42e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classast_1_1Object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classast_1_1Object')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classast_1_1Object.html">ast::Object</a></td></tr>
 <tr class="memitem:a6c877404cdffe6b9ad0fe03755c57148 inherit pro_attribs_classast_1_1Object" id="r_a6c877404cdffe6b9ad0fe03755c57148"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classast_1_1Class.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_type</b></td></tr>
