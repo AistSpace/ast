@@ -26,6 +26,9 @@
 #include "AstCore/MoonOrientation.hpp"
 #include "AstCore/EphemerisDE.hpp"
 #include "AstCore/EphemerisNoop.hpp"
+#include "AstCore/FrameICRF.hpp"
+#include "AstCore/FrameAssembly.hpp"
+#include "AstCore/BuiltinAxes.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/String.hpp"
 #include "AstUtil/BKVParser.hpp"
@@ -46,7 +49,7 @@ CelestialBody::CelestialBody(StringView name)
     : name_(name)
 {
     orientation_  = new NoopOrientation();
-    ephemeris_    = new EphemerisNoop();
+    ephemeris_    = new EphemerisDE(this);
     axesFixed_    = new AxesBodyFixed(this);
     axesInertial_ = new AxesBodyInertial(this);
     axesMOD_      = new AxesBodyMOD(this);
@@ -127,14 +130,64 @@ err_t CelestialBody::setGravityModel(StringView model)
     return rc;
 }
 
-err_t CelestialBody::getPosICRF(TimePoint tp, Vector3d &pos) const
+err_t CelestialBody::getPosICRF(const TimePoint& tp, Vector3d &pos) const
 {
     return ephemeris_->getPosICRF(tp, pos);
 }
 
-err_t CelestialBody::getPosVelICRF(TimePoint tp, Vector3d &pos, Vector3d &vel) const
+err_t CelestialBody::getPosVelICRF(const TimePoint& tp, Vector3d &pos, Vector3d &vel) const
 {
     return ephemeris_->getPosVelICRF(tp, pos, vel);
+}
+
+Frame *CelestialBody::getFrame() const
+{
+    return aFrameICRF();
+}
+
+err_t CelestialBody::getPos(const TimePoint &tp, Vector3d &pos) const
+{
+    return getPosICRF(tp, pos);
+}
+
+err_t CelestialBody::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+{
+    return getPosVelICRF(tp, pos, vel);
+}
+
+HFrame CelestialBody::makeFrame(Axes *axes) const
+{
+    return new FrameAssembly(getPointCenter(), axes);
+}
+
+HFrame CelestialBody::makeFrameInertial() const
+{
+    return makeFrame(getAxesInertial());
+}
+
+HFrame CelestialBody::makeFrameFixed() const
+{
+    return makeFrame(getAxesFixed());
+}
+
+HFrame CelestialBody::makeFrameMOD() const
+{
+    return makeFrame(getAxesMOD());
+}
+
+HFrame CelestialBody::makeFrameTOD() const
+{
+    return makeFrame(getAxesTOD());
+}
+
+HFrame CelestialBody::makeFrameJ2000() const
+{
+    return makeFrame(aAxesJ2000());
+}
+
+HFrame CelestialBody::makeFrameICRF() const
+{
+    return makeFrame(aAxesICRF());
 }
 
 err_t CelestialBody::loadGravityModel(StringView model)

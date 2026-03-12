@@ -97,4 +97,16 @@ TEST(SpiceSPKParser, getPosNative)
     }
 }
 
+TEST(SpiceSPKParser, loadPlanetSatellitesSPK)
+{
+    const std::string kernel = aDataDirGet() + "/Test/kernels/spk/mars.bsp";
+    SpiceSPKParser parser(kernel);
+    double et = 0;
+    int bodid = (int)ESpiceId::ePhobos;
+    Vector3d pos, vel;
+    err_t err = parser.getPosVelNative(et, bodid, pos, vel);
+    A_UNUSED(err);
+    // EXPECT_EQ(err, eNoError);
+}
+
 GTEST_MAIN()

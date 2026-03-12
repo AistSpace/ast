@@ -26,70 +26,88 @@
 AST_NAMESPACE_BEGIN
 
 
-/// @brief 变换类
-/// @details 变换类表示三维空间中的变换，包括平移和旋转。
+/// @brief 坐标系转换类
+/// @details 坐标系转换类表示三维空间中的坐标系转换
+/// 包括坐标系平移和坐标系旋转
 class Transform
 {
 public:
 
-    /// @brief 变换默认构造函数
+    /// @brief 转换默认构造函数
     Transform() = default;
 
-    /// @brief 获取旋转
-    /// @return 旋转
-    const Rotation& getRotation() const { return rotation_; }
+    /// @brief 转换构造函数
+    Transform(const Vector3d& trans, const Rotation& rot);
 
-    /// @brief 设置旋转
-    /// @param rotation 旋转
+    /// @brief 获取单位转换
+    /// @details 单位转换是指不进行任何转换的转换
+    /// @return 单位转换
+    static Transform Identity();
+
+    /// @brief 获取坐标系旋转
+    /// @return 坐标系旋转
+    const Rotation& getRotation() const { return rotation_; }
+    Rotation& getRotation() { return rotation_; }
+
+    /// @brief 设置坐标系旋转
+    /// @param rotation 坐标系旋转
     void setRotation(const Rotation& rotation) { rotation_ = rotation; }
 
-    /// @brief 获取平移
-    /// @return 平移
+    /// @brief 获取坐标系平移
+    /// @return 坐标系平移
     const Vector3d& getTranslation() const { return translation_; }
+    Vector3d& getTranslation() { return translation_; }
 
-    /// @brief 设置平移
-    /// @param translation 平移
+    /// @brief 设置坐标系平移
+    /// @param translation 坐标系平移
     void setTranslation(const Vector3d& translation) { translation_ = translation; }
 
-    /// @brief 组合下一个变换
-    /// @warning 组合变换是先应用当前变换，再应用下一个变换。
-    /// @param next 下一个变换
+    /// @brief 获取转换矩阵
+    /// @return 转换矩阵
+    const Matrix3d& getMatrix() const { return rotation_.getMatrix(); }
+
+    /// @brief 组合下一个坐标系转换
+    /// @warning 组合转换是先应用当前转换，再应用下一个转换。
+    /// @param next 下一个转换
     Transform& compose(const Transform& next);
 
-    /// @brief 组合下一个变换
-    /// @warning 组合变换是先应用当前变换，再应用下一个变换。
-    /// @param next 下一个变换
-    /// @return 组合变换
+    /// @brief 组合下一个坐标系转换
+    /// @warning 组合转换是先应用当前转换，再应用下一个转换。
+    /// @param next 下一个坐标系转换
+    /// @return 组合转换
     Transform composed(const Transform& next) const;
 
-    /// @brief 组合下一个变换
-    /// @warning 组合变换是先应用当前变换，再应用下一个变换。
-    /// @param next 下一个变换
-    /// @return 组合变换
+    /// @brief 组合下一个坐标系转换
+    /// @warning 组合转换是先应用当前转换，再应用下一个转换。
+    /// @param next 下一个坐标系转换
+    /// @return 组合转换
     Transform operator*(const Transform& next) const;
 
-    /// @brief 组合下一个变换
-    /// @warning 组合变换是先应用当前变换，再应用下一个变换。
-    /// @param next 下一个变换
-    /// @return 组合变换
+    /// @brief 组合下一个坐标系转换
+    /// @warning 组合转换是先应用当前转换，再应用下一个转换。
+    /// @param next 下一个坐标系转换
+    /// @return 组合转换
     Transform& operator*=(const Transform& next);
 
-    /// @brief 获取逆变换
-    /// @param inversed 逆变换
-    void getInverse(Rotation& inversed) const;
+    /// @brief 获取逆转换
+    /// @param inversed 逆转换
+    void getInverse(Transform& inversed) const;
 
-    /// @brief 获取逆变换
-    /// @return 逆变换
-    Rotation inverse() const;
+    /// @brief 获取逆转换
+    /// @return 逆转换
+    Transform inverse() const;
 
-    /// @brief 变换位置
+    /// @brief 设置为单位转换
+    void setIdentity() { rotation_ = Rotation::Identity(); translation_ = Vector3d::Zero(); }
+
+    /// @brief 转换位置
     /// @param position 位置
-    /// @param positionOut 变换后的位置
+    /// @param positionOut 转换后的位置
     void transformPosition(const Vector3d& position, Vector3d& positionOut) const;
 
-    /// @brief 变换位置
+    /// @brief 转换位置
     /// @param position 位置
-    /// @return 变换后的位置
+    /// @return 转换后的位置
     Vector3d transformPosition(const Vector3d& position) const;
 
 protected:
@@ -97,23 +115,63 @@ protected:
     Rotation rotation_;     ///< 旋转
 };
 
-
-
-A_ALWAYS_INLINE void Transform::getInverse(Rotation &inversed) const
+A_ALWAYS_INLINE Transform::Transform(const Vector3d &trans, const Rotation &rot)
+    : translation_(trans), rotation_(rot)
 {
-    // @todo 实现获取逆变换
 }
 
-A_ALWAYS_INLINE Rotation Transform::inverse() const
+A_ALWAYS_INLINE Transform Transform::Identity()
 {
-    Rotation retval;
+    return Transform(Vector3d::Zero(), Rotation::Identity());
+}
+
+A_ALWAYS_INLINE Transform &Transform::compose(const Transform &next)
+{
+    translation_ += next.getTranslation() * getMatrix();
+    rotation_ = rotation_.composed(next.getRotation());
+    return *this;
+}
+
+A_ALWAYS_INLINE Transform Transform::composed(const Transform &next) const
+{
+    /*!
+    也可以通过 getRotation().transformVectorInv() 来实现。
+    */
+    return Transform(
+        translation_ + next.getTranslation() * getMatrix(),
+        rotation_.composed(next.getRotation())
+    );
+}
+
+A_ALWAYS_INLINE Transform Transform::operator*(const Transform &next) const
+{
+    return this->composed(next);
+}
+
+A_ALWAYS_INLINE Transform &Transform::operator*=(const Transform &next)
+{
+    return this->compose(next);
+}
+
+A_ALWAYS_INLINE void Transform::getInverse(Transform &inversed) const
+{
+    rotation_.transformVector(-translation_, inversed.getTranslation());
+    rotation_.getInverse(inversed.getRotation());
+}
+
+A_ALWAYS_INLINE Transform Transform::inverse() const
+{
+    Transform retval;
     this->getInverse(retval);
     return retval;
 }
 
 A_ALWAYS_INLINE void Transform::transformPosition(const Vector3d &position, Vector3d &positionOut) const
 {
-    // @todo 实现变换位置
+    /*!
+    先进行坐标系平移，再进行坐标系旋转。
+    */
+    rotation_.transformVector(position - translation_, positionOut);
 }
 
 A_ALWAYS_INLINE Vector3d Transform::transformPosition(const Vector3d &position) const

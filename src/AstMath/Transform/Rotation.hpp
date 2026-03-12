@@ -31,56 +31,58 @@
 AST_NAMESPACE_BEGIN
 
 
-/// @brief 旋转类
-/// @details 旋转类表示三维空间的旋转。
-/// 旋转类当前是基于旋转矩阵实现的，未来也可能会切换到四元数进行实现。
+/// @brief 坐标系旋转类
+/// @details 表示三维空间内的坐标系旋转
+/// 坐标系旋转类当前是基于坐标转换矩阵实现的，未来也可能会切换到四元数进行实现。
 /// 但是你不用关心其内部实现细节，只需要关注并使用其公开接口，注意不要依赖其内部实现。
 class Rotation
 {
 public:
     /// @brief 单位旋转
+    /// @details 单位旋转是指不进行任何旋转的旋转
+    /// @return 单位旋转
     static Rotation Identity();
 
-    /// @brief 从矩阵转换为旋转对象
+    /// @brief 从矩阵转换为坐标系旋转对象
     static Rotation& CastFrom(Matrix3d& mat)
     {
         return *reinterpret_cast<Rotation*>(&mat);
     }
 
-    /// @brief 从矩阵转换为旋转对象（常量版本）
+    /// @brief 从矩阵转换为坐标系旋转对象（常量版本）
     static const Rotation& CastFrom(const Matrix3d& mat)
     {
         return *reinterpret_cast<const Rotation*>(&mat);
     }
 
-    /// @brief 从矩阵转换为旋转对象
+    /// @brief 从矩阵转换为坐标系旋转对象
     static Rotation FromMatrix(const Matrix3d& mat)
     {
         return Rotation(mat);
     }
 
-    /// @brief 旋转类默认构造函数
+    /// @brief 坐标系旋转类默认构造函数
     Rotation() = default;
 
     /// @brief 复制构造函数
-    /// @param other 旋转对象
+    /// @param other 坐标系旋转对象
     Rotation(const Rotation& other) = default;
 
     /// @brief 构造函数
     /// @param quat 四元数
     Rotation(const Quaternion& quat);
 
-    /// @brief 从旋转矩阵构造旋转
+    /// @brief 从旋转矩阵构造坐标系旋转对象
     /// @param mat 旋转矩阵
     Rotation(const Matrix3d& mat);
 
-    /// @brief 从轴角构造旋转
+    /// @brief 从轴角构造坐标系旋转对象
     /// @param axis 旋转轴
     /// @param angle 旋转角度（弧度）
     Rotation(double angle, const Vector3d& axis);
 
 
-    /// @brief 从轴角构造旋转
+    /// @brief 从轴角构造坐标系旋转对象
     /// @param aa 轴角
     Rotation(const AngleAxis& aa);
 
@@ -166,6 +168,13 @@ public:
     /// @param vector 向量
     /// @param vectorOut 变换后的向量
     void transformVector(const Vector3d& vector, Vector3d& vectorOut) const;
+
+
+    /// @brief 变换向量（逆变换）
+    /// @warning 注意：这里是逆变换，等价于 `inverse().transformVector(...)`;
+    /// @param vector 向量
+    /// @param vectorOut 变换后的向量
+    void transformVectorInv(const Vector3d& vector, Vector3d& vectorOut) const;
 
     /// @brief 变换向量
     /// @param vector 向量
@@ -287,6 +296,11 @@ A_ALWAYS_INLINE Rotation Rotation::inverse() const
 A_ALWAYS_INLINE void Rotation::transformVector(const Vector3d &vector, Vector3d &vectorOut) const
 {
     vectorOut = this->matrix_ * vector;
+}
+
+A_ALWAYS_INLINE void Rotation::transformVectorInv(const Vector3d &vector, Vector3d &vectorOut) const
+{
+    vectorOut = vector * this->matrix_;
 }
 
 A_ALWAYS_INLINE Vector3d Rotation::transformVector(const Vector3d& vector) const

@@ -570,6 +570,17 @@ CelestialBody* aGetSun()
     return context->solarSystem()->getSun();
 }
 
+CelestialBody *aGetSSBarycenter()
+{
+    auto context = aDataContext_EnsureCurrent();
+    return context->solarSystem()->getSolarSystemBarycenter();
+}
+
+CelestialBody *aGetEMBarycenter()
+{
+    auto context = aDataContext_EnsureCurrent();
+    return context->solarSystem()->getEarthMoonBarycenter();
+}
 
 
 AST_NAMESPACE_END

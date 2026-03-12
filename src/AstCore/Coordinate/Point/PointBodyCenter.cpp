@@ -1,9 +1,9 @@
 ///
-/// @file      Frame.cpp
+/// @file      PointBodyCenter.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-04
+/// @date      2026-03-12
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,10 +18,38 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "Frame.hpp"
+#include "PointBodyCenter.hpp"
+#include "AstCore/FrameICRF.hpp"
+#include "AstCore/CelestialBody.hpp"
 
 AST_NAMESPACE_BEGIN
+
+PointBodyCenter::PointBodyCenter(CelestialBody *body)
+    : body_(body)
+{
+}
+
+Frame* PointBodyCenter::getFrame() const
+{
+    return aFrameICRF();
+}
+err_t PointBodyCenter::getPos(const TimePoint& tp, Vector3d& pos) const
+{
+    if(!body_){
+        return eErrorInvalidParam;
+    }
+    return body_->getPosICRF(tp, pos);
+}
+err_t PointBodyCenter::getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const
+{
+    if(!body_){
+        return eErrorInvalidParam;
+    }
+    return body_->getPosVelICRF(tp, pos, vel);
+}
 
 
 
 AST_NAMESPACE_END
+
+

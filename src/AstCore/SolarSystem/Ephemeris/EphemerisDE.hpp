@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstCore/BodyEphemeris.hpp"
+#include "AstCore/CelestialBody.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -39,10 +40,14 @@ public:
     EphemerisDE(int jplIndex)
         : jplIndex_(jplIndex)
     {}
+    EphemerisDE(CelestialBody* body)
+        : body_(body)
+        , jplIndex_(body->jplIndex_)
+    {}
 
     ~EphemerisDE() override = default;
 
-    int getJplIndex() const{return jplIndex_;}
+    int getJplIndex() const;
 
     void setJplIndex(int jplIndex){jplIndex_ = jplIndex;}
 
@@ -50,6 +55,7 @@ public:
 
     err_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
 protected:
+    CelestialBody* body_{nullptr};
     int jplIndex_{-1};
 };
 

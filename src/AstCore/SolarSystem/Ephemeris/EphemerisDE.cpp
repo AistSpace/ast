@@ -22,16 +22,26 @@
 #include "AstCore/RunTime.hpp"
 #include "AstCore/JplDe.hpp"
 
+
 AST_NAMESPACE_BEGIN
+
+
+int EphemerisDE::getJplIndex() const
+{
+    if(body_){
+        return body_->jplIndex_;
+    }
+    return jplIndex_;
+}
 
 err_t EphemerisDE::getPosICRF(const TimePoint &tp, Vector3d &pos) const
 {
-    return aJplDeGetPosICRF(tp, jplIndex_, JplDe::eSSBarycenter, pos);
+    return aJplDeGetPosICRF(tp, getJplIndex(), JplDe::eSSBarycenter, pos);
 }
 
 err_t EphemerisDE::getPosVelICRF(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
-    return aJplDeGetPosVelICRF(tp, jplIndex_, JplDe::eSSBarycenter, pos, vel);
+    return aJplDeGetPosVelICRF(tp, getJplIndex(), JplDe::eSSBarycenter, pos, vel);
 }
 
 AST_NAMESPACE_END

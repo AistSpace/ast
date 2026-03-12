@@ -30,6 +30,8 @@
 #include "AstCore/AxesBodyFixed.hpp"
 #include "AstCore/AxesBodyMOD.hpp"
 #include "AstCore/AxesBodyTOD.hpp"
+#include "AstCore/Point.hpp"
+#include "AstCore/Frame.hpp"
 #include "AstUtil/SharedPtr.hpp"
 #include "AstUtil/ScopedPtr.hpp"
 
@@ -41,7 +43,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 天体
-class AST_CORE_API CelestialBody : public Object
+class AST_CORE_API CelestialBody : public Point
 {
     AST_OBJECT(CelestialBody)
 public:
@@ -103,7 +105,7 @@ public:
     /// @param  tp          - 时间点
     /// @param  pos         - 输出位置（ICRF）
     /// @retval             - 错误码
-    err_t getPosICRF(TimePoint tp, Vector3d& pos) const;
+    err_t getPosICRF(const TimePoint& tp, Vector3d& pos) const;
 
 
     /// @brief 获取天体位置和速度（ICRF）
@@ -111,14 +113,26 @@ public:
     /// @param  pos         - 输出位置（ICRF）
     /// @param  vel         - 输出速度（ICRF）
     /// @retval             - 错误码
-    err_t getPosVelICRF(TimePoint tp, Vector3d& pos, Vector3d& vel) const;
-    
+    err_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const;
+
+public: // 从Point继承重写的函数
+
+    Frame* getFrame() const final;
+    err_t getPos(const TimePoint& tp, Vector3d& pos) const final;
+    err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
+
+public: // 天体的星历和指向/姿态
 
     /// @brief 获取天体姿态
     BodyOrientation* getOrientation() const { return orientation_.get(); }
 
     /// @brief 获取天体星历
     BodyEphemeris* getEphemeris() const { return ephemeris_.get(); }
+
+public:
+
+    /// @brief 获取天体中心
+    Point* getPointCenter() const { return const_cast<CelestialBody*>(this); }
 
     /// @brief 获取天体惯性轴系
     Axes* getAxesInertial() const { return axesInertial_.get(); }
@@ -131,6 +145,28 @@ public:
     
     /// @brief 获取天体TOD轴系
     Axes* getAxesTOD() const { return axesTOD_.get(); }
+
+    /// @brief 创建新的天体坐标系
+    /// @param  axes        - 轴系
+    HFrame makeFrame(Axes* axes) const;
+
+    /// @brief 创建新的天体惯性坐标系
+    HFrame makeFrameInertial() const;
+
+    /// @brief 创建新的天体固连坐标系
+    HFrame makeFrameFixed() const;
+
+    /// @brief 创建新的天体MOD坐标系
+    HFrame makeFrameMOD() const;
+
+    /// @brief 创建新的天体TOD坐标系
+    HFrame makeFrameTOD() const;
+
+    /// @brief 创建新的天体J2000坐标系
+    HFrame makeFrameJ2000() const;
+
+    /// @brief 创建新的天体ICRF坐标系
+    HFrame makeFrameICRF() const;
 
 protected:
     /// @brief 获取Jn项
@@ -171,11 +207,17 @@ PROPERTIES:
     GravityField                gravityField_;             ///< 重力场
     ScopedPtr<BodyOrientation>  orientation_;              ///< 天体姿态
     ScopedPtr<BodyEphemeris>    ephemeris_;                ///< 天体星历
-    ScopedPtr<AxesBodyInertial> axesInertial_;             ///< 天体惯性轴
-    ScopedPtr<AxesBodyFixed>    axesFixed_;                ///< 天体固定轴
+
+    SharedPtr<AxesBodyInertial> axesInertial_;             ///< 天体惯性轴
+    SharedPtr<AxesBodyFixed>    axesFixed_;                ///< 天体固定轴
     SharedPtr<AxesBodyMOD>      axesMOD_;                  ///< 天体MOD轴
     SharedPtr<AxesBodyTOD>      axesTOD_;                  ///< 天体TOD轴
+
+    /*!
+    增加Frame类型成员变量会导致循环引用，导致内存泄漏
+    */
 };
+
 
 
 

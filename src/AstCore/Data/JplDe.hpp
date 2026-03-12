@@ -55,7 +55,7 @@ public:
         eMoon = 9,              ///< 月球
         eSun = 10,              ///< 太阳
         eSSBarycenter = 11,     ///< 太阳系质心
-        eEMBaryCenter = 12,     ///< 地月系质心
+        eEMBarycenter = 12,     ///< 地月系质心
     };
 
     JplDe();

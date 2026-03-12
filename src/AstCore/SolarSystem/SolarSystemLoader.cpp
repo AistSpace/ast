@@ -28,14 +28,23 @@ err_t SolarSystem::load(StringView dirpath)
 {
     init();
     err_t rc = 0;
-    for (const auto& entry : fs::directory_iterator(std::string(dirpath))) {
-        if (fs::is_directory(entry.status())) {
-            std::string bodyname = entry.path().filename();
-            CelestialBody *body = getOrAddBody(bodyname);
-            rc |= body->load(entry.path().string());
+    fs::path path = std::string(dirpath);
+    fs::file_status status = fs::status(path);
+    if(fs::is_regular_file(status)){
+        return loadPCK(dirpath);
+    }else if(fs::is_directory(status)){
+        for (const auto& entry : fs::directory_iterator(path)) {
+            if (fs::is_directory(entry.status())) {
+                std::string bodyname = entry.path().filename();
+                CelestialBody *body = getOrAddBody(bodyname);
+                rc |= body->load(entry.path().string());
+            }
         }
+        return rc;
+    }else{
+        aError("invalid file type: %s", path.string().c_str());
+        return eErrorInvalidFile;
     }
-    return rc;
 }
 
 
