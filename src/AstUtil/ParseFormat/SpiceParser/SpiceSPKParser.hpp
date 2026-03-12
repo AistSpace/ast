@@ -89,6 +89,7 @@ protected:
     
     err_t getStateNative(double et, int target, Vector3d& pos, Vector3d* vel) const;
 
+    err_t getStateType2(const SPK_Descriptor& desc, double et, int target, Vector3d& pos, Vector3d* vel) const;
 protected:
     std::vector<SPK_Descriptor> spkDescriptors_;     ///< SPK 段描述符数组
     mutable std::vector<double> buffer_;             ///< 数据读取缓冲区
