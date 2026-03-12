@@ -60,22 +60,27 @@ class AST_CORE_API Frame: public Object
 public:
     Frame() = default;
     ~Frame() override= default;
+
     /// @brief 获取当前坐标系的父坐标系
     /// @return 父坐标系
     virtual Frame* getParent() const = 0;
+    
     /// @brief 获取当前坐标系相对于父坐标系的变换
     /// @param tp 时间点
     /// @param transform 输出的变换
     /// @return 错误码
     virtual err_t getTransform(const TimePoint& tp, Transform& transform) const = 0;
+    
     /// @brief 获取当前坐标系相对于父坐标系的运动学变换
     /// @param tp 时间点
     /// @param transform 输出的运动学变换
     /// @return 错误码
     virtual err_t getTransform(const TimePoint& tp, KinematicTransform& transform) const = 0;
+    
     /// @brief 获取当前坐标系的轴系。
     /// @return 轴系
     virtual Axes* getAxes() const = 0;
+    
     /// @brief 获取当前坐标系的原点。
     /// @return 原点
     virtual Point* getOrigin() const = 0;
@@ -89,6 +94,7 @@ public:
     {
         return aFrameTransform(const_cast<Frame*>(this), target, tp, transform);
     }
+    
     /// @brief 获取当前坐标系到目标坐标系的运动学变换。
     /// @param target 目标坐标系
     /// @param tp 时间点
@@ -98,6 +104,7 @@ public:
     {
         return aFrameTransform(const_cast<Frame*>(this), target, tp, transform);
     }
+    
     /// @brief 获取源坐标系到当前坐标系的变换。
     /// @param source 源坐标系
     /// @param tp 时间点
@@ -107,6 +114,7 @@ public:
     {
         return aFrameTransform(source, const_cast<Frame*>(this), tp, transform);
     }
+    
     /// @brief 获取源坐标系到当前坐标系的运动学变换。
     /// @param source 源坐标系
     /// @param tp 时间点

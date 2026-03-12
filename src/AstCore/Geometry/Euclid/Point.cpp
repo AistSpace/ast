@@ -28,7 +28,7 @@ AST_NAMESPACE_BEGIN
 
 err_t Point::getPosIn(Frame *frame, const TimePoint &tp, Vector3d &pos) const
 {
-    auto parent = frame->getParent();
+    auto parent = this->getFrame();
     if(parent == frame)
     {
         return getPos(tp, pos);
@@ -48,7 +48,7 @@ err_t Point::getPosIn(Frame *frame, const TimePoint &tp, Vector3d &pos) const
 
 err_t Point::getPosVelIn(Frame *frame, const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
-    auto parent = frame->getParent();
+    auto parent = this->getFrame();
     if(parent == frame)
     {
         return getPosVel(tp, pos, vel);

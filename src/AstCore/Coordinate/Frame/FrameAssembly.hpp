@@ -42,7 +42,18 @@ using PFrameAssembly = FrameAssembly*;
 class AST_CORE_API FrameAssembly: public Frame
 {
 public:
+    /// @brief 创建组装坐标系
+    /// @param origin 原点
+    /// @param axes 轴系
+    /// @warning 返回的指针为裸指针，需要手动管理内存，避免内存泄漏
+    /// @return 组装坐标系指针
     static PFrameAssembly New(Point* origin, Axes* axes);
+
+    /// @brief 创建组装坐标系
+    /// @param origin 原点
+    /// @param axes 轴系
+    /// @note 返回的智能指针会自动管理内存
+    /// @return 组装坐标系智能指针
     static HFrameAssembly MakeShared(Point* origin, Axes* axes);
 
     FrameAssembly() = default;
