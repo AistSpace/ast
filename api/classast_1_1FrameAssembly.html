@@ -190,11 +190,9 @@ Public 成员函数</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:aaa170465952e01602af11052880dc39a" id="r_aaa170465952e01602af11052880dc39a"><td class="memItemLeft" align="right" valign="top"><a id="aaa170465952e01602af11052880dc39a" name="aaa170465952e01602af11052880dc39a"></a>
-static <a class="el" href="classast_1_1FrameAssembly.html">PFrameAssembly</a>&#160;</td><td class="memItemRight" valign="bottom"><b>New</b> (<a class="el" href="classast_1_1Point.html">Point</a> *origin, <a class="el" href="classast_1_1Axes.html">Axes</a> *axes)</td></tr>
+<tr class="memitem:aaa170465952e01602af11052880dc39a" id="r_aaa170465952e01602af11052880dc39a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classast_1_1FrameAssembly.html">PFrameAssembly</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa170465952e01602af11052880dc39a">New</a> (<a class="el" href="classast_1_1Point.html">Point</a> *origin, <a class="el" href="classast_1_1Axes.html">Axes</a> *axes)</td></tr>
 <tr class="separator:aaa170465952e01602af11052880dc39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c9b4dc9b53ca9776f82f3cb3620d2ac" id="r_a6c9b4dc9b53ca9776f82f3cb3620d2ac"><td class="memItemLeft" align="right" valign="top"><a id="a6c9b4dc9b53ca9776f82f3cb3620d2ac" name="a6c9b4dc9b53ca9776f82f3cb3620d2ac"></a>
-static <a class="el" href="classast_1_1SharedPtr.html">HFrameAssembly</a>&#160;</td><td class="memItemRight" valign="bottom"><b>MakeShared</b> (<a class="el" href="classast_1_1Point.html">Point</a> *origin, <a class="el" href="classast_1_1Axes.html">Axes</a> *axes)</td></tr>
+<tr class="memitem:a6c9b4dc9b53ca9776f82f3cb3620d2ac" id="r_a6c9b4dc9b53ca9776f82f3cb3620d2ac"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classast_1_1SharedPtr.html">HFrameAssembly</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c9b4dc9b53ca9776f82f3cb3620d2ac">MakeShared</a> (<a class="el" href="classast_1_1Point.html">Point</a> *origin, <a class="el" href="classast_1_1Axes.html">Axes</a> *axes)</td></tr>
 <tr class="separator:a6c9b4dc9b53ca9776f82f3cb3620d2ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
@@ -389,6 +387,86 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
 
 <p>实现了 <a class="el" href="classast_1_1Frame.html#a4a1973730c580aebb20658ace48c4bae">ast::Frame</a>.</p>
+
+</div>
+</div>
+<a id="a6c9b4dc9b53ca9776f82f3cb3620d2ac" name="a6c9b4dc9b53ca9776f82f3cb3620d2ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c9b4dc9b53ca9776f82f3cb3620d2ac">&#9670;&#160;</a></span>MakeShared()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1SharedPtr.html">HFrameAssembly</a> ast::FrameAssembly::MakeShared </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Point.html">Point</a> *</td>          <td class="paramname"><span class="paramname"><em>origin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>axes</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建组装坐标系 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">origin</td><td>原点 </td></tr>
+    <tr><td class="paramname">axes</td><td>轴系 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>返回的智能指针会自动管理内存 </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>组装坐标系智能指针 </dd></dl>
+
+</div>
+</div>
+<a id="aaa170465952e01602af11052880dc39a" name="aaa170465952e01602af11052880dc39a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa170465952e01602af11052880dc39a">&#9670;&#160;</a></span>New()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1FrameAssembly.html">PFrameAssembly</a> ast::FrameAssembly::New </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Point.html">Point</a> *</td>          <td class="paramname"><span class="paramname"><em>origin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>axes</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建组装坐标系 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">origin</td><td>原点 </td></tr>
+    <tr><td class="paramname">axes</td><td>轴系 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>警告</dt><dd>返回的指针为裸指针，需要手动管理内存，避免内存泄漏 </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>组装坐标系指针 </dd></dl>
 
 </div>
 </div>
