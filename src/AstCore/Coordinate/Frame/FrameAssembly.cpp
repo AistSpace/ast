@@ -26,12 +26,23 @@
 
 AST_NAMESPACE_BEGIN
 
-FrameAssembly::FrameAssembly(Axes *axes, Point *origin)
+PFrameAssembly FrameAssembly::New(Point *origin, Axes *axes)
+{
+    return new FrameAssembly(origin, axes);
+}
+
+HFrameAssembly FrameAssembly::MakeShared(Point *origin, Axes *axes)
+{
+    return new FrameAssembly(origin, axes);
+}
+
+FrameAssembly::FrameAssembly(Point *origin, Axes *axes)
     : Frame()
-    , axes_(axes)
     , origin_(origin)
+    , axes_(axes)
 {
 }
+
 
 
 Frame *FrameAssembly::getParent() const

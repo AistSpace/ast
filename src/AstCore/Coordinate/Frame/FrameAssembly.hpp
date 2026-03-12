@@ -32,24 +32,31 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class FrameAssembly;
+using HFrameAssembly = SharedPtr<FrameAssembly>;
+using PFrameAssembly = FrameAssembly*;
+
 /// @brief 组装坐标系
 /// @details 组装坐标系由轴系和原点组成
 /// 可以通过轴系和原点的灵活组合定义坐标系
 class AST_CORE_API FrameAssembly: public Frame
 {
 public:
+    static PFrameAssembly New(Point* origin, Axes* axes);
+    static HFrameAssembly MakeShared(Point* origin, Axes* axes);
+
     FrameAssembly() = default;
-    FrameAssembly(Axes* axes, Point* origin);
+    FrameAssembly(Point* origin, Axes* axes);
     ~FrameAssembly() = default;
 
-    Axes* getAxes() const override { return axes_.get(); }
     Point* getOrigin() const override { return origin_.get(); }
+    Axes* getAxes() const override { return axes_.get(); }
     Frame* getParent() const override;
     err_t getTransform(const TimePoint&tp, Transform& transform) const override;
     err_t getTransform(const TimePoint&tp, KinematicTransform& transform) const override;
 protected:
-    SharedPtr<Axes>  axes_;      ///< 轴系统
     SharedPtr<Point> origin_;    ///< 原点
+    SharedPtr<Axes>  axes_;      ///< 轴系统
 };
 
 /*! @} */
