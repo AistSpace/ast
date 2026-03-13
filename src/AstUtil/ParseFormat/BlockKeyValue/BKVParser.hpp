@@ -88,7 +88,7 @@ public:
     /// @param filepath 文件路径视图，指定要解析的文件路径。
     /// @param sax sax 解析器，用于处理解析结果。
     /// @return 解析错误码（err_t）。
-    err_t parseFile(const StringView filepath, BKVSax& sax);
+    err_t parseFile(StringView filepath, BKVSax& sax);
 
     /// @brief 解析当前打开的文件
     /// @details 解析当前打开的文件，将解析结果传递给指定的 sax 解析器。

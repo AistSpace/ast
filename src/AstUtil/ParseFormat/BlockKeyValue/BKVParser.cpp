@@ -125,7 +125,7 @@ StringView BKVParser::getLineSkipComment()
     return line;
 }
 
-err_t BKVParser::parseFile(const StringView filepath, BKVSax &sax)
+err_t BKVParser::parseFile(StringView filepath, BKVSax &sax)
 {
     open(filepath);
     return parse(sax);
