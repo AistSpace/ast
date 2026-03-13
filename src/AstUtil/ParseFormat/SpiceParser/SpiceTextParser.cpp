@@ -74,7 +74,7 @@ err_t SpiceTextParser::getNext(BKVItemView &item)
             {
                 aWarning("value is whitespace for key: %.*s", (int)item.key().size(), item.key().data());
             }else if(valueStrip[0] == '(' && valueStrip.back() != ')'){
-                valueBuffer_.assign(value.begin(), value.size());
+                valueBuffer_.assign(value.data(), value.size());
                 // 继续读取，直到找到完整的括号表达式
                 StringView lineStrip;
                 constexpr size_t maxmem = 20 * 1024 * 1024; // 20 MB
@@ -87,7 +87,7 @@ err_t SpiceTextParser::getNext(BKVItemView &item)
                                maxsize, (int)item.key().size(), item.key().data());
                         break;
                     }
-                    valueBuffer_.append(line.begin(), line.size());
+                    valueBuffer_.append(line.data(), line.size());
                     lineStrip = aStripTrailingAsciiWhitespace(line);
                 }while(lineStrip.empty() || lineStrip.back() != ')');
                 item.value() = valueBuffer_;
