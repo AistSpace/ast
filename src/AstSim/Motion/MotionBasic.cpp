@@ -20,6 +20,7 @@
 
 #include "MotionBasic.hpp"
 #include "AstCore/EventInterval.hpp"
+#include "AstCore/EventIntervalExplicit.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -28,6 +29,11 @@ err_t MotionBasic::getInterval(TimeInterval &interval) const
     if(!interval_)
         return eErrorNullInput;
     return interval_->getInterval(interval);
+}
+
+void MotionBasic::setInterval(const TimeInterval &interval)
+{
+    interval_ = EventIntervalExplicit::New(interval);
 }
 
 AST_NAMESPACE_END

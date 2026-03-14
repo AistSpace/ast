@@ -51,8 +51,8 @@ public:
     BaseParser(StringView filepath);
     ~BaseParser();
 
-    // 基础操作
-public: 
+    
+public: // 基础操作
     /// @brief 打开文件
     /// @details 打开指定路径的文件，用于后续的解析操作。
     /// @param filepath 文件路径视图，指定要打开的文件路径。
@@ -107,8 +107,8 @@ public:
     /// @return 当前行的内容（去除首尾空格）
     StringView getLineTrim();
 
-    // 辅助信息
-public:
+    
+public: // 辅助信息
     /// @brief 获取当前行号
     /// @details 获取当前解析器所在的行号。
     /// @return 当前行号

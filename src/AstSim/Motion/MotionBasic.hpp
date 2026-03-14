@@ -44,10 +44,19 @@ public:
     /// @return 状态指针
     State* getInitialState() const { return initialState_.get(); }
 
+    /// @brief 设置初始状态
+    void setInitialState(State* state) { initialState_ = state; }
+
     /// @brief 获取运动时间间隔
     /// @param interval 时间间隔引用
     /// @return 错误码
     err_t getInterval(TimeInterval& interval) const;
+
+    /// @brief 设置运动时间间隔
+    void setInterval(EventInterval* interval) { interval_ = interval;}
+
+    /// @brief 设置运动时间间隔
+    void setInterval(const TimeInterval& interval);
 
     /// @brief 获取预报坐标系
     /// @return 预报坐标系指针

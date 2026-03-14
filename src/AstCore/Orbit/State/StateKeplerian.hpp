@@ -32,9 +32,11 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 开普勒轨道根数状态
-class StateKeplerian: public State
+class AST_CORE_API StateKeplerian final: public State
 {
 public:
+    static StateKeplerian* New();
+
     StateKeplerian() = default;
     ~StateKeplerian() override = default;
 protected:

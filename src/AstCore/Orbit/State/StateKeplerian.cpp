@@ -22,6 +22,11 @@
 
 AST_NAMESPACE_BEGIN
 
+StateKeplerian *StateKeplerian::New()
+{
+    return new StateKeplerian();
+}
 
 
 AST_NAMESPACE_END
+

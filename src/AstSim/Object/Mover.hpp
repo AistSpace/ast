@@ -26,6 +26,7 @@
 #include "AstSim/AttitudeProfile.hpp"
 #include "AstSim/MotionProfile.hpp"
 #include "AstSim/Ephemeris.hpp"
+#include "AstUtil/StringView.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -35,29 +36,48 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 运动对象
-class Mover: public Point
+class AST_SIM_API Mover: public Point
 {
 public:
     Mover() = default;
     ~Mover() override = default;
 
+public:
+    /// @brief 设置名称
+    void setName(StringView name) { name_ = std::string(name); }
+
+    /// @brief 获取名称
+    const std::string& getName() const { return name_; }
+
+public:
     /// @brief 获取运动定义
     /// @return 运动定义指针
     MotionProfile* getMotionProfile() const { return motionProfile_.get(); }
-    
+
+    /// @brief 设置运动定义
+    void setMotionProfile(MotionProfile* profile) { motionProfile_ = profile; }
+
     /// @brief 获取姿态定义
     /// @return 姿态定义指针
     AttitudeProfile* getAttitudeProfile() const { return attitudeProfile_.get(); }
+
+    /// @brief 设置姿态定义
+    void setAttitudeProfile(AttitudeProfile* profile) { attitudeProfile_ = profile; }
     
     /// @brief 获取星历
     /// @return 星历指针
     Ephemeris* getEphemeris() const { return ephemeris_.get(); }
+public:
+    /// @brief 生成星历
+    /// @return 错误码
+    err_t generateEphemeris();
 
 public: // 从Point继承重写的函数
     Frame* getFrame() const final;
     err_t getPos(const TimePoint& tp, Vector3d& pos) const final;
     err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
 protected:
+    std::string                 name_;                  ///< 名称
     ScopedPtr<MotionProfile>    motionProfile_;         ///< 运动定义
     ScopedPtr<AttitudeProfile>  attitudeProfile_;       ///< 姿态定义
     ScopedPtr<Ephemeris>        ephemeris_;             ///< 星历

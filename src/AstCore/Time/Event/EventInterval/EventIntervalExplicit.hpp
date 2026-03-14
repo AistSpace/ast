@@ -1,12 +1,12 @@
 ///
-/// @file      EventInterval.hpp
+/// @file      EventIntervalExplicit.hpp
 /// @brief     
 /// @details   
 /// @author    axel
 /// @date      2026-03-14
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
-/// ast项目（https://github.com/space-ast/ast）
+/// SpaceAST项目（https://github.com/space-ast/ast）
 /// 本项目基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
 /// 许可证全文请见：
@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstUtil/Object.hpp"
+#include "AstCore/EventInterval.hpp"
 #include "AstCore/TimeInterval.hpp"
 
 AST_NAMESPACE_BEGIN
@@ -31,14 +31,22 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-/// @brief 事件时间段
-class EventInterval: public Object
+class EventIntervalExplicit;
+using PEventIntervalExplicit = EventIntervalExplicit*;
+using HEventIntervalExplicit = SharedPtr<EventIntervalExplicit>;
+
+class AST_CORE_API EventIntervalExplicit final: public EventInterval
 {
 public:
-    /// @brief 获取时间段
-    /// @param interval 
-    /// @return 
-    virtual err_t getInterval(TimeInterval& interval) const = 0;
+    static PEventIntervalExplicit New(const TimeInterval& interval);
+    static HEventIntervalExplicit MakeShared(const TimeInterval& interval);
+    
+    EventIntervalExplicit() = default;
+    EventIntervalExplicit(const TimeInterval& interval);
+    ~EventIntervalExplicit() = default;
+    err_t getInterval(TimeInterval& interval) const override;
+protected:
+    TimeInterval interval_;     ///< 事件时间段
 };
 
 /*! @} */

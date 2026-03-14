@@ -20,21 +20,38 @@
 
 #include "Mover.hpp"
 
+
+
 AST_NAMESPACE_BEGIN
+
+err_t Mover::generateEphemeris()
+{
+    err_t rc = motionProfile_->makeEphemerisSimple(ephemeris_);
+    if(rc)
+        motionProfile_->makeEphemerisSpec(ephemeris_);
+    return rc;
+}
+
+/*
+采用委托模式（Delegate Pattern）实现运行时动态切换星历实现
+
+如果c++有类似下面的语法糖就好了，类似于Kolin的语法糖
+class Mover implements Point by ephemeris_
+*/
 
 Frame *Mover::getFrame() const
 {
-    return nullptr;
+    return ephemeris_->getFrame();
 }
 
 err_t Mover::getPos(const TimePoint &tp, Vector3d &pos) const
 {
-    return err_t();
+    return ephemeris_->getPos(tp, pos);
 }
 
 err_t Mover::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
-    return err_t();
+    return ephemeris_->getPosVel(tp, pos, vel);
 }
 
 AST_NAMESPACE_END

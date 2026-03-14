@@ -24,11 +24,6 @@
 
 AST_NAMESPACE_BEGIN
 
-EventTimeExplicit::EventTimeExplicit(const TimePoint &time)
-    : time_(time)
-{
-}
-
 EventTimeExplicit *EventTimeExplicit::New(const TimePoint &time)
 {
     return new EventTimeExplicit(time);
@@ -37,6 +32,12 @@ EventTimeExplicit *EventTimeExplicit::New(const TimePoint &time)
 SharedPtr<EventTimeExplicit> EventTimeExplicit::MakeShared(const TimePoint &time)
 {
     return new EventTimeExplicit(time);
+}
+
+
+EventTimeExplicit::EventTimeExplicit(const TimePoint &time)
+    : time_(time)
+{
 }
 
 err_t EventTimeExplicit::getTime(TimePoint &time) const

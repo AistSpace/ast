@@ -33,9 +33,13 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class MotionTwoBody final: public MotionProfile
+class MotionTwoBody;
+using PMotionTwoBody = MotionTwoBody*;
+
+class MotionTwoBody final: public MotionBasic
 {
 public:
+    static MotionTwoBody* New();
     MotionTwoBody() = default;
     ~MotionTwoBody() override = default;
 public:

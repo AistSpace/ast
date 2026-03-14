@@ -22,7 +22,14 @@
 #include "AstSim/EphemerisTwoBody.hpp"
 #include "AstSim/EphemerisLagrangeFixed.hpp"
 
+
 AST_NAMESPACE_BEGIN
+
+MotionTwoBody *MotionTwoBody::New()
+{
+    return new MotionTwoBody();
+}
+
 
 err_t MotionTwoBody::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
 {

@@ -42,15 +42,19 @@ public:
 
     void setStateEpoch(EventTime* stateEpoch);
 
-    void setCoordEpoch(EventTime* coordEpoch);
-
     void setStateEpoch(const TimePoint& stateEpoch);
-
-    void setCoordEpoch(const TimePoint& coordEpoch);
 
     err_t getStateEpoch(TimePoint& stateEpoch) const;
 
+    SharedPtr<EventTime>& getStateEpochHandler(){ return stateEpoch_; }
+
+    void setCoordEpoch(EventTime* coordEpoch);
+
+    void setCoordEpoch(const TimePoint& coordEpoch);
+
     err_t getCoordEpoch(TimePoint& coordEpoch) const;
+
+    SharedPtr<EventTime>& getCoordEpochHandler(){ return coordEpoch_; }
 
     bool  getUseCoordEpoch() const{ return useCoordEpoch_; }
 

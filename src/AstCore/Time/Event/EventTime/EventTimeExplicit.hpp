@@ -33,7 +33,7 @@ AST_NAMESPACE_BEGIN
 
 
 /// @brief 显式事件时间
-class AST_CORE_API EventTimeExplicit: public EventTime
+class AST_CORE_API EventTimeExplicit final: public EventTime
 {
 public:
     static EventTimeExplicit* New(const TimePoint& time);
