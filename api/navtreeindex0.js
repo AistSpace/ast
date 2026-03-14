@@ -80,7 +80,7 @@ var NAVTREEINDEX0 =
 "AstScript_2Function_2Function_8hpp_source.html":[4,0,0,10,3,1],
 "AstScript_8hpp.html":[4,0,0,10,10],
 "AstScript_8hpp_source.html":[4,0,0,10,10],
-"AstSim_2Ephemeris_2EphemerisSPK_8hpp_source.html":[4,0,0,11,1,4],
+"AstSim_2Ephemeris_2EphemerisSPK_8hpp_source.html":[4,0,0,11,1,6],
 "AstUtil_2Container_2Vector_8hpp.html":[4,0,0,13,0,3],
 "AstUtil_2Container_2Vector_8hpp_source.html":[4,0,0,13,0,3],
 "AstUtil_2RTTI_2Object_8hpp.html":[4,0,0,13,5,2],

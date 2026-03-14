@@ -157,6 +157,7 @@ var namespaceast =
     [ "EOP", "classast_1_1EOP.html", "classast_1_1EOP" ],
     [ "Ephemeris", "classast_1_1Ephemeris.html", "classast_1_1Ephemeris" ],
     [ "EphemerisDE", "classast_1_1EphemerisDE.html", "classast_1_1EphemerisDE" ],
+    [ "EphemerisLagrangeVar", "classast_1_1EphemerisLagrangeVar.html", "classast_1_1EphemerisLagrangeVar" ],
     [ "EphemerisNoop", "classast_1_1EphemerisNoop.html", "classast_1_1EphemerisNoop" ],
     [ "EphemerisTwoBody", "classast_1_1EphemerisTwoBody.html", "classast_1_1EphemerisTwoBody" ],
     [ "EquinElem", "classast_1_1EquinElem.html", "classast_1_1EquinElem" ],

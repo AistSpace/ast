@@ -359,6 +359,7 @@ var hierarchy =
       [ "ast::Point", "classast_1_1Point.html", [
         [ "ast::CelestialBody", "classast_1_1CelestialBody.html", null ],
         [ "ast::Ephemeris", "classast_1_1Ephemeris.html", [
+          [ "ast::EphemerisLagrangeVar", "classast_1_1EphemerisLagrangeVar.html", null ],
           [ "ast::EphemerisTwoBody", "classast_1_1EphemerisTwoBody.html", null ]
         ] ],
         [ "ast::Facility", "classast_1_1Facility.html", null ],

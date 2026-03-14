@@ -7,7 +7,7 @@ var searchData=
   ['filerecord_5f_4',['fileRecord_',['../classast_1_1SpiceDAFParser.html#af0ed8dcc014d3af3822a4dcc0b156959',1,'ast::SpiceDAFParser']]],
   ['flatfactor_5f_5',['flatfactor_',['../classast_1_1SpheroidShape.html#a7aea6a0c4df65e69c1867bb80901a313',1,'ast::SpheroidShape']]],
   ['forcemodel_5f_6',['forcemodel_',['../classast_1_1HPOP.html#a0b09762e785a6f7536afa526d7694a35',1,'ast::HPOP']]],
-  ['frame_5f_7',['frame_',['../classast_1_1State.html#afd76bc624bd9bfdcd1d21937afeff909',1,'ast::State']]],
+  ['frame_5f_7',['frame_',['../classast_1_1State.html#afd76bc624bd9bfdcd1d21937afeff909',1,'ast::State::frame_'],['../classast_1_1EphemerisLagrangeVar.html#a414a413a20b740331cb6a665cc981302',1,'ast::EphemerisLagrangeVar::frame_']]],
   ['free_8',['free',['../structast_1_1DAF__FileRecord.html#a2374ff9dcca78746eb384c4775ec8251',1,'ast::DAF_FileRecord']]],
   ['fromunit_5f_9',['fromUnit_',['../classast_1_1UnitConverter.html#a66f9c0d3b47f576a3fba2f7eb10f2839',1,'ast::UnitConverter']]],
   ['ft_10',['ft',['../Unit_8cpp.html#a888ceef2cfae6e68b8c7382fd2a5fc0c',1,'ast::units']]],
