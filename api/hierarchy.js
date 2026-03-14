@@ -3,14 +3,17 @@ var hierarchy =
     [ "ast::AEP8Data", "classast_1_1AEP8Data.html", null ],
     [ "ast::AEPDataCollection", "classast_1_1AEPDataCollection.html", null ],
     [ "alist", "structalist.html", null ],
+    [ "allocator_type", null, [
+      [ "ast::CorVector< T >::CorVectorAllocator", "structast_1_1CorVector_1_1CorVectorAllocator.html", null ]
+    ] ],
     [ "ast::strings_internal::AllowEmpty", "structast_1_1strings__internal_1_1AllowEmpty.html", null ],
     [ "AMatrix3d", "structAMatrix3d.html", null ],
     [ "ast::AngleAxis", "classast_1_1AngleAxis.html", null ],
-    [ "ast::AngularSeparation", "classast_1_1AngularSeparation.html", null ],
     [ "ast::AngularSize", "classast_1_1AngularSize.html", null ],
     [ "ap_array", "structap__array.html", null ],
     [ "ast::args_t", "structast_1_1args__t.html", null ],
     [ "ast::AstGfxAPI", "classast_1_1AstGfxAPI.html", null ],
+    [ "ast::AttitudeProfile", "classast_1_1AttitudeProfile.html", null ],
     [ "AVector3d", "structAVector3d.html", null ],
     [ "ast::BackTrace", "classast_1_1BackTrace.html", null ],
     [ "ast::BaseParser", "classast_1_1BaseParser.html", [
@@ -49,6 +52,10 @@ var hierarchy =
     [ "ast::strings_internal::ByRepeatedChar", "classast_1_1strings__internal_1_1ByRepeatedChar.html", null ],
     [ "ast::strings_internal::ByRepeatedWhitespace", "classast_1_1strings__internal_1_1ByRepeatedWhitespace.html", null ],
     [ "ast::strings_internal::ByString", "classast_1_1strings__internal_1_1ByString.html", null ],
+    [ "ast::Calculation", "classast_1_1Calculation.html", [
+      [ "ast::AngularSeparation", "classast_1_1AngularSeparation.html", null ],
+      [ "ast::StateVector", "classast_1_1StateVector.html", null ]
+    ] ],
     [ "ast::CallStack", "classast_1_1CallStack.html", null ],
     [ "ast::CartState", "classast_1_1CartState.html", null ],
     [ "cilist", "structcilist.html", null ],
@@ -57,6 +64,7 @@ var hierarchy =
     [ "ast::RotationElement::Coefficient", "structast_1_1RotationElement_1_1Coefficient.html", null ],
     [ "ast::Color", "classast_1_1Color.html", null ],
     [ "complex", "structcomplex.html", null ],
+    [ "ast::CorVector< T >", "classast_1_1CorVector.html", null ],
     [ "ast::DAF_CommentArea", "structast_1_1DAF__CommentArea.html", null ],
     [ "ast::DAF_ElementRecords", "structast_1_1DAF__ElementRecords.html", null ],
     [ "ast::DAF_FileRecord", "structast_1_1DAF__FileRecord.html", null ],
@@ -254,6 +262,10 @@ var hierarchy =
     [ "metsel_1_", "structmetsel__1__.html", null ],
     [ "ast::ModEquinElem", "classast_1_1ModEquinElem.html", null ],
     [ "ast::ModOrbElem", "classast_1_1ModOrbElem.html", null ],
+    [ "ast::MotionProfile", "classast_1_1MotionProfile.html", [
+      [ "ast::MotionBasic", "classast_1_1MotionBasic.html", null ],
+      [ "ast::MotionTwoBody", "classast_1_1MotionTwoBody.html", null ]
+    ] ],
     [ "Multitype", "unionMultitype.html", null ],
     [ "Namelist", "structNamelist.html", null ],
     [ "ast::NLPBounds", "structast_1_1NLPBounds.html", null ],
@@ -286,6 +298,10 @@ var hierarchy =
         [ "ast::EllipsoidShape", "classast_1_1EllipsoidShape.html", null ],
         [ "ast::SphereShape", "classast_1_1SphereShape.html", null ],
         [ "ast::SpheroidShape", "classast_1_1SpheroidShape.html", null ]
+      ] ],
+      [ "ast::EventInterval", "classast_1_1EventInterval.html", null ],
+      [ "ast::EventTime", "classast_1_1EventTime.html", [
+        [ "ast::EventTimeExplicit", "classast_1_1EventTimeExplicit.html", null ]
       ] ],
       [ "ast::Expr", "classast_1_1Expr.html", [
         [ "ast::ExprCall", "classast_1_1ExprCall.html", null ],
@@ -342,9 +358,20 @@ var hierarchy =
       ] ],
       [ "ast::Point", "classast_1_1Point.html", [
         [ "ast::CelestialBody", "classast_1_1CelestialBody.html", null ],
+        [ "ast::Ephemeris", "classast_1_1Ephemeris.html", [
+          [ "ast::EphemerisTwoBody", "classast_1_1EphemerisTwoBody.html", null ]
+        ] ],
+        [ "ast::Facility", "classast_1_1Facility.html", null ],
+        [ "ast::Mover", "classast_1_1Mover.html", [
+          [ "ast::Spacecraft", "classast_1_1Spacecraft.html", null ]
+        ] ],
         [ "ast::PointBodyCenter", "classast_1_1PointBodyCenter.html", null ],
         [ "ast::PointRoot", "classast_1_1PointRoot.html", null ],
         [ "ast::PointSSBarycenter", "classast_1_1PointSSBarycenter.html", null ]
+      ] ],
+      [ "ast::State", "classast_1_1State.html", [
+        [ "ast::StateCartesian", "classast_1_1StateCartesian.html", null ],
+        [ "ast::StateKeplerian", "classast_1_1StateKeplerian.html", null ]
       ] ]
     ] ],
     [ "ast::ODEEventDetector", "classast_1_1ODEEventDetector.html", [
@@ -399,8 +426,11 @@ var hierarchy =
       [ "ast::StringScanner", "classast_1_1StringScanner.html", null ]
     ] ],
     [ "ast::ScopedPtr< T >", "classast_1_1ScopedPtr.html", null ],
+    [ "ast::ScopedPtr< ast::AttitudeProfile >", "classast_1_1ScopedPtr.html", null ],
     [ "ast::ScopedPtr< ast::BodyEphemeris >", "classast_1_1ScopedPtr.html", null ],
     [ "ast::ScopedPtr< ast::BodyOrientation >", "classast_1_1ScopedPtr.html", null ],
+    [ "ast::ScopedPtr< ast::Ephemeris >", "classast_1_1ScopedPtr.html", null ],
+    [ "ast::ScopedPtr< ast::MotionProfile >", "classast_1_1ScopedPtr.html", null ],
     [ "ast::ScopedPtrDeleter< T, typename >", "structast_1_1ScopedPtrDeleter.html", null ],
     [ "ast::ScopedPtrDeleter< std::FILE >", "structast_1_1ScopedPtrDeleter_3_01std_1_1FILE_01_4.html", null ],
     [ "ast::ScopedPtrDeleter< T, typename std::enable_if< std::is_base_of< Object, T >::value >::type >", "structast_1_1ScopedPtrDeleter_3_01T_00_01typename_01std_1_1enable__if_3_01std_1_1is__base__of_3_fb1b9be9ff001b0d07c8cc184fa0e786.html", null ],
@@ -416,8 +446,12 @@ var hierarchy =
     [ "ast::SharedPtr< ast::AxesBodyMOD >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::AxesBodyTOD >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::CelestialBody >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< ast::EventInterval >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< ast::EventTime >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::Expr >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< ast::Frame >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::Point >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< ast::State >", "classast_1_1SharedPtr.html", null ],
     [ "ast::ShortDuration", "classast_1_1ShortDuration.html", null ],
     [ "ast::SimEngine", "classast_1_1SimEngine.html", null ],
     [ "ast::SimTime", "classast_1_1SimTime.html", null ],

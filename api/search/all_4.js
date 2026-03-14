@@ -9,7 +9,7 @@ var searchData=
   ['daf_5fsummaryrecords_6',['DAF_SummaryRecords',['../structast_1_1DAF__SummaryRecords.html',1,'ast']]],
   ['dat_7',['dat',['../structast_1_1EOP_1_1Entry.html#a6517b482b8f6b403fd3ab313ede9dca8',1,'ast::EOP::Entry']]],
   ['data_8',['data',['../classast_1_1LeapSecond.html#ad26abd55dcfde8429fcd3997f943f77f',1,'ast::LeapSecond']]],
-  ['data_5f_9',['data_',['../classast_1_1LowerMatrix.html#a1c3ebaaf1d34451485c68ffd3fe29bd8',1,'ast::LowerMatrix::data_'],['../classast_1_1ValArray.html#a23b7d75dffbb7227d2ad5c90366cba49',1,'ast::ValArray::data_']]],
+  ['data_5f_9',['data_',['../classast_1_1LowerMatrix.html#a1c3ebaaf1d34451485c68ffd3fe29bd8',1,'ast::LowerMatrix::data_'],['../classast_1_1ValArray.html#a23b7d75dffbb7227d2ad5c90366cba49',1,'ast::ValArray::data_'],['../classast_1_1CorVector.html#a102f70342aad1debc88867576900006b',1,'ast::CorVector::data_']]],
   ['datacontext_10',['DataContext',['../classast_1_1DataContext.html',1,'ast']]],
   ['datacontext_2ecpp_11',['DataContext.cpp',['../DataContext_8cpp.html',1,'']]],
   ['datacontext_2ehpp_12',['DataContext.hpp',['../DataContext_8hpp.html',1,'']]],

@@ -43,12 +43,13 @@ var searchData=
   ['unnormalized_40',['unnormalized',['../classast_1_1GravityField.html#ace10e8e9a61a6fea914b1130db459297',1,'ast::GravityField']]],
   ['update_41',['update',['../classast_1_1AstGfxAPI.html#afd49c639f629c3b985309f0bd2d62963',1,'ast::AstGfxAPI::update()'],['../classast_1_1GfxCelestialBody.html#a4a13e86d282d1805f2e66f1982400fc5',1,'ast::GfxCelestialBody::update()'],['../classast_1_1GfxSolarSystem.html#a657b97b3ca30eb37db1d3a1affe2c8e7',1,'ast::GfxSolarSystem::update()']]],
   ['uranus_5f_42',['uranus_',['../classast_1_1SolarSystem.html#abfe7eccf6394b60c3d5bf653c63e937d',1,'ast::SolarSystem']]],
-  ['usedrag_5f_43',['useDrag_',['../classast_1_1HPOPForceModel.html#ae365339df54b0c9043b9ab5b7b3ae2b8',1,'ast::HPOPForceModel']]],
-  ['usemoongravity_5f_44',['useMoonGravity_',['../classast_1_1HPOPForceModel.html#a89a8e5ec41d3c722e3acf1f183e4813b',1,'ast::HPOPForceModel']]],
-  ['usesrp_5f_45',['useSRP_',['../classast_1_1HPOPForceModel.html#a6992ff4410f0abee237a0a1e884926f0',1,'ast::HPOPForceModel']]],
-  ['ut1_5futc_46',['ut1_utc',['../structast_1_1EOP_1_1Entry.html#a44c6e2f8a8b505a18e0b6ee047b2d3ac',1,'ast::EOP::Entry']]],
-  ['utc2et_47',['utc2et',['../group__Spice.html#ga372beff32468bfc206138633363a6cf1',1,'ast']]],
-  ['utcscale_48',['UTCScale',['../classast_1_1UTCScale.html',1,'ast']]],
-  ['util_2ecpp_49',['Util.cpp',['../Util_8cpp.html',1,'']]],
-  ['util_2ehpp_50',['Util.hpp',['../Util_8hpp.html',1,'']]]
+  ['usecoordepoch_5f_43',['useCoordEpoch_',['../classast_1_1State.html#a4005654a60a364d49feb202ed57c36fb',1,'ast::State']]],
+  ['usedrag_5f_44',['useDrag_',['../classast_1_1HPOPForceModel.html#ae365339df54b0c9043b9ab5b7b3ae2b8',1,'ast::HPOPForceModel']]],
+  ['usemoongravity_5f_45',['useMoonGravity_',['../classast_1_1HPOPForceModel.html#a89a8e5ec41d3c722e3acf1f183e4813b',1,'ast::HPOPForceModel']]],
+  ['usesrp_5f_46',['useSRP_',['../classast_1_1HPOPForceModel.html#a6992ff4410f0abee237a0a1e884926f0',1,'ast::HPOPForceModel']]],
+  ['ut1_5futc_47',['ut1_utc',['../structast_1_1EOP_1_1Entry.html#a44c6e2f8a8b505a18e0b6ee047b2d3ac',1,'ast::EOP::Entry']]],
+  ['utc2et_48',['utc2et',['../group__Spice.html#ga372beff32468bfc206138633363a6cf1',1,'ast']]],
+  ['utcscale_49',['UTCScale',['../classast_1_1UTCScale.html',1,'ast']]],
+  ['util_2ecpp_50',['Util.cpp',['../Util_8cpp.html',1,'']]],
+  ['util_2ehpp_51',['Util.hpp',['../Util_8hpp.html',1,'']]]
 ];

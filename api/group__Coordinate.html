@@ -183,6 +183,8 @@ $(function(){initNavTree('group__Coordinate.html',''); initResizable(true); });
 <tr class="separator:ga8743702c99f06a983806f7c83870b853"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga56f5f47a02b36e2d2dc8eef305a60436" id="r_ga56f5f47a02b36e2d2dc8eef305a60436"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga56f5f47a02b36e2d2dc8eef305a60436">_AST_DECL_POINT</a>(NAME)</td></tr>
 <tr class="separator:ga56f5f47a02b36e2d2dc8eef305a60436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7571af3640f51e145b86c071c4d1cb67" id="r_ga7571af3640f51e145b86c071c4d1cb67"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga7571af3640f51e145b86c071c4d1cb67">_AST_IMPL_POINT</a>(NAME,  FRAME)</td></tr>
+<tr class="separator:ga7571af3640f51e145b86c071c4d1cb67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 类型定义</h2></td></tr>
@@ -201,6 +203,9 @@ A_ALWAYS_INLINE <a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td>
 <tr class="memitem:gac6de47d5b7fa3a8a076fb71d051738fc" id="r_gac6de47d5b7fa3a8a076fb71d051738fc"><td class="memItemLeft" align="right" valign="top"><a id="gac6de47d5b7fa3a8a076fb71d051738fc" name="gac6de47d5b7fa3a8a076fb71d051738fc"></a>
 A_ALWAYS_INLINE <a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aAxesRoot</b> ()</td></tr>
 <tr class="separator:gac6de47d5b7fa3a8a076fb71d051738fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae82196d3be7cc83e42b572beee03db36" id="r_gae82196d3be7cc83e42b572beee03db36"><td class="memItemLeft" align="right" valign="top"><a id="gae82196d3be7cc83e42b572beee03db36" name="gae82196d3be7cc83e42b572beee03db36"></a>
+A_ALWAYS_INLINE <a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aAxesECI</b> ()</td></tr>
+<tr class="separator:gae82196d3be7cc83e42b572beee03db36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga06e0ca1ba93739f4fc6fa209e0157dd4" id="r_ga06e0ca1ba93739f4fc6fa209e0157dd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga06e0ca1ba93739f4fc6fa209e0157dd4">ast::aECIToECFTransform</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Rotation.html">Rotation</a> &amp;rotation)</td></tr>
 <tr class="separator:ga06e0ca1ba93739f4fc6fa209e0157dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6444c0dd6b03123b8c4907e8e184157c" id="r_ga6444c0dd6b03123b8c4907e8e184157c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga6444c0dd6b03123b8c4907e8e184157c">ast::aECIToECFTransform</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1KinematicRotation.html">KinematicRotation</a> &amp;rotation)</td></tr>
@@ -296,6 +301,14 @@ A_ALWAYS_INLINE <a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td>
 <tr class="memitem:ga50e20f586e2227e4a9dccdf138ae2788" id="r_ga50e20f586e2227e4a9dccdf138ae2788"><td class="memItemLeft" align="right" valign="top"><a id="ga50e20f586e2227e4a9dccdf138ae2788" name="ga50e20f586e2227e4a9dccdf138ae2788"></a>
 A_ALWAYS_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aICRFToECFMatrix</b> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, double matrix[3][3])</td></tr>
 <tr class="separator:ga50e20f586e2227e4a9dccdf138ae2788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadcda5bf467b42d4d83764c8195e3398d" id="r_gadcda5bf467b42d4d83764c8195e3398d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Frame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gadcda5bf467b42d4d83764c8195e3398d">ast::aFrameECI</a> ()</td></tr>
+<tr class="separator:gadcda5bf467b42d4d83764c8195e3398d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0c088773fef338fdcd858ac015636241" id="r_ga0c088773fef338fdcd858ac015636241"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Frame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga0c088773fef338fdcd858ac015636241">ast::aFrameEarthICRF</a> ()</td></tr>
+<tr class="separator:ga0c088773fef338fdcd858ac015636241"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga65bf410406dc0fdae6d239ffa3162f58" id="r_ga65bf410406dc0fdae6d239ffa3162f58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Frame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga65bf410406dc0fdae6d239ffa3162f58">ast::aFrameEarthJ2000</a> ()</td></tr>
+<tr class="separator:ga65bf410406dc0fdae6d239ffa3162f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa49734e12f9ee0dce1ea3e82b3fb1d9a" id="r_gaa49734e12f9ee0dce1ea3e82b3fb1d9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Frame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa49734e12f9ee0dce1ea3e82b3fb1d9a">ast::aFrameECF</a> ()</td></tr>
+<tr class="separator:gaa49734e12f9ee0dce1ea3e82b3fb1d9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga26eab05af3e7778681b0b613f34e24a9" id="r_ga26eab05af3e7778681b0b613f34e24a9"><td class="memItemLeft" align="right" valign="top"><a id="ga26eab05af3e7778681b0b613f34e24a9" name="ga26eab05af3e7778681b0b613f34e24a9"></a>
 A_ALWAYS_INLINE <a class="el" href="classast_1_1Frame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aFrameICRF</b> ()</td></tr>
 <tr class="separator:ga26eab05af3e7778681b0b613f34e24a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -508,7 +521,15 @@ A_ALWAYS_INLINE <a class="el" href="classast_1_1Point.html">Point</a> *&#160;</t
 <div class="line">    <span class="keyword">public</span>: \</div>
 <div class="line">        Point##NAME() = <span class="keywordflow">default</span>; \</div>
 <div class="line">        ~Point##NAME() <span class="keyword">override</span>= <span class="keywordflow">default</span>; \</div>
-<div class="line">    };</div>
+<div class="line">        <span class="keyword">static</span> Point##NAME* Instance();\</div>
+<div class="line">        Frame* getFrame() <span class="keyword">const override</span>;\</div>
+<div class="line">        err_t getPos(<span class="keyword">const</span> TimePoint &amp;tp, Vector3d &amp;pos) <span class="keyword">const override</span>;\</div>
+<div class="line">        err_t getPosVel(<span class="keyword">const</span> TimePoint &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) <span class="keyword">const override</span>;\</div>
+<div class="line">    };\</div>
+<div class="line">    A_ALWAYS_INLINE Point* aPoint##NAME()\</div>
+<div class="line">    {\</div>
+<div class="line">        <span class="keywordflow">return</span> Point##NAME::Instance();\</div>
+<div class="line">    }\</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -636,6 +657,44 @@ A_ALWAYS_INLINE <a class="el" href="classast_1_1Point.html">Point</a> *&#160;</t
 <div class="line">        a##PARENT##To##NAME##Transform(tp, rotation.getRotation());\</div>
 <div class="line">        rotation.setRotationRate(Vector3d::Zero());\</div>
 <div class="line">        <span class="keywordflow">return</span> eNoError;\</div>
+<div class="line">    }\</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga7571af3640f51e145b86c071c4d1cb67" name="ga7571af3640f51e145b86c071c4d1cb67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7571af3640f51e145b86c071c4d1cb67">&#9670;&#160;</a></span>_AST_IMPL_POINT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _AST_IMPL_POINT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>NAME</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FRAME</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">    Point##NAME* Point##NAME::Instance()\</div>
+<div class="line">    {\</div>
+<div class="line">        <span class="keyword">static</span> SharedPtr&lt;Point##NAME&gt; instance(<span class="keyword">new</span> Point##NAME());\</div>
+<div class="line">        <span class="keywordflow">return</span> instance.get();\</div>
+<div class="line">    }\</div>
+<div class="line">    Frame* Point##NAME::getFrame() const\</div>
+<div class="line">    {\</div>
+<div class="line">        <span class="keywordflow">return</span> Frame##FRAME::Instance();\</div>
+<div class="line">    }\</div>
+<div class="line">    err_t Point##NAME::getPos(<span class="keyword">const</span> TimePoint &amp;tp, Vector3d &amp;pos) <span class="keyword">const</span>\</div>
+<div class="line">    {\</div>
+<div class="line">        <span class="keywordflow">return</span> a##NAME##PosIn##FRAME(tp, pos);\</div>
+<div class="line">    }\</div>
+<div class="line">    err_t Point##NAME::getPosVel(<span class="keyword">const</span> TimePoint &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) <span class="keyword">const</span>\</div>
+<div class="line">    {\</div>
+<div class="line">        <span class="keywordflow">return</span> a##NAME##PosVelIn##FRAME(tp, pos, vel);\</div>
 <div class="line">    }\</div>
 </div><!-- fragment -->
 </div>
@@ -1476,6 +1535,86 @@ A_ALWAYS_INLINE <a class="el" href="classast_1_1Point.html">Point</a> *&#160;</t
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ga0c088773fef338fdcd858ac015636241" name="ga0c088773fef338fdcd858ac015636241"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0c088773fef338fdcd858ac015636241">&#9670;&#160;</a></span>aFrameEarthICRF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI <a class="el" href="classast_1_1Frame.html">Frame</a> * ast::aFrameEarthICRF </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>地球ICRF系 </p>
+<dl class="section note"><dt>注解</dt><dd>坐标系的定义与当前线程的DataContext所加载的数据相关 </dd></dl>
+
+</div>
+</div>
+<a id="ga65bf410406dc0fdae6d239ffa3162f58" name="ga65bf410406dc0fdae6d239ffa3162f58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga65bf410406dc0fdae6d239ffa3162f58">&#9670;&#160;</a></span>aFrameEarthJ2000()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI <a class="el" href="classast_1_1Frame.html">Frame</a> * ast::aFrameEarthJ2000 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>地球J2000系 </p>
+<dl class="section note"><dt>注解</dt><dd>坐标系的定义与当前线程的DataContext所加载的数据相关 </dd></dl>
+
+</div>
+</div>
+<a id="gaa49734e12f9ee0dce1ea3e82b3fb1d9a" name="gaa49734e12f9ee0dce1ea3e82b3fb1d9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa49734e12f9ee0dce1ea3e82b3fb1d9a">&#9670;&#160;</a></span>aFrameECF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI <a class="el" href="classast_1_1Frame.html">Frame</a> * ast::aFrameECF </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>地球ECF系 </p>
+<dl class="section note"><dt>注解</dt><dd>坐标系的定义与当前线程的DataContext所加载的数据相关 </dd></dl>
+
+</div>
+</div>
+<a id="gadcda5bf467b42d4d83764c8195e3398d" name="gadcda5bf467b42d4d83764c8195e3398d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadcda5bf467b42d4d83764c8195e3398d">&#9670;&#160;</a></span>aFrameECI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI <a class="el" href="classast_1_1Frame.html">Frame</a> * ast::aFrameECI </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>地球惯性系 </p>
+<dl class="section note"><dt>注解</dt><dd>坐标系的定义与当前线程的DataContext所加载的数据相关 </dd></dl>
 
 </div>
 </div>

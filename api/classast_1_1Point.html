@@ -112,11 +112,16 @@ $(function(){initNavTree('classast_1_1Point.html',''); initResizable(true); });
  <div class="center">
   <img src="classast_1_1Point.png" usemap="#ast::Point_map" alt=""/>
   <map id="ast::Point_map" name="ast::Point_map">
-<area href="classast_1_1Object.html" title="对象基类，实现运行时元信息、强弱引用计数" alt="ast::Object" shape="rect" coords="226,0,367,24"/>
-<area href="classast_1_1CelestialBody.html" title="天体" alt="ast::CelestialBody" shape="rect" coords="0,112,141,136"/>
-<area href="classast_1_1PointBodyCenter.html" title="天体的中心点" alt="ast::PointBodyCenter" shape="rect" coords="151,112,292,136"/>
-<area href="classast_1_1PointRoot.html" alt="ast::PointRoot" shape="rect" coords="302,112,443,136"/>
-<area href="classast_1_1PointSSBarycenter.html" title="太阳系质心" alt="ast::PointSSBarycenter" shape="rect" coords="453,112,594,136"/>
+<area href="classast_1_1Object.html" title="对象基类，实现运行时元信息、强弱引用计数" alt="ast::Object" shape="rect" coords="465,0,610,24"/>
+<area href="classast_1_1CelestialBody.html" title="天体" alt="ast::CelestialBody" shape="rect" coords="0,112,145,136"/>
+<area href="classast_1_1Ephemeris.html" title="星历接口" alt="ast::Ephemeris" shape="rect" coords="155,112,300,136"/>
+<area href="classast_1_1Facility.html" title="设施对象" alt="ast::Facility" shape="rect" coords="310,112,455,136"/>
+<area href="classast_1_1Mover.html" title="运动对象" alt="ast::Mover" shape="rect" coords="465,112,610,136"/>
+<area href="classast_1_1PointBodyCenter.html" title="天体的中心点" alt="ast::PointBodyCenter" shape="rect" coords="620,112,765,136"/>
+<area href="classast_1_1PointRoot.html" alt="ast::PointRoot" shape="rect" coords="775,112,920,136"/>
+<area href="classast_1_1PointSSBarycenter.html" title="太阳系质心" alt="ast::PointSSBarycenter" shape="rect" coords="930,112,1075,136"/>
+<area href="classast_1_1EphemerisTwoBody.html" title="二体星历" alt="ast::EphemerisTwoBody" shape="rect" coords="155,168,300,192"/>
+<area href="classast_1_1Spacecraft.html" title="航天器对象" alt="ast::Spacecraft" shape="rect" coords="465,168,610,192"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -216,7 +221,7 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <p>获取点所在的参考坐标系 </p>
 <dl class="section return"><dt>返回</dt><dd>点所在的参考坐标系指针 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1CelestialBody.html#aa7c2d646d8e836996c70591dbeb3c910">ast::CelestialBody</a>, <a class="el" href="classast_1_1PointBodyCenter.html#aa38534351e91427784e9a1285afab44a">ast::PointBodyCenter</a>, <a class="el" href="classast_1_1PointRoot.html#aaa35c3d0d0df0d49adf0027f321b8f55">ast::PointRoot</a> , 以及 <a class="el" href="classast_1_1PointSSBarycenter.html#a5b86fb5e195778b19bd6ddffa3d08950">ast::PointSSBarycenter</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1CelestialBody.html#aa7c2d646d8e836996c70591dbeb3c910">ast::CelestialBody</a>, <a class="el" href="classast_1_1Ephemeris.html#ac731ef1a7ad86ab8dff2fc569b9fe3d1">ast::Ephemeris</a>, <a class="el" href="classast_1_1EphemerisTwoBody.html#a7905713c7c9fd84ebb74759e09771887">ast::EphemerisTwoBody</a>, <a class="el" href="classast_1_1Facility.html#a761dfdc071727ec0b132ee64adbaa3c8">ast::Facility</a>, <a class="el" href="classast_1_1Mover.html#a9ad465560a941dbf562b30818774edcd">ast::Mover</a>, <a class="el" href="classast_1_1PointBodyCenter.html#aa38534351e91427784e9a1285afab44a">ast::PointBodyCenter</a>, <a class="el" href="classast_1_1PointRoot.html#aaa35c3d0d0df0d49adf0027f321b8f55">ast::PointRoot</a> , 以及 <a class="el" href="classast_1_1PointSSBarycenter.html#a5b86fb5e195778b19bd6ddffa3d08950">ast::PointSSBarycenter</a> 内被实现.</p>
 
 </div>
 </div>
@@ -257,7 +262,7 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1CelestialBody.html#af19308642f78e7a12f4a827ca15e8ffc">ast::CelestialBody</a>, <a class="el" href="classast_1_1PointBodyCenter.html#a860ddc734eef945a95f2ecfed4f02830">ast::PointBodyCenter</a>, <a class="el" href="classast_1_1PointRoot.html#aeed365622ce96ca28cf866665d6b51f3">ast::PointRoot</a> , 以及 <a class="el" href="classast_1_1PointSSBarycenter.html#a2b043dc4a8df8b5db845d5c1d7fc9205">ast::PointSSBarycenter</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1CelestialBody.html#af19308642f78e7a12f4a827ca15e8ffc">ast::CelestialBody</a>, <a class="el" href="classast_1_1Ephemeris.html#a63e729cffb8ba355ea70784833b6d220">ast::Ephemeris</a>, <a class="el" href="classast_1_1EphemerisTwoBody.html#a081d20700a18da67847a26d7464bc2c3">ast::EphemerisTwoBody</a>, <a class="el" href="classast_1_1Facility.html#a12134c9346bd30ae35dc8a1ae18f9a84">ast::Facility</a>, <a class="el" href="classast_1_1Mover.html#af367042a0c3e002d4631c941142e6138">ast::Mover</a>, <a class="el" href="classast_1_1PointBodyCenter.html#a860ddc734eef945a95f2ecfed4f02830">ast::PointBodyCenter</a>, <a class="el" href="classast_1_1PointRoot.html#aeed365622ce96ca28cf866665d6b51f3">ast::PointRoot</a> , 以及 <a class="el" href="classast_1_1PointSSBarycenter.html#a2b043dc4a8df8b5db845d5c1d7fc9205">ast::PointSSBarycenter</a> 内被实现.</p>
 
 </div>
 </div>
@@ -341,7 +346,7 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1CelestialBody.html#a49c7de48d5b7979d4b854796143b985c">ast::CelestialBody</a>, <a class="el" href="classast_1_1PointBodyCenter.html#aa18a46edc7e67bca2c4770cdfe083bcb">ast::PointBodyCenter</a>, <a class="el" href="classast_1_1PointRoot.html#a9fb75865412fe13bd88b458ec7ee7f91">ast::PointRoot</a> , 以及 <a class="el" href="classast_1_1PointSSBarycenter.html#af0d32780ced77f62044a231f13f1cb25">ast::PointSSBarycenter</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1CelestialBody.html#a49c7de48d5b7979d4b854796143b985c">ast::CelestialBody</a>, <a class="el" href="classast_1_1Ephemeris.html#ab6701630093566ad5068dc7426398a2b">ast::Ephemeris</a>, <a class="el" href="classast_1_1EphemerisTwoBody.html#a51562f5a8ac3fa44f4b986f006d3aada">ast::EphemerisTwoBody</a>, <a class="el" href="classast_1_1Facility.html#a865885640cc82b457f94e5bfa354c4b0">ast::Facility</a>, <a class="el" href="classast_1_1Mover.html#a8dc067c986fef3bf021cd08262493351">ast::Mover</a>, <a class="el" href="classast_1_1PointBodyCenter.html#aa18a46edc7e67bca2c4770cdfe083bcb">ast::PointBodyCenter</a>, <a class="el" href="classast_1_1PointRoot.html#a9fb75865412fe13bd88b458ec7ee7f91">ast::PointRoot</a> , 以及 <a class="el" href="classast_1_1PointSSBarycenter.html#af0d32780ced77f62044a231f13f1cb25">ast::PointSSBarycenter</a> 内被实现.</p>
 
 </div>
 </div>

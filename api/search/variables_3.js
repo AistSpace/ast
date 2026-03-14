@@ -9,5 +9,6 @@ var searchData=
   ['comment_6',['comment',['../structast_1_1DAF__CommentArea.html#a623cd419b30cffac7f05f613196bfb35',1,'ast::DAF_CommentArea']]],
   ['condition_5f_7',['condition_',['../classast_1_1ExprWhile.html#a5c48c4981cbd947c9a549db236bb02f3',1,'ast::ExprWhile']]],
   ['conversionfactor_5f_8',['conversionFactor_',['../classast_1_1UnitConverter.html#a5c84584ded9cb366c3003f7665cdedbf',1,'ast::UnitConverter']]],
-  ['coscoeff_5f_9',['cosCoeff_',['../classast_1_1GravityField.html#ab6bcff41b82e377e0ad2dbded11a04c7',1,'ast::GravityField']]]
+  ['coordepoch_5f_9',['coordEpoch_',['../classast_1_1State.html#acd75868821ab1be5a5495c8f1db65012',1,'ast::State']]],
+  ['coscoeff_5f_10',['cosCoeff_',['../classast_1_1GravityField.html#ab6bcff41b82e377e0ad2dbded11a04c7',1,'ast::GravityField']]]
 ];

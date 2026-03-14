@@ -1,7 +1,7 @@
 var dir_3c83cc2ff5b81779e2f52c40e9b937d6 =
 [
-    [ "BuiltinFrame.cpp", "BuiltinFrame_8cpp.html", null ],
-    [ "BuiltinFrame.hpp", "BuiltinFrame_8hpp.html", null ],
+    [ "BuiltinFrame.cpp", "BuiltinFrame_8cpp.html", "BuiltinFrame_8cpp" ],
+    [ "BuiltinFrame.hpp", "BuiltinFrame_8hpp.html", "BuiltinFrame_8hpp" ],
     [ "FrameAssembly.cpp", "FrameAssembly_8cpp.html", null ],
     [ "FrameAssembly.hpp", "FrameAssembly_8hpp.html", null ],
     [ "FrameICRF.cpp", "FrameICRF_8cpp.html", null ],

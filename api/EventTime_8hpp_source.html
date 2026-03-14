@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>🛰️航天仿真算法库 SpaceAST: src/AstCore/SolarSystem/Ephemeris/EphemerisSPK.hpp 源文件</title>
+<title>🛰️航天仿真算法库 SpaceAST: src/AstCore/Time/Event/EventTime/EventTime.hpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -72,7 +72,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('EphemerisSPK_8hpp_source.html',''); initResizable(true); });
+$(function(){initNavTree('EventTime_8hpp_source.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -98,24 +98,39 @@ $(function(){initNavTree('EphemerisSPK_8hpp_source.html',''); initResizable(true
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">EphemerisSPK.hpp</div></div>
+  <div class="headertitle"><div class="title">EventTime.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="EphemerisSPK_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<a href="EventTime_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;AstGlobal.h&quot;</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>AST_NAMESPACE_BEGIN</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>AST_NAMESPACE_END</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;AstUtil/Object.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>AST_NAMESPACE_BEGIN</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classast_1_1EventTime.html">   35</a></span><span class="keyword">class </span>AST_CORE_API <a class="code hl_class" href="classast_1_1EventTime.html">EventTime</a>: <span class="keyword">public</span> <a class="code hl_class" href="classast_1_1Object.html">Object</a></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classast_1_1EventTime.html">~EventTime</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classast_1_1EventTime.html#a1f559d9b3df54c4826f707241a6de8a0">   42</a></span>    <span class="keyword">virtual</span> err_t <a class="code hl_function" href="classast_1_1EventTime.html#a1f559d9b3df54c4826f707241a6de8a0">getTime</a>(<a class="code hl_class" href="classast_1_1TimePoint.html">TimePoint</a>&amp; tp) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
+</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>AST_NAMESPACE_END</div>
+<div class="ttc" id="aclassast_1_1EventTime_html"><div class="ttname"><a href="classast_1_1EventTime.html">ast::EventTime</a></div><div class="ttdoc">事件时间</div><div class="ttdef"><b>定义</b> EventTime.hpp:36</div></div>
+<div class="ttc" id="aclassast_1_1EventTime_html_a1f559d9b3df54c4826f707241a6de8a0"><div class="ttname"><a href="classast_1_1EventTime.html#a1f559d9b3df54c4826f707241a6de8a0">ast::EventTime::getTime</a></div><div class="ttdeci">virtual err_t getTime(TimePoint &amp;tp) const =0</div><div class="ttdoc">获取时间点</div></div>
+<div class="ttc" id="aclassast_1_1Object_html"><div class="ttname"><a href="classast_1_1Object.html">ast::Object</a></div><div class="ttdoc">对象基类，实现运行时元信息、强弱引用计数</div><div class="ttdef"><b>定义</b> Object.hpp:51</div></div>
+<div class="ttc" id="aclassast_1_1TimePoint_html"><div class="ttname"><a href="classast_1_1TimePoint.html">ast::TimePoint</a></div><div class="ttdoc">绝对时间点</div><div class="ttdef"><b>定义</b> TimePoint.hpp:105</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_ba29613c1d0899bb7dd064b57f92f413.html">AstCore</a></li><li class="navelem"><a class="el" href="dir_5e18b0e3c7e597f0270d6c7f05b2b910.html">SolarSystem</a></li><li class="navelem"><a class="el" href="dir_6624965309fae4f84a21ca7ca348caee.html">Ephemeris</a></li><li class="navelem"><a class="el" href="EphemerisSPK_8hpp.html">EphemerisSPK.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_ba29613c1d0899bb7dd064b57f92f413.html">AstCore</a></li><li class="navelem"><a class="el" href="dir_8990e1a6c4161f7830d486c5caed33ad.html">Time</a></li><li class="navelem"><a class="el" href="dir_f58521cf9b2a8bcdd33f600971da3bea.html">Event</a></li><li class="navelem"><a class="el" href="dir_074e9ff43adbcccc1e9a7b070c8491f6.html">EventTime</a></li><li class="navelem"><a class="el" href="EventTime_8hpp.html">EventTime.hpp</a></li>
     <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>

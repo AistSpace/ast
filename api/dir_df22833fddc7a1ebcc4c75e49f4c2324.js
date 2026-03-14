@@ -8,5 +8,6 @@ var dir_df22833fddc7a1ebcc4c75e49f4c2324 =
     [ "MockContext.hpp", "MockContext_8hpp.html", null ],
     [ "MockSnopt.c", "MockSnopt_8c.html", "MockSnopt_8c" ],
     [ "MockStringView.cpp", "MockStringView_8cpp.html", null ],
-    [ "MockStringView.hpp", "MockStringView_8hpp.html", null ]
+    [ "MockStringView.hpp", "MockStringView_8hpp.html", null ],
+    [ "MockStringView2.cpp", "MockStringView2_8cpp.html", null ]
 ];
