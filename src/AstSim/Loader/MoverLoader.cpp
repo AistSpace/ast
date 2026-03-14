@@ -20,12 +20,34 @@
 
 #include "MoverLoader.hpp"
 #include "AstUtil/StringView.hpp"
+#include "AstUtil/BKVParser.hpp"
+#include "AstSim/Mover.hpp"
 
 AST_NAMESPACE_BEGIN
 
 err_t aLoadMover(StringView filepath, Mover &mover)
 {
-    return err_t();
+    BKVItemView item;
+    BKVParser::EToken token;
+    BKVParser parser(filepath);
+    if(!parser.isOpen()){
+        return eErrorInvalidFile;
+    }
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            
+        }
+        else if(token == BKVParser::eBlockBegin){
+            
+        }
+        else if(token == BKVParser::eBlockEnd)
+        {
+
+        } 
+    }while(token != BKVParser::eEOF);
+    return eNoError;
 }
 
 
