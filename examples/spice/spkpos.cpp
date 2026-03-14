@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "AstUtil/Environment.hpp"
+#include "AstCore/CelestialBody.hpp"
 
 #ifndef AST_NO_CSPICE
 #include "SpiceUsr.h"
@@ -25,6 +26,14 @@ int main() {
     std::vector<std::string> kernels = {
         // 基础SPICE内核
         "data/Test/kernels/spk/de430.bsp",           // 行星历表（DE430）
+        "data/Test/kernels/spk/planets.bsp",
+        "data/Test/kernels/spk/ceres.bsp",
+        "data/Test/kernels/spk/jupiter.bsp",
+        "data/Test/kernels/spk/mars.bsp",
+        "data/Test/kernels/spk/neptune.bsp",
+        "data/Test/kernels/spk/pluto.bsp",
+        "data/Test/kernels/spk/saturn.bsp",
+        "data/Test/kernels/spk/uranus.bsp",
         "data/Test/kernels/lsk/naif0012.tls"         // 时间系统定义
     };
     
@@ -44,6 +53,16 @@ int main() {
     
     // 转换UTC时间到Ephemeris Time (ET)
     str2et_c(utc_time.c_str(), &et);
+
+    {
+        double posvel[6];
+        double light_time;
+        spkgeo_c(ESpiceId::eJupiter, et, "J2000", ESpiceId::eJupiterBarycenter, posvel, &light_time);
+        std::cout << "   木星位置 (公里): " << std::endl;
+        printf("      X: %.15g\n", posvel[0]);
+        printf("      Y: %.15g\n", posvel[1]);
+        printf("      Z: %.15g\n", posvel[2]);
+    }
     
     std::cout << "\n2. 观测时间设置：" << std::endl;
     std::cout << "   UTC时间: " << utc_time << std::endl;

@@ -19,9 +19,22 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "BuiltinPoint.hpp"
+#include "AstCore/PlanetPoint.hpp"
+#include "AstCore/BuiltinFrame.hpp"
 
 AST_NAMESPACE_BEGIN
 
-
+_AST_IMPL_POINT(Mercury,        ICRF)
+_AST_IMPL_POINT(Venus,          ICRF)
+_AST_IMPL_POINT(Earth,          ICRF)
+_AST_IMPL_POINT(Mars,           ICRF)
+_AST_IMPL_POINT(Jupiter,        ICRF)
+_AST_IMPL_POINT(Saturn,         ICRF)
+_AST_IMPL_POINT(Uranus,         ICRF)
+_AST_IMPL_POINT(Neptune,        ICRF)
+_AST_IMPL_POINT(Pluto,          ICRF)
+_AST_IMPL_POINT(Moon,           ICRF)
+_AST_IMPL_POINT(Sun,            ICRF)
+_AST_IMPL_POINT(EMBarycenter,   ICRF)
 
 AST_NAMESPACE_END

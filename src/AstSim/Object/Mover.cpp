@@ -22,6 +22,21 @@
 
 AST_NAMESPACE_BEGIN
 
+Frame *Mover::getFrame() const
+{
+    return nullptr;
+}
 
+err_t Mover::getPos(const TimePoint &tp, Vector3d &pos) const
+{
+    return err_t();
+}
+
+err_t Mover::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+{
+    return err_t();
+}
 
 AST_NAMESPACE_END
+
+

@@ -21,6 +21,11 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstCore/Object.hpp"
+#include "AstCore/Point.hpp"
+#include "AstSim/AttitudeProfile.hpp"
+#include "AstSim/MotionProfile.hpp"
+#include "AstSim/Ephemeris.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -29,7 +34,34 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+/// @brief 运动对象
+class Mover: public Point
+{
+public:
+    Mover() = default;
+    ~Mover() override = default;
 
+    /// @brief 获取运动定义
+    /// @return 运动定义指针
+    MotionProfile* getMotionProfile() const { return motionProfile_.get(); }
+    
+    /// @brief 获取姿态定义
+    /// @return 姿态定义指针
+    AttitudeProfile* getAttitudeProfile() const { return attitudeProfile_.get(); }
+    
+    /// @brief 获取星历
+    /// @return 星历指针
+    Ephemeris* getEphemeris() const { return ephemeris_.get(); }
+
+public: // 从Point继承重写的函数
+    Frame* getFrame() const final;
+    err_t getPos(const TimePoint& tp, Vector3d& pos) const final;
+    err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
+protected:
+    ScopedPtr<MotionProfile>    motionProfile_;         ///< 运动定义
+    ScopedPtr<AttitudeProfile>  attitudeProfile_;       ///< 姿态定义
+    ScopedPtr<Ephemeris>        ephemeris_;             ///< 星历
+};
 
 /*! @} */
 

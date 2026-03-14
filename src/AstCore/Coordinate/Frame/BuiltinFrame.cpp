@@ -19,9 +19,35 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "BuiltinFrame.hpp"
+#include "AstCore/BuiltinAxes.hpp"
+#include "AstCore/BuiltinPoint.hpp"
+#include "AstCore/FrameAssembly.hpp"
 
 AST_NAMESPACE_BEGIN
 
+Frame *aFrameECI()
+{
+    static SharedPtr<Frame> instance(new FrameAssembly(aPointEarth(), aAxesECI()));
+    return instance.get();
+}
 
+Frame *aFrameEarthICRF()
+{
+    static SharedPtr<Frame> instance(new FrameAssembly(aPointEarth(), aAxesICRF()));
+    return instance.get();
+}
+
+Frame *aFrameEarthJ2000()
+{
+    static SharedPtr<Frame> instance(new FrameAssembly(aPointEarth(), aAxesJ2000()));
+    return instance.get();
+}
+
+Frame *aFrameECF()
+{
+    static SharedPtr<Frame> instance(new FrameAssembly(aPointEarth(), aAxesECF()));
+    return instance.get();
+}
 
 AST_NAMESPACE_END
+

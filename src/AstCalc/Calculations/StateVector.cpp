@@ -22,6 +22,11 @@
 
 AST_NAMESPACE_BEGIN
 
-
+err_t StateVector::evaluate(const TimePoint &tp, double &result) const
+{
+    return -1;
+}
 
 AST_NAMESPACE_END
+
+

@@ -25,6 +25,7 @@
 #include <initializer_list>
 #include <algorithm>
 #include <stdexcept>
+#include <cassert>
 
 AST_NAMESPACE_BEGIN
 

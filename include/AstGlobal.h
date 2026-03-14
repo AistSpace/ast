@@ -310,8 +310,8 @@ class Object;                ///< 对象
 class Class;                 ///< 类
 using Type = Class;          ///< 类型
 
-class AbsTime;              
 class TimePoint;            ///< 时间点
+class TimeInterval;         ///< 时间段
 class JulianDate;           ///< 儒略日
 class ModJulianDate;        ///< 简约儒略日
 

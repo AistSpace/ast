@@ -12,7 +12,12 @@ __pycache__
 *.zip
 # doxyfile
 *.gch
+
 *.exe
+*.dll
+*.lib
+*.so
+*.a
 
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md

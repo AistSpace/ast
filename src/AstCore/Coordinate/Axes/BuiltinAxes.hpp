@@ -63,6 +63,11 @@ _AST_DECL_AXES(DE140)
 _AST_DECL_AXES(DE142)
 _AST_DECL_AXES(DE143)
 
+A_ALWAYS_INLINE Axes* aAxesECI()
+{
+    return aAxesICRF();
+}
+
 
 /*! @} */
 

@@ -21,6 +21,9 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstCore/Point.hpp"
+#include "AstCore/GeodeticPoint.hpp"
+#include "AstCore/CelestialBody.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -29,7 +32,20 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-
+/// @brief 设施对象
+class Facility: public Point
+{
+public:
+    Facility() = default;
+    ~Facility() override = default;
+public: // 从Point继承重写的函数
+    Frame* getFrame() const final;
+    err_t getPos(const TimePoint& tp, Vector3d& pos) const final;
+    err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
+protected:
+    SharedPtr<CelestialBody> body_;                 ///< 设施所在的天体
+    GeodeticPoint            position_;             ///< 设施位置
+};
 
 /*! @} */
 
