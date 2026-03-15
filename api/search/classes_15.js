@@ -20,5 +20,6 @@ var searchData=
   ['variable_17',['Variable',['../classast_1_1Variable.html',1,'ast']]],
   ['vectorn_18',['VectorN',['../classast_1_1VectorN.html',1,'ast']]],
   ['vectorn_3c_20_5fscalar_2c_203_20_3e_19',['VectorN&lt; _Scalar, 3 &gt;',['../classast_1_1VectorN_3_01__Scalar_00_013_01_4.html',1,'ast']]],
-  ['vectorx_20',['VectorX',['../classast_1_1VectorX.html',1,'ast']]]
+  ['vectorx_20',['VectorX',['../classast_1_1VectorX.html',1,'ast']]],
+  ['vehiclepathdata_21',['VehiclePathData',['../structast_1_1VehiclePathData.html',1,'ast']]]
 ];

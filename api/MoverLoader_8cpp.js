@@ -1,4 +1,5 @@
 var MoverLoader_8cpp =
 [
-    [ "aLoadMover", "MoverLoader_8cpp.html#aa44e80a5e27e7de8b9c32fcf43bebfd2", null ]
+    [ "ast::VehiclePathData", "structast_1_1VehiclePathData.html", null ],
+    [ "aLoadMover", "MoverLoader_8cpp.html#a7a9b72954efc5273a80636b054d8726a", null ]
 ];

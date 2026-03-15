@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>🛰️航天仿真算法库 SpaceAST: src/AstCore/Coordinate/Axes/AxesFrozenAtEventTime.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">🛰️航天仿真算法库 SpaceAST<span id="projectnumber">&#160;0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('AxesFrozenAtEventTime_8hpp_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">AxesFrozenAtEventTime.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;AstGlobal.h&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;AstCore/Axes.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;AstCore/EventTime.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>AST_NAMESPACE_BEGIN</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">class </span>AxesFrozenAtEventTime;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">using </span>PAxesFrozenAtEventTime = AxesFrozenAtEventTime*;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">using </span>HAxesFrozenAtEventTime = SharedPtr&lt;AxesFrozenAtEventTime&gt;;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classast_1_1AxesFrozenAtEventTime.html">   39</a></span><span class="keyword">class </span>AST_CORE_API <a class="code hl_class" href="classast_1_1AxesFrozenAtEventTime.html">AxesFrozenAtEventTime</a>: <span class="keyword">public</span> <a class="code hl_class" href="classast_1_1Axes.html">Axes</a></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">static</span> <a class="code hl_class" href="classast_1_1AxesFrozenAtEventTime.html">PAxesFrozenAtEventTime</a> New(<a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* axes, <a class="code hl_class" href="classast_1_1EventTime.html">EventTime</a>* epoch, <a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* referenceAxes);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">static</span> <a class="code hl_class" href="classast_1_1SharedPtr.html">HAxesFrozenAtEventTime</a> MakeShared(<a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* axes, <a class="code hl_class" href="classast_1_1EventTime.html">EventTime</a>* epoch, <a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* referenceAxes);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_class" href="classast_1_1AxesFrozenAtEventTime.html">AxesFrozenAtEventTime</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_class" href="classast_1_1AxesFrozenAtEventTime.html">AxesFrozenAtEventTime</a>(<a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* axes, <a class="code hl_class" href="classast_1_1EventTime.html">EventTime</a>* epoch, <a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* referenceAxes);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_class" href="classast_1_1AxesFrozenAtEventTime.html">~AxesFrozenAtEventTime</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* <a class="code hl_function" href="classast_1_1Axes.html#a61cb4c23db728cedf78474866f8e9650">getParent</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    err_t <a class="code hl_function" href="classast_1_1Axes.html#a4dcd0b717712904fd034fb9c287b3dc2">getTransform</a>(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1TimePoint.html">TimePoint</a>&amp; tp, <a class="code hl_class" href="classast_1_1Rotation.html">Rotation</a>&amp; rotation) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    err_t <a class="code hl_function" href="classast_1_1Axes.html#a4dcd0b717712904fd034fb9c287b3dc2">getTransform</a>(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1TimePoint.html">TimePoint</a>&amp; tp, <a class="code hl_class" href="classast_1_1KinematicRotation.html">KinematicRotation</a>&amp; rotation) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>PROPERTIES:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_class" href="classast_1_1EventTime.html">EventTime</a>* getEpoch()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> epoch_.get(); }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classast_1_1AxesFrozenAtEventTime.html#a6142ed62d93f5cd213de76aff2a1d191">   57</a></span>    <a class="code hl_class" href="classast_1_1SharedPtr.html">SharedPtr&lt;EventTime&gt;</a>&amp; <a class="code hl_function" href="classast_1_1AxesFrozenAtEventTime.html#a6142ed62d93f5cd213de76aff2a1d191">getEpochHandle</a>() { <span class="keywordflow">return</span> epoch_; }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classast_1_1AxesFrozenAtEventTime.html#a880f142f8fb229ffce092e5879a12c22">   60</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classast_1_1AxesFrozenAtEventTime.html#a880f142f8fb229ffce092e5879a12c22">setEpoch</a>(<a class="code hl_class" href="classast_1_1EventTime.html">EventTime</a>* epoch) { epoch_ = epoch; }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classast_1_1AxesFrozenAtEventTime.html#adbf8b5fae02f7e62482376d79a8d5318">   63</a></span>    <a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* <a class="code hl_function" href="classast_1_1AxesFrozenAtEventTime.html#adbf8b5fae02f7e62482376d79a8d5318">getReferenceAxes</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> referenceAxes_.get(); }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classast_1_1AxesFrozenAtEventTime.html#a949ee7109e1f3e0528f2527e661c3629">   66</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classast_1_1AxesFrozenAtEventTime.html#a949ee7109e1f3e0528f2527e661c3629">setReferenceAxes</a>(<a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* referenceAxes) { referenceAxes_ = referenceAxes; }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classast_1_1AxesFrozenAtEventTime.html#ad80e3ce7f24022e55ca4db607cd0e807">   69</a></span>    <a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* <a class="code hl_function" href="classast_1_1AxesFrozenAtEventTime.html#ad80e3ce7f24022e55ca4db607cd0e807">getAxes</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> axes_.get(); }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classast_1_1AxesFrozenAtEventTime.html#a321cdf7687f9a2b0c065bb0f5fec8df3">   72</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classast_1_1AxesFrozenAtEventTime.html#a321cdf7687f9a2b0c065bb0f5fec8df3">setAxes</a>(<a class="code hl_class" href="classast_1_1Axes.html">Axes</a>* axes) { axes_ = axes; }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    err_t getEpoch(<a class="code hl_class" href="classast_1_1TimePoint.html">TimePoint</a>&amp; epoch) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">void</span> setEpoch(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1TimePoint.html">TimePoint</a>&amp; epoch);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classast_1_1AxesFrozenAtEventTime.html#ae57193cc789b68f04bf4c3a028dd0044">   80</a></span>    <a class="code hl_class" href="classast_1_1SharedPtr.html">SharedPtr&lt;Axes&gt;</a>         <a class="code hl_variable" href="classast_1_1AxesFrozenAtEventTime.html#ae57193cc789b68f04bf4c3a028dd0044">referenceAxes_</a>;     </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classast_1_1AxesFrozenAtEventTime.html#aa7bfcd5dbb0240fa55a11f28f5132cff">   81</a></span>    <a class="code hl_class" href="classast_1_1SharedPtr.html">SharedPtr&lt;Axes&gt;</a>         <a class="code hl_variable" href="classast_1_1AxesFrozenAtEventTime.html#aa7bfcd5dbb0240fa55a11f28f5132cff">axes_</a>;              </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classast_1_1AxesFrozenAtEventTime.html#a784864c13e11501b92569e7cde8c7593">   82</a></span>    <a class="code hl_class" href="classast_1_1SharedPtr.html">SharedPtr&lt;EventTime&gt;</a>    <a class="code hl_variable" href="classast_1_1AxesFrozenAtEventTime.html#a784864c13e11501b92569e7cde8c7593">epoch_</a>;             </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>};</div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>AST_NAMESPACE_END</div>
+<div class="ttc" id="aclassast_1_1AxesFrozenAtEventTime_html"><div class="ttname"><a href="classast_1_1AxesFrozenAtEventTime.html">ast::AxesFrozenAtEventTime</a></div><div class="ttdoc">事件时间冻结轴系</div><div class="ttdef"><b>定义</b> AxesFrozenAtEventTime.hpp:40</div></div>
+<div class="ttc" id="aclassast_1_1AxesFrozenAtEventTime_html_a321cdf7687f9a2b0c065bb0f5fec8df3"><div class="ttname"><a href="classast_1_1AxesFrozenAtEventTime.html#a321cdf7687f9a2b0c065bb0f5fec8df3">ast::AxesFrozenAtEventTime::setAxes</a></div><div class="ttdeci">void setAxes(Axes *axes)</div><div class="ttdoc">设置冻结轴系</div><div class="ttdef"><b>定义</b> AxesFrozenAtEventTime.hpp:72</div></div>
+<div class="ttc" id="aclassast_1_1AxesFrozenAtEventTime_html_a6142ed62d93f5cd213de76aff2a1d191"><div class="ttname"><a href="classast_1_1AxesFrozenAtEventTime.html#a6142ed62d93f5cd213de76aff2a1d191">ast::AxesFrozenAtEventTime::getEpochHandle</a></div><div class="ttdeci">SharedPtr&lt; EventTime &gt; &amp; getEpochHandle()</div><div class="ttdoc">获取冻结时间句柄</div><div class="ttdef"><b>定义</b> AxesFrozenAtEventTime.hpp:57</div></div>
+<div class="ttc" id="aclassast_1_1AxesFrozenAtEventTime_html_a784864c13e11501b92569e7cde8c7593"><div class="ttname"><a href="classast_1_1AxesFrozenAtEventTime.html#a784864c13e11501b92569e7cde8c7593">ast::AxesFrozenAtEventTime::epoch_</a></div><div class="ttdeci">SharedPtr&lt; EventTime &gt; epoch_</div><div class="ttdoc">冻结时间</div><div class="ttdef"><b>定义</b> AxesFrozenAtEventTime.hpp:82</div></div>
+<div class="ttc" id="aclassast_1_1AxesFrozenAtEventTime_html_a880f142f8fb229ffce092e5879a12c22"><div class="ttname"><a href="classast_1_1AxesFrozenAtEventTime.html#a880f142f8fb229ffce092e5879a12c22">ast::AxesFrozenAtEventTime::setEpoch</a></div><div class="ttdeci">void setEpoch(EventTime *epoch)</div><div class="ttdoc">设置冻结时间</div><div class="ttdef"><b>定义</b> AxesFrozenAtEventTime.hpp:60</div></div>
+<div class="ttc" id="aclassast_1_1AxesFrozenAtEventTime_html_a949ee7109e1f3e0528f2527e661c3629"><div class="ttname"><a href="classast_1_1AxesFrozenAtEventTime.html#a949ee7109e1f3e0528f2527e661c3629">ast::AxesFrozenAtEventTime::setReferenceAxes</a></div><div class="ttdeci">void setReferenceAxes(Axes *referenceAxes)</div><div class="ttdoc">设置参考轴系</div><div class="ttdef"><b>定义</b> AxesFrozenAtEventTime.hpp:66</div></div>
+<div class="ttc" id="aclassast_1_1AxesFrozenAtEventTime_html_aa7bfcd5dbb0240fa55a11f28f5132cff"><div class="ttname"><a href="classast_1_1AxesFrozenAtEventTime.html#aa7bfcd5dbb0240fa55a11f28f5132cff">ast::AxesFrozenAtEventTime::axes_</a></div><div class="ttdeci">SharedPtr&lt; Axes &gt; axes_</div><div class="ttdoc">冻结轴系</div><div class="ttdef"><b>定义</b> AxesFrozenAtEventTime.hpp:81</div></div>
+<div class="ttc" id="aclassast_1_1AxesFrozenAtEventTime_html_ad80e3ce7f24022e55ca4db607cd0e807"><div class="ttname"><a href="classast_1_1AxesFrozenAtEventTime.html#ad80e3ce7f24022e55ca4db607cd0e807">ast::AxesFrozenAtEventTime::getAxes</a></div><div class="ttdeci">Axes * getAxes() const</div><div class="ttdoc">获取冻结轴系</div><div class="ttdef"><b>定义</b> AxesFrozenAtEventTime.hpp:69</div></div>
+<div class="ttc" id="aclassast_1_1AxesFrozenAtEventTime_html_adbf8b5fae02f7e62482376d79a8d5318"><div class="ttname"><a href="classast_1_1AxesFrozenAtEventTime.html#adbf8b5fae02f7e62482376d79a8d5318">ast::AxesFrozenAtEventTime::getReferenceAxes</a></div><div class="ttdeci">Axes * getReferenceAxes() const</div><div class="ttdoc">获取参考轴系</div><div class="ttdef"><b>定义</b> AxesFrozenAtEventTime.hpp:63</div></div>
+<div class="ttc" id="aclassast_1_1AxesFrozenAtEventTime_html_ae57193cc789b68f04bf4c3a028dd0044"><div class="ttname"><a href="classast_1_1AxesFrozenAtEventTime.html#ae57193cc789b68f04bf4c3a028dd0044">ast::AxesFrozenAtEventTime::referenceAxes_</a></div><div class="ttdeci">SharedPtr&lt; Axes &gt; referenceAxes_</div><div class="ttdoc">参考轴系</div><div class="ttdef"><b>定义</b> AxesFrozenAtEventTime.hpp:80</div></div>
+<div class="ttc" id="aclassast_1_1Axes_html"><div class="ttname"><a href="classast_1_1Axes.html">ast::Axes</a></div><div class="ttdoc">轴系类</div><div class="ttdef"><b>定义</b> Axes.hpp:67</div></div>
+<div class="ttc" id="aclassast_1_1Axes_html_a4dcd0b717712904fd034fb9c287b3dc2"><div class="ttname"><a href="classast_1_1Axes.html#a4dcd0b717712904fd034fb9c287b3dc2">ast::Axes::getTransform</a></div><div class="ttdeci">virtual err_t getTransform(const TimePoint &amp;tp, Rotation &amp;rotation) const =0</div><div class="ttdoc">获取当前轴系相对于父轴系的旋转信息</div></div>
+<div class="ttc" id="aclassast_1_1Axes_html_a61cb4c23db728cedf78474866f8e9650"><div class="ttname"><a href="classast_1_1Axes.html#a61cb4c23db728cedf78474866f8e9650">ast::Axes::getParent</a></div><div class="ttdeci">virtual Axes * getParent() const =0</div><div class="ttdoc">获取当前轴系的父轴系</div></div>
+<div class="ttc" id="aclassast_1_1EventTime_html"><div class="ttname"><a href="classast_1_1EventTime.html">ast::EventTime</a></div><div class="ttdoc">事件时间</div><div class="ttdef"><b>定义</b> EventTime.hpp:37</div></div>
+<div class="ttc" id="aclassast_1_1KinematicRotation_html"><div class="ttname"><a href="classast_1_1KinematicRotation.html">ast::KinematicRotation</a></div><div class="ttdoc">运动学坐标系旋转</div><div class="ttdef"><b>定义</b> KinematicRotation.hpp:32</div></div>
+<div class="ttc" id="aclassast_1_1Rotation_html"><div class="ttname"><a href="classast_1_1Rotation.html">ast::Rotation</a></div><div class="ttdoc">坐标系旋转类</div><div class="ttdef"><b>定义</b> Rotation.hpp:39</div></div>
+<div class="ttc" id="aclassast_1_1SharedPtr_html"><div class="ttname"><a href="classast_1_1SharedPtr.html">ast::SharedPtr</a></div><div class="ttdoc">共享指针</div><div class="ttdef"><b>定义</b> SharedPtr.hpp:33</div></div>
+<div class="ttc" id="aclassast_1_1TimePoint_html"><div class="ttname"><a href="classast_1_1TimePoint.html">ast::TimePoint</a></div><div class="ttdoc">绝对时间点</div><div class="ttdef"><b>定义</b> TimePoint.hpp:105</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_ba29613c1d0899bb7dd064b57f92f413.html">AstCore</a></li><li class="navelem"><a class="el" href="dir_d4f37a8c842ac907ebbff47eaf6f4e6a.html">Coordinate</a></li><li class="navelem"><a class="el" href="dir_76c72d9a785286fd1276578b7b3202c1.html">Axes</a></li><li class="navelem"><b>AxesFrozenAtEventTime.hpp</b></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

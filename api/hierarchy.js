@@ -44,6 +44,7 @@ var hierarchy =
       [ "ast::RotationalData", "classast_1_1RotationalData.html", null ]
     ] ],
     [ "ast::Breakpoint", "classast_1_1Breakpoint.html", null ],
+    [ "ast::BuiltinAxesRegistry", "classast_1_1BuiltinAxesRegistry.html", null ],
     [ "ast::strings_internal::ByAnyChar", "classast_1_1strings__internal_1_1ByAnyChar.html", null ],
     [ "ast::strings_internal::ByAsciiWhitespace", "classast_1_1strings__internal_1_1ByAsciiWhitespace.html", null ],
     [ "ast::strings_internal::ByChar", "classast_1_1strings__internal_1_1ByChar.html", null ],
@@ -263,8 +264,9 @@ var hierarchy =
     [ "ast::ModEquinElem", "classast_1_1ModEquinElem.html", null ],
     [ "ast::ModOrbElem", "classast_1_1ModOrbElem.html", null ],
     [ "ast::MotionProfile", "classast_1_1MotionProfile.html", [
-      [ "ast::MotionBasic", "classast_1_1MotionBasic.html", null ],
-      [ "ast::MotionTwoBody", "classast_1_1MotionTwoBody.html", null ]
+      [ "ast::MotionBasic", "classast_1_1MotionBasic.html", [
+        [ "ast::MotionTwoBody", "classast_1_1MotionTwoBody.html", null ]
+      ] ]
     ] ],
     [ "Multitype", "unionMultitype.html", null ],
     [ "Namelist", "structNamelist.html", null ],
@@ -291,6 +293,8 @@ var hierarchy =
           [ "ast::AxesBodyMOD", "classast_1_1AxesBodyMOD.html", null ],
           [ "ast::AxesBodyTOD", "classast_1_1AxesBodyTOD.html", null ]
         ] ],
+        [ "ast::AxesFrozen", "classast_1_1AxesFrozen.html", null ],
+        [ "ast::AxesFrozenAtEventTime", "classast_1_1AxesFrozenAtEventTime.html", null ],
         [ "ast::AxesICRF", "classast_1_1AxesICRF.html", null ],
         [ "ast::AxesRoot", "classast_1_1AxesRoot.html", null ]
       ] ],
@@ -299,9 +303,15 @@ var hierarchy =
         [ "ast::SphereShape", "classast_1_1SphereShape.html", null ],
         [ "ast::SpheroidShape", "classast_1_1SpheroidShape.html", null ]
       ] ],
-      [ "ast::EventInterval", "classast_1_1EventInterval.html", null ],
+      [ "ast::EventInterval", "classast_1_1EventInterval.html", [
+        [ "ast::EventIntervalExplicit", "classast_1_1EventIntervalExplicit.html", null ],
+        [ "ast::EventIntervalFallback", "classast_1_1EventIntervalFallback.html", null ],
+        [ "ast::EventIntervalLinkTo", "classast_1_1EventIntervalLinkTo.html", null ]
+      ] ],
       [ "ast::EventTime", "classast_1_1EventTime.html", [
-        [ "ast::EventTimeExplicit", "classast_1_1EventTimeExplicit.html", null ]
+        [ "ast::EventTimeExplicit", "classast_1_1EventTimeExplicit.html", null ],
+        [ "ast::EventTimeFallback", "classast_1_1EventTimeFallback.html", null ],
+        [ "ast::EventTimeLinkTo", "classast_1_1EventTimeLinkTo.html", null ]
       ] ],
       [ "ast::Expr", "classast_1_1Expr.html", [
         [ "ast::ExprCall", "classast_1_1ExprCall.html", null ],
@@ -354,7 +364,8 @@ var hierarchy =
       [ "ast::Frame", "classast_1_1Frame.html", [
         [ "ast::FrameAssembly", "classast_1_1FrameAssembly.html", null ],
         [ "ast::FrameICRF", "classast_1_1FrameICRF.html", null ],
-        [ "ast::FrameRoot", "classast_1_1FrameRoot.html", null ]
+        [ "ast::FrameRoot", "classast_1_1FrameRoot.html", null ],
+        [ "ast::FrameWithEpoch", "classast_1_1FrameWithEpoch.html", null ]
       ] ],
       [ "ast::Point", "classast_1_1Point.html", [
         [ "ast::CelestialBody", "classast_1_1CelestialBody.html", null ],
@@ -446,6 +457,7 @@ var hierarchy =
     [ "ast::SharedPtr< ast::AxesBodyInertial >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::AxesBodyMOD >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::AxesBodyTOD >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< ast::AxesFrozenAtEventTime >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::CelestialBody >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::EventInterval >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::EventTime >", "classast_1_1SharedPtr.html", null ],
@@ -469,7 +481,6 @@ var hierarchy =
     [ "ast::SpanStorage< T, Extent >", "classast_1_1SpanStorage.html", null ],
     [ "ast::SpanStorage< T, dynamic_extent >", "classast_1_1SpanStorage_3_01T_00_01dynamic__extent_01_4.html", null ],
     [ "ast::Sparse", "classast_1_1Sparse.html", null ],
-    [ "ast::SpiceAxesRegistry", "classast_1_1SpiceAxesRegistry.html", null ],
     [ "ast::SpiceBodyRegistry", "classast_1_1SpiceBodyRegistry.html", null ],
     [ "ast::SpiceData", "classast_1_1SpiceData.html", null ],
     [ "ast::SpiceFrameRegistry", "classast_1_1SpiceFrameRegistry.html", null ],
@@ -526,6 +537,7 @@ var hierarchy =
     [ "ast::VectorN< _Scalar, N >", "classast_1_1VectorN.html", null ],
     [ "ast::VectorN< _Scalar, 3 >", "classast_1_1VectorN_3_01__Scalar_00_013_01_4.html", null ],
     [ "ast::VectorX< _Scalar >", "classast_1_1VectorX.html", null ],
+    [ "ast::VehiclePathData", "structast_1_1VehiclePathData.html", null ],
     [ "ast::WeakPtr< _Object >", "classast_1_1WeakPtr.html", null ],
     [ "ast::WorkingDirectory", "classast_1_1WorkingDirectory.html", null ],
     [ "ast::XYSCache", "structast_1_1XYSCache.html", null ]

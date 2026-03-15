@@ -128,6 +128,8 @@ $(function(){initNavTree('classast_1_1Point.html',''); initResizable(true); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
+<tr class="memitem:a3b46eeef9261d63d8418c7c3d1784e74" id="r_a3b46eeef9261d63d8418c7c3d1784e74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b46eeef9261d63d8418c7c3d1784e74">toBody</a> () const</td></tr>
+<tr class="separator:a3b46eeef9261d63d8418c7c3d1784e74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a287f65e8827b82134ae01e0244385680" id="r_a287f65e8827b82134ae01e0244385680"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classast_1_1Frame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a287f65e8827b82134ae01e0244385680">getFrame</a> () const =0</td></tr>
 <tr class="separator:a287f65e8827b82134ae01e0244385680"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf2bcb6b264a976a4a97ce13a6361501" id="r_adf2bcb6b264a976a4a97ce13a6361501"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf2bcb6b264a976a4a97ce13a6361501">getPos</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos) const =0</td></tr>
@@ -391,6 +393,27 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+</div>
+</div>
+<a id="a3b46eeef9261d63d8418c7c3d1784e74" name="a3b46eeef9261d63d8418c7c3d1784e74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b46eeef9261d63d8418c7c3d1784e74">&#9670;&#160;</a></span>toBody()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> * ast::Point::toBody </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>将点转换为天体 </p>
+<dl class="section return"><dt>返回</dt><dd>天体指针 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">待办事项</a></b></dt><dd>这里需要优化动态类型转换的执行效率 </dd></dl>
 
 </div>
 </div>

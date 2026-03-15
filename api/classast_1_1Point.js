@@ -4,5 +4,6 @@ var classast_1_1Point =
     [ "getPos", "classast_1_1Point.html#adf2bcb6b264a976a4a97ce13a6361501", null ],
     [ "getPosIn", "classast_1_1Point.html#a7376aae59202c374f225b11c80bf5e98", null ],
     [ "getPosVel", "classast_1_1Point.html#a878c6836e637da7e16794d9e00a176e9", null ],
-    [ "getPosVelIn", "classast_1_1Point.html#ab6f271aaabd7a51f9dce2754cc156a16", null ]
+    [ "getPosVelIn", "classast_1_1Point.html#ab6f271aaabd7a51f9dce2754cc156a16", null ],
+    [ "toBody", "classast_1_1Point.html#a3b46eeef9261d63d8418c7c3d1784e74", null ]
 ];

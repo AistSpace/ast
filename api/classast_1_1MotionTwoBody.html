@@ -100,6 +100,7 @@ $(function(){initNavTree('classast_1_1MotionTwoBody.html',''); initResizable(tru
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="classast_1_1MotionTwoBody-members.html">所有成员列表</a>  </div>
   <div class="headertitle"><div class="title">ast::MotionTwoBody类 参考<span class="mlabels"><span class="mlabel">final</span></span></div></div>
 </div><!--header-->
@@ -112,6 +113,7 @@ $(function(){initNavTree('classast_1_1MotionTwoBody.html',''); initResizable(tru
  <div class="center">
   <img src="classast_1_1MotionTwoBody.png" usemap="#ast::MotionTwoBody_map" alt=""/>
   <map id="ast::MotionTwoBody_map" name="ast::MotionTwoBody_map">
+<area href="classast_1_1MotionBasic.html" title="基础运动模型数据结构" alt="ast::MotionBasic" shape="rect" coords="0,56,124,80"/>
 <area href="classast_1_1MotionProfile.html" title="运动定义接口" alt="ast::MotionProfile" shape="rect" coords="0,0,124,24"/>
   </map>
 </div></div>
@@ -122,7 +124,50 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a197fc1b699f56a2b4715a6aa2ca2cb22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b736a11f35b00c9e18b2f1d2ba72c71" id="r_a6b736a11f35b00c9e18b2f1d2ba72c71"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b736a11f35b00c9e18b2f1d2ba72c71">makeEphemerisSimple</a> (<a class="el" href="classast_1_1ScopedPtr.html">ScopedPtr</a>&lt; <a class="el" href="classast_1_1Ephemeris.html">Ephemeris</a> &gt; &amp;eph) const override</td></tr>
 <tr class="separator:a6b736a11f35b00c9e18b2f1d2ba72c71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classast_1_1MotionBasic"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1MotionBasic')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1MotionBasic.html">ast::MotionBasic</a></td></tr>
+<tr class="memitem:a029ab7b18038084217df9de0a3e0aa9d inherit pub_methods_classast_1_1MotionBasic" id="r_a029ab7b18038084217df9de0a3e0aa9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1State.html">State</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionBasic.html#a029ab7b18038084217df9de0a3e0aa9d">getInitialState</a> () const</td></tr>
+<tr class="separator:a029ab7b18038084217df9de0a3e0aa9d inherit pub_methods_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5fbf153863b777065f08e728f1b3649 inherit pub_methods_classast_1_1MotionBasic" id="r_ab5fbf153863b777065f08e728f1b3649"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setInitialState</b> (<a class="el" href="classast_1_1State.html">State</a> *state)</td></tr>
+<tr class="separator:ab5fbf153863b777065f08e728f1b3649 inherit pub_methods_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb01015ed8b09ad695304599235649a1 inherit pub_methods_classast_1_1MotionBasic" id="r_afb01015ed8b09ad695304599235649a1"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionBasic.html#afb01015ed8b09ad695304599235649a1">getInterval</a> (<a class="el" href="classast_1_1TimeInterval.html">TimeInterval</a> &amp;interval) const</td></tr>
+<tr class="separator:afb01015ed8b09ad695304599235649a1 inherit pub_methods_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7a7012405fefbc66c728dc7fb0830b5 inherit pub_methods_classast_1_1MotionBasic" id="r_ab7a7012405fefbc66c728dc7fb0830b5"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventInterval.html">EventInterval</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getIntervalHandle</b> ()</td></tr>
+<tr class="separator:ab7a7012405fefbc66c728dc7fb0830b5 inherit pub_methods_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade9f2e513f1302b0b9d8678ea321ce42 inherit pub_methods_classast_1_1MotionBasic" id="r_ade9f2e513f1302b0b9d8678ea321ce42"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setInterval</b> (<a class="el" href="classast_1_1EventInterval.html">EventInterval</a> *interval)</td></tr>
+<tr class="separator:ade9f2e513f1302b0b9d8678ea321ce42 inherit pub_methods_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b2dfb2a427b3503db827f5503e93f5a inherit pub_methods_classast_1_1MotionBasic" id="r_a0b2dfb2a427b3503db827f5503e93f5a"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setInterval</b> (const <a class="el" href="classast_1_1TimeInterval.html">TimeInterval</a> &amp;interval)</td></tr>
+<tr class="separator:a0b2dfb2a427b3503db827f5503e93f5a inherit pub_methods_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e2a9cd563d991e062b7900a8d2854fc inherit pub_methods_classast_1_1MotionBasic" id="r_a6e2a9cd563d991e062b7900a8d2854fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Frame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionBasic.html#a6e2a9cd563d991e062b7900a8d2854fc">getPropagationFrame</a> () const</td></tr>
+<tr class="separator:a6e2a9cd563d991e062b7900a8d2854fc inherit pub_methods_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bbc6ab4c68ffe986634f807084b85a6 inherit pub_methods_classast_1_1MotionBasic" id="r_a3bbc6ab4c68ffe986634f807084b85a6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionBasic.html#a3bbc6ab4c68ffe986634f807084b85a6">getStepSize</a> () const</td></tr>
+<tr class="separator:a3bbc6ab4c68ffe986634f807084b85a6 inherit pub_methods_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classast_1_1MotionProfile"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1MotionProfile')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1MotionProfile.html">ast::MotionProfile</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a2261f58d8d1341332f73067af4b93ac0" id="r_a2261f58d8d1341332f73067af4b93ac0"><td class="memItemLeft" align="right" valign="top"><a id="a2261f58d8d1341332f73067af4b93ac0" name="a2261f58d8d1341332f73067af4b93ac0"></a>
+static <a class="el" href="classast_1_1MotionTwoBody.html">MotionTwoBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>New</b> ()</td></tr>
+<tr class="separator:a2261f58d8d1341332f73067af4b93ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_attribs_classast_1_1MotionBasic"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classast_1_1MotionBasic')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classast_1_1MotionBasic.html">ast::MotionBasic</a></td></tr>
+<tr class="memitem:ad2e7fe1771c94dec454b1a43a68c1693 inherit pro_attribs_classast_1_1MotionBasic" id="r_ad2e7fe1771c94dec454b1a43a68c1693"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1State.html">State</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>initialState_</b></td></tr>
+<tr class="separator:ad2e7fe1771c94dec454b1a43a68c1693 inherit pro_attribs_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4a5a08bb4281d3be6ca05a2da7557a0 inherit pro_attribs_classast_1_1MotionBasic" id="r_aa4a5a08bb4281d3be6ca05a2da7557a0"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventInterval.html">EventInterval</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>interval_</b></td></tr>
+<tr class="separator:aa4a5a08bb4281d3be6ca05a2da7557a0 inherit pro_attribs_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abda0cbc13f0c9372b37005a92d96b0a0 inherit pro_attribs_classast_1_1MotionBasic" id="r_abda0cbc13f0c9372b37005a92d96b0a0"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Frame.html">Frame</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>propagationFrame_</b></td></tr>
+<tr class="separator:abda0cbc13f0c9372b37005a92d96b0a0 inherit pro_attribs_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38e44e47b17087b0ca077853cb9e0d7b inherit pro_attribs_classast_1_1MotionBasic" id="r_a38e44e47b17087b0ca077853cb9e0d7b"><td class="memItemLeft" align="right" valign="top">
+double&#160;</td><td class="memItemRight" valign="bottom"><b>stepSize_</b></td></tr>
+<tr class="separator:a38e44e47b17087b0ca077853cb9e0d7b inherit pro_attribs_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">成员函数说明</h2>
 <a id="a6b736a11f35b00c9e18b2f1d2ba72c71" name="a6b736a11f35b00c9e18b2f1d2ba72c71"></a>

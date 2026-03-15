@@ -1,6 +1,6 @@
 var group__Spice =
 [
-    [ "ast::SpiceAxesRegistry", "classast_1_1SpiceAxesRegistry.html", null ],
+    [ "ast::BuiltinAxesRegistry", "classast_1_1BuiltinAxesRegistry.html", null ],
     [ "ast::SpiceBodyRegistry", "classast_1_1SpiceBodyRegistry.html", null ],
     [ "ast::SpiceFrameRegistry", "classast_1_1SpiceFrameRegistry.html", null ],
     [ "ast::aSpiceEtToTimePoint", "group__Spice.html#ga28fa4207db53a0374e67d175d4177703", null ],

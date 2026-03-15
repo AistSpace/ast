@@ -128,15 +128,12 @@ Vector3d&#160;</td><td class="memItemRight" valign="bottom"><b>position_</b></td
 Vector3d&#160;</td><td class="memItemRight" valign="bottom"><b>velocity_</b></td></tr>
 <tr class="separator:ad001055c665422a0e0f2b9ec9b1fff6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classast_1_1State"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classast_1_1State')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classast_1_1State.html">ast::State</a></td></tr>
-<tr class="memitem:a4005654a60a364d49feb202ed57c36fb inherit pro_attribs_classast_1_1State" id="r_a4005654a60a364d49feb202ed57c36fb"><td class="memItemLeft" align="right" valign="top">
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>useCoordEpoch_</b></td></tr>
-<tr class="separator:a4005654a60a364d49feb202ed57c36fb inherit pro_attribs_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd76bc624bd9bfdcd1d21937afeff909 inherit pro_attribs_classast_1_1State" id="r_afd76bc624bd9bfdcd1d21937afeff909"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Frame.html">Frame</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>frame_</b></td></tr>
 <tr class="separator:afd76bc624bd9bfdcd1d21937afeff909 inherit pro_attribs_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd75868821ab1be5a5495c8f1db65012 inherit pro_attribs_classast_1_1State" id="r_acd75868821ab1be5a5495c8f1db65012"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventTime.html">EventTime</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>coordEpoch_</b></td></tr>
-<tr class="separator:acd75868821ab1be5a5495c8f1db65012 inherit pro_attribs_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32bf1a8a034df821ee0ee7e2647fce01 inherit pro_attribs_classast_1_1State" id="r_a32bf1a8a034df821ee0ee7e2647fce01"><td class="memItemLeft" align="right" valign="top">
+double&#160;</td><td class="memItemRight" valign="bottom"><b>gm_</b> {0}</td></tr>
+<tr class="separator:a32bf1a8a034df821ee0ee7e2647fce01 inherit pro_attribs_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad11106389f2b6d7e46238418c687321a inherit pro_attribs_classast_1_1State" id="r_ad11106389f2b6d7e46238418c687321a"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventTime.html">EventTime</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stateEpoch_</b></td></tr>
 <tr class="separator:ad11106389f2b6d7e46238418c687321a inherit pro_attribs_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,21 +151,32 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 额外继承的成员函数</h2></td></tr>
 <tr class="inherit_header pub_methods_classast_1_1State"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1State')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1State.html">ast::State</a></td></tr>
-<tr class="memitem:a39a74233e512fde5d151ef7269ac4927 inherit pub_methods_classast_1_1State" id="r_a39a74233e512fde5d151ef7269ac4927"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setStateEpoch</b> (<a class="el" href="classast_1_1EventTime.html">EventTime</a> *stateEpoch)</td></tr>
+<tr class="memitem:a628c0db7ea416872ac42ae00ce911c03 inherit pub_methods_classast_1_1State" id="r_a628c0db7ea416872ac42ae00ce911c03"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1Frame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getFrame</b> () const</td></tr>
+<tr class="separator:a628c0db7ea416872ac42ae00ce911c03 inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8fa9d8ed8c5008e1618021e80a531c2 inherit pub_methods_classast_1_1State" id="r_af8fa9d8ed8c5008e1618021e80a531c2"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setFrame</b> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame)</td></tr>
+<tr class="separator:af8fa9d8ed8c5008e1618021e80a531c2 inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad08440cb85f0cf4edd68df1ead93be1b inherit pub_methods_classast_1_1State" id="r_ad08440cb85f0cf4edd68df1ead93be1b"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1State.html#ad08440cb85f0cf4edd68df1ead93be1b">changeFrame</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame)</td></tr>
+<tr class="separator:ad08440cb85f0cf4edd68df1ead93be1b inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39a74233e512fde5d151ef7269ac4927 inherit pub_methods_classast_1_1State" id="r_a39a74233e512fde5d151ef7269ac4927"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1State.html#a39a74233e512fde5d151ef7269ac4927">setStateEpoch</a> (<a class="el" href="classast_1_1EventTime.html">EventTime</a> *stateEpoch)</td></tr>
 <tr class="separator:a39a74233e512fde5d151ef7269ac4927 inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a104699141fd9ab22650bc9013f4f1bf0 inherit pub_methods_classast_1_1State" id="r_a104699141fd9ab22650bc9013f4f1bf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1State.html#a104699141fd9ab22650bc9013f4f1bf0">setStateEpoch</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;stateEpoch)</td></tr>
+<tr class="separator:a104699141fd9ab22650bc9013f4f1bf0 inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0d653a29509a9734cceb0e767cac895 inherit pub_methods_classast_1_1State" id="r_ad0d653a29509a9734cceb0e767cac895"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1State.html#ad0d653a29509a9734cceb0e767cac895">getStateEpoch</a> (<a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;stateEpoch) const</td></tr>
+<tr class="separator:ad0d653a29509a9734cceb0e767cac895 inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a1bd288e80210a7246180f525c80023 inherit pub_methods_classast_1_1State" id="r_a8a1bd288e80210a7246180f525c80023"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventTime.html">EventTime</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1State.html#a8a1bd288e80210a7246180f525c80023">getStateEpochHandle</a> ()</td></tr>
+<tr class="separator:a8a1bd288e80210a7246180f525c80023 inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a142606ad98b1f918b1e6434d6ef1f5d4 inherit pub_methods_classast_1_1State" id="r_a142606ad98b1f918b1e6434d6ef1f5d4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1State.html#a142606ad98b1f918b1e6434d6ef1f5d4">getGM</a> () const</td></tr>
+<tr class="separator:a142606ad98b1f918b1e6434d6ef1f5d4 inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6a240e18730dd99f8c7c9643688154b inherit pub_methods_classast_1_1State" id="r_ac6a240e18730dd99f8c7c9643688154b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1State.html#ac6a240e18730dd99f8c7c9643688154b">setGM</a> (double gm)</td></tr>
+<tr class="separator:ac6a240e18730dd99f8c7c9643688154b inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb8eb9d4ec74ebf60e2236a044c6ed59 inherit pub_methods_classast_1_1State" id="r_abb8eb9d4ec74ebf60e2236a044c6ed59"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCoordEpoch</b> (<a class="el" href="classast_1_1EventTime.html">EventTime</a> *coordEpoch)</td></tr>
 <tr class="separator:abb8eb9d4ec74ebf60e2236a044c6ed59 inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a104699141fd9ab22650bc9013f4f1bf0 inherit pub_methods_classast_1_1State" id="r_a104699141fd9ab22650bc9013f4f1bf0"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setStateEpoch</b> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;stateEpoch)</td></tr>
-<tr class="separator:a104699141fd9ab22650bc9013f4f1bf0 inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab970a98b041f4746cad0c28e147956cb inherit pub_methods_classast_1_1State" id="r_ab970a98b041f4746cad0c28e147956cb"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCoordEpoch</b> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;coordEpoch)</td></tr>
 <tr class="separator:ab970a98b041f4746cad0c28e147956cb inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0d653a29509a9734cceb0e767cac895 inherit pub_methods_classast_1_1State" id="r_ad0d653a29509a9734cceb0e767cac895"><td class="memItemLeft" align="right" valign="top">
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>getStateEpoch</b> (<a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;stateEpoch) const</td></tr>
-<tr class="separator:ad0d653a29509a9734cceb0e767cac895 inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa41cb722486e7bce5fc7f3c28dc9c6fc inherit pub_methods_classast_1_1State" id="r_aa41cb722486e7bce5fc7f3c28dc9c6fc"><td class="memItemLeft" align="right" valign="top">
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>getCoordEpoch</b> (<a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;coordEpoch) const</td></tr>
 <tr class="separator:aa41cb722486e7bce5fc7f3c28dc9c6fc inherit pub_methods_classast_1_1State"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -92,8 +92,10 @@ var searchData=
   ['brentsolver_2ehpp_89',['BrentSolver.hpp',['../BrentSolver_8hpp.html',1,'']]],
   ['builtinaxes_2ecpp_90',['BuiltinAxes.cpp',['../BuiltinAxes_8cpp.html',1,'']]],
   ['builtinaxes_2ehpp_91',['BuiltinAxes.hpp',['../BuiltinAxes_8hpp.html',1,'']]],
-  ['builtinframe_2ecpp_92',['BuiltinFrame.cpp',['../BuiltinFrame_8cpp.html',1,'']]],
-  ['builtinframe_2ehpp_93',['BuiltinFrame.hpp',['../BuiltinFrame_8hpp.html',1,'']]],
-  ['builtinpoint_2ecpp_94',['BuiltinPoint.cpp',['../BuiltinPoint_8cpp.html',1,'']]],
-  ['builtinpoint_2ehpp_95',['BuiltinPoint.hpp',['../BuiltinPoint_8hpp.html',1,'']]]
+  ['builtinaxesregistry_2ecpp_92',['BuiltinAxesRegistry.cpp',['../BuiltinAxesRegistry_8cpp.html',1,'']]],
+  ['builtinaxesregistry_2ehpp_93',['BuiltinAxesRegistry.hpp',['../BuiltinAxesRegistry_8hpp.html',1,'']]],
+  ['builtinframe_2ecpp_94',['BuiltinFrame.cpp',['../BuiltinFrame_8cpp.html',1,'']]],
+  ['builtinframe_2ehpp_95',['BuiltinFrame.hpp',['../BuiltinFrame_8hpp.html',1,'']]],
+  ['builtinpoint_2ecpp_96',['BuiltinPoint.cpp',['../BuiltinPoint_8cpp.html',1,'']]],
+  ['builtinpoint_2ehpp_97',['BuiltinPoint.hpp',['../BuiltinPoint_8hpp.html',1,'']]]
 ];

@@ -19,6 +19,8 @@ var searchData=
   ['axesbodymod_16',['AxesBodyMOD',['../classast_1_1AxesBodyMOD.html',1,'ast']]],
   ['axesbodyrelated_17',['AxesBodyRelated',['../classast_1_1AxesBodyRelated.html',1,'ast']]],
   ['axesbodytod_18',['AxesBodyTOD',['../classast_1_1AxesBodyTOD.html',1,'ast']]],
-  ['axesicrf_19',['AxesICRF',['../classast_1_1AxesICRF.html',1,'ast']]],
-  ['axesroot_20',['AxesRoot',['../classast_1_1AxesRoot.html',1,'ast']]]
+  ['axesfrozen_19',['AxesFrozen',['../classast_1_1AxesFrozen.html',1,'ast']]],
+  ['axesfrozenateventtime_20',['AxesFrozenAtEventTime',['../classast_1_1AxesFrozenAtEventTime.html',1,'ast']]],
+  ['axesicrf_21',['AxesICRF',['../classast_1_1AxesICRF.html',1,'ast']]],
+  ['axesroot_22',['AxesRoot',['../classast_1_1AxesRoot.html',1,'ast']]]
 ];

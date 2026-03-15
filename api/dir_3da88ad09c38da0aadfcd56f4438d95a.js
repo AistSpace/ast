@@ -1,6 +1,5 @@
 var dir_3da88ad09c38da0aadfcd56f4438d95a =
 [
-    [ "SpiceAxesRegistry.hpp", "SpiceAxesRegistry_8hpp_source.html", null ],
     [ "SpiceBodyRegistry.cpp", "SpiceBodyRegistry_8cpp.html", null ],
     [ "SpiceBodyRegistry.hpp", "SpiceBodyRegistry_8hpp.html", null ],
     [ "SpiceFrameRegistry.cpp", "SpiceFrameRegistry_8cpp.html", null ],

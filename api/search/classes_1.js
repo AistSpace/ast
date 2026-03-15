@@ -45,12 +45,13 @@ var searchData=
   ['breakpoint_42',['Breakpoint',['../classast_1_1Breakpoint.html',1,'ast']]],
   ['brenthsolver_43',['BrenthSolver',['../classast_1_1BrenthSolver.html',1,'ast']]],
   ['brentqsolver_44',['BrentqSolver',['../classast_1_1BrentqSolver.html',1,'ast']]],
-  ['byanychar_45',['ByAnyChar',['../classast_1_1strings__internal_1_1ByAnyChar.html',1,'ast::strings_internal']]],
-  ['byasciiwhitespace_46',['ByAsciiWhitespace',['../classast_1_1strings__internal_1_1ByAsciiWhitespace.html',1,'ast::strings_internal']]],
-  ['bychar_47',['ByChar',['../classast_1_1strings__internal_1_1ByChar.html',1,'ast::strings_internal']]],
-  ['bycommaandrepeatedwhitespace_48',['ByCommaAndRepeatedWhitespace',['../classast_1_1ByCommaAndRepeatedWhitespace.html',1,'ast']]],
-  ['bylength_49',['ByLength',['../classast_1_1strings__internal_1_1ByLength.html',1,'ast::strings_internal']]],
-  ['byrepeatedchar_50',['ByRepeatedChar',['../classast_1_1strings__internal_1_1ByRepeatedChar.html',1,'ast::strings_internal']]],
-  ['byrepeatedwhitespace_51',['ByRepeatedWhitespace',['../classast_1_1strings__internal_1_1ByRepeatedWhitespace.html',1,'ast::strings_internal']]],
-  ['bystring_52',['ByString',['../classast_1_1strings__internal_1_1ByString.html',1,'ast::strings_internal']]]
+  ['builtinaxesregistry_45',['BuiltinAxesRegistry',['../classast_1_1BuiltinAxesRegistry.html',1,'ast']]],
+  ['byanychar_46',['ByAnyChar',['../classast_1_1strings__internal_1_1ByAnyChar.html',1,'ast::strings_internal']]],
+  ['byasciiwhitespace_47',['ByAsciiWhitespace',['../classast_1_1strings__internal_1_1ByAsciiWhitespace.html',1,'ast::strings_internal']]],
+  ['bychar_48',['ByChar',['../classast_1_1strings__internal_1_1ByChar.html',1,'ast::strings_internal']]],
+  ['bycommaandrepeatedwhitespace_49',['ByCommaAndRepeatedWhitespace',['../classast_1_1ByCommaAndRepeatedWhitespace.html',1,'ast']]],
+  ['bylength_50',['ByLength',['../classast_1_1strings__internal_1_1ByLength.html',1,'ast::strings_internal']]],
+  ['byrepeatedchar_51',['ByRepeatedChar',['../classast_1_1strings__internal_1_1ByRepeatedChar.html',1,'ast::strings_internal']]],
+  ['byrepeatedwhitespace_52',['ByRepeatedWhitespace',['../classast_1_1strings__internal_1_1ByRepeatedWhitespace.html',1,'ast::strings_internal']]],
+  ['bystring_53',['ByString',['../classast_1_1strings__internal_1_1ByString.html',1,'ast::strings_internal']]]
 ];

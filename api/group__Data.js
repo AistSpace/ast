@@ -122,6 +122,7 @@ var group__Data =
     [ "ast::aDataDirGet", "group__Data.html#ga554406609d8c3a1b8dd7020142cd04e7", null ],
     [ "ast::aDataDirSet", "group__Data.html#ga178274c33d5da80112cf792bdbae6d9f", null ],
     [ "ast::aGetBody", "group__Data.html#gab5d0282ada45dcbf8c28009fc3c853bf", null ],
+    [ "ast::aGetDefaultBody", "group__Data.html#gafa4815df453dd0c6d4edf6274305e8dd", null ],
     [ "ast::aGetEarth", "group__Data.html#ga6a91df2c2ab249279ee7f949d16dce7d", null ],
     [ "ast::aGetEMBarycenter", "group__Data.html#ga47273e9f78df27ff3d50232d7249ed16", null ],
     [ "ast::aGetJupiter", "group__Data.html#gaa946dd4a18e60a17709cdcb0ef01d867", null ],

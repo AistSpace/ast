@@ -10,7 +10,7 @@ var searchData=
   ['innerstateobserver_5f_7',['innerStateObserver_',['../classast_1_1ODEIntegrator.html#a09e2e3ede74c260accbc0e365628d5a9',1,'ast::ODEIntegrator']]],
   ['integrator_5f_8',['integrator_',['../classast_1_1HPOP.html#a976ebf7b57933ac1e476ee098d95e467',1,'ast::HPOP']]],
   ['interpolateorder_5f_9',['interpolateOrder_',['../classast_1_1EphemerisLagrangeVar.html#a8c119e5efffeddf995281b38df056e85',1,'ast::EphemerisLagrangeVar']]],
-  ['interval_5f_10',['interval_',['../classast_1_1MotionBasic.html#aa4a5a08bb4281d3be6ca05a2da7557a0',1,'ast::MotionBasic']]],
+  ['interval_5f_10',['interval_',['../classast_1_1EventIntervalExplicit.html#a63be1912dfb3f42d64b8fd4156f84b82',1,'ast::EventIntervalExplicit::interval_'],['../classast_1_1MotionBasic.html#aa4a5a08bb4281d3be6ca05a2da7557a0',1,'ast::MotionBasic::interval_']]],
   ['intlen_11',['intlen',['../structast_1_1SPK__Type2__Trailer.html#ace4662dae40c65e4f35352d317e5807d',1,'ast::SPK_Type2_Trailer']]],
   ['isinit_5f_12',['isInit_',['../classast_1_1SolarSystem.html#a62116574b5a26af266075674c9c6722a',1,'ast::SolarSystem']]],
   ['isloaded_5f_13',['isLoaded_',['../classast_1_1IAUXYS.html#ab8872368ab4a6040eded4117a44484fd',1,'ast::IAUXYS']]],

@@ -99,6 +99,7 @@ $(function(){initNavTree('MoverLoader_8cpp.html',''); initResizable(true); });
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">类</a> &#124;
 <a href="#namespaces">命名空间</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle"><div class="title">MoverLoader.cpp 文件参考</div></div>
@@ -107,8 +108,28 @@ $(function(){initNavTree('MoverLoader_8cpp.html',''); initResizable(true); });
 <div class="textblock"><code>#include &quot;<a class="el" href="MoverLoader_8hpp_source.html">MoverLoader.hpp</a>&quot;</code><br />
 <code>#include &quot;AstUtil/StringView.hpp&quot;</code><br />
 <code>#include &quot;AstUtil/BKVParser.hpp&quot;</code><br />
+<code>#include &quot;AstUtil/BKVItemView.hpp&quot;</code><br />
+<code>#include &quot;AstUtil/Literals.hpp&quot;</code><br />
+<code>#include &quot;AstUtil/MathDegree.hpp&quot;</code><br />
 <code>#include &quot;AstSim/Mover.hpp&quot;</code><br />
+<code>#include &quot;AstSim/MotionTwoBody.hpp&quot;</code><br />
+<code>#include &quot;AstCore/StateKeplerian.hpp&quot;</code><br />
+<code>#include &quot;AstCore/StateCartesian.hpp&quot;</code><br />
+<code>#include &quot;AstCore/EventIntervalExplicit.hpp&quot;</code><br />
+<code>#include &quot;AstCore/EventIntervalLinkTo.hpp&quot;</code><br />
+<code>#include &quot;AstCore/EventIntervalFallback.hpp&quot;</code><br />
+<code>#include &quot;AstCore/EventTimeLinkTo.hpp&quot;</code><br />
+<code>#include &quot;AstCore/EventTimeExplicit.hpp&quot;</code><br />
+<code>#include &quot;AstCore/EventTimeFallback.hpp&quot;</code><br />
+<code>#include &quot;AstCore/RunTime.hpp&quot;</code><br />
+<code>#include &quot;AstCore/BuiltinAxes.hpp&quot;</code><br />
+<code>#include &quot;AstCore/CelestialBody.hpp&quot;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structast_1_1VehiclePathData.html">ast::VehiclePathData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 命名空间</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html">ast</a></td></tr>
@@ -116,8 +137,56 @@ $(function(){initNavTree('MoverLoader_8cpp.html',''); initResizable(true); });
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:aa44e80a5e27e7de8b9c32fcf43bebfd2" id="r_aa44e80a5e27e7de8b9c32fcf43bebfd2"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html#aa44e80a5e27e7de8b9c32fcf43bebfd2">ast::aLoadMover</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
-<tr class="separator:aa44e80a5e27e7de8b9c32fcf43bebfd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a842e8b456bef358183f23eb8be89a33e" id="r_a842e8b456bef358183f23eb8be89a33e"><td class="memItemLeft" align="right" valign="top"><a id="a842e8b456bef358183f23eb8be89a33e" name="a842e8b456bef358183f23eb8be89a33e"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadEventTimeImplicit</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventTime.html">EventTime</a> &gt; &amp;eventTime)</td></tr>
+<tr class="separator:a842e8b456bef358183f23eb8be89a33e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16d489d23b3817f481e30aa800504c24" id="r_a16d489d23b3817f481e30aa800504c24"><td class="memItemLeft" align="right" valign="top"><a id="a16d489d23b3817f481e30aa800504c24" name="a16d489d23b3817f481e30aa800504c24"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadEventTime</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventTime.html">EventTime</a> &gt; &amp;eventTime)</td></tr>
+<tr class="separator:a16d489d23b3817f481e30aa800504c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbacec34570d65a2a49fa7c8b6b3c7d0" id="r_acbacec34570d65a2a49fa7c8b6b3c7d0"><td class="memItemLeft" align="right" valign="top"><a id="acbacec34570d65a2a49fa7c8b6b3c7d0" name="acbacec34570d65a2a49fa7c8b6b3c7d0"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadEventIntervalImplicit</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventInterval.html">EventInterval</a> &gt; &amp;eventInterval)</td></tr>
+<tr class="separator:acbacec34570d65a2a49fa7c8b6b3c7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e5ccc90a1c4536f68c41a1bffef122d" id="r_a6e5ccc90a1c4536f68c41a1bffef122d"><td class="memItemLeft" align="right" valign="top"><a id="a6e5ccc90a1c4536f68c41a1bffef122d" name="a6e5ccc90a1c4536f68c41a1bffef122d"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadEventInterval</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventInterval.html">EventInterval</a> &gt; &amp;eventInterval)</td></tr>
+<tr class="separator:a6e5ccc90a1c4536f68c41a1bffef122d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bf65b0b892217597da63475622278ce" id="r_a3bf65b0b892217597da63475622278ce"><td class="memItemLeft" align="right" valign="top"><a id="a3bf65b0b892217597da63475622278ce" name="a3bf65b0b892217597da63475622278ce"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadTwoBody</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1MotionTwoBody.html">MotionTwoBody</a> &amp;motionProfile)</td></tr>
+<tr class="separator:a3bf65b0b892217597da63475622278ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a010ba3201a4536338d3a7c2f4c3aebdf" id="r_a010ba3201a4536338d3a7c2f4c3aebdf"><td class="memItemLeft" align="right" valign="top"><a id="a010ba3201a4536338d3a7c2f4c3aebdf" name="a010ba3201a4536338d3a7c2f4c3aebdf"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadTwoBody</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:a010ba3201a4536338d3a7c2f4c3aebdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a558dcfbc24cbd5823595c2785ef5ad8a" id="r_a558dcfbc24cbd5823595c2785ef5ad8a"><td class="memItemLeft" align="right" valign="top"><a id="a558dcfbc24cbd5823595c2785ef5ad8a" name="a558dcfbc24cbd5823595c2785ef5ad8a"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadPassDefn</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:a558dcfbc24cbd5823595c2785ef5ad8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cc80d792f75d4cc8c4e5f4f8e888328" id="r_a7cc80d792f75d4cc8c4e5f4f8e888328"><td class="memItemLeft" align="right" valign="top"><a id="a7cc80d792f75d4cc8c4e5f4f8e888328" name="a7cc80d792f75d4cc8c4e5f4f8e888328"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadVehiclePath</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:a7cc80d792f75d4cc8c4e5f4f8e888328"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5860f25baf938e66ddf10d09c0f02748" id="r_a5860f25baf938e66ddf10d09c0f02748"><td class="memItemLeft" align="right" valign="top"><a id="a5860f25baf938e66ddf10d09c0f02748" name="a5860f25baf938e66ddf10d09c0f02748"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadMassProperties</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:a5860f25baf938e66ddf10d09c0f02748"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6f77c19c03c5274ee6e9c169de70187" id="r_ab6f77c19c03c5274ee6e9c169de70187"><td class="memItemLeft" align="right" valign="top"><a id="ab6f77c19c03c5274ee6e9c169de70187" name="ab6f77c19c03c5274ee6e9c169de70187"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadAttitude</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:ab6f77c19c03c5274ee6e9c169de70187"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76ccc8b30569be310d08da44c52fa134" id="r_a76ccc8b30569be310d08da44c52fa134"><td class="memItemLeft" align="right" valign="top"><a id="a76ccc8b30569be310d08da44c52fa134" name="a76ccc8b30569be310d08da44c52fa134"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadSwath</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:a76ccc8b30569be310d08da44c52fa134"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ec2c396ab1d634f2ef08c725ad6c2f4" id="r_a6ec2c396ab1d634f2ef08c725ad6c2f4"><td class="memItemLeft" align="right" valign="top"><a id="a6ec2c396ab1d634f2ef08c725ad6c2f4" name="a6ec2c396ab1d634f2ef08c725ad6c2f4"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadEclipse</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:a6ec2c396ab1d634f2ef08c725ad6c2f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3cb1b4fe98bdcbf93709f8e4d1a2a57" id="r_ad3cb1b4fe98bdcbf93709f8e4d1a2a57"><td class="memItemLeft" align="right" valign="top"><a id="ad3cb1b4fe98bdcbf93709f8e4d1a2a57" name="ad3cb1b4fe98bdcbf93709f8e4d1a2a57"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadRealTimeDef</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:ad3cb1b4fe98bdcbf93709f8e4d1a2a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1daa6afba939f3ad43998dd5dd3a79e" id="r_ae1daa6afba939f3ad43998dd5dd3a79e"><td class="memItemLeft" align="right" valign="top"><a id="ae1daa6afba939f3ad43998dd5dd3a79e" name="ae1daa6afba939f3ad43998dd5dd3a79e"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadExtensions</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:ae1daa6afba939f3ad43998dd5dd3a79e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac8df2d728019290caf20f48b6c7d042" id="r_aac8df2d728019290caf20f48b6c7d042"><td class="memItemLeft" align="right" valign="top"><a id="aac8df2d728019290caf20f48b6c7d042" name="aac8df2d728019290caf20f48b6c7d042"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadSubObjects</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:aac8df2d728019290caf20f48b6c7d042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfa492034d6576a3455c33173e0fd1a6" id="r_adfa492034d6576a3455c33173e0fd1a6"><td class="memItemLeft" align="right" valign="top"><a id="adfa492034d6576a3455c33173e0fd1a6" name="adfa492034d6576a3455c33173e0fd1a6"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadSatellite</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:adfa492034d6576a3455c33173e0fd1a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a9b72954efc5273a80636b054d8726a" id="r_a7a9b72954efc5273a80636b054d8726a"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html#a7a9b72954efc5273a80636b054d8726a">ast::aLoadMover</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:a7a9b72954efc5273a80636b054d8726a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p><br  />
@@ -126,7 +195,7 @@ $(function(){initNavTree('MoverLoader_8cpp.html',''); initResizable(true); });
  </p><dl class="section author"><dt>作者</dt><dd>axel </dd></dl>
 <dl class="section date"><dt>日期</dt><dd>2026-03-13 </dd></dl>
 <dl class="section copyright"><dt>版权所有</dt><dd>版权所有 (C) 2026-present, ast项目.</dd></dl>
-<p>ast项目（https://github.com/space-ast/ast） 本项目基于 Apache 2.0 开源许可证分发。 您可在遵守许可证条款的前提下使用、修改和分发本软件。 许可证全文请见：</p>
+<p>SpaceAST项目（https://github.com/space-ast/ast） 本项目基于 Apache 2.0 开源许可证分发。 您可在遵守许可证条款的前提下使用、修改和分发本软件。 许可证全文请见：</p>
 <p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>重要须知： 软件按"现有状态"提供，无任何明示或暗示的担保条件。 除非法律要求或书面同意，作者与贡献者不承担任何责任。 使用本软件所产生的风险，需由您自行承担。 </p>
 </div></div><!-- contents -->
