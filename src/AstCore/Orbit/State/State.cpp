@@ -20,17 +20,34 @@
 
 #include "State.hpp"
 #include "AstCore/EventTimeExplicit.hpp"
+#include "AstCore/FrameWithEpoch.hpp"
 
 AST_NAMESPACE_BEGIN
 
-void State::setStateEpoch(EventTime* stateEpoch)
+err_t State::changeFrame(Frame *frame)
+{
+    if(frame_ == frame)
+        return eNoError;
+    frame_ = frame;
+    return eNoError;
+}
+
+void State::setStateEpoch(EventTime *stateEpoch)
 {
     stateEpoch_ = stateEpoch;
 }
 
 void State::setCoordEpoch(EventTime *coordEpoch)
 {
-    coordEpoch_ = coordEpoch;
+    if(auto framewithepoch = dynamic_cast<FrameWithEpoch*>(frame_.get()))
+    {
+        framewithepoch->setEpoch(coordEpoch);
+    }else{
+        auto point = frame_->getOrigin();
+        auto axes = frame_->getAxes();
+        auto frozenAxes = FrameWithEpoch::MakeShared(point, axes, coordEpoch);
+        frame_ = frozenAxes;
+    }
 }
 
 void State::setStateEpoch(const TimePoint &stateEpoch)
@@ -40,7 +57,7 @@ void State::setStateEpoch(const TimePoint &stateEpoch)
 
 void State::setCoordEpoch(const TimePoint &coordEpoch)
 {
-    coordEpoch_ = EventTimeExplicit::New(coordEpoch);
+    return setCoordEpoch(EventTimeExplicit::New(coordEpoch));
 }
 
 err_t State::getStateEpoch(TimePoint &stateEpoch) const
@@ -50,9 +67,29 @@ err_t State::getStateEpoch(TimePoint &stateEpoch) const
 
 err_t State::getCoordEpoch(TimePoint &coordEpoch) const
 {
-    return coordEpoch_->getTime(coordEpoch);
+    if(auto framewithepoch = dynamic_cast<FrameWithEpoch*>(frame_.get()))
+    {
+        return framewithepoch->getEpoch(coordEpoch);
+    }
+    return eErrorNullPtr;
 }
 
+bool State::getUseCoordEpoch() const
+{
+    return false;
+}
 
+void State::setUseCoordEpoch(bool useCoordEpoch)
+{
+    if(auto framewithepoch = dynamic_cast<FrameWithEpoch*>(frame_.get()))
+    {
+        framewithepoch->setUseEpoch(useCoordEpoch);
+    }else{
+        auto point = frame_->getOrigin();
+        auto axes = frame_->getAxes();
+        auto frozenAxes = FrameWithEpoch::MakeShared(point, axes, stateEpoch_);
+        frame_ = frozenAxes;
+    }
+}
 
 AST_NAMESPACE_END

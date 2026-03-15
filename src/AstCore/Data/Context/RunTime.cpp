@@ -503,6 +503,11 @@ CelestialBody *aGetBody(StringView name)
     return context->solarSystem()->getBody(name);
 }
 
+CelestialBody *aGetDefaultBody()
+{
+    return aGetEarth();
+}
+
 CelestialBody* aGetMercury()
 {
     auto context = aDataContext_EnsureCurrent();

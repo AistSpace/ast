@@ -32,7 +32,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 事件时间段
-class EventInterval: public Object
+class AST_CORE_API EventInterval: public Object
 {
 public:
     /// @brief 获取时间段

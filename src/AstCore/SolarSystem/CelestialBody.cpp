@@ -50,10 +50,10 @@ CelestialBody::CelestialBody(StringView name)
 {
     orientation_  = new NoopOrientation();
     ephemeris_    = new EphemerisDE(this);
-    axesFixed_    = new AxesBodyFixed(this);
-    axesInertial_ = new AxesBodyInertial(this);
-    axesMOD_      = new AxesBodyMOD(this);
-    axesTOD_      = new AxesBodyTOD(this);
+    axesFixed_    = AxesBodyFixed::New(this);
+    axesInertial_ = AxesBodyInertial::New(this);
+    axesMOD_      = AxesBodyMOD::New(this);
+    axesTOD_      = AxesBodyTOD::New(this);
 }
 
 void CelestialBody::setJplIndex(int index)

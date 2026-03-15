@@ -23,7 +23,19 @@
 #include "AstCore/BodyOrientation.hpp"
 #include "AstMath/KinematicRotation.hpp"
 
+
+
 AST_NAMESPACE_BEGIN
+
+PAxesBodyInertial AxesBodyInertial::New(CelestialBody *body)
+{
+    return new AxesBodyInertial(body);
+}
+
+HAxesBodyInertial AxesBodyInertial::NewShared(CelestialBody *body)
+{
+    return new AxesBodyInertial(body);
+}
 
 Axes *AxesBodyInertial::getParent() const
 {

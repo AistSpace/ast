@@ -155,7 +155,7 @@ public:
 };
 
 using PAxes = Axes*;                ///< 轴系指针(pointer to axes)
-using HAxes = SharedPtr<Axes>;      ///< 轴系句柄(handler to axes)
+using HAxes = SharedPtr<Axes>;      ///< 轴系句柄(handle to axes)
 
 /*! @} */
 

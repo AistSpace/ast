@@ -19,17 +19,17 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "SpiceRunTime.hpp"
-#include "SpiceAxesRegistry.hpp"
 #include "SpiceBodyRegistry.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/TimeSystem.hpp"
+#include "AstCore/BuiltinAxes.hpp"
 
 AST_NAMESPACE_BEGIN
 
 Axes *aSpiceFindAxes(StringView name)
 {
-    return SpiceAxesRegistry::Instance().findAxes(name);
+    return aGetAxes(name);
 }
 
 CelestialBody *aSpiceFindBody(StringView name)

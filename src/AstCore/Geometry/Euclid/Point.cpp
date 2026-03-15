@@ -20,11 +20,18 @@
 
 #include "Point.hpp"
 #include "AstCore/Frame.hpp"
+#include "AstCore/CelestialBody.hpp"
 #include "AstMath/Vector.hpp"
 #include "AstMath/Transform.hpp"
 #include "AstMath/KinematicTransform.hpp"
 
 AST_NAMESPACE_BEGIN
+
+CelestialBody *Point::toBody() const
+{
+    /// @todo 这里需要优化动态类型转换的执行效率
+    return dynamic_cast<CelestialBody*>(const_cast<Point*>(this));
+}
 
 err_t Point::getPosIn(Frame *frame, const TimePoint &tp, Vector3d &pos) const
 {

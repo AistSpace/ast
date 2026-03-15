@@ -1,12 +1,12 @@
 ///
-/// @file      StateKeplerian.hpp
+/// @file      EventTimeLinkTo.cpp
 /// @brief     
 /// @details   
 /// @author    axel
 /// @date      2026-03-14
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
-/// ast项目（https://github.com/space-ast/ast）
+/// SpaceAST项目（https://github.com/space-ast/ast）
 /// 本项目基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
 /// 许可证全文请见：
@@ -18,33 +18,26 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#pragma once
-
-#include "AstGlobal.h"
-#include "AstCore/State.hpp"
-#include "AstCore/OrbitElement.hpp"
+#include "EventTimeLinkTo.hpp"
+#include "AstUtil/StringView.hpp"
 
 AST_NAMESPACE_BEGIN
 
-/*!
-    @addtogroup 
-    @{
-*/
-
-/// @brief 开普勒轨道根数状态
-class AST_CORE_API StateKeplerian final: public State
+EventTimeLinkTo *EventTimeLinkTo::New(StringView name, StringView absolutePath)
 {
-public:
-    static StateKeplerian* New();
+    return new EventTimeLinkTo(name, absolutePath);
+}
 
-    StateKeplerian() = default;
-    ~StateKeplerian() override = default;
+EventTimeLinkTo::EventTimeLinkTo(StringView name, StringView absolutePath)
+    : name_(name)
+    , absolutePath_(absolutePath)
+{
+}
 
-    void setState(const ModOrbElem& modOrbElem){ modOrbElem_ = modOrbElem; }
-protected:
-    ModOrbElem modOrbElem_;    ///< 轨道根数
-};
-
-/*! @} */
+err_t EventTimeLinkTo::getTime(TimePoint &tp) const
+{
+    // @todo 实现链接到其他时间点的逻辑
+    return -1;
+}
 
 AST_NAMESPACE_END

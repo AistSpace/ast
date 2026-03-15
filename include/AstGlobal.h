@@ -231,6 +231,7 @@ AST_NAMESPACE_BEGIN
 typedef enum EError
 {
 	eNoError = 0,       ///< 没有错误
+    eErrorNullPtr = 1,  ///< 空指针错误
     eErrorNullInput,    ///< 输入参数是空指针
     eErrorInvalidParam, ///< 非法输入参数
     eErrorNotInit,      ///< 没有初始化

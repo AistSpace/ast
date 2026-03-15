@@ -52,6 +52,9 @@ public:
     /// @return 错误码
     err_t getInterval(TimeInterval& interval) const;
 
+    /// @brief 获取运动时间间隔句柄
+    SharedPtr<EventInterval>& getIntervalHandle() { return interval_; }
+
     /// @brief 设置运动时间间隔
     void setInterval(EventInterval* interval) { interval_ = interval;}
 

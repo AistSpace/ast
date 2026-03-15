@@ -1,9 +1,9 @@
 ///
-/// @file      AxesBodyTOD.hpp
+/// @file      BuiltinAxesRegistry.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-06
+/// @date      2026-03-05
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -21,35 +21,33 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstCore/AxesBodyRelated.hpp"
+#include "AstCore/Axes.hpp"
+#include <unordered_map>
+#include <string>
+
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup Coordinate
+    @addtogroup Spice
     @{
 */
 
-class CelestialBody;
-class BodyOrientation;
-class AxesBodyTOD;
-using PAxesBodyTOD = AxesBodyTOD*;
-using HAxesBodyTOD = SharedPtr<AxesBodyTOD>;
-
-/// @brief  天体TOD轴系
-class AST_CORE_API AxesBodyTOD : public AxesBodyRelated
+/// @brief      内建轴系注册器
+class AST_CORE_API BuiltinAxesRegistry
 {
 public:
-    static PAxesBodyTOD New(CelestialBody* body);
-    static HAxesBodyTOD NewShared(CelestialBody* body);
-    
-    using AxesBodyRelated::AxesBodyRelated;
-    Axes* getParent() const override;
-    err_t getTransform(const TimePoint& tp, Rotation& rotation) const override;
-    err_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const override;
+    BuiltinAxesRegistry() = default;
+    BuiltinAxesRegistry(bool whetherInit);
+    ~BuiltinAxesRegistry() = default;
+    static BuiltinAxesRegistry& Instance();
+
+    PAxes getAxes(StringView name) const;
+    err_t init();
+protected:
+    using AxesMap = std::unordered_map<std::string, HAxes>;
+    AxesMap axesMap_;
 };
-
-
 
 /*! @} */
 

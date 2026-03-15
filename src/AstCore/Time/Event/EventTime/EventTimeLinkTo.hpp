@@ -1,12 +1,12 @@
 ///
-/// @file      StateKeplerian.hpp
+/// @file      EventTimeLinkTo.hpp
 /// @brief     
 /// @details   
 /// @author    axel
 /// @date      2026-03-14
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
-/// ast项目（https://github.com/space-ast/ast）
+/// SpaceAST项目（https://github.com/space-ast/ast）
 /// 本项目基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
 /// 许可证全文请见：
@@ -21,8 +21,8 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstCore/State.hpp"
-#include "AstCore/OrbitElement.hpp"
+#include "AstCore/EventTime.hpp"
+#include <string>
 
 AST_NAMESPACE_BEGIN
 
@@ -31,18 +31,19 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-/// @brief 开普勒轨道根数状态
-class AST_CORE_API StateKeplerian final: public State
+class AST_CORE_API EventTimeLinkTo : public EventTime
 {
 public:
-    static StateKeplerian* New();
+    static EventTimeLinkTo* New(StringView name, StringView absolutePath);
 
-    StateKeplerian() = default;
-    ~StateKeplerian() override = default;
-
-    void setState(const ModOrbElem& modOrbElem){ modOrbElem_ = modOrbElem; }
+    EventTimeLinkTo(StringView name, StringView absolutePath);
+    EventTimeLinkTo() = default;
+    ~EventTimeLinkTo() = default;
+public:
+    err_t getTime(TimePoint& tp) const override;
 protected:
-    ModOrbElem modOrbElem_;    ///< 轨道根数
+    std::string name_;
+    std::string absolutePath_;
 };
 
 /*! @} */

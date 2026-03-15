@@ -23,13 +23,20 @@
 #include "AstUtil/BKVParser.hpp"
 #include "AstUtil/BKVItemView.hpp"
 #include "AstUtil/Literals.hpp"
+#include "AstUtil/MathDegree.hpp"
 #include "AstSim/Mover.hpp"
 #include "AstSim/MotionTwoBody.hpp"
 #include "AstCore/StateKeplerian.hpp"
 #include "AstCore/StateCartesian.hpp"
 #include "AstCore/EventIntervalExplicit.hpp"
+#include "AstCore/EventIntervalLinkTo.hpp"
+#include "AstCore/EventIntervalFallback.hpp"
+#include "AstCore/EventTimeLinkTo.hpp"
 #include "AstCore/EventTimeExplicit.hpp"
-#include "AstCore/EventTime.hpp"
+#include "AstCore/EventTimeFallback.hpp"
+#include "AstCore/RunTime.hpp"
+#include "AstCore/BuiltinAxes.hpp"
+#include "AstCore/CelestialBody.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -102,6 +109,8 @@ err_t _aLoadEventIntervalImplicit(BKVParser& parser, SharedPtr<EventInterval>& e
         {
             if(aEqualsIgnoreCase(item.value(), "EVENTINTERVAL")){
                 // @todo 怎么处理 EVENTINTERVAL_LINKTO 类型??
+                // 目前这里的实现是空的
+                eventInterval = EventIntervalLinkTo::New(name, absolutePath);
             }else{
                 // @todo 处理异常情况
             }
@@ -147,64 +156,112 @@ err_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInte
     return eNoError;
 }
 
-err_t _aLoadTwoBody(BKVParser& parser, MotionTwoBody& motionProfile)
+struct VehiclePathData
+{
+    SharedPtr<CelestialBody> centralBody_;
+    bool storeEphemeris_ = false;
+    bool smoothInterp_ = false;
+};
+
+err_t _aLoadTwoBody(BKVParser& parser, const VehiclePathData& vehiclePathData, MotionTwoBody& motionProfile)
 {
     BKVItemView item;
     BKVParser::EToken token;
     SharedPtr<StateKeplerian> stateKeplerian = StateKeplerian::New();
+    struct {
+        SharedPtr<EventTime> ephemSmartEpoch_;
+        SharedPtr<EventInterval> ephemSmartInterval_;
+        TimePoint ephemEpoch_;
+        TimePoint startTime_;
+        TimePoint stopTime_;
+        bool useScenTime_ = false;
+        double radiusOfPerigee_ = 0.0;
+        double inclination_ = 0.0;
+        double eccentricity_ = 0.0;
+        double argOfPerigee_ = 0.0;
+        double rightAscension_ = 0.0;
+        double trueAnomaly_ = 0.0;
+        double timeStep_ = 0.0;
+        std::string orbElemCoordSys_;
+        SharedPtr<Axes> orbElemCoordAxes_;
+        std::string propagationCoordSys_;
+        SharedPtr<Axes> propagationCoordAxes_;
+        int displayCoordType_ = 0;
+        std::string displayCoordSys_;
+        SharedPtr<Axes> displayCoordAxes_;
+        /* ellipseType_ */
+    } data;
     do{
         token = parser.getNext(item);
         if(token == BKVParser::eKeyValue)
         {
             if(aEqualsIgnoreCase(item.key(), "EphemSmartEpoch")){
-                if(err_t rc = _aLoadEventTime(parser, stateKeplerian->getStateEpochHandler()))
+                if(err_t rc = _aLoadEventTime(parser, data.ephemSmartEpoch_))
                     return rc;
             }else if(aEqualsIgnoreCase(item.key(), "EphemSmartInterval")){
-                // @todo 处理星历智能间隔
+                if(err_t rc = _aLoadEventInterval(parser, data.ephemSmartInterval_))
+                    return rc;
             }else if(aEqualsIgnoreCase(item.key(), "EphemEpoch")){
                 // @note 这不是与EphemSmartEpoch重复了吗？为什么有两个地方都有值，应该以哪个为准?
-                // @todo 处理星历历元
+                data.ephemEpoch_ = TimePoint::Parse(item.value());
             }else if(aEqualsIgnoreCase(item.key(), "StartTime")){
-                // @todo 处理开始时间
+                // @note 这里也和EphemSmartInterval重复了，但是这里才有实际数据
+                data.startTime_ = TimePoint::Parse(item.value());
             }else if(aEqualsIgnoreCase(item.key(), "StopTime")){
-                // @todo 处理结束时间
+                // @note 这里也和EphemSmartInterval重复了，但是这里才有实际数据
+                data.stopTime_ = TimePoint::Parse(item.value());
             }else if(aEqualsIgnoreCase(item.key(), "UseScenTime")){
-                // @todo 处理是否使用场景时间
+                data.useScenTime_ = item.value().toBool();
             }else if(aEqualsIgnoreCase(item.key(), "RadiusOfPerigee")){
-                // @todo 处理近地点半径
+                data.radiusOfPerigee_ = item.value().toDouble();
             }else if(aEqualsIgnoreCase(item.key(), "Inclination")){
-                // @todo 处理倾角
+                data.inclination_ = deg2rad(item.value().toDouble());
             }else if(aEqualsIgnoreCase(item.key(), "Eccentricity")){
-                // @todo 处理偏心率
+                data.eccentricity_ = item.value().toDouble();
             }else if(aEqualsIgnoreCase(item.key(), "ArgOfPerigee")){
-                // @todo 处理近地点幅角
+                data.argOfPerigee_ = deg2rad(item.value().toDouble());
             }else if(aEqualsIgnoreCase(item.key(), "RightAscension")){
-                // @todo 处理升交点赤经
+                data.rightAscension_ = deg2rad(item.value().toDouble());
             }else if(aEqualsIgnoreCase(item.key(), "TrueAnomaly")){
-                // @todo 处理真近点角
+                data.trueAnomaly_ = deg2rad(item.value().toDouble());
             }else if(aEqualsIgnoreCase(item.key(), "TimeStep")){
-                // @todo 处理时间步长
+                data.timeStep_ = item.value().toDouble();
             }else if(aEqualsIgnoreCase(item.key(), "OrbElemCoordSys")){
-                // @todo 处理轨道元素坐标系
+                data.orbElemCoordSys_ = item.value().toString();
+                data.orbElemCoordAxes_ = aGetAxes(data.orbElemCoordSys_);
             }else if(aEqualsIgnoreCase(item.key(), "PropagationCoordSys")){
-                // @todo 处理预报坐标系
+                data.propagationCoordSys_ = item.value().toString();
+                data.propagationCoordAxes_ = aGetAxes(data.propagationCoordSys_);
             }else if(aEqualsIgnoreCase(item.key(), "DisplayCoordType")){
-                // @todo 处理显示坐标类型
+                data.displayCoordType_ = item.value().toInt();
             }else if(aEqualsIgnoreCase(item.key(), "DisplayCoordSys")){
-                // @todo 处理显示坐标系
+                data.displayCoordSys_ = item.value().toString();
+                data.displayCoordAxes_ = aGetAxes(data.displayCoordSys_);
             }else if(aEqualsIgnoreCase(item.key(), "EllipseType")){
                 // @todo 这是什么??? 椭圆类型是什么意思???
             }
         }else if(token == BKVParser::eBlockBegin){
             if(aEqualsIgnoreCase(item.value(), "DisplayFlags")){
                 // @todo 处理显示标志
-            }else if(aEqualsIgnoreCase(item.value(), "EVENT")){
-                // @todo 处理事件
-            }else if(aEqualsIgnoreCase(item.value(), "EVENTINTERVAL")){
-                // @todo 处理事件间隔
             }
         }else if(token == BKVParser::eBlockEnd){
             if(aEqualsIgnoreCase(item.value(), "TwoBody")){
+                ModOrbElem modOrbElem;
+                modOrbElem.rp() = data.radiusOfPerigee_;
+                modOrbElem.e() = data.eccentricity_;
+                modOrbElem.i() = data.inclination_;
+                modOrbElem.raan() = data.rightAscension_;
+                modOrbElem.argper() = data.argOfPerigee_;
+                modOrbElem.trueA() = data.trueAnomaly_;
+
+                auto explicitEpoch = EventTimeExplicit::New(data.ephemEpoch_);
+                auto explicitInterval = EventIntervalExplicit::New(data.startTime_, data.stopTime_);
+                auto frame = vehiclePathData.centralBody_->makeFrame(data.orbElemCoordAxes_);
+                stateKeplerian->setFrame(frame);
+                stateKeplerian->setState(modOrbElem);
+                stateKeplerian->setStateEpoch(EventTimeFallback::New(data.ephemSmartEpoch_, explicitEpoch));
+                motionProfile.setInitialState(stateKeplerian);
+                motionProfile.setInterval(EventIntervalFallback::New(data.ephemSmartInterval_, explicitInterval));
                 return eNoError;
             }
         }
@@ -212,13 +269,13 @@ err_t _aLoadTwoBody(BKVParser& parser, MotionTwoBody& motionProfile)
     return eNoError;
 }
 
-err_t _aLoadTwoBody(BKVParser& parser, Mover& mover)
+err_t _aLoadTwoBody(BKVParser& parser, const VehiclePathData& vehiclePathData, Mover& mover)
 {
     PMotionTwoBody motionProfile = MotionTwoBody::New();
     if(!motionProfile){
         return eErrorInvalidParam;
     }
-    if(err_t rc = _aLoadTwoBody(parser, *motionProfile)){
+    if(err_t rc = _aLoadTwoBody(parser, vehiclePathData, *motionProfile)){
         return rc;
     }
     mover.setMotionProfile(motionProfile);
@@ -275,20 +332,24 @@ err_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
+    VehiclePathData data;
     do{
         token = parser.getNext(item);
         if(token == BKVParser::eKeyValue)
         {
             if(aEqualsIgnoreCase(item.key(), "CentralBody")){
-                // @todo 处理中心天体
+                data.centralBody_ = aGetBody(item.value());
             }else if(aEqualsIgnoreCase(item.key(), "StoreEphemeris")){
-                // @todo 处理是否存储星历
+                data.storeEphemeris_ = item.value().toBool();
             }else if(aEqualsIgnoreCase(item.key(), "SmoothInterp")){
-                // @todo 处理平滑插值
+                data.smoothInterp_ = item.value().toBool();
             }
         }else if(token == BKVParser::eBlockBegin){
             if(aEqualsIgnoreCase(item.value(), "TwoBody")){
-                if(err_t rc = _aLoadTwoBody(parser, mover)){
+                if(!data.centralBody_){
+                    data.centralBody_ = aGetDefaultBody();
+                }
+                if(err_t rc = _aLoadTwoBody(parser, data, mover)){
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "PassDefn")){

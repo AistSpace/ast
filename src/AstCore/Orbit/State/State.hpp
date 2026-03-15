@@ -34,35 +34,65 @@ AST_NAMESPACE_BEGIN
 
 
 /// @brief 航天器状态
+/// @details 参考了orekit的Orbit类
+/// 但是这个可能不只是限制于轨道状态，所以取名为State
 class AST_CORE_API State: public Object
 {
 public:
     State() = default;
     ~State() override = default;
+public:
 
+public:
+    /// @brief 获取参考坐标系
+    Frame* getFrame() const{ return frame_.get(); }
+
+    /// @brief 设置参考坐标系
+    void setFrame(Frame* frame){ frame_ = frame; }
+
+    /// @brief 改变参考坐标系
+    /// @param frame 新的参考坐标系
+    /// @return err_t 错误码
+    err_t changeFrame(Frame* frame);
+
+    /// @brief 设置状态历元时间
+    /// @param stateEpoch 状态历元时间
     void setStateEpoch(EventTime* stateEpoch);
 
+    /// @brief 设置状态历元时间
+    /// @param stateEpoch 状态历元时间
     void setStateEpoch(const TimePoint& stateEpoch);
 
+    /// @brief 获取状态历元时间
+    /// @param stateEpoch 状态历元时间
+    /// @return err_t 错误码
     err_t getStateEpoch(TimePoint& stateEpoch) const;
 
-    SharedPtr<EventTime>& getStateEpochHandler(){ return stateEpoch_; }
+    /// @brief 获取状态历元时间句柄
+    /// @return SharedPtr<EventTime>& 状态历元时间句柄
+    SharedPtr<EventTime>& getStateEpochHandle(){ return stateEpoch_; }
 
+    /// @brief 获取引力常数
+    /// @return double 引力常数
+    double getGM() const { return gm_; }
+
+    /// @brief 设置引力常数
+    /// @param gm 引力常数
+    void setGM(double gm){ gm_ = gm; }
+
+public:
     void setCoordEpoch(EventTime* coordEpoch);
 
     void setCoordEpoch(const TimePoint& coordEpoch);
 
     err_t getCoordEpoch(TimePoint& coordEpoch) const;
 
-    SharedPtr<EventTime>& getCoordEpochHandler(){ return coordEpoch_; }
+    bool  getUseCoordEpoch() const;
 
-    bool  getUseCoordEpoch() const{ return useCoordEpoch_; }
-
-    void  setUseCoordEpoch(bool useCoordEpoch){ useCoordEpoch_ = useCoordEpoch; }
+    void  setUseCoordEpoch(bool useCoordEpoch);
 protected:
-    bool                    useCoordEpoch_;        ///< 是否使用坐标历元
     SharedPtr<Frame>        frame_;                ///< 参考坐标系
-    SharedPtr<EventTime>    coordEpoch_;           ///< 坐标历元时间
+    double                  gm_{0};                ///< 引力常数
     SharedPtr<EventTime>    stateEpoch_;           ///< 状态历元时间
 };
 

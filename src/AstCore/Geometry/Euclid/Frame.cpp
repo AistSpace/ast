@@ -19,9 +19,69 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "Frame.hpp"
+#include "AstCore/Point.hpp"
+#include "AstCore/Axes.hpp"
+#include "AstCore/CelestialBody.hpp"
+#include "AstMath/Transform.hpp"
+#include "AstMath/KinematicTransform.hpp"
 
 AST_NAMESPACE_BEGIN
 
+CelestialBody *Frame::getBody()
+{
+    if(auto origin = getOrigin())
+    {
+        return origin->toBody();
+    }
+    return nullptr;
+}
 
+Frame *Frame::getParent() const
+{
+    auto origin = getOrigin();
+    if(origin == nullptr)
+        return origin->getFrame();
+    return nullptr;
+}
+
+err_t Frame::getTransform(const TimePoint &tp, Transform &transform) const
+{
+    auto parent = getParent();
+    if(!parent)
+        return eErrorInvalidParam;
+    if(auto origin = getOrigin())
+    {
+        err_t rc = origin->getPosIn(parent, tp, transform.getTranslation());
+        if(rc != 0)
+            return rc;
+    }
+    if(auto axes = getAxes())
+    {
+        err_t rc = axes->getTransformFrom(parent->getAxes(), tp, transform.getRotation());
+        if(rc != 0)
+            return rc;
+    }
+    return eNoError;
+}
+
+err_t Frame::getTransform(const TimePoint &tp, KinematicTransform &transform) const
+{
+    auto parent = getParent();
+    if(!parent)
+        return eErrorInvalidParam;
+    if(auto origin = getOrigin())
+    {
+        err_t rc = origin->getPosVelIn(parent, tp, transform.getTranslation(), transform.getVelocity());
+        if(rc != 0)
+            return rc;
+    }
+    if(auto axes = getAxes())
+    {
+        err_t rc = axes->getTransformFrom(parent->getAxes(), tp, transform.getKinematicRotation());
+        if(rc != 0)
+            return rc;
+    }
+    return eNoError;
+}
 
 AST_NAMESPACE_END

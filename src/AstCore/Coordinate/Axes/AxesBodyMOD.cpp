@@ -23,7 +23,18 @@
 #include "AstCore/BodyOrientation.hpp"
 #include "AstMath/KinematicRotation.hpp"
 
+
 AST_NAMESPACE_BEGIN
+
+PAxesBodyMOD AxesBodyMOD::New(CelestialBody *body)
+{
+    return new AxesBodyMOD(body);
+}
+
+HAxesBodyMOD AxesBodyMOD::NewShared(CelestialBody *body)
+{
+    return new AxesBodyMOD(body);
+}
 
 Axes *AxesBodyMOD::getParent() const
 {

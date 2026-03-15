@@ -38,6 +38,9 @@ AST_CORE_CAPI SolarSystem* aGetSolarSystem();
 /// @brief 获取指定名称的天体
 AST_CORE_CAPI CelestialBody* aGetBody(StringView name);
 
+/// @brief 获取默认天体
+AST_CORE_CAPI CelestialBody* aGetDefaultBody();
+
 /// @brief 获取水星
 AST_CORE_CAPI CelestialBody* aGetMercury();
 

@@ -27,7 +27,7 @@
 
 AST_USING_NAMESPACE
 
-const std::string kSatelliteFile = "test/Satellite.sa";
+const std::string kSatelliteFile = "data/Test/Satellite.sa";
 
 TEST(MoverLoaderTest, LoadSatellite)
 {

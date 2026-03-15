@@ -1,12 +1,12 @@
 ///
-/// @file      SpiceAxesRegister.hpp
+/// @file      EventIntervalLinkTo.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-05
+/// @date      2026-03-14
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
-/// ast项目（https://github.com/space-ast/ast）
+/// SpaceAST项目（https://github.com/space-ast/ast）
 /// 本项目基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
 /// 许可证全文请见：
@@ -21,32 +21,29 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstCore/Axes.hpp"
-#include <unordered_map>
+#include "AstCore/EventInterval.hpp"
 #include <string>
-
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup Spice
+    @addtogroup 
     @{
 */
 
-/// @brief      SPICE 轴系注册器
-class AST_SPICE_API SpiceAxesRegistry
+class AST_CORE_API EventIntervalLinkTo : public EventInterval
 {
 public:
-    SpiceAxesRegistry() = default;
-    SpiceAxesRegistry(bool whetherInit);
-    ~SpiceAxesRegistry() = default;
-    static SpiceAxesRegistry& Instance();
+    static EventIntervalLinkTo* New(StringView name, StringView absolutePath);
 
-    PAxes findAxes(StringView name) const;
-    err_t init();
+    EventIntervalLinkTo(StringView name, StringView absolutePath);
+    EventIntervalLinkTo() = default;
+    ~EventIntervalLinkTo() = default;
+public:
+    err_t getInterval(TimeInterval& interval) const override;
 protected:
-    using AxesMap = std::unordered_map<std::string, HAxes>;
-    AxesMap axesMap_;
+    std::string name_;
+    std::string absolutePath_;
 };
 
 /*! @} */

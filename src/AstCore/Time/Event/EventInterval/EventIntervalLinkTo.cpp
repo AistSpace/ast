@@ -1,5 +1,5 @@
 ///
-/// @file      EventIntervalExplicit.cpp
+/// @file      EventIntervalLinkTo.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,37 +18,27 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "EventIntervalExplicit.hpp"
+#include "EventIntervalLinkTo.hpp"
+#include "AstUtil/StringView.hpp"
 
 AST_NAMESPACE_BEGIN
 
-PEventIntervalExplicit EventIntervalExplicit::New(const TimeInterval& interval)
+EventIntervalLinkTo *EventIntervalLinkTo::New(StringView name, StringView absolutePath)
 {
-   return new EventIntervalExplicit(interval);
+    return new EventIntervalLinkTo(name, absolutePath);
 }
 
-PEventIntervalExplicit EventIntervalExplicit::New(const TimePoint &startTime, const TimePoint &stopTime)
-{
-    return New(TimeInterval(startTime, stopTime));
-}
-
-HEventIntervalExplicit EventIntervalExplicit::MakeShared(const TimeInterval& interval)
-{
-   return new EventIntervalExplicit(interval);
-}
-
-EventIntervalExplicit::EventIntervalExplicit(const TimeInterval& interval)
-    : interval_(interval)
+EventIntervalLinkTo::EventIntervalLinkTo(StringView name, StringView absolutePath)
+    : name_(name)
+    , absolutePath_(absolutePath)
 {
 }
 
-
-err_t EventIntervalExplicit::getInterval(TimeInterval &interval) const
+err_t EventIntervalLinkTo::getInterval(TimeInterval &interval) const
 {
-    interval = interval_;
-    return eNoError;
+    // @todo 实现链接到其他时间区间的逻辑
+    return -1;
 }
 
 AST_NAMESPACE_END
-
 

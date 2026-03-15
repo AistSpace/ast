@@ -60,9 +60,9 @@ public:
     FrameAssembly(Point* origin, Axes* axes);
     ~FrameAssembly() = default;
 
-    Point* getOrigin() const override { return origin_.get(); }
-    Axes* getAxes() const override { return axes_.get(); }
-    Frame* getParent() const override;
+    Point* getOrigin() const final { return origin_.get(); }
+    Axes* getAxes() const final { return axes_.get(); }
+    Frame* getParent() const final;
     err_t getTransform(const TimePoint&tp, Transform& transform) const override;
     err_t getTransform(const TimePoint&tp, KinematicTransform& transform) const override;
 protected:

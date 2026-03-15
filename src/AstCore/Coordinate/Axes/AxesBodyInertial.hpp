@@ -32,11 +32,18 @@ AST_NAMESPACE_BEGIN
 
 class CelestialBody;
 class BodyOrientation;
+class AxesBodyInertial;
+using PAxesBodyInertial = AxesBodyInertial*;
+using HAxesBodyInertial = SharedPtr<AxesBodyInertial>;
+
 
 /// @brief  天体惯性轴系
 class AxesBodyInertial : public AxesBodyRelated
 {
 public:
+    static PAxesBodyInertial New(CelestialBody* body);
+    static HAxesBodyInertial NewShared(CelestialBody* body);
+
     using AxesBodyRelated::AxesBodyRelated;
     Axes* getParent() const override;
     err_t getTransform(const TimePoint& tp, Rotation& rotation) const override;

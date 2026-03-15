@@ -20,6 +20,8 @@
 
 #include "BuiltinAxes.hpp"
 #include "AstCore/FrameTransform.hpp"
+#include "AstCore/BuiltinAxesRegistry.hpp"
+#include "AstUtil/StringView.hpp"
 #include "AstMath/Rotation.hpp"
 #include "AstMath/KinematicRotation.hpp"
 
@@ -64,5 +66,11 @@ _AST_IMPL_AXES_INERTIAL(EclipB1950, B1950)
 _AST_IMPL_AXES_INERTIAL(DE140, J2000)
 _AST_IMPL_AXES_INERTIAL(DE142, J2000)
 _AST_IMPL_AXES_INERTIAL(DE143, J2000)
+
+Axes *aGetAxes(StringView name)
+{
+    return BuiltinAxesRegistry::Instance().getAxes(name);
+}
+
 
 AST_NAMESPACE_END

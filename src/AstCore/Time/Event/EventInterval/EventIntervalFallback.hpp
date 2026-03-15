@@ -1,5 +1,5 @@
 ///
-/// @file      EventIntervalExplicit.hpp
+/// @file      EventIntervalFallback.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -22,7 +22,6 @@
 
 #include "AstGlobal.h"
 #include "AstCore/EventInterval.hpp"
-#include "AstCore/TimeInterval.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -31,23 +30,24 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class EventIntervalExplicit;
-using PEventIntervalExplicit = EventIntervalExplicit*;
-using HEventIntervalExplicit = SharedPtr<EventIntervalExplicit>;
-
-class AST_CORE_API EventIntervalExplicit final: public EventInterval
+/// @brief  支持fallback的事件时间段
+/// @details 当第一个EventInterval计算失败时，使用第二个EventInterval的值
+class AST_CORE_API EventIntervalFallback : public EventInterval
 {
 public:
-    static PEventIntervalExplicit New(const TimeInterval& interval);
-    static PEventIntervalExplicit New(const TimePoint& startTime, const TimePoint& stopTime);
-    static HEventIntervalExplicit MakeShared(const TimeInterval& interval);
-    
-    EventIntervalExplicit() = default;
-    EventIntervalExplicit(const TimeInterval& interval);
-    ~EventIntervalExplicit() = default;
+    static EventIntervalFallback* New(EventInterval* primary, EventInterval* fallback);
+    static SharedPtr<EventIntervalFallback> MakeShared(EventInterval* primary, EventInterval* fallback);
+
+    EventIntervalFallback() = default;
+    EventIntervalFallback(EventInterval* primary, EventInterval* fallback);
+    ~EventIntervalFallback() override = default;
+
     err_t getInterval(TimeInterval& interval) const override;
+    void setPrimary(EventInterval* primary);
+    void setFallback(EventInterval* fallback);
 protected:
-    TimeInterval interval_;     ///< 事件时间段
+    SharedPtr<EventInterval> primary_{};       ///< 主要事件时间段
+    SharedPtr<EventInterval> fallback_{};      ///< 后备事件时间段
 };
 
 /*! @} */

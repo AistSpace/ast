@@ -61,21 +61,25 @@ public:
     Frame() = default;
     ~Frame() override= default;
 
+    /// @brief 获取当前坐标系中心对应的天体
+    /// @return 天体
+    CelestialBody* getBody();
+
     /// @brief 获取当前坐标系的父坐标系
     /// @return 父坐标系
-    virtual Frame* getParent() const = 0;
+    virtual Frame* getParent() const;
     
     /// @brief 获取当前坐标系相对于父坐标系的变换
     /// @param tp 时间点
     /// @param transform 输出的变换
     /// @return 错误码
-    virtual err_t getTransform(const TimePoint& tp, Transform& transform) const = 0;
+    virtual err_t getTransform(const TimePoint& tp, Transform& transform) const;
     
     /// @brief 获取当前坐标系相对于父坐标系的运动学变换
     /// @param tp 时间点
     /// @param transform 输出的运动学变换
     /// @return 错误码
-    virtual err_t getTransform(const TimePoint& tp, KinematicTransform& transform) const = 0;
+    virtual err_t getTransform(const TimePoint& tp, KinematicTransform& transform) const;
     
     /// @brief 获取当前坐标系的轴系。
     /// @return 轴系
