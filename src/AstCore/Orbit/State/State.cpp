@@ -23,6 +23,7 @@
 #include "AstCore/FrameWithEpoch.hpp"
 #include "AstCore/FrameAssembly.hpp"
 #include "AstCore/OrbitElement.hpp"
+#include "AstCore/CelestialBody.hpp"
 #include "AstMath/KinematicTransform.hpp"
 
 
@@ -69,6 +70,19 @@ err_t State::getStateEpoch(TimePoint &stateEpoch) const
     return stateEpoch_->getTime(stateEpoch);
 }
 
+CelestialBody *State::getBody() const
+{
+    if(frame_)
+        return frame_->getBody();
+    return nullptr;
+}
+
+double State::getBodyRadius() const
+{
+    if(auto body = getBody())
+        return body->getRadius();
+    return 0.0;
+}
 
 #if 0 
 

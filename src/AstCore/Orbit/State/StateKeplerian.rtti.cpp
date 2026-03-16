@@ -1,12 +1,12 @@
 ///
-/// @file      CoordTransform.hpp
+/// @file      StateKeplerian.rtti.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-05
+/// @date      2026-03-16
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
-/// ast项目（https://github.com/space-ast/ast）
+/// SpaceAST项目（https://github.com/space-ast/ast）
 /// 本项目基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
 /// 许可证全文请见：
@@ -18,26 +18,15 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#pragma once
-
-#include "AstGlobal.h"
-#include "LocalOrbitFrame.hpp"
-#include "PlanetFrame.hpp"
-#include "EarthFrame.hpp"
-#include "MoonFrame.hpp"
-#include "InertialFrame.hpp"
-#include "AxesTransform.hpp"
-#include "FrameTransform.hpp"
+#include "StateKeplerian.hpp"
+#include "AstUtil/Class.hpp"
+#include "AstUtil/ReflectAPI.hpp"
 
 AST_NAMESPACE_BEGIN
 
-/*!
-    @addtogroup Coordinate
-    @{
-*/
-
-
-
-/*! @} */
+void StateKeplerian_ClassInit(Class* cls)
+{
+    // cls->addProperty("SemimajorAxis", );
+}
 
 AST_NAMESPACE_END

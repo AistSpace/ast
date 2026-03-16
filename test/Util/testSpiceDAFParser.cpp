@@ -26,6 +26,7 @@
 #include "AstTest/Test.hpp"
 #include "AstUtil/Environment.hpp"
 #include <iostream>
+#include <clocale>
 
 #ifndef AST_NO_CSPICE
 #include "SpiceUsr.h"
@@ -36,6 +37,7 @@ AST_USING_NAMESPACE
 
 TEST(SpiceSPKParser, getComment)
 {
+    setlocale(LC_ALL, ".UTF-8");
     if(aIsCI()) GTEST_SKIP();
     SpiceSPKParser parser(aDataDirGet() + "/Test/kernels/spk/de430.bsp");
     parser.printComment();

@@ -22,6 +22,8 @@
  
 #include "AstGlobal.h"
 #include "AstCore/Vector.hpp"
+#include "AstCore/OrbitParam.hpp"
+#include "AstUtil/Constants.h"
 #include <string>
  
 AST_NAMESPACE_BEGIN
@@ -114,24 +116,71 @@ public:
     double argper_;     ///<近拱点角
     double trueA_;      ///<真近点角
 public:
-    /// @brief 计算平均角速度变化率
-    double getMeanMotion(double gm) const {return sqrt(gm / pow(getA(), 3));}
-    
     /// @brief 计算半长轴
-    double getA() const {return rp_ / (1 - e_);}
+    double getSMA() const {return rp_ / (1 - e_);}
+    
+    /// @brief 计算平均角速度
+    double getMeanMotion(double gm) const {return sqrt(gm / pow(getA(), 3));}
+
+    /// @brief 计算周期
+    double getPeriod(double gm) const {return kTwoPI / getMeanMotion(gm);}
+
+    /// @brief 计算远拱点半径
+    double getApoRad() const{return aPeriRadToApoRad(getPeriRad(), getEcc());}
+
+    /// @brief 计算远拱点高度
+    double getApoAlt(double bodyRadius) const{ return aPeriRadToApoAlt(getPeriRad(), getEcc(), bodyRadius);}
+
+    /// @brief 计算近拱点半径
+    double getPeriRad() const {return rp_;}
+
+    /// @brief 计算近拱点高度
+    double getPeriAlt(double bodyRadius) const{ return getPeriRad() - bodyRadius;}
+
+    /// @brief 计算偏心率
+    double getEcc() const {return e_;}
+
+    /// @brief 计算轨道倾角
+    double getInc() const {return i_;}
+
+    /// @brief 计算升交点赤经
+    double getRAAN() const {return raan_;}
+
+    /// @brief 计算近拱点幅角
+    double getArgPeri() const {return argper_;}
+
+    /// @brief 计算真近点角
+    double getTrueAnomaly() const {return trueA_;}
+
+    /// @brief 计算平近点角
+    double getMeanAnomaly() const {return aTrueToMean(getTrueAnomaly(), getEcc());}
+
+    /// @brief 计算偏近点角
+    double getEccAnomaly() const {return aTrueToEcc(getTrueAnomaly(), getEcc());}
+
+    /// @brief 计算纬度幅角
+    double getArgLat() const {return aTrueToArgLat(getTrueAnomaly(), getArgPeri());}
+
+    /// @brief 计算过近地点后经过的时间
+    double getTimePastPeri(double gm) const{return aTrueToTimePastPeri(getTrueAnomaly(), getSMA(), getEcc(), gm);}
+
+    /// @brief 计算过升交点后经过的时间
+    double getTimePastAscNode(double gm) const{return aTrueToTimePastAscNode(getTrueAnomaly(), getArgPeri(), getSMA(), getEcc(), gm);}
+    
+public:
+    /// @brief 计算半长轴
+    double getA() const {return getSMA();}
 
     /// @brief 计算半通径
     double getP() const {return rp_ * (1 + e_);}
 
-    double getE() const {return e_;}
+    double getE() const {return getEcc();}
 
-    double getI() const {return i_;}
+    double getI() const {return getInc();}
 
-    double getRAAN() const {return raan_;}
+    double getArgPer() const {return getArgPeri();}
 
-    double getArgPer() const {return argper_;}
-
-    double getTrueA() const {return trueA_;}
+    double getTrueA() const {return getTrueAnomaly();}
 
     /// @brief 转换为字符串
     AST_CORE_API

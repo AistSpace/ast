@@ -81,6 +81,13 @@ public:
     /// @return SharedPtr<EventTime>& 状态历元时间句柄
     SharedPtr<EventTime>& getStateEpochHandle(){ return stateEpoch_; }
 
+    /// @brief 获取天体
+    CelestialBody* getBody() const;
+
+    /// @brief 获取天体半径
+    /// @return double 天体半径
+    double getBodyRadius() const;
+
     /// @brief 获取引力常数
     /// @return double 引力常数
     double getGM() const { return gm_; }
@@ -88,6 +95,8 @@ public:
     /// @brief 设置引力常数
     /// @param gm 引力常数
     void setGM(double gm){ gm_ = gm; }
+
+
 
 #if 0 
 // 这些与历元坐标系定义相关的接口增加了类设计的复杂度

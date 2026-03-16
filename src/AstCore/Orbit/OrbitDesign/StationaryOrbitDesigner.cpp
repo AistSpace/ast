@@ -88,12 +88,12 @@ err_t StationaryOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
        
         const double ecc = 0.0;
         const double inc = 0.0;
-        double n = aSMajAxToMeanMotn(a, gm);
+        double n = aSMAToMeanMotion(a, gm);
         double p = kTwoPI / ( n + aArgPerRate(gm, j2, rb, a, ecc, inc));
         return p - period;
     };
     SolverStats stats{};
-    double atwobody = aPeriodToSMajAx(period, gm);
+    double atwobody = aPeriodToSMA(period, gm);
     double a = brentq(func, 1, atwobody * 1.5, 1e-12, 1e-12, 100, stats);
 
     if(stats.error_num == 0){

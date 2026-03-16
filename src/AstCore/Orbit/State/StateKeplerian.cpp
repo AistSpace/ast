@@ -42,5 +42,92 @@ err_t StateKeplerian::setState(const CartState &state)
     return aCartToModOrbElem(state.pos(), state.vel(), getGM(), modOrbElem_);
 }
 
+double StateKeplerian::getMeanMotion() const
+{
+    return modOrbElem_.getMeanMotion(getGM());
+}
+
+double StateKeplerian::getPeriod() const
+{
+    return modOrbElem_.getPeriod(getGM());
+}
+
+double StateKeplerian::getApoAlt() const
+{
+    return modOrbElem_.getApoAlt(getBodyRadius());
+}
+
+double StateKeplerian::getApoRad() const
+{
+    return modOrbElem_.getApoRad();
+}
+
+double StateKeplerian::getPeriAlt() const
+{
+    return modOrbElem_.getPeriAlt(getBodyRadius());
+}
+
+double StateKeplerian::getPeriRad() const
+{
+    return modOrbElem_.getPeriRad();
+}
+
+double StateKeplerian::getEcc() const
+{
+    return modOrbElem_.getEcc();
+}
+
+double StateKeplerian::getInc() const
+{
+    return modOrbElem_.getInc();
+}
+
+double StateKeplerian::getRAAN() const
+{
+    return modOrbElem_.getRAAN();
+}
+
+
+double StateKeplerian::getSMA() const
+{
+    return modOrbElem_.getSMA();
+}
+
+double StateKeplerian::getArgPeri() const
+{
+    return modOrbElem_.getArgPeri();
+}
+
+double StateKeplerian::getTrueAnomaly() const
+{
+    return modOrbElem_.getTrueAnomaly();
+}
+
+double StateKeplerian::getMeanAnomaly() const
+{
+    return modOrbElem_.getMeanAnomaly();
+}
+
+double StateKeplerian::getEccAnomaly() const
+{
+    return modOrbElem_.getEccAnomaly();
+}
+
+double StateKeplerian::getArgLat() const
+{
+    return modOrbElem_.getArgLat();
+}
+
+double StateKeplerian::getTimePastPeri() const
+{
+    return modOrbElem_.getTimePastPeri(getGM());
+}
+
+double StateKeplerian::getTimePastAscNode() const
+{
+    return modOrbElem_.getTimePastAscNode(getGM());
+}
+
 AST_NAMESPACE_END
+
 

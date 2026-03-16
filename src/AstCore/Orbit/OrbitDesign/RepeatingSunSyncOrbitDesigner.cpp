@@ -59,7 +59,7 @@ err_t RepeatingSunSyncOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
         D = 1;
     const double expectDeltaLon = D * kTwoPI / N;                 // 期望每一圈的经度变化角度
     double approxMeanMotion = bodyAngleVel * kTwoPI / expectDeltaLon;
-    double approxA = aMeanMotnToSMajAx(approxMeanMotion, gm);
+    double approxA = aMeanMotionToSMA(approxMeanMotion, gm);
     const double bodyMeanMotion = kTwoPI / (kEarthSiderealYear * kSecondsPerDay);
     auto func = [gm, j2, rb, ecc, expectDeltaLon, bodyMeanMotion, bodyAngleVel](double a) -> double
     {
@@ -107,7 +107,7 @@ err_t RepeatingSunSyncOrbitDesigner::setApproxAltitude(double alt)
     // const double inc = inclination_;
     // (void) j2; (void) ecc; (void) inc;
     // double meanMotion = aMeanArgLatRate(gm, j2, rb, a, ecc, inc);
-    double meanMotion = aSMajAxToMeanMotn(a, gm);
+    double meanMotion = aSMAToMeanMotion(a, gm);
     approxRevsPerDay_ = meanMotion * kSecondsPerDay / kTwoPI;
     return eNoError;
 }
@@ -122,7 +122,7 @@ err_t RepeatingSunSyncOrbitDesigner::setApproxRevsPerDay(double revsPerDay)
     double gm = getGM();
     double rb = getBodyRadius();
     double meanMotion = revsPerDay * kTwoPI / kSecondsPerDay;
-    double a = aMeanMotnToSMajAx(meanMotion, gm);
+    double a = aMeanMotionToSMA(meanMotion, gm);
     double alt = a - rb;
     if(alt < 0)
     {

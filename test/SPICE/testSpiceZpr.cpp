@@ -34,6 +34,7 @@
 #include <cstdio>
 #include <array>
 #include <vector>
+#include <clocale>
 
 #ifndef AST_NO_CSPICE
 #include "SpiceUsr.h"
@@ -68,6 +69,7 @@ TEST(SpiceZpr, appndi)
 
 TEST(SpiceZpr, axisar)
 {
+    setlocale(LC_ALL, ".UTF-8");
     static const struct {
         double axis[3];
         double angle;

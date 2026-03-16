@@ -26,6 +26,7 @@
 #include "AstUtil/FileSystem.hpp"
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/ParseFormat.hpp"
+#include "AstUtil/IO.hpp"
 #include <array>
 #include <cstdio>
 #include <memory>
@@ -83,7 +84,7 @@ err_t AEP8Data::load(StringView filepath)
         delete[] data_;
     data_ = nullptr;
 
-    ScopedPtr<FILE> fp{fopen(filepath.data(), "rb")};
+    ScopedPtr<FILE> fp{ast_fopen(filepath.data(), "rb")};
     if (!fp)
     {
         return eErrorInvalidFile;
