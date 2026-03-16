@@ -143,5 +143,5 @@ var searchData=
   ['multiply_140',['multiply',['../classast_1_1Unit.html#a0f7366299cdf6a6875300179457b57ee',1,'ast::Unit']]],
   ['multitype_141',['Multitype',['../unionMultitype.html',1,'']]],
   ['mxm_142',['mxm',['../group__Spice.html#ga186312adcab3a6cc586e7affaa431d69',1,'ast']]],
-  ['mxvg_143',['mxvg',['../group__A__CLINKAGE__BEGIN.html#ga9eb15e905fc60681ba3f67aab5183492',1,'ast']]]
+  ['mxvg_143',['mxvg',['../group__Spice.html#gad90e6b55870d2a694400ebc5c8c6548f',1,'ast']]]
 ];

@@ -9,7 +9,7 @@ var classast_1_1LatLonAlt =
     [ "setAltitude", "classast_1_1LatLonAlt.html#a8aabf8b1347f6e2da80456734beb80ac", null ],
     [ "setLatitude", "classast_1_1LatLonAlt.html#a2659a98f04f229f371cc27b80f7f9f0c", null ],
     [ "setLongitude", "classast_1_1LatLonAlt.html#ade46da7eae11e857ffff036f3f0848e2", null ],
-    [ "__pad0__", "classast_1_1LatLonAlt.html#af1a53ec17a5b83bbcbfa26ed4836e803", null ],
+    [ "__pad0__", "classast_1_1LatLonAlt.html#a48ff2a5f58cd88bb902d570a976ef1d5", null ],
     [ "alt_", "classast_1_1LatLonAlt.html#a40510d15372aac6b3d24755b4000513b", null ],
     [ "lon_", "classast_1_1LatLonAlt.html#a7fa10bbee112efd2c4d00329d11015e0", null ]
 ];

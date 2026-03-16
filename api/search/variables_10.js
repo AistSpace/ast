@@ -12,9 +12,10 @@ var searchData=
   ['position_5f_9',['position_',['../classast_1_1StateCartesian.html#afeba0b73730d61f4c36ba1c3f8dd89be',1,'ast::StateCartesian::position_'],['../classast_1_1Facility.html#a868168f02636059e6932733adb551817',1,'ast::Facility::position_']]],
   ['positionderivative_5f_10',['positionDerivative_',['../classast_1_1BlockMotion.html#a2d9cd111f95d6dcb19bf48907ee08680',1,'ast::BlockMotion']]],
   ['positions_5f_11',['positions_',['../classast_1_1EphemerisLagrangeVar.html#afa75a1734a4ede9835cb08490b78eaae',1,'ast::EphemerisLagrangeVar']]],
-  ['prenul_12',['prenul',['../structast_1_1DAF__FileRecord.html#a67f959bd98d9af4fd5297bd4e17c4925',1,'ast::DAF_FileRecord']]],
-  ['prev_13',['prev',['../structast_1_1DAF__SummaryRecords.html#a871379b7c3dd3b1b37a043f028fad978',1,'ast::DAF_SummaryRecords::prev'],['../structast_1_1DAF__SPKSummaryRecords.html#a30b79ae6a343e644e3fcdc4d8f1ece50',1,'ast::DAF_SPKSummaryRecords::prev']]],
-  ['primary_5f_14',['primary_',['../classast_1_1EventIntervalFallback.html#a92b6746ef8d3023b6222366038c6412e',1,'ast::EventIntervalFallback::primary_'],['../classast_1_1EventTimeFallback.html#a91508407059ecadfd2d10db6f9c52da4',1,'ast::EventTimeFallback::primary_']]],
-  ['propagationframe_5f_15',['propagationFrame_',['../classast_1_1MotionBasic.html#abda0cbc13f0c9372b37005a92d96b0a0',1,'ast::MotionBasic']]],
-  ['pstnul_16',['pstnul',['../structast_1_1DAF__FileRecord.html#ad311bd512ed672bee5193b0e30fef442',1,'ast::DAF_FileRecord']]]
+  ['positiontype_5f_12',['positionType_',['../classast_1_1StateKeplerian.html#ad3165abd763f4fc1958ec7627284f86c',1,'ast::StateKeplerian']]],
+  ['prenul_13',['prenul',['../structast_1_1DAF__FileRecord.html#a67f959bd98d9af4fd5297bd4e17c4925',1,'ast::DAF_FileRecord']]],
+  ['prev_14',['prev',['../structast_1_1DAF__SummaryRecords.html#a871379b7c3dd3b1b37a043f028fad978',1,'ast::DAF_SummaryRecords::prev'],['../structast_1_1DAF__SPKSummaryRecords.html#a30b79ae6a343e644e3fcdc4d8f1ece50',1,'ast::DAF_SPKSummaryRecords::prev']]],
+  ['primary_5f_15',['primary_',['../classast_1_1EventIntervalFallback.html#a92b6746ef8d3023b6222366038c6412e',1,'ast::EventIntervalFallback::primary_'],['../classast_1_1EventTimeFallback.html#a91508407059ecadfd2d10db6f9c52da4',1,'ast::EventTimeFallback::primary_']]],
+  ['propagationframe_5f_16',['propagationFrame_',['../classast_1_1MotionBasic.html#abda0cbc13f0c9372b37005a92d96b0a0',1,'ast::MotionBasic']]],
+  ['pstnul_17',['pstnul',['../structast_1_1DAF__FileRecord.html#ad311bd512ed672bee5193b0e30fef442',1,'ast::DAF_FileRecord']]]
 ];

@@ -1,6 +1,8 @@
 var classast_1_1State =
 [
     [ "changeFrame", "classast_1_1State.html#ad08440cb85f0cf4edd68df1ead93be1b", null ],
+    [ "getBody", "classast_1_1State.html#aa066e1e7aacd7a4c93bae7545583f5a7", null ],
+    [ "getBodyRadius", "classast_1_1State.html#a161e81e5f505a6964d8a65968ac915c8", null ],
     [ "getFrame", "classast_1_1State.html#a628c0db7ea416872ac42ae00ce911c03", null ],
     [ "getGM", "classast_1_1State.html#a142606ad98b1f918b1e6434d6ef1f5d4", null ],
     [ "getState", "classast_1_1State.html#a056853f3ef1f2b1c9094a8b286389295", null ],
