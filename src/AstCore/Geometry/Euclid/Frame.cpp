@@ -45,8 +45,7 @@ double Frame::getGM()
 
 Frame *Frame::getParent() const
 {
-    auto origin = getOrigin();
-    if(origin == nullptr)
+    if(auto origin = getOrigin())
         return origin->getFrame();
     return nullptr;
 }
