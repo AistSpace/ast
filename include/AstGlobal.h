@@ -321,6 +321,9 @@ class Axes;
 class Point;
 class CelestialBody;
 
+class EventTime;
+class EventInterval;
+
 class Identifier;           ///< 标识符
 class BKVParser;            ///< BKV解析器
 

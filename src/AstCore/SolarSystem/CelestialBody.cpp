@@ -155,6 +155,56 @@ err_t CelestialBody::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel
     return getPosVelICRF(tp, pos, vel);
 }
 
+HFrame CelestialBody::makeEpochFrame(Axes *sourceAxes, const TimePoint &tp, Axes *reference) const
+{
+    return makeFrame(aMakeEpochAxes(sourceAxes, tp, reference));
+}
+
+HFrame CelestialBody::makeEpochFrame(Axes *sourceAxes, EventTime *time, Axes *reference) const
+{
+    return makeFrame(aMakeEpochAxes(sourceAxes, time, reference));
+}
+
+HAxes CelestialBody::makeAxesMOE(const TimePoint &tp) const
+{
+    return makeEpochAxes(getAxesMOD(), tp, getEpochAxesReference());
+}
+
+HAxes CelestialBody::makeAxesMOE(EventTime *time) const
+{
+    return makeEpochAxes(getAxesMOD(), time, getEpochAxesReference());
+}
+
+HAxes CelestialBody::makeAxesTOE(const TimePoint &tp) const
+{
+    return makeEpochAxes(getAxesTOD(), tp, getEpochAxesReference());
+}
+
+HAxes CelestialBody::makeAxesTOE(EventTime *time) const
+{
+    return makeEpochAxes(getAxesTOD(), time, getEpochAxesReference());
+}
+
+HFrame CelestialBody::makeFrameMOE(const TimePoint &tp) const
+{
+    return makeFrame(makeAxesMOE(tp));
+}
+
+HFrame CelestialBody::makeFrameMOE(EventTime *time) const
+{
+    return makeFrame(makeAxesMOE(time));
+}
+
+HFrame CelestialBody::makeFrameTOE(const TimePoint &tp) const
+{
+    return makeFrame(makeAxesTOE(tp));
+}
+
+HFrame CelestialBody::makeFrameTOE(EventTime *time) const
+{
+    return makeFrame(makeAxesTOE(time));
+}
+
 HFrame CelestialBody::makeFrame(Axes *axes) const
 {
     return new FrameAssembly(getPointCenter(), axes);
@@ -188,6 +238,15 @@ HFrame CelestialBody::makeFrameJ2000() const
 HFrame CelestialBody::makeFrameICRF() const
 {
     return makeFrame(aAxesICRF());
+}
+
+Axes *CelestialBody::getEpochAxesReference() const
+{
+    if(this->isEarth()){
+        return aAxesJ2000();
+    }else{
+        return this->getAxesInertial();
+    }
 }
 
 err_t CelestialBody::loadGravityModel(StringView model)

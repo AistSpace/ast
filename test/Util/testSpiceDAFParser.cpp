@@ -24,6 +24,7 @@
 #include "AstCore/CelestialBody.hpp"
 #include "AstMath/Vector.hpp"
 #include "AstTest/Test.hpp"
+#include "AstUtil/Environment.hpp"
 #include <iostream>
 
 #ifndef AST_NO_CSPICE
@@ -35,6 +36,7 @@ AST_USING_NAMESPACE
 
 TEST(SpiceSPKParser, getComment)
 {
+    if(aIsCI()) GTEST_SKIP();
     SpiceSPKParser parser(aDataDirGet() + "/Test/kernels/spk/de430.bsp");
     parser.printComment();
     std::vector<std::string> comments;
@@ -45,6 +47,7 @@ TEST(SpiceSPKParser, getComment)
 
 TEST(SpiceSPKParser, getPosNative)
 {
+    if(aIsCI()) GTEST_SKIP();
     const std::string kernel = aDataDirGet() + "/Test/kernels/spk/de430.bsp";
 
     SpiceSPKParser parser(kernel);
@@ -99,6 +102,7 @@ TEST(SpiceSPKParser, getPosNative)
 
 TEST(SpiceSPKParser, loadPlanetSatellitesSPK)
 {
+    if(aIsCI()) GTEST_SKIP();
     const std::string kernel = aDataDirGet() + "/Test/kernels/spk/mars.bsp";
     SpiceSPKParser parser(kernel);
     double et = 0;

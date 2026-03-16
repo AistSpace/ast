@@ -13,8 +13,7 @@
 int main() {
     setlocale(LC_ALL, ".UTF-8");
     AST_USING_NAMESPACE
-    // if(aIsCI())
-    //     return 0;
+    if(aIsCI()) return 0;
 
 #ifndef AST_NO_CSPICE
     std::cout << "=== SPICE 计算火星相对于地球位置示例 ===" << std::endl;

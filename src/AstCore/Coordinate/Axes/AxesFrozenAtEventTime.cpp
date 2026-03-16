@@ -21,6 +21,7 @@
 
 #include "AxesFrozenAtEventTime.hpp"
 #include "AstCore/EventTimeExplicit.hpp"
+#include "AstMath/KinematicRotation.hpp"
 
 
 AST_NAMESPACE_BEGIN
@@ -54,7 +55,7 @@ err_t AxesFrozenAtEventTime::getTransform(const TimePoint &tp, Rotation &rotatio
     TimePoint epoch;
     err_t rc = getEpoch(epoch);
     if(rc) return rc;
-    return aAxesTransform(axes_, referenceAxes_, epoch, rotation);
+    return aAxesTransform(referenceAxes_, axes_, epoch, rotation);
 }
 
 err_t AxesFrozenAtEventTime::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
@@ -63,7 +64,8 @@ err_t AxesFrozenAtEventTime::getTransform(const TimePoint &tp, KinematicRotation
     TimePoint epoch;
     err_t rc = getEpoch(epoch);
     if(rc) return rc;
-    return aAxesTransform(axes_, referenceAxes_, epoch, rotation);
+    rotation.setRotationRate(Vector3d::Zero());
+    return aAxesTransform(referenceAxes_, axes_, epoch, rotation.getRotation());
 }
 
 err_t AxesFrozenAtEventTime::getEpoch(TimePoint& epoch) const

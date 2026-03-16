@@ -32,6 +32,7 @@
 #include "AstCore/AxesBodyTOD.hpp"
 #include "AstCore/Point.hpp"
 #include "AstCore/Frame.hpp"
+#include "AstCore/AxesAPI.hpp"
 #include "AstUtil/SharedPtr.hpp"
 #include "AstUtil/ScopedPtr.hpp"
 
@@ -146,6 +147,61 @@ public:
     /// @brief 获取天体TOD轴系
     Axes* getAxesTOD() const { return axesTOD_.get(); }
 
+public:
+    /// @brief 创建新的历元轴系
+    /// @param  sourceAxes  - 源轴系
+    /// @param  tp          - 时间点
+    /// @param  reference   - 参考轴系
+    /// @retval             - 新的历元轴系
+    HAxes makeEpochAxes(Axes* sourceAxes, const TimePoint& tp, Axes* reference) const{return aMakeEpochAxes(sourceAxes, tp, reference);}
+
+    /// @brief 创建新的历元轴系
+    /// @param  sourceAxes  - 源轴系
+    /// @param  time        - 时间点
+    /// @param  reference   - 参考轴系
+    /// @retval             - 新的历元轴系
+    HAxes makeEpochAxes(Axes* sourceAxes, EventTime* time, Axes* reference) const{return aMakeEpochAxes(sourceAxes, time, reference);}
+
+
+    /// @brief 创建新的历元坐标系
+    /// @param  sourceAxes  - 源轴系
+    /// @param  tp          - 时间点
+    /// @param  reference   - 参考轴系
+    /// @retval             - 新的历元坐标系
+    HFrame makeEpochFrame(Axes* sourceAxes, const TimePoint& tp, Axes* reference) const;
+
+    /// @brief 创建新的历元坐标系
+    /// @param  sourceAxes  - 源轴系
+    /// @param  time        - 时间点
+    /// @param  reference   - 参考轴系
+    /// @retval             - 新的历元坐标系
+    HFrame makeEpochFrame(Axes* sourceAxes, EventTime* time, Axes* reference) const;
+
+    /// @brief 创建新的历元平赤道轴系
+    HAxes makeAxesMOE(const TimePoint& tp) const;
+
+    /// @brief 创建新的历元平赤道轴系
+    HAxes makeAxesMOE(EventTime* time) const;
+
+    /// @brief 创建新的历元真赤道轴系
+    HAxes makeAxesTOE(const TimePoint& tp) const;
+
+    /// @brief 创建新的历元真赤道轴系
+    HAxes makeAxesTOE(EventTime* time) const;
+
+    /// @brief 创建新的历元平赤道坐标系
+    HFrame makeFrameMOE(const TimePoint& tp) const;
+
+    /// @brief 创建新的历元平赤道坐标系
+    HFrame makeFrameMOE(EventTime* time) const;
+
+    /// @brief 创建新的历元真赤道坐标系
+    HFrame makeFrameTOE(const TimePoint& tp) const;
+
+    /// @brief 创建新的历元真赤道坐标系
+    HFrame makeFrameTOE(EventTime* time) const;
+
+public:
     /// @brief 创建新的天体坐标系
     /// @param  axes        - 轴系
     HFrame makeFrame(Axes* axes) const;
@@ -156,10 +212,10 @@ public:
     /// @brief 创建新的天体固连坐标系
     HFrame makeFrameFixed() const;
 
-    /// @brief 创建新的天体MOD坐标系
+    /// @brief 创建新的天体MOD坐标系(天体平赤道系)
     HFrame makeFrameMOD() const;
 
-    /// @brief 创建新的天体TOD坐标系
+    /// @brief 创建新的天体TOD坐标系(天体真赤道系)
     HFrame makeFrameTOD() const;
 
     /// @brief 创建新的天体J2000坐标系
@@ -167,7 +223,9 @@ public:
 
     /// @brief 创建新的天体ICRF坐标系
     HFrame makeFrameICRF() const;
+protected:
 
+    Axes* getEpochAxesReference() const;
 protected:
     /// @brief 获取Jn项
     double getJn(int n) const { return gravityField_.getJn(n); }

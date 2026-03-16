@@ -5,12 +5,15 @@
 #include <stdio.h>
 #include "SpiceUsr.h"
 #include "AstCore/RunTime.hpp"
+#include "AstUtil/Environment.hpp"
 
 
 AST_USING_NAMESPACE
 
 int main()
 {
+    if(aIsCI()) return 0;
+
     /*
     Constants
     */

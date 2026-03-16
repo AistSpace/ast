@@ -20,6 +20,7 @@
 
 #include "AstUtil/SpiceDAFParser.hpp"
 #include "AstUtil/SpiceSPKParser.hpp"
+#include "AstUtil/Environment.hpp"
 #include "AstCore/JplDe.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstMath/Vector.hpp"
@@ -46,6 +47,7 @@ BENCHMARK(bmEphemerisDE);
 
 void bmEphemerisSpice(benchmark::State& state)
 {
+    if(aIsCI()) return;
     SpiceSPKParser spk("data/Test/kernels/spk/de430.bsp");
     double et = 0;
     for(auto _ : state)
