@@ -15,6 +15,7 @@ var classast_1_1KinematicTransform =
     [ "setIdentity", "classast_1_1KinematicTransform.html#a6344d5f781425a6328a79c251608edb4", null ],
     [ "setKinematicRotation", "classast_1_1KinematicTransform.html#aebef38defa3115ed88ac05785478d680", null ],
     [ "setTransform", "classast_1_1KinematicTransform.html#a28fd7aee564b35e720d744e5691723fe", null ],
+    [ "setTranslation", "classast_1_1KinematicTransform.html#a0d8c5f5d309b3814955ef1a3b788af25", null ],
     [ "setVelocity", "classast_1_1KinematicTransform.html#af8b934ffef3e84c4ca45b57d1f51ac1d", null ],
     [ "transformPositionVelocity", "classast_1_1KinematicTransform.html#a8355d6da115d3a9fca0cae40a6f48d02", null ],
     [ "transformPositionVelocity", "classast_1_1KinematicTransform.html#ae7c9d77e4e8c3a7ca268db3525676a21", null ]

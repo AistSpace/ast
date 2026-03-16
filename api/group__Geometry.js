@@ -16,6 +16,7 @@ var group__Geometry =
     [ "ast::Frame", "classast_1_1Frame.html", [
       [ "getAxes", "classast_1_1Frame.html#afdd735ece565c5f8d73ecbc7cea7aef5", null ],
       [ "getBody", "classast_1_1Frame.html#ab93a40aa12f5406970000533bdfd5f55", null ],
+      [ "getGM", "classast_1_1Frame.html#a75cdb18ded3668482a8b4345d3ef99ab", null ],
       [ "getOrigin", "classast_1_1Frame.html#adbc66bb7ac1cf9771f20a4a52ef6ec30", null ],
       [ "getParent", "classast_1_1Frame.html#ac178bb15cbece03791ebc6e35bfd9b9e", null ],
       [ "getTransform", "classast_1_1Frame.html#a08cccc79b1dba696d6b96a87b03b3cd2", null ],
@@ -33,8 +34,8 @@ var group__Geometry =
       [ "getPosVelIn", "classast_1_1Point.html#ab6f271aaabd7a51f9dce2754cc156a16", null ],
       [ "toBody", "classast_1_1Point.html#a3b46eeef9261d63d8418c7c3d1784e74", null ]
     ] ],
-    [ "ast::HAxes", "group__Geometry.html#gaaab907250c9aee1581ceb9b9b6889fc1", null ],
-    [ "ast::PAxes", "group__Geometry.html#ga6794e41c122afa91d068db80969a7e23", null ],
+    [ "ast::HAxes", "group__Geometry.html#ga52cecc91460a5123ebbfa0a7a4c7b0f9", null ],
+    [ "ast::PAxes", "group__Geometry.html#ga13750cf42b939efb70ef39e92c5eade8", null ],
     [ "ast::aAxesTransform", "group__Geometry.html#ga4b00e9af0b74fe6473523d20b6c86b6c", null ],
     [ "ast::aAxesTransform", "group__Geometry.html#ga040e91ddf3f1c730e3d25f9dd27f9798", null ],
     [ "ast::aAxesTransform", "group__Geometry.html#gad752a4457ffba86f9908e0bc3a5a7939", null ],

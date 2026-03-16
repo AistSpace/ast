@@ -1,5 +1,8 @@
 var NAVTREEINDEX13 =
 {
+"classast_1_1Lexer.html#ab1519087cd861bd99b3eac612c96a567a57ec03304a0e34cc3d3462223751ce72":[0,2,29,0,48],
+"classast_1_1Lexer.html#ab1519087cd861bd99b3eac612c96a567a57ecef62dd9e292782d7b51dbac0e8f9":[0,2,29,0,19],
+"classast_1_1Lexer.html#ab1519087cd861bd99b3eac612c96a567a5912a3ee9346204d5ec3e2f7a9d664fd":[0,2,29,0,51],
 "classast_1_1Lexer.html#ab1519087cd861bd99b3eac612c96a567a61bd0b3675efb3ec95aefa7377c6c137":[0,2,29,0,46],
 "classast_1_1Lexer.html#ab1519087cd861bd99b3eac612c96a567a64ecd4fe5d65e0d11d020aa20c2b3006":[0,2,29,0,3],
 "classast_1_1Lexer.html#ab1519087cd861bd99b3eac612c96a567a70bcae76a7867c4eb2fcdee77faf4fee":[0,2,29,0,4],
@@ -246,8 +249,5 @@ var NAVTREEINDEX13 =
 "classast_1_1NutationSeries.html#ac900f1e0c44058b4ba50aba67a9ce24b":[2,0,0,222,1],
 "classast_1_1NutationSeries.html#ac900f1e0c44058b4ba50aba67a9ce24b":[3,0,0,221,1],
 "classast_1_1NutationSeries.html#acb06c074179b2189105972ccb894510b":[2,0,0,222,6],
-"classast_1_1NutationSeries.html#acb06c074179b2189105972ccb894510b":[3,0,0,221,6],
-"classast_1_1NutationTerm.html":[2,0,0,223],
-"classast_1_1NutationTerm.html":[3,0,0,222],
-"classast_1_1ODEEventDetector.html":[0,1,4,7]
+"classast_1_1NutationSeries.html#acb06c074179b2189105972ccb894510b":[3,0,0,221,6]
 };

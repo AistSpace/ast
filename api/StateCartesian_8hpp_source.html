@@ -111,25 +111,37 @@ $(function(){initNavTree('StateCartesian_8hpp_source.html',''); initResizable(tr
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>AST_NAMESPACE_BEGIN</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classast_1_1StateCartesian.html">   35</a></span><span class="keyword">class </span>AST_CORE_API <a class="code hl_class" href="classast_1_1StateCartesian.html">StateCartesian</a>: <span class="keyword">public</span> <a class="code hl_class" href="classast_1_1State.html">State</a></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_class" href="classast_1_1StateCartesian.html">StateCartesian</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_class" href="classast_1_1StateCartesian.html">~StateCartesian</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classast_1_1StateCartesian.html#afeba0b73730d61f4c36ba1c3f8dd89be">   41</a></span>    Vector3d     <a class="code hl_variable" href="classast_1_1StateCartesian.html#afeba0b73730d61f4c36ba1c3f8dd89be">position_</a>;    </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classast_1_1StateCartesian.html#ad001055c665422a0e0f2b9ec9b1fff6b">   42</a></span>    Vector3d     <a class="code hl_variable" href="classast_1_1StateCartesian.html#ad001055c665422a0e0f2b9ec9b1fff6b">velocity_</a>;    </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">class </span>StateCartesian;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">using </span>PStateCartesian = StateCartesian*;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">using </span>HStateCartesian = SharedPtr&lt;StateCartesian&gt;;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classast_1_1StateCartesian.html">   38</a></span><span class="keyword">class </span>AST_CORE_API <a class="code hl_class" href="classast_1_1StateCartesian.html">StateCartesian</a> final: <span class="keyword">public</span> <a class="code hl_class" href="classast_1_1State.html">State</a></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">static</span> <a class="code hl_class" href="classast_1_1StateCartesian.html">PStateCartesian</a> New();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">static</span> <a class="code hl_class" href="classast_1_1SharedPtr.html">HStateCartesian</a> MakeShared();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_class" href="classast_1_1StateCartesian.html">StateCartesian</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_class" href="classast_1_1StateCartesian.html">~StateCartesian</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    err_t <a class="code hl_function" href="classast_1_1State.html#a056853f3ef1f2b1c9094a8b286389295">getState</a>(<a class="code hl_class" href="classast_1_1CartState.html">CartState</a>&amp; state) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    err_t <a class="code hl_function" href="classast_1_1State.html#afc1187577a0f31807ffc4c8b02174786">setState</a>(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1CartState.html">CartState</a>&amp; state) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classast_1_1StateCartesian.html#afeba0b73730d61f4c36ba1c3f8dd89be">   50</a></span>    Vector3d     position_{};    </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classast_1_1StateCartesian.html#ad001055c665422a0e0f2b9ec9b1fff6b">   51</a></span>    Vector3d     velocity_{};    </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
 </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>AST_NAMESPACE_END</div>
-<div class="ttc" id="aclassast_1_1StateCartesian_html"><div class="ttname"><a href="classast_1_1StateCartesian.html">ast::StateCartesian</a></div><div class="ttdoc">笛卡尔状态(直角坐标)</div><div class="ttdef"><b>定义</b> StateCartesian.hpp:36</div></div>
-<div class="ttc" id="aclassast_1_1StateCartesian_html_ad001055c665422a0e0f2b9ec9b1fff6b"><div class="ttname"><a href="classast_1_1StateCartesian.html#ad001055c665422a0e0f2b9ec9b1fff6b">ast::StateCartesian::velocity_</a></div><div class="ttdeci">Vector3d velocity_</div><div class="ttdoc">速度向量</div><div class="ttdef"><b>定义</b> StateCartesian.hpp:42</div></div>
-<div class="ttc" id="aclassast_1_1StateCartesian_html_afeba0b73730d61f4c36ba1c3f8dd89be"><div class="ttname"><a href="classast_1_1StateCartesian.html#afeba0b73730d61f4c36ba1c3f8dd89be">ast::StateCartesian::position_</a></div><div class="ttdeci">Vector3d position_</div><div class="ttdoc">位置向量</div><div class="ttdef"><b>定义</b> StateCartesian.hpp:41</div></div>
-<div class="ttc" id="aclassast_1_1State_html"><div class="ttname"><a href="classast_1_1State.html">ast::State</a></div><div class="ttdoc">航天器状态</div><div class="ttdef"><b>定义</b> State.hpp:40</div></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>AST_NAMESPACE_END</div>
+<div class="ttc" id="aclassast_1_1CartState_html"><div class="ttname"><a href="classast_1_1CartState.html">ast::CartState</a></div><div class="ttdoc">直角坐标</div><div class="ttdef"><b>定义</b> OrbitElement.hpp:43</div></div>
+<div class="ttc" id="aclassast_1_1SharedPtr_html"><div class="ttname"><a href="classast_1_1SharedPtr.html">ast::SharedPtr</a></div><div class="ttdoc">共享指针</div><div class="ttdef"><b>定义</b> SharedPtr.hpp:33</div></div>
+<div class="ttc" id="aclassast_1_1StateCartesian_html"><div class="ttname"><a href="classast_1_1StateCartesian.html">ast::StateCartesian</a></div><div class="ttdoc">笛卡尔状态(直角坐标)</div><div class="ttdef"><b>定义</b> StateCartesian.hpp:39</div></div>
+<div class="ttc" id="aclassast_1_1State_html"><div class="ttname"><a href="classast_1_1State.html">ast::State</a></div><div class="ttdoc">航天器状态</div><div class="ttdef"><b>定义</b> State.hpp:41</div></div>
+<div class="ttc" id="aclassast_1_1State_html_a056853f3ef1f2b1c9094a8b286389295"><div class="ttname"><a href="classast_1_1State.html#a056853f3ef1f2b1c9094a8b286389295">ast::State::getState</a></div><div class="ttdeci">virtual err_t getState(CartState &amp;state) const =0</div><div class="ttdoc">获取状态</div></div>
+<div class="ttc" id="aclassast_1_1State_html_afc1187577a0f31807ffc4c8b02174786"><div class="ttname"><a href="classast_1_1State.html#afc1187577a0f31807ffc4c8b02174786">ast::State::setState</a></div><div class="ttdeci">virtual err_t setState(const CartState &amp;state)=0</div><div class="ttdoc">设置状态</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

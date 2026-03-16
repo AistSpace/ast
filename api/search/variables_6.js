@@ -11,9 +11,10 @@ var searchData=
   ['frame_5f_8',['frame_',['../classast_1_1State.html#afd76bc624bd9bfdcd1d21937afeff909',1,'ast::State::frame_'],['../classast_1_1EphemerisLagrangeVar.html#a414a413a20b740331cb6a665cc981302',1,'ast::EphemerisLagrangeVar::frame_']]],
   ['free_9',['free',['../structast_1_1DAF__FileRecord.html#a2374ff9dcca78746eb384c4775ec8251',1,'ast::DAF_FileRecord']]],
   ['fromunit_5f_10',['fromUnit_',['../classast_1_1UnitConverter.html#a66f9c0d3b47f576a3fba2f7eb10f2839',1,'ast::UnitConverter']]],
-  ['ft_11',['ft',['../Unit_8cpp.html#a888ceef2cfae6e68b8c7382fd2a5fc0c',1,'ast::units']]],
-  ['ftpstr_12',['ftpstr',['../structast_1_1DAF__FileRecord.html#a48013fc3382eb397aaac6413bae182da',1,'ast::DAF_FileRecord']]],
-  ['func_5f_13',['func_',['../classast_1_1OpBin.html#a095ff73c0517e1c317c5058276414366',1,'ast::OpBin::func_'],['../classast_1_1OpUnary.html#adb7db8f24f36c8ab0855fceba528353f',1,'ast::OpUnary::func_']]],
-  ['function_14',['function',['../classast_1_1MessageLogContext.html#ad382c95f9cf23ea66c95459d2f5f5028',1,'ast::MessageLogContext']]],
-  ['fward_15',['fward',['../structast_1_1DAF__FileRecord.html#a192e1ddbc2228d64a713d97462863803',1,'ast::DAF_FileRecord']]]
+  ['frozenaxes_5f_11',['frozenAxes_',['../classast_1_1FrameWithEpoch.html#ad984ab43f8387873bcbadb15f4aff256',1,'ast::FrameWithEpoch']]],
+  ['ft_12',['ft',['../Unit_8cpp.html#a888ceef2cfae6e68b8c7382fd2a5fc0c',1,'ast::units']]],
+  ['ftpstr_13',['ftpstr',['../structast_1_1DAF__FileRecord.html#a48013fc3382eb397aaac6413bae182da',1,'ast::DAF_FileRecord']]],
+  ['func_5f_14',['func_',['../classast_1_1OpBin.html#a095ff73c0517e1c317c5058276414366',1,'ast::OpBin::func_'],['../classast_1_1OpUnary.html#adb7db8f24f36c8ab0855fceba528353f',1,'ast::OpUnary::func_']]],
+  ['function_15',['function',['../classast_1_1MessageLogContext.html#ad382c95f9cf23ea66c95459d2f5f5028',1,'ast::MessageLogContext']]],
+  ['fward_16',['fward',['../structast_1_1DAF__FileRecord.html#a192e1ddbc2228d64a713d97462863803',1,'ast::DAF_FileRecord']]]
 ];

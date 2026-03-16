@@ -2,6 +2,7 @@ var classast_1_1Frame =
 [
     [ "getAxes", "classast_1_1Frame.html#afdd735ece565c5f8d73ecbc7cea7aef5", null ],
     [ "getBody", "classast_1_1Frame.html#ab93a40aa12f5406970000533bdfd5f55", null ],
+    [ "getGM", "classast_1_1Frame.html#a75cdb18ded3668482a8b4345d3ef99ab", null ],
     [ "getOrigin", "classast_1_1Frame.html#adbc66bb7ac1cf9771f20a4a52ef6ec30", null ],
     [ "getParent", "classast_1_1Frame.html#ac178bb15cbece03791ebc6e35bfd9b9e", null ],
     [ "getTransform", "classast_1_1Frame.html#a08cccc79b1dba696d6b96a87b03b3cd2", null ],
