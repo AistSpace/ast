@@ -30,19 +30,28 @@ AST_NAMESPACE_BEGIN
     @addtogroup 
     @{
 */
+class StateKeplerian;
+using PStateKeplerian = StateKeplerian*;
+using HStateKeplerian = SharedPtr<StateKeplerian>;
+
+
 
 /// @brief 开普勒轨道根数状态
 class AST_CORE_API StateKeplerian final: public State
 {
 public:
-    static StateKeplerian* New();
+    static PStateKeplerian New();
+    static HStateKeplerian MakeShared();
 
     StateKeplerian() = default;
     ~StateKeplerian() override = default;
-
+public:
+    err_t getState(CartState& state) const override;
+    err_t setState(const CartState& state) override;
+public:
     void setState(const ModOrbElem& modOrbElem){ modOrbElem_ = modOrbElem; }
 protected:
-    ModOrbElem modOrbElem_;    ///< 轨道根数
+    ModOrbElem modOrbElem_{};    ///< 轨道根数
 };
 
 /*! @} */

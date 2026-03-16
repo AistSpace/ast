@@ -36,6 +36,13 @@ CelestialBody *Frame::getBody()
     return nullptr;
 }
 
+double Frame::getGM()
+{
+    if(auto body = getBody())
+        return body->getGM();
+    return 0.0;
+}
+
 Frame *Frame::getParent() const
 {
     auto origin = getOrigin();

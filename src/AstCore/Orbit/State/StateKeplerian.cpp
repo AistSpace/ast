@@ -22,11 +22,25 @@
 
 AST_NAMESPACE_BEGIN
 
-StateKeplerian *StateKeplerian::New()
+PStateKeplerian StateKeplerian::New()
 {
     return new StateKeplerian();
 }
 
+HStateKeplerian StateKeplerian::MakeShared()
+{
+    return new StateKeplerian();
+}
+
+err_t StateKeplerian::getState(CartState &state) const
+{
+    return aModOrbElemToCart(modOrbElem_, getGM(), state.pos(), state.vel());
+}
+
+err_t StateKeplerian::setState(const CartState &state)
+{
+    return aCartToModOrbElem(state.pos(), state.vel(), getGM(), modOrbElem_);
+}
 
 AST_NAMESPACE_END
 

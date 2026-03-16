@@ -32,6 +32,7 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class CartState;
 
 /// @brief 航天器状态
 /// @details 参考了orekit的Orbit类
@@ -42,13 +43,21 @@ public:
     State() = default;
     ~State() override = default;
 public:
+    /// @brief 获取状态
+    /// @param state 状态
+    /// @return err_t 错误码
+    virtual err_t getState(CartState& state) const = 0;
 
+    /// @brief 设置状态
+    /// @param state 状态
+    /// @return err_t 错误码
+    virtual err_t setState(const CartState& state) = 0;
 public:
     /// @brief 获取参考坐标系
     Frame* getFrame() const{ return frame_.get(); }
 
     /// @brief 设置参考坐标系
-    void setFrame(Frame* frame){ frame_ = frame; }
+    void setFrame(Frame* frame);
 
     /// @brief 改变参考坐标系
     /// @param frame 新的参考坐标系
@@ -80,16 +89,27 @@ public:
     /// @param gm 引力常数
     void setGM(double gm){ gm_ = gm; }
 
-public:
-    void setCoordEpoch(EventTime* coordEpoch);
+#if 0 
+// 这些与历元坐标系定义相关的接口增加了类设计的复杂度
+// 应该考虑如何将历元坐标系相关逻辑放在该类的顶层模块，不在这里处理相关逻辑
+public: // 与历元坐标系定义相关的接口：
+    void  setCoordEpoch(EventTime* coordEpoch);
 
-    void setCoordEpoch(const TimePoint& coordEpoch);
+    void  setCoordEpoch(const TimePoint& coordEpoch);
 
     err_t getCoordEpoch(TimePoint& coordEpoch) const;
 
     bool  getUseCoordEpoch() const;
 
     void  setUseCoordEpoch(bool useCoordEpoch);
+
+    void  setCoordAxes(Axes* axes);
+
+    err_t  changeCoordAxes(Axes* axes);
+
+    Axes* getCoordAxes() const;
+#endif
+
 protected:
     SharedPtr<Frame>        frame_;                ///< 参考坐标系
     double                  gm_{0};                ///< 引力常数

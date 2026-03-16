@@ -65,6 +65,10 @@ public:
     /// @return 天体
     CelestialBody* getBody();
 
+    /// @brief 获取当前坐标系中心对应天体的引力参数
+    /// @return 引力参数
+    double getGM();
+
     /// @brief 获取当前坐标系的父坐标系
     /// @return 父坐标系
     virtual Frame* getParent() const;

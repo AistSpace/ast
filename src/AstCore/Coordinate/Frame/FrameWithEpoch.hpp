@@ -35,14 +35,18 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class FrameWithEpoch;
+using PFrameWithEpoch = FrameWithEpoch*;
+using HFrameWithEpoch = SharedPtr<FrameWithEpoch>;
+
 /// @brief 带轴系历元的坐标系
 class AST_CORE_API FrameWithEpoch: public Frame
 {
 public:
-    static FrameWithEpoch* New(Point* origin, Axes* axes);
-    static FrameWithEpoch* New(Point* origin, Axes* axes, EventTime* epoch);
-    static FrameWithEpoch* MakeShared(Point* origin, Axes* axes);
-    static FrameWithEpoch* MakeShared(Point* origin, Axes* axes, EventTime* epoch);
+    static PFrameWithEpoch New(Point* origin, Axes* axes);
+    static PFrameWithEpoch New(Point* origin, Axes* axes, EventTime* epoch);
+    static HFrameWithEpoch MakeShared(Point* origin, Axes* axes);
+    static HFrameWithEpoch MakeShared(Point* origin, Axes* axes, EventTime* epoch);
 
     FrameWithEpoch();
     FrameWithEpoch(Point* origin, Axes* axes);
@@ -58,13 +62,14 @@ public:
     EventTime* getEpoch() const;
     err_t getEpoch(TimePoint& epoch) const;
     void setEpoch(EventTime* epoch);
-    void setAxes(Axes* axes);
+    void setSourceAxes(Axes* axes);
+    Axes* getSourceAxes() const;
     Axes* getReferenceAxes() const;
     void setReferenceAxes(Axes* axes);
 protected:
     SharedPtr<Point>                      origin_;               ///< 原点
-    SharedPtr<AxesFrozenAtEventTime>      axesFrozen_;           ///< 冻结轴系
-    SharedPtr<Axes>                       axes_;                 ///< 轴系
+    SharedPtr<AxesFrozenAtEventTime>      frozenAxes_;           ///< 冻结轴系
+    SharedPtr<Axes>                       sourceAxes_;           ///< 轴系
     bool                                  useEpoch_{false};      ///< 是否使用轴系历元
 };
 

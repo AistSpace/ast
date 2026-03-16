@@ -24,40 +24,40 @@
 
 AST_NAMESPACE_BEGIN
 
-FrameWithEpoch *FrameWithEpoch::New(Point *origin, Axes *axes)
+PFrameWithEpoch FrameWithEpoch::New(Point *origin, Axes *axes)
 {
     return new FrameWithEpoch(origin, axes);
 }
 
-FrameWithEpoch *FrameWithEpoch::New(Point *origin, Axes *axes, EventTime *epoch)
+PFrameWithEpoch FrameWithEpoch::New(Point *origin, Axes *axes, EventTime *epoch)
 {
     return new FrameWithEpoch(origin, axes, epoch);
 }
 
-FrameWithEpoch *FrameWithEpoch::MakeShared(Point *origin, Axes *axes)
+HFrameWithEpoch FrameWithEpoch::MakeShared(Point *origin, Axes *axes)
 {
     return new FrameWithEpoch(origin, axes);
 }
 
-FrameWithEpoch *FrameWithEpoch::MakeShared(Point *origin, Axes *axes, EventTime *epoch)
+HFrameWithEpoch FrameWithEpoch::MakeShared(Point *origin, Axes *axes, EventTime *epoch)
 {
     return new FrameWithEpoch(origin, axes, epoch);
 }
 
 FrameWithEpoch::FrameWithEpoch()
-    : axesFrozen_{new AxesFrozenAtEventTime()}
+    : frozenAxes_{new AxesFrozenAtEventTime()}
 {
 }
 
 FrameWithEpoch::FrameWithEpoch(Point *origin, Axes *axes)
-    : origin_{origin}, axesFrozen_{new AxesFrozenAtEventTime(axes, nullptr, nullptr)}, axes_{axes}, useEpoch_{false}
+    : origin_{origin}, frozenAxes_{new AxesFrozenAtEventTime(axes, nullptr, nullptr)}, sourceAxes_{axes}, useEpoch_{false}
 {
 }
 
 FrameWithEpoch::FrameWithEpoch(Point *origin, Axes *axes, EventTime *epoch)
     : origin_{origin}
-    , axesFrozen_{new AxesFrozenAtEventTime(axes, epoch, nullptr)}
-    , axes_{axes}
+    , frozenAxes_{new AxesFrozenAtEventTime(axes, epoch, nullptr)}
+    , sourceAxes_{axes}
     , useEpoch_{true}
 {
 }
@@ -65,9 +65,9 @@ FrameWithEpoch::FrameWithEpoch(Point *origin, Axes *axes, EventTime *epoch)
 Axes *FrameWithEpoch::getAxes() const
 {
     if(useEpoch_)
-        return axesFrozen_.get();
+        return frozenAxes_.get();
     else
-        return axes_.get();
+        return sourceAxes_.get();
 }
 
 Point *FrameWithEpoch::getOrigin() const
@@ -77,38 +77,44 @@ Point *FrameWithEpoch::getOrigin() const
 
 SharedPtr<EventTime> &FrameWithEpoch::getEpochHandle()
 {
-    return axesFrozen_->getEpochHandle();
+    return frozenAxes_->getEpochHandle();
 }
 
 EventTime *FrameWithEpoch::getEpoch() const
 {
-    return axesFrozen_->getEpoch();
+    return frozenAxes_->getEpoch();
 }
 
 err_t FrameWithEpoch::getEpoch(TimePoint &epoch) const
 {
-    return axesFrozen_->getEpoch(epoch);
+    return frozenAxes_->getEpoch(epoch);
 }
 
 void FrameWithEpoch::setEpoch(EventTime *epoch)
 {
-    return axesFrozen_->setEpoch(epoch);
+    return frozenAxes_->setEpoch(epoch);
 }
 
-void FrameWithEpoch::setAxes(Axes *axes)
+
+void FrameWithEpoch::setSourceAxes(Axes *axes)
 {
-    axes_ = axes;
-    axesFrozen_->setAxes(axes);
+    sourceAxes_ = axes;
+    frozenAxes_->setAxes(axes);
+}
+
+Axes *FrameWithEpoch::getSourceAxes() const
+{
+    return sourceAxes_.get();
 }
 
 Axes *FrameWithEpoch::getReferenceAxes() const
 {
-    return axesFrozen_->getReferenceAxes();
+    return frozenAxes_->getReferenceAxes();
 }
 
 void FrameWithEpoch::setReferenceAxes(Axes *axes)
 {
-    axesFrozen_->setReferenceAxes(axes);
+    frozenAxes_->setReferenceAxes(axes);
 }
 
 AST_NAMESPACE_END

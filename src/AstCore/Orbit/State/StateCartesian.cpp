@@ -19,9 +19,34 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "StateCartesian.hpp"
+#include "AstCore/OrbitElement.hpp"
+
+
 
 AST_NAMESPACE_BEGIN
 
+PStateCartesian StateCartesian::New()
+{
+    return new StateCartesian();
+}
 
+HStateCartesian StateCartesian::MakeShared()
+{
+    return new StateCartesian();
+}
+
+err_t StateCartesian::getState(CartState& state) const
+{
+    state.pos() = position_;
+    state.vel() = velocity_;
+    return eNoError;
+}
+
+err_t StateCartesian::setState(const CartState &state)
+{
+    position_ = state.pos();
+    velocity_ = state.vel();
+    return eNoError;
+}
 
 AST_NAMESPACE_END

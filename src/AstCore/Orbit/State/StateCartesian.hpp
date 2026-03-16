@@ -30,16 +30,25 @@ AST_NAMESPACE_BEGIN
     @addtogroup 
     @{
 */
+class StateCartesian;
+using PStateCartesian = StateCartesian*;
+using HStateCartesian = SharedPtr<StateCartesian>;
 
 /// @brief 笛卡尔状态(直角坐标)
-class AST_CORE_API StateCartesian: public State
+class AST_CORE_API StateCartesian final: public State
 {
 public:
+    static PStateCartesian New();
+    static HStateCartesian MakeShared();
+    
     StateCartesian() = default;
     ~StateCartesian() override = default;
+public:
+    err_t getState(CartState& state) const override;
+    err_t setState(const CartState& state) override;
 protected:
-    Vector3d     position_;    ///< 位置向量
-    Vector3d     velocity_;    ///< 速度向量
+    Vector3d     position_{};    ///< 位置向量
+    Vector3d     velocity_{};    ///< 速度向量
 };
 
 
