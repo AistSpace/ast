@@ -1648,6 +1648,10 @@ typedef std::array&lt; <a class="el" href="classast_1_1AEP8Data.html">AEP8Data</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
+<tr class="memitem:a7a5ca8ec83957041eb2db0be7c7ed17d" id="r_a7a5ca8ec83957041eb2db0be7c7ed17d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__Geometry.html#ga52cecc91460a5123ebbfa0a7a4c7b0f9">HAxes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a5ca8ec83957041eb2db0be7c7ed17d">aMakeEpochAxes</a> (<a class="el" href="classast_1_1Axes.html">Axes</a> *sourceAxes, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Axes.html">Axes</a> *referenceAxes)</td></tr>
+<tr class="separator:a7a5ca8ec83957041eb2db0be7c7ed17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac48ceaea02d34488736f041f814d2d1" id="r_aac48ceaea02d34488736f041f814d2d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__Geometry.html#ga52cecc91460a5123ebbfa0a7a4c7b0f9">HAxes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac48ceaea02d34488736f041f814d2d1">aMakeEpochAxes</a> (<a class="el" href="classast_1_1Axes.html">Axes</a> *sourceAxes, <a class="el" href="classast_1_1EventTime.html">EventTime</a> *time, <a class="el" href="classast_1_1Axes.html">Axes</a> *referenceAxes)</td></tr>
+<tr class="separator:aac48ceaea02d34488736f041f814d2d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8852e21ab8212962953111ae261dd0d3" id="r_ga8852e21ab8212962953111ae261dd0d3"><td class="memItemLeft" align="right" valign="top">
 A_ALWAYS_INLINE <a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>aAxesICRF</b> ()</td></tr>
 <tr class="separator:ga8852e21ab8212962953111ae261dd0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -5801,6 +5805,80 @@ template&lt;typename GeometryType , typename RotationType &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+</div>
+</div>
+<a id="a7a5ca8ec83957041eb2db0be7c7ed17d" name="a7a5ca8ec83957041eb2db0be7c7ed17d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a5ca8ec83957041eb2db0be7c7ed17d">&#9670;&#160;</a></span>aMakeEpochAxes() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_API <a class="el" href="group__Geometry.html#ga52cecc91460a5123ebbfa0a7a4c7b0f9">HAxes</a> ast::aMakeEpochAxes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>sourceAxes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>referenceAxes</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建一个历元轴系 </p>
+<p>通过指定一个历元时间，使源轴系相对于参考轴系的旋转关系被固定为常数(即不随时间变换) 如果参考轴系是惯性系，则新创建的历元轴系也将是惯性系，例如历元真赤道系、历元平赤道系等 如果参考轴系不是惯性系，则新创建的历元轴系只是与参考轴系保持旋转关系不变(即不随时间变换)，其并不是惯性系 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sourceAxes</td><td>源轴系 </td></tr>
+    <tr><td class="paramname">tp</td><td>历元时间点 </td></tr>
+    <tr><td class="paramname">referenceAxes</td><td>参考轴系 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>新的历元轴系统 </dd></dl>
+
+</div>
+</div>
+<a id="aac48ceaea02d34488736f041f814d2d1" name="aac48ceaea02d34488736f041f814d2d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac48ceaea02d34488736f041f814d2d1">&#9670;&#160;</a></span>aMakeEpochAxes() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_API <a class="el" href="group__Geometry.html#ga52cecc91460a5123ebbfa0a7a4c7b0f9">HAxes</a> ast::aMakeEpochAxes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>sourceAxes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1EventTime.html">EventTime</a> *</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>referenceAxes</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建一个历元轴系 </p>
+<p>通过指定一个历元时间，使源轴系相对于参考轴系的旋转关系被固定为常数(即不随时间变换) 如果参考轴系是惯性系，则新创建的历元轴系也将是惯性系，例如历元真赤道系、历元平赤道系等 如果参考轴系不是惯性系，则新创建的历元轴系只是与参考轴系保持旋转关系不变(即不随时间变换)，其并不是惯性系 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sourceAxes</td><td>源轴系 </td></tr>
+    <tr><td class="paramname">time</td><td>历元时间点 </td></tr>
+    <tr><td class="paramname">referenceAxes</td><td>参考轴系 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>新的历元轴系统 </dd></dl>
 
 </div>
 </div>

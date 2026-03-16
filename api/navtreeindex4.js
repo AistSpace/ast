@@ -1,5 +1,12 @@
 var NAVTREEINDEX4 =
 {
+"OpAssignPredefined_8hpp.html":[4,0,0,10,6,0,3],
+"OpAssignPredefined_8hpp_source.html":[4,0,0,10,6,0,3],
+"OpAssign_8cpp.html":[4,0,0,10,6,3],
+"OpAssign_8hpp.html":[4,0,0,10,6,4],
+"OpAssign_8hpp_source.html":[4,0,0,10,6,4],
+"OpBinPredefined_8hpp_source.html":[4,0,0,10,6,0,4],
+"OpBinRegistry_8cpp.html":[4,0,0,10,6,0,5],
 "OpBinRegistry_8hpp.html":[4,0,0,10,6,0,6],
 "OpBinRegistry_8hpp_source.html":[4,0,0,10,6,0,6],
 "OpBin_8cpp.html":[4,0,0,10,6,5],
@@ -242,12 +249,5 @@ var NAVTREEINDEX4 =
 "SimulationAPI_8cpp.html#a33d0f2fd3f50f38098e542fe9ff44189":[4,0,0,2,7,1,17,8],
 "SimulationAPI_8cpp.html#a47a1d1ae2184d0c97a4959492ea25303":[4,0,0,2,7,1,17,2],
 "SimulationAPI_8cpp.html#a50f8dc49a8317b1153e6f3950e1d8769":[4,0,0,2,7,1,17,5],
-"SimulationAPI_8cpp.html#a75b5207aadbc00436983fda53b54638a":[4,0,0,2,7,1,17,10],
-"SimulationAPI_8cpp.html#a88ba3135befc3979999d5b460c2e273a":[4,0,0,2,7,1,17,3],
-"SimulationAPI_8cpp.html#a8b89b9ad7d5122d815cd2d844361be30":[4,0,0,2,7,1,17,6],
-"SimulationAPI_8cpp.html#a8ece34d6473e3d17dba3a888d3287375":[4,0,0,2,7,1,17,11],
-"SimulationAPI_8cpp.html#ae692331576d0a2db7402b684d8c3dd1b":[4,0,0,2,7,1,17,9],
-"SimulationAPI_8cpp.html#af168d1051b28363b8fb28f9d9568ddb0":[4,0,0,2,7,1,17,1],
-"SimulationAPI_8cpp.html#af5441328b5602713639d73364ef1b3cf":[4,0,0,2,7,1,17,4],
-"SimulationAPI_8hpp.html":[4,0,0,2,7,1,18]
+"SimulationAPI_8cpp.html#a75b5207aadbc00436983fda53b54638a":[4,0,0,2,7,1,17,10]
 };

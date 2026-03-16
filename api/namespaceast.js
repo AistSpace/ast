@@ -1156,6 +1156,8 @@ var namespaceast =
     [ "aLoadMover", "namespaceast.html#a7a9b72954efc5273a80636b054d8726a", null ],
     [ "aLOD", "group__Data.html#gacbc39836a2143bf579fe71b228d4f1de", null ],
     [ "aLVLHToFrameMatrix", "group__Coordinate.html#ga243379fa7879d8876c6f0a002357ec3b", null ],
+    [ "aMakeEpochAxes", "namespaceast.html#a7a5ca8ec83957041eb2db0be7c7ed17d", null ],
+    [ "aMakeEpochAxes", "namespaceast.html#aac48ceaea02d34488736f041f814d2d1", null ],
     [ "aMarsPosInICRF", "group__Coordinate.html#gac7d7be8b9d7469d53c9e94112bb866ae", null ],
     [ "aMarsPosVelInICRF", "group__Coordinate.html#ga9a7def0cae43b25f08570b5965ac14fe", null ],
     [ "aMatrixToAngleAxis", "group__Attitude.html#gaa01df3e782b81bb065d882b415bcf828", null ],
