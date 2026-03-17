@@ -1,4 +1,8 @@
 var State_8hpp =
 [
-    [ "ast::State", "classast_1_1State.html", "classast_1_1State" ]
+    [ "ast::State", "classast_1_1State.html", "classast_1_1State" ],
+    [ "EStateType", "State_8hpp.html#ab96fec81957cc2c158036b02a89198f0", [
+      [ "eCartesian", "State_8hpp.html#ab96fec81957cc2c158036b02a89198f0ab2857087f6ac735b490837f6ea566707", null ],
+      [ "eKeplerian", "State_8hpp.html#ab96fec81957cc2c158036b02a89198f0ac29f4242fedd02baf87fbc607461696c", null ]
+    ] ]
 ];

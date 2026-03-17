@@ -179,6 +179,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aDataContext_Set
 <tr class="separator:gae98fe2e8d9036153d0b35e27561c5845"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacbc39836a2143bf579fe71b228d4f1de" id="r_gacbc39836a2143bf579fe71b228d4f1de"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gacbc39836a2143bf579fe71b228d4f1de">ast::aLOD</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
 <tr class="separator:gacbc39836a2143bf579fe71b228d4f1de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac7287134b18258e16ddef203e04c8f07" id="r_gac7287134b18258e16ddef203e04c8f07"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gac7287134b18258e16ddef203e04c8f07">ast::aTimePointToEpochSecond</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
+<tr class="separator:gac7287134b18258e16ddef203e04c8f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabba1e7995f309f3916be00a8e94cd3e7" id="r_gabba1e7995f309f3916be00a8e94cd3e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gabba1e7995f309f3916be00a8e94cd3e7">ast::aEpochSecondToTimePoint</a> (double epochSecond, <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
+<tr class="separator:gabba1e7995f309f3916be00a8e94cd3e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga390ac1a8b1b53b9b991b39b68ca7f814" id="r_ga390ac1a8b1b53b9b991b39b68ca7f814"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga390ac1a8b1b53b9b991b39b68ca7f814">ast::aSetEpoch</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
+<tr class="separator:ga390ac1a8b1b53b9b991b39b68ca7f814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1113e5f1f7eb8d2579d81f23832d2a59" id="r_ga1113e5f1f7eb8d2579d81f23832d2a59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1113e5f1f7eb8d2579d81f23832d2a59">ast::aGetEpoch</a> (<a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
+<tr class="separator:ga1113e5f1f7eb8d2579d81f23832d2a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga79a618c1dd5bc55893f49dcb00007b9e" id="r_ga79a618c1dd5bc55893f49dcb00007b9e"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga79a618c1dd5bc55893f49dcb00007b9e">ast::aJplDeGetPosVelICRF</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;time, int target, int referenceBody, Vector3d &amp;pos, Vector3d &amp;vel)</td></tr>
 <tr class="separator:ga79a618c1dd5bc55893f49dcb00007b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacdd9c100a086d822affd42b958c7ab94" id="r_gacdd9c100a086d822affd42b958c7ab94"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gacdd9c100a086d822affd42b958c7ab94">ast::aJplDeGetPosICRF</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;time, int target, int referenceBody, Vector3d &amp;pos)</td></tr>
@@ -408,6 +416,56 @@ constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::kSiz
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="gabba1e7995f309f3916be00a8e94cd3e7" name="gabba1e7995f309f3916be00a8e94cd3e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabba1e7995f309f3916be00a8e94cd3e7">&#9670;&#160;</a></span>aEpochSecondToTimePoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI void ast::aEpochSecondToTimePoint </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>epochSecond</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>将相对参考历元的秒数转换为时间点 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">epochSecond</td><td>参考历元秒数 </td></tr>
+    <tr><td class="paramname">tp</td><td>时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1113e5f1f7eb8d2579d81f23832d2a59" name="ga1113e5f1f7eb8d2579d81f23832d2a59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1113e5f1f7eb8d2579d81f23832d2a59">&#9670;&#160;</a></span>aGetEpoch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI void ast::aGetEpoch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取参考历元 </p>
+<dl class="section return"><dt>返回</dt><dd>参考历元 </dd></dl>
 
 </div>
 </div>
@@ -842,6 +900,31 @@ constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::kSiz
 
 </div>
 </div>
+<a id="ga390ac1a8b1b53b9b991b39b68ca7f814" name="ga390ac1a8b1b53b9b991b39b68ca7f814"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga390ac1a8b1b53b9b991b39b68ca7f814">&#9670;&#160;</a></span>aSetEpoch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI void ast::aSetEpoch </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置参考历元 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tp</td><td>时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ga030bae706d318085b613e4431ee54600" name="ga030bae706d318085b613e4431ee54600"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga030bae706d318085b613e4431ee54600">&#9670;&#160;</a></span>aTheoreticalXYS()</h2>
 
@@ -959,6 +1042,32 @@ constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::kSiz
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="gac7287134b18258e16ddef203e04c8f07" name="gac7287134b18258e16ddef203e04c8f07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac7287134b18258e16ddef203e04c8f07">&#9670;&#160;</a></span>aTimePointToEpochSecond()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI double ast::aTimePointToEpochSecond </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>将时间点转换为相对参考历元的秒数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tp</td><td>时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>参考历元秒数 </dd></dl>
 
 </div>
 </div>

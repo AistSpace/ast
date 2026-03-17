@@ -291,6 +291,7 @@ var group__Util =
     [ "ast::kPlutoRadius", "group__Util.html#gaac6804017785ed1cb673348abaa784cc", null ],
     [ "ast::kQuarterPI", "group__Util.html#ga1bcfb6b9d2a5c0295d72971c8cb9f5fb", null ],
     [ "ast::kRadToDeg", "group__Util.html#gad09241ea18c6169281fed8979fe2053f", null ],
+    [ "ast::kRevolutionToRad", "group__Util.html#ga1304565d76b2ea4ea5dc3f0a07a003e8", null ],
     [ "ast::kSaturnGrav", "group__Util.html#ga406e5151894e0d6436bfc1b619696a42", null ],
     [ "ast::kSaturnMinRadius", "group__Util.html#gafbb4e8d5323964c41071b39df6cdb6e7", null ],
     [ "ast::kSaturnRadius", "group__Util.html#ga7459e1ed77895bb86cab1898c3ce4675", null ],

@@ -1175,6 +1175,10 @@ typedef std::array&lt; <a class="el" href="classast_1_1AEP8Data.html">AEP8Data</
 <br />
  }</td></tr>
 <tr class="separator:ad226f5138693fa4cb352f8c2201281df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab96fec81957cc2c158036b02a89198f0" id="r_ab96fec81957cc2c158036b02a89198f0"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab96fec81957cc2c158036b02a89198f0">EStateType</a> { <a class="el" href="#ab96fec81957cc2c158036b02a89198f0ab2857087f6ac735b490837f6ea566707">eCartesian</a>
+, <a class="el" href="#ab96fec81957cc2c158036b02a89198f0ac29f4242fedd02baf87fbc607461696c">eKeplerian</a>
+ }</td></tr>
+<tr class="separator:ab96fec81957cc2c158036b02a89198f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42503bc04b484437e930407c57f5658c" id="r_a42503bc04b484437e930407c57f5658c"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42503bc04b484437e930407c57f5658c">ESizeType</a> { <br />
 &#160;&#160;<a class="el" href="#a42503bc04b484437e930407c57f5658ca6a21361f2cee5a142d0556289b01e913">eSMA</a>
 , <a class="el" href="#a42503bc04b484437e930407c57f5658ca313a4466fde74774f7c84e67e730a06c">eApoAlt</a>
@@ -2162,6 +2166,14 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>aTheoreticalXYS_IERS
 <tr class="separator:ga47273e9f78df27ff3d50232d7249ed16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae98fe2e8d9036153d0b35e27561c5845" id="r_gae98fe2e8d9036153d0b35e27561c5845"><td class="memItemLeft" align="right" valign="top">A_ALWAYS_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#gae98fe2e8d9036153d0b35e27561c5845">aPoleMotion</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="structast_1_1PoleMotion.html">PoleMotion</a> &amp;pm)</td></tr>
 <tr class="separator:gae98fe2e8d9036153d0b35e27561c5845"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac7287134b18258e16ddef203e04c8f07" id="r_gac7287134b18258e16ddef203e04c8f07"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#gac7287134b18258e16ddef203e04c8f07">aTimePointToEpochSecond</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
+<tr class="separator:gac7287134b18258e16ddef203e04c8f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabba1e7995f309f3916be00a8e94cd3e7" id="r_gabba1e7995f309f3916be00a8e94cd3e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#gabba1e7995f309f3916be00a8e94cd3e7">aEpochSecondToTimePoint</a> (double epochSecond, <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
+<tr class="separator:gabba1e7995f309f3916be00a8e94cd3e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga390ac1a8b1b53b9b991b39b68ca7f814" id="r_ga390ac1a8b1b53b9b991b39b68ca7f814"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#ga390ac1a8b1b53b9b991b39b68ca7f814">aSetEpoch</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
+<tr class="separator:ga390ac1a8b1b53b9b991b39b68ca7f814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1113e5f1f7eb8d2579d81f23832d2a59" id="r_ga1113e5f1f7eb8d2579d81f23832d2a59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#ga1113e5f1f7eb8d2579d81f23832d2a59">aGetEpoch</a> (<a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
+<tr class="separator:ga1113e5f1f7eb8d2579d81f23832d2a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94f4cf75f889ec56c67b248dea11ef71" id="r_a94f4cf75f889ec56c67b248dea11ef71"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94f4cf75f889ec56c67b248dea11ef71">loadSpaceWeather</a> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, int numPoints, std::vector&lt; <a class="el" href="structast_1_1SpaceWeather_1_1Entry.html">SpaceWeather::Entry</a> &gt; &amp;data)</td></tr>
 <tr class="separator:a94f4cf75f889ec56c67b248dea11ef71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa971fd3c4bf1fdc1c5a3f1bc9f9622f9" id="r_aa971fd3c4bf1fdc1c5a3f1bc9f9622f9"><td class="memItemLeft" align="right" valign="top"><a id="aa971fd3c4bf1fdc1c5a3f1bc9f9622f9" name="aa971fd3c4bf1fdc1c5a3f1bc9f9622f9"></a>
@@ -2218,8 +2230,8 @@ template&lt;typename GeometryType &gt; </td></tr>
 <tr class="separator:a2ce5d518cea1c8bc9d9750c1a64fbc15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaad8f0755e84ade8bc28b27a2eea2fd6b" id="r_gaad8f0755e84ade8bc28b27a2eea2fd6b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Orbit.html#gaad8f0755e84ade8bc28b27a2eea2fd6b">aRAANRate</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
 <tr class="separator:gaad8f0755e84ade8bc28b27a2eea2fd6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga095aa04fb967809214eb5a676d6ec165" id="r_ga095aa04fb967809214eb5a676d6ec165"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Orbit.html#ga095aa04fb967809214eb5a676d6ec165">aArgPerRate</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
-<tr class="separator:ga095aa04fb967809214eb5a676d6ec165"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3444ec7958b204a724623ace81173f00" id="r_ga3444ec7958b204a724623ace81173f00"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Orbit.html#ga3444ec7958b204a724623ace81173f00">aArgPeriRate</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
+<tr class="separator:ga3444ec7958b204a724623ace81173f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga22cff0fd5d8473d6eae063a291a868e7" id="r_ga22cff0fd5d8473d6eae063a291a868e7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Orbit.html#ga22cff0fd5d8473d6eae063a291a868e7">aMeanAnomalyRate</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
 <tr class="separator:ga22cff0fd5d8473d6eae063a291a868e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6176aa1e4cad1b99a8bea44244dbe0f7" id="r_ga6176aa1e4cad1b99a8bea44244dbe0f7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Orbit.html#ga6176aa1e4cad1b99a8bea44244dbe0f7">aMeanArgLatRate</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
@@ -2448,12 +2460,16 @@ template&lt;typename GeometryType &gt; </td></tr>
 <tr class="separator:ga47974f14a1bc83c30975f44c88ea0294"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae013e3aab9cd1f6a83e1dbe473a26471" id="r_gae013e3aab9cd1f6a83e1dbe473a26471"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Orbit.html#gae013e3aab9cd1f6a83e1dbe473a26471">aArgPeriToLongPeri</a> (double argPeri, double raan)</td></tr>
 <tr class="separator:gae013e3aab9cd1f6a83e1dbe473a26471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1578a167e5a79872305f2f9232adbb44" id="r_ga1578a167e5a79872305f2f9232adbb44"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Orbit.html#ga1578a167e5a79872305f2f9232adbb44">aRAANToLAN</a> (double raan, <a class="el" href="classast_1_1Axes.html">Axes</a> *inertialAxes, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;timeOfAscNodePassage, <a class="el" href="classast_1_1Axes.html">Axes</a> *bodyFixedAxes)</td></tr>
+<tr class="separator:ga1578a167e5a79872305f2f9232adbb44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0e666b73200d6a89e52616f4e44623d8" id="r_ga0e666b73200d6a89e52616f4e44623d8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Orbit.html#ga0e666b73200d6a89e52616f4e44623d8">aRepeatGroundTrackSMA</a> (int daysToRepeat, int revsToRepeat, double gm, double bodyRotRate)</td></tr>
 <tr class="separator:ga0e666b73200d6a89e52616f4e44623d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5c7f3dfea3fdb060d29571e20c203c07" id="r_ga5c7f3dfea3fdb060d29571e20c203c07"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Orbit.html#ga5c7f3dfea3fdb060d29571e20c203c07">aEccToFlat</a> (double eccentricity)</td></tr>
 <tr class="separator:ga5c7f3dfea3fdb060d29571e20c203c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad93a7b2f714513f09813165d1ef3b064" id="r_gad93a7b2f714513f09813165d1ef3b064"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Orbit.html#gad93a7b2f714513f09813165d1ef3b064">aFlatToEcc</a> (double flatFactor)</td></tr>
 <tr class="separator:gad93a7b2f714513f09813165d1ef3b064"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga624462bc02368eeb364ce99e741ae387" id="r_ga624462bc02368eeb364ce99e741ae387"><td class="memItemLeft" align="right" valign="top">AST_CORE_CAPI double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Orbit.html#ga624462bc02368eeb364ce99e741ae387">aLANToRAAN</a> (double lan, <a class="el" href="classast_1_1Axes.html">Axes</a> *bodyFixedAxes, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;timeOfAscNodePassage, <a class="el" href="classast_1_1Axes.html">Axes</a> *inertialAxes)</td></tr>
+<tr class="separator:ga624462bc02368eeb364ce99e741ae387"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed63d3ef3e248050fd32fe265416c6df" id="r_aed63d3ef3e248050fd32fe265416c6df"><td class="memItemLeft" align="right" valign="top"><a id="aed63d3ef3e248050fd32fe265416c6df" name="aed63d3ef3e248050fd32fe265416c6df"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>StateKeplerian_ClassInit</b> (<a class="el" href="classast_1_1Class.html">Class</a> *cls)</td></tr>
 <tr class="separator:aed63d3ef3e248050fd32fe265416c6df"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -4573,6 +4589,9 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>kTimeSecT
 <tr class="memitem:ga20eb1d89debf9631d666ed89805c1aa1" id="r_ga20eb1d89debf9631d666ed89805c1aa1"><td class="memItemLeft" align="right" valign="top">
 constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>kTimeMinToRad</b> = 0.0043633231299858239423092269212215</td></tr>
 <tr class="separator:ga20eb1d89debf9631d666ed89805c1aa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1304565d76b2ea4ea5dc3f0a07a003e8" id="r_ga1304565d76b2ea4ea5dc3f0a07a003e8"><td class="memItemLeft" align="right" valign="top">
+constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>kRevolutionToRad</b> = <a class="el" href="group__Util.html#ga21bfbd352838fe327fe09a3d4f008451">kTwoPI</a></td></tr>
+<tr class="separator:ga1304565d76b2ea4ea5dc3f0a07a003e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af69ae1bb40e383be94c9243adcf767c6" id="r_af69ae1bb40e383be94c9243adcf767c6"><td class="memItemLeft" align="right" valign="top"><a id="af69ae1bb40e383be94c9243adcf767c6" name="af69ae1bb40e383be94c9243adcf767c6"></a>
 DataDirFunc&#160;</td><td class="memItemRight" valign="bottom"><b>fDataDir</b> {nullptr}</td></tr>
 <tr class="separator:af69ae1bb40e383be94c9243adcf767c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -4935,6 +4954,36 @@ DataDirFunc&#160;</td><td class="memItemRight" valign="bottom"><b>fDataDir</b> {
 <tr><td class="fieldname"><a id="a42503bc04b484437e930407c57f5658ca0e2073f32f9206cb73bdea469c7366ae" name="a42503bc04b484437e930407c57f5658ca0e2073f32f9206cb73bdea469c7366ae"></a>ePeriod&#160;</td><td class="fielddoc"><p>周期 </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a42503bc04b484437e930407c57f5658cab9a65322ef9c8153291edb676b31da15" name="a42503bc04b484437e930407c57f5658cab9a65322ef9c8153291edb676b31da15"></a>eMeanMotion&#160;</td><td class="fielddoc"><p>平均角速度 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ab96fec81957cc2c158036b02a89198f0" name="ab96fec81957cc2c158036b02a89198f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab96fec81957cc2c158036b02a89198f0">&#9670;&#160;</a></span>EStateType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ab96fec81957cc2c158036b02a89198f0">ast::EStateType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>状态类型 </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ab96fec81957cc2c158036b02a89198f0ab2857087f6ac735b490837f6ea566707" name="ab96fec81957cc2c158036b02a89198f0ab2857087f6ac735b490837f6ea566707"></a>eCartesian&#160;</td><td class="fielddoc"><p>笛卡尔状态 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab96fec81957cc2c158036b02a89198f0ac29f4242fedd02baf87fbc607461696c" name="ab96fec81957cc2c158036b02a89198f0ac29f4242fedd02baf87fbc607461696c"></a>eKeplerian&#160;</td><td class="fielddoc"><p>开普勒状态 </p>
 </td></tr>
 </table>
 

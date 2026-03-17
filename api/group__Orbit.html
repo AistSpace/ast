@@ -144,8 +144,8 @@ $(function(){initNavTree('group__Orbit.html',''); initResizable(true); });
 函数</h2></td></tr>
 <tr class="memitem:gaad8f0755e84ade8bc28b27a2eea2fd6b" id="r_gaad8f0755e84ade8bc28b27a2eea2fd6b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaad8f0755e84ade8bc28b27a2eea2fd6b">ast::aRAANRate</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
 <tr class="separator:gaad8f0755e84ade8bc28b27a2eea2fd6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga095aa04fb967809214eb5a676d6ec165" id="r_ga095aa04fb967809214eb5a676d6ec165"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga095aa04fb967809214eb5a676d6ec165">ast::aArgPerRate</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
-<tr class="separator:ga095aa04fb967809214eb5a676d6ec165"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3444ec7958b204a724623ace81173f00" id="r_ga3444ec7958b204a724623ace81173f00"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga3444ec7958b204a724623ace81173f00">ast::aArgPeriRate</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
+<tr class="separator:ga3444ec7958b204a724623ace81173f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga22cff0fd5d8473d6eae063a291a868e7" id="r_ga22cff0fd5d8473d6eae063a291a868e7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga22cff0fd5d8473d6eae063a291a868e7">ast::aMeanAnomalyRate</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
 <tr class="separator:ga22cff0fd5d8473d6eae063a291a868e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6176aa1e4cad1b99a8bea44244dbe0f7" id="r_ga6176aa1e4cad1b99a8bea44244dbe0f7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga6176aa1e4cad1b99a8bea44244dbe0f7">ast::aMeanArgLatRate</a> (double gm, double j2, double rb, double a, double ecc, double inc)</td></tr>
@@ -374,6 +374,10 @@ $(function(){initNavTree('group__Orbit.html',''); initResizable(true); });
 <tr class="separator:ga47974f14a1bc83c30975f44c88ea0294"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae013e3aab9cd1f6a83e1dbe473a26471" id="r_gae013e3aab9cd1f6a83e1dbe473a26471"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gae013e3aab9cd1f6a83e1dbe473a26471">ast::aArgPeriToLongPeri</a> (double argPeri, double raan)</td></tr>
 <tr class="separator:gae013e3aab9cd1f6a83e1dbe473a26471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1578a167e5a79872305f2f9232adbb44" id="r_ga1578a167e5a79872305f2f9232adbb44"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1578a167e5a79872305f2f9232adbb44">ast::aRAANToLAN</a> (double raan, <a class="el" href="classast_1_1Axes.html">Axes</a> *inertialAxes, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;timeOfAscNodePassage, <a class="el" href="classast_1_1Axes.html">Axes</a> *bodyFixedAxes)</td></tr>
+<tr class="separator:ga1578a167e5a79872305f2f9232adbb44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga624462bc02368eeb364ce99e741ae387" id="r_ga624462bc02368eeb364ce99e741ae387"><td class="memItemLeft" align="right" valign="top">AST_CORE_CAPI double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga624462bc02368eeb364ce99e741ae387">ast::aLANToRAAN</a> (double lan, <a class="el" href="classast_1_1Axes.html">Axes</a> *bodyFixedAxes, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;timeOfAscNodePassage, <a class="el" href="classast_1_1Axes.html">Axes</a> *inertialAxes)</td></tr>
+<tr class="separator:ga624462bc02368eeb364ce99e741ae387"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0e666b73200d6a89e52616f4e44623d8" id="r_ga0e666b73200d6a89e52616f4e44623d8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga0e666b73200d6a89e52616f4e44623d8">ast::aRepeatGroundTrackSMA</a> (int daysToRepeat, int revsToRepeat, double gm, double bodyRotRate)</td></tr>
 <tr class="separator:ga0e666b73200d6a89e52616f4e44623d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5c7f3dfea3fdb060d29571e20c203c07" id="r_ga5c7f3dfea3fdb060d29571e20c203c07"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga5c7f3dfea3fdb060d29571e20c203c07">ast::aEccToFlat</a> (double eccentricity)</td></tr>
@@ -864,45 +868,14 @@ $(function(){initNavTree('group__Orbit.html',''); initResizable(true); });
 
 </div>
 </div>
-<a id="gae013e3aab9cd1f6a83e1dbe473a26471" name="gae013e3aab9cd1f6a83e1dbe473a26471"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae013e3aab9cd1f6a83e1dbe473a26471">&#9670;&#160;</a></span>aArgPeriToLongPeri()</h2>
+<a id="ga3444ec7958b204a724623ace81173f00" name="ga3444ec7958b204a724623ace81173f00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3444ec7958b204a724623ace81173f00">&#9670;&#160;</a></span>aArgPeriRate()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">AST_CORE_CAPI double ast::aArgPeriToLongPeri </td>
-          <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>argPeri</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>raan</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>近地点幅角转换为近地点经度 </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">argPeri</td><td>近地点幅角 [rad] </td></tr>
-    <tr><td class="paramname">raan</td><td>升交点赤经 [rad] </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>近地点经度 [rad] </dd></dl>
-
-</div>
-</div>
-<a id="ga095aa04fb967809214eb5a676d6ec165" name="ga095aa04fb967809214eb5a676d6ec165"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga095aa04fb967809214eb5a676d6ec165">&#9670;&#160;</a></span>aArgPerRate()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">AST_CORE_CAPI double ast::aArgPerRate </td>
+          <td class="memname">AST_CORE_CAPI double ast::aArgPeriRate </td>
           <td>(</td>
           <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>gm</em></span>, </td>
         </tr>
@@ -947,6 +920,37 @@ $(function(){initNavTree('group__Orbit.html',''); initResizable(true); });
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>轨道近点幅角变化率 </dd></dl>
+
+</div>
+</div>
+<a id="gae013e3aab9cd1f6a83e1dbe473a26471" name="gae013e3aab9cd1f6a83e1dbe473a26471"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae013e3aab9cd1f6a83e1dbe473a26471">&#9670;&#160;</a></span>aArgPeriToLongPeri()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI double ast::aArgPeriToLongPeri </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>argPeri</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>raan</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>近地点幅角转换为近地点经度 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argPeri</td><td>近地点幅角 [rad] </td></tr>
+    <tr><td class="paramname">raan</td><td>升交点赤经 [rad] </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>近地点经度 [rad] </dd></dl>
 
 </div>
 </div>
@@ -1525,6 +1529,49 @@ $(function(){initNavTree('group__Orbit.html',''); initResizable(true); });
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>J2长期项影响下的轨道周期/交点周期 </dd></dl>
+
+</div>
+</div>
+<a id="ga624462bc02368eeb364ce99e741ae387" name="ga624462bc02368eeb364ce99e741ae387"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga624462bc02368eeb364ce99e741ae387">&#9670;&#160;</a></span>aLANToRAAN()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI double ast::aLANToRAAN </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>lan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>bodyFixedAxes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>timeOfAscNodePassage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>inertialAxes</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>升交点经度转换为升交点赤经 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lan</td><td>升交点经度 [rad] </td></tr>
+    <tr><td class="paramname">bodyFixedAxes</td><td>天体固连系 </td></tr>
+    <tr><td class="paramname">timeOfAscNodePassage</td><td>过升交点时刻 </td></tr>
+    <tr><td class="paramname">inertialAxes</td><td>定义升交点的惯性系 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>升交点赤经 [rad] </dd></dl>
 
 </div>
 </div>
@@ -3052,6 +3099,49 @@ $(function(){initNavTree('group__Orbit.html',''); initResizable(true); });
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>轨道升交点赤经漂移速率 </dd></dl>
+
+</div>
+</div>
+<a id="ga1578a167e5a79872305f2f9232adbb44" name="ga1578a167e5a79872305f2f9232adbb44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1578a167e5a79872305f2f9232adbb44">&#9670;&#160;</a></span>aRAANToLAN()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI double ast::aRAANToLAN </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>raan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>inertialAxes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>timeOfAscNodePassage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Axes.html">Axes</a> *</td>          <td class="paramname"><span class="paramname"><em>bodyFixedAxes</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>升交点赤经转换为升交点经度 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">raan</td><td>升交点赤经 [rad] </td></tr>
+    <tr><td class="paramname">inertialAxes</td><td>定义升交点的惯性系 </td></tr>
+    <tr><td class="paramname">timeOfAscNodePassage</td><td>过升交点时刻 </td></tr>
+    <tr><td class="paramname">bodyFixedAxes</td><td>天体固连系 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>升交点经度 [rad] </dd></dl>
 
 </div>
 </div>

@@ -50,6 +50,7 @@ var OrbitParam_8cpp =
     [ "aPeriRadToPeriAlt", "OrbitParam_8cpp.html#ga97b2afecc87a7797e247ed380fc3f8eb", null ],
     [ "aPeriRadToPeriod", "OrbitParam_8cpp.html#ga844c46e61cf5f7429edb4f98bd93ad64", null ],
     [ "aPeriRadToSMA", "OrbitParam_8cpp.html#ga1707d82dac8948c01fbbc385fb1171d7", null ],
+    [ "aRAANToLAN", "OrbitParam_8cpp.html#ga1578a167e5a79872305f2f9232adbb44", null ],
     [ "aRepeatGroundTrackSMA", "OrbitParam_8cpp.html#ga0e666b73200d6a89e52616f4e44623d8", null ],
     [ "aSMAToApoAlt", "OrbitParam_8cpp.html#gaa2beb7d5a2adfa645d6a7ec716439486", null ],
     [ "aSMAToApoRad", "OrbitParam_8cpp.html#gaf847b7de9b39fd56c1b64c83f01c074c", null ],

@@ -119,6 +119,10 @@ $(function(){initNavTree('namespaceast_1_1literals.html',''); initResizable(true
 <tr class="separator:a7fbcde8f3335907138d94841e8b70033"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a120303f6251e93344d264b73ebd03f08" id="r_a120303f6251e93344d264b73ebd03f08"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a120303f6251e93344d264b73ebd03f08">operator&quot;&quot;_arcsec</a> (unsigned long long val)</td></tr>
 <tr class="separator:a120303f6251e93344d264b73ebd03f08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51e18a09b664b1395f084da3128ec4a3" id="r_a51e18a09b664b1395f084da3128ec4a3"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51e18a09b664b1395f084da3128ec4a3">operator&quot;&quot;_revs</a> (long double val)</td></tr>
+<tr class="separator:a51e18a09b664b1395f084da3128ec4a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c87971e8a5754ffcd5d546409239471" id="r_a7c87971e8a5754ffcd5d546409239471"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c87971e8a5754ffcd5d546409239471">operator&quot;&quot;_revs</a> (unsigned long long val)</td></tr>
+<tr class="separator:a7c87971e8a5754ffcd5d546409239471"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4c8a2ff92ad4609634ae546fdf37b13" id="r_ab4c8a2ff92ad4609634ae546fdf37b13"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4c8a2ff92ad4609634ae546fdf37b13">operator&quot;&quot;_km</a> (long double val)</td></tr>
 <tr class="separator:ab4c8a2ff92ad4609634ae546fdf37b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37f3765186d1cfa7af70cf2e70a49924" id="r_a37f3765186d1cfa7af70cf2e70a49924"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37f3765186d1cfa7af70cf2e70a49924">operator&quot;&quot;_km</a> (unsigned long long val)</td></tr>
@@ -238,6 +242,9 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>min</b> =
 <tr class="memitem:abb38c93ae3ab143b18aef932decb2848" id="r_abb38c93ae3ab143b18aef932decb2848"><td class="memItemLeft" align="right" valign="top"><a id="abb38c93ae3ab143b18aef932decb2848" name="abb38c93ae3ab143b18aef932decb2848"></a>
 constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>h</b> = 1_h</td></tr>
 <tr class="separator:abb38c93ae3ab143b18aef932decb2848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40059e056678765f469ff16fe692e7cc" id="r_a40059e056678765f469ff16fe692e7cc"><td class="memItemLeft" align="right" valign="top"><a id="a40059e056678765f469ff16fe692e7cc" name="a40059e056678765f469ff16fe692e7cc"></a>
+constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>day</b> = 1_day</td></tr>
+<tr class="separator:a40059e056678765f469ff16fe692e7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>包含自定义字面量运算符，包含角度单位、长度单位、时间单位和天文单位等 </p>
@@ -1599,6 +1606,74 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>h</b> = 1
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>弧度/秒值（直接返回，因为内部计算使用弧度/秒） </dd></dl>
+
+</div>
+</div>
+<a id="a51e18a09b664b1395f084da3128ec4a3" name="a51e18a09b664b1395f084da3128ec4a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51e18a09b664b1395f084da3128ec4a3">&#9670;&#160;</a></span>operator&quot;&quot;_revs() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ast::literals::operator&quot;&quot;_revs </td>
+          <td>(</td>
+          <td class="paramtype">long double</td>          <td class="paramname"><span class="paramname"><em>val</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将长双精度浮点数值从周期数转换为弧度 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>周期数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>对应的弧度值（周期数 * kRevolutionToRad） </dd></dl>
+
+</div>
+</div>
+<a id="a7c87971e8a5754ffcd5d546409239471" name="a7c87971e8a5754ffcd5d546409239471"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c87971e8a5754ffcd5d546409239471">&#9670;&#160;</a></span>operator&quot;&quot;_revs() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ast::literals::operator&quot;&quot;_revs </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>val</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将无符号长整数值从周期数转换为弧度 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>周期数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>对应的弧度值（周期数 * kRevolutionToRad） </dd></dl>
 
 </div>
 </div>

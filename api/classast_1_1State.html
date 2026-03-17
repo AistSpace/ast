@@ -100,6 +100,7 @@ $(function(){initNavTree('classast_1_1State.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="#pro-attribs">Protected 属性</a> &#124;
 <a href="classast_1_1State-members.html">所有成员列表</a>  </div>
   <div class="headertitle"><div class="title">ast::State类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
@@ -123,6 +124,8 @@ $(function(){initNavTree('classast_1_1State.html',''); initResizable(true); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
+<tr class="memitem:a11f9784196ddaa52fb79ea823e3f00ea" id="r_a11f9784196ddaa52fb79ea823e3f00ea"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceast.html#ab96fec81957cc2c158036b02a89198f0">EStateType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11f9784196ddaa52fb79ea823e3f00ea">getStateType</a> () const =0</td></tr>
+<tr class="separator:a11f9784196ddaa52fb79ea823e3f00ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a056853f3ef1f2b1c9094a8b286389295" id="r_a056853f3ef1f2b1c9094a8b286389295"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a056853f3ef1f2b1c9094a8b286389295">getState</a> (<a class="el" href="classast_1_1CartState.html">CartState</a> &amp;state) const =0</td></tr>
 <tr class="separator:a056853f3ef1f2b1c9094a8b286389295"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc1187577a0f31807ffc4c8b02174786" id="r_afc1187577a0f31807ffc4c8b02174786"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc1187577a0f31807ffc4c8b02174786">setState</a> (const <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;state)=0</td></tr>
@@ -194,6 +197,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setFrame</b> (<a clas
 <tr class="separator:aa4697ffa258dc386c82f6e496ee6f513 inherit pub_methods_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecd84a95fab6db0c0efb7fb34863b11c inherit pub_methods_classast_1_1Object" id="r_aecd84a95fab6db0c0efb7fb34863b11c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Object.html#aecd84a95fab6db0c0efb7fb34863b11c">decRefNoDelete</a> ()</td></tr>
 <tr class="separator:aecd84a95fab6db0c0efb7fb34863b11c inherit pub_methods_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a11336cf7f15654fb1404eea0877e634b" id="r_a11336cf7f15654fb1404eea0877e634b"><td class="memItemLeft" align="right" valign="top"><a id="a11336cf7f15654fb1404eea0877e634b" name="a11336cf7f15654fb1404eea0877e634b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>State</b> (const <a class="el" href="classast_1_1State.html">State</a> &amp;state)=default</td></tr>
+<tr class="separator:a11336cf7f15654fb1404eea0877e634b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classast_1_1Object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classast_1_1Object')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classast_1_1Object.html">ast::Object</a></td></tr>
+<tr class="memitem:a26df1078be6121773b18dd5c5092432e inherit pro_methods_classast_1_1Object" id="r_a26df1078be6121773b18dd5c5092432e"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>Object</b> (const <a class="el" href="classast_1_1Object.html">Object</a> &amp;obj)</td></tr>
+<tr class="separator:a26df1078be6121773b18dd5c5092432e inherit pro_methods_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
@@ -382,6 +395,36 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 
 <p>获取状态历元时间句柄 </p>
 <dl class="section return"><dt>返回</dt><dd>SharedPtr&lt;EventTime&gt;&amp; 状态历元时间句柄 </dd></dl>
+
+</div>
+</div>
+<a id="a11f9784196ddaa52fb79ea823e3f00ea" name="a11f9784196ddaa52fb79ea823e3f00ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11f9784196ddaa52fb79ea823e3f00ea">&#9670;&#160;</a></span>getStateType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespaceast.html#ab96fec81957cc2c158036b02a89198f0">EStateType</a> ast::State::getStateType </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取状态类型 </p>
+<dl class="section return"><dt>返回</dt><dd>EStateType 状态类型 </dd></dl>
+
+<p>在 <a class="el" href="classast_1_1StateCartesian.html#a82558f7253ea3083780e8292a9ec4d4a">ast::StateCartesian</a> , 以及 <a class="el" href="classast_1_1StateKeplerian.html#a6df7105f740567a6328a2e57192e5e94">ast::StateKeplerian</a> 内被实现.</p>
 
 </div>
 </div>

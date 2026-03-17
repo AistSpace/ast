@@ -40,6 +40,8 @@ var Literals_8hpp =
     [ "operator\"\"_rad", "Literals_8hpp.html#a40fb5a52b0f3690c77fdbf8307666de4", null ],
     [ "operator\"\"_rad_s", "Literals_8hpp.html#a8b98d7304ed77345300ccca583830d2b", null ],
     [ "operator\"\"_rad_s", "Literals_8hpp.html#a29d3091d402ce3ff218560d875a9664c", null ],
+    [ "operator\"\"_revs", "Literals_8hpp.html#a51e18a09b664b1395f084da3128ec4a3", null ],
+    [ "operator\"\"_revs", "Literals_8hpp.html#a7c87971e8a5754ffcd5d546409239471", null ],
     [ "operator\"\"_s", "Literals_8hpp.html#a58eb1f19f26b945026890176feb8da73", null ],
     [ "operator\"\"_s", "Literals_8hpp.html#ae75856045494bc38a64e4e4fa2b86da9", null ],
     [ "operator\"\"_um", "Literals_8hpp.html#a0a1afc7ff96e956adc4a56f2827da16a", null ],

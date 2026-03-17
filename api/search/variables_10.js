@@ -9,7 +9,7 @@ var searchData=
   ['polynomial_5f_6',['polynomial_',['../classast_1_1NutationSeries.html#acb06c074179b2189105972ccb894510b',1,'ast::NutationSeries']]],
   ['pos_5f_7',['pos_',['../classast_1_1CartState.html#a5e0b9acca331852128aee2d0702f3840',1,'ast::CartState']]],
   ['poscbi_8',['posCBI',['../classast_1_1BlockGravity.html#a6ba510a84e05648c87daa380a5e09743',1,'ast::BlockGravity::posCBI'],['../classast_1_1BlockThirdBody.html#a4694a96c154588f7ee52df40b9e6a74c',1,'ast::BlockThirdBody::posCBI']]],
-  ['position_5f_9',['position_',['../classast_1_1StateCartesian.html#afeba0b73730d61f4c36ba1c3f8dd89be',1,'ast::StateCartesian::position_'],['../classast_1_1Facility.html#a868168f02636059e6932733adb551817',1,'ast::Facility::position_']]],
+  ['position_5f_9',['position_',['../classast_1_1Facility.html#a868168f02636059e6932733adb551817',1,'ast::Facility']]],
   ['positionderivative_5f_10',['positionDerivative_',['../classast_1_1BlockMotion.html#a2d9cd111f95d6dcb19bf48907ee08680',1,'ast::BlockMotion']]],
   ['positions_5f_11',['positions_',['../classast_1_1EphemerisLagrangeVar.html#afa75a1734a4ede9835cb08490b78eaae',1,'ast::EphemerisLagrangeVar']]],
   ['positiontype_5f_12',['positionType_',['../classast_1_1StateKeplerian.html#ad3165abd763f4fc1958ec7627284f86c',1,'ast::StateKeplerian']]],
