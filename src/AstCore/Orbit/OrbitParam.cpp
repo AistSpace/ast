@@ -21,7 +21,12 @@
 #include "OrbitParam.hpp" 
 #include "AstCore/MathOperator.hpp"
 #include "AstCore/Constants.h"
+#include "AstCore/TimePoint.hpp"
+#include "AstCore/Axes.hpp"
+#include "AstUtil/Math.hpp"
 #include "AstUtil/Logger.hpp"
+#include "AstMath/Vector.hpp"
+#include "AstMath/Rotation.hpp"
 #include <cmath>
 
 #define PI kPI
@@ -510,6 +515,17 @@ double	aTrueToTrueLong(double trueAnomaly, double argPeri, double raan)
 double	aArgPeriToLongPeri(double argPeri, double raan)
 {
     return argPeri + raan;
+}
+
+double aRAANToLAN(double raan, Axes* inertialAxes, const TimePoint& timeOfAscNodePassage, Axes* bodyFixedAxes)
+{
+    double cosRAAN, sinRAAN;
+    sincos(raan, &sinRAAN, &cosRAAN);
+    Vector3d vecBodyFixed{ cosRAAN, sinRAAN, 0.0 };
+    Rotation rotation;
+    aAxesTransform(inertialAxes, bodyFixedAxes, timeOfAscNodePassage, rotation);
+    vecBodyFixed = rotation.transformVector(vecBodyFixed);
+    return atan2(vecBodyFixed.y(), vecBodyFixed.x());
 }
 
 double	aRepeatGroundTrackSMA(int daysToRepeat, int revsToRepeat, double gm, double bodyRotRate)

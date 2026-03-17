@@ -1,5 +1,5 @@
 ///
-/// @file      Container.hpp
+/// @file      RunTimeEpoch.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -21,19 +21,34 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "CorVector.hpp"
-#include "Vector.hpp"
-#include "Span.hpp"
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @ingroup Util
-    @defgroup Container 容器
-    @brief  提供Span、Vector等通用容器模板
+    @addtogroup Data
+    @{
 */
 
+/// @brief 将时间点转换为相对参考历元的秒数
+/// @param tp 时间点
+/// @return 参考历元秒数
+AST_CORE_CAPI double aTimePointToEpochSecond(const TimePoint& tp);
+
+/// @brief 将相对参考历元的秒数转换为时间点
+/// @param epochSecond 参考历元秒数
+/// @param tp 时间点
+AST_CORE_CAPI void aEpochSecondToTimePoint(double epochSecond, TimePoint& tp);
+
+/// @brief 设置参考历元
+/// @param tp 时间点
+AST_CORE_CAPI void aSetEpoch(const TimePoint& tp);
+
+/// @brief 获取参考历元
+/// @return 参考历元
+AST_CORE_CAPI void aGetEpoch(TimePoint& tp);
 
 
+
+/*! @} */
 
 AST_NAMESPACE_END

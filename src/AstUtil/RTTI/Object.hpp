@@ -192,7 +192,11 @@ private:
 
 protected:
     virtual ~Object() = default;
-
+    Object(const Object& obj)
+        : m_type(nullptr)
+        , m_refcnt(0)
+        , m_weakrefcnt(1)
+    {}
 protected:
     Class*                   m_type;                 ///< 类型元信息，同时用于标识对象是否被析构
     std::atomic<uint32_t>    m_refcnt;               ///< 强引用计数，给SharedPtr使用

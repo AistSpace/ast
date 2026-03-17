@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "AstCore/State.hpp"
 #include "AstMath/Vector.hpp"
+#include "AstCore/OrbitElement.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -40,15 +41,19 @@ class AST_CORE_API StateCartesian final: public State
 public:
     static PStateCartesian New();
     static HStateCartesian MakeShared();
+    static PStateCartesian New(const CartState& state);
+    static HStateCartesian MakeShared(const CartState& state);
     
     StateCartesian() = default;
+    StateCartesian(const CartState& state);
+    StateCartesian(const State& state);
     ~StateCartesian() override = default;
 public:
+    EStateType getStateType() const override { return EStateType::eCartesian; }
     err_t getState(CartState& state) const override;
     err_t setState(const CartState& state) override;
 protected:
-    Vector3d     position_{};    ///< 位置向量
-    Vector3d     velocity_{};    ///< 速度向量
+    CartState cartState_{};
 };
 
 

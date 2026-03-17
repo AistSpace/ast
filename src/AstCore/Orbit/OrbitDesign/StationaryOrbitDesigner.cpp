@@ -89,7 +89,7 @@ err_t StationaryOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
         const double ecc = 0.0;
         const double inc = 0.0;
         double n = aSMAToMeanMotion(a, gm);
-        double p = kTwoPI / ( n + aArgPerRate(gm, j2, rb, a, ecc, inc));
+        double p = kTwoPI / ( n + aArgPeriRate(gm, j2, rb, a, ecc, inc));
         return p - period;
     };
     SolverStats stats{};

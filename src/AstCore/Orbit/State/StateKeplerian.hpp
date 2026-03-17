@@ -86,14 +86,57 @@ class AST_CORE_API StateKeplerian final: public State
 public:
     static PStateKeplerian New();
     static HStateKeplerian MakeShared();
+    static PStateKeplerian New(const ModOrbElem& modOrbElem);
+    static HStateKeplerian MakeShared(const ModOrbElem& modOrbElem);
 
     StateKeplerian() = default;
+    StateKeplerian(const ModOrbElem& modOrbElem);
+    StateKeplerian(const State& state);
     ~StateKeplerian() override = default;
 public:
+    EStateType getStateType() const override { return EStateType::eKeplerian; }
     err_t getState(CartState& state) const override;
     err_t setState(const CartState& state) override;
 public:
+    void setState(OrbElem& orbElem);
+    void getState(OrbElem& orbElem) const;
     void setState(const ModOrbElem& modOrbElem){ modOrbElem_ = modOrbElem; }
+    void getState(ModOrbElem& modOrbElem) const { modOrbElem = modOrbElem_; }
+public:
+    /// @brief 获取在内部表示方式下的状态
+    void getInnerRepresentationState(array6d& stateInRepresentation) const;
+    /// @brief 获取在指定表示方式下的状态
+    void getStateInRepresentation(
+        ESizeType sizeType, EShapeType shapeType, 
+        EOrientationType orientationType, EPositionType positionType,
+        array6d& stateInRepresentation
+    ) const;
+    double getStateParam(int index);
+    void setStateParam(int index, double value);
+    /// @brief 获取定义轨道大小的参数
+    double getSizeParam() const;
+    double getSizeParam(ESizeType sizeType) const;
+    void setSizeParam(double sizeParam, ESizeType sizeType);
+    void setSizeParam(double sizeParam);
+    void setSizeType(ESizeType sizeType);
+    /// @brief 获取定义轨道形状的参数
+    double getShapeParam() const;
+    double getShapeParam(EShapeType shapeType) const;
+    void setShapeParam(double shapeParam, EShapeType shapeType);
+    void setShapeParam(double shapeParam);
+    void setShapeType(EShapeType shapeType);
+    /// @brief 获取定义轨道面方向的参数
+    double getOrientationParam() const;
+    double getOrientationParam(EOrientationType orientationType) const;
+    void setOrientationParam(double orientationParam, EOrientationType orientationType);
+    void setOrientationParam(double orientationParam);
+    void setOrientationType(EOrientationType orientationType);
+    /// @brief 获取定义轨道位置的参数
+    double getPositionParam() const;
+    double getPositionParam(EPositionType positionType) const;
+    void setPositionParam(double positionParam, EPositionType positionType);
+    void setPositionParam(double positionParam);
+    void setPositionType(EPositionType positionType);
 PROPERTIES:
     /// @brief 获取半长轴
     double getSMA() const;
@@ -193,15 +236,23 @@ PROPERTIES:
     /// @brief 设置过升交点后经过的时间
     void setTimePastAscNode(double timePastAscNode);
 
-    /// @brief 获取过近地点时刻
+    /// @brief 获取过近地点时刻（输出时间点）
     void getTimeOfPeriPassage(TimePoint& tp) const;
-    /// @brief 设置过近地点时刻
+    /// @brief 获取过近地点时刻（输出历元秒）
+    double getTimeOfPeriPassage() const;
+    /// @brief 设置过近地点时刻（输入时间点）
     void setTimeOfPeriPassage(const TimePoint& tp);
+    /// @brief 设置过近地点时刻（输入历元秒）
+    void setTimeOfPeriPassage(double epochsecond);
 
-    /// @brief 获取过升交点时刻
+    /// @brief 获取过升交点时刻（输出时间点）
     void getTimeOfAscNodePassage(TimePoint& tp) const;
-    /// @brief 设置过升交点时刻
+    /// @brief 获取过升交点时刻（输出历元秒）
+    double getTimeOfAscNodePassage() const;
+    /// @brief 设置过升交点时刻（输入时间点）
     void setTimeOfAscNodePassage(const TimePoint& tp);
+    /// @brief 获取过近地点时刻（输入历元秒）
+    void setTimeOfAscNodePassage(double epochsecond);
 
 protected:
     ModOrbElem modOrbElem_{};                                       ///< 轨道根数

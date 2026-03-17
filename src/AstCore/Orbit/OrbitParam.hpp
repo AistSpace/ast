@@ -572,6 +572,25 @@ AST_CORE_CAPI double    aTrueToTrueLong    (double trueAnomaly, double argPeri, 
 /// @return 近地点经度 [rad]
 AST_CORE_CAPI double    aArgPeriToLongPeri (double argPeri, double raan);
 
+
+/// @brief 升交点赤经转换为升交点经度
+/// @param raan 升交点赤经 [rad]
+/// @param inertialAxes 定义升交点的惯性系
+/// @param timeOfAscNodePassage 过升交点时刻
+/// @param bodyFixedAxes 天体固连系
+/// @return 升交点经度 [rad]
+AST_CORE_CAPI double aRAANToLAN(double raan, Axes* inertialAxes, const TimePoint& timeOfAscNodePassage, Axes* bodyFixedAxes);
+
+
+/// @brief 升交点经度转换为升交点赤经
+/// @param lan 升交点经度 [rad]
+/// @param bodyFixedAxes 天体固连系
+/// @param timeOfAscNodePassage 过升交点时刻
+/// @param inertialAxes 定义升交点的惯性系
+/// @return 升交点赤经 [rad]
+AST_CORE_CAPI double aLANToRAAN(double lan, Axes* bodyFixedAxes, const TimePoint& timeOfAscNodePassage, Axes* inertialAxes);
+
+
 /// @brief 计算地面轨迹重复所需的轨道长半轴
 /// @param daysToRepeat 重复天数
 /// @param revsToRepeat 重复圈数

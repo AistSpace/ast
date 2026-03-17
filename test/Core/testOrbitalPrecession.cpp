@@ -74,7 +74,7 @@ TEST(OrbitalPrecession, ArgPerRate)
     {
         double gm, j2, rb, a, e, i, expect;
         std::tie(gm, j2, rb, a, e, i, expect) = param;
-        double argPerRate = aArgPerRate(gm, j2, rb, a, e, i);
+        double argPerRate = aArgPeriRate(gm, j2, rb, a, e, i);
         printf("argPerRate=%.15g\n", argPerRate);
         EXPECT_NEAR(argPerRate, expect, 1e-15);
     }

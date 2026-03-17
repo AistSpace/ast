@@ -34,6 +34,14 @@ AST_NAMESPACE_BEGIN
 
 class CartState;
 
+/// @brief 状态类型
+enum class EStateType
+{
+    eCartesian,     ///< 笛卡尔状态
+    eKeplerian,     ///< 开普勒状态
+};
+
+
 /// @brief 航天器状态
 /// @details 参考了orekit的Orbit类
 /// 但是这个可能不只是限制于轨道状态，所以取名为State
@@ -42,7 +50,13 @@ class AST_CORE_API State: public Object
 public:
     State() = default;
     ~State() override = default;
+protected:
+    State(const State& state) = default; // 怎么处理深拷贝? 现在默认浅拷贝
 public:
+    /// @brief 获取状态类型
+    /// @return EStateType 状态类型
+    virtual EStateType getStateType() const = 0;
+
     /// @brief 获取状态
     /// @param state 状态
     /// @return err_t 错误码

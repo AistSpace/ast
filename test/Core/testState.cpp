@@ -27,6 +27,7 @@
 #include "AstCore/EOP.hpp"
 #include "AstCore/EarthFrame.hpp"
 #include "AstUtil/Literals.hpp"
+#include "AstUtil/Math.hpp"
 #include "AstTest/Test.hpp"
 
 AST_USING_NAMESPACE
@@ -46,6 +47,7 @@ protected:
     }
 };
 
+/// @brief 测试坐标系转换
 TEST_F(StateTest, ChangeFrameBasic)
 {
     // 测试从ICRF到TOD的转换
@@ -77,6 +79,7 @@ TEST_F(StateTest, ChangeFrameBasic)
     }
 }
 
+/// @brief 测试从TOE到MOE的转换
 TEST_F(StateTest, ChangeFrameWithEpoch)
 {
     // 测试从TOE到MOE的转换
@@ -152,6 +155,111 @@ TEST_F(StateTest, ChangeFrameWithEpoch)
     }
 }
 
+
+/// @brief 测试开普勒轨道根数状态参数
+TEST_F(StateTest, GetKeplerianStateParams)
+{
+    auto earth = aGetEarth();
+    {
+        err_t rc;
+        auto keplerianState = StateKeplerian::MakeShared();
+        OrbElem orbElem{
+            8678137_m, 0.03, 28.5_deg, 12_deg, 21_deg, 23_deg
+        };
+        auto tp = TimePoint::FromUTC(2026, 3, 15, 0, 0, 0);
+        keplerianState->setState(orbElem);
+        keplerianState->setFrame(earth->makeFrameMOD());
+        keplerianState->setStateEpoch(tp);
+        StateCartesian cartesianState{*keplerianState};
+        CartState state;
+        rc = cartesianState.getState(state);
+        CartState stateExpect {
+            4865.7657051977957963_km, 6300.1230393824653220_km, 2796.6565762704854023_km, 
+            -5.6042661463648802_km/sec, 3.3614623498040133_km/sec, 2.4178896606906020_km/sec
+        };
+        for(int i = 0; i < 3; i++)
+        {
+            EXPECT_NEAR(state[i], stateExpect[i], 1e-6);
+            EXPECT_NEAR(state[3+i], stateExpect[3+i], 1e-9);
+        }
+        OrbElem orbElem1;
+        keplerianState->getState(orbElem1);
+        EXPECT_EQ(rc, 0);
+        printf("state: %f %f %f %f %f %f\n", state[0], state[1], state[2], state[3], state[4], state[5]);
+        {
+            keplerianState->setSizeType(ESizeType::ePeriRad);
+            keplerianState->setShapeType(EShapeType::eApoRad);
+            keplerianState->setOrientationType(EOrientationType::eLAN);
+            keplerianState->setPositionType(EPositionType::eMeanAnomaly);
+            array6d element;
+            keplerianState->getInnerRepresentationState(element);
+            element[3] = aNormalizeAngle0To2Pi(element[3]);
+            printf("element: %f %f %f %f %f %f\n", element[0], element[1], element[2], element[3], element[4], element[5]);
+            array6d elementExpect{
+                8417.79289_km, 8938.48111_km, 28.5_deg, 
+                203.2597961691080002_deg, 21_deg, 21.6841152978667751_deg
+            };
+            for(int i = 0; i < 6; i++)
+            {
+                EXPECT_NEAR(element[i], elementExpect[i], 1e-9);
+            }
+        }
+        {
+            keplerianState->setSizeType(ESizeType::eMeanMotion);
+            keplerianState->setShapeType(EShapeType::ePeriAlt);
+            keplerianState->setOrientationType(EOrientationType::eLAN);
+            keplerianState->setPositionType(EPositionType::eEccAnomaly);
+            array6d element;
+            keplerianState->getInnerRepresentationState(element);
+            element[3] = aNormalizeAngle0To2Pi(element[3]);
+            printf("element: %f %f %f %f %f %f\n", element[0], element[1], element[2], element[3], element[4], element[5]);
+            array6d elementExpect{
+                10.7389793894957375_revs/day, 2039.65589_km, 28.5_deg, 
+                203.2597961691080002_deg, 21_deg, 22.3373900619093533_deg
+            };
+            for(int i = 0; i < 6; i++)
+            {
+                EXPECT_NEAR(element[i], elementExpect[i], 1e-9);
+            }
+        }
+        {
+            keplerianState->setSizeType(ESizeType::ePeriod);
+            keplerianState->setShapeType(EShapeType::eEcc);
+            keplerianState->setOrientationType(EOrientationType::eRAAN);
+            keplerianState->setPositionType(EPositionType::eTimePastAscNode);
+            array6d element;
+            keplerianState->getInnerRepresentationState(element);
+            element[3] = aNormalizeAngle0To2Pi(element[3]);
+            printf("element: %f %f %f %f %f %f\n", element[0], element[1], element[2], element[3], element[4], element[5]);
+            array6d elementExpect{
+                8045.4572884748704382_s, 0.03, 28.5_deg, 
+                12_deg, 21_deg, 926.9610895557920003_s
+            };
+            for(int i = 0; i < 6; i++)
+            {
+                EXPECT_NEAR(element[i], elementExpect[i], 1e-9);
+            }
+        }
+        {
+            keplerianState->setSizeType(ESizeType::eSMA);
+            keplerianState->setShapeType(EShapeType::eApoAlt);
+            keplerianState->setOrientationType(EOrientationType::eRAAN);
+            keplerianState->setPositionType(EPositionType::eTimePastPeri);
+            array6d element;
+            keplerianState->getInnerRepresentationState(element);
+            element[3] = aNormalizeAngle0To2Pi(element[3]);
+            printf("element: %f %f %f %f %f %f\n", element[0], element[1], element[2], element[3], element[4], element[5]);
+            array6d elementExpect{
+                8678.137_km, 2560344.11_m, 28.5_deg, 
+                12_deg, 21_deg, 484.6072874093101746_s
+            };
+            for(int i = 0; i < 6; i++)
+            {
+                EXPECT_NEAR(element[i], elementExpect[i], 2e-9);
+            }
+        }
+    }
+}
 
 
 GTEST_MAIN();

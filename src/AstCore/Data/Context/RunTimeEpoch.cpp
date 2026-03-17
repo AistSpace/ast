@@ -1,5 +1,5 @@
 ///
-/// @file      Container.hpp
+/// @file      RunTimeEpoch.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,22 +18,35 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#pragma once
-
-#include "AstGlobal.h"
-#include "CorVector.hpp"
-#include "Vector.hpp"
-#include "Span.hpp"
+#include "RunTimeEpoch.hpp"
+#include "RunTime.hpp"
+#include "DataContext.hpp"
 
 AST_NAMESPACE_BEGIN
 
-/*!
-    @ingroup Util
-    @defgroup Container 容器
-    @brief  提供Span、Vector等通用容器模板
-*/
+double aTimePointToEpochSecond(const TimePoint &tp)
+{
+    auto context = aDataContext_EnsureCurrent();
+    return (tp - context->epoch());
+}
 
+void aEpochSecondToTimePoint(double epochSecond, TimePoint &tp)
+{
+    auto context = aDataContext_EnsureCurrent();
+    tp = context->epoch() + epochSecond;
+}
 
+void aSetEpoch(const TimePoint &tp)
+{
+    auto context = aDataContext_EnsureCurrent();
+    context->setEpoch(tp);
+}
 
+void aGetEpoch(TimePoint &tp)
+{
+    auto context = aDataContext_EnsureCurrent();
+    tp = context->epoch();
+}
 
 AST_NAMESPACE_END
+

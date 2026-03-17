@@ -212,6 +212,13 @@ public:
         return {integerPart(), fractionalPart() + second};
     }
 
+    /// @brief 时间点减法运算符
+    /// @param second 秒数
+    /// @return 新的时间点
+    TimePoint operator-(double second) const{
+        return {integerPart(), fractionalPart() - second};
+    }
+
     /// @brief 将时间点格式化为字符串
     /// @param precision 格式化精度（秒数小数位数）
     /// @return 格式化后的字符串

@@ -35,17 +35,37 @@ HStateCartesian StateCartesian::MakeShared()
     return new StateCartesian();
 }
 
+PStateCartesian StateCartesian::New(const CartState &state)
+{
+    return new StateCartesian(state);
+}
+
+HStateCartesian StateCartesian::MakeShared(const CartState &state)
+{
+    return new StateCartesian(state);
+}
+
+StateCartesian::StateCartesian(const CartState &state)
+    : cartState_(state)
+{
+}
+
+StateCartesian::StateCartesian(const State &state)
+    : State{state}
+{
+    err_t rc = state.getState(cartState_);
+    A_UNUSED(rc);
+}
+
 err_t StateCartesian::getState(CartState& state) const
 {
-    state.pos() = position_;
-    state.vel() = velocity_;
+    state = cartState_;
     return eNoError;
 }
 
 err_t StateCartesian::setState(const CartState &state)
 {
-    position_ = state.pos();
-    velocity_ = state.vel();
+    cartState_ = state;
     return eNoError;
 }
 

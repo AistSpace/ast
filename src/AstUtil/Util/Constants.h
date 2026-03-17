@@ -213,7 +213,7 @@ constexpr double kArcSecToRad  = 4.848136811095359935899141e-6;         ///< 弧
 constexpr double kArcMinToRad  = 2.9088820866572159615394846141477e-4;	///< 弧分到弧度 kDegToRad/60.0 度分秒的分
 constexpr double kTimeSecToRad = 7.2722052166430399038487115353692e-5;	///< 时间秒到弧度，时分秒的秒
 constexpr double kTimeMinToRad = 0.0043633231299858239423092269212215;	///< 时间分到弧度，时分秒的分
-
+constexpr double kRevolutionToRad = kTwoPI;                             ///< 周期数到弧度 2.0 * kPI
 
 
 /// @brief 获取真空中的光速

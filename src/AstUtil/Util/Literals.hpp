@@ -81,6 +81,22 @@ namespace literals
         return val * kArcSecToRad;
     }
 
+    /// @brief 将长双精度浮点数值从周期数转换为弧度
+    /// @param val 周期数
+    /// @return 对应的弧度值（周期数 * kRevolutionToRad）
+    inline constexpr double operator ""_revs(long double val)
+    {
+        return val * kRevolutionToRad;
+    }
+    
+    /// @brief 将无符号长整数值从周期数转换为弧度
+    /// @param val 周期数
+    /// @return 对应的弧度值（周期数 * kRevolutionToRad）
+    inline constexpr double operator ""_revs(unsigned long long val)
+    {
+        return val * kRevolutionToRad;
+    }
+
     // 长度单位 - 基于米的单位制. 所有长度转换最终表示为米
 
     /// @brief 将长双精度浮点数值从千米转换为米
@@ -430,6 +446,7 @@ namespace literals
     constexpr double ms = 1_ms;
     constexpr double min = 1_min;
     constexpr double h = 1_h;
+    constexpr double day = 1_day;
 }
 
 // 导入字面量命名空间到ast命名空间，便于使用
