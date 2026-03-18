@@ -1,7 +1,6 @@
 var OrbitParam_8cpp =
 [
     [ "PI", "OrbitParam_8cpp.html#a598a3330b3c21701223ee0ca14316eca", null ],
-    [ "aApoAltToApoRad", "OrbitParam_8cpp.html#ga82f903e8f85b34895e7d3b8d394f8b7a", null ],
     [ "aApoAltToMeanMotion", "OrbitParam_8cpp.html#gad85f0e961dddb14262a2857f17e38127", null ],
     [ "aApoAltToPeriAlt", "OrbitParam_8cpp.html#gadc1695ea034d099c7bf62716e82e95d4", null ],
     [ "aApoAltToPeriod", "OrbitParam_8cpp.html#gaa8e43b34d4d90d5ecbe97969e13ac376", null ],
@@ -20,6 +19,7 @@ var OrbitParam_8cpp =
     [ "aEccToTimePastPeri", "OrbitParam_8cpp.html#ga5a27e254cd6677e0e9adb782ad6797e1", null ],
     [ "aEccToTrue", "OrbitParam_8cpp.html#ga9a568777413932898a8a06b13f9ef905", null ],
     [ "aFlatToEcc", "OrbitParam_8cpp.html#gad93a7b2f714513f09813165d1ef3b064", null ],
+    [ "aLANToRAAN", "OrbitParam_8cpp.html#ga624462bc02368eeb364ce99e741ae387", null ],
     [ "aMeanMotionToApoAlt", "OrbitParam_8cpp.html#gae53fdd04b49488c954135412160666d9", null ],
     [ "aMeanMotionToApoRad", "OrbitParam_8cpp.html#ga447d01eee78a7a4e84210ae7807da084", null ],
     [ "aMeanMotionToPeriAlt", "OrbitParam_8cpp.html#gaccf3be6be8cba04ab1c64134e9ae24ec", null ],
@@ -57,7 +57,6 @@ var OrbitParam_8cpp =
     [ "aSMAToMeanMotion", "OrbitParam_8cpp.html#ga2599219575903cb2d1c317c6d69b178d", null ],
     [ "aSMAToPeriAlt", "OrbitParam_8cpp.html#gac0ddc0ab5b460fe10ebf19350acc1497", null ],
     [ "aSMAToPeriod", "OrbitParam_8cpp.html#gabe0b53580d3e6e0a08d9c991e8458ca4", null ],
-    [ "aSMAToPeriRad", "OrbitParam_8cpp.html#ga386ff847734e619bf85347d19b156b76", null ],
     [ "aSMAToSMinAx", "OrbitParam_8cpp.html#gae97af2364e248e19117ddda707f8a925", null ],
     [ "aSMAToSParam", "OrbitParam_8cpp.html#ga58481d4e11cac545c86b73019e854e59", null ],
     [ "aSMinAxToSMA", "OrbitParam_8cpp.html#ga94434d9d496526076d21e26c8527aa50", null ],
@@ -69,7 +68,6 @@ var OrbitParam_8cpp =
     [ "aTimePastPeriToMean", "OrbitParam_8cpp.html#ga13e8d943259e37ea2bb242996131ccb5", null ],
     [ "aTimePastPeriToTimePastAscNode", "OrbitParam_8cpp.html#ga8179972ed691bff372e632da0583fe7d", null ],
     [ "aTimePastPeriToTrue", "OrbitParam_8cpp.html#gaf31c6dd7d5418df9e6e0cdb1c48701f3", null ],
-    [ "aTrueToArgLat", "OrbitParam_8cpp.html#gab5888cdb16a2c89b389aec62e306fd52", null ],
     [ "aTrueToEcc", "OrbitParam_8cpp.html#ga9c6f4819b57fee0ccdd9d29047247a96", null ],
     [ "aTrueToMean", "OrbitParam_8cpp.html#ga301aa4d2247f064d2ea4242e212fc339", null ],
     [ "aTrueToTimePastAscNode", "OrbitParam_8cpp.html#ga6b12c7991ca3003d82ca69d6c53b46de", null ],

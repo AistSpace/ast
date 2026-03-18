@@ -120,6 +120,7 @@ var group__Time =
       [ "operator-", "classast_1_1TimePoint.html#a684d79309f622b675da2a9695bbe0108", null ],
       [ "shiftedBySecond", "classast_1_1TimePoint.html#a27c238cc13dc80d5497ffa4f07cd4414", null ],
       [ "shiftedBySecondInTDB", "classast_1_1TimePoint.html#ab835bcc2d27d002dde4a4789a2f0e94f", null ],
+      [ "toEpochSecond", "classast_1_1TimePoint.html#a89bcd0423df7b50045590e4d33a47746", null ],
       [ "toString", "classast_1_1TimePoint.html#afcd52a7e2f0e8c0627ccf3918d2c2011", null ],
       [ "toTAI", "classast_1_1TimePoint.html#a14f2bfb1304169854d3aa37cfc47e269", null ],
       [ "toTAI", "classast_1_1TimePoint.html#afd12e985220adfd9743435f0ebd55f5b", null ],
