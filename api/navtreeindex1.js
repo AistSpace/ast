@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"BlockProduct_8hpp.html":[4,0,0,2,7,1,1,2,11],
+"BlockProduct_8hpp_source.html":[4,0,0,2,7,1,1,2,11],
+"BlockRelationalOperator_8cpp.html":[4,0,0,2,7,1,1,1,2],
 "BlockRelationalOperator_8hpp.html":[4,0,0,2,7,1,1,1,3],
 "BlockRelationalOperator_8hpp.html#a11d9a447a3f9d9c3fef650baf82bc59a":[4,0,0,2,7,1,1,1,3,1],
 "BlockRelationalOperator_8hpp.html#a11d9a447a3f9d9c3fef650baf82bc59aa32878f155f0cd02e5bd31db9fd776b2f":[4,0,0,2,7,1,1,1,3,1,2],
@@ -92,9 +95,9 @@ var NAVTREEINDEX1 =
 "CircularOrbitDesigner_8cpp.html":[4,0,0,2,6,0,2],
 "CircularOrbitDesigner_8hpp.html":[4,0,0,2,6,0,3],
 "CircularOrbitDesigner_8hpp_source.html":[4,0,0,2,6,0,3],
-"Class_8cpp.html":[4,0,0,13,5,0,0],
-"Class_8hpp.html":[4,0,0,13,5,0,1],
-"Class_8hpp_source.html":[4,0,0,13,5,0,1],
+"Class_8cpp.html":[4,0,0,13,5,0,2],
+"Class_8hpp.html":[4,0,0,13,5,0,3],
+"Class_8hpp_source.html":[4,0,0,13,5,0,3],
 "ColorNamed_8hpp.html":[4,0,0,13,7,1],
 "ColorNamed_8hpp_source.html":[4,0,0,13,7,1],
 "Color_8hpp.html":[4,0,0,13,7,0],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "EventTimeFallback_8cpp.html":[4,0,0,2,9,0,1,4],
 "EventTimeFallback_8hpp.html":[4,0,0,2,9,0,1,5],
 "EventTimeFallback_8hpp_source.html":[4,0,0,2,9,0,1,5],
-"EventTimeLinkTo_8cpp.html":[4,0,0,2,9,0,1,6],
-"EventTimeLinkTo_8hpp.html":[4,0,0,2,9,0,1,7],
-"EventTimeLinkTo_8hpp_source.html":[4,0,0,2,9,0,1,7],
-"EventTime_8cpp.html":[4,0,0,2,9,0,1,0]
+"EventTimeLinkTo_8cpp.html":[4,0,0,2,9,0,1,6]
 };

@@ -1,5 +1,8 @@
 var NAVTREEINDEX5 =
 {
+"SimpleOrbitDesigner_8cpp.html":[4,0,0,2,6,0,17],
+"SimpleOrbitDesigner_8hpp.html":[4,0,0,2,6,0,18],
+"SimpleOrbitDesigner_8hpp_source.html":[4,0,0,2,6,0,18],
 "SimulationAPI_8cpp.html":[4,0,0,2,7,1,17],
 "SimulationAPI_8cpp.html#a09abe7229223cffbe1af1f9f30d6e4b7":[4,0,0,2,7,1,17,0],
 "SimulationAPI_8cpp.html#a30843f3a4f566f1d18f40a96041bde54":[4,0,0,2,7,1,17,7],
@@ -157,9 +160,9 @@ var NAVTREEINDEX5 =
 "String_8cpp.html":[4,0,0,13,6,2],
 "String_8hpp.html":[4,0,0,13,6,3],
 "String_8hpp_source.html":[4,0,0,13,6,3],
-"Struct_8cpp.html":[4,0,0,13,5,0,22],
-"Struct_8hpp.html":[4,0,0,13,5,0,23],
-"Struct_8hpp_source.html":[4,0,0,13,5,0,23],
+"Struct_8cpp.html":[4,0,0,13,5,0,24],
+"Struct_8hpp.html":[4,0,0,13,5,0,25],
+"Struct_8hpp_source.html":[4,0,0,13,5,0,25],
 "SubObserverPoint_8cpp.html":[4,0,0,0,0,18],
 "SubObserverPoint_8hpp.html":[4,0,0,0,0,19],
 "SubObserverPoint_8hpp_source.html":[4,0,0,0,0,19],
@@ -246,8 +249,5 @@ var NAVTREEINDEX5 =
 "UnarySolver_8hpp_source.html":[4,0,0,5,4,4],
 "UnaryVectorFunc_8hpp.html":[4,0,0,5,2,3],
 "UnaryVectorFunc_8hpp_source.html":[4,0,0,5,2,3],
-"UnitConverter_8cpp.html":[4,0,0,13,4,8],
-"UnitConverter_8hpp.html":[4,0,0,13,4,9],
-"UnitConverter_8hpp_source.html":[4,0,0,13,4,9],
-"UnitManager_8cpp.html":[4,0,0,13,4,10]
+"UnitConverter_8cpp.html":[4,0,0,13,4,8]
 };

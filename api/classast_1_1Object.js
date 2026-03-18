@@ -1,12 +1,17 @@
 var classast_1_1Object =
 [
+    [ "attr", "classast_1_1Object.html#a0192227e3d8184f7a6d75dec82993170", null ],
     [ "decRef", "classast_1_1Object.html#aa4697ffa258dc386c82f6e496ee6f513", null ],
     [ "decRefNoDelete", "classast_1_1Object.html#aecd84a95fab6db0c0efb7fb34863b11c", null ],
     [ "decWeakRef", "classast_1_1Object.html#a892866e72d85db8cc1431fb0dff1d871", null ],
     [ "destruct", "classast_1_1Object.html#ac7badb24d788afd6fa3e0bc4ef91569e", null ],
+    [ "getAttrBool", "classast_1_1Object.html#a83991aa13c3c8eaf8d878c3e37ac4281", null ],
     [ "getAttrBool", "classast_1_1Object.html#a12b179308fe17cb9b22763b112435da9", null ],
+    [ "getAttrDouble", "classast_1_1Object.html#abf605796ba25d785d4d63055fdf14836", null ],
     [ "getAttrDouble", "classast_1_1Object.html#af4bbfc4b11dd767cbcc85e5453ad3172", null ],
+    [ "getAttrInt", "classast_1_1Object.html#a6c1820e5f8b26c89f6261d1752e1cb35", null ],
     [ "getAttrInt", "classast_1_1Object.html#a779b1c7ab397e1efc8faecbd0d11b8d8", null ],
+    [ "getAttrString", "classast_1_1Object.html#aa457c9e1855e145d566b078711bfc7f2", null ],
     [ "getAttrString", "classast_1_1Object.html#a2678804dfc3ce28d9656a1210b714300", null ],
     [ "getProperty", "classast_1_1Object.html#ae3f855bf1ea116440b9f5ee84ed6cd7f", null ],
     [ "incRef", "classast_1_1Object.html#a200ecf89b239336aae46e9b2e6045f7c", null ],

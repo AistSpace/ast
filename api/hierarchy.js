@@ -14,6 +14,7 @@ var hierarchy =
     [ "ast::args_t", "structast_1_1args__t.html", null ],
     [ "ast::AstGfxAPI", "classast_1_1AstGfxAPI.html", null ],
     [ "ast::AttitudeProfile", "classast_1_1AttitudeProfile.html", null ],
+    [ "ast::Attribute", "classast_1_1Attribute.html", null ],
     [ "AVector3d", "structAVector3d.html", null ],
     [ "ast::BackTrace", "classast_1_1BackTrace.html", null ],
     [ "ast::BaseParser", "classast_1_1BaseParser.html", [

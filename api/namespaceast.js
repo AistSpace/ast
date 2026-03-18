@@ -70,6 +70,7 @@ var namespaceast =
     [ "args_t", "structast_1_1args__t.html", null ],
     [ "AstGfxAPI", "classast_1_1AstGfxAPI.html", "classast_1_1AstGfxAPI" ],
     [ "AttitudeProfile", "classast_1_1AttitudeProfile.html", null ],
+    [ "Attribute", "classast_1_1Attribute.html", null ],
     [ "Axes", "classast_1_1Axes.html", "classast_1_1Axes" ],
     [ "AxesBodyFixed", "classast_1_1AxesBodyFixed.html", "classast_1_1AxesBodyFixed" ],
     [ "AxesBodyInertial", "classast_1_1AxesBodyInertial.html", "classast_1_1AxesBodyInertial" ],
