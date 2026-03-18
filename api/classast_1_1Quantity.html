@@ -132,6 +132,8 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a6df5a84f1a98aeafb0e946a832018835"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77ac77a3ec344b585e0348647308f8f3" id="r_a77ac77a3ec344b585e0348647308f8f3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77ac77a3ec344b585e0348647308f8f3">getInternalValue</a> () const</td></tr>
 <tr class="separator:a77ac77a3ec344b585e0348647308f8f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f31be650b83e6dd74ad63d0f451a27e" id="r_a4f31be650b83e6dd74ad63d0f451a27e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f31be650b83e6dd74ad63d0f451a27e">getSIValue</a> () const</td></tr>
+<tr class="separator:a4f31be650b83e6dd74ad63d0f451a27e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abcff1fb55869dbd60709752c0ec663c2" id="r_abcff1fb55869dbd60709752c0ec663c2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abcff1fb55869dbd60709752c0ec663c2">isValid</a> () const</td></tr>
 <tr class="separator:abcff1fb55869dbd60709752c0ec663c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49e64b35acf8856c830869f4a58496c2" id="r_a49e64b35acf8856c830869f4a58496c2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49e64b35acf8856c830869f4a58496c2">operator==</a> (const <a class="el" href="classast_1_1Quantity.html">Quantity</a> &amp;q) const</td></tr>
@@ -218,7 +220,8 @@ static <a class="el" href="classast_1_1Quantity.html">Quantity</a>&#160;</td><td
 <tr class="separator:a8616d69c2c54e37311da65291bb029e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>带单位的数量值 </p>
+<div class="textblock"><p>数量值 </p>
+<p>本类表示一个数量值，由数值和量词/单位组成 可以用于表示 <code>1 km</code>、<code>2 m/s</code>、<code>3 day</code> 等数量值 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
 <a id="abbe7b095750a45049367f4b42e144393" name="abbe7b095750a45049367f4b42e144393"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abbe7b095750a45049367f4b42e144393">&#9670;&#160;</a></span>dimension()</h2>
@@ -273,6 +276,34 @@ static <a class="el" href="classast_1_1Quantity.html">Quantity</a>&#160;</td><td
 
 <p>获取内部运行时单位表示的值 </p>
 <dl class="section return"><dt>返回</dt><dd>内部运行时单位表示的值 </dd></dl>
+
+</div>
+</div>
+<a id="a4f31be650b83e6dd74ad63d0f451a27e" name="a4f31be650b83e6dd74ad63d0f451a27e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f31be650b83e6dd74ad63d0f451a27e">&#9670;&#160;</a></span>getSIValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ast::Quantity::getSIValue </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取SI单位表示的值 </p>
+<dl class="section return"><dt>返回</dt><dd>SI单位表示的值 </dd></dl>
 
 </div>
 </div>

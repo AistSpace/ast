@@ -11,7 +11,7 @@ var searchData=
   ['deps_8',['deps',['../structast_1_1EOP_1_1Entry.html#a20d7dc6d9435bad6985d1d144b6427f2',1,'ast::EOP::Entry']]],
   ['desc_5f_9',['desc_',['../classast_1_1Field.html#ac9892e80ad6ea95308f2ebf4783ecf4e',1,'ast::Field']]],
   ['descriptors_10',['descriptors',['../structast_1_1DAF__SPKSummaryRecords.html#a5b4c7bca9ee562968ea70b164fef28dc',1,'ast::DAF_SPKSummaryRecords']]],
-  ['dimension_5f_11',['dimension_',['../classast_1_1ODEFixedStepIntegrator_1_1Workspace.html#a4e0505f4f6e0ceb4eb49ba510f61b69c',1,'ast::ODEFixedStepIntegrator::Workspace::dimension_'],['../classast_1_1Unit_1_1UnitRep.html#a270fa398df6868375f5db125920b05ac',1,'ast::Unit::UnitRep::dimension_']]],
+  ['dimension_5f_11',['dimension_',['../classast_1_1ODEFixedStepIntegrator_1_1Workspace.html#a4e0505f4f6e0ceb4eb49ba510f61b69c',1,'ast::ODEFixedStepIntegrator::Workspace::dimension_'],['../classast_1_1Unit_1_1UnitRep.html#a270fa398df6868375f5db125920b05ac',1,'ast::Unit::UnitRep::dimension_'],['../classast_1_1PropertyQuantity.html#a2a08668fd3fdc96e9940bbad1f6a8730',1,'ast::PropertyQuantity::dimension_']]],
   ['dims_5f_12',['dims_',['../classast_1_1ValArray.html#aefb5076bfe561d7498f557c6297fc9a8',1,'ast::ValArray']]],
   ['direction_5f_13',['direction_',['../classast_1_1CriticallyInclinedOrbitDesigner.html#a771ab05caca4a307e4f15692d6ee96ae',1,'ast::CriticallyInclinedOrbitDesigner']]],
   ['dm_14',['dm',['../Unit_8cpp.html#a567c78044182d62bdfd482ade453488f',1,'ast::units']]],

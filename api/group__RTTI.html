@@ -129,6 +129,8 @@ $(function(){initNavTree('group__RTTI.html',''); initResizable(true); });
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1PropertyPOD.html">ast::PropertyPOD</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1PropertyQuantity.html">ast::PropertyQuantity</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1PropertyString.html">ast::PropertyString</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1PropertyStruct.html">ast::PropertyStruct</a></td></tr>
@@ -176,6 +178,8 @@ typedef err_t(*&#160;</td><td class="memItemRight" valign="bottom"><b>ast::FProp
 <tr class="separator:gaff3e252c38a2181e83905f4410481f06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa4dd17f5b45e7f5cb675773ac8228b44" id="r_gaa4dd17f5b45e7f5cb675773ac8228b44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa4dd17f5b45e7f5cb675773ac8228b44">ast::_aNewPropertyString</a> (<a class="el" href="#gae5e5616987acd034b10e01cd6edbbb48">FPropertyGet</a> getter, <a class="el" href="#ga2e0deea40e71f5b7c0ecebaceaaf296d">FPropertySet</a> setter)</td></tr>
 <tr class="separator:gaa4dd17f5b45e7f5cb675773ac8228b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd7c4d54f077926b5ddc96f4e52de486" id="r_gabd7c4d54f077926b5ddc96f4e52de486"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gabd7c4d54f077926b5ddc96f4e52de486">ast::_aNewPropertyQuantity</a> (<a class="el" href="#gae5e5616987acd034b10e01cd6edbbb48">FPropertyGet</a> getter, <a class="el" href="#ga2e0deea40e71f5b7c0ecebaceaaf296d">FPropertySet</a> setter, <a class="el" href="classast_1_1Dimension.html">Dimension</a> dimension)</td></tr>
+<tr class="separator:gabd7c4d54f077926b5ddc96f4e52de486"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab87f85a6d4d76eca5e6506ed1b4690bc" id="r_gab87f85a6d4d76eca5e6506ed1b4690bc"><td class="memTemplParams" colspan="2"><a id="gab87f85a6d4d76eca5e6506ed1b4690bc" name="gab87f85a6d4d76eca5e6506ed1b4690bc"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:gab87f85a6d4d76eca5e6506ed1b4690bc"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>ast::_aNewProperty</b> (<a class="el" href="#gae5e5616987acd034b10e01cd6edbbb48">FPropertyGet</a> getter, <a class="el" href="#ga2e0deea40e71f5b7c0ecebaceaaf296d">FPropertySet</a> setter)</td></tr>
@@ -213,6 +217,13 @@ template&lt;typename T , double T::* Member&gt; </td></tr>
 <tr class="memitem:gae226f50849c8a709762c86e35ea8bf3f" id="r_gae226f50849c8a709762c86e35ea8bf3f"><td class="memTemplParams" colspan="2">template&lt;typename T , double T::* Member&gt; </td></tr>
 <tr class="memitem:gae226f50849c8a709762c86e35ea8bf3f"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#gae226f50849c8a709762c86e35ea8bf3f">ast::aNewPropertyDouble</a> ()</td></tr>
 <tr class="separator:gae226f50849c8a709762c86e35ea8bf3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga508f198bee8189416967ec1b1a036dca" id="r_ga508f198bee8189416967ec1b1a036dca"><td class="memTemplParams" colspan="2"><a id="ga508f198bee8189416967ec1b1a036dca" name="ga508f198bee8189416967ec1b1a036dca"></a>
+template&lt;typename T , double T::* Member&gt; </td></tr>
+<tr class="memitem:ga508f198bee8189416967ec1b1a036dca"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>ast::aNewPropertyQuantityMem</b> (<a class="el" href="classast_1_1Dimension.html">Dimension</a> dimension)</td></tr>
+<tr class="separator:ga508f198bee8189416967ec1b1a036dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9dfce20ff9941ee9dca9fdf8e7a564cc" id="r_ga9dfce20ff9941ee9dca9fdf8e7a564cc"><td class="memTemplParams" colspan="2">template&lt;typename T , double T::* Member&gt; </td></tr>
+<tr class="memitem:ga9dfce20ff9941ee9dca9fdf8e7a564cc"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ga9dfce20ff9941ee9dca9fdf8e7a564cc">ast::aNewPropertyQuantity</a> (<a class="el" href="classast_1_1Dimension.html">Dimension</a> dimension)</td></tr>
+<tr class="separator:ga9dfce20ff9941ee9dca9fdf8e7a564cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7d4a7fb307d92362d5099478d7f79aea" id="r_ga7d4a7fb307d92362d5099478d7f79aea"><td class="memTemplParams" colspan="2"><a id="ga7d4a7fb307d92362d5099478d7f79aea" name="ga7d4a7fb307d92362d5099478d7f79aea"></a>
 template&lt;typename T , std::string T::* Member&gt; </td></tr>
 <tr class="memitem:ga7d4a7fb307d92362d5099478d7f79aea"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>ast::aNewPropertyStringMem</b> ()</td></tr>
@@ -229,6 +240,9 @@ template&lt;typename T , std::string T::* Member&gt; </td></tr>
 <tr class="memitem:ga42339af3443182c13b64b8d69f3a2642" id="r_ga42339af3443182c13b64b8d69f3a2642"><td class="memTemplParams" colspan="2">template&lt;typename T , double(T::*)() const Getter, void(T::*)(double) Setter&gt; </td></tr>
 <tr class="memitem:ga42339af3443182c13b64b8d69f3a2642"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ga42339af3443182c13b64b8d69f3a2642">ast::aNewPropertyDouble</a> ()</td></tr>
 <tr class="separator:ga42339af3443182c13b64b8d69f3a2642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5a6cc334e226efc477c6ce395ad14ed7" id="r_ga5a6cc334e226efc477c6ce395ad14ed7"><td class="memTemplParams" colspan="2">template&lt;typename T , double(T::*)() const Getter, void(T::*)(double) Setter&gt; </td></tr>
+<tr class="memitem:ga5a6cc334e226efc477c6ce395ad14ed7"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ga5a6cc334e226efc477c6ce395ad14ed7">ast::aNewPropertyQuantity</a> (<a class="el" href="classast_1_1Dimension.html">Dimension</a> dimension)</td></tr>
+<tr class="separator:ga5a6cc334e226efc477c6ce395ad14ed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab1f1da4e88219f2a7797a180f28a869f" id="r_gab1f1da4e88219f2a7797a180f28a869f"><td class="memTemplParams" colspan="2">template&lt;typename T , const std::string &amp;(T::*)() const Getter, void(T::*)(<a class="el" href="classast_1_1StringViewBasic.html">StringView</a>) Setter&gt; </td></tr>
 <tr class="memitem:gab1f1da4e88219f2a7797a180f28a869f"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#gab1f1da4e88219f2a7797a180f28a869f">ast::aNewPropertyString</a> ()</td></tr>
 <tr class="separator:gab1f1da4e88219f2a7797a180f28a869f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -486,6 +500,44 @@ template&lt;&gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="gabd7c4d54f077926b5ddc96f4e52de486" name="gabd7c4d54f077926b5ddc96f4e52de486"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabd7c4d54f077926b5ddc96f4e52de486">&#9670;&#160;</a></span>_aNewPropertyQuantity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_UTIL_CAPI <a class="el" href="classast_1_1Property.html">Property</a> * ast::_aNewPropertyQuantity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#gae5e5616987acd034b10e01cd6edbbb48">FPropertyGet</a></td>          <td class="paramname"><span class="paramname"><em>getter</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ga2e0deea40e71f5b7c0ecebaceaaf296d">FPropertySet</a></td>          <td class="paramname"><span class="paramname"><em>setter</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Dimension.html">Dimension</a></td>          <td class="paramname"><span class="paramname"><em>dimension</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建一个量纲属性 </p>
+<dl class="section warning"><dt>警告</dt><dd>本函数为内部函数，不建议直接调用。 </dd></dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">getter</td><td>获取属性值的函数指针 </td></tr>
+    <tr><td class="paramname">setter</td><td>设置属性值的函数指针 </td></tr>
+    <tr><td class="paramname">dimension</td><td>量纲 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Property* 属性指针 </dd></dl>
 
 </div>
 </div>
@@ -784,6 +836,78 @@ template&lt;typename T , int(T::*)() const Getter, void(T::*)(int) Setter&gt; </
     <tr><td class="paramname">T</td><td>类类型 </td></tr>
     <tr><td class="paramname">Getter</td><td>整数属性获取函数指针 </td></tr>
     <tr><td class="paramname">Setter</td><td>整数属性设置函数指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Property* 属性指针 </dd></dl>
+
+</div>
+</div>
+<a id="ga9dfce20ff9941ee9dca9fdf8e7a564cc" name="ga9dfce20ff9941ee9dca9fdf8e7a564cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9dfce20ff9941ee9dca9fdf8e7a564cc">&#9670;&#160;</a></span>aNewPropertyQuantity() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , double T::* Member&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> * ast::aNewPropertyQuantity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Dimension.html">Dimension</a></td>          <td class="paramname"><span class="paramname"><em>dimension</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建一个数量值属性 </p>
+<p>本函数创建一个数量值属性，属性值通过访问对象的成员变量获取。 </p><dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>类类型 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">member</td><td>数量值属性成员指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Property* 属性指针</dd></dl>
+<p>本函数创建一个数量值属性，属性值通过调用对象的成员函数获取。 </p><dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>类类型 </td></tr>
+    <tr><td class="paramname">Getter</td><td>数量值属性获取函数指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Property* 属性指针 </dd></dl>
+
+</div>
+</div>
+<a id="ga5a6cc334e226efc477c6ce395ad14ed7" name="ga5a6cc334e226efc477c6ce395ad14ed7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5a6cc334e226efc477c6ce395ad14ed7">&#9670;&#160;</a></span>aNewPropertyQuantity() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , double(T::*)() const Getter, void(T::*)(double) Setter&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> * ast::aNewPropertyQuantity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Dimension.html">Dimension</a></td>          <td class="paramname"><span class="paramname"><em>dimension</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建一个数量值属性 </p>
+<p>本函数创建一个数量值属性，属性值通过调用对象的成员函数获取。 </p><dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>类类型 </td></tr>
+    <tr><td class="paramname">Getter</td><td>数量值属性获取函数指针 </td></tr>
+    <tr><td class="paramname">Setter</td><td>数量值属性设置函数指针 </td></tr>
   </table>
   </dd>
 </dl>

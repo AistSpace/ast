@@ -100,7 +100,9 @@ var hierarchy =
     [ "ast::Field", "classast_1_1Field.html", [
       [ "ast::Property", "classast_1_1Property.html", [
         [ "ast::PropertyBool", "classast_1_1PropertyBool.html", null ],
-        [ "ast::PropertyDouble", "classast_1_1PropertyDouble.html", null ],
+        [ "ast::PropertyDouble", "classast_1_1PropertyDouble.html", [
+          [ "ast::PropertyQuantity", "classast_1_1PropertyQuantity.html", null ]
+        ] ],
         [ "ast::PropertyInt", "classast_1_1PropertyInt.html", null ],
         [ "ast::PropertyObject", "classast_1_1PropertyObject.html", null ],
         [ "ast::PropertyPOD", "classast_1_1PropertyPOD.html", null ],

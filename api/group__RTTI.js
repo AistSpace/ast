@@ -92,6 +92,11 @@ var group__RTTI =
       [ "setValue", "classast_1_1PropertyObject.html#a29077fd9d6ac7df1d366d4b38c3ac0b4", null ]
     ] ],
     [ "ast::PropertyPOD", "classast_1_1PropertyPOD.html", null ],
+    [ "ast::PropertyQuantity", "classast_1_1PropertyQuantity.html", [
+      [ "getValueString", "classast_1_1PropertyQuantity.html#acfd7c3bffee20405eba63a7f14b8f3e3", null ],
+      [ "setValueString", "classast_1_1PropertyQuantity.html#aa2b0572617b6442a775e0797145096a7", null ],
+      [ "dimension_", "classast_1_1PropertyQuantity.html#a2a08668fd3fdc96e9940bbad1f6a8730", null ]
+    ] ],
     [ "ast::PropertyString", "classast_1_1PropertyString.html", [
       [ "getValue", "classast_1_1PropertyString.html#a49a3aefc79cc89156a0f10af8e924194", null ],
       [ "getValueBool", "classast_1_1PropertyString.html#a428f940e7a1e7bf003a656306d59ecb6", null ],
@@ -131,6 +136,7 @@ var group__RTTI =
     [ "ast::_aNewPropertyBool", "group__RTTI.html#ga034dd7451dd8339ba81126facb177f4a", null ],
     [ "ast::_aNewPropertyDouble", "group__RTTI.html#gaff3e252c38a2181e83905f4410481f06", null ],
     [ "ast::_aNewPropertyInt", "group__RTTI.html#gaf5bd75c9d8ec9c21e6fb19c0ddc06506", null ],
+    [ "ast::_aNewPropertyQuantity", "group__RTTI.html#gabd7c4d54f077926b5ddc96f4e52de486", null ],
     [ "ast::_aNewPropertyString", "group__RTTI.html#gaa4dd17f5b45e7f5cb675773ac8228b44", null ],
     [ "ast::aFakeGet", "group__RTTI.html#ga720e28060323da40e1e4b070d083476d", null ],
     [ "ast::aFakeSet", "group__RTTI.html#gaf362f75a91fc0ea3dbfa4192650b6a7f", null ],
@@ -140,6 +146,8 @@ var group__RTTI =
     [ "ast::aNewPropertyDouble", "group__RTTI.html#gae226f50849c8a709762c86e35ea8bf3f", null ],
     [ "ast::aNewPropertyDouble", "group__RTTI.html#ga42339af3443182c13b64b8d69f3a2642", null ],
     [ "ast::aNewPropertyInt", "group__RTTI.html#gabd80cec7c92c81bef0fc0ded24e581fe", null ],
+    [ "ast::aNewPropertyQuantity", "group__RTTI.html#ga9dfce20ff9941ee9dca9fdf8e7a564cc", null ],
+    [ "ast::aNewPropertyQuantity", "group__RTTI.html#ga5a6cc334e226efc477c6ce395ad14ed7", null ],
     [ "ast::aNewPropertyString", "group__RTTI.html#gad3f0c83f3703a466479984a0b62fba71", null ],
     [ "ast::aNewPropertyString", "group__RTTI.html#gab1f1da4e88219f2a7797a180f28a869f", null ]
 ];

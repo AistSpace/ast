@@ -15,6 +15,7 @@ var Unit_8cpp =
     [ "unit_power", "Unit_8cpp.html#a49d13854b5b3a8bf42c2b26669f74e9a", null ],
     [ "unit_setname", "Unit_8cpp.html#a67c45427ea5818e47ec662b5e76f9ba6", null ],
     [ "A", "Unit_8cpp.html#a26da2976a8828d2390606bddb75cf8e5", null ],
+    [ "arcsec", "Unit_8cpp.html#a4269fe8d0f2f532e585768ed1c5cfb76", null ],
     [ "cm", "Unit_8cpp.html#a303e4126abedb9af71391110b791f9ce", null ],
     [ "day", "Unit_8cpp.html#a46331518b0993f7058b537530ef94a33", null ],
     [ "deg", "Unit_8cpp.html#a6d966734edbd9f3919b56975c0b83d0e", null ],

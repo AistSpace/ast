@@ -293,6 +293,7 @@ var annotated_dup =
       [ "PropertyInt", "classast_1_1PropertyInt.html", "classast_1_1PropertyInt" ],
       [ "PropertyObject", "classast_1_1PropertyObject.html", "classast_1_1PropertyObject" ],
       [ "PropertyPOD", "classast_1_1PropertyPOD.html", null ],
+      [ "PropertyQuantity", "classast_1_1PropertyQuantity.html", "classast_1_1PropertyQuantity" ],
       [ "PropertyString", "classast_1_1PropertyString.html", "classast_1_1PropertyString" ],
       [ "PropertyStruct", "classast_1_1PropertyStruct.html", "classast_1_1PropertyStruct" ],
       [ "Quantity", "classast_1_1Quantity.html", "classast_1_1Quantity" ],

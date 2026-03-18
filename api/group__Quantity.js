@@ -3,6 +3,7 @@ var group__Quantity =
     [ "ast::Quantity", "classast_1_1Quantity.html", [
       [ "dimension", "classast_1_1Quantity.html#abbe7b095750a45049367f4b42e144393", null ],
       [ "getInternalValue", "classast_1_1Quantity.html#a77ac77a3ec344b585e0348647308f8f3", null ],
+      [ "getSIValue", "classast_1_1Quantity.html#a4f31be650b83e6dd74ad63d0f451a27e", null ],
       [ "invert", "classast_1_1Quantity.html#accd68453f0bf216a913b04d0d38c4bb6", null ],
       [ "isValid", "classast_1_1Quantity.html#abcff1fb55869dbd60709752c0ec663c2", null ],
       [ "operator!=", "classast_1_1Quantity.html#a516a4c733fb13be3f8e789bd96a11877", null ],

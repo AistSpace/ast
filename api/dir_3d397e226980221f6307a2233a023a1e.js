@@ -18,6 +18,8 @@ var dir_3d397e226980221f6307a2233a023a1e =
     [ "PropertyObject.hpp", "PropertyObject_8hpp.html", null ],
     [ "PropertyPOD.cpp", "PropertyPOD_8cpp.html", null ],
     [ "PropertyPOD.hpp", "PropertyPOD_8hpp.html", null ],
+    [ "PropertyQuantity.cpp", "PropertyQuantity_8cpp.html", null ],
+    [ "PropertyQuantity.hpp", "PropertyQuantity_8hpp.html", null ],
     [ "PropertyString.cpp", "PropertyString_8cpp.html", null ],
     [ "PropertyString.hpp", "PropertyString_8hpp.html", null ],
     [ "PropertyStruct.cpp", "PropertyStruct_8cpp.html", null ],

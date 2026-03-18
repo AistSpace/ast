@@ -103,7 +103,7 @@ $(function(){initNavTree('todo.html',''); initResizable(true); });
 <div class="contents">
 <div class="textblock"><dl class="reflist">
 <dt>成员 <a class="el" href="group__String.html#ga6993ecea67b70a58cc8f9c691d850a29">ast::aAnsiToWide</a>  (const char *ansi, std::wstring &amp;wide)</dt>
-<dd><a class="anchor" id="_todo000034"></a>实现Linux平台上的ANSI到宽字符编码转换  </dd>
+<dd><a class="anchor" id="_todo000036"></a>实现Linux平台上的ANSI到宽字符编码转换  </dd>
 <dt>成员 <a class="el" href="namespaceast.html#aad6b49bf0170e8c84db4a94e7fb507f1">ast::aGeometryTransform</a>  (GeometryType *source, GeometryType *target, const <a class="el" href="classast_1_1TimePoint.html" title="绝对时间点">TimePoint</a> &amp;tp, RotationType &amp;rotation)</dt>
 <dd><p class="startdd"><a class="anchor" id="_todo000007"></a> 在寻找最近公共祖先时，如果出现了超过256层的意外情况（非常非常罕见）， 需要进入动态分配内存的计算模式 </p>
 <p class="enddd"><a class="anchor" id="_todo000008"></a>这里应该可以专门写个函数将 <code>.inverse() *</code> 的计算进行合并  </p>
@@ -113,7 +113,7 @@ $(function(){initNavTree('todo.html',''); initResizable(true); });
 <dt>成员 <a class="el" href="group__Coordinate.html#ga7c8675c5897b90fb957b2accbeee5233">ast::aICRFToMoonPrincipalAxesTransform</a>  (const <a class="el" href="classast_1_1TimePoint.html" title="绝对时间点">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1KinematicRotation.html" title="运动学坐标系旋转">KinematicRotation</a> &amp;rotation)</dt>
 <dd><a class="anchor" id="_todo000002"></a>还未实现该函数，需要实现旋转角速度的计算  </dd>
 <dt>成员 <a class="el" href="group__String.html#gadbec1e8740a7cdb52e9bd0b49da8d2b4">ast::aUtf8ToWide</a>  (const char *utf8, std::wstring &amp;wide)</dt>
-<dd><a class="anchor" id="_todo000035"></a>实现Linux平台上的UTF-8到宽字符编码转换  </dd>
+<dd><a class="anchor" id="_todo000037"></a>实现Linux平台上的UTF-8到宽字符编码转换  </dd>
 <dt>类 <a class="el" href="classast_1_1BackTrace.html">ast::BackTrace</a>  </dt>
 <dd><a class="anchor" id="_todo000023"></a>实现回溯信息  </dd>
 <dt>成员 <a class="el" href="classast_1_1BaseParser.html#a7ac170ef6035641cae5e3c7a9843c9c5">ast::BaseParser::read</a>  (void *buffer, size_t size, size_t pos) const</dt>
@@ -123,7 +123,7 @@ $(function(){initNavTree('todo.html',''); initResizable(true); });
 <dt>类 <a class="el" href="classast_1_1CallStack.html">ast::CallStack</a>  </dt>
 <dd><a class="anchor" id="_todo000024"></a>实现调用栈相关功能  </dd>
 <dt>类 <a class="el" href="classast_1_1Class.html">ast::Class</a>  </dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000032"></a>实现类的反射机制</p>
+<dd><p class="startdd"><a class="anchor" id="_todo000033"></a>实现类的反射机制</p>
 <p class="enddd"></p>
 </dd>
 <dt>成员 <a class="el" href="classast_1_1DataContext.html#af02ea834b7ce89ae6a1e6c876230d770">ast::DataContext::m_iauXYSPrecomputed</a>  </dt>
@@ -153,9 +153,11 @@ $(function(){initNavTree('todo.html',''); initResizable(true); });
 <dt>成员 <a class="el" href="classast_1_1Point.html#a3b46eeef9261d63d8418c7c3d1784e74">ast::Point::toBody</a>  () const</dt>
 <dd><a class="anchor" id="_todo000009"></a>这里需要优化动态类型转换的执行效率  </dd>
 <dt>类 <a class="el" href="classast_1_1PropertyPOD.html">ast::PropertyPOD</a>  </dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000033"></a>拟作为int, double, bool等的基础属性类，其他属性类继承自该类。</p>
+<dd><p class="startdd"><a class="anchor" id="_todo000034"></a>拟作为int, double, bool等的基础属性类，其他属性类继承自该类。</p>
 <p class="enddd"></p>
 </dd>
+<dt>成员 <a class="el" href="classast_1_1PropertyQuantity.html#acfd7c3bffee20405eba63a7f14b8f3e3">ast::PropertyQuantity::getValueString</a>  (const void *container, std::string &amp;value) override</dt>
+<dd><a class="anchor" id="_todo000035"></a>这里需要一个通过量纲获取国际制单位的函数  </dd>
 <dt>成员 <a class="el" href="classast_1_1RepeatingOrbitDesigner.html#a9f9b08e947063f43e5beadf33b44ab3f">ast::RepeatingOrbitDesigner::getOrbitState</a>  (<a class="el" href="classast_1_1ModOrbElem.html" title="修正轨道根数">ModOrbElem</a> &amp;orbElem) const override</dt>
 <dd><a class="anchor" id="_todo000011"></a>这里目前只支持地球，需要增加对其他天体的支持  </dd>
 <dt>成员 <a class="el" href="classast_1_1RepeatingSunSyncOrbitDesigner.html#a613dc1c13c86db48a4572d78d0fab73b">ast::RepeatingSunSyncOrbitDesigner::getOrbitState</a>  (<a class="el" href="classast_1_1ModOrbElem.html" title="修正轨道根数">ModOrbElem</a> &amp;orbElem) const override</dt>
@@ -183,9 +185,9 @@ $(function(){initNavTree('todo.html',''); initResizable(true); });
 <p class="enddd"></p>
 </dd>
 <dt>成员 <a class="el" href="classast_1_1WorkingDirectory.html#a244b21f6a2d8c6c94a913be2d8096f97">ast::WorkingDirectory::WorkingDirectory</a>  (StringView path)</dt>
-<dd><a class="anchor" id="_todo000036"></a>需要考虑如何避免创建临时std::string对象  </dd>
+<dd><a class="anchor" id="_todo000038"></a>需要考虑如何避免创建临时std::string对象  </dd>
 <dt>组 <a class="el" href="group__Debris.html">Debris</a>  </dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000037"></a>实现空间碎片模型</p>
+<dd><p class="startdd"><a class="anchor" id="_todo000039"></a>实现空间碎片模型</p>
 <p class="enddd"></p>
 </dd>
 </dl>

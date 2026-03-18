@@ -73,7 +73,7 @@ var searchData=
   ['dimension_70',['dimension',['../classast_1_1Quantity.html#abbe7b095750a45049367f4b42e144393',1,'ast::Quantity::dimension()'],['../classast_1_1Unit.html#a737479417a4c6db862752355e6334984',1,'ast::Unit::dimension()']]],
   ['dimension_2ecpp_71',['Dimension.cpp',['../Dimension_8cpp.html',1,'']]],
   ['dimension_2ehpp_72',['Dimension.hpp',['../Dimension_8hpp.html',1,'']]],
-  ['dimension_5f_73',['dimension_',['../classast_1_1ODEFixedStepIntegrator_1_1Workspace.html#a4e0505f4f6e0ceb4eb49ba510f61b69c',1,'ast::ODEFixedStepIntegrator::Workspace::dimension_'],['../classast_1_1Unit_1_1UnitRep.html#a270fa398df6868375f5db125920b05ac',1,'ast::Unit::UnitRep::dimension_']]],
+  ['dimension_5f_73',['dimension_',['../classast_1_1ODEFixedStepIntegrator_1_1Workspace.html#a4e0505f4f6e0ceb4eb49ba510f61b69c',1,'ast::ODEFixedStepIntegrator::Workspace::dimension_'],['../classast_1_1Unit_1_1UnitRep.html#a270fa398df6868375f5db125920b05ac',1,'ast::Unit::UnitRep::dimension_'],['../classast_1_1PropertyQuantity.html#a2a08668fd3fdc96e9940bbad1f6a8730',1,'ast::PropertyQuantity::dimension_']]],
   ['dims_5f_74',['dims_',['../classast_1_1ValArray.html#aefb5076bfe561d7498f557c6297fc9a8',1,'ast::ValArray']]],
   ['direction_5f_75',['direction_',['../classast_1_1CriticallyInclinedOrbitDesigner.html#a771ab05caca4a307e4f15692d6ee96ae',1,'ast::CriticallyInclinedOrbitDesigner']]],
   ['directory_5fentry_76',['directory_entry',['../classast_1_1fs__simple_1_1directory__entry.html',1,'ast::fs_simple']]],
