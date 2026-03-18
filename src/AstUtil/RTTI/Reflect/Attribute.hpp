@@ -135,7 +135,7 @@ public:
         return *this;
     }
     // 避免对bool类型的隐式转换
-    template<typename T, typename = std::enable_if_t<std::is_same_v<T, bool>>>
+    template<typename T, typename = typename std::enable_if<std::is_same<T, bool>::value>::type>
     Attribute& operator=(T value)
     {
         setValueBool(value);

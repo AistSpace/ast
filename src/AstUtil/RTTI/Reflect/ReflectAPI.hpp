@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/StringView.hpp"
+#include "AstUtil/Dimension.hpp"
 #include <string>
 
 AST_NAMESPACE_BEGIN

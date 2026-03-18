@@ -78,7 +78,9 @@ public:
     double	 trueA_;      ///< 真近点角
 public:
     /// @brief 计算平均角速度变化率
-    double getMeanMotion(double gm) const {return sqrt(gm / pow(getA(), 3));}
+    double getMeanMotion(double gm) const {return aSMAToMeanMotion(getSMA(), gm);}
+
+    double getSMA() const {return a_;}
 
     double getA() const {return a_;}
 
@@ -121,7 +123,7 @@ public:
     double getSMA() const {return rp_ / (1 - e_);}
     
     /// @brief 计算平均角速度
-    double getMeanMotion(double gm) const {return sqrt(gm / pow(getA(), 3));}
+    double getMeanMotion(double gm) const {return aPeriRadToMeanMotion(getPeriRad(), getEcc(), gm);}
 
     /// @brief 计算周期
     double getPeriod(double gm) const {return kTwoPI / getMeanMotion(gm);}

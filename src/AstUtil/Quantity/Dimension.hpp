@@ -233,11 +233,14 @@ constexpr EDimension operator/(EDimension dim1, EDimension dim2) noexcept
     return (EDimension)dim_divide(dim1, dim2);
 }
 
+namespace internal
+{
 /// @brief 量纲指数幂运算符
 constexpr EDimension pow(EDimension dimension, int n) noexcept
 {
     return (EDimension)dim_pow(dimension, n);
 }
+};
 
 // @brief 量纲索引枚举类
 enum
@@ -528,15 +531,16 @@ public:
         dimension_ = (EDimension)dim_set_exponent(dimension_, kIdxLuminous, n);
         return *this;
     }
-    
 protected:
     EDimension dimension_;
 };
 
-/// @brief 量纲指数幂运算符
-A_CONSTEXPR_CXX14 inline Dimension pow(Dimension dim, int n)
-{
-    return pow(dim.value(), n);
+namespace internal{
+    /// @brief 量纲指数幂运算符
+    A_CONSTEXPR_CXX14 inline Dimension pow(Dimension dim, int n)
+    {
+        return (EDimension)dim_pow(dim.value(), n);
+    }
 }
 
 AST_NAMESPACE_END

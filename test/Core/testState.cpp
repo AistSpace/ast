@@ -667,8 +667,9 @@ TEST_F(StateTest, Attr)
             double val2 = stateKeplerian->attr(attr);
             printf("%20s: %.15g -> %.15g\n", attr.c_str(), val1, val2);
             EXPECT_NE(val1, 0.0);
-            if(attr != "LAN")
+            if(attr != "LAN"){
                 EXPECT_NEAR(val1, val2, 1e-14 * val1);
+            }
         }
         EXPECT_EQ(stateKeplerian->attr("NotExistProperty").getValueDouble(), 0.0);
     }
