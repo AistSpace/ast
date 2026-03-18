@@ -475,7 +475,7 @@ TEST_F(StateTest, SetKeplerianState)
             keplerianState->setPositionType(EPositionType::eTimePastAscNode);
             keplerianState->setOrientationType(EOrientationType::eLAN);
 
-            double ecc0 = keplerianState->getEcc();
+            // double ecc0 = keplerianState->getEcc();
             double ecc1 = 0.01;
             double sizeParam1 = keplerianState->getSizeParam();
             double orientationParam1 = keplerianState->getOrientationParam();
