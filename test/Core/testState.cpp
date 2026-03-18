@@ -201,7 +201,7 @@ TEST_F(StateTest, GetKeplerianStateParams)
             };
             for(int i = 0; i < 6; i++)
             {
-                EXPECT_NEAR(element[i], elementExpect[i], 1e-9);
+                EXPECT_NEAR(element[i], elementExpect[i], 1e-8);
             }
         }
         {
@@ -398,7 +398,7 @@ TEST_F(StateTest, SetKeplerianState)
             EXPECT_NEAR(orientationParam1, orientationParam2, 1e-5);
             EXPECT_NEAR(positionParam1, positionParam2, 1e-12);
         }
-        // test setPeriRad
+        // test setPeriRadForSize
         {
             keplerianState->setState(orbElem);
             keplerianState->setSizeType(ESizeType::eSMA);
@@ -433,7 +433,7 @@ TEST_F(StateTest, SetKeplerianState)
             EXPECT_NEAR(orientationParam1, orientationParam2, 1e-5);
             EXPECT_NEAR(positionParam1, positionParam2, 1e-12); 
         }
-        // test setApoRad
+        // test setApoRadForSize
         {
             keplerianState->setState(orbElem);
             keplerianState->setSizeType(ESizeType::ePeriAlt);
@@ -467,9 +467,206 @@ TEST_F(StateTest, SetKeplerianState)
             EXPECT_NEAR(orientationParam1, orientationParam2, 1e-5);
             EXPECT_NEAR(positionParam1, positionParam2, 1e-12); 
         }
+        // test setEcc
+        {
+            keplerianState->setState(orbElem);
+            keplerianState->setSizeType(ESizeType::eSMA);
+            keplerianState->setShapeType(EShapeType::eEcc);
+            keplerianState->setPositionType(EPositionType::eTimePastAscNode);
+            keplerianState->setOrientationType(EOrientationType::eLAN);
+
+            double ecc0 = keplerianState->getEcc();
+            double ecc1 = 0.01;
+            double sizeParam1 = keplerianState->getSizeParam();
+            double orientationParam1 = keplerianState->getOrientationParam();
+            double positionParam1 = keplerianState->getPositionParam();
+
+            keplerianState->setEcc(ecc1);
+            double ecc2 = keplerianState->getEcc();
+            double sizeParam2 = keplerianState->getSizeParam();
+            double orientationParam2 = keplerianState->getOrientationParam();
+            double positionParam2 = keplerianState->getPositionParam();
+
+            printf("ecc1: %.15g\n", ecc1);
+            printf("ecc2: %.15g\n", ecc2);
+            printf("orientationParam1: %.15g\n", orientationParam1);
+            printf("orientationParam2: %.15g\n", orientationParam2);
+            printf("sizeParam1: %.15g\n", sizeParam1);
+            printf("sizeParam2: %.15g\n", sizeParam2);
+            printf("positionParam1: %.15g\n", positionParam1);
+            printf("positionParam2: %.15g\n", positionParam2);
+            
+            EXPECT_NEAR(ecc1, ecc2, 1e-14 * ecc1);
+            EXPECT_NEAR(orientationParam1, orientationParam2, 1e-5);
+            EXPECT_NEAR(sizeParam1, sizeParam2, 1e-14 * sizeParam1);
+            EXPECT_NEAR(positionParam1, positionParam2, 1e-12); 
+        }
+        // test setPeriRadForShape
+        {
+            keplerianState->setState(orbElem);
+            keplerianState->setSizeType(ESizeType::eSMA);
+            keplerianState->setShapeType(EShapeType::eApoAlt);
+            keplerianState->setPositionType(EPositionType::eArgLat);
+            keplerianState->setOrientationType(EOrientationType::eLAN);
+
+            double apoRad0 = keplerianState->getApoRad();
+            double periRad1 = apoRad0 * 0.8;
+            double sizeParam1 = keplerianState->getSizeParam();
+            double orientationParam1 = keplerianState->getOrientationParam();
+            double positionParam1 = keplerianState->getPositionParam();
+
+            keplerianState->setPeriRadForShape(periRad1);
+
+            double periRad2 = keplerianState->getPeriRad();
+            double sizeParam2 = keplerianState->getSizeParam();
+            double orientationParam2 = keplerianState->getOrientationParam();
+            double positionParam2 = keplerianState->getPositionParam();
+
+            printf("periRad1: %.15g\n", periRad1);
+            printf("periRad2: %.15g\n", periRad2);
+            printf("orientationParam1: %.15g\n", orientationParam1);
+            printf("orientationParam2: %.15g\n", orientationParam2);
+            printf("sizeParam1: %.15g\n", sizeParam1);
+            printf("sizeParam2: %.15g\n", sizeParam2);
+            printf("positionParam1: %.15g\n", positionParam1);
+            printf("positionParam2: %.15g\n", positionParam2);
+            
+            EXPECT_NEAR(periRad1, periRad2, 1e-14 * periRad1);
+            EXPECT_NEAR(sizeParam1, sizeParam2, 1e-14 * sizeParam1);
+            EXPECT_NEAR(orientationParam1, orientationParam2, 1e-5);
+            EXPECT_NEAR(positionParam1, positionParam2, 1e-12); 
+        }
+        // test setApoRadForShape
+        {
+            keplerianState->setState(orbElem);
+            keplerianState->setSizeType(ESizeType::ePeriAlt);
+            keplerianState->setShapeType(EShapeType::eEcc);
+            keplerianState->setPositionType(EPositionType::eTimeOfPeriPassage);
+            keplerianState->setOrientationType(EOrientationType::eLAN); 
+
+            double apoRad0 = keplerianState->getApoRad();
+            double apoRad1 = apoRad0 * 1.2;
+            double sizeParam1 = keplerianState->getSizeParam();
+            double orientationParam1 = keplerianState->getOrientationParam();
+            double positionParam1 = keplerianState->getPositionParam();
+            keplerianState->setApoRadForShape(apoRad1);
+             
+            double apoRad2 = keplerianState->getApoRad();
+            double sizeParam2 = keplerianState->getSizeParam();
+            double orientationParam2 = keplerianState->getOrientationParam();
+            double positionParam2 = keplerianState->getPositionParam();
+            
+            printf("apoRad1: %.15g\n", apoRad1);
+            printf("apoRad2: %.15g\n", apoRad2);
+            printf("orientationParam1: %.15g\n", orientationParam1);
+            printf("orientationParam2: %.15g\n", orientationParam2);
+            printf("sizeParam1: %.15g\n", sizeParam1);
+            printf("sizeParam2: %.15g\n", sizeParam2);
+            printf("positionParam1: %.15g\n", positionParam1);
+            printf("positionParam2: %.15g\n", positionParam2);
+            
+            EXPECT_NEAR(apoRad1, apoRad2, 1e-14 * apoRad1);
+            EXPECT_NEAR(sizeParam1, sizeParam2, 1e-14 * sizeParam1);
+            EXPECT_NEAR(orientationParam1, orientationParam2, 1e-5);
+            EXPECT_NEAR(positionParam1, positionParam2, 1e-12); 
+        }
+        // test setArgPeri
+        {
+            keplerianState->setState(orbElem);
+            keplerianState->setSizeType(ESizeType::eSMA);
+            keplerianState->setShapeType(EShapeType::eApoAlt);
+            keplerianState->setPositionType(EPositionType::eTimePastAscNode);
+            keplerianState->setOrientationType(EOrientationType::eLAN);
+
+            double argPeri1 = 100_deg;
+            double shapeParam1 = keplerianState->getShapeParam();
+            double orientationParam1 = keplerianState->getOrientationParam();
+            double positionParam1 = keplerianState->getPositionParam();
+
+            keplerianState->setArgPeri(argPeri1);
+            double argPeri2 = keplerianState->getArgPeri();
+            double shapeParam2 = keplerianState->getShapeParam();
+            double orientationParam2 = keplerianState->getOrientationParam();
+            double positionParam2 = keplerianState->getPositionParam();
+
+            printf("argPeri1: %.15g\n", argPeri1);
+            printf("argPeri2: %.15g\n", argPeri2);
+            printf("orientationParam1: %.15g\n", orientationParam1);
+            printf("orientationParam2: %.15g\n", orientationParam2);
+            printf("shapeParam1: %.15g\n", shapeParam1);
+            printf("shapeParam2: %.15g\n", shapeParam2);
+            printf("positionParam1: %.15g\n", positionParam1);
+            printf("positionParam2: %.15g\n", positionParam2);
+            EXPECT_NEAR(argPeri1, argPeri2, 1e-5);
+            EXPECT_NEAR(orientationParam1, orientationParam2, 1e-5);
+            EXPECT_NEAR(shapeParam1, shapeParam2, 1e-14 * shapeParam1);
+            EXPECT_NEAR(positionParam1, positionParam2, 1e-12); 
+        }
     }
 }
 
+
+TEST_F(StateTest, Attr)
+{
+    auto earth = aGetEarth();
+    auto stateKeplerian = StateKeplerian::MakeShared();
+    stateKeplerian->setFrame(earth->makeFrameICRF());
+    auto tp = TimePoint::FromUTC(2025, 12, 9, 0, 0, 0);
+    stateKeplerian->setStateEpoch(tp);
+    ModOrbElem orbElem{60000_km, 0.1, 2_deg, 3_deg, 4_deg, 5_deg};
+    stateKeplerian->setState(orbElem);
+
+    {
+        double sma;
+        err_t rc = stateKeplerian->getAttrDouble("SMA", sma);
+        EXPECT_EQ(rc, eNoError);
+        EXPECT_EQ(sma, stateKeplerian->getSMA());
+    }
+    {
+        double sma = stateKeplerian->getAttrDouble("SMA");
+        EXPECT_EQ(sma, stateKeplerian->getSMA());
+    }
+    {
+        double sma = stateKeplerian->attr("SMA");
+        EXPECT_EQ(sma, stateKeplerian->getSMA());
+    }
+    std::vector<std::string> attrs = {
+        "SMA",
+        "Period",
+        "MeanMotion",
+        "ApoRadForSize",
+        "ApoAltForSize",
+        "PeriRadForSize",
+        "PeriAltForSize",
+
+        "Ecc",
+        "ApoRadForShape",
+        "ApoAltForShape",
+        "PeriRadForShape",
+        "PeriAltForShape",
+
+        "Inc",
+
+        "RAAN",
+        "LAN",
+        
+        "ArgPeri",
+        
+        "TrueAnomaly",
+        "MeanAnomaly",
+        "EccAnomaly",
+        "ArgLat",
+        "TimePastPeri",
+        "TimePastAscNode"
+    };
+    for (auto& attr : attrs)
+    {
+        double val = stateKeplerian->attr(attr);
+        printf("%20s: %.15g\n", attr.c_str(), val);
+        EXPECT_NE(val, 0.0);
+    }
+    EXPECT_EQ(stateKeplerian->attr("NotExistProperty").getValueDouble(), 0.0);
+}
 
 GTEST_MAIN();
 

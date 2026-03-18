@@ -90,7 +90,7 @@ public:
     static PStateKeplerian New(const ModOrbElem& modOrbElem);
     static HStateKeplerian MakeShared(const ModOrbElem& modOrbElem);
 
-    StateKeplerian() = default;
+    StateKeplerian();
     StateKeplerian(const ModOrbElem& modOrbElem);
     StateKeplerian(const State& state);
     ~StateKeplerian() override = default;

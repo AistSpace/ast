@@ -25,6 +25,7 @@
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/CelestialBody.hpp"
 #include "AstUtil/Logger.hpp"
+#include "AstUtil/Class.hpp"
 #include <climits>
 
 AST_NAMESPACE_BEGIN
@@ -55,6 +56,21 @@ TimePastAscNode, TimeOfAscNodePassage: TrueAnomaly, ArgPeri, SMA, Ecc
 
 */
 
+void StateKeplerian_ClassInit(Class* cls);
+
+Class* StateKeplerian_TypeNew()
+{
+    Class *cls = new Class();
+    StateKeplerian_ClassInit(cls);
+    return cls;
+}
+
+Class* aStateKeplerian_Type()
+{
+    static Class* cls = StateKeplerian_TypeNew();
+    return cls;
+}
+
 PStateKeplerian StateKeplerian::New()
 {
     return new StateKeplerian();
@@ -75,14 +91,21 @@ HStateKeplerian StateKeplerian::MakeShared(const ModOrbElem &modOrbElem)
     return new StateKeplerian(modOrbElem);
 }
 
+StateKeplerian::StateKeplerian()
+{
+    m_type = aStateKeplerian_Type();
+}
+
 StateKeplerian::StateKeplerian(const ModOrbElem &modOrbElem)
     : modOrbElem_(modOrbElem)
 {
+    m_type = aStateKeplerian_Type();
 }
 
 StateKeplerian::StateKeplerian(const State &state)
     : State{state}
 {
+    m_type = aStateKeplerian_Type();
     if (state.getStateType() == EStateType::eKeplerian)
     {
         static_cast<const StateKeplerian&>(state).getState(modOrbElem_);

@@ -26,7 +26,33 @@ AST_NAMESPACE_BEGIN
 
 void StateKeplerian_ClassInit(Class* cls)
 {
-    // cls->addProperty("SemimajorAxis", );
+    cls->addProperty("SMA",             aNewPropertyDouble<StateKeplerian, &StateKeplerian::getSMA, &StateKeplerian::setSMA>());
+    cls->addProperty("Period",          aNewPropertyDouble<StateKeplerian, &StateKeplerian::getPeriod, &StateKeplerian::setPeriod>());
+    cls->addProperty("MeanMotion",      aNewPropertyDouble<StateKeplerian, &StateKeplerian::getMeanMotion, &StateKeplerian::setMeanMotion>());
+    cls->addProperty("ApoRadForSize",   aNewPropertyDouble<StateKeplerian, &StateKeplerian::getApoRad, &StateKeplerian::setApoRadForSize>());
+    cls->addProperty("ApoAltForSize",   aNewPropertyDouble<StateKeplerian, &StateKeplerian::getApoAlt, &StateKeplerian::setApoAltForSize>());
+    cls->addProperty("PeriRadForSize",  aNewPropertyDouble<StateKeplerian, &StateKeplerian::getPeriRad, &StateKeplerian::setPeriRadForSize>());
+    cls->addProperty("PeriAltForSize",  aNewPropertyDouble<StateKeplerian, &StateKeplerian::getPeriAlt, &StateKeplerian::setPeriAltForSize>());
+
+    cls->addProperty("Ecc",             aNewPropertyDouble<StateKeplerian, &StateKeplerian::getEcc, &StateKeplerian::setEcc>());
+    cls->addProperty("ApoRadForShape",  aNewPropertyDouble<StateKeplerian, &StateKeplerian::getApoRad, &StateKeplerian::setApoRadForShape>());
+    cls->addProperty("ApoAltForShape", aNewPropertyDouble<StateKeplerian, &StateKeplerian::getApoAlt, &StateKeplerian::setApoAltForShape>());
+    cls->addProperty("PeriRadForShape", aNewPropertyDouble<StateKeplerian, &StateKeplerian::getPeriRad, &StateKeplerian::setPeriRadForShape>());
+    cls->addProperty("PeriAltForShape", aNewPropertyDouble<StateKeplerian, &StateKeplerian::getPeriAlt, &StateKeplerian::setPeriAltForShape>());
+
+    cls->addProperty("Inc",             aNewPropertyDouble<StateKeplerian, &StateKeplerian::getInc, &StateKeplerian::setInc>());
+
+    cls->addProperty("RAAN",            aNewPropertyDouble<StateKeplerian, &StateKeplerian::getRAAN, &StateKeplerian::setRAAN>());
+    cls->addProperty("LAN",             aNewPropertyDouble<StateKeplerian, &StateKeplerian::getLAN, &StateKeplerian::setLAN>());
+
+    cls->addProperty("ArgPeri",         aNewPropertyDouble<StateKeplerian, &StateKeplerian::getArgPeri, &StateKeplerian::setArgPeri>());
+    
+    cls->addProperty("TrueAnomaly",     aNewPropertyDouble<StateKeplerian, &StateKeplerian::getTrueAnomaly, &StateKeplerian::setTrueAnomaly>());
+    cls->addProperty("MeanAnomaly",     aNewPropertyDouble<StateKeplerian, &StateKeplerian::getMeanAnomaly, &StateKeplerian::setMeanAnomaly>());
+    cls->addProperty("EccAnomaly",      aNewPropertyDouble<StateKeplerian, &StateKeplerian::getEccAnomaly, &StateKeplerian::setEccAnomaly>());
+    cls->addProperty("ArgLat",          aNewPropertyDouble<StateKeplerian, &StateKeplerian::getArgLat, &StateKeplerian::setArgLat>());
+    cls->addProperty("TimePastPeri",    aNewPropertyDouble<StateKeplerian, &StateKeplerian::getTimePastPeri, &StateKeplerian::setTimePastPeri>());
+    cls->addProperty("TimePastAscNode", aNewPropertyDouble<StateKeplerian, &StateKeplerian::getTimePastAscNode, &StateKeplerian::setTimePastAscNode>());
 }
 
 AST_NAMESPACE_END

@@ -60,6 +60,34 @@ err_t Object::getAttrString(StringView path, std::string &value) const
     return prop->getValueString(this, value);
 }
 
+double Object::getAttrDouble(StringView path) const
+{
+    double value = 0.0;
+    getAttrDouble(path, value);
+    return value;
+}
+
+int Object::getAttrInt(StringView path) const
+{
+    int value = 0;
+    getAttrInt(path, value);
+    return value;
+}
+
+bool Object::getAttrBool(StringView path) const
+{
+    bool value = false;
+    getAttrBool(path, value);
+    return value;
+}
+
+std::string Object::getAttrString(StringView path) const
+{
+    std::string value;
+    getAttrString(path, value);
+    return value;
+}
+
 err_t Object::setAttrBool(StringView path, bool value)
 {
     Property* prop = getProperty(path);
@@ -94,6 +122,8 @@ err_t Object::setAttrString(StringView path, StringView value)
 
 Property *Object::getProperty(StringView fieldName) const
 {
+    if(!m_type)
+        return nullptr;
     return m_type->getProperty(fieldName);
 }
 

@@ -24,6 +24,7 @@
 #include "AstUtil/SharedPtr.hpp"
 #include "AstUtil/ScopedPtr.hpp"
 #include "AstUtil/WeakPtr.hpp"
+#include "AstUtil/Attribute.hpp"
 #include <string>       // for std::string
 #include <stdint.h>     // for uint32_t
 #include <assert.h>     // for assert
@@ -60,6 +61,15 @@ public:
         // assert(tp);
     }
 
+    /// @brief 获取属性，属性路径格式为 "attr1.attr2.attr3"
+    /// @param path 属性路径
+    /// @return Attribute 属性
+    Attribute attr(StringView path)
+    {
+        return Attribute(this, this->getProperty(path));
+    }
+
+public:
     /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @param value 属性值引用
@@ -84,6 +94,28 @@ public:
     /// @return err_t 错误码
     err_t getAttrString(StringView path, std::string& value) const;
 
+public:
+    /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
+    /// @param path 属性路径
+    /// @return double 属性值
+    double getAttrDouble(StringView path) const;
+
+    /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
+    /// @param path 属性路径
+    /// @return int 属性值
+    int getAttrInt(StringView path) const;
+
+    /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
+    /// @param path 属性路径
+    /// @return bool 属性值
+    bool getAttrBool(StringView path) const;
+
+    /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
+    /// @param path 属性路径
+    /// @return std::string 属性值
+    std::string getAttrString(StringView path) const;
+
+public:
     /// @param path 属性路径
     /// @param value 属性值
     /// @return err_t 错误码
