@@ -1,5 +1,6 @@
 var NAVTREEINDEX18 =
 {
+"classast_1_1Time.html#a22cecce12e0d43b36797b1b691fb7721":[0,0,6,7,6],
 "classast_1_1Time.html#a725581098644a4dcdb197a45c1291381":[0,0,6,7,5],
 "classast_1_1Time.html#a81796002df5e60cd6ebe140719b40772":[0,0,6,7,3],
 "classast_1_1Time.html#a885467b02749d0e4bf1fe4962da41419":[0,0,6,7,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX18 =
 "classast_1_1strings__internal_1_1ByAsciiWhitespace.html":[3,0,0,2,2],
 "classast_1_1strings__internal_1_1ByChar.html":[3,0,0,2,3],
 "classast_1_1strings__internal_1_1ByLength.html":[3,0,0,2,4],
-"classast_1_1strings__internal_1_1ByRepeatedChar.html":[3,0,0,2,5],
-"classast_1_1strings__internal_1_1ByRepeatedWhitespace.html":[3,0,0,2,6]
+"classast_1_1strings__internal_1_1ByRepeatedChar.html":[3,0,0,2,5]
 };

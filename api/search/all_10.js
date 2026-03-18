@@ -93,7 +93,7 @@ var searchData=
   ['posixext_2ecpp_90',['PosixExt.cpp',['../PosixExt_8cpp.html',1,'']]],
   ['posixext_2ehpp_91',['PosixExt.hpp',['../PosixExt_8hpp.html',1,'']]],
   ['pound_92',['Pound',['../classast_1_1Unit.html#ae9c751dfdbe0bb1535d8dcf42812613a',1,'ast::Unit']]],
-  ['pow_93',['pow',['../classast_1_1Dimension.html#aa5cfe8a6d98a281788ba4c96d6978866',1,'ast::Dimension::pow()'],['../classast_1_1Unit.html#a3dc635b74bcdbf6ea00eb074a40b30ae',1,'ast::Unit::pow(StringView newname, int exponent) const'],['../classast_1_1Unit.html#a40e068f48d9b5e29685ea01d71639650',1,'ast::Unit::pow(int exponent) const'],['../namespaceast.html#a75f74910b40e799143b3cf48b48df246',1,'ast::pow(EDimension dimension, int n) noexcept'],['../namespaceast.html#a3d58601f3df85b4a4b691a9322911817',1,'ast::pow(Dimension dim, int n)']]],
+  ['pow_93',['pow',['../classast_1_1Dimension.html#aa5cfe8a6d98a281788ba4c96d6978866',1,'ast::Dimension::pow(int n) const noexcept'],['../classast_1_1Dimension.html#a0cc2e0f23af4b20e2aeb86cd6c1d7cd2',1,'ast::Dimension::pow'],['../classast_1_1Unit.html#a3dc635b74bcdbf6ea00eb074a40b30ae',1,'ast::Unit::pow(StringView newname, int exponent) const'],['../classast_1_1Unit.html#a40e068f48d9b5e29685ea01d71639650',1,'ast::Unit::pow(int exponent) const'],['../Dimension_8hpp.html#a6589a009751d5129bc8061d4a432f22b',1,'ast::internal::pow()']]],
   ['power_94',['Power',['../classast_1_1Dimension.html#a7520843671ca993ebe85116cd99a53e4',1,'ast::Dimension']]],
   ['precompute_95',['precompute',['../classast_1_1IAUXYSPrecomputed.html#ac6dc3ebaf103d6aff8797059136cb59e',1,'ast::IAUXYSPrecomputed']]],
   ['prenul_96',['prenul',['../structast_1_1DAF__FileRecord.html#a67f959bd98d9af4fd5297bd4e17c4925',1,'ast::DAF_FileRecord']]],

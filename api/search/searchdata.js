@@ -10,7 +10,7 @@ var indexSectionsWithContent =
   7: "e",
   8: "ein",
   9: "r",
-  10: "u",
+  10: "pu",
   11: "_aiopt",
   12: "s几单向坐大太姿字容工常平插数文时磁空脚航轨运非",
   13: "bs列待🛰"

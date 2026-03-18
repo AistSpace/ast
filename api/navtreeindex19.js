@@ -1,5 +1,6 @@
 var NAVTREEINDEX19 =
 {
+"classast_1_1strings__internal_1_1ByRepeatedWhitespace.html":[3,0,0,2,6],
 "classast_1_1strings__internal_1_1ByString.html":[3,0,0,2,7],
 "classast_1_1strings__internal_1_1MaxSplitsImpl.html":[3,0,0,2,9],
 "classast_1_1strings__internal_1_1Splitter.html":[3,0,0,2,17],
@@ -248,6 +249,5 @@ var NAVTREEINDEX19 =
 "group__Coordinate.html#ga1a41e3485b5fef8b0de193f83a2491fc":[0,0,0,78],
 "group__Coordinate.html#ga203b13fbef42d2ab13efa50868f53ae5":[0,0,0,86],
 "group__Coordinate.html#ga226c2de1691c1af853b19016b1d00a7a":[0,0,0,24],
-"group__Coordinate.html#ga23e8aa987e1a4aeeab16bf7a91f373aa":[0,0,0,107],
-"group__Coordinate.html#ga243379fa7879d8876c6f0a002357ec3b":[0,0,0,92]
+"group__Coordinate.html#ga23e8aa987e1a4aeeab16bf7a91f373aa":[0,0,0,107]
 };

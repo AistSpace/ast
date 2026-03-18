@@ -142,10 +142,10 @@ $(function(){initNavTree('AstMath_2Array_2MathOperator_8hpp_source.html',''); in
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>{</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">if</span> (t == 0)</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="comment">//return pow(2.0, -1074.0);</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceast.html#a75f74910b40e799143b3cf48b48df246">pow</a>(2.0, -1075.0);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordflow">return</span> pow(2.0, -1075.0);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">else</span></div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="comment">//return pow(2.0, -52.0 + floor(log(fabs(t)) / log(2.0)));</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceast.html#a75f74910b40e799143b3cf48b48df246">pow</a>(2.0, -53.0 + floor(log(fabs(t)) / log(2.0)));</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">return</span> pow(2.0, -53.0 + floor(log(fabs(t)) / log(2.0)));</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">// msvc has std::size for vc2015+</span></div>
@@ -708,7 +708,6 @@ $(function(){initNavTree('AstMath_2Array_2MathOperator_8hpp_source.html',''); in
 <div class="ttc" id="anamespaceast_1_1math_html_ad7d48b99658c1144283823aa76621adf"><div class="ttname"><a href="namespaceast_1_1math.html#ad7d48b99658c1144283823aa76621adf">ast::math::normalized</a></div><div class="ttdeci">auto normalized(const Vector &amp;vec) -&gt; typename std::enable_if&lt;!std::is_pointer&lt; Vector &gt;::value, Vector &gt;::type</div><div class="ttdoc">normalized</div><div class="ttdef"><b>定义</b> MathOperator.hpp:352</div></div>
 <div class="ttc" id="anamespaceast_1_1math_html_af4d91cee65bbdc213a65c66832b1dd8c"><div class="ttname"><a href="namespaceast_1_1math.html#af4d91cee65bbdc213a65c66832b1dd8c">ast::math::normalize</a></div><div class="ttdeci">double normalize(double *vec, size_t N)</div><div class="ttdoc">normalize</div><div class="ttdef"><b>定义</b> MathOperator.hpp:306</div></div>
 <div class="ttc" id="anamespaceast_1_1math_html_af5311f732f050ddd8e2bc5884e38b3da"><div class="ttname"><a href="namespaceast_1_1math.html#af5311f732f050ddd8e2bc5884e38b3da">ast::math::squaredNorm</a></div><div class="ttdeci">double squaredNorm(const double *vec, size_t N)</div><div class="ttdoc">squaredNorm</div><div class="ttdef"><b>定义</b> MathOperator.hpp:245</div></div>
-<div class="ttc" id="anamespaceast_html_a75f74910b40e799143b3cf48b48df246"><div class="ttname"><a href="namespaceast.html#a75f74910b40e799143b3cf48b48df246">ast::pow</a></div><div class="ttdeci">constexpr EDimension pow(EDimension dimension, int n) noexcept</div><div class="ttdoc">量纲指数幂运算符</div><div class="ttdef"><b>定义</b> Dimension.hpp:237</div></div>
 <div class="ttc" id="astructast_1_1math_1_1is__vector__like_html"><div class="ttname"><a href="structast_1_1math_1_1is__vector__like.html">ast::math::is_vector_like</a></div><div class="ttdef"><b>定义</b> MathOperator.hpp:402</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

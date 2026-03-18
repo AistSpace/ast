@@ -168,7 +168,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getValueString
 <a class="el" href="classast_1_1Attribute.html">Attribute</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (int value)</td></tr>
 <tr class="separator:a78606f6e3f8118ae660d6c1d8918326f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5012d9a0a8a02fe231eaa670ecc5c483" id="r_a5012d9a0a8a02fe231eaa670ecc5c483"><td class="memTemplParams" colspan="2"><a id="a5012d9a0a8a02fe231eaa670ecc5c483" name="a5012d9a0a8a02fe231eaa670ecc5c483"></a>
-template&lt;typename T , typename  = std::enable_if_t&lt;std::is_same_v&lt;T, bool&gt;&gt;&gt; </td></tr>
+template&lt;typename T , typename  = typename std::enable_if&lt;std::is_same&lt;T, bool&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:a5012d9a0a8a02fe231eaa670ecc5c483"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Attribute.html">Attribute</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (T value)</td></tr>
 <tr class="separator:a5012d9a0a8a02fe231eaa670ecc5c483"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6730f50c61171306c38e1f2eda80e128" id="r_a6730f50c61171306c38e1f2eda80e128"><td class="memItemLeft" align="right" valign="top"><a id="a6730f50c61171306c38e1f2eda80e128" name="a6730f50c61171306c38e1f2eda80e128"></a>

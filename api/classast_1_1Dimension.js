@@ -32,5 +32,6 @@ var classast_1_1Dimension =
     [ "setTemperature", "classast_1_1Dimension.html#ab9e34c4d9e12aa4583a8b9e45b48e04c", null ],
     [ "setTime", "classast_1_1Dimension.html#a2c0f20b44c3890a524dde7735cf67669", null ],
     [ "symbol", "classast_1_1Dimension.html#a7f3ace4929a6d92b8f7e75a3f58694df", null ],
-    [ "value", "classast_1_1Dimension.html#a28132d172a69ac7fa728105d545a9f7c", null ]
+    [ "value", "classast_1_1Dimension.html#a28132d172a69ac7fa728105d545a9f7c", null ],
+    [ "pow", "classast_1_1Dimension.html#a0cc2e0f23af4b20e2aeb86cd6c1d7cd2", null ]
 ];

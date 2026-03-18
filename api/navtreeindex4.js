@@ -1,6 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"ODEWorkspace_8hpp.html":[4,0,0,5,5,14],
 "ODEWorkspace_8hpp_source.html":[4,0,0,5,5,14],
 "ODE_8cpp.html":[4,0,0,5,5,2],
 "ODE_8hpp.html":[4,0,0,5,5,3],
@@ -249,5 +248,6 @@ var NAVTREEINDEX4 =
 "SecantSolver_8hpp.html":[4,0,0,5,4,0,8],
 "SecantSolver_8hpp_source.html":[4,0,0,5,4,0,8],
 "SimEngine_8cpp.html":[4,0,0,2,7,1,12],
-"SimEngine_8hpp.html":[4,0,0,2,7,1,13]
+"SimEngine_8hpp.html":[4,0,0,2,7,1,13],
+"SimEngine_8hpp_source.html":[4,0,0,2,7,1,13]
 };

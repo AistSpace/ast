@@ -1584,8 +1584,6 @@ var namespaceast =
     [ "opunary_get_funcptr", "namespaceast.html#ad665ad58bc76e87bf2ddd71f029dd9d4", null ],
     [ "opunary_register_func", "namespaceast.html#aaed429456d09fb4fec3234077107744c", null ],
     [ "opunary_register_funcptr", "namespaceast.html#acfe1a7c866c8c05d84b2b4ff8315a3b2", null ],
-    [ "pow", "namespaceast.html#a3d58601f3df85b4a4b691a9322911817", null ],
-    [ "pow", "namespaceast.html#a75f74910b40e799143b3cf48b48df246", null ],
     [ "pxform", "group__Spice.html#ga5751be1205b7faa7f89fdda7fd242ea8", null ],
     [ "q2m", "group__Spice.html#ga627c43ef632cc13d3e38a11ff1c80254", null ],
     [ "rad2deg", "group__Util.html#ga820cdafe9d38c66c5c0736d429aafabd", null ],

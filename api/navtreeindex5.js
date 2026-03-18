@@ -1,6 +1,5 @@
 var NAVTREEINDEX5 =
 {
-"SimEngine_8hpp_source.html":[4,0,0,2,7,1,13],
 "SimTime_8hpp.html":[4,0,0,2,7,1,14],
 "SimTime_8hpp_source.html":[4,0,0,2,7,1,14],
 "SimpleOrbitDesigner_8cpp.html":[4,0,0,2,6,0,17],
@@ -249,5 +248,6 @@ var NAVTREEINDEX5 =
 "UnaryScalarFunc_8hpp_source.html":[4,0,0,5,2,2],
 "UnarySolver_8cpp.html":[4,0,0,5,4,3],
 "UnarySolver_8cpp.html#a7961c646d34bf7ca8f9efac18fd43a70":[4,0,0,5,4,3,0],
-"UnarySolver_8hpp_source.html":[4,0,0,5,4,4]
+"UnarySolver_8hpp_source.html":[4,0,0,5,4,4],
+"UnaryVectorFunc_8hpp.html":[4,0,0,5,2,3]
 };
