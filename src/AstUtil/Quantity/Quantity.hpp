@@ -106,7 +106,10 @@ AST_UTIL_API Quantity operator*(double value, const Unit& unit);
 
 
 
-/// @brief 带单位的数量值
+/// @brief 数量值
+/// @details 本类表示一个数量值，由数值和量词/单位组成
+/// 可以用于表示 `1 km`、`2 m/s`、`3 day` 等数量值
+/// @ingroup Quantity
 class Quantity
 {
 public:
@@ -179,6 +182,9 @@ public:
     /// @return 内部运行时单位表示的值
     double getInternalValue() const { return unit_.toInternal(value_); }
 
+    /// @brief 获取SI单位表示的值
+    /// @return SI单位表示的值
+    double getSIValue() const { return unit_.toSI(value_); }
 
     /// @brief 检查数量值是否有效
     /// @return 如果数量值有效则返回true，否则返回false

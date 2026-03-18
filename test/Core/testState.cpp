@@ -630,42 +630,72 @@ TEST_F(StateTest, Attr)
         double sma = stateKeplerian->attr("SMA");
         EXPECT_EQ(sma, stateKeplerian->getSMA());
     }
-    std::vector<std::string> attrs = {
-        "SMA",
-        "Period",
-        "MeanMotion",
-        "ApoRadForSize",
-        "ApoAltForSize",
-        "PeriRadForSize",
-        "PeriAltForSize",
-
-        "Ecc",
-        "ApoRadForShape",
-        "ApoAltForShape",
-        "PeriRadForShape",
-        "PeriAltForShape",
-
-        "Inc",
-
-        "RAAN",
-        "LAN",
-        
-        "ArgPeri",
-        
-        "TrueAnomaly",
-        "MeanAnomaly",
-        "EccAnomaly",
-        "ArgLat",
-        "TimePastPeri",
-        "TimePastAscNode"
-    };
-    for (auto& attr : attrs)
     {
-        double val = stateKeplerian->attr(attr);
-        printf("%20s: %.15g\n", attr.c_str(), val);
-        EXPECT_NE(val, 0.0);
+        std::vector<std::string> attrs = {
+            "SMA",
+            "Period",
+            "MeanMotion",
+            "ApoRadForSize",
+            "ApoAltForSize",
+            "PeriRadForSize",
+            "PeriAltForSize",
+
+            "Ecc",
+            "ApoRadForShape",
+            "ApoAltForShape",
+            "PeriRadForShape",
+            "PeriAltForShape",
+
+            "Inc",
+
+            "RAAN",
+            "LAN",
+
+            "ArgPeri",
+
+            "TrueAnomaly",
+            "MeanAnomaly",
+            "EccAnomaly",
+            "ArgLat",
+            "TimePastPeri",
+            "TimePastAscNode"
+        };
+        for (auto& attr : attrs)
+        {
+            double val1 = stateKeplerian->attr(attr);
+            stateKeplerian->attr(attr) = val1;
+            double val2 = stateKeplerian->attr(attr);
+            printf("%20s: %.15g -> %.15g\n", attr.c_str(), val1, val2);
+            EXPECT_NE(val1, 0.0);
+            if(attr != "LAN")
+                EXPECT_NEAR(val1, val2, 1e-14 * val1);
+        }
+        EXPECT_EQ(stateKeplerian->attr("NotExistProperty").getValueDouble(), 0.0);
     }
-    EXPECT_EQ(stateKeplerian->attr("NotExistProperty").getValueDouble(), 0.0);
+    {
+        double value = stateKeplerian->attr("SMA") = 1000_km;
+        EXPECT_NEAR(value, 1000_km, 1e-14 * value);
+    }
+    {
+        double value = stateKeplerian->attr("SMA") = "2000 km";
+        EXPECT_NEAR(value, 2000_km, 1e-14 * value);
+    }
+    {
+        double value = stateKeplerian->attr("ArgPeri") = "30 deg ";
+        EXPECT_NEAR(value, 30_deg, 1e-14 * value);
+    }
+    {
+        double value = stateKeplerian->attr("EccAnomaly") = aText("47° ");
+        EXPECT_NEAR(value, 47_deg, 1e-14 * value);
+    }
+    {
+        double value = stateKeplerian->attr("MeanAnomaly") = aText("45 arcsec ");
+        EXPECT_NEAR(value, 45_arcsec, 1e-14 * value);
+    }
+    {
+        double value = stateKeplerian->attr("TrueAnomaly") = aText(" 30 ″ ");
+        EXPECT_NEAR(value, 30_arcsec, 1e-14 * value);
+    }
 }
 
 GTEST_MAIN();

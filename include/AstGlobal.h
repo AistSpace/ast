@@ -327,6 +327,9 @@ class EventInterval;
 class Identifier;           ///< 标识符
 class BKVParser;            ///< BKV解析器
 
+class Dimension;
+class Unit;
+
 #endif
 
 

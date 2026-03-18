@@ -48,6 +48,8 @@ UnitManager::UnitManager()
     addUnit(units::rad);
     addUnit(units::deg);
     addUnit("deg", units::deg);
+    addUnit(units::arcsec);
+    addUnit("arcsec", units::arcsec);
 
     addUnit(units::s);
     addUnit(units::h);

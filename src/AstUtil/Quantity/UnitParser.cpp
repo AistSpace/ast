@@ -20,6 +20,7 @@
 #include "UnitParser.hpp"
 #include "UnitManager.hpp"
 #include "AstUtil/ParseFormat.hpp"
+#include "AstUtil/StringUtil.hpp"
 #include "Unit.hpp"
 #include <stack>
 #include <vector>
@@ -129,6 +130,7 @@ static err_t parseBasicUnit(StringView unitName, Unit& unit)
     auto unit_found = aUnitGet(unitName);
     if (unit_found)
     {
+        /// @todo 这里要避免返回单位的副本，应该利用好智能指针
         unit = unit_found->clone();  // 返回单位的副本
         return eNoError;
     }
@@ -417,6 +419,7 @@ static err_t parseCompoundUnit(StringView unitName, Unit& unit)
 /// @brief 解析单位字符串
 err_t aUnitParse(StringView str, Unit& unit)
 {
+    str = aStripAsciiWhitespace(str);
     // 检查输入是否为空
     if (str.empty())
     {

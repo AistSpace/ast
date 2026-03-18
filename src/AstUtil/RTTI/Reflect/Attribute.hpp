@@ -123,6 +123,29 @@ public:
     {
         return getValueString();
     }
+public:
+    Attribute& operator=(double value)
+    {
+        setValueDouble(value);
+        return *this;
+    }
+    Attribute& operator=(int value)
+    {
+        setValueInt(value);
+        return *this;
+    }
+    // 避免对bool类型的隐式转换
+    template<typename T, typename = std::enable_if_t<std::is_same_v<T, bool>>>
+    Attribute& operator=(T value)
+    {
+        setValueBool(value);
+        return *this;
+    }
+    Attribute& operator=(StringView value)
+    {
+        setValueString(value);
+        return *this;
+    }   
 protected:
     void*     object_{nullptr};
     Property* property_{nullptr};
