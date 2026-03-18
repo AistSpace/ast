@@ -67,7 +67,17 @@ void State::setStateEpoch(const TimePoint &stateEpoch)
 
 err_t State::getStateEpoch(TimePoint &stateEpoch) const
 {
+    if(!stateEpoch_)
+        return eErrorNullPtr;
     return stateEpoch_->getTime(stateEpoch);
+}
+
+TimePoint State::getStateEpoch() const
+{
+    TimePoint tp{};
+    err_t rc = getStateEpoch(tp);
+    A_UNUSED(rc);
+    return tp;
 }
 
 CelestialBody *State::getBody() const

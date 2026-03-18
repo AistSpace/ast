@@ -76,7 +76,7 @@ periastron: 近星点，绕恒星（Aster）转（通常在双星系统中使用
 /// @param apogeeAlt 远地点高度 [m]
 /// @param bodyRadius 中心天体半径 [m]
 /// @return 远地点半径 [m]
-AST_CORE_CAPI double    aApoAltToApoRad    (double apogeeAlt, double bodyRadius);
+inline double    aApoAltToApoRad    (double apogeeAlt, double bodyRadius);
 
 /// @brief 远地点高度转换为平均角速度
 /// @param apogeeAlt 远地点高度 [m]
@@ -147,6 +147,13 @@ AST_CORE_CAPI double    aApoRadToPeriod    (double apogeeRad, double eccentricit
 /// @param eccentricity 偏心率
 /// @return 近地点半径 [m]
 AST_CORE_CAPI double    aApoRadToPeriRad   (double apogeeRad, double eccentricity);
+
+
+/// @brief 远地点半径转换为偏心率
+/// @param apogeeRad 远地点半径 [m]
+/// @param semiMajorAxis 长半轴 [m]
+/// @return 偏心率
+inline double aApoRadToEcc(double apogeeRad, double semiMajorAxis);
 
 /// @brief 远地点半径转换为长半轴
 /// @param apogeeRad 远地点半径 [m]
@@ -338,6 +345,13 @@ AST_CORE_CAPI double    aPeriRadToPeriod   (double perigeeRad, double eccentrici
 /// @return 长半轴 [m]
 AST_CORE_CAPI double    aPeriRadToSMA   (double perigeeRad, double eccentricity);
 
+
+/// @brief 近地点半径转换为偏心率
+/// @param perigeeRad 近地点半径 [m]
+/// @param semiMajorAxis 长半轴 [m]
+/// @return 偏心率
+inline double aPeriRadToEcc(double perigeeRad, double semiMajorAxis);
+
 /// @brief 轨道周期转换为远地点高度
 /// @param period 轨道周期 [s]
 /// @param eccentricity 偏心率
@@ -422,7 +436,7 @@ AST_CORE_CAPI double    aSMAToPeriAlt   (double semiMajorAxis, double eccentrici
 /// @param semiMajorAxis 长半轴 [m]
 /// @param eccentricity 偏心率
 /// @return 近地点半径 [m]
-AST_CORE_CAPI double    aSMAToPeriRad   (double semiMajorAxis, double eccentricity);
+inline double    aSMAToPeriRad   (double semiMajorAxis, double eccentricity);
 
 /// @brief 长半轴转换为轨道周期
 /// @param semiMajorAxis 长半轴 [m]
@@ -553,11 +567,17 @@ AST_CORE_CAPI double    aTrueToTimePastAscNode        (double trueAnomaly, doubl
 /// @return 过近心点后时间 [s]
 AST_CORE_CAPI double    aTrueToTimePastPeri         (double trueAnomaly, double semiMajorAxis, double eccentricity, double gm);
 
-/// @brief 真近点角转换为幅角
+/// @brief 真近点角转换为纬度幅角
 /// @param trueAnomaly 真近点角 [rad]
 /// @param argPeri 近地点幅角 [rad]
-/// @return 幅角 [rad]
-AST_CORE_CAPI double    aTrueToArgLat      (double trueAnomaly, double argPeri);
+/// @return 纬度幅角 [rad]
+inline double    aTrueToArgLat      (double trueAnomaly, double argPeri);
+
+/// @brief 纬度幅角转换为真近点角
+/// @param argLat 纬度幅角 [rad]
+/// @param argPeri 近地点幅角 [rad]
+/// @return 真近点角 [rad]
+inline double aArgLatToTrue(double argLat, double argPeri);
 
 /// @brief 真近点角转换为真近点经度
 /// @param trueAnomaly 真近点角 [rad]
@@ -609,5 +629,35 @@ AST_CORE_CAPI double    aEccToFlat         (double eccentricity);
 /// @return 偏心率
 AST_CORE_CAPI double    aFlatToEcc         (double flatFactor);
 
+
+inline double aApoRadToEcc(double apogeeRad, double semiMajorAxis)
+{
+    return (apogeeRad - semiMajorAxis) / semiMajorAxis;
+}
+
+inline double aPeriRadToEcc(double perigeeRad, double semiMajorAxis)
+{
+    return (semiMajorAxis - perigeeRad) / semiMajorAxis;
+}
+
+inline double aApoAltToApoRad(double apogeeAlt, double bodyRadius)
+{
+    return apogeeAlt + bodyRadius;
+}
+
+inline double aSMAToPeriRad(double semiMajorAxis, double eccentricity)
+{
+    return semiMajorAxis * (1 - eccentricity);
+}
+
+inline double aTrueToArgLat(double trueAnomaly, double argPeri)
+{
+    return trueAnomaly + argPeri;
+}
+
+inline double aArgLatToTrue(double argLat, double argPeri)
+{
+    return argLat - argPeri;
+}
 
 AST_NAMESPACE_END

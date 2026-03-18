@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "AstCore/Vector.hpp"
 #include "AstCore/OrbitParam.hpp"
+#include "AstCore/TimePoint.hpp"
 #include "AstUtil/Constants.h"
 #include <string>
  
@@ -166,6 +167,18 @@ public:
 
     /// @brief 计算过升交点后经过的时间
     double getTimePastAscNode(double gm) const{return aTrueToTimePastAscNode(getTrueAnomaly(), getArgPeri(), getSMA(), getEcc(), gm);}
+    
+    /// @brief 计算过升交点时刻
+    TimePoint getTimeOfAscNodePassage(const TimePoint& stateEpoch, double gm) const
+    {
+        return stateEpoch - getTimePastAscNode(gm);
+    }
+
+    /// @brief 计算升交点经度
+    double getLAN(Axes* inertialAxes, const TimePoint& timeOfAscNodePassage, Axes* bodyFixedAxes) const
+    {
+        return aRAANToLAN(getRAAN(), inertialAxes, timeOfAscNodePassage, bodyFixedAxes);
+    }
     
 public:
     /// @brief 计算半长轴

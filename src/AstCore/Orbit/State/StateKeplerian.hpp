@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "AstCore/State.hpp"
 #include "AstCore/OrbitElement.hpp"
+#include "AstCore/TimePoint.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -239,7 +240,7 @@ PROPERTIES:
     /// @brief 获取过近地点时刻（输出时间点）
     void getTimeOfPeriPassage(TimePoint& tp) const;
     /// @brief 获取过近地点时刻（输出历元秒）
-    double getTimeOfPeriPassage() const;
+    TimePoint getTimeOfPeriPassage() const;
     /// @brief 设置过近地点时刻（输入时间点）
     void setTimeOfPeriPassage(const TimePoint& tp);
     /// @brief 设置过近地点时刻（输入历元秒）
@@ -248,12 +249,22 @@ PROPERTIES:
     /// @brief 获取过升交点时刻（输出时间点）
     void getTimeOfAscNodePassage(TimePoint& tp) const;
     /// @brief 获取过升交点时刻（输出历元秒）
-    double getTimeOfAscNodePassage() const;
+    TimePoint getTimeOfAscNodePassage() const;
     /// @brief 设置过升交点时刻（输入时间点）
     void setTimeOfAscNodePassage(const TimePoint& tp);
     /// @brief 获取过近地点时刻（输入历元秒）
     void setTimeOfAscNodePassage(double epochsecond);
-
+private:
+    void changeEccHoldingOthers(double ecc, const ModOrbElem& originalElem);
+    void changePeriRadHoldingOthers(double periRad, const ModOrbElem& originalElem);
+    void changeArgPeriHoldingOthers(double argPeri, const ModOrbElem& originalElem);
+private:
+    void holdLAN(const ModOrbElem& originalElem);
+    void holdMeanAnomaly(const ModOrbElem& originalElem);
+    void holdEccAnomaly(const ModOrbElem& originalElem);
+    void holdArgLat(const ModOrbElem& originalElem);
+    void holdTimePastAscNode(const ModOrbElem& originalElem);
+    void holdTimePastPeri(const ModOrbElem& originalElem);
 protected:
     ModOrbElem modOrbElem_{};                                       ///< 轨道根数
     ESizeType  sizeType_{ESizeType::eSMA};                          ///< 大小描述方式

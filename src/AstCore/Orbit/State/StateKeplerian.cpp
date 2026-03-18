@@ -20,6 +20,7 @@
 
 #include "StateKeplerian.hpp"
 #include "AstCore/OrbitElement.hpp"
+#include "AstCore/OrbitParam.hpp"
 #include "AstCore/RunTime.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/CelestialBody.hpp"
@@ -27,6 +28,32 @@
 #include <climits>
 
 AST_NAMESPACE_BEGIN
+
+
+/*
+轨道参数的依赖关系
+
+SMA, MeanMotion, Period:     
+ApoAlt, ApoRad:             
+PeriAlt, PeriRad:         
+
+Ecc:                        
+
+Inc: 
+
+RAAN:
+LAN: RAAN, TrueAnomaly, ArgPeri, SMA, Ecc
+
+ArgPeri:                   
+
+TrueAnomaly:               
+MeanAnomaly: TrueAnomaly, Ecc
+EccAnomaly: TrueAnomaly, Ecc
+ArgLat: TrueAnomaly, ArgPeri                  
+TimePastPeri, TimeOfPeriPassage: TrueAnomaly, SMA, Ecc
+TimePastAscNode, TimeOfAscNodePassage: TrueAnomaly, ArgPeri, SMA, Ecc
+
+*/
 
 PStateKeplerian StateKeplerian::New()
 {
@@ -226,8 +253,47 @@ void StateKeplerian::setSizeParam(double sizeParam)
 
 void StateKeplerian::setSizeType(ESizeType sizeType)
 {
+    if(sizeType == ESizeType::eApoAlt || sizeType == ESizeType::eApoRad)
+    {
+        if(this->shapeType_ == EShapeType::eApoAlt || this->shapeType_ == EShapeType::eApoRad)
+        {
+            aError("sizeType %d is not supported for shapeType %d", sizeType, this->shapeType_);
+            return;
+        }
+    }
+    if(sizeType == ESizeType::ePeriAlt || sizeType == ESizeType::ePeriRad)
+    {
+        if(this->shapeType_ == EShapeType::ePeriAlt || this->shapeType_ == EShapeType::ePeriRad)
+        {
+            aError("sizeType %d is not supported for shapeType %d", sizeType, this->shapeType_);
+            return;
+        }
+    }
     this->sizeType_ = sizeType;
 }
+
+
+void StateKeplerian::setShapeType(EShapeType shapeType)
+{
+    if(shapeType == EShapeType::eApoAlt || shapeType == EShapeType::eApoRad)
+    {
+        if(this->sizeType_ == ESizeType::eApoAlt || this->sizeType_ == ESizeType::eApoRad)
+        {
+            aError("shapeType %d is not supported for sizeType %d", shapeType, this->sizeType_);
+            return;
+        }
+    }
+    if(shapeType == EShapeType::ePeriAlt || shapeType == EShapeType::ePeriRad)
+    {
+        if(this->sizeType_ == ESizeType::ePeriAlt || this->sizeType_ == ESizeType::ePeriRad)
+        {
+            aError("shapeType %d is not supported for sizeType %d", shapeType, this->sizeType_);
+            return;
+        }
+    }
+    this->shapeType_ = shapeType;
+}
+
 
 double StateKeplerian::getShapeParam() const
 {
@@ -282,11 +348,6 @@ void StateKeplerian::setShapeParam(double shapeParam, EShapeType shapeType)
 void StateKeplerian::setShapeParam(double shapeParam)
 {
     this->setShapeParam(shapeParam, this->shapeType_);
-}
-
-void StateKeplerian::setShapeType(EShapeType shapeType)
-{
-    this->shapeType_ = shapeType;
 }
 
 double StateKeplerian::getOrientationParam() const
@@ -356,9 +417,9 @@ double StateKeplerian::getPositionParam(EPositionType positionType) const
     case EPositionType::eTimePastPeri:
         return this->getTimePastPeri();
     case EPositionType::eTimeOfAscNodePassage:
-        return this->getTimeOfAscNodePassage();
+        return this->getTimeOfAscNodePassage().toEpochSecond();
     case EPositionType::eTimeOfPeriPassage:
-        return this->getTimeOfPeriPassage();
+        return this->getTimeOfPeriPassage().toEpochSecond();
     default:
         aError("unknown positionType");
         return std::numeric_limits<double>::quiet_NaN();
@@ -411,7 +472,48 @@ void StateKeplerian::setPositionType(EPositionType positionType)
 
 void StateKeplerian::setSMA(double sma)
 {
-    aError("setSMA not implemented");
+    const ModOrbElem originalElem = modOrbElem_;
+    switch (this->shapeType_)
+    {
+    case EShapeType::eApoAlt:
+    case EShapeType::eApoRad:
+    {
+        double apoRad = this->getApoRad();
+        if(sma > apoRad)
+        {
+            aError("sma must not be greater than apoRad");
+            return;
+        }
+        double ecc = (this->getApoRad() - sma) / sma;
+        double periRad = aSMAToPeriRad(sma, ecc);
+        this->changePeriRadHoldingOthers(periRad, originalElem);
+        this->changeEccHoldingOthers(ecc, originalElem);
+        break;
+    }
+    case EShapeType::ePeriAlt:
+    case EShapeType::ePeriRad:
+    {
+        double periRad = this->getPeriRad();
+        if(sma < periRad)
+        {
+            aError("sma must not be less than periRad");
+            return;
+        }
+        double ecc = (sma - periRad) / sma;
+        this->changeEccHoldingOthers(ecc, originalElem);
+        break;
+    }
+    case EShapeType::eEcc:
+    {
+        double ecc = this->getEcc();
+        double periRad = aSMAToPeriRad(sma, ecc);
+        this->changePeriRadHoldingOthers(periRad, originalElem);
+        break;
+    }
+    default:
+        aError("unknown shapeType");
+        break;
+    }
 }
 
 double StateKeplerian::getMeanMotion() const
@@ -421,7 +523,8 @@ double StateKeplerian::getMeanMotion() const
 
 void StateKeplerian::setMeanMotion(double meanMotion)
 {
-    aError("setMeanMotion not implemented");
+    double sma = aMeanMotionToSMA(meanMotion, getGM());
+    return this->setSMA(sma);
 }
 
 double StateKeplerian::getPeriod() const
@@ -431,7 +534,8 @@ double StateKeplerian::getPeriod() const
 
 void StateKeplerian::setPeriod(double period)
 {
-    aError("setPeriod not implemented");
+    double sma = aPeriodToSMA(period, getGM());
+    return this->setSMA(sma);
 }
 
 double StateKeplerian::getApoAlt() const
@@ -441,12 +545,14 @@ double StateKeplerian::getApoAlt() const
 
 void StateKeplerian::setApoAltForSize(double apoAlt)
 {
-    aError("setApoAltForSize not implemented");
+    double apoRad = aApoAltToApoRad(apoAlt, getBodyRadius());
+    return this->setApoRadForSize(apoRad);
 }
 
 void StateKeplerian::setApoAltForShape(double apoAlt)
 {
-    aError("setApoAltForShape not implemented");
+    double apoRad = aApoAltToApoRad(apoAlt, getBodyRadius());
+    return this->setApoRadForShape(apoRad);
 }
 
 double StateKeplerian::getApoRad() const
@@ -456,12 +562,81 @@ double StateKeplerian::getApoRad() const
 
 void StateKeplerian::setApoRadForSize(double apoRad)
 {
-    aError("setApoRadForSize not implemented");
+    const ModOrbElem originalElem = modOrbElem_;
+    switch (shapeType_)
+    {
+    case EShapeType::eApoAlt:
+    case EShapeType::eApoRad:
+    {
+        aError("invalid combination of sizeType and shapeType");
+        break;
+    }
+    case EShapeType::ePeriAlt:
+    case EShapeType::ePeriRad:
+    {
+        double periRad = this->getPeriRad();
+        if(periRad > apoRad){
+            aError("periRad must not be greater than apoRad");
+            return;
+        }
+        double ecc = aPeriRadApoRadToEcc(this->getPeriRad(), apoRad);
+        this->changeEccHoldingOthers(ecc, originalElem);
+        break;
+    }
+    case EShapeType::eEcc:
+    {
+        double ecc = modOrbElem_.getEcc();
+        double rp = aApoRadToPeriRad(apoRad, ecc);
+        this->changePeriRadHoldingOthers(rp, originalElem);
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 void StateKeplerian::setApoRadForShape(double apoRad)
 {
-    aError("setApoRadForShape not implemented");
+    const ModOrbElem originalElem = modOrbElem_;
+    switch (this->sizeType_)
+    {
+    case ESizeType::eApoAlt:
+    case ESizeType::eApoRad:
+    {
+        aError("invalid combination of sizeType and shapeType");
+        break;
+    }
+    case ESizeType::ePeriAlt:
+    case ESizeType::ePeriRad:
+    {
+        double periRad = this->getPeriRad();
+        if(periRad > apoRad){
+            aError("periRad must not be greater than apoRad");
+            return;
+        }
+        double ecc = aPeriRadApoRadToEcc(periRad, apoRad);
+        this->changeEccHoldingOthers(ecc, originalElem);
+        break;
+    }
+    case ESizeType::eSMA:
+    case ESizeType::ePeriod:
+    case ESizeType::eMeanMotion:
+    {
+        double sma = this->getSMA();
+        if(apoRad < sma)
+        {
+            aError("apoRad must not be less than sma");
+            return;
+        }
+        double ecc = aApoRadToEcc(apoRad, sma);
+        double periRad = 2 * sma - apoRad;
+        this->changePeriRadHoldingOthers(periRad, originalElem);
+        this->changeEccHoldingOthers(ecc, originalElem);
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 double StateKeplerian::getPeriAlt() const
@@ -471,12 +646,14 @@ double StateKeplerian::getPeriAlt() const
 
 void StateKeplerian::setPeriAltForSize(double periAlt)
 {
-    aError("setPeriAltForSize not implemented");
+    double periRad = aPeriAltToPeriRad(periAlt, getBodyRadius());
+    return this->setPeriRadForSize(periRad);
 }
 
 void StateKeplerian::setPeriAltForShape(double periAlt)
 {
-    aError("setPeriAltForShape not implemented");
+    double periRad = aPeriAltToPeriRad(periAlt, getBodyRadius());
+    return this->setPeriRadForShape(periRad);
 }
 
 double StateKeplerian::getPeriRad() const
@@ -486,12 +663,82 @@ double StateKeplerian::getPeriRad() const
 
 void StateKeplerian::setPeriRadForSize(double periRad)
 {
-    aError("setPeriRadForSize not implemented");
+    const ModOrbElem originalElem = modOrbElem_;
+    switch (this->shapeType_)
+    {
+    case EShapeType::eApoAlt:
+    case EShapeType::eApoRad:
+    {
+        double apoRad = this->getApoRad();
+        if(periRad > apoRad)
+        {
+            aError("periRad must not be greater than apoRad");
+            return;
+        }
+        double ecc = aPeriRadApoRadToEcc(periRad, apoRad);
+        this->changePeriRadHoldingOthers(periRad, originalElem);
+        this->changeEccHoldingOthers(ecc, originalElem);
+        break;
+    }
+    case EShapeType::ePeriAlt:
+    case EShapeType::ePeriRad:
+    {
+        aError("invalid combination of sizeType and shapeType");
+        break;
+    }
+    case EShapeType::eEcc:
+        this->changePeriRadHoldingOthers(periRad, originalElem);
+        break;
+    default:
+        aError("unknown shapeType");
+        break;
+    }
 }
 
 void StateKeplerian::setPeriRadForShape(double periRad)
 {
-    aError("setPeriRadForShape not implemented");
+    const ModOrbElem originalElem = modOrbElem_;
+    switch (sizeType_)
+    {
+    case ESizeType::eApoAlt:
+    case ESizeType::eApoRad:
+    {
+        double apoRad = this->getApoRad();
+        if(periRad > apoRad)
+        {
+            aError("periRad must not be greater than apoRad");
+            return;
+        }
+
+        double ecc = aPeriRadApoRadToEcc(periRad, this->getApoRad());
+        this->changePeriRadHoldingOthers(periRad, originalElem);
+        this->changeEccHoldingOthers(ecc, originalElem);
+        break;
+    }
+    case ESizeType::ePeriAlt:
+    case ESizeType::ePeriRad:
+    {
+        aError("invalid combination of sizeType and shapeType");
+        break;
+    }
+    case ESizeType::eMeanMotion:
+    case ESizeType::ePeriod:
+    case ESizeType::eSMA:
+    {
+        double sma = this->getSMA();
+        if(periRad > sma)
+        {
+            aError("periRad must not be greater than sma");
+            return;
+        }
+        double ecc = aPeriRadToEcc(periRad, sma);
+        this->changePeriRadHoldingOthers(periRad, originalElem);
+        this->changeEccHoldingOthers(ecc, originalElem);
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 double StateKeplerian::getEcc() const
@@ -501,7 +748,34 @@ double StateKeplerian::getEcc() const
 
 void StateKeplerian::setEcc(double ecc)
 {
-    aError("setEcc not implemented");
+    ModOrbElem originalElem = modOrbElem_;
+    switch (sizeType_)
+    {
+    case ESizeType::eApoAlt:
+    case ESizeType::eApoRad:
+    {
+        double apoRad = this->getApoRad();
+        double periRad = aApoRadToPeriRad(apoRad, ecc);
+        this->changePeriRadHoldingOthers(periRad, originalElem);
+        this->changeEccHoldingOthers(ecc, originalElem);
+        break;
+    }
+    case ESizeType::ePeriAlt:
+    case ESizeType::ePeriRad:
+        this->changeEccHoldingOthers(ecc, originalElem);
+        break;
+    case ESizeType::eMeanMotion:
+    case ESizeType::ePeriod:
+    case ESizeType::eSMA:
+    {
+        double periRad = aSMAToPeriRad(this->getSMA(), ecc);
+        this->changePeriRadHoldingOthers(periRad, originalElem);
+        this->changeEccHoldingOthers(ecc, originalElem);
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 double StateKeplerian::getInc() const
@@ -511,7 +785,7 @@ double StateKeplerian::getInc() const
 
 void StateKeplerian::setInc(double inc)
 {
-    aError("setInc not implemented");
+    modOrbElem_.i_ = inc;
 }
 
 double StateKeplerian::getRAAN() const
@@ -521,7 +795,7 @@ double StateKeplerian::getRAAN() const
 
 void StateKeplerian::setRAAN(double raan)
 {
-    aError("setRAAN not implemented");
+    modOrbElem_.raan_ = raan;
 }
 
 double StateKeplerian::getLAN() const
@@ -535,13 +809,22 @@ double StateKeplerian::getLAN() const
 
     TimePoint timeOfAscNodePassage;
     this->getTimeOfAscNodePassage(timeOfAscNodePassage);
-    double raan = modOrbElem_.getRAAN();
-    return aRAANToLAN(raan, frame_->getAxes(), timeOfAscNodePassage, body->getAxesFixed());
+    return modOrbElem_.getLAN(frame_->getAxes(), timeOfAscNodePassage, body->getAxesFixed());
 }
 
 void StateKeplerian::setLAN(double lan)
 {
-    aError("setLAN not implemented");
+    auto body = this->getBody();
+    if(!body)
+    {
+        aError("failed to get body");
+        return;
+    }
+
+    TimePoint timeOfAscNodePassage;
+    this->getTimeOfAscNodePassage(timeOfAscNodePassage);
+    double raan = aLANToRAAN(lan, body->getAxesFixed(), timeOfAscNodePassage, frame_->getAxes());
+    modOrbElem_.raan_ = raan;
 }
 
 double StateKeplerian::getSMA() const
@@ -556,7 +839,8 @@ double StateKeplerian::getArgPeri() const
 
 void StateKeplerian::setArgPeri(double argPeri)
 {
-    aError("setArgPeri not implemented");
+    const ModOrbElem originalElem = modOrbElem_;
+    changeArgPeriHoldingOthers(argPeri, originalElem);
 }
 
 double StateKeplerian::getTrueAnomaly() const
@@ -566,7 +850,7 @@ double StateKeplerian::getTrueAnomaly() const
 
 void StateKeplerian::setTrueAnomaly(double trueAnomaly)
 {
-    aError("setTrueAnomaly not implemented");
+    modOrbElem_.trueA_ = trueAnomaly;
 }
 
 double StateKeplerian::getMeanAnomaly() const
@@ -576,7 +860,9 @@ double StateKeplerian::getMeanAnomaly() const
 
 void StateKeplerian::setMeanAnomaly(double meanAnomaly)
 {
-    aError("setMeanAnomaly not implemented");
+    double ecc = this->getEcc();
+    double trueAnomaly = aMeanToTrue(meanAnomaly, ecc);
+    modOrbElem_.trueA_ = trueAnomaly;
 }
 
 double StateKeplerian::getEccAnomaly() const
@@ -586,7 +872,9 @@ double StateKeplerian::getEccAnomaly() const
 
 void StateKeplerian::setEccAnomaly(double eccAnomaly)
 {
-    aError("setEccAnomaly not implemented");
+    double ecc = this->getEcc();
+    double trueAnomaly = aEccToTrue(eccAnomaly, ecc);
+    modOrbElem_.trueA_ = trueAnomaly;
 }
 
 double StateKeplerian::getArgLat() const
@@ -596,7 +884,9 @@ double StateKeplerian::getArgLat() const
 
 void StateKeplerian::setArgLat(double argLat)
 {
-    aError("setArgLat not implemented");
+    double argPeri = modOrbElem_.getArgPeri();
+    double trueAnomaly = argLat - argPeri;
+    modOrbElem_.trueA_ = trueAnomaly;
 }
 
 double StateKeplerian::getTimePastPeri() const
@@ -606,7 +896,10 @@ double StateKeplerian::getTimePastPeri() const
 
 void StateKeplerian::setTimePastPeri(double timePastPeri)
 {
-    aError("setTimePastPeri not implemented");
+    double sma = this->getSMA();
+    double ecc = this->getEcc();
+    double trueAnomaly = aTimePastPeriToTrue(timePastPeri, sma, ecc, getGM());
+    modOrbElem_.trueA_ = trueAnomaly;
 }
 
 double StateKeplerian::getTimePastAscNode() const
@@ -616,7 +909,11 @@ double StateKeplerian::getTimePastAscNode() const
 
 void StateKeplerian::setTimePastAscNode(double timePastAscNode)
 {
-    aError("setTimePastAscNode not implemented");
+    double argPeri = this->getArgPeri();
+    double sma = this->getSMA();
+    double ecc = this->getEcc();
+    double trueAnomaly = aTimePastAscNodeToTrue(timePastAscNode, argPeri, sma, ecc, getGM());
+    modOrbElem_.trueA_ = trueAnomaly;
 }
 
 void StateKeplerian::getTimeOfPeriPassage(TimePoint &tp) const
@@ -627,16 +924,20 @@ void StateKeplerian::getTimeOfPeriPassage(TimePoint &tp) const
     tp = stateEpoch - this->getTimePastPeri();
 }
 
-double StateKeplerian::getTimeOfPeriPassage() const
+TimePoint StateKeplerian::getTimeOfPeriPassage() const
 {
     TimePoint tp;
     this->getTimeOfPeriPassage(tp);
-    return aTimePointToEpochSecond(tp);
+    return tp;
 }
 
 void StateKeplerian::setTimeOfPeriPassage(const TimePoint &tp)
 {
-    aError("setTimeOfPeriPassage not implemented");
+    TimePoint stateEpoch;
+    err_t rc = this->getStateEpoch(stateEpoch);
+    if(rc) return;
+    double timePastPeri = stateEpoch - tp;
+    return setTimePastPeri(timePastPeri);
 }
 
 void StateKeplerian::setTimeOfPeriPassage(double epochsecond)
@@ -652,17 +953,20 @@ void StateKeplerian::getTimeOfAscNodePassage(TimePoint &tp) const
     tp = stateEpoch - this->getTimePastAscNode();
 }
 
-
-double StateKeplerian::getTimeOfAscNodePassage() const
+TimePoint StateKeplerian::getTimeOfAscNodePassage() const
 {
     TimePoint tp;
     this->getTimeOfAscNodePassage(tp);
-    return aTimePointToEpochSecond(tp);
+    return tp;
 }
 
 void StateKeplerian::setTimeOfAscNodePassage(const TimePoint &tp)
 {
-    aError("setTimeOfAscNodePassage not implemented");
+    TimePoint stateEpoch;
+    err_t rc = this->getStateEpoch(stateEpoch);
+    if(rc) return;
+    double timePastAscNode = stateEpoch - tp;
+    return setTimePastAscNode(timePastAscNode);
 }
 
 void StateKeplerian::setTimeOfAscNodePassage(double epochsecond)
@@ -672,6 +976,148 @@ void StateKeplerian::setTimeOfAscNodePassage(double epochsecond)
     this->setTimeOfAscNodePassage(tp);
 }
 
+void StateKeplerian::changeEccHoldingOthers(double ecc, const ModOrbElem& originalElem)
+{
+    modOrbElem_.e() = ecc;
+    switch(positionType_)
+    {
+    case EPositionType::eMeanAnomaly:
+    {
+        this->holdMeanAnomaly(originalElem);
+        break;
+    }
+    case EPositionType::eEccAnomaly:
+    {
+        this->holdEccAnomaly(originalElem);
+        break;
+    }
+    case EPositionType::eArgLat:
+    {
+        this->holdArgLat(originalElem);
+        break;
+    }
+    case EPositionType::eTimePastAscNode:
+    case EPositionType::eTimeOfAscNodePassage:
+    {
+        this->holdTimePastAscNode(originalElem);
+        break;
+    }
+    case EPositionType::eTimePastPeri:
+    case EPositionType::eTimeOfPeriPassage:
+    {
+        this->holdTimePastPeri(originalElem);
+        break;
+    }
+    case EPositionType::eTrueAnomaly:
+    default:
+        break;
+    }
+    if(orientationType_ == EOrientationType::eLAN)
+    {
+        holdLAN(originalElem);
+    }
+}
+
+void StateKeplerian::changePeriRadHoldingOthers(double periRad, const ModOrbElem &originalElem)
+{
+    modOrbElem_.rp_ = periRad;
+    switch (positionType_)
+    {
+    case EPositionType::eTimePastAscNode:
+    case EPositionType::eTimeOfAscNodePassage:
+    {
+        this->holdTimePastAscNode(originalElem);
+        break;
+    }
+    case EPositionType::eTimePastPeri:
+    case EPositionType::eTimeOfPeriPassage:
+    {
+        this->holdTimePastPeri(originalElem);
+        break;
+    }
+    default:
+        break;
+    }
+    if(orientationType_ == EOrientationType::eLAN)
+    {
+        holdLAN(originalElem);
+    }
+}
+
+void StateKeplerian::changeArgPeriHoldingOthers(double argPeri, const ModOrbElem &originalElem)
+{
+    modOrbElem_.argper_ = argPeri;
+    switch (positionType_)
+    {
+    case EPositionType::eTimeOfAscNodePassage:
+    case EPositionType::eTimePastAscNode:
+    {
+        this->holdTimePastAscNode(originalElem);
+        break;
+    }
+    default:
+        break;
+    }
+    if(orientationType_ == EOrientationType::eLAN)
+    {
+        holdLAN(originalElem);
+    }
+}
+
+void StateKeplerian::holdLAN(const ModOrbElem &originalElem)
+{
+    auto body = this->getBody();
+    if(!body)
+    {
+        aError("failed to get body");
+        return;
+    }
+    TimePoint stateEpoch = this->getStateEpoch();
+    TimePoint timeOfAscNodePassage = originalElem.getTimeOfAscNodePassage(stateEpoch, getGM());
+    auto inertialAxes = frame_->getAxes();
+    auto bodyFixedAxes = body->getAxesFixed();
+    double lan = originalElem.getLAN(inertialAxes, timeOfAscNodePassage, bodyFixedAxes);
+    // printf("lan: %.15g\n", lan);
+    double raan = aLANToRAAN(lan, bodyFixedAxes, this->getTimeOfAscNodePassage(), inertialAxes);
+    modOrbElem_.raan() = raan;
+}
+
+void StateKeplerian::holdMeanAnomaly(const ModOrbElem &originalElem)
+{
+    double meanAnomaly = originalElem.getMeanAnomaly();
+    double trueAnomaly = aMeanToTrue(meanAnomaly, this->getEcc());
+    modOrbElem_.trueA() = trueAnomaly;
+}
+
+void StateKeplerian::holdEccAnomaly(const ModOrbElem &originalElem)
+{
+    double eccAnomaly = originalElem.getEccAnomaly();
+    double trueAnomaly = aEccToTrue(eccAnomaly, this->getEcc());
+    modOrbElem_.trueA() = trueAnomaly;
+}
+
+void StateKeplerian::holdArgLat(const ModOrbElem &originalElem)
+{
+    double argLat = originalElem.getArgLat();
+    double trueAnomaly = aArgLatToTrue(argLat, this->getArgPeri());
+    modOrbElem_.trueA() = trueAnomaly;
+}
+
+void StateKeplerian::holdTimePastAscNode(const ModOrbElem &originalElem)
+{
+    double timePastAscNode = originalElem.getTimePastAscNode(getGM());
+    double trueAnomaly = aTimePastAscNodeToTrue(
+        timePastAscNode, this->getArgPeri(), 
+        this->getSMA(), this->getEcc(), getGM());
+    modOrbElem_.trueA() = trueAnomaly;
+}
+
+void StateKeplerian::holdTimePastPeri(const ModOrbElem &originalElem)
+{
+    double timePastPeri = originalElem.getTimePastPeri(getGM());
+    double trueAnomaly = aTimePastPeriToTrue(
+        timePastPeri, this->getSMA(), this->getEcc(), getGM());
+    modOrbElem_.trueA() = trueAnomaly;
+}
+
 AST_NAMESPACE_END
-
-

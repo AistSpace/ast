@@ -25,6 +25,7 @@
 #include "AstCore/Constants.h"      // for kJ2000XXXX
 #include "AstCore/JulianDate.hpp"    
 #include "AstCore/DateTime.hpp"
+#include "AstCore/RunTime.hpp"
 #include <stdint.h>                 // for int64_t
 
 AST_NAMESPACE_BEGIN
@@ -189,6 +190,11 @@ public:
         toTAI(jdTAI);
         return jdTAI;
     }
+    /// @brief 将时间点转换为相对于参考历元的秒数
+    double toEpochSecond() const{
+        return aTimePointToEpochSecond(*this);
+    }
+
     /// @brief 计算与另一个时间点的时间差（秒数）
     double durationFrom(const TimePoint& other) const{
         return duration_.minusInSecond(other.duration_);

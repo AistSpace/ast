@@ -40,10 +40,7 @@ using namespace math;
 // #define INVALID_PARAM(val) val
 #define INVALID_PARAM(val) NAN
 
-double aApoAltToApoRad(double apogeeAlt, double bodyRadius)
-{
-    return apogeeAlt + bodyRadius;
-}
+
 
 double aApoAltToMeanMotion(double apogeeAlt, double eccentricity, double bodyRadius, double gm)
 {
@@ -103,7 +100,8 @@ double	aApoRadToPeriRad(double apogeeRad, double eccentricity)
     assert(eccentricity >=0);
     return apogeeRad * (1 - eccentricity) / (1 + eccentricity);
 }
-double	aApoRadToSMA(double apogeeRad, double eccentricity)
+
+double aApoRadToSMA(double apogeeRad, double eccentricity)
 {
     return apogeeRad / (1 + eccentricity);
 }
@@ -391,10 +389,7 @@ double	aSMAToPeriAlt(double semiMajorAxis, double eccentricity, double bodyRadiu
 {
     return semiMajorAxis * (1 - eccentricity) - bodyRadius;
 }
-double	aSMAToPeriRad(double semiMajorAxis, double eccentricity)
-{
-    return semiMajorAxis * (1 - eccentricity);
-}
+
 double	aSMAToPeriod(double semiMajorAxis, double gm)
 {
     return PI2 * sqrt((semiMajorAxis * semiMajorAxis * semiMajorAxis) / gm);
@@ -502,10 +497,6 @@ double	aTrueToTimePastPeri(double trueAnomaly, double semiMajorAxis, double ecce
     return aEccToTimePastPeri(E, semiMajorAxis, eccentricity, gm);
 }
 
-double	aTrueToArgLat(double trueAnomaly, double argPeri)
-{
-    return trueAnomaly + argPeri;
-}
 
 double	aTrueToTrueLong(double trueAnomaly, double argPeri, double raan)
 {
@@ -524,6 +515,17 @@ double aRAANToLAN(double raan, Axes* inertialAxes, const TimePoint& timeOfAscNod
     Vector3d vecBodyFixed{ cosRAAN, sinRAAN, 0.0 };
     Rotation rotation;
     aAxesTransform(inertialAxes, bodyFixedAxes, timeOfAscNodePassage, rotation);
+    vecBodyFixed = rotation.transformVector(vecBodyFixed);
+    return atan2(vecBodyFixed.y(), vecBodyFixed.x());
+}
+
+double aLANToRAAN(double lan, Axes *bodyFixedAxes, const TimePoint &timeOfAscNodePassage, Axes *inertialAxes)
+{
+    double cosLAN, sinLAN;
+    sincos(lan, &sinLAN, &cosLAN);
+    Vector3d vecBodyFixed{ cosLAN, sinLAN, 0.0 };
+    Rotation rotation;
+    aAxesTransform(bodyFixedAxes, inertialAxes, timeOfAscNodePassage, rotation);
     vecBodyFixed = rotation.transformVector(vecBodyFixed);
     return atan2(vecBodyFixed.y(), vecBodyFixed.x());
 }

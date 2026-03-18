@@ -91,6 +91,10 @@ public:
     /// @return err_t 错误码
     err_t getStateEpoch(TimePoint& stateEpoch) const;
 
+    /// @brief 获取状态历元时间
+    /// @return TimePoint 状态历元时间
+    TimePoint getStateEpoch() const;
+
     /// @brief 获取状态历元时间句柄
     /// @return SharedPtr<EventTime>& 状态历元时间句柄
     SharedPtr<EventTime>& getStateEpochHandle(){ return stateEpoch_; }
