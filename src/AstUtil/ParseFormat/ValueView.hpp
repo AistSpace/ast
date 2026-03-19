@@ -46,7 +46,7 @@ public:
         : value_(value){}
     ValueView(const std::string& value)
         : value_(value){}
-    ValueView(GenericValue value)
+    ValueView(const GenericValue& value)
         : value_(value.value()) {}
     
     /// @brief 获取值视图

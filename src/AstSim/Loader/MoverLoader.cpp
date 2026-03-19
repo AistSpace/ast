@@ -26,6 +26,7 @@
 #include "AstUtil/MathDegree.hpp"
 #include "AstSim/Mover.hpp"
 #include "AstSim/MotionTwoBody.hpp"
+#include "AstSim/MotionHPOP.hpp"
 #include "AstCore/StateKeplerian.hpp"
 #include "AstCore/StateCartesian.hpp"
 #include "AstCore/EventIntervalExplicit.hpp"
@@ -163,6 +164,7 @@ struct VehiclePathData
     bool smoothInterp_ = false;
 };
 
+
 err_t _aLoadTwoBody(BKVParser& parser, const VehiclePathData& vehiclePathData, MotionTwoBody& motionProfile)
 {
     BKVItemView item;
@@ -269,6 +271,11 @@ err_t _aLoadTwoBody(BKVParser& parser, const VehiclePathData& vehiclePathData, M
     return eNoError;
 }
 
+err_t _aLoadHPOP(BKVParser& parser, const VehiclePathData& vehiclePathData, MotionHPOP& motionProfile)
+{
+    return eNoError;
+}
+
 err_t _aLoadTwoBody(BKVParser& parser, const VehiclePathData& vehiclePathData, Mover& mover)
 {
     PMotionTwoBody motionProfile = MotionTwoBody::New();
@@ -276,6 +283,19 @@ err_t _aLoadTwoBody(BKVParser& parser, const VehiclePathData& vehiclePathData, M
         return eErrorInvalidParam;
     }
     if(err_t rc = _aLoadTwoBody(parser, vehiclePathData, *motionProfile)){
+        return rc;
+    }
+    mover.setMotionProfile(motionProfile);
+    return eNoError;
+}
+
+err_t _aLoadHPOP(BKVParser& parser, const VehiclePathData& vehiclePathData, Mover& mover)
+{
+    PMotionHPOP motionProfile = MotionHPOP::New();
+    if(!motionProfile){
+        return eErrorInvalidParam;
+    }
+    if(err_t rc = _aLoadHPOP(parser, vehiclePathData, *motionProfile)){
         return rc;
     }
     mover.setMotionProfile(motionProfile);
@@ -333,6 +353,7 @@ err_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
     BKVItemView item;
     BKVParser::EToken token;
     VehiclePathData data;
+    data.centralBody_ = aGetDefaultBody();  // default body
     do{
         token = parser.getNext(item);
         if(token == BKVParser::eKeyValue)
@@ -346,13 +367,17 @@ err_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
             }
         }else if(token == BKVParser::eBlockBegin){
             if(aEqualsIgnoreCase(item.value(), "TwoBody")){
-                if(!data.centralBody_){
-                    data.centralBody_ = aGetDefaultBody();
-                }
                 if(err_t rc = _aLoadTwoBody(parser, data, mover)){
                     return rc;
                 }
-            }else if(aEqualsIgnoreCase(item.value(), "PassDefn")){
+            }
+            else if(aEqualsIgnoreCase(item.value(), "HPOP"))
+            {
+                if(err_t rc = _aLoadHPOP(parser, data, mover)){
+                    return rc;
+                }
+            }
+            else if(aEqualsIgnoreCase(item.value(), "PassDefn")){
                 if(err_t rc = _aLoadPassDefn(parser, mover)){
                     return rc;
                 }

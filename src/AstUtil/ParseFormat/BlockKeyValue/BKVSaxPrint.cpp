@@ -76,10 +76,10 @@ void BKVSaxPrint::end(StringView name)
     posix::fprintf(file_, "END %.*s\n", static_cast<int>(name.size()), name.data());
 }
 
-void BKVSaxPrint::keyValue(StringView key, const GenericValue &value)
+void BKVSaxPrint::keyValue(StringView key, const ValueView &value)
 {
     posix::fprintf(file_, "%*s", depth_ * indent_, "");
-    posix::fprintf(file_, "%.*s %s\n", static_cast<int>(key.size()), key.data(), value.c_str());
+    posix::fprintf(file_, "%.*s %.*s\n", static_cast<int>(key.size()), key.data(), (int)value.size(), value.data());
 }
 
 AST_NAMESPACE_END

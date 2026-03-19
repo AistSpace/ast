@@ -27,14 +27,21 @@
 
 AST_USING_NAMESPACE
 
-const std::string kSatelliteFile = "data/Test/Satellite.sa";
 
 TEST(MoverLoaderTest, LoadSatellite)
 {
-    Mover mover;
-    err_t ret = aLoadMover(kSatelliteFile, mover);
-    EXPECT_EQ(ret, eNoError);
-    
+    {
+        const std::string satelliteFile = "data/Test/STK/Satellite.sa";
+        Mover mover;
+        err_t ret = aLoadMover(satelliteFile, mover);
+        EXPECT_EQ(ret, eNoError);
+    }
+    {
+        const std::string satelliteFile = "data/Test/STK/SatelliteHPOP.sa";
+        Mover mover;
+        err_t ret = aLoadMover(satelliteFile, mover);
+        EXPECT_EQ(ret, eNoError);
+    }
 }
 
 GTEST_MAIN();

@@ -145,7 +145,7 @@ err_t BKVParser::parse(BKVSax &sax)
         token = getNext(item);
         if(token == eKeyValue)
         {
-            sax.keyValue(item.key(), item.value().toValue());
+            sax.keyValue(item.key(), item.value());
         }else if(token == eBlockBegin)
         {
             sax.begin(item.value().toStringView());

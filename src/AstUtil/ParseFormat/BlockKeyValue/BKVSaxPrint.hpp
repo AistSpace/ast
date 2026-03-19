@@ -38,7 +38,8 @@ public:
     ~BKVSaxPrint();
     void begin(StringView name) override;
     void end(StringView name) override;
-    void keyValue(StringView key, const GenericValue& value) override;
+    using BKVSax::keyValue;
+    void keyValue(StringView key, const ValueView& value) override;
 protected:
     FILE* file_;
     int indent_;

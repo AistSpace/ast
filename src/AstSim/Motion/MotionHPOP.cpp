@@ -22,6 +22,20 @@
 
 AST_NAMESPACE_BEGIN
 
+PMotionHPOP MotionHPOP::New()
+{
+    return new MotionHPOP();
+}
 
+err_t MotionHPOP::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
+{
+    return -1;
+}
+
+err_t MotionHPOP::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
+{
+    return -1;
+}
 
 AST_NAMESPACE_END
+

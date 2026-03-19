@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/GenericValue.hpp"
+#include "AstUtil/ValueView.hpp"
 #include "AstUtil/Color.hpp"
 
 AST_NAMESPACE_BEGIN
@@ -48,16 +49,16 @@ public:
     /// @brief 迭代解析一个键值对
     /// @param key 键
     /// @param value 值
-    virtual void keyValue(StringView key, const GenericValue& value) = 0;
+    virtual void keyValue(StringView key, const ValueView& value) = 0;
 
     void begin() { begin(StringView{});}
     void end() { end(StringView{});}
-    void keyValue(StringView key, const char* value){ keyValue(key, GenericValue(value)); }
+    void keyValue(StringView key, const char* value){ keyValue(key, ValueView(value)); }
     void keyValue(StringView key, int value){ keyValue(key, GenericValue(value)); }
     void keyValue(StringView key, bool value){ keyValue(key, GenericValue(value)); }
     void keyValue(StringView key, double value){ keyValue(key, GenericValue(value)); }
     void keyValue(StringView key, Color value){ keyValue(key, GenericValue(value)); }
-    void keyValue(StringView key, StringView value){ keyValue(key, GenericValue(value)); }
+    void keyValue(StringView key, StringView value){ keyValue(key, ValueView(value)); }
 };
 
 

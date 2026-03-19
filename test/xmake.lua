@@ -13,6 +13,7 @@ add_deps(
 add_packages("gtest")
 add_packages("benchmark")
 
+set_warnings("more")
 
 if has_package("gtest") then
     local test_files = os.files("**/test*.c*|Archive/**")

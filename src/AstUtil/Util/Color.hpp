@@ -81,7 +81,8 @@ A_CONSTEXPR_CXX14 inline void aColorToRGBA(color_t color, uint8_t& r, uint8_t& g
 }
 
 
-// typedef uint32_t Color;
+/// @brief 颜色类
+/// @details 采用 RGBA 格式存储颜色值，每个分量占用 8 位（共4 字节）
 class Color
 {
 public:

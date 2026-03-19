@@ -73,7 +73,7 @@ public:
         return dim_;
     }
     
-    err_t evaluate(const double* y, double* dy, const double t) override {
+    err_t evaluate(const double* y, double* dy, double t) override {
         return func_(y, dy, t);
     }
     

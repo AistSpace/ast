@@ -21,6 +21,8 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "MotionBasic.hpp"
+#include "AstCore/HPOP.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -29,7 +31,31 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class MotionHPOP;
+using PMotionHPOP = MotionHPOP*;
+using HMotionHPOP = SharedPtr<MotionHPOP>;
 
+class MotionHPOP: public MotionBasic
+{
+public:
+    static PMotionHPOP New();
+    MotionHPOP() = default;
+    ~MotionHPOP() override = default;
+public:
+    err_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const override;
+    err_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const override;
+public:
+    /// @brief 设置力模型
+    /// @param forceModel 力模型
+    void setForceModel(const HPOPForceModel& forceModel){forceModel_ = forceModel;}
+
+    /// @brief 获取力模型
+    /// @return 力模型
+    const HPOPForceModel& getForceModel() const{return forceModel_;}
+
+protected:
+    HPOPForceModel forceModel_;     ///< 力模型
+};
 
 /*! @} */
 

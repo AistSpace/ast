@@ -32,7 +32,7 @@ public:
         return 1;
     }
     
-    err_t evaluate(const double* y, double* dy, const double t) override {
+    err_t evaluate(const double* y, double* dy, double t) override {
         (void)t; // 未使用的参数
         dy[0] = -y[0];
         return eNoError;

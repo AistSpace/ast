@@ -25,7 +25,9 @@ ENCODE_DIRS = ['examples', 'test']
 # 需要删除的文件
 FILES_TO_DELETE = [
     os.path.join(ROOT_DIR, 'README_zh.md'),
-    os.path.join(ROOT_DIR, 'README.md')
+    os.path.join(ROOT_DIR, 'README.md'),
+    os.path.join(ROOT_DIR, 'doxyfile'),
+    os.path.join(ROOT_DIR, '.gitmodule')
 ]
 
 # 压缩包名称
