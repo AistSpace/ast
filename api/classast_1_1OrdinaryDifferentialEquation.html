@@ -123,8 +123,8 @@ $(function(){initNavTree('classast_1_1OrdinaryDifferentialEquation.html',''); in
 Public 成员函数</h2></td></tr>
 <tr class="memitem:a0963660459787299637e98c013fddc5a" id="r_a0963660459787299637e98c013fddc5a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0963660459787299637e98c013fddc5a">getDimension</a> () const =0</td></tr>
 <tr class="separator:a0963660459787299637e98c013fddc5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70300b427087263481c559de113a14df" id="r_a70300b427087263481c559de113a14df"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70300b427087263481c559de113a14df">evaluate</a> (const double *y, double *dy, const double t)=0</td></tr>
-<tr class="separator:a70300b427087263481c559de113a14df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf36ac6bdf4023587bfdd71949dbc089" id="r_acf36ac6bdf4023587bfdd71949dbc089"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf36ac6bdf4023587bfdd71949dbc089">evaluate</a> (const double *y, double *dy, double t)=0</td></tr>
+<tr class="separator:acf36ac6bdf4023587bfdd71949dbc089"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4df4cbf8e5aff0ed90b59719085e4748" id="r_a4df4cbf8e5aff0ed90b59719085e4748"><td class="memItemLeft" align="right" valign="top"><a id="a4df4cbf8e5aff0ed90b59719085e4748" name="a4df4cbf8e5aff0ed90b59719085e4748"></a>
 A_ALWAYS_INLINE err_t&#160;</td><td class="memItemRight" valign="bottom"><b>evaluate</b> (const double t, const double *y, double *dy)</td></tr>
 <tr class="separator:a4df4cbf8e5aff0ed90b59719085e4748"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,8 +133,8 @@ A_ALWAYS_INLINE err_t&#160;</td><td class="memItemRight" valign="bottom"><b>eval
 <div class="textblock"><p>常微分方程基接口 </p>
 <p>该类定义了常微分方程的接口，包括获取维度和计算导数。 参考orekit的OrdinaryDifferentialEquation类 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="a70300b427087263481c559de113a14df" name="a70300b427087263481c559de113a14df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70300b427087263481c559de113a14df">&#9670;&#160;</a></span>evaluate()</h2>
+<a id="acf36ac6bdf4023587bfdd71949dbc089" name="acf36ac6bdf4023587bfdd71949dbc089"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf36ac6bdf4023587bfdd71949dbc089">&#9670;&#160;</a></span>evaluate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,7 +155,7 @@ A_ALWAYS_INLINE err_t&#160;</td><td class="memItemRight" valign="bottom"><b>eval
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
         </tr>
       </table>
   </td>

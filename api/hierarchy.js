@@ -485,7 +485,7 @@ var hierarchy =
     [ "ast::SpanStorage< T, dynamic_extent >", "classast_1_1SpanStorage_3_01T_00_01dynamic__extent_01_4.html", null ],
     [ "ast::Sparse", "classast_1_1Sparse.html", null ],
     [ "ast::SpiceBodyRegistry", "classast_1_1SpiceBodyRegistry.html", null ],
-    [ "ast::SpiceData", "classast_1_1SpiceData.html", null ],
+    [ "ast::SpiceData", "unionast_1_1SpiceData.html", null ],
     [ "ast::SpiceFrameRegistry", "classast_1_1SpiceFrameRegistry.html", null ],
     [ "ast::SpiceKernelPool", "classast_1_1SpiceKernelPool.html", null ],
     [ "ast::SPK_Descriptor", "structast_1_1SPK__Descriptor.html", null ],

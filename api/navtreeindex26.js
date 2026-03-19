@@ -1,7 +1,5 @@
 var NAVTREEINDEX26 =
 {
-"structast_1_1strings__internal_1_1SelectDelimiter_3_01char_01_4.html":[3,0,0,2,11],
-"structast_1_1strings__internal_1_1SelectDelimiter_3_01const_01char_01_5_01_4.html":[3,0,0,2,12],
 "structast_1_1strings__internal_1_1SelectDelimiter_3_01std_1_1string_01_4.html":[3,0,0,2,13],
 "structast_1_1strings__internal_1_1SkipEmpty.html":[3,0,0,2,15],
 "structast_1_1strings__internal_1_1SkipWhitespace.html":[3,0,0,2,16],
@@ -23,5 +21,7 @@ var NAVTREEINDEX26 =
 "structstd_1_1hash_3_01__AST_01StringViewBasic_3_01__Char_01_4_01_4.html":[3,0,1,0],
 "topics.html":[0],
 "unionMultitype.html":[3,0,15],
+"unionast_1_1SpiceData.html":[2,0,0,309],
+"unionast_1_1SpiceData.html":[3,0,0,308],
 "zeros_8h_source.html":[4,0,0,5,4,0,0,1]
 };

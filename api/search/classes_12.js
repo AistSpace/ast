@@ -52,7 +52,7 @@ var searchData=
   ['spheroidshape_49',['SpheroidShape',['../classast_1_1SpheroidShape.html',1,'ast']]],
   ['spicebodyregistry_50',['SpiceBodyRegistry',['../classast_1_1SpiceBodyRegistry.html',1,'ast']]],
   ['spicedafparser_51',['SpiceDAFParser',['../classast_1_1SpiceDAFParser.html',1,'ast']]],
-  ['spicedata_52',['SpiceData',['../classast_1_1SpiceData.html',1,'ast']]],
+  ['spicedata_52',['SpiceData',['../unionast_1_1SpiceData.html',1,'ast']]],
   ['spiceframeregistry_53',['SpiceFrameRegistry',['../classast_1_1SpiceFrameRegistry.html',1,'ast']]],
   ['spicekernelpool_54',['SpiceKernelPool',['../classast_1_1SpiceKernelPool.html',1,'ast']]],
   ['spicespkparser_55',['SpiceSPKParser',['../classast_1_1SpiceSPKParser.html',1,'ast']]],

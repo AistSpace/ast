@@ -272,7 +272,7 @@ var searchData=
   ['spicedafparser_269',['SpiceDAFParser',['../classast_1_1SpiceDAFParser.html',1,'ast']]],
   ['spicedafparser_2ecpp_270',['SpiceDAFParser.cpp',['../SpiceDAFParser_8cpp.html',1,'']]],
   ['spicedafparser_2ehpp_271',['SpiceDAFParser.hpp',['../SpiceDAFParser_8hpp.html',1,'']]],
-  ['spicedata_272',['SpiceData',['../classast_1_1SpiceData.html',1,'ast']]],
+  ['spicedata_272',['SpiceData',['../unionast_1_1SpiceData.html',1,'ast']]],
   ['spiceframeregistry_273',['SpiceFrameRegistry',['../classast_1_1SpiceFrameRegistry.html',1,'ast']]],
   ['spiceframeregistry_2ecpp_274',['SpiceFrameRegistry.cpp',['../SpiceFrameRegistry_8cpp.html',1,'']]],
   ['spiceframeregistry_2ehpp_275',['SpiceFrameRegistry.hpp',['../SpiceFrameRegistry_8hpp.html',1,'']]],

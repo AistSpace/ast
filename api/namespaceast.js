@@ -367,7 +367,7 @@ var namespaceast =
     [ "SpheroidShape", "classast_1_1SpheroidShape.html", "classast_1_1SpheroidShape" ],
     [ "SpiceBodyRegistry", "classast_1_1SpiceBodyRegistry.html", null ],
     [ "SpiceDAFParser", "classast_1_1SpiceDAFParser.html", "classast_1_1SpiceDAFParser" ],
-    [ "SpiceData", "classast_1_1SpiceData.html", null ],
+    [ "SpiceData", "unionast_1_1SpiceData.html", null ],
     [ "SpiceFrameRegistry", "classast_1_1SpiceFrameRegistry.html", null ],
     [ "SpiceKernelPool", "classast_1_1SpiceKernelPool.html", "classast_1_1SpiceKernelPool" ],
     [ "SpiceSPKParser", "classast_1_1SpiceSPKParser.html", "classast_1_1SpiceSPKParser" ],
