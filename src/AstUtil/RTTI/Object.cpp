@@ -26,7 +26,12 @@
 AST_NAMESPACE_BEGIN
  
 
-static_assert(sizeof(Object) == sizeof(void*) * 2 + sizeof(uint32_t) * 2, "size not correct");      // 检查 Object 类的大小是否正确
+static_assert(sizeof(Object) == sizeof(void*) * 1 + sizeof(uint32_t) * 2, "size not correct");      // 检查 Object 类的大小是否正确
+
+Class *Object::getType() const
+{
+    return nullptr;
+}
 
 err_t Object::getAttrBool(StringView path, bool &value) const
 {
@@ -122,9 +127,11 @@ err_t Object::setAttrString(StringView path, StringView value)
 
 Property *Object::getProperty(StringView fieldName) const
 {
-    if(!m_type)
-        return nullptr;
-    return m_type->getProperty(fieldName);
+    if(auto type = getType())
+    {
+        return type->getProperty(fieldName);
+    }
+    return nullptr;
 }
 
 

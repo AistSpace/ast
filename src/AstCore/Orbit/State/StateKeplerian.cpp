@@ -58,18 +58,17 @@ TimePastAscNode, TimeOfAscNodePassage: TrueAnomaly, ArgPeri, SMA, Ecc
 
 void StateKeplerian_ClassInit(Class* cls);
 
-Class* StateKeplerian_TypeNew()
+_AST_IMPL_OBJECT(StateKeplerian)
+
+
+bool aStateKeplerian_TypeInit()
 {
-    Class *cls = new Class();
-    StateKeplerian_ClassInit(cls);
-    return cls;
+    StateKeplerian_ClassInit(&StateKeplerian::staticType);
+    return true;
 }
 
-Class* aStateKeplerian_Type()
-{
-    static Class* cls = StateKeplerian_TypeNew();
-    return cls;
-}
+/// @todo 考虑怎么统一初始化StateKeplerian的类型信息并注册对象
+static bool inited = aStateKeplerian_TypeInit();
 
 PStateKeplerian StateKeplerian::New()
 {
@@ -93,19 +92,16 @@ HStateKeplerian StateKeplerian::MakeShared(const ModOrbElem &modOrbElem)
 
 StateKeplerian::StateKeplerian()
 {
-    m_type = aStateKeplerian_Type();
 }
 
 StateKeplerian::StateKeplerian(const ModOrbElem &modOrbElem)
     : modOrbElem_(modOrbElem)
 {
-    m_type = aStateKeplerian_Type();
 }
 
 StateKeplerian::StateKeplerian(const State &state)
     : State{state}
 {
-    m_type = aStateKeplerian_Type();
     if (state.getStateType() == EStateType::eKeplerian)
     {
         static_cast<const StateKeplerian&>(state).getState(modOrbElem_);

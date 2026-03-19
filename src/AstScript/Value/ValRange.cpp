@@ -26,7 +26,7 @@ AST_NAMESPACE_BEGIN
 
 
 ValRange::ValRange(double start, double stop, double step)
-    :Value{&aValRange_Type} 
+    :Value{} 
     ,start_(start), stop_(stop), step_(step)
 {
 }

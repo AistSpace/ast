@@ -30,10 +30,10 @@ std::string ValQuantity::getExpression(Object *context) const
     return aFormatDouble(value_.value()) + "[" + unit().name() + "]";
 }
 
-Class* ValQuantity::staticType()
-{
-    return &aValQuantity_Type;
-}
+// Class* ValQuantity::staticType()
+// {
+//     return &aValQuantity_Type;
+// }
 
 
 AST_NAMESPACE_END

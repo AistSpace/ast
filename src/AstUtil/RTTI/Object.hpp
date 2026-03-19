@@ -25,6 +25,7 @@
 #include "AstUtil/ScopedPtr.hpp"
 #include "AstUtil/WeakPtr.hpp"
 #include "AstUtil/Attribute.hpp"
+#include "AstUtil/Class.hpp"
 #include <string>       // for std::string
 #include <stdint.h>     // for uint32_t
 #include <assert.h>     // for assert
@@ -51,16 +52,16 @@ class Property;     // 属性元信息
 class AST_UTIL_API Object
 {
 public:
-    Object():Object(nullptr){}
+    Object()
+        : refcnt_{0}
+        , weakrefcnt_{1}
+    {}
+public:
+    /// @brief 获取对象的类型元信息
+    /// @return Class* 类型元信息指针
+    virtual Class* getType() const;
 
-    Object(Class* tp)
-        :m_type{tp}
-        ,m_refcnt{0}
-        ,m_weakrefcnt{1}
-    {
-        // assert(tp);
-    }
-
+public:
     /// @brief 获取属性，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @return Attribute 属性
@@ -141,7 +142,7 @@ public:
 
     /// @brief 获取对象类型
     /// @return Class* 类型元信息
-    Class* type() const{return m_type;}
+    Class* type() const{return getType();} // 转发到新接口getType
 
     /// @brief 获取属性元信息
     /// @param fieldName 属性名
@@ -150,21 +151,21 @@ public:
     
     /// @brief 获取强引用计数
     /// @return uint32_t 强引用计数
-    uint32_t refCount() const{return m_refcnt;}
+    uint32_t refCount() const{return refcnt_;}
 
     /// @brief 获取弱引用计数
     /// @return uint32_t 弱引用计数
-    uint32_t weakRefCount() const{return m_weakrefcnt;}
+    uint32_t weakRefCount() const{return weakrefcnt_;}
 
     /// @brief 判断对象是否被析构
     /// @return bool 是否已析构
-    bool     isDestructed() const{return m_type ==nullptr;}
+    bool     isDestructed() const{return refcnt_ == static_cast<uint32_t>(-1);}
 
     /// @brief 析构对象，仅当强引用计数为0时才会被调用
     /// @details 析构对象时，会先将弱引用计数减1，若弱引用计数为0，则会调用析构函数
     void     destruct()
     {
-        assert(m_refcnt == 0);  // 只能直接删除不采用共享引用计数管理的对象
+        assert(refcnt_ == 0);  // 只能直接删除不采用共享引用计数管理的对象
         this->_destruct();
     }
 
@@ -172,19 +173,19 @@ public:
     /// @return uint32_t 新的弱引用计数
     uint32_t incWeakRef()
     {
-        return ++m_weakrefcnt;
+        return ++weakrefcnt_;
     }
 
     /// @brief 减少弱引用计数
     /// @return uint32_t 新的弱引用计数
     uint32_t decWeakRef()
     {
-        if (m_weakrefcnt == 1) {
+        if (weakrefcnt_ == 1) {
             operator delete(this);
             return 0;
         }
         else {
-            return --m_weakrefcnt;
+            return --weakrefcnt_;
         }
     }
 
@@ -192,25 +193,25 @@ public:
     /// @return uint32_t 新的强引用计数
     uint32_t incRef()
     {
-        return ++m_refcnt;
+        return ++refcnt_;
     }
 
     /// @brief 减少强引用计数
     /// @return uint32_t 新的强引用计数
     uint32_t decRef()
     {
-        if (m_refcnt == 1) {
+        if (refcnt_ == 1) {
             this->_destruct();
             return 0;
         }
-        return --m_refcnt;
+        return --refcnt_;
     }
 
     /// @brief 减少强引用计数，不删除对象
     /// @return uint32_t 新的强引用计数
     uint32_t decRefNoDelete()
     {
-        return --m_refcnt;
+        return --refcnt_;
     }
 private:
     /// @brief 析构对象，仅当强引用计数为0时才会被调用
@@ -218,21 +219,20 @@ private:
     void    _destruct()
     {
         this->~Object();
-        this->m_type = nullptr; // 标识对象是否被析构. bit mask indicate whether object is destructed.
+        this->refcnt_ = static_cast<uint32_t>(-1); // 标识对象是否被析构. bit mask indicate whether object is destructed.
         this->decWeakRef();
     }
 
 protected:
     virtual ~Object() = default;
     Object(const Object& obj)
-        : m_type(nullptr)
-        , m_refcnt(0)
-        , m_weakrefcnt(1)
+        : refcnt_(0)
+        , weakrefcnt_(1)
     {}
 protected:
-    Class*                   m_type;                 ///< 类型元信息，同时用于标识对象是否被析构
-    std::atomic<uint32_t>    m_refcnt;               ///< 强引用计数，给SharedPtr使用
-    std::atomic<uint32_t>    m_weakrefcnt;           ///< 弱引用计数，给WeakPtr使用
+    // Class*                type_;                 ///< 类型元信息，同时用于标识对象是否被析构
+    std::atomic<uint32_t>    refcnt_;               ///< 强引用计数，给SharedPtr使用
+    std::atomic<uint32_t>    weakrefcnt_;           ///< 弱引用计数，给WeakPtr使用
 };
 
 

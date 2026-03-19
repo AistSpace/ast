@@ -135,17 +135,17 @@ Value *aEvalExpr(Expr *expr)
 
 bool aValueIsBool(Value *value)
 {
-    return value && (value)->type() == &aValBool_Type;
+    return value && (value)->type() == &ValBool::staticType;
 }
 
 bool aValueIsDouble(Value *value)
 {
-    return value && (value)->type() == &aValDouble_Type;
+    return value && (value)->type() == &ValDouble::staticType;
 }
 
 bool aValueIsInt(Value *value)
 {
-    return value && (value)->type() == &aValInt_Type;
+    return value && (value)->type() == &ValInt::staticType;
 }
 
 bool aValueIsArithmetic(Value *value)
@@ -154,12 +154,12 @@ bool aValueIsArithmetic(Value *value)
         return false;
     }
     auto type = value->type();
-    return type == &aValInt_Type || type == &aValDouble_Type || type == &aValBool_Type;
+    return type == &ValInt::staticType || type == &ValDouble::staticType || type == &ValBool::staticType;
 }
 
 bool aValueIsQuantity(Value *value)
 {
-    return value && (value)->type() == &aValQuantity_Type;
+    return value && (value)->type() == &ValQuantity::staticType;
 }
 
 double aValueToDouble(Value *value)

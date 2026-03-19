@@ -85,6 +85,7 @@ enum class EPositionType
 class AST_CORE_API StateKeplerian final: public State
 {
 public:
+    AST_OBJECT(StateKeplerian)
     static PStateKeplerian New();
     static HStateKeplerian MakeShared();
     static PStateKeplerian New(const ModOrbElem& modOrbElem);

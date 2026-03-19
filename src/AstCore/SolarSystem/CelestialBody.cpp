@@ -29,6 +29,7 @@
 #include "AstCore/FrameICRF.hpp"
 #include "AstCore/FrameAssembly.hpp"
 #include "AstCore/BuiltinAxes.hpp"
+#include "AstUtil/Class.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/String.hpp"
 #include "AstUtil/BKVParser.hpp"
@@ -38,6 +39,8 @@
 
 
 AST_NAMESPACE_BEGIN
+
+_AST_IMPL_OBJECT(CelestialBody)
 
 CelestialBody::CelestialBody()
     : CelestialBody(StringView{})

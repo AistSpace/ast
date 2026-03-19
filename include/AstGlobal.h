@@ -100,7 +100,13 @@
 
 
 // AST 对象运行时元信息
-#define AST_OBJECT(TYPE) Class* staticType();
+#define AST_OBJECT(TYPE) \
+    static Class staticType;\
+    static inline Class* getStaticType(){return &staticType;}\
+    Class* getType() const{return &staticType;}\
+
+#define _AST_IMPL_OBJECT(TYPE) \
+    Class TYPE::staticType;\
 
 #ifdef AST_PROPERTIES_MARK
 #   define AST_PROPERTIES AST_PROPERTIES_MARK public

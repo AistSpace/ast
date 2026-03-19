@@ -34,7 +34,15 @@ AST_NAMESPACE_BEGIN
 class Class: public Struct
 {
 public:
+    Class(Class* parent = nullptr) 
+        : parent_(parent) {}    
 
+    /// @brief 获取父类
+    /// @return Class* 父类指针
+    Class* getParent() const{ return parent_; }
+
+protected:
+    Class* parent_;     ///< 父类
 };
 
 

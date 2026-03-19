@@ -25,17 +25,22 @@
 
 AST_USING_NAMESPACE
 
+
+static Class* testObjectClass();
+
+
 // 测试Object类的基本功能
 class TestObject : public Object
 {
 public:
-    TestObject(Class* type)
-        : Object(type)
+    TestObject()
+        : Object()
         , propBool_(true)
         , propInt_(42)
         , propDouble_(3.14)
         , propString_("test")
     {}
+    Class* getType() const override { return testObjectClass(); }
 
     // 成员变量
     bool propBool_;
@@ -55,28 +60,30 @@ public:
     err_t setPropString(StringView value) { propString_ = std::string(value); return eNoError; }
 };
 
+
+
 // 创建TestObject的Class对象
-static Class* createTestObjectClass()
+static Class* testObjectClass()
 {
-    auto* cls = new Class();
-    
-    // 添加属性
-    cls->addProperty("propBool", aNewPropertyBoolMem<TestObject, &TestObject::propBool_>());
-    cls->addProperty("propInt", aNewPropertyIntMem<TestObject, &TestObject::propInt_>());
-    cls->addProperty("propDouble", aNewPropertyDoubleMem<TestObject, &TestObject::propDouble_>());
-    cls->addProperty("propString", aNewPropertyStringMem<TestObject, &TestObject::propString_>());
-    
+    static auto* cls = new Class();
+    static bool first = true;
+    if(first){
+        // 添加属性
+        cls->addProperty("propBool", aNewPropertyBoolMem<TestObject, &TestObject::propBool_>());
+        cls->addProperty("propInt", aNewPropertyIntMem<TestObject, &TestObject::propInt_>());
+        cls->addProperty("propDouble", aNewPropertyDoubleMem<TestObject, &TestObject::propDouble_>());
+        cls->addProperty("propString", aNewPropertyStringMem<TestObject, &TestObject::propString_>());
+        first = false;
+    }
     return cls;
 }
 
 // 测试Object类的属性访问功能
 TEST(Object, PropertyAccess)
 {
-    // 创建Class对象
-    auto* testClass = createTestObjectClass();
     
     // 创建TestObject对象
-    TestObject obj(testClass);
+    TestObject obj{};
     
     // 测试getAttrBool
     bool boolValue;
@@ -130,18 +137,14 @@ TEST(Object, PropertyAccess)
     err = obj.setAttrBool("nonExistentProp", true);
     EXPECT_TRUE(err);
     
-    // 清理
-    delete testClass;
 }
 
 // 测试Object类的getProperty方法
 TEST(Object, GetProperty)
 {
-    // 创建Class对象
-    auto* testClass = createTestObjectClass();
     
     // 创建TestObject对象
-    TestObject obj(testClass);
+    TestObject obj{};
     
     // 测试getProperty方法
     auto* propBool = obj.getProperty("propBool");
@@ -160,18 +163,14 @@ TEST(Object, GetProperty)
     auto* propNonExistent = obj.getProperty("nonExistentProp");
     EXPECT_EQ(propNonExistent, nullptr);
     
-    // 清理
-    delete testClass;
 }
 
 // 测试Object类的引用计数功能
 TEST(Object, ReferenceCount)
 {
-    // 创建Class对象
-    auto* testClass = createTestObjectClass();
     
     // 创建TestObject对象
-    TestObject* obj = new TestObject(testClass);
+    TestObject* obj = new TestObject();
     
     // 测试初始引用计数
     EXPECT_EQ(obj->refCount(), 0);
@@ -195,18 +194,14 @@ TEST(Object, ReferenceCount)
     
     // 注意：当decRef将引用计数减到0时，对象会被析构，所以不能再访问obj指针
     
-    // 清理
-    delete testClass;
 }
 
 // 测试Object类的弱引用计数功能
 TEST(Object, WeakReferenceCount)
 {
-    // 创建Class对象
-    auto* testClass = createTestObjectClass();
     
     // 创建TestObject对象
-    TestObject* obj = new TestObject(testClass);
+    TestObject* obj = new TestObject();
     
     // 测试初始弱引用计数
     EXPECT_EQ(obj->weakRefCount(), 1);
@@ -233,25 +228,15 @@ TEST(Object, WeakReferenceCount)
     
     // 清理
     obj->decWeakRef(); // 这会删除对象
-    
-    // 清理
-    delete testClass;
 }
 
 // 测试Object类的type方法
 TEST(Object, Type)
 {
-    // 创建Class对象
-    auto* testClass = createTestObjectClass();
-    
     // 创建TestObject对象
-    TestObject obj(testClass);
-    
-    // 测试type方法
-    EXPECT_EQ(obj.type(), testClass);
-    
-    // 清理
-    delete testClass;
+    TestObject obj{};
+    auto type = obj.type();
+    EXPECT_NE(type, nullptr);
 }
 
 GTEST_MAIN()

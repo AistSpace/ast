@@ -91,7 +91,7 @@ Value *iterate_next(Value* container, int &index)
 
 void iterate_init_registry()
 {
-    iterate_register_func(&aValRange_Type, iterate_range);
+    iterate_register_func(&ValRange::staticType, iterate_range);
 }
 
 auto __iterate_registry_initializer = []() -> bool {

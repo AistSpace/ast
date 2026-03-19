@@ -26,10 +26,10 @@ AST_NAMESPACE_BEGIN
 
 static_assert(sizeof(ValInt) == sizeof(ValScalar<int>), "ValInt must be same size as ValScalar<int>");
 
-Class* ValInt::staticType()
-{
-    return &aValInt_Type;
-}
+// Class* ValInt::staticType()
+// {
+//     return &aValInt_Type;
+// }
 
 
 
