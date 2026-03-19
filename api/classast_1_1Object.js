@@ -14,6 +14,7 @@ var classast_1_1Object =
     [ "getAttrString", "classast_1_1Object.html#aa457c9e1855e145d566b078711bfc7f2", null ],
     [ "getAttrString", "classast_1_1Object.html#a2678804dfc3ce28d9656a1210b714300", null ],
     [ "getProperty", "classast_1_1Object.html#ae3f855bf1ea116440b9f5ee84ed6cd7f", null ],
+    [ "getType", "classast_1_1Object.html#ad5992c59eef6fd156988573616d3e8d5", null ],
     [ "incRef", "classast_1_1Object.html#a200ecf89b239336aae46e9b2e6045f7c", null ],
     [ "incWeakRef", "classast_1_1Object.html#a318851ef5849dfb6c7555ba0b47c533d", null ],
     [ "isDestructed", "classast_1_1Object.html#a6fd5f058fcc84490d373f3194a001397", null ],
@@ -24,7 +25,6 @@ var classast_1_1Object =
     [ "setAttrString", "classast_1_1Object.html#a7b3f2da3e70da98c69de5f5d99cf6186", null ],
     [ "type", "classast_1_1Object.html#ad30c577e616caa73f91c3866cc540157", null ],
     [ "weakRefCount", "classast_1_1Object.html#a0413d6286436cde9376cee0cdaba541b", null ],
-    [ "m_refcnt", "classast_1_1Object.html#acab6422216bcdecdf3b375db1599f242", null ],
-    [ "m_type", "classast_1_1Object.html#a6c877404cdffe6b9ad0fe03755c57148", null ],
-    [ "m_weakrefcnt", "classast_1_1Object.html#a1018e40b8a092cab4902b762d78458a7", null ]
+    [ "refcnt_", "classast_1_1Object.html#ac9d7b9428b9e9c4771a1ece11a3b43e3", null ],
+    [ "weakrefcnt_", "classast_1_1Object.html#ab2b61413b6753045cfc785d791080a96", null ]
 ];

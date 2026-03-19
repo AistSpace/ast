@@ -1,9 +1,5 @@
 var NAVTREEINDEX19 =
 {
-"classast_1_1strings__internal_1_1ByRepeatedWhitespace.html":[3,0,0,2,6],
-"classast_1_1strings__internal_1_1ByString.html":[3,0,0,2,7],
-"classast_1_1strings__internal_1_1MaxSplitsImpl.html":[3,0,0,2,9],
-"classast_1_1strings__internal_1_1Splitter.html":[3,0,0,2,17],
 "classast_1_1strings__internal_1_1Splitter.html#a2ff86cf77c3a66b2daeb66de9126e9a1":[3,0,0,2,17,5],
 "classast_1_1strings__internal_1_1Splitter.html#a854c828dcbd9c509b041ef6577ea5c14":[3,0,0,2,17,3],
 "classast_1_1strings__internal_1_1Splitter.html#ab0309158d24a4326c2267aab29613b02":[3,0,0,2,17,2],
@@ -249,5 +245,9 @@ var NAVTREEINDEX19 =
 "group__Coordinate.html#ga1a41e3485b5fef8b0de193f83a2491fc":[0,0,0,78],
 "group__Coordinate.html#ga203b13fbef42d2ab13efa50868f53ae5":[0,0,0,86],
 "group__Coordinate.html#ga226c2de1691c1af853b19016b1d00a7a":[0,0,0,24],
-"group__Coordinate.html#ga23e8aa987e1a4aeeab16bf7a91f373aa":[0,0,0,107]
+"group__Coordinate.html#ga23e8aa987e1a4aeeab16bf7a91f373aa":[0,0,0,107],
+"group__Coordinate.html#ga243379fa7879d8876c6f0a002357ec3b":[0,0,0,92],
+"group__Coordinate.html#ga246634a2196a285578700eced82c4a86":[0,0,0,119],
+"group__Coordinate.html#ga2596727a8dcada0834caa850755076b2":[0,0,0,54],
+"group__Coordinate.html#ga27c8cca4e2542e9623118d3ae06b5573":[0,0,0,82]
 };

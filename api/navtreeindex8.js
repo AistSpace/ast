@@ -1,9 +1,5 @@
 var NAVTREEINDEX8 =
 {
-"classast_1_1BlockUnaryMinus.html":[3,0,0,60],
-"classast_1_1BlockUnaryMinus.html#afe59c579156beaeb0412ec1bd3117e5d":[2,0,0,61,0],
-"classast_1_1BlockUnaryMinus.html#afe59c579156beaeb0412ec1bd3117e5d":[3,0,0,60,0],
-"classast_1_1BodyEphemeris.html":[0,0,5,1],
 "classast_1_1BodyEphemeris.html#a49d6c99d843a8a8906af1ce5eb1015ba":[0,0,5,1,1],
 "classast_1_1BodyEphemeris.html#ad5f246b6d9ed53136bb585b2318c34ce":[0,0,5,1,0],
 "classast_1_1BodyOrientation.html":[0,0,5,4],
@@ -129,6 +125,8 @@ var NAVTREEINDEX8 =
 "classast_1_1CircularOrbitDesigner.html#ae3fd781aa58475aecccc194f7858d7af":[0,0,3,2,1],
 "classast_1_1CircularOrbitDesigner.html#af72ad5616a35967f28eb463cc984e218":[0,0,3,2,7],
 "classast_1_1Class.html":[0,4,4,1],
+"classast_1_1Class.html#a276024d991282a8c3dd99c0b97f63df8":[0,4,4,1,0],
+"classast_1_1Class.html#aab8a7ee295668f8949f980ca72c7482f":[0,4,4,1,1],
 "classast_1_1Color.html":[0,4,7],
 "classast_1_1CorVector.html":[0,4,0,0],
 "classast_1_1CorVector.html#a102f70342aad1debc88867576900006b":[0,4,0,0,5],
@@ -244,10 +242,12 @@ var NAVTREEINDEX8 =
 "classast_1_1Dimension.html#a05b3ceca8d7ee96f583cbe1a95c72d35":[3,0,0,98,0],
 "classast_1_1Dimension.html#a0a8014ab14dcdccf9f851befd32da2b8":[2,0,0,99,20],
 "classast_1_1Dimension.html#a0a8014ab14dcdccf9f851befd32da2b8":[3,0,0,98,20],
-"classast_1_1Dimension.html#a0cc2e0f23af4b20e2aeb86cd6c1d7cd2":[2,0,0,99,33],
-"classast_1_1Dimension.html#a0cc2e0f23af4b20e2aeb86cd6c1d7cd2":[3,0,0,98,33],
 "classast_1_1Dimension.html#a1bbf2d543cd0c41ee924b997a211487f":[2,0,0,99,11],
 "classast_1_1Dimension.html#a1bbf2d543cd0c41ee924b997a211487f":[3,0,0,98,11],
 "classast_1_1Dimension.html#a22bef00e9972df4f7235cc983efd0704":[2,0,0,99,4],
-"classast_1_1Dimension.html#a22bef00e9972df4f7235cc983efd0704":[3,0,0,98,4]
+"classast_1_1Dimension.html#a22bef00e9972df4f7235cc983efd0704":[3,0,0,98,4],
+"classast_1_1Dimension.html#a28132d172a69ac7fa728105d545a9f7c":[2,0,0,99,32],
+"classast_1_1Dimension.html#a28132d172a69ac7fa728105d545a9f7c":[3,0,0,98,32],
+"classast_1_1Dimension.html#a2b0ed5b86b4e376de24f8b7921fdb332":[2,0,0,99,7],
+"classast_1_1Dimension.html#a2b0ed5b86b4e376de24f8b7921fdb332":[3,0,0,98,7]
 };

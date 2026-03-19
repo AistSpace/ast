@@ -36,7 +36,7 @@ var searchData=
   ['percent_33',['Percent',['../classast_1_1Unit.html#a37c28ab509cedb793a241101f97fb52d',1,'ast::Unit']]],
   ['pos_34',['pos',['../classast_1_1CartState.html#a9d4e1b44868926a5bbaba631d580d113',1,'ast::CartState']]],
   ['pound_35',['Pound',['../classast_1_1Unit.html#ae9c751dfdbe0bb1535d8dcf42812613a',1,'ast::Unit']]],
-  ['pow_36',['pow',['../classast_1_1Dimension.html#aa5cfe8a6d98a281788ba4c96d6978866',1,'ast::Dimension::pow()'],['../classast_1_1Unit.html#a3dc635b74bcdbf6ea00eb074a40b30ae',1,'ast::Unit::pow(StringView newname, int exponent) const'],['../classast_1_1Unit.html#a40e068f48d9b5e29685ea01d71639650',1,'ast::Unit::pow(int exponent) const'],['../Dimension_8hpp.html#a6589a009751d5129bc8061d4a432f22b',1,'ast::internal::pow()']]],
+  ['pow_36',['pow',['../classast_1_1Dimension.html#aa5cfe8a6d98a281788ba4c96d6978866',1,'ast::Dimension::pow()'],['../classast_1_1Unit.html#a3dc635b74bcdbf6ea00eb074a40b30ae',1,'ast::Unit::pow(StringView newname, int exponent) const'],['../classast_1_1Unit.html#a40e068f48d9b5e29685ea01d71639650',1,'ast::Unit::pow(int exponent) const'],['../Dimension_8hpp.html#a6589a009751d5129bc8061d4a432f22b',1,'ast::internal::pow(EDimension dimension, int n) noexcept'],['../Dimension_8hpp.html#a2dac8318df7088a10c912ec894c27a1e',1,'ast::internal::pow(Dimension dim, int n)']]],
   ['power_37',['Power',['../classast_1_1Dimension.html#a7520843671ca993ebe85116cd99a53e4',1,'ast::Dimension']]],
   ['precompute_38',['precompute',['../classast_1_1IAUXYSPrecomputed.html#ac6dc3ebaf103d6aff8797059136cb59e',1,'ast::IAUXYSPrecomputed']]],
   ['pressure_39',['Pressure',['../classast_1_1Dimension.html#a807a83a21599d9f8c0dc2b50fa797c7d',1,'ast::Dimension']]],

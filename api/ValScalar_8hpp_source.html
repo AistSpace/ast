@@ -129,19 +129,13 @@ $(function(){initNavTree('ValScalar_8hpp_source.html',''); initResizable(true); 
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classast_1_1ValScalar.html#ae00ca98e62efc560135d0f7c64624167">   47</a></span>    std::string <a class="code hl_function" href="classast_1_1ValScalar.html#ae00ca98e62efc560135d0f7c64624167">getExpression</a>(<a class="code hl_class" href="classast_1_1Object.html">Object</a>* context=<span class="keyword">nullptr</span>)<span class="keyword"> const override</span>{<span class="keywordflow">return</span> aFormatScalar(value_);}</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="classast_1_1ValScalar.html">ValScalar</a>(<a class="code hl_class" href="classast_1_1Class.html">Class</a>* type, Scalar value)</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        : <a class="code hl_class" href="classast_1_1Value.html">Value</a>(type)</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        , value_(value)</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    {}</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    Scalar value_;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    Scalar value_;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
 </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>AST_NAMESPACE_END</div>
-<div class="ttc" id="aclassast_1_1Class_html"><div class="ttname"><a href="classast_1_1Class.html">ast::Class</a></div><div class="ttdoc">类元信息</div><div class="ttdef"><b>定义</b> Class.hpp:35</div></div>
-<div class="ttc" id="aclassast_1_1Object_html"><div class="ttname"><a href="classast_1_1Object.html">ast::Object</a></div><div class="ttdoc">对象基类，实现运行时元信息、强弱引用计数</div><div class="ttdef"><b>定义</b> Object.hpp:52</div></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>AST_NAMESPACE_END</div>
+<div class="ttc" id="aclassast_1_1Object_html"><div class="ttname"><a href="classast_1_1Object.html">ast::Object</a></div><div class="ttdoc">对象基类，实现运行时元信息、强弱引用计数</div><div class="ttdef"><b>定义</b> Object.hpp:53</div></div>
 <div class="ttc" id="aclassast_1_1ValScalar_html"><div class="ttname"><a href="classast_1_1ValScalar.html">ast::ValScalar</a></div><div class="ttdoc">标量值类</div><div class="ttdef"><b>定义</b> ValScalar.hpp:34</div></div>
 <div class="ttc" id="aclassast_1_1ValScalar_html_ae00ca98e62efc560135d0f7c64624167"><div class="ttname"><a href="classast_1_1ValScalar.html#ae00ca98e62efc560135d0f7c64624167">ast::ValScalar::getExpression</a></div><div class="ttdeci">std::string getExpression(Object *context=nullptr) const override</div><div class="ttdoc">获取表达式的字符串表示</div><div class="ttdef"><b>定义</b> ValScalar.hpp:47</div></div>
 <div class="ttc" id="aclassast_1_1Value_html"><div class="ttname"><a href="classast_1_1Value.html">ast::Value</a></div><div class="ttdoc">值对象基类</div><div class="ttdef"><b>定义</b> Value.hpp:36</div></div>

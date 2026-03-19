@@ -36,5 +36,6 @@ var Dimension_8hpp =
     [ "dim_set_exponent", "Dimension_8hpp.html#a0d25748c4c13cedd010bd2742ee3b56c", null ],
     [ "operator*", "Dimension_8hpp.html#a75e41ca58c95d7f71bec7edeedecd747", null ],
     [ "operator/", "Dimension_8hpp.html#a76bc86e8c16de763ba5587da00e48d10", null ],
+    [ "pow", "Dimension_8hpp.html#a2dac8318df7088a10c912ec894c27a1e", null ],
     [ "pow", "Dimension_8hpp.html#a6589a009751d5129bc8061d4a432f22b", null ]
 ];

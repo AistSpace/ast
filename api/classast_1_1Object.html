@@ -129,9 +129,8 @@ $(function(){initNavTree('classast_1_1Object.html',''); initResizable(true); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a50d47914de91782bc7ac06dad5ca1e39" id="r_a50d47914de91782bc7ac06dad5ca1e39"><td class="memItemLeft" align="right" valign="top"><a id="a50d47914de91782bc7ac06dad5ca1e39" name="a50d47914de91782bc7ac06dad5ca1e39"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Object</b> (<a class="el" href="classast_1_1Class.html">Class</a> *tp)</td></tr>
-<tr class="separator:a50d47914de91782bc7ac06dad5ca1e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5992c59eef6fd156988573616d3e8d5" id="r_ad5992c59eef6fd156988573616d3e8d5"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classast_1_1Class.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5992c59eef6fd156988573616d3e8d5">getType</a> () const</td></tr>
+<tr class="separator:ad5992c59eef6fd156988573616d3e8d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0192227e3d8184f7a6d75dec82993170" id="r_a0192227e3d8184f7a6d75dec82993170"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Attribute.html">Attribute</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0192227e3d8184f7a6d75dec82993170">attr</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> path)</td></tr>
 <tr class="separator:a0192227e3d8184f7a6d75dec82993170"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12b179308fe17cb9b22763b112435da9" id="r_a12b179308fe17cb9b22763b112435da9"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12b179308fe17cb9b22763b112435da9">getAttrBool</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> path, bool &amp;value) const</td></tr>
@@ -189,15 +188,12 @@ Protected 成员函数</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
-<tr class="memitem:a6c877404cdffe6b9ad0fe03755c57148" id="r_a6c877404cdffe6b9ad0fe03755c57148"><td class="memItemLeft" align="right" valign="top"><a id="a6c877404cdffe6b9ad0fe03755c57148" name="a6c877404cdffe6b9ad0fe03755c57148"></a>
-<a class="el" href="classast_1_1Class.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_type</b></td></tr>
-<tr class="separator:a6c877404cdffe6b9ad0fe03755c57148"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acab6422216bcdecdf3b375db1599f242" id="r_acab6422216bcdecdf3b375db1599f242"><td class="memItemLeft" align="right" valign="top"><a id="acab6422216bcdecdf3b375db1599f242" name="acab6422216bcdecdf3b375db1599f242"></a>
-std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_refcnt</b></td></tr>
-<tr class="separator:acab6422216bcdecdf3b375db1599f242"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1018e40b8a092cab4902b762d78458a7" id="r_a1018e40b8a092cab4902b762d78458a7"><td class="memItemLeft" align="right" valign="top"><a id="a1018e40b8a092cab4902b762d78458a7" name="a1018e40b8a092cab4902b762d78458a7"></a>
-std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_weakrefcnt</b></td></tr>
-<tr class="separator:a1018e40b8a092cab4902b762d78458a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9d7b9428b9e9c4771a1ece11a3b43e3" id="r_ac9d7b9428b9e9c4771a1ece11a3b43e3"><td class="memItemLeft" align="right" valign="top"><a id="ac9d7b9428b9e9c4771a1ece11a3b43e3" name="ac9d7b9428b9e9c4771a1ece11a3b43e3"></a>
+std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>refcnt_</b></td></tr>
+<tr class="separator:ac9d7b9428b9e9c4771a1ece11a3b43e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2b61413b6753045cfc785d791080a96" id="r_ab2b61413b6753045cfc785d791080a96"><td class="memItemLeft" align="right" valign="top"><a id="ab2b61413b6753045cfc785d791080a96" name="ab2b61413b6753045cfc785d791080a96"></a>
+std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>weakrefcnt_</b></td></tr>
+<tr class="separator:ab2b61413b6753045cfc785d791080a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>对象基类，实现运行时元信息、强弱引用计数 </p>
@@ -599,6 +595,34 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>Property* 属性元信息 </dd></dl>
+
+</div>
+</div>
+<a id="ad5992c59eef6fd156988573616d3e8d5" name="ad5992c59eef6fd156988573616d3e8d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5992c59eef6fd156988573616d3e8d5">&#9670;&#160;</a></span>getType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1Class.html">Class</a> * ast::Object::getType </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取对象的类型元信息 </p>
+<dl class="section return"><dt>返回</dt><dd>Class* 类型元信息指针 </dd></dl>
 
 </div>
 </div>

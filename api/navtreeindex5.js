@@ -1,5 +1,7 @@
 var NAVTREEINDEX5 =
 {
+"SimEngine_8hpp.html":[4,0,0,2,7,1,13],
+"SimEngine_8hpp_source.html":[4,0,0,2,7,1,13],
 "SimTime_8hpp.html":[4,0,0,2,7,1,14],
 "SimTime_8hpp_source.html":[4,0,0,2,7,1,14],
 "SimpleOrbitDesigner_8cpp.html":[4,0,0,2,6,0,17],
@@ -226,15 +228,9 @@ var NAVTREEINDEX5 =
 "TypeTraits_8hpp_source.html":[4,0,0,13,7,16],
 "Type_8hpp.html":[4,0,0,13,5,5],
 "Type_8hpp_source.html":[4,0,0,13,5,5],
-"Types_8cpp.html":[4,0,0,10,0,4],
-"Types_8cpp.html#a14bb96767b334777d8feb34bd589e78b":[4,0,0,10,0,4,3],
-"Types_8cpp.html#a19592fb0313b0eeb8a108ad4db5f1d27":[4,0,0,10,0,4,4],
-"Types_8cpp.html#a533c77215cfecd8df7f1b5111d10f0a7":[4,0,0,10,0,4,1],
-"Types_8cpp.html#a900e0d3079e6d5a23da926055f6f2da7":[4,0,0,10,0,4,2],
-"Types_8cpp.html#a9c9dc8b0376bee509f23cd301f2dea0b":[4,0,0,10,0,4,5],
-"Types_8cpp.html#ab9abbcd12ab8b99ea5d6126b9074004b":[4,0,0,10,0,4,0],
-"Types_8hpp.html":[4,0,0,10,0,5],
-"Types_8hpp_source.html":[4,0,0,10,0,5],
+"Types_8cpp.html":[4,0,0,10,0,5],
+"Types_8hpp.html":[4,0,0,10,0,6],
+"Types_8hpp_source.html":[4,0,0,10,0,6],
 "UiMainWindow_8cpp.html":[4,0,0,4,1],
 "UiMainWindow_8hpp.html":[4,0,0,4,2],
 "UiMainWindow_8hpp_source.html":[4,0,0,4,2],
@@ -249,5 +245,9 @@ var NAVTREEINDEX5 =
 "UnarySolver_8cpp.html":[4,0,0,5,4,3],
 "UnarySolver_8cpp.html#a7961c646d34bf7ca8f9efac18fd43a70":[4,0,0,5,4,3,0],
 "UnarySolver_8hpp_source.html":[4,0,0,5,4,4],
-"UnaryVectorFunc_8hpp.html":[4,0,0,5,2,3]
+"UnaryVectorFunc_8hpp.html":[4,0,0,5,2,3],
+"UnaryVectorFunc_8hpp_source.html":[4,0,0,5,2,3],
+"UnitConverter_8cpp.html":[4,0,0,13,4,8],
+"UnitConverter_8hpp.html":[4,0,0,13,4,9],
+"UnitConverter_8hpp_source.html":[4,0,0,13,4,9]
 };

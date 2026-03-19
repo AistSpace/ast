@@ -1,5 +1,7 @@
 var NAVTREEINDEX3 =
 {
+"J4Analytical_8cpp.html":[4,0,0,2,7,6],
+"J4Analytical_8cpp.html#a1070a6486b7531bf23e580154394bfb4":[4,0,0,2,7,6,0],
 "J4Analytical_8hpp.html":[4,0,0,2,7,7],
 "J4Analytical_8hpp_source.html":[4,0,0,2,7,7],
 "JplDe_8cpp.html":[4,0,0,2,3,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX3 =
 "ODEStateVectorCollector_8hpp_source.html":[4,0,0,5,5,1,5],
 "ODEVarStepIntegrator_8cpp.html":[4,0,0,5,5,11],
 "ODEVarStepIntegrator_8hpp.html":[4,0,0,5,5,12],
-"ODEVarStepIntegrator_8hpp_source.html":[4,0,0,5,5,12],
-"ODEWorkspace_8cpp.html":[4,0,0,5,5,13],
-"ODEWorkspace_8hpp.html":[4,0,0,5,5,14]
+"ODEVarStepIntegrator_8hpp_source.html":[4,0,0,5,5,12]
 };
