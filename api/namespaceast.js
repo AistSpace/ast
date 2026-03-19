@@ -267,6 +267,7 @@ var namespaceast =
     [ "MolniyaOrbitDesigner", "classast_1_1MolniyaOrbitDesigner.html", "classast_1_1MolniyaOrbitDesigner" ],
     [ "MoonOrientation", "classast_1_1MoonOrientation.html", "classast_1_1MoonOrientation" ],
     [ "MotionBasic", "classast_1_1MotionBasic.html", "classast_1_1MotionBasic" ],
+    [ "MotionHPOP", "classast_1_1MotionHPOP.html", "classast_1_1MotionHPOP" ],
     [ "MotionProfile", "classast_1_1MotionProfile.html", "classast_1_1MotionProfile" ],
     [ "MotionTwoBody", "classast_1_1MotionTwoBody.html", "classast_1_1MotionTwoBody" ],
     [ "Mover", "classast_1_1Mover.html", "classast_1_1Mover" ],

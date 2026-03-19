@@ -268,6 +268,7 @@ var hierarchy =
     [ "ast::ModOrbElem", "classast_1_1ModOrbElem.html", null ],
     [ "ast::MotionProfile", "classast_1_1MotionProfile.html", [
       [ "ast::MotionBasic", "classast_1_1MotionBasic.html", [
+        [ "ast::MotionHPOP", "classast_1_1MotionHPOP.html", null ],
         [ "ast::MotionTwoBody", "classast_1_1MotionTwoBody.html", null ]
       ] ]
     ] ],

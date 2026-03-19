@@ -532,6 +532,8 @@ $(function(){initNavTree('namespaceast.html',''); initResizable(true); });
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionBasic.html">MotionBasic</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionHPOP.html">MotionHPOP</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionProfile.html">MotionProfile</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionTwoBody.html">MotionTwoBody</a></td></tr>
@@ -1068,6 +1070,12 @@ typedef <a class="el" href="classast_1_1ValVector.html">ValVector</a>&lt; std::s
 <tr class="memitem:a4e78f0430ee1c835baf9c57043869e92" id="r_a4e78f0430ee1c835baf9c57043869e92"><td class="memItemLeft" align="right" valign="top"><a id="a4e78f0430ee1c835baf9c57043869e92" name="a4e78f0430ee1c835baf9c57043869e92"></a>
 typedef <a class="el" href="classast_1_1ValVector.html">ValVector</a>&lt; <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Value.html">Value</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ValVectorAny</b></td></tr>
 <tr class="separator:a4e78f0430ee1c835baf9c57043869e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a733eb242150c57ccf8ca0e993058d8fd" id="r_a733eb242150c57ccf8ca0e993058d8fd"><td class="memItemLeft" align="right" valign="top"><a id="a733eb242150c57ccf8ca0e993058d8fd" name="a733eb242150c57ccf8ca0e993058d8fd"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>PMotionHPOP</b> = <a class="el" href="classast_1_1MotionHPOP.html">MotionHPOP</a>*</td></tr>
+<tr class="separator:a733eb242150c57ccf8ca0e993058d8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6a293fb66c5b12fec68557b720e4de6" id="r_ad6a293fb66c5b12fec68557b720e4de6"><td class="memItemLeft" align="right" valign="top"><a id="ad6a293fb66c5b12fec68557b720e4de6" name="ad6a293fb66c5b12fec68557b720e4de6"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>HMotionHPOP</b> = <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt;<a class="el" href="classast_1_1MotionHPOP.html">MotionHPOP</a>&gt;</td></tr>
+<tr class="separator:ad6a293fb66c5b12fec68557b720e4de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0164477235d635095a52b259d251ef3c" id="r_a0164477235d635095a52b259d251ef3c"><td class="memItemLeft" align="right" valign="top"><a id="a0164477235d635095a52b259d251ef3c" name="a0164477235d635095a52b259d251ef3c"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>PMotionTwoBody</b> = <a class="el" href="classast_1_1MotionTwoBody.html">MotionTwoBody</a>*</td></tr>
 <tr class="separator:a0164477235d635095a52b259d251ef3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3430,9 +3438,15 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadEventInterval<
 <tr class="memitem:a3bf65b0b892217597da63475622278ce" id="r_a3bf65b0b892217597da63475622278ce"><td class="memItemLeft" align="right" valign="top"><a id="a3bf65b0b892217597da63475622278ce" name="a3bf65b0b892217597da63475622278ce"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadTwoBody</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1MotionTwoBody.html">MotionTwoBody</a> &amp;motionProfile)</td></tr>
 <tr class="separator:a3bf65b0b892217597da63475622278ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2" id="r_a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2"><td class="memItemLeft" align="right" valign="top"><a id="a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2" name="a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadHPOP</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1MotionHPOP.html">MotionHPOP</a> &amp;motionProfile)</td></tr>
+<tr class="separator:a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a010ba3201a4536338d3a7c2f4c3aebdf" id="r_a010ba3201a4536338d3a7c2f4c3aebdf"><td class="memItemLeft" align="right" valign="top"><a id="a010ba3201a4536338d3a7c2f4c3aebdf" name="a010ba3201a4536338d3a7c2f4c3aebdf"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadTwoBody</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
 <tr class="separator:a010ba3201a4536338d3a7c2f4c3aebdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3f36290312d8cf04b8fdaac2cbe7978" id="r_ad3f36290312d8cf04b8fdaac2cbe7978"><td class="memItemLeft" align="right" valign="top"><a id="ad3f36290312d8cf04b8fdaac2cbe7978" name="ad3f36290312d8cf04b8fdaac2cbe7978"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadHPOP</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:ad3f36290312d8cf04b8fdaac2cbe7978"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a558dcfbc24cbd5823595c2785ef5ad8a" id="r_a558dcfbc24cbd5823595c2785ef5ad8a"><td class="memItemLeft" align="right" valign="top"><a id="a558dcfbc24cbd5823595c2785ef5ad8a" name="a558dcfbc24cbd5823595c2785ef5ad8a"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadPassDefn</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
 <tr class="separator:a558dcfbc24cbd5823595c2785ef5ad8a"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -127,8 +127,8 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a2167de59aff334b29ce6f105a17fbabb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19111441810fd464cd417971458af223" id="r_a19111441810fd464cd417971458af223"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19111441810fd464cd417971458af223">getDimension</a> () const final</td></tr>
 <tr class="separator:a19111441810fd464cd417971458af223"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3505487084841d1a9382d2ddc16aaa3f" id="r_a3505487084841d1a9382d2ddc16aaa3f"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3505487084841d1a9382d2ddc16aaa3f">evaluate</a> (const double *y, double *dy, const double t) final</td></tr>
-<tr class="separator:a3505487084841d1a9382d2ddc16aaa3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd7f7596d57de05ed502c0aa6455271d" id="r_afd7f7596d57de05ed502c0aa6455271d"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd7f7596d57de05ed502c0aa6455271d">evaluate</a> (const double *y, double *dy, double t) final</td></tr>
+<tr class="separator:afd7f7596d57de05ed502c0aa6455271d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c7205d86fc1057cf517d1fe33f743ed" id="r_a4c7205d86fc1057cf517d1fe33f743ed"><td class="memItemLeft" align="right" valign="top"><a id="a4c7205d86fc1057cf517d1fe33f743ed" name="a4c7205d86fc1057cf517d1fe33f743ed"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setEpoch</b> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;epoch)</td></tr>
 <tr class="separator:a4c7205d86fc1057cf517d1fe33f743ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,8 +172,8 @@ Protected 属性</h2></td></tr>
 <p><br  />
  该类继承自 <a class="el" href="classast_1_1OrdinaryDifferentialEquation.html" title="常微分方程基接口">OrdinaryDifferentialEquation</a> ，用于求解轨道动力学问题。 其内部包含一个动力学系统 <a class="el" href="classast_1_1BlockDynamicSystem.html" title="动力学系统">BlockDynamicSystem</a> 动力学系统 <a class="el" href="classast_1_1BlockDynamicSystem.html" title="动力学系统">BlockDynamicSystem</a> 由多个独立的函数块 <a class="el" href="classast_1_1FuncBlock.html" title="函数块/功能块">FuncBlock</a> 组成。 每个函数块 <a class="el" href="classast_1_1FuncBlock.html" title="函数块/功能块">FuncBlock</a> 负责计算系统的一个或多个状态量或者导数。 函数块之间可以通过输入输出端口进行信号连接，实现复杂的动力学模型。 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="a3505487084841d1a9382d2ddc16aaa3f" name="a3505487084841d1a9382d2ddc16aaa3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3505487084841d1a9382d2ddc16aaa3f">&#9670;&#160;</a></span>evaluate()</h2>
+<a id="afd7f7596d57de05ed502c0aa6455271d" name="afd7f7596d57de05ed502c0aa6455271d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd7f7596d57de05ed502c0aa6455271d">&#9670;&#160;</a></span>evaluate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -194,7 +194,7 @@ Protected 属性</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
         </tr>
       </table>
   </td>

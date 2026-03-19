@@ -7,7 +7,7 @@ var dir_0d88fe3c379cdebdd567bb4304149f2c =
     [ "MotionGPS.hpp", "MotionGPS_8hpp_source.html", null ],
     [ "MotionGreatArc.hpp", "MotionGreatArc_8hpp_source.html", null ],
     [ "MotionHPOP.cpp", "MotionHPOP_8cpp.html", null ],
-    [ "MotionHPOP.hpp", "MotionHPOP_8hpp.html", null ],
+    [ "MotionHPOP.hpp", "MotionHPOP_8hpp.html", "MotionHPOP_8hpp" ],
     [ "MotionJ2Analytical.hpp", "MotionJ2Analytical_8hpp_source.html", null ],
     [ "MotionJ4Analytical.hpp", "MotionJ4Analytical_8hpp_source.html", null ],
     [ "MotionLOP.hpp", "MotionLOP_8hpp_source.html", null ],
