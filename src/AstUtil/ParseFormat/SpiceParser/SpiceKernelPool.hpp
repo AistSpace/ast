@@ -43,7 +43,7 @@ AST_NAMESPACE_BEGIN
 /// 通过指针之间的地址差，判断是否可以安全地直接将一个数据容器转换为另一个数据容器
 /// 例如将一个char类型的数据容器转换为double类型的数据容器，
 /// 只需要判断地址差是否为sizeof(double)的整数倍即可
-class SpiceData
+union SpiceData
 {
 public:
     SpiceData(){
@@ -105,11 +105,9 @@ public:
     };
 protected:
     // DataType type_;
-    union{
-        std::vector<double> doubleData_;
-        std::vector<int>    intData_;
-        std::vector<char>   charData_;
-    };
+    std::vector<double> doubleData_;
+    std::vector<int>    intData_;
+    std::vector<char>   charData_;
 };
 
 

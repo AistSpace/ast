@@ -81,7 +81,7 @@ public: // 基础操作
     /// @brief 是否到达文件末尾
     /// @details 判断当前文件指针是否到达文件末尾。
     /// @return 如果到达文件末尾则返回 true，否则返回 false。
-    bool eof() const { return feof(file_); }
+    bool eof() const { return feof(file_) != 0; }
 
     /// @brief 读取文件内容
     /// @details 从当前文件指针位置读取指定数量的字节到缓冲区。
