@@ -47,7 +47,7 @@ for _, file in ipairs(asc_files) do
     local basename = path.basename(file)
     local filepath = path.join(os.scriptdir(), file)
     target(basename)
-        add_files(file)
+        -- add_files(file)
         set_kind("phony")
         add_deps("ascript")
         add_tests("script")

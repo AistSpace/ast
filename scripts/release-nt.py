@@ -25,9 +25,7 @@ ENCODE_DIRS = ['examples', 'test']
 # 需要删除的文件
 FILES_TO_DELETE = [
     os.path.join(ROOT_DIR, 'README_zh.md'),
-    os.path.join(ROOT_DIR, 'README.md'),
-    os.path.join(ROOT_DIR, 'doxyfile'),
-    os.path.join(ROOT_DIR, '.gitmodule')
+    os.path.join(ROOT_DIR, 'README.md')
 ]
 
 # 压缩包名称
@@ -35,6 +33,66 @@ ZIP_NAME = 'ast-nt.zip'
 
 # 排除的目录
 EXCLUDE_DIRS = ['data', 'docs', '.git', 'build', '.xmake', ".trae", ".vscode", ".github"]
+
+# 合并模块源文件
+def merge_module_sources():
+    """合并每个模块的.cpp文件为一个文件"""
+    src_dir = os.path.join(ROOT_DIR, 'src')
+    
+    # 遍历src目录下的每个模块
+    for module_name in os.listdir(src_dir):
+        module_path = os.path.join(src_dir, module_name)
+        
+        # 只处理目录
+        if not os.path.isdir(module_path):
+            continue
+        
+        # 收集该模块下的所有.cpp文件
+        cpp_files = []
+        for root, dirs, files in os.walk(module_path):
+            for file in files:
+                if file.endswith('.cpp'):
+                    cpp_files.append(os.path.join(root, file))
+        
+        cpp_files.sort()
+        # 如果有.cpp文件，合并为一个文件
+        if cpp_files:
+            merged_file_path = os.path.join(module_path, f'{module_name}.cpp')
+            print(f"Merging {len(cpp_files)} .cpp files in {module_name} to {merged_file_path}")
+            
+            # 合并文件内容
+            with open(merged_file_path, 'w', encoding='utf-8') as merged_file:
+                for cpp_file in cpp_files:
+                    with open(cpp_file, 'r', encoding='utf-8', errors='ignore') as f:
+                        content = f.read()
+                        # 写入文件内容，添加文件分隔符
+                        merged_file.write(f"// ====== {os.path.relpath(cpp_file, module_path)} ======\n")
+                        merged_file.write(content)
+                        merged_file.write('\n\n')
+            
+            # 删除原.cpp文件
+            for cpp_file in cpp_files:
+                os.remove(cpp_file)
+                print(f"Deleted original file: {cpp_file}")
+
+# 恢复模块源文件
+def restore_module_sources():
+    """恢复被合并的模块源文件"""
+    src_dir = os.path.join(ROOT_DIR, 'src')
+    
+    # 遍历src目录下的每个模块
+    for module_name in os.listdir(src_dir):
+        module_path = os.path.join(src_dir, module_name)
+        
+        # 只处理目录
+        if not os.path.isdir(module_path):
+            continue
+        
+        # 检查是否存在合并后的文件
+        merged_file_path = os.path.join(module_path, f'{module_name}.cpp')
+        if os.path.exists(merged_file_path):
+            os.remove(merged_file_path)
+            print(f"Removed merged file: {merged_file_path}")
 
 def remove_version_header(file_path):
     """删除文件开头的连续注释块（以 /// 开头）以及中间的空行"""
@@ -129,6 +187,9 @@ def main():
     
     # 删除指定文件
     delete_files()
+
+    # 合并模块源文件
+    merge_module_sources()
     
     # 创建压缩包
     create_zip()

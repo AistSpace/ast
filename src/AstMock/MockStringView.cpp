@@ -21,35 +21,35 @@
  
 AST_NAMESPACE_BEGIN
 
-std::string value;
+std::string str_value;
 
 int aMockSetStringConstRef(const std::string &str)
 {
-	value = str;
+	str_value = str;
     return 0;
 }
 
 int aMockSetStringValue(std::string str)
 {
-	value = str;
+	str_value = str;
     return 0;
 }
 
 int aMockSetStringView(StringView str)
 {
-	value = std::string(str);
+	str_value = std::string(str);
     return 0;
 }
 
 int aMockSetStringViewRef(const StringView &str)
 {
-	value = std::string(str);
+	str_value = std::string(str);
     return 0;
 }
 
 const std::string &aMockStringValue()
 {
-	return value;
+	return str_value;
 }
 
 

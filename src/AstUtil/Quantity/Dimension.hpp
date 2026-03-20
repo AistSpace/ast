@@ -255,7 +255,7 @@ enum
     kIdxLuminous,
 };
 
-namespace dimension
+namespace dimensions
 {
     constexpr dimension_t kUnit               = 0;
 
@@ -291,33 +291,33 @@ namespace dimension
 /// @details 每个量纲维度由4个bit表示，指数范围为-8到7
 typedef enum class EDimension : dimension_t
 {
-    eUnit               = dimension::kUnit,                 ///< 单位量纲
+    eUnit               = dimensions::kUnit,                 ///< 单位量纲
 
     // 基本量纲 7个
-    eLength             = dimension::kLength,               ///< 长度L      (相应的基本单位: m)
-    eMass               = dimension::kMass,                 ///< 质量M      (相应的基本单位: kg)
-    eTime               = dimension::kTime,                 ///< 时间T      (相应的基本单位: s)
-    eCurrent            = dimension::kCurrent,              ///< 电流I      (相应的基本单位: A)
-    eTemperature        = dimension::kTemperature,          ///< 温度Θ      (相应的基本单位: K)
-    eAmount             = dimension::kAmount,               ///< 物质量N    (相应的基本单位: mol)
-    eLuminous           = dimension::kLuminous,             ///< 发光强度J  (相应的基本单位: cd)
+    eLength             = dimensions::kLength,               ///< 长度L      (相应的基本单位: m)
+    eMass               = dimensions::kMass,                 ///< 质量M      (相应的基本单位: kg)
+    eTime               = dimensions::kTime,                 ///< 时间T      (相应的基本单位: s)
+    eCurrent            = dimensions::kCurrent,              ///< 电流I      (相应的基本单位: A)
+    eTemperature        = dimensions::kTemperature,          ///< 温度Θ      (相应的基本单位: K)
+    eAmount             = dimensions::kAmount,               ///< 物质量N    (相应的基本单位: mol)
+    eLuminous           = dimensions::kLuminous,             ///< 发光强度J  (相应的基本单位: cd)
     // 辅助量纲 
-    eAngle              = dimension::kAngle,                ///< 角度
+    eAngle              = dimensions::kAngle,                ///< 角度
 
     //  
-    eAngVel             = dimension::kAngVel,               ///< 角速度（别名）
-    eAngularVelocity    = dimension::kAngularVelocity,      ///< 角速度
+    eAngVel             = dimensions::kAngVel,               ///< 角速度（别名）
+    eAngularVelocity    = dimensions::kAngularVelocity,      ///< 角速度
 
     // 导出量纲（由基本量纲组合而成） 
-    eArea               = dimension::kArea,                 ///< 面积   L^2
-    eVolume             = dimension::kVolume,               ///< 体积   L^3
-    eSpeed              = dimension::kSpeed,                ///< 速度   L·T^-1
-    eAcceleration       = dimension::kAcceleration,         ///< 加速度 L·T^-2
-    eForce              = dimension::kForce,                ///< 力     M·L·T^-2
-    ePressure           = dimension::kPressure,             ///< 压力   M·L^-1·T^-2
-    eEnergy             = dimension::kEnergy,               ///< 能量   M·L^2·T^-2
-    ePower              = dimension::kPower,                ///< 功率   M·L^2·T^-3
-    eFrequency          = dimension::kFrequency,            ///< 频率   T^-1
+    eArea               = dimensions::kArea,                 ///< 面积   L^2
+    eVolume             = dimensions::kVolume,               ///< 体积   L^3
+    eSpeed              = dimensions::kSpeed,                ///< 速度   L·T^-1
+    eAcceleration       = dimensions::kAcceleration,         ///< 加速度 L·T^-2
+    eForce              = dimensions::kForce,                ///< 力     M·L·T^-2
+    ePressure           = dimensions::kPressure,             ///< 压力   M·L^-1·T^-2
+    eEnergy             = dimensions::kEnergy,               ///< 能量   M·L^2·T^-2
+    ePower              = dimensions::kPower,                ///< 功率   M·L^2·T^-3
+    eFrequency          = dimensions::kFrequency,            ///< 频率   T^-1
 
 } AEDimension;
 

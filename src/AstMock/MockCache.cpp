@@ -26,44 +26,44 @@ AST_NAMESPACE_BEGIN
 
 int aMockCacheStatic(int k)
 {
-    static int key;
-    static int value;
-    if(key == k)
+    static int int_key;
+    static int int_value;
+    if(int_key == k)
     {
-        return value;
+        return int_value;
     }else{
-        value = k;
-        key = k;
-        return value;
+        int_value = k;
+        int_key = k;
+        return int_value;
     }
 }
 
-int key;
-int value;
+int int_key;
+int int_value;
 
 int aMockCacheExtern(int k)
 {
-    if(key == k)
+    if(int_key == k)
     {
-        return value;
+        return int_value;
     }else{
-        value = k;
-        key = k;
-        return value;
+        int_value = k;
+        int_key = k;
+        return int_value;
     }
 }
 
 int aMockCacheStaticTL(int k)
 {
-    static A_THREAD_LOCAL int key;
-    static A_THREAD_LOCAL int value;
-    if(key == k)
+    static A_THREAD_LOCAL int int_key;
+    static A_THREAD_LOCAL int int_value;
+    if(int_key == k)
     {
-        return value;
+        return int_value;
     }else{
-        value = k;
-        key = k;
-        return value;
+        int_value = k;
+        int_key = k;
+        return int_value;
     }
 }
 
