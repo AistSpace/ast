@@ -1,5 +1,16 @@
 var NAVTREEINDEX18 =
 {
+"classast_1_1StateKeplerian.html#afdceeeaedfe459b7c63e16c8a06939bc":[3,0,0,339,27],
+"classast_1_1StateVector.html":[2,0,0,341],
+"classast_1_1StateVector.html":[3,0,0,340],
+"classast_1_1StationaryOrbitDesigner.html":[0,0,3,7],
+"classast_1_1StationaryOrbitDesigner.html#a1467d485d594217fcac48fc5993ea797":[0,0,3,7,0],
+"classast_1_1StationaryOrbitDesigner.html#a505d4e119a9531bd551b6e69d800f70e":[0,0,3,7,6],
+"classast_1_1StationaryOrbitDesigner.html#a55c737b189f52bac72e246636527604a":[0,0,3,7,3],
+"classast_1_1StationaryOrbitDesigner.html#a77d96ea5ea1ac575f3fdecdc392588b6":[0,0,3,7,7],
+"classast_1_1StationaryOrbitDesigner.html#a886e381c4baf80b2c34cd6cf614ba1e2":[0,0,3,7,2],
+"classast_1_1StationaryOrbitDesigner.html#a887551c2a93113f4e0f5764dc56e9e9c":[0,0,3,7,5],
+"classast_1_1StationaryOrbitDesigner.html#aaaae8ed54c4beeed20f9dc5c44f0e8c2":[0,0,3,7,8],
 "classast_1_1StationaryOrbitDesigner.html#ab3cb096abf0c2bb9b007f62555c2365c":[0,0,3,7,1],
 "classast_1_1StationaryOrbitDesigner.html#ae11194d184fe4188c639d6520ffc1462":[0,0,3,7,4],
 "classast_1_1StopCondition.html":[2,0,0,343],
@@ -238,16 +249,5 @@ var NAVTREEINDEX18 =
 "classast_1_1UnitManager.html":[0,4,3,3],
 "classast_1_1UnitManager.html#a7cd2cb391b7c941333c3abf296a6d9f0":[0,4,3,3,1],
 "classast_1_1UnitManager.html#a9bd8a97e370f6378367f50a169967d90":[0,4,3,3,2],
-"classast_1_1UnitManager.html#ac49f770ecfef3f24cbd41b08acaa6f9a":[0,4,3,3,3],
-"classast_1_1UnitManager.html#ad7b7dc07985e82bdb506f7955e392775":[0,4,3,3,4],
-"classast_1_1UnitManager.html#ae1f39dcd1cfe4464aac7422a4dde866b":[0,4,3,3,0],
-"classast_1_1Unit_1_1UnitRep.html":[0,4,3,1,0],
-"classast_1_1Unit_1_1UnitRep.html#a183874826df2371d1aaf0fa6aa838fbd":[0,4,3,1,0,3],
-"classast_1_1Unit_1_1UnitRep.html#a2174a426e5816d8c173b7f75b5dbf999":[0,4,3,1,0,2],
-"classast_1_1Unit_1_1UnitRep.html#a270fa398df6868375f5db125920b05ac":[0,4,3,1,0,0],
-"classast_1_1Unit_1_1UnitRep.html#a6453c7742b1f87d042a8795162e95329":[0,4,3,1,0,1],
-"classast_1_1ValArray.html":[0,2,32],
-"classast_1_1ValArray.html#a0200070cb5f89f45856614b2fab47013":[0,2,32,3],
-"classast_1_1ValArray.html#a02f6b171c8adfd17b6b09695656c805b":[0,2,32,5],
-"classast_1_1ValArray.html#a23b7d75dffbb7227d2ad5c90366cba49":[0,2,32,6]
+"classast_1_1UnitManager.html#ac49f770ecfef3f24cbd41b08acaa6f9a":[0,4,3,3,3]
 };

@@ -1426,6 +1426,7 @@ var namespaceast =
     [ "atan2d", "group__Util.html#gaddc9ca4ebc4ce64ac86c0411f920a092", null ],
     [ "atand", "group__Util.html#ga438e82b6bc2e1b76563bf6e6caec0df9", null ],
     [ "aTDBMinusTT", "group__Time.html#gab4397fac34d74477cfa5c0807e7c07ed", null ],
+    [ "aTestFromSTKFile", "namespaceast.html#a930e64b2b39e58ef31a9096fa8c10380", null ],
     [ "aTheoreticalXYS", "group__Data.html#ga030bae706d318085b613e4431ee54600", null ],
     [ "aTheoreticalXYS_IERS2010", "group__Data.html#ga74625ec2c9cb689a8d55076d6862a785", null ],
     [ "aTheoreticalXYS_IERS2010", "group__Data.html#ga322f0ef44069d6d0286466ef3d8f5ec9", null ],
