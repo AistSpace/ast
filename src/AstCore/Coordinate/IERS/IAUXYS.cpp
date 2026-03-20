@@ -28,17 +28,17 @@ err_t IAUXYS::load(StringView xSeriesPath, StringView ySeriesPath, StringView sp
     err_t ret1 = xSeries_.load(xSeriesPath);
     if (ret1 != 0)
     {
-        aError("failed to load x series file: %s", xSeriesPath.data());
+        aError("failed to load x series file: '%.*s'", (int)xSeriesPath.size(), xSeriesPath.data());
     }
     err_t ret2 = ySeries_.load(ySeriesPath);
     if (ret2 != 0)
     {
-        aError("failed to load y series file: %s", ySeriesPath.data());
+        aError("failed to load y series file: '%.*s'", (int)ySeriesPath.size(), ySeriesPath.data());
     }
     err_t ret3 = spxy2Series_.load(spxy2SeriesPath);
     if (ret3 != 0)
     {
-        aError("failed to load spxy2 series file: %s", spxy2SeriesPath.data());
+        aError("failed to load spxy2 series file: '%.*s'", (int)spxy2SeriesPath.size(), spxy2SeriesPath.data());
     }
     err_t ret = ret1 | ret2 | ret3;
     if (ret == 0)

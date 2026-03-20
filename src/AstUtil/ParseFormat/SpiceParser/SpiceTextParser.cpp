@@ -47,6 +47,8 @@ SpiceTextParser::SpiceTextParser(StringView filepath)
 
 err_t SpiceTextParser::getNext(BKVItemView &item)
 {
+    if(!file_)
+        return eErrorInvalidFile;
     while(fgets(keyBuffer_.data(), (int)keyBuffer_.size(), file_))
     {
         if(keyBuffer_[0] == '\\')

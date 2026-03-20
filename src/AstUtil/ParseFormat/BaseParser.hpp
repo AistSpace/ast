@@ -43,6 +43,14 @@ AST_UTIL_CAPI char* fgetlinetrim(char* buffer, int size, FILE* file);
 
 
 
+/// @brief 判断是否为#注释行
+/// @details 检查给定的文本行是否以井号 '#' 开头，且行首没有空白字符。
+/// @param line 文本行视图，指定要检查的文本行。
+/// @return 如果是注释行则返回 true，否则返回 false。
+AST_UTIL_CAPI bool aIsHashCommentLine(StringView line);
+
+
+
 /// @brief 解析器基类
 class AST_UTIL_API BaseParser
 {
@@ -107,6 +115,10 @@ public:
     /// @return 当前行的内容（去除首尾空格）
     StringView getLineTrim();
 
+    /// @brief 获取当前非#注释行（跳过#注释行）
+    /// @details 获取当前行的内容，不包含行结束符，跳过以井号 '#' 开头的行。
+    /// @return 当前行的内容（跳过#注释行）
+    StringView getLineSkipHashComment();
     
 public: // 辅助信息
     /// @brief 获取当前行号

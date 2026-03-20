@@ -32,20 +32,6 @@ AST_NAMESPACE_BEGIN
 
 
 
-static bool isCommentLine(StringView line)
-{
-    // 特殊情况：nullptr 字符串不是注释行
-    if(line.data() == nullptr)
-        return false;
-    for(char c : line)
-    {
-        if(!isspace(static_cast<unsigned char>(c)))
-        {
-            return c == '#';
-        }
-    }
-    return true;
-}
 
 BKVParser::BKVParser()
     : BaseParser()
@@ -119,14 +105,6 @@ BKVParser::EToken BKVParser::getNext(BKVItemView &item)
     return getNext(item.key(), item.value());
 }
 
-StringView BKVParser::getLineSkipComment()
-{
-    StringView line;
-    do{
-        line = getLine();
-    }while(isCommentLine(line) && line.data() != nullptr);
-    return line;
-}
 
 err_t BKVParser::parseFile(StringView filepath, BKVSax &sax)
 {

@@ -81,7 +81,7 @@ public:
     /// @brief 获取当前行（跳过注释行）
     /// @details 获取当前行的内容，不包含行结束符。
     /// @return 当前行的内容（去除首尾空格）
-    StringView getLineSkipComment();
+    StringView getLineSkipComment(){return getLineSkipHashComment();}
     
     /// @brief 解析文件
     /// @details 解析指定路径的文件，将解析结果传递给指定的 sax 解析器。

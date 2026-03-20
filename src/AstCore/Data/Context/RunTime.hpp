@@ -45,6 +45,9 @@ class SolarSystem;
 /// @brief 初始化
 AST_CORE_CAPI err_t aInitialize();
 
+/// @brief 通过配置文件初始化
+AST_CORE_CAPI err_t aInitializeByConfig(StringView configfile);
+
 /// @brief 反初始化
 AST_CORE_CAPI err_t aUninitialize();
 

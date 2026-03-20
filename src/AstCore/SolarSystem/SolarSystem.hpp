@@ -22,6 +22,7 @@
  
 #include "AstGlobal.h"
 #include "AstCore/CelestialBody.hpp"
+#include "AstCore/Object.hpp"
 #include <unordered_map>
 #include <vector>
  
@@ -48,7 +49,7 @@ class SolarSystem;
 /// @brief 太阳系
 /// @details 太阳系行星及行星卫星的集合，
 /// 包含水星、金星、地球、火星、木星、土星、天王星、海王星、冥王星、月球和太阳等。
-class AST_CORE_API SolarSystem
+class AST_CORE_API SolarSystem: public Object
 {
 public:
 	SolarSystem() = default;
@@ -74,6 +75,9 @@ public:
 
 	/// @brief 获取默认的太阳系数据目录
 	static std::string defaultSolarSystemDir();
+
+	/// @brief 获取太阳系数据目录路径
+	const std::string& getDirpath() const { return dirpath_; }
 
 	/// @brief 获取太阳系质心
 	CelestialBody* getSolarSystemBarycenter() const { return solarSystemBarycenter_.get(); }
@@ -166,6 +170,7 @@ protected:
 	mutable BodyIndexMap jplIndexMap_;				 ///< 太阳系天体映射表，根据JPL索引映射
 	mutable BodyIndexMap spiceIdMap_;				 ///< 太阳系天体映射表，根据SPICE ID映射
 	bool			     isInit_{false};			 ///<  是否已初始化
+	std::string          dirpath_;				 	 ///< 太阳系数据目录路径
 };
 
 

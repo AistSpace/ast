@@ -66,7 +66,7 @@ def merge_module_sources():
                     with open(cpp_file, 'r', encoding='utf-8', errors='ignore') as f:
                         content = f.read()
                         # 写入文件内容，添加文件分隔符
-                        merged_file.write(f"// ====== {os.path.relpath(cpp_file, module_path)} ======\n")
+                        merged_file.write(f"// ====== {os.path.relpath(cpp_file, module_path).replace("\\", "/")} ======\n")
                         merged_file.write(content)
                         merged_file.write('\n\n')
             

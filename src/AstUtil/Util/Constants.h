@@ -69,6 +69,7 @@ constexpr double kGrav = 6.673e-11;				                                         
 // 地球相关常量
 
 constexpr double kEarthGrav = 3.986004418e14;		                                        ///< 地球引力常数 (WGS84) [m^3/s^2]
+constexpr double kEarthGrav_EGM2008 = 3.986004415e14;                                       ///< 地球引力常数 (EGM2008) [m^3/s^2]
 constexpr double kEarthRadius = 6378137.0;				                                    ///< 地球赤道半径 (WGS84)[m]
 constexpr double kEarthMinRadius = 6.35675231424E6;		                                    ///< 地球最小(南北极)半径 (WGS84)[m]
 constexpr double kEarthFlatFact = 3.35281066475E-3;		                                    ///< 地球扁率 (WGS84), f=1-b/a

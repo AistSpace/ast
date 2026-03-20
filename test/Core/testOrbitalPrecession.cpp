@@ -28,15 +28,15 @@
 AST_USING_NAMESPACE
 
 const double EARTH_J2 = 1.0826261e-3;
-
+const double EARTH_GM = 3.986004418e14;
 
 TEST(OrbitalPrecession, MeanAnomalyRate)
 {
     const static struct {
         double gm, j2, rb, a, e, i, expect;
     } testData[] = {
-        {kEarthGrav, EARTH_J2, kEarthRadius, 4000e3, 0.1, 0.5, 0.00250247672293061},
-        {kEarthGrav, EARTH_J2, kEarthRadius, 5000e3, 0.4, 0.2, 0.0017914885718043}
+        {EARTH_GM, EARTH_J2, kEarthRadius, 4000e3, 0.1, 0.5, 0.00250247672293061},
+        {EARTH_GM, EARTH_J2, kEarthRadius, 5000e3, 0.4, 0.2, 0.0017914885718043}
     };
     for(const auto& param : testData)
     {
@@ -60,8 +60,8 @@ TEST(OrbitalPrecession, RAANRate)
     const static struct {
         double gm, j2, rb, a, e, i, expect;
     } testData[] = {
-        {kEarthGrav, EARTH_J2, kEarthRadius, 5000e3, 0.4, 0.2, -6.57549541625983e-06},
-        {kEarthGrav, EARTH_J2, kEarthRadius, 5000e3, 0.1, 0.5, -4.2326427773044e-06},
+        {EARTH_GM, EARTH_J2, kEarthRadius, 5000e3, 0.4, 0.2, -6.57549541625983e-06},
+        {EARTH_GM, EARTH_J2, kEarthRadius, 5000e3, 0.1, 0.5, -4.2326427773044e-06},
     };
     for(const auto& param : testData)
     {

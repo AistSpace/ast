@@ -29,6 +29,7 @@
 #include "AstCore/FrameICRF.hpp"
 #include "AstCore/FrameAssembly.hpp"
 #include "AstCore/BuiltinAxes.hpp"
+#include "AstCore/SolarSystem.hpp"
 #include "AstUtil/Class.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/String.hpp"
@@ -48,8 +49,14 @@ CelestialBody::CelestialBody()
     
 }
 
-CelestialBody::CelestialBody(StringView name)
-    : name_(name)
+CelestialBody::CelestialBody(SolarSystem *solarSystem)
+    : CelestialBody(StringView{}, solarSystem)
+{
+}
+
+CelestialBody::CelestialBody(StringView name, SolarSystem *solarSystem)
+    : solarSystem_(solarSystem)
+    , name_{name}
 {
     orientation_  = new NoopOrientation();
     ephemeris_    = new EphemerisDE(this);
@@ -59,12 +66,21 @@ CelestialBody::CelestialBody(StringView name)
     axesTOD_      = AxesBodyTOD::New(this);
 }
 
+CelestialBody::~CelestialBody()
+{
+}
+
 void CelestialBody::setJplIndex(int index)
 {
     jplIndex_ = index;
     if(auto de =  dynamic_cast<EphemerisDE*>(ephemeris_.get())){
         de->setJplIndex(index);
     }
+}
+
+SolarSystem *CelestialBody::getSolarSystem() const
+{
+    return solarSystem_.get();
 }
 
 err_t CelestialBody::load(StringView filepath)
@@ -77,7 +93,7 @@ err_t CelestialBody::load(StringView filepath)
     BKVParser parser(path.string());
     if(!parser.isOpen())
     {
-        aError("failed to open file %s", path.string().c_str());
+        // aError("failed to open file %s", path.string().c_str());
         return eErrorInvalidFile;
     }
     BKVItemView item;
@@ -124,10 +140,16 @@ err_t CelestialBody::setGravityModel(StringView model)
 {
     err_t rc = this->loadGravityModel(model);
     if(rc){
-        fs::path filepath = fs::path(SolarSystem::defaultSolarSystemDir()) / this->name_ / std::string(model);
+        auto ss = getSolarSystem();
+        fs::path filepath;
+        if(ss)
+            filepath = ss->getDirpath();
+        else
+            filepath = SolarSystem::defaultSolarSystemDir();
+        filepath = filepath / this->name_ / std::string(model);
         rc = this->loadGravityModel(filepath.string());
         if(rc){
-            aError("failed to load gravity model %.*s", (int)model.size(), model.data());
+            aError("failed to load gravity model '%.*s'", (int)model.size(), model.data());
         }
     }
     return rc;

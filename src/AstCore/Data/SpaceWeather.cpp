@@ -77,7 +77,7 @@ err_t loadSpaceWeather(BKVParser& parser, int numPoints, std::vector<SpaceWeathe
         aParseInt(line.substr(79, 3), entry.ApAvg);
         aParseDouble(line.substr(83, 3), entry.Cp);
         aParseInt(line.substr(87, 1), entry.C9);
-        entry.ISN = aParseInt(line.substr(89, 3));
+        aParseInt(line.substr(89, 3), entry.ISN);
         entry.F10p7Adj      = aParseDouble(line.substr(93, 5));
         err_t rc = aParseInt(line.substr(99, 1), entry.fluxQualifier);
         if(rc)

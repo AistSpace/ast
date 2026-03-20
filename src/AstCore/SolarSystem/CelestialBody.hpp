@@ -52,8 +52,9 @@ class AST_CORE_API CelestialBody : public Point
     AST_OBJECT(CelestialBody)
 public:
     CelestialBody();
-    CelestialBody(StringView name);
-    ~CelestialBody() = default;
+    CelestialBody(SolarSystem* solarSystem);
+    CelestialBody(StringView name, SolarSystem* solarSystem = nullptr);
+    ~CelestialBody();
 
     /// @brief 获取天体名称
     const std::string& getName() const { return name_; }
@@ -66,6 +67,13 @@ public:
     /// @brief 获取JPL索引
     int getJplIndex() const { return jplIndex_; }
     void setJplIndex(int index);
+
+    /// @brief 获取太阳系
+    SolarSystem* getSolarSystem() const;
+    
+    /// @brief 获取父天体
+    CelestialBody* getParent() const { return parent_.get(); }
+public:
 
     /// @brief 获取重力模型名称
     const std::string& getGravityModel() const{ return gravityField_.getModelName(); }
@@ -258,6 +266,7 @@ protected:
 
     A_DISABLE_COPY(CelestialBody)
 PROPERTIES:
+    WeakPtr<SolarSystem>        solarSystem_;              ///< 太阳系指针
     SharedPtr<CelestialBody>    parent_;                   ///< 父天体
     std::string                 name_;                     ///< 天体名称
     double                      gm_{0.0};                  ///< 引力常数
