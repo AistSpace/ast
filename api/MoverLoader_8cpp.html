@@ -99,38 +99,16 @@ $(function(){initNavTree('MoverLoader_8cpp.html',''); initResizable(true); });
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">类</a> &#124;
 <a href="#namespaces">命名空间</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle"><div class="title">MoverLoader.cpp 文件参考</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="MoverLoader_8hpp_source.html">MoverLoader.hpp</a>&quot;</code><br />
-<code>#include &quot;AstUtil/StringView.hpp&quot;</code><br />
-<code>#include &quot;AstUtil/BKVParser.hpp&quot;</code><br />
-<code>#include &quot;AstUtil/BKVItemView.hpp&quot;</code><br />
-<code>#include &quot;AstUtil/Literals.hpp&quot;</code><br />
-<code>#include &quot;AstUtil/MathDegree.hpp&quot;</code><br />
-<code>#include &quot;AstSim/Mover.hpp&quot;</code><br />
-<code>#include &quot;AstSim/MotionTwoBody.hpp&quot;</code><br />
-<code>#include &quot;AstSim/MotionHPOP.hpp&quot;</code><br />
-<code>#include &quot;AstCore/StateKeplerian.hpp&quot;</code><br />
-<code>#include &quot;AstCore/StateCartesian.hpp&quot;</code><br />
-<code>#include &quot;AstCore/EventIntervalExplicit.hpp&quot;</code><br />
-<code>#include &quot;AstCore/EventIntervalLinkTo.hpp&quot;</code><br />
-<code>#include &quot;AstCore/EventIntervalFallback.hpp&quot;</code><br />
-<code>#include &quot;AstCore/EventTimeLinkTo.hpp&quot;</code><br />
-<code>#include &quot;AstCore/EventTimeExplicit.hpp&quot;</code><br />
-<code>#include &quot;AstCore/EventTimeFallback.hpp&quot;</code><br />
-<code>#include &quot;AstCore/RunTime.hpp&quot;</code><br />
-<code>#include &quot;AstCore/BuiltinAxes.hpp&quot;</code><br />
-<code>#include &quot;AstCore/CelestialBody.hpp&quot;</code><br />
+<code>#include &quot;<a class="el" href="CommonlyUsedHeaders_8hpp_source.html">CommonlyUsedHeaders.hpp</a>&quot;</code><br />
+<code>#include &quot;MotionTwoBodySax.hpp&quot;</code><br />
+<code>#include &quot;<a class="el" href="MotionHPOPSax_8hpp_source.html">MotionHPOPSax.hpp</a>&quot;</code><br />
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-类</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structast_1_1VehiclePathData.html">ast::VehiclePathData</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 命名空间</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html">ast</a></td></tr>
@@ -138,30 +116,12 @@ $(function(){initNavTree('MoverLoader_8cpp.html',''); initResizable(true); });
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:a842e8b456bef358183f23eb8be89a33e" id="r_a842e8b456bef358183f23eb8be89a33e"><td class="memItemLeft" align="right" valign="top"><a id="a842e8b456bef358183f23eb8be89a33e" name="a842e8b456bef358183f23eb8be89a33e"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadEventTimeImplicit</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventTime.html">EventTime</a> &gt; &amp;eventTime)</td></tr>
-<tr class="separator:a842e8b456bef358183f23eb8be89a33e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16d489d23b3817f481e30aa800504c24" id="r_a16d489d23b3817f481e30aa800504c24"><td class="memItemLeft" align="right" valign="top"><a id="a16d489d23b3817f481e30aa800504c24" name="a16d489d23b3817f481e30aa800504c24"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadEventTime</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventTime.html">EventTime</a> &gt; &amp;eventTime)</td></tr>
-<tr class="separator:a16d489d23b3817f481e30aa800504c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbacec34570d65a2a49fa7c8b6b3c7d0" id="r_acbacec34570d65a2a49fa7c8b6b3c7d0"><td class="memItemLeft" align="right" valign="top"><a id="acbacec34570d65a2a49fa7c8b6b3c7d0" name="acbacec34570d65a2a49fa7c8b6b3c7d0"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadEventIntervalImplicit</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventInterval.html">EventInterval</a> &gt; &amp;eventInterval)</td></tr>
-<tr class="separator:acbacec34570d65a2a49fa7c8b6b3c7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e5ccc90a1c4536f68c41a1bffef122d" id="r_a6e5ccc90a1c4536f68c41a1bffef122d"><td class="memItemLeft" align="right" valign="top"><a id="a6e5ccc90a1c4536f68c41a1bffef122d" name="a6e5ccc90a1c4536f68c41a1bffef122d"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadEventInterval</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventInterval.html">EventInterval</a> &gt; &amp;eventInterval)</td></tr>
-<tr class="separator:a6e5ccc90a1c4536f68c41a1bffef122d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bf65b0b892217597da63475622278ce" id="r_a3bf65b0b892217597da63475622278ce"><td class="memItemLeft" align="right" valign="top"><a id="a3bf65b0b892217597da63475622278ce" name="a3bf65b0b892217597da63475622278ce"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadTwoBody</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1MotionTwoBody.html">MotionTwoBody</a> &amp;motionProfile)</td></tr>
-<tr class="separator:a3bf65b0b892217597da63475622278ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2" id="r_a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2"><td class="memItemLeft" align="right" valign="top"><a id="a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2" name="a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadHPOP</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1MotionHPOP.html">MotionHPOP</a> &amp;motionProfile)</td></tr>
-<tr class="separator:a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a010ba3201a4536338d3a7c2f4c3aebdf" id="r_a010ba3201a4536338d3a7c2f4c3aebdf"><td class="memItemLeft" align="right" valign="top"><a id="a010ba3201a4536338d3a7c2f4c3aebdf" name="a010ba3201a4536338d3a7c2f4c3aebdf"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadTwoBody</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
-<tr class="separator:a010ba3201a4536338d3a7c2f4c3aebdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3f36290312d8cf04b8fdaac2cbe7978" id="r_ad3f36290312d8cf04b8fdaac2cbe7978"><td class="memItemLeft" align="right" valign="top"><a id="ad3f36290312d8cf04b8fdaac2cbe7978" name="ad3f36290312d8cf04b8fdaac2cbe7978"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadHPOP</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
-<tr class="separator:ad3f36290312d8cf04b8fdaac2cbe7978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5418a4c3638f4e0ce5c8f0c00f1029" id="r_afa5418a4c3638f4e0ce5c8f0c00f1029"><td class="memItemLeft" align="right" valign="top"><a id="afa5418a4c3638f4e0ce5c8f0c00f1029" name="afa5418a4c3638f4e0ce5c8f0c00f1029"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadTwoBody</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1ScopedPtr.html">ScopedPtr</a>&lt; <a class="el" href="classast_1_1MotionProfile.html">MotionProfile</a> &gt; &amp;motionProfile)</td></tr>
+<tr class="separator:afa5418a4c3638f4e0ce5c8f0c00f1029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3349a4677c18a1c401890829bbf133ce" id="r_a3349a4677c18a1c401890829bbf133ce"><td class="memItemLeft" align="right" valign="top"><a id="a3349a4677c18a1c401890829bbf133ce" name="a3349a4677c18a1c401890829bbf133ce"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadHPOP</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1ScopedPtr.html">ScopedPtr</a>&lt; <a class="el" href="classast_1_1MotionProfile.html">MotionProfile</a> &gt; &amp;motionProfile)</td></tr>
+<tr class="separator:a3349a4677c18a1c401890829bbf133ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a558dcfbc24cbd5823595c2785ef5ad8a" id="r_a558dcfbc24cbd5823595c2785ef5ad8a"><td class="memItemLeft" align="right" valign="top"><a id="a558dcfbc24cbd5823595c2785ef5ad8a" name="a558dcfbc24cbd5823595c2785ef5ad8a"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::_aLoadPassDefn</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
 <tr class="separator:a558dcfbc24cbd5823595c2785ef5ad8a"><td class="memSeparator" colspan="2">&#160;</td></tr>

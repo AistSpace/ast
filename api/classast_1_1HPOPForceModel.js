@@ -1,9 +1,9 @@
 var classast_1_1HPOPForceModel =
 [
-    [ "Drag", "structast_1_1HPOPForceModel_1_1Drag.html", null ],
+    [ "Drag", "structast_1_1HPOPForceModel_1_1Drag.html", "structast_1_1HPOPForceModel_1_1Drag" ],
     [ "Gravity", "structast_1_1HPOPForceModel_1_1Gravity.html", "structast_1_1HPOPForceModel_1_1Gravity" ],
-    [ "SRP", "structast_1_1HPOPForceModel_1_1SRP.html", null ],
-    [ "ThirdBody", "structast_1_1HPOPForceModel_1_1ThirdBody.html", null ],
+    [ "SRP", "structast_1_1HPOPForceModel_1_1SRP.html", "structast_1_1HPOPForceModel_1_1SRP" ],
+    [ "ThirdBody", "structast_1_1HPOPForceModel_1_1ThirdBody.html", "structast_1_1HPOPForceModel_1_1ThirdBody" ],
     [ "drag_", "classast_1_1HPOPForceModel.html#a54f4de37fd487f9c72b7ce79eb3bd2c9", null ],
     [ "gravity_", "classast_1_1HPOPForceModel.html#ad1285bd9e15b3882897ac8d0b49d980a", null ],
     [ "moonGravity_", "classast_1_1HPOPForceModel.html#a85e853fc4194338a7b3f231dc50c416c", null ],

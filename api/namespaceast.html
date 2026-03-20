@@ -532,11 +532,17 @@ $(function(){initNavTree('namespaceast.html',''); initResizable(true); });
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionBasic.html">MotionBasic</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionBasicSax.html">MotionBasicSax</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionHPOP.html">MotionHPOP</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionHPOPSax.html">MotionHPOPSax</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionProfile.html">MotionProfile</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionTwoBody.html">MotionTwoBody</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionTwoBodySax.html">MotionTwoBodySax</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Mover.html">Mover</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -987,6 +993,9 @@ typedef ptr_t&#160;</td><td class="memItemRight" valign="bottom"><b>signal_t</b>
 <tr class="memitem:a534f2c8450b11b6733002403eaafc033" id="r_a534f2c8450b11b6733002403eaafc033"><td class="memItemLeft" align="right" valign="top"><a id="a534f2c8450b11b6733002403eaafc033" name="a534f2c8450b11b6733002403eaafc033"></a>
 typedef signal_t *&#160;</td><td class="memItemRight" valign="bottom"><b>signalsignal_t</b></td></tr>
 <tr class="separator:a534f2c8450b11b6733002403eaafc033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga601c6f5fe22982be8f8b3298dfe018bd" id="r_ga601c6f5fe22982be8f8b3298dfe018bd"><td class="memItemLeft" align="right" valign="top">
+using&#160;</td><td class="memItemRight" valign="bottom"><b>Body</b> = <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a></td></tr>
+<tr class="separator:ga601c6f5fe22982be8f8b3298dfe018bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3b2fe87cceca735335ef7ade4e48add5" id="r_ga3b2fe87cceca735335ef7ade4e48add5"><td class="memItemLeft" align="right" valign="top">
 using&#160;</td><td class="memItemRight" valign="bottom"><b>HCelestialBody</b> = <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt;<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a>&gt;</td></tr>
 <tr class="separator:ga3b2fe87cceca735335ef7ade4e48add5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -999,12 +1008,24 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>PCelestialBody</b> =
 <tr class="memitem:gac670e719678a85c5d087d62383061f8f" id="r_gac670e719678a85c5d087d62383061f8f"><td class="memItemLeft" align="right" valign="top">
 using&#160;</td><td class="memItemRight" valign="bottom"><b>PBody</b> = <a class="el" href="group__SolarSystem.html#ga37239c4cb3486ba286d79abaf2070c74">PCelestialBody</a></td></tr>
 <tr class="separator:gac670e719678a85c5d087d62383061f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e1f8e0c462e15ce1197e6f6cbacb1f8" id="r_a8e1f8e0c462e15ce1197e6f6cbacb1f8"><td class="memItemLeft" align="right" valign="top"><a id="a8e1f8e0c462e15ce1197e6f6cbacb1f8" name="a8e1f8e0c462e15ce1197e6f6cbacb1f8"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>PEventInterval</b> = <a class="el" href="classast_1_1EventInterval.html">EventInterval</a>*</td></tr>
+<tr class="separator:a8e1f8e0c462e15ce1197e6f6cbacb1f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ec118fa59053f46a088245df0089742" id="r_a4ec118fa59053f46a088245df0089742"><td class="memItemLeft" align="right" valign="top"><a id="a4ec118fa59053f46a088245df0089742" name="a4ec118fa59053f46a088245df0089742"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>HEventInterval</b> = <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt;<a class="el" href="classast_1_1EventInterval.html">EventInterval</a>&gt;</td></tr>
+<tr class="separator:a4ec118fa59053f46a088245df0089742"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade6f1ddbc5dc7ce080ff99f9b76e2402" id="r_ade6f1ddbc5dc7ce080ff99f9b76e2402"><td class="memItemLeft" align="right" valign="top"><a id="ade6f1ddbc5dc7ce080ff99f9b76e2402" name="ade6f1ddbc5dc7ce080ff99f9b76e2402"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>PEventIntervalExplicit</b> = <a class="el" href="classast_1_1EventIntervalExplicit.html">EventIntervalExplicit</a>*</td></tr>
 <tr class="separator:ade6f1ddbc5dc7ce080ff99f9b76e2402"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a968977cfe43f0036667ad319058c7158" id="r_a968977cfe43f0036667ad319058c7158"><td class="memItemLeft" align="right" valign="top"><a id="a968977cfe43f0036667ad319058c7158" name="a968977cfe43f0036667ad319058c7158"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>HEventIntervalExplicit</b> = <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt;<a class="el" href="classast_1_1EventIntervalExplicit.html">EventIntervalExplicit</a>&gt;</td></tr>
 <tr class="separator:a968977cfe43f0036667ad319058c7158"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54cffd2f61268e77a8a42dd21c866067" id="r_a54cffd2f61268e77a8a42dd21c866067"><td class="memItemLeft" align="right" valign="top"><a id="a54cffd2f61268e77a8a42dd21c866067" name="a54cffd2f61268e77a8a42dd21c866067"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>PEventTime</b> = <a class="el" href="classast_1_1EventTime.html">EventTime</a>*</td></tr>
+<tr class="separator:a54cffd2f61268e77a8a42dd21c866067"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b543ecc9e2e46da9d7f88bc1d369d2c" id="r_a1b543ecc9e2e46da9d7f88bc1d369d2c"><td class="memItemLeft" align="right" valign="top"><a id="a1b543ecc9e2e46da9d7f88bc1d369d2c" name="a1b543ecc9e2e46da9d7f88bc1d369d2c"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>HEventTime</b> = <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt;<a class="el" href="classast_1_1EventTime.html">EventTime</a>&gt;</td></tr>
+<tr class="separator:a1b543ecc9e2e46da9d7f88bc1d369d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaaeb7a674c1c8a95c33c152482514afc1" id="r_gaaeb7a674c1c8a95c33c152482514afc1"><td class="memItemLeft" align="right" valign="top">
 typedef <a class="el" href="classast_1_1LowerMatrix.html">LowerMatrix</a>&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>LowerMatrixd</b></td></tr>
 <tr class="separator:gaaeb7a674c1c8a95c33c152482514afc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1070,12 +1091,18 @@ typedef <a class="el" href="classast_1_1ValVector.html">ValVector</a>&lt; std::s
 <tr class="memitem:a4e78f0430ee1c835baf9c57043869e92" id="r_a4e78f0430ee1c835baf9c57043869e92"><td class="memItemLeft" align="right" valign="top"><a id="a4e78f0430ee1c835baf9c57043869e92" name="a4e78f0430ee1c835baf9c57043869e92"></a>
 typedef <a class="el" href="classast_1_1ValVector.html">ValVector</a>&lt; <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Value.html">Value</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ValVectorAny</b></td></tr>
 <tr class="separator:a4e78f0430ee1c835baf9c57043869e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6815176864711081ba9ada7da8a68b7e" id="r_a6815176864711081ba9ada7da8a68b7e"><td class="memItemLeft" align="right" valign="top"><a id="a6815176864711081ba9ada7da8a68b7e" name="a6815176864711081ba9ada7da8a68b7e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>PMotionBasic</b> = <a class="el" href="classast_1_1MotionBasic.html">MotionBasic</a>*</td></tr>
+<tr class="separator:a6815176864711081ba9ada7da8a68b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a733eb242150c57ccf8ca0e993058d8fd" id="r_a733eb242150c57ccf8ca0e993058d8fd"><td class="memItemLeft" align="right" valign="top"><a id="a733eb242150c57ccf8ca0e993058d8fd" name="a733eb242150c57ccf8ca0e993058d8fd"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>PMotionHPOP</b> = <a class="el" href="classast_1_1MotionHPOP.html">MotionHPOP</a>*</td></tr>
 <tr class="separator:a733eb242150c57ccf8ca0e993058d8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6a293fb66c5b12fec68557b720e4de6" id="r_ad6a293fb66c5b12fec68557b720e4de6"><td class="memItemLeft" align="right" valign="top"><a id="ad6a293fb66c5b12fec68557b720e4de6" name="ad6a293fb66c5b12fec68557b720e4de6"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>HMotionHPOP</b> = <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt;<a class="el" href="classast_1_1MotionHPOP.html">MotionHPOP</a>&gt;</td></tr>
 <tr class="separator:ad6a293fb66c5b12fec68557b720e4de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1728c07da7428305d539d94300df0440" id="r_a1728c07da7428305d539d94300df0440"><td class="memItemLeft" align="right" valign="top"><a id="a1728c07da7428305d539d94300df0440" name="a1728c07da7428305d539d94300df0440"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>PMotionProfile</b> = <a class="el" href="classast_1_1MotionProfile.html">MotionProfile</a>*</td></tr>
+<tr class="separator:a1728c07da7428305d539d94300df0440"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0164477235d635095a52b259d251ef3c" id="r_a0164477235d635095a52b259d251ef3c"><td class="memItemLeft" align="right" valign="top"><a id="a0164477235d635095a52b259d251ef3c" name="a0164477235d635095a52b259d251ef3c"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>PMotionTwoBody</b> = <a class="el" href="classast_1_1MotionTwoBody.html">MotionTwoBody</a>*</td></tr>
 <tr class="separator:a0164477235d635095a52b259d251ef3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1247,6 +1274,41 @@ typedef std::array&lt; <a class="el" href="classast_1_1AEP8Data.html">AEP8Data</
 <br />
  }</td></tr>
 <tr class="separator:a11d9a447a3f9d9c3fef650baf82bc59a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf7ad908ac403269c383f0f661b4b15b" id="r_gabf7ad908ac403269c383f0f661b4b15b"><td class="memItemLeft" align="right" valign="top"><a id="gabf7ad908ac403269c383f0f661b4b15b" name="gabf7ad908ac403269c383f0f661b4b15b"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ESolidTideType</b> { <b>eFull</b>
+, <b>ePermanentOnly</b>
+, <b>eNone</b>
+ }</td></tr>
+<tr class="separator:gabf7ad908ac403269c383f0f661b4b15b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae7d345e328c706e11b589b6545de1b01" id="r_gae7d345e328c706e11b589b6545de1b01"><td class="memItemLeft" align="right" valign="top"><a id="gae7d345e328c706e11b589b6545de1b01" name="gae7d345e328c706e11b589b6545de1b01"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>EAtmDensityModel</b> { <br />
+&#160;&#160;<b>e1976Standard</b>
+, <b>eJacchiaRoberts</b>
+, <b>eNRLMSISE2000</b>
+, <b>eMSISE1990</b>
+, <br />
+&#160;&#160;<b>eMSIS1986</b>
+<br />
+ }</td></tr>
+<tr class="separator:gae7d345e328c706e11b589b6545de1b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaab6e1fa4dff11ac13473fb4ca3b4c997" id="r_gaab6e1fa4dff11ac13473fb4ca3b4c997"><td class="memItemLeft" align="right" valign="top"><a id="gaab6e1fa4dff11ac13473fb4ca3b4c997" name="gaab6e1fa4dff11ac13473fb4ca3b4c997"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>EGeoMagneticFluxSource</b> { <b>eKp</b>
+, <b>eAp</b>
+ }</td></tr>
+<tr class="separator:gaab6e1fa4dff11ac13473fb4ca3b4c997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadadcecc404b12b4ec1913fdc98a02905" id="r_gadadcecc404b12b4ec1913fdc98a02905"><td class="memItemLeft" align="right" valign="top"><a id="gadadcecc404b12b4ec1913fdc98a02905" name="gadadcecc404b12b4ec1913fdc98a02905"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>EGeoMagneticFluxUpdateMethod</b> { <b>eDaily</b>
+, <b>e3Hourly</b>
+, <b>e3HourlyInterp</b>
+, <b>e3HourlyCubicSpline</b>
+ }</td></tr>
+<tr class="separator:gadadcecc404b12b4ec1913fdc98a02905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2bf48439a4f7c7769a0f7e017ef7f055" id="r_ga2bf48439a4f7c7769a0f7e017ef7f055"><td class="memItemLeft" align="right" valign="top"><a id="ga2bf48439a4f7c7769a0f7e017ef7f055" name="ga2bf48439a4f7c7769a0f7e017ef7f055"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ESunPosition</b> { <b>eTrue</b>
+, <b>eApparentSunToTrueCB</b>
+, <b>eApparent</b>
+ }</td></tr>
+<tr class="separator:ga2bf48439a4f7c7769a0f7e017ef7f055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf8ff3707856a9a8ca144d9ab41f54416" id="r_gaf8ff3707856a9a8ca144d9ab41f54416"><td class="memItemLeft" align="right" valign="top"><a id="gaf8ff3707856a9a8ca144d9ab41f54416" name="gaf8ff3707856a9a8ca144d9ab41f54416"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>EShadowModel</b> { <b>eNone</b>
+, <b>eCylindrical</b>
+, <b>eDualCone</b>
+ }</td></tr>
+<tr class="separator:gaf8ff3707856a9a8ca144d9ab41f54416"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38492009e3b794d55c491c6ebebc7158" id="r_a38492009e3b794d55c491c6ebebc7158"><td class="memItemLeft" align="right" valign="top"><a id="a38492009e3b794d55c491c6ebebc7158" name="a38492009e3b794d55c491c6ebebc7158"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>ER</b> { <b>eA</b>
  }</td></tr>
 <tr class="separator:a38492009e3b794d55c491c6ebebc7158"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3435,18 +3497,15 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadEventIntervalI
 <tr class="memitem:a6e5ccc90a1c4536f68c41a1bffef122d" id="r_a6e5ccc90a1c4536f68c41a1bffef122d"><td class="memItemLeft" align="right" valign="top"><a id="a6e5ccc90a1c4536f68c41a1bffef122d" name="a6e5ccc90a1c4536f68c41a1bffef122d"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadEventInterval</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventInterval.html">EventInterval</a> &gt; &amp;eventInterval)</td></tr>
 <tr class="separator:a6e5ccc90a1c4536f68c41a1bffef122d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bf65b0b892217597da63475622278ce" id="r_a3bf65b0b892217597da63475622278ce"><td class="memItemLeft" align="right" valign="top"><a id="a3bf65b0b892217597da63475622278ce" name="a3bf65b0b892217597da63475622278ce"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadTwoBody</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1MotionTwoBody.html">MotionTwoBody</a> &amp;motionProfile)</td></tr>
-<tr class="separator:a3bf65b0b892217597da63475622278ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2" id="r_a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2"><td class="memItemLeft" align="right" valign="top"><a id="a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2" name="a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadHPOP</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1MotionHPOP.html">MotionHPOP</a> &amp;motionProfile)</td></tr>
-<tr class="separator:a1b55f0b6eb8cf19a9ec6c04e3d1a8bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a010ba3201a4536338d3a7c2f4c3aebdf" id="r_a010ba3201a4536338d3a7c2f4c3aebdf"><td class="memItemLeft" align="right" valign="top"><a id="a010ba3201a4536338d3a7c2f4c3aebdf" name="a010ba3201a4536338d3a7c2f4c3aebdf"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadTwoBody</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
-<tr class="separator:a010ba3201a4536338d3a7c2f4c3aebdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3f36290312d8cf04b8fdaac2cbe7978" id="r_ad3f36290312d8cf04b8fdaac2cbe7978"><td class="memItemLeft" align="right" valign="top"><a id="ad3f36290312d8cf04b8fdaac2cbe7978" name="ad3f36290312d8cf04b8fdaac2cbe7978"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadHPOP</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
-<tr class="separator:ad3f36290312d8cf04b8fdaac2cbe7978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20ffe838520cd5bbab96509ef42e2234" id="r_a20ffe838520cd5bbab96509ef42e2234"><td class="memItemLeft" align="right" valign="top"><a id="a20ffe838520cd5bbab96509ef42e2234" name="a20ffe838520cd5bbab96509ef42e2234"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadSolarPressureModel</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, double massAtEpoch, <a class="el" href="structast_1_1HPOPForceModel_1_1SRP.html">HPOPForceModel::SRP</a> &amp;srp)</td></tr>
+<tr class="separator:a20ffe838520cd5bbab96509ef42e2234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5418a4c3638f4e0ce5c8f0c00f1029" id="r_afa5418a4c3638f4e0ce5c8f0c00f1029"><td class="memItemLeft" align="right" valign="top"><a id="afa5418a4c3638f4e0ce5c8f0c00f1029" name="afa5418a4c3638f4e0ce5c8f0c00f1029"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadTwoBody</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1ScopedPtr.html">ScopedPtr</a>&lt; <a class="el" href="classast_1_1MotionProfile.html">MotionProfile</a> &gt; &amp;motionProfile)</td></tr>
+<tr class="separator:afa5418a4c3638f4e0ce5c8f0c00f1029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3349a4677c18a1c401890829bbf133ce" id="r_a3349a4677c18a1c401890829bbf133ce"><td class="memItemLeft" align="right" valign="top"><a id="a3349a4677c18a1c401890829bbf133ce" name="a3349a4677c18a1c401890829bbf133ce"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadHPOP</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData, <a class="el" href="classast_1_1ScopedPtr.html">ScopedPtr</a>&lt; <a class="el" href="classast_1_1MotionProfile.html">MotionProfile</a> &gt; &amp;motionProfile)</td></tr>
+<tr class="separator:a3349a4677c18a1c401890829bbf133ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a558dcfbc24cbd5823595c2785ef5ad8a" id="r_a558dcfbc24cbd5823595c2785ef5ad8a"><td class="memItemLeft" align="right" valign="top"><a id="a558dcfbc24cbd5823595c2785ef5ad8a" name="a558dcfbc24cbd5823595c2785ef5ad8a"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadPassDefn</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
 <tr class="separator:a558dcfbc24cbd5823595c2785ef5ad8a"><td class="memSeparator" colspan="2">&#160;</td></tr>

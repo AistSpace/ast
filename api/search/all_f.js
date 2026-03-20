@@ -120,7 +120,7 @@ var searchData=
   ['orbitepoch_5f_117',['orbitEpoch_',['../classast_1_1BaseOrbitDesigner.html#ab82f58afe9a01ffe9b46e1cf55d685bb',1,'ast::BaseOrbitDesigner']]],
   ['orbitparam_2ecpp_118',['OrbitParam.cpp',['../OrbitParam_8cpp.html',1,'']]],
   ['orbitparam_2ehpp_119',['OrbitParam.hpp',['../OrbitParam_8hpp.html',1,'']]],
-  ['order_5f_120',['order_',['../classast_1_1GravityCalculator.html#a9212a7c9197e81fecdb52595c0cba4d5',1,'ast::GravityCalculator::order_'],['../structast_1_1HPOPForceModel_1_1Gravity.html#a77ac9421fc89956019da0fe22d37cdee',1,'ast::HPOPForceModel::Gravity::order_']]],
+  ['order_5f_120',['order_',['../classast_1_1GravityCalculator.html#a9212a7c9197e81fecdb52595c0cba4d5',1,'ast::GravityCalculator']]],
   ['ordinarydifferentialequation_121',['OrdinaryDifferentialEquation',['../classast_1_1OrdinaryDifferentialEquation.html',1,'ast']]],
   ['ordinarydifferentialequation_2ecpp_122',['OrdinaryDifferentialEquation.cpp',['../OrdinaryDifferentialEquation_8cpp.html',1,'']]],
   ['ordinarydifferentialequation_2ehpp_123',['OrdinaryDifferentialEquation.hpp',['../OrdinaryDifferentialEquation_8hpp.html',1,'']]],

@@ -31,7 +31,11 @@ var hierarchy =
     ] ],
     [ "ast::BKVSax", "classast_1_1BKVSax.html", [
       [ "ast::BKVSaxDOM", "classast_1_1BKVSaxDOM.html", null ],
-      [ "ast::BKVSaxPrint", "classast_1_1BKVSaxPrint.html", null ]
+      [ "ast::BKVSaxPrint", "classast_1_1BKVSaxPrint.html", null ],
+      [ "ast::MotionBasicSax", "classast_1_1MotionBasicSax.html", [
+        [ "ast::MotionHPOPSax", "classast_1_1MotionHPOPSax.html", null ],
+        [ "ast::MotionTwoBodySax", "classast_1_1MotionTwoBodySax.html", null ]
+      ] ]
     ] ],
     [ "ast::BKVTree", "classast_1_1BKVTree.html", null ],
     [ "ast::BodyEphemeris", "classast_1_1BodyEphemeris.html", [
@@ -469,6 +473,7 @@ var hierarchy =
     [ "ast::SharedPtr< ast::Frame >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::Point >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::State >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< CelestialBody >", "classast_1_1SharedPtr.html", null ],
     [ "ast::ShortDuration", "classast_1_1ShortDuration.html", null ],
     [ "ast::SimEngine", "classast_1_1SimEngine.html", null ],
     [ "ast::SimTime", "classast_1_1SimTime.html", null ],

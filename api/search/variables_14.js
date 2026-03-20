@@ -12,5 +12,6 @@ var searchData=
   ['translation_5f_9',['translation_',['../classast_1_1Transform.html#aa073642b1d18774e14a953f1e2e5f09a',1,'ast::Transform']]],
   ['truea_5f_10',['trueA_',['../classast_1_1OrbElem.html#a821bb0943770f3cdde0483cec1396a5b',1,'ast::OrbElem::trueA_'],['../classast_1_1ModOrbElem.html#a4df709ac890580d88f10a4a3aba42f66',1,'ast::ModOrbElem::trueA_']]],
   ['trueanomaly_5f_11',['trueAnomaly_',['../classast_1_1SimpleOrbitDesigner.html#ab3c321181c80db2642c93b60ab16e0ea',1,'ast::SimpleOrbitDesigner']]],
-  ['type_5f_12',['type_',['../classast_1_1DataPort.html#ab9232e19783152cab0e3b285da07ac7c',1,'ast::DataPort::type_'],['../classast_1_1OpUnary.html#a0c8074072a0bfe6faf3894f1838a1320',1,'ast::OpUnary::type_']]]
+  ['truncatesolidtides_5f_12',['truncateSolidTides_',['../structast_1_1HPOPForceModel_1_1Gravity.html#a6af3fa855c1b2c24ce29d970bf0f9c29',1,'ast::HPOPForceModel::Gravity']]],
+  ['type_5f_13',['type_',['../classast_1_1DataPort.html#ab9232e19783152cab0e3b285da07ac7c',1,'ast::DataPort::type_'],['../classast_1_1OpUnary.html#a0c8074072a0bfe6faf3894f1838a1320',1,'ast::OpUnary::type_']]]
 ];

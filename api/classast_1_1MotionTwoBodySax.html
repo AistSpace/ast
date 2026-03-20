@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>🛰️航天仿真算法库 SpaceAST: ast::MotionTwoBodySax类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">🛰️航天仿真算法库 SpaceAST<span id="projectnumber">&#160;0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classast_1_1MotionTwoBodySax.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classast_1_1MotionTwoBodySax-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ast::MotionTwoBodySax类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> 类 ast::MotionTwoBodySax 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+ <div class="center">
+  <img src="classast_1_1MotionTwoBodySax.png" usemap="#ast::MotionTwoBodySax_map" alt=""/>
+  <map id="ast::MotionTwoBodySax_map" name="ast::MotionTwoBodySax_map">
+<area href="classast_1_1MotionBasicSax.html" alt="ast::MotionBasicSax" shape="rect" coords="0,56,145,80"/>
+<area href="classast_1_1BKVSax.html" title="键值对解析器SAX接口（BlockKeyValueSax）" alt="ast::BKVSax" shape="rect" coords="0,0,145,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:afbb2eac2362d157ac06cb80ce1491a53" id="r_afbb2eac2362d157ac06cb80ce1491a53"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbb2eac2362d157ac06cb80ce1491a53">keyValue</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key, const <a class="el" href="classast_1_1ValueView.html">ValueView</a> &amp;value) override</td></tr>
+<tr class="separator:afbb2eac2362d157ac06cb80ce1491a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa19cbb91ba11b6e788b44f70d81e7763" id="r_aa19cbb91ba11b6e788b44f70d81e7763"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa19cbb91ba11b6e788b44f70d81e7763">getMotion</a> (<a class="el" href="classast_1_1ScopedPtr.html">ScopedPtr</a>&lt; <a class="el" href="classast_1_1MotionProfile.html">MotionProfile</a> &gt; &amp;motion) override</td></tr>
+<tr class="separator:aa19cbb91ba11b6e788b44f70d81e7763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a174f9abe530efe94ea4ac36d6db32b18" id="r_a174f9abe530efe94ea4ac36d6db32b18"><td class="memItemLeft" align="right" valign="top"><a id="a174f9abe530efe94ea4ac36d6db32b18" name="a174f9abe530efe94ea4ac36d6db32b18"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MotionBasicSax</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData)</td></tr>
+<tr class="separator:a174f9abe530efe94ea4ac36d6db32b18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classast_1_1MotionBasicSax"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1MotionBasicSax')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1MotionBasicSax.html">ast::MotionBasicSax</a></td></tr>
+<tr class="memitem:a174f9abe530efe94ea4ac36d6db32b18 inherit pub_methods_classast_1_1MotionBasicSax" id="r_a174f9abe530efe94ea4ac36d6db32b18"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>MotionBasicSax</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;vehiclePathData)</td></tr>
+<tr class="separator:a174f9abe530efe94ea4ac36d6db32b18 inherit pub_methods_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8899c0a08967341091d7c2e9b31c993e inherit pub_methods_classast_1_1MotionBasicSax" id="r_a8899c0a08967341091d7c2e9b31c993e"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionBasicSax.html#a8899c0a08967341091d7c2e9b31c993e">begin</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name) override</td></tr>
+<tr class="separator:a8899c0a08967341091d7c2e9b31c993e inherit pub_methods_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2f8f60f69abe445b0b823a981f71823 inherit pub_methods_classast_1_1MotionBasicSax" id="r_ad2f8f60f69abe445b0b823a981f71823"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionBasicSax.html#ad2f8f60f69abe445b0b823a981f71823">end</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name) override</td></tr>
+<tr class="separator:ad2f8f60f69abe445b0b823a981f71823 inherit pub_methods_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f0530f542243be920b014478f5385a6 inherit pub_methods_classast_1_1MotionBasicSax" id="r_a5f0530f542243be920b014478f5385a6"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1SharedPtr.html">HEventTime</a>&#160;</td><td class="memItemRight" valign="bottom"><b>makeStateEpoch</b> () const</td></tr>
+<tr class="separator:a5f0530f542243be920b014478f5385a6 inherit pub_methods_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b2238c6df515663d06fc8665c317b33 inherit pub_methods_classast_1_1MotionBasicSax" id="r_a4b2238c6df515663d06fc8665c317b33"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1SharedPtr.html">HEventInterval</a>&#160;</td><td class="memItemRight" valign="bottom"><b>makeInterval</b> () const</td></tr>
+<tr class="separator:a4b2238c6df515663d06fc8665c317b33 inherit pub_methods_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classast_1_1BKVSax"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1BKVSax')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1BKVSax.html">ast::BKVSax</a></td></tr>
+<tr class="memitem:a3cb9c3a0d53532b6faa4b7a1200e517d inherit pub_methods_classast_1_1BKVSax" id="r_a3cb9c3a0d53532b6faa4b7a1200e517d"><td class="memItemLeft" align="right" valign="top">
+virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~BKVSax</b> ()=default</td></tr>
+<tr class="separator:a3cb9c3a0d53532b6faa4b7a1200e517d inherit pub_methods_classast_1_1BKVSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05ab1e80211d572dfe36538919141b8d inherit pub_methods_classast_1_1BKVSax" id="r_a05ab1e80211d572dfe36538919141b8d"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> ()</td></tr>
+<tr class="separator:a05ab1e80211d572dfe36538919141b8d inherit pub_methods_classast_1_1BKVSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae13eb5bf97067b5fd43edd293ea92303 inherit pub_methods_classast_1_1BKVSax" id="r_ae13eb5bf97067b5fd43edd293ea92303"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> ()</td></tr>
+<tr class="separator:ae13eb5bf97067b5fd43edd293ea92303 inherit pub_methods_classast_1_1BKVSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1937bfcc73c2a609d0cf907a8d373ac9 inherit pub_methods_classast_1_1BKVSax" id="r_a1937bfcc73c2a609d0cf907a8d373ac9"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>keyValue</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key, const char *value)</td></tr>
+<tr class="separator:a1937bfcc73c2a609d0cf907a8d373ac9 inherit pub_methods_classast_1_1BKVSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b55e32094a68fc393b9779b8593230d inherit pub_methods_classast_1_1BKVSax" id="r_a3b55e32094a68fc393b9779b8593230d"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>keyValue</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key, int value)</td></tr>
+<tr class="separator:a3b55e32094a68fc393b9779b8593230d inherit pub_methods_classast_1_1BKVSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef8e07495c563dccd79dc46f454e54f3 inherit pub_methods_classast_1_1BKVSax" id="r_aef8e07495c563dccd79dc46f454e54f3"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>keyValue</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key, bool value)</td></tr>
+<tr class="separator:aef8e07495c563dccd79dc46f454e54f3 inherit pub_methods_classast_1_1BKVSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1318c4df0cab3927d7ecddcc50878c9 inherit pub_methods_classast_1_1BKVSax" id="r_ab1318c4df0cab3927d7ecddcc50878c9"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>keyValue</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key, double value)</td></tr>
+<tr class="separator:ab1318c4df0cab3927d7ecddcc50878c9 inherit pub_methods_classast_1_1BKVSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7b1f1abbb30a8df20bedeca75bc8894 inherit pub_methods_classast_1_1BKVSax" id="r_ab7b1f1abbb30a8df20bedeca75bc8894"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>keyValue</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key, <a class="el" href="classast_1_1Color.html">Color</a> value)</td></tr>
+<tr class="separator:ab7b1f1abbb30a8df20bedeca75bc8894 inherit pub_methods_classast_1_1BKVSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa260ec44a2ead9785938b88ef5c1a93 inherit pub_methods_classast_1_1BKVSax" id="r_afa260ec44a2ead9785938b88ef5c1a93"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>keyValue</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> value)</td></tr>
+<tr class="separator:afa260ec44a2ead9785938b88ef5c1a93 inherit pub_methods_classast_1_1BKVSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a7684945256bdaf9bd9c6775da9dc77a4" id="r_a7684945256bdaf9bd9c6775da9dc77a4"><td class="memItemLeft" align="right" valign="top"><a id="a7684945256bdaf9bd9c6775da9dc77a4" name="a7684945256bdaf9bd9c6775da9dc77a4"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>radiusOfPerigee_</b> = 0.0</td></tr>
+<tr class="separator:a7684945256bdaf9bd9c6775da9dc77a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9aa1ab15a7041b9c2bdec294487d869" id="r_af9aa1ab15a7041b9c2bdec294487d869"><td class="memItemLeft" align="right" valign="top"><a id="af9aa1ab15a7041b9c2bdec294487d869" name="af9aa1ab15a7041b9c2bdec294487d869"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>inclination_</b> = 0.0</td></tr>
+<tr class="separator:af9aa1ab15a7041b9c2bdec294487d869"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af48fea2578e7cc3e9d6c4449944f5874" id="r_af48fea2578e7cc3e9d6c4449944f5874"><td class="memItemLeft" align="right" valign="top"><a id="af48fea2578e7cc3e9d6c4449944f5874" name="af48fea2578e7cc3e9d6c4449944f5874"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>eccentricity_</b> = 0.0</td></tr>
+<tr class="separator:af48fea2578e7cc3e9d6c4449944f5874"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dd3cd1f8c720c4a264ecb8f7c3c988a" id="r_a0dd3cd1f8c720c4a264ecb8f7c3c988a"><td class="memItemLeft" align="right" valign="top"><a id="a0dd3cd1f8c720c4a264ecb8f7c3c988a" name="a0dd3cd1f8c720c4a264ecb8f7c3c988a"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>argOfPerigee_</b> = 0.0</td></tr>
+<tr class="separator:a0dd3cd1f8c720c4a264ecb8f7c3c988a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a416b50e149d89bd41840016397efb02f" id="r_a416b50e149d89bd41840016397efb02f"><td class="memItemLeft" align="right" valign="top"><a id="a416b50e149d89bd41840016397efb02f" name="a416b50e149d89bd41840016397efb02f"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>rightAscension_</b> = 0.0</td></tr>
+<tr class="separator:a416b50e149d89bd41840016397efb02f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dd9cd4fc17e2193a89fee6b20de8133" id="r_a1dd9cd4fc17e2193a89fee6b20de8133"><td class="memItemLeft" align="right" valign="top"><a id="a1dd9cd4fc17e2193a89fee6b20de8133" name="a1dd9cd4fc17e2193a89fee6b20de8133"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>trueAnomaly_</b> = 0.0</td></tr>
+<tr class="separator:a1dd9cd4fc17e2193a89fee6b20de8133"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac47d0241e27fbf0c643a876074512dbc" id="r_ac47d0241e27fbf0c643a876074512dbc"><td class="memItemLeft" align="right" valign="top"><a id="ac47d0241e27fbf0c643a876074512dbc" name="ac47d0241e27fbf0c643a876074512dbc"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>timeStep_</b> = 0.0</td></tr>
+<tr class="separator:ac47d0241e27fbf0c643a876074512dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69998dc8ea5cc63d2dbdf2a796f88e01" id="r_a69998dc8ea5cc63d2dbdf2a796f88e01"><td class="memItemLeft" align="right" valign="top"><a id="a69998dc8ea5cc63d2dbdf2a796f88e01" name="a69998dc8ea5cc63d2dbdf2a796f88e01"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>orbElemCoordSys_</b></td></tr>
+<tr class="separator:a69998dc8ea5cc63d2dbdf2a796f88e01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fa49030d0d275469460348cc540d79f" id="r_a7fa49030d0d275469460348cc540d79f"><td class="memItemLeft" align="right" valign="top"><a id="a7fa49030d0d275469460348cc540d79f" name="a7fa49030d0d275469460348cc540d79f"></a>
+<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Axes.html">Axes</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>orbElemCoordAxes_</b></td></tr>
+<tr class="separator:a7fa49030d0d275469460348cc540d79f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e6190d1c2e5b1a58fce2c98b64a45aa" id="r_a4e6190d1c2e5b1a58fce2c98b64a45aa"><td class="memItemLeft" align="right" valign="top"><a id="a4e6190d1c2e5b1a58fce2c98b64a45aa" name="a4e6190d1c2e5b1a58fce2c98b64a45aa"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>propagationCoordSys_</b></td></tr>
+<tr class="separator:a4e6190d1c2e5b1a58fce2c98b64a45aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25249cb8c77334a0acceae919fcd38ea" id="r_a25249cb8c77334a0acceae919fcd38ea"><td class="memItemLeft" align="right" valign="top"><a id="a25249cb8c77334a0acceae919fcd38ea" name="a25249cb8c77334a0acceae919fcd38ea"></a>
+<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Axes.html">Axes</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>propagationCoordAxes_</b></td></tr>
+<tr class="separator:a25249cb8c77334a0acceae919fcd38ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afce47a1fcefef919526444fb0e218b6f" id="r_afce47a1fcefef919526444fb0e218b6f"><td class="memItemLeft" align="right" valign="top"><a id="afce47a1fcefef919526444fb0e218b6f" name="afce47a1fcefef919526444fb0e218b6f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>displayCoordType_</b> = 0</td></tr>
+<tr class="separator:afce47a1fcefef919526444fb0e218b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c5ee9ae429d31a688a249d923c64b02" id="r_a4c5ee9ae429d31a688a249d923c64b02"><td class="memItemLeft" align="right" valign="top"><a id="a4c5ee9ae429d31a688a249d923c64b02" name="a4c5ee9ae429d31a688a249d923c64b02"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>displayCoordSys_</b></td></tr>
+<tr class="separator:a4c5ee9ae429d31a688a249d923c64b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab74e0b4163d3200615efb9f445dc647d" id="r_ab74e0b4163d3200615efb9f445dc647d"><td class="memItemLeft" align="right" valign="top"><a id="ab74e0b4163d3200615efb9f445dc647d" name="ab74e0b4163d3200615efb9f445dc647d"></a>
+<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Axes.html">Axes</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>displayCoordAxes_</b></td></tr>
+<tr class="separator:ab74e0b4163d3200615efb9f445dc647d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classast_1_1MotionBasicSax"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classast_1_1MotionBasicSax')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classast_1_1MotionBasicSax.html">ast::MotionBasicSax</a></td></tr>
+<tr class="memitem:ae82de995b59e1df7c812b5898135ea7e inherit pro_attribs_classast_1_1MotionBasicSax" id="r_ae82de995b59e1df7c812b5898135ea7e"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>parser_</b></td></tr>
+<tr class="separator:ae82de995b59e1df7c812b5898135ea7e inherit pro_attribs_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3dd351f35d07f540f7eac802ab19a63 inherit pro_attribs_classast_1_1MotionBasicSax" id="r_ab3dd351f35d07f540f7eac802ab19a63"><td class="memItemLeft" align="right" valign="top">
+const <a class="el" href="structast_1_1VehiclePathData.html">VehiclePathData</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>vehiclePathData_</b></td></tr>
+<tr class="separator:ab3dd351f35d07f540f7eac802ab19a63 inherit pro_attribs_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4bfbd7a662b7010f21c8d33b2e1ad19 inherit pro_attribs_classast_1_1MotionBasicSax" id="r_ac4bfbd7a662b7010f21c8d33b2e1ad19"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventTime.html">EventTime</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ephemSmartEpoch_</b></td></tr>
+<tr class="separator:ac4bfbd7a662b7010f21c8d33b2e1ad19 inherit pro_attribs_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97be59a95c108c74aac9063adf4c6f4b inherit pro_attribs_classast_1_1MotionBasicSax" id="r_a97be59a95c108c74aac9063adf4c6f4b"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventInterval.html">EventInterval</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ephemSmartInterval_</b></td></tr>
+<tr class="separator:a97be59a95c108c74aac9063adf4c6f4b inherit pro_attribs_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d6473f4a2e4f4b967fb444445944ac3 inherit pro_attribs_classast_1_1MotionBasicSax" id="r_a5d6473f4a2e4f4b967fb444445944ac3"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1TimePoint.html">TimePoint</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ephemEpoch_</b></td></tr>
+<tr class="separator:a5d6473f4a2e4f4b967fb444445944ac3 inherit pro_attribs_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab279b68f9a7c1b6f6f66ffb5cc1d5fe3 inherit pro_attribs_classast_1_1MotionBasicSax" id="r_ab279b68f9a7c1b6f6f66ffb5cc1d5fe3"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1TimePoint.html">TimePoint</a>&#160;</td><td class="memItemRight" valign="bottom"><b>startTime_</b></td></tr>
+<tr class="separator:ab279b68f9a7c1b6f6f66ffb5cc1d5fe3 inherit pro_attribs_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ce3476596a8fde0f92ff1f7b4a95805 inherit pro_attribs_classast_1_1MotionBasicSax" id="r_a2ce3476596a8fde0f92ff1f7b4a95805"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classast_1_1TimePoint.html">TimePoint</a>&#160;</td><td class="memItemRight" valign="bottom"><b>stopTime_</b></td></tr>
+<tr class="separator:a2ce3476596a8fde0f92ff1f7b4a95805 inherit pro_attribs_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eaaa6c07abeef603810259ce6b506da inherit pro_attribs_classast_1_1MotionBasicSax" id="r_a5eaaa6c07abeef603810259ce6b506da"><td class="memItemLeft" align="right" valign="top">
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>useScenTime_</b> = false</td></tr>
+<tr class="separator:a5eaaa6c07abeef603810259ce6b506da inherit pro_attribs_classast_1_1MotionBasicSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_static_attribs_classast_1_1BKVSax"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_attribs_classast_1_1BKVSax')"><img src="closed.png" alt="-"/>&#160;静态 Public 属性 继承自 <a class="el" href="classast_1_1BKVSax.html">ast::BKVSax</a></td></tr>
+<tr class="memitem:a361d23596d3a9042398b2cd5092f1f92 inherit pub_static_attribs_classast_1_1BKVSax" id="r_a361d23596d3a9042398b2cd5092f1f92"><td class="memItemLeft" align="right" valign="top">
+static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>endParse</b> = 1</td></tr>
+<tr class="separator:a361d23596d3a9042398b2cd5092f1f92 inherit pub_static_attribs_classast_1_1BKVSax"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="aa19cbb91ba11b6e788b44f70d81e7763" name="aa19cbb91ba11b6e788b44f70d81e7763"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa19cbb91ba11b6e788b44f70d81e7763">&#9670;&#160;</a></span>getMotion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::MotionTwoBodySax::getMotion </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1ScopedPtr.html">ScopedPtr</a>&lt; <a class="el" href="classast_1_1MotionProfile.html">MotionProfile</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>motion</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classast_1_1MotionBasicSax.html">ast::MotionBasicSax</a>.</p>
+
+</div>
+</div>
+<a id="afbb2eac2362d157ac06cb80ce1491a53" name="afbb2eac2362d157ac06cb80ce1491a53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbb2eac2362d157ac06cb80ce1491a53">&#9670;&#160;</a></span>keyValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::MotionTwoBodySax::keyValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1ValueView.html">ValueView</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>迭代解析一个键值对 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>键 </td></tr>
+    <tr><td class="paramname">value</td><td>值 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>重载 <a class="el" href="classast_1_1MotionBasicSax.html#a7fab3127522db76683f0d2a7d947eb3d">ast::MotionBasicSax</a> .</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>src/AstSim/Loader/<a class="el" href="MotionTwoBodySax_8hpp_source.html">MotionTwoBodySax.hpp</a></li>
+<li>src/AstSim/Loader/<b>MotionTwoBodySax.cpp</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceast.html">ast</a></li><li class="navelem"><a class="el" href="classast_1_1MotionTwoBodySax.html">MotionTwoBodySax</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>
