@@ -2,6 +2,7 @@ var classast_1_1BaseParser =
 [
     [ "close", "classast_1_1BaseParser.html#aaf727ec1d7cf9c20af89b93523cad51a", null ],
     [ "eof", "classast_1_1BaseParser.html#a4807b86dfe5303eba5a8701cd9ad9f2d", null ],
+    [ "getFile", "classast_1_1BaseParser.html#ac4732cf70fbc24d627ea01a0fe63f975", null ],
     [ "getFilePath", "classast_1_1BaseParser.html#a4f36fb73ad99afd14da9774aa18f41e8", null ],
     [ "getLine", "classast_1_1BaseParser.html#a5bfcd16c7414029bccdd5eafb8d409b8", null ],
     [ "getLineNumber", "classast_1_1BaseParser.html#a21da5069622d910ae3784a60af89de6d", null ],

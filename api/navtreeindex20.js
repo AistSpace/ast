@@ -1,5 +1,6 @@
 var NAVTREEINDEX20 =
 {
+"functions_x.html":[3,3,0,24],
 "functions_y.html":[3,3,0,25],
 "functions_z.html":[3,3,0,26],
 "functions_~.html":[3,3,0,27],
@@ -248,6 +249,5 @@ var NAVTREEINDEX20 =
 "group__Orbit.html#ga13e8d943259e37ea2bb242996131ccb5":[0,0,3,108],
 "group__Orbit.html#ga1578a167e5a79872305f2f9232adbb44":[0,0,3,88],
 "group__Orbit.html#ga15e5a2b5f6313ed10dd236e5ff48d4e7":[0,0,3,32],
-"group__Orbit.html#ga1707d82dac8948c01fbbc385fb1171d7":[0,0,3,86],
-"group__Orbit.html#ga1e3824f93dcc2dde4fb3b03c60f9e6a4":[0,0,3,71]
+"group__Orbit.html#ga1707d82dac8948c01fbbc385fb1171d7":[0,0,3,86]
 };

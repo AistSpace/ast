@@ -1,5 +1,6 @@
 var NAVTREEINDEX16 =
 {
+"classast_1_1Quaternion.html#abf34f1d3eadf0c11d520bfebd571a2d2":[0,1,1,2,24],
 "classast_1_1Quaternion.html#ac3115f9e2b60054fdb10a2b3baf4304b":[0,1,1,2,16],
 "classast_1_1Quaternion.html#ad48ef6b1866ee2392c26556fa66f2770":[0,1,1,2,14],
 "classast_1_1Quaternion.html#affd2c78251b00a2662ceb6045f6fcc81":[0,1,1,2,4],
@@ -248,6 +249,5 @@ var NAVTREEINDEX16 =
 "classast_1_1SpiceDAFParser.html#accf0cca27c52ee9cd6178b6d50ad2acd":[2,0,0,312,6],
 "classast_1_1SpiceDAFParser.html#accf0cca27c52ee9cd6178b6d50ad2acd":[3,0,0,311,6],
 "classast_1_1SpiceDAFParser.html#acf08be0a4fc8b29fc1dc58aad6f7f141":[2,0,0,312,13],
-"classast_1_1SpiceDAFParser.html#acf08be0a4fc8b29fc1dc58aad6f7f141":[3,0,0,311,13],
-"classast_1_1SpiceDAFParser.html#ad21d66421ff90941383150df07a5f188":[2,0,0,312,10]
+"classast_1_1SpiceDAFParser.html#acf08be0a4fc8b29fc1dc58aad6f7f141":[3,0,0,311,13]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX25 =
 {
+"namespaceast_1_1literals.html#a4bec86cbed7aa4a962a0cbd65676090a":[2,0,0,1,31],
 "namespaceast_1_1literals.html#a51b589a882e59b6ccf1f0dcdd3beae23":[2,0,0,1,29],
 "namespaceast_1_1literals.html#a51e18a09b664b1395f084da3128ec4a3":[2,0,0,1,40],
 "namespaceast_1_1literals.html#a551ae22306da4b3edfab426f8d80d86a":[2,0,0,1,33],
@@ -248,6 +249,5 @@ var NAVTREEINDEX25 =
 "structast_1_1OpUnaryRegister_1_1OpUnaryKeyHash.html":[2,0,0,250,0],
 "structast_1_1OpUnaryRegister_1_1OpUnaryKeyHash.html":[3,0,0,249,0],
 "structast_1_1PoleMotion.html":[0,0,1,2],
-"structast_1_1PoleMotion.html#abdf343d69c38122f6a70fec7df6975e4":[0,0,1,2,0],
-"structast_1_1PoleMotionSXY.html":[2,0,0,259]
+"structast_1_1PoleMotion.html#abdf343d69c38122f6a70fec7df6975e4":[0,0,1,2,0]
 };

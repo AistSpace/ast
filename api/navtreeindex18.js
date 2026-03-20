@@ -1,5 +1,6 @@
 var NAVTREEINDEX18 =
 {
+"classast_1_1StringScanner.html#ac1a5a37e500978996126b5a349081529":[2,0,0,342,2],
 "classast_1_1StringScanner.html#ac1a5a37e500978996126b5a349081529":[3,0,0,341,2],
 "classast_1_1StringViewBasic.html":[0,4,5,0],
 "classast_1_1Struct.html":[0,4,4,14],
@@ -248,6 +249,5 @@ var NAVTREEINDEX18 =
 "classast_1_1ValString.html#a358a0c877aeb2915d1b1d8f114465059":[0,2,40,0],
 "classast_1_1ValVector.html":[0,2,42],
 "classast_1_1Value.html":[0,2,41],
-"classast_1_1Value.html#a067ed61fc393200a3e24689c41b4faa9":[0,2,41,0],
-"classast_1_1Value.html#adbf99fb39b0430da544acd90cc309b35":[0,2,41,1]
+"classast_1_1Value.html#a067ed61fc393200a3e24689c41b4faa9":[0,2,41,0]
 };
