@@ -1,5 +1,6 @@
 var AstCore_2Data_2Context_2RunTime_8cpp =
 [
+    [ "ast::InitalizeConfig", "structast_1_1InitalizeConfig.html", "structast_1_1InitalizeConfig" ],
     [ "ast::XYSCache", "structast_1_1XYSCache.html", null ],
     [ "AST_DEFAULT_FILE_LEAPSECOND", "AstCore_2Data_2Context_2RunTime_8cpp.html#a5805211b4ae656f073656aa14cc7fd44", null ],
     [ "aDataContext_EnsureCurrent", "AstCore_2Data_2Context_2RunTime_8cpp.html#ga362102d8c58857b6e3d6b48b83bd0944", null ],
@@ -33,6 +34,7 @@ var AstCore_2Data_2Context_2RunTime_8cpp =
     [ "aGlobalContext_Get", "AstCore_2Data_2Context_2RunTime_8cpp.html#ga4ccfea60ec40a0b914aee9714febd94e", null ],
     [ "aGlobalContext_GetIAUXYS", "AstCore_2Data_2Context_2RunTime_8cpp.html#gab6179a360a2bb2fa49e90ed13801fb7f", null ],
     [ "aInitialize", "AstCore_2Data_2Context_2RunTime_8cpp.html#gab6fd6e3387d57432da53d7bf5efd47a9", null ],
+    [ "aInitializeByConfig", "AstCore_2Data_2Context_2RunTime_8cpp.html#gaabcb6d72bbf7efcce989334376fb071f", null ],
     [ "aJplDeClose", "AstCore_2Data_2Context_2RunTime_8cpp.html#ga86326fcd6c451bdbaff8e7d5cecd9215", null ],
     [ "aJplDeGetLibration", "AstCore_2Data_2Context_2RunTime_8cpp.html#gafb5ff2a33de9ab9f703291baea5ffc18", null ],
     [ "aJplDeGetLibration", "AstCore_2Data_2Context_2RunTime_8cpp.html#gaca8df8b06f1508da070156e818d0644a", null ],

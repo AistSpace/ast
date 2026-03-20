@@ -111,6 +111,7 @@ $(function(){initNavTree('AstCore_2Data_2Context_2RunTime_8cpp.html',''); initRe
 <code>#include &quot;<a class="el" href="DataContext_8hpp_source.html">DataContext.hpp</a>&quot;</code><br />
 <code>#include &quot;AstUtil/FileSystem.hpp&quot;</code><br />
 <code>#include &quot;AstUtil/Logger.hpp&quot;</code><br />
+<code>#include &quot;AstUtil/StartupConfig.hpp&quot;</code><br />
 <code>#include &quot;AstCore/TimePoint.hpp&quot;</code><br />
 <code>#include &quot;AstCore/FundamentalArguments.hpp&quot;</code><br />
 <code>#include &quot;AstCore/GlobalContext.hpp&quot;</code><br />
@@ -120,6 +121,8 @@ $(function(){initNavTree('AstCore_2Data_2Context_2RunTime_8cpp.html',''); initRe
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structast_1_1InitalizeConfig.html">ast::InitalizeConfig</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structast_1_1XYSCache.html">ast::XYSCache</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -165,6 +168,21 @@ $(function(){initNavTree('AstCore_2Data_2Context_2RunTime_8cpp.html',''); initRe
 <tr class="memitem:gab6179a360a2bb2fa49e90ed13801fb7f" id="r_gab6179a360a2bb2fa49e90ed13801fb7f"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classast_1_1IAUXYS.html">IAUXYS</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aGlobalContext_GetIAUXYS</b> ()</td></tr>
 <tr class="separator:gab6179a360a2bb2fa49e90ed13801fb7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace5798c90ea0a10c1bbbc1295008866c" id="r_ace5798c90ea0a10c1bbbc1295008866c"><td class="memItemLeft" align="right" valign="top"><a id="ace5798c90ea0a10c1bbbc1295008866c" name="ace5798c90ea0a10c1bbbc1295008866c"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aInitializeByDefault</b> (<a class="el" href="classast_1_1DataContext.html">DataContext</a> *context)</td></tr>
+<tr class="separator:ace5798c90ea0a10c1bbbc1295008866c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4655c4de18fab4d30deca02c8a0922d" id="r_ad4655c4de18fab4d30deca02c8a0922d"><td class="memItemLeft" align="right" valign="top"><a id="ad4655c4de18fab4d30deca02c8a0922d" name="ad4655c4de18fab4d30deca02c8a0922d"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aInitializeByConfig</b> (<a class="el" href="classast_1_1DataContext.html">DataContext</a> *context, const <a class="el" href="structast_1_1InitalizeConfig.html">InitalizeConfig</a> &amp;config)</td></tr>
+<tr class="separator:ad4655c4de18fab4d30deca02c8a0922d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ea59fd443facaacf60f0585319dd684" id="r_a9ea59fd443facaacf60f0585319dd684"><td class="memItemLeft" align="right" valign="top"><a id="a9ea59fd443facaacf60f0585319dd684" name="a9ea59fd443facaacf60f0585319dd684"></a>
+<a class="el" href="classast_1_1fs__simple_1_1path.html">fs::path</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aRelPathToAbs</b> (const <a class="el" href="classast_1_1fs__simple_1_1path.html">fs::path</a> &amp;relpath, const <a class="el" href="classast_1_1fs__simple_1_1path.html">fs::path</a> &amp;basedir)</td></tr>
+<tr class="separator:a9ea59fd443facaacf60f0585319dd684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74d61ba4cc8eb10407f626364a293438" id="r_a74d61ba4cc8eb10407f626364a293438"><td class="memItemLeft" align="right" valign="top"><a id="a74d61ba4cc8eb10407f626364a293438" name="a74d61ba4cc8eb10407f626364a293438"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aInitializeByConfig</b> (<a class="el" href="classast_1_1DataContext.html">DataContext</a> *context, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> configfile)</td></tr>
+<tr class="separator:a74d61ba4cc8eb10407f626364a293438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaabcb6d72bbf7efcce989334376fb071f" id="r_gaabcb6d72bbf7efcce989334376fb071f"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aInitializeByConfig</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> configfile)</td></tr>
+<tr class="separator:gaabcb6d72bbf7efcce989334376fb071f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af557e9aaa8f27f2fd30afb53de89e3e1" id="r_af557e9aaa8f27f2fd30afb53de89e3e1"><td class="memItemLeft" align="right" valign="top"><a id="af557e9aaa8f27f2fd30afb53de89e3e1" name="af557e9aaa8f27f2fd30afb53de89e3e1"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aInitialize</b> (<a class="el" href="classast_1_1DataContext.html">DataContext</a> *context)</td></tr>
 <tr class="separator:af557e9aaa8f27f2fd30afb53de89e3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>

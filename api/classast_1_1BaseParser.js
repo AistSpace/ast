@@ -6,6 +6,7 @@ var classast_1_1BaseParser =
     [ "getFilePath", "classast_1_1BaseParser.html#a4f36fb73ad99afd14da9774aa18f41e8", null ],
     [ "getLine", "classast_1_1BaseParser.html#a5bfcd16c7414029bccdd5eafb8d409b8", null ],
     [ "getLineNumber", "classast_1_1BaseParser.html#a21da5069622d910ae3784a60af89de6d", null ],
+    [ "getLineSkipHashComment", "classast_1_1BaseParser.html#aadd4560aa613c4fd0865a6b2cb5357a1", null ],
     [ "getLineTrim", "classast_1_1BaseParser.html#a388956100fb925864bcdb621d08911d9", null ],
     [ "getLineWithNewline", "classast_1_1BaseParser.html#a8d27e9f9940a2cdf8416c7f4de164ea8", null ],
     [ "isOpen", "classast_1_1BaseParser.html#a24d5391a1aea013594950400a030065c", null ],

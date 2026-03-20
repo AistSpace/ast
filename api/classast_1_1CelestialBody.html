@@ -124,9 +124,12 @@ $(function(){initNavTree('classast_1_1CelestialBody.html',''); initResizable(tru
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a0b3321d74e9b893052814541246efe5c" id="r_a0b3321d74e9b893052814541246efe5c"><td class="memItemLeft" align="right" valign="top"><a id="a0b3321d74e9b893052814541246efe5c" name="a0b3321d74e9b893052814541246efe5c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CelestialBody</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
-<tr class="separator:a0b3321d74e9b893052814541246efe5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c5c57b22701b4d4c5f1c41bb620d2b7" id="r_a5c5c57b22701b4d4c5f1c41bb620d2b7"><td class="memItemLeft" align="right" valign="top"><a id="a5c5c57b22701b4d4c5f1c41bb620d2b7" name="a5c5c57b22701b4d4c5f1c41bb620d2b7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CelestialBody</b> (<a class="el" href="classast_1_1SolarSystem.html">SolarSystem</a> *solarSystem)</td></tr>
+<tr class="separator:a5c5c57b22701b4d4c5f1c41bb620d2b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4910d24b98e82e0e67df1075e4bc8ba" id="r_ad4910d24b98e82e0e67df1075e4bc8ba"><td class="memItemLeft" align="right" valign="top"><a id="ad4910d24b98e82e0e67df1075e4bc8ba" name="ad4910d24b98e82e0e67df1075e4bc8ba"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CelestialBody</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name, <a class="el" href="classast_1_1SolarSystem.html">SolarSystem</a> *solarSystem=nullptr)</td></tr>
+<tr class="separator:ad4910d24b98e82e0e67df1075e4bc8ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabf36d0dd7857c676e2d19a13c9c9291" id="r_aabf36d0dd7857c676e2d19a13c9c9291"><td class="memItemLeft" align="right" valign="top"><a id="aabf36d0dd7857c676e2d19a13c9c9291" name="aabf36d0dd7857c676e2d19a13c9c9291"></a>
 const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const</td></tr>
 <tr class="separator:aabf36d0dd7857c676e2d19a13c9c9291"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,6 +148,12 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getJplIndex</b> () con
 <tr class="memitem:a39be58b6d0c6966ec04abd69137c6fc1" id="r_a39be58b6d0c6966ec04abd69137c6fc1"><td class="memItemLeft" align="right" valign="top"><a id="a39be58b6d0c6966ec04abd69137c6fc1" name="a39be58b6d0c6966ec04abd69137c6fc1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setJplIndex</b> (int index)</td></tr>
 <tr class="separator:a39be58b6d0c6966ec04abd69137c6fc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a668d0987523588a036c046fd22f39d55" id="r_a668d0987523588a036c046fd22f39d55"><td class="memItemLeft" align="right" valign="top"><a id="a668d0987523588a036c046fd22f39d55" name="a668d0987523588a036c046fd22f39d55"></a>
+<a class="el" href="classast_1_1SolarSystem.html">SolarSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getSolarSystem</b> () const</td></tr>
+<tr class="separator:a668d0987523588a036c046fd22f39d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48d73324d6882c5015aaec772fc6a5ba" id="r_a48d73324d6882c5015aaec772fc6a5ba"><td class="memItemLeft" align="right" valign="top"><a id="a48d73324d6882c5015aaec772fc6a5ba" name="a48d73324d6882c5015aaec772fc6a5ba"></a>
+<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getParent</b> () const</td></tr>
+<tr class="separator:a48d73324d6882c5015aaec772fc6a5ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33a059f3a4383fdab0ee4f2fe4e5b669" id="r_a33a059f3a4383fdab0ee4f2fe4e5b669"><td class="memItemLeft" align="right" valign="top"><a id="a33a059f3a4383fdab0ee4f2fe4e5b669" name="a33a059f3a4383fdab0ee4f2fe4e5b669"></a>
 const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getGravityModel</b> () const</td></tr>
 <tr class="separator:a33a059f3a4383fdab0ee4f2fe4e5b669"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -358,8 +367,11 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>loadMeanEarthDefinit
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
 <tr class="memitem:ac9dc13b6926f70f312f3896a6c620f69" id="r_ac9dc13b6926f70f312f3896a6c620f69"><td class="memItemLeft" align="right" valign="top"><a id="ac9dc13b6926f70f312f3896a6c620f69" name="ac9dc13b6926f70f312f3896a6c620f69"></a>
-AST_PROPERTIES&#160;</td><td class="memItemRight" valign="bottom">: <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt;<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a>&gt; parent_</td></tr>
+AST_PROPERTIES&#160;</td><td class="memItemRight" valign="bottom">: <a class="el" href="classast_1_1WeakPtr.html">WeakPtr</a>&lt;<a class="el" href="classast_1_1SolarSystem.html">SolarSystem</a>&gt; solarSystem_</td></tr>
 <tr class="separator:ac9dc13b6926f70f312f3896a6c620f69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2d4ad177a330c15d89b602aa8aa9702" id="r_ac2d4ad177a330c15d89b602aa8aa9702"><td class="memItemLeft" align="right" valign="top"><a id="ac2d4ad177a330c15d89b602aa8aa9702" name="ac2d4ad177a330c15d89b602aa8aa9702"></a>
+<a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>parent_</b></td></tr>
+<tr class="separator:ac2d4ad177a330c15d89b602aa8aa9702"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f2f187b7604ce4ffd70561e61084bae" id="r_a9f2f187b7604ce4ffd70561e61084bae"><td class="memItemLeft" align="right" valign="top"><a id="a9f2f187b7604ce4ffd70561e61084bae" name="a9f2f187b7604ce4ffd70561e61084bae"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name_</b></td></tr>
 <tr class="separator:a9f2f187b7604ce4ffd70561e61084bae"><td class="memSeparator" colspan="2">&#160;</td></tr>

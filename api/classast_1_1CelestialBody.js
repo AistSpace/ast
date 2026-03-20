@@ -18,12 +18,14 @@ var classast_1_1CelestialBody =
     [ "getJplSpiceId", "classast_1_1CelestialBody.html#ad97ffad75d805afca9119ca411b94daa", null ],
     [ "getName", "classast_1_1CelestialBody.html#aabf36d0dd7857c676e2d19a13c9c9291", null ],
     [ "getOrientation", "classast_1_1CelestialBody.html#aac2be47141564e831fde370631d78f49", null ],
+    [ "getParent", "classast_1_1CelestialBody.html#a48d73324d6882c5015aaec772fc6a5ba", null ],
     [ "getPointCenter", "classast_1_1CelestialBody.html#a7112d4e551afe8eb5f9c71dca33d8566", null ],
     [ "getPos", "classast_1_1CelestialBody.html#af19308642f78e7a12f4a827ca15e8ffc", null ],
     [ "getPosICRF", "classast_1_1CelestialBody.html#ad00a85f3b14b8ffc2bd4a50c959811e0", null ],
     [ "getPosVel", "classast_1_1CelestialBody.html#a49c7de48d5b7979d4b854796143b985c", null ],
     [ "getPosVelICRF", "classast_1_1CelestialBody.html#ae14ec2326791616d87c6ceb3e89145e3", null ],
     [ "getRadius", "classast_1_1CelestialBody.html#a9a88a639e22509c81821b0e0c134f767", null ],
+    [ "getSolarSystem", "classast_1_1CelestialBody.html#a668d0987523588a036c046fd22f39d55", null ],
     [ "getSystemGM", "classast_1_1CelestialBody.html#a9234119f1b8c604e8c2a0531e6ebc55b", null ],
     [ "isEarth", "classast_1_1CelestialBody.html#aa929791242e4840e147e5c7d6c8a96cf", null ],
     [ "load", "classast_1_1CelestialBody.html#ab5cf7a5d454630f530f60696c347d317", null ],
@@ -66,6 +68,7 @@ var classast_1_1CelestialBody =
     [ "jplSpiceId_", "classast_1_1CelestialBody.html#a89419dd08fc39451be2d87de4d4f26d4", null ],
     [ "name_", "classast_1_1CelestialBody.html#a9f2f187b7604ce4ffd70561e61084bae", null ],
     [ "orientation_", "classast_1_1CelestialBody.html#a44182741b2ae49b7c5ce5bfcde6275b0", null ],
+    [ "parent_", "classast_1_1CelestialBody.html#ac2d4ad177a330c15d89b602aa8aa9702", null ],
     [ "radius_", "classast_1_1CelestialBody.html#a87d4a909c92bfadee894f42cd5175838", null ],
     [ "systemGM_", "classast_1_1CelestialBody.html#af7315bf6731ca1a1af2cfa28dde3edbf", null ]
 ];

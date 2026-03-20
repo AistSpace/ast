@@ -145,6 +145,7 @@ var group__Data =
     [ "ast::aGlobalContext_Get", "group__Data.html#ga4ccfea60ec40a0b914aee9714febd94e", null ],
     [ "ast::aGlobalContext_GetIAUXYS", "group__Data.html#gab6179a360a2bb2fa49e90ed13801fb7f", null ],
     [ "ast::aInitialize", "group__Data.html#gab6fd6e3387d57432da53d7bf5efd47a9", null ],
+    [ "ast::aInitializeByConfig", "group__Data.html#gaabcb6d72bbf7efcce989334376fb071f", null ],
     [ "ast::aJplDeClose", "group__Data.html#ga86326fcd6c451bdbaff8e7d5cecd9215", null ],
     [ "ast::aJplDeGetLibration", "group__Data.html#gafb5ff2a33de9ab9f703291baea5ffc18", null ],
     [ "ast::aJplDeGetLibration", "group__Data.html#gaca8df8b06f1508da070156e818d0644a", null ],

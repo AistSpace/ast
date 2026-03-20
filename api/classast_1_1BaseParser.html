@@ -116,9 +116,10 @@ $(function(){initNavTree('classast_1_1BaseParser.html',''); initResizable(true);
   <img src="classast_1_1BaseParser.png" usemap="#ast::BaseParser_map" alt=""/>
   <map id="ast::BaseParser_map" name="ast::BaseParser_map">
 <area href="classast_1_1BKVParser.html" title="键值对解析器（BlockKeyValueParser）" alt="ast::BKVParser" shape="rect" coords="0,56,130,80"/>
-<area href="classast_1_1SpiceDAFParser.html" title="SPICE 双精度数组文件解析器 DAF（Double Precision Array File，双精度数组文件）" alt="ast::SpiceDAFParser" shape="rect" coords="140,56,270,80"/>
-<area href="classast_1_1SpiceTextParser.html" title="SPICE文本内核文件解析器(parser for SPICE text kernel file)" alt="ast::SpiceTextParser" shape="rect" coords="280,56,410,80"/>
-<area href="classast_1_1SpiceSPKParser.html" title="SPICE二进制SPK内核文件解析器(parser for SPICE SPK kernel file)" alt="ast::SpiceSPKParser" shape="rect" coords="140,112,270,136"/>
+<area href="classast_1_1KVParser.html" alt="ast::KVParser" shape="rect" coords="140,56,270,80"/>
+<area href="classast_1_1SpiceDAFParser.html" title="SPICE 双精度数组文件解析器 DAF（Double Precision Array File，双精度数组文件）" alt="ast::SpiceDAFParser" shape="rect" coords="280,56,410,80"/>
+<area href="classast_1_1SpiceTextParser.html" title="SPICE文本内核文件解析器(parser for SPICE text kernel file)" alt="ast::SpiceTextParser" shape="rect" coords="420,56,550,80"/>
+<area href="classast_1_1SpiceSPKParser.html" title="SPICE二进制SPK内核文件解析器(parser for SPICE SPK kernel file)" alt="ast::SpiceSPKParser" shape="rect" coords="280,112,410,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -147,6 +148,8 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a5bfcd16c7414029bccdd5eafb8d409b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a388956100fb925864bcdb621d08911d9" id="r_a388956100fb925864bcdb621d08911d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a388956100fb925864bcdb621d08911d9">getLineTrim</a> ()</td></tr>
 <tr class="separator:a388956100fb925864bcdb621d08911d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadd4560aa613c4fd0865a6b2cb5357a1" id="r_aadd4560aa613c4fd0865a6b2cb5357a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aadd4560aa613c4fd0865a6b2cb5357a1">getLineSkipHashComment</a> ()</td></tr>
+<tr class="separator:aadd4560aa613c4fd0865a6b2cb5357a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21da5069622d910ae3784a60af89de6d" id="r_a21da5069622d910ae3784a60af89de6d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21da5069622d910ae3784a60af89de6d">getLineNumber</a> ()</td></tr>
 <tr class="separator:a21da5069622d910ae3784a60af89de6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f36fb73ad99afd14da9774aa18f41e8" id="r_a4f36fb73ad99afd14da9774aa18f41e8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f36fb73ad99afd14da9774aa18f41e8">getFilePath</a> () const</td></tr>
@@ -279,6 +282,26 @@ std::vector&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>
 
 <p>获取当前行号 </p>
 <p>获取当前解析器所在的行号。 </p><dl class="section return"><dt>返回</dt><dd>当前行号 </dd></dl>
+
+</div>
+</div>
+<a id="aadd4560aa613c4fd0865a6b2cb5357a1" name="aadd4560aa613c4fd0865a6b2cb5357a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadd4560aa613c4fd0865a6b2cb5357a1">&#9670;&#160;</a></span>getLineSkipHashComment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a> ast::BaseParser::getLineSkipHashComment </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取当前非#注释行（跳过#注释行） </p>
+<p>获取当前行的内容，不包含行结束符，跳过以井号 '#' 开头的行。 </p><dl class="section return"><dt>返回</dt><dd>当前行的内容（跳过#注释行） </dd></dl>
 
 </div>
 </div>

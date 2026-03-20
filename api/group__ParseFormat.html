@@ -143,14 +143,16 @@ $(function(){initNavTree('group__ParseFormat.html',''); initResizable(true); });
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 枚举</h2></td></tr>
-<tr class="memitem:gada0cf11a34db419d663fd9c7fbf10f98" id="r_gada0cf11a34db419d663fd9c7fbf10f98"><td class="memItemLeft" align="right" valign="top"><a id="gada0cf11a34db419d663fd9c7fbf10f98" name="gada0cf11a34db419d663fd9c7fbf10f98"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>kDefaultFormatDoubleEps</b> = -1
+<tr class="memitem:ga82f2843bc989eecb3ee2ca749615c015" id="r_ga82f2843bc989eecb3ee2ca749615c015"><td class="memItemLeft" align="right" valign="top"><a id="ga82f2843bc989eecb3ee2ca749615c015" name="ga82f2843bc989eecb3ee2ca749615c015"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>kDefaultFormatDoubleEps</b> = -1
  }</td></tr>
-<tr class="separator:gada0cf11a34db419d663fd9c7fbf10f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ga82f2843bc989eecb3ee2ca749615c015"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
 <tr class="memitem:ga990411f9b9e035f2b6aa322f135033cc" id="r_ga990411f9b9e035f2b6aa322f135033cc"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga990411f9b9e035f2b6aa322f135033cc">ast::fgetlinetrim</a> (char *buffer, int size, FILE *file)</td></tr>
 <tr class="separator:ga990411f9b9e035f2b6aa322f135033cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga705cb94fd0b7a45fe27f245a69444a51" id="r_ga705cb94fd0b7a45fe27f245a69444a51"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga705cb94fd0b7a45fe27f245a69444a51">ast::aIsHashCommentLine</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> line)</td></tr>
+<tr class="separator:ga705cb94fd0b7a45fe27f245a69444a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabf3c2c64218370dfc40719d20c6fc654" id="r_gabf3c2c64218370dfc40719d20c6fc654"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gabf3c2c64218370dfc40719d20c6fc654">ast::aParseBool</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> str, bool &amp;value)</td></tr>
 <tr class="separator:gabf3c2c64218370dfc40719d20c6fc654"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf44a279042760faa6761c53920365cf8" id="r_gaf44a279042760faa6761c53920365cf8"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaf44a279042760faa6761c53920365cf8">ast::aParseInt</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> str, int &amp;value)</td></tr>
@@ -712,6 +714,32 @@ A_ALWAYS_INLINE std::string&#160;</td><td class="memItemRight" valign="bottom"><
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>0 成功，其他值 失败 </dd></dl>
+
+</div>
+</div>
+<a id="ga705cb94fd0b7a45fe27f245a69444a51" name="ga705cb94fd0b7a45fe27f245a69444a51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga705cb94fd0b7a45fe27f245a69444a51">&#9670;&#160;</a></span>aIsHashCommentLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_UTIL_CAPI bool ast::aIsHashCommentLine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>line</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>判断是否为#注释行 </p>
+<p>检查给定的文本行是否以井号 '#' 开头，且行首没有空白字符。 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">line</td><td>文本行视图，指定要检查的文本行。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>如果是注释行则返回 true，否则返回 false。 </dd></dl>
 
 </div>
 </div>
