@@ -1,0 +1,165 @@
+///
+/// @file      BasicComponentLoader.cpp
+/// @brief     
+/// @details   
+/// @author    axel
+/// @date      2026-03-19
+/// @copyright 版权所有 (C) 2026-present, ast项目.
+///
+/// SpaceAST项目（https://github.com/space-ast/ast）
+/// 本项目基于 Apache 2.0 开源许可证分发。
+/// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
+/// 许可证全文请见：
+/// 
+///    http://www.apache.org/licenses/LICENSE-2.0
+/// 
+/// 重要须知：
+/// 软件按"现有状态"提供，无任何明示或暗示的担保条件。
+/// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
+/// 使用本软件所产生的风险，需由您自行承担。
+
+#include "BasicComponentLoader.hpp"
+#include "AstCore/EventTime.hpp"
+#include "AstCore/EventTimeExplicit.hpp"
+#include "AstCore/EventIntervalExplicit.hpp"
+#include "AstCore/EventIntervalLinkTo.hpp"
+#include "AstUtil/BKVParser.hpp"
+#include "AstUtil/StringUtil.hpp"
+
+AST_NAMESPACE_BEGIN
+
+
+err_t _aLoadEventTimeImplicit(BKVParser& parser, SharedPtr<EventTime>& eventTime)
+{
+    return -1;
+}
+
+err_t _aLoadEventTime(BKVParser& parser, SharedPtr<EventTime>& eventTime)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    TimePoint epoch{};
+    bool isImplicit = false;
+    SharedPtr<EventTime> internal_time;
+    token = parser.getNext(item);
+    if(token != BKVParser::eBlockBegin || !aEqualsIgnoreCase(item.value(), "EVENT")){
+        aError("expect EVENT block");
+        return -1;
+    }
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "Epoch")){
+                epoch = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "EpochState")){
+                isImplicit = aEqualsIgnoreCase(item.value(), "Implicit");  // "Implicit" 或 "Explicit"
+            }
+        }
+        else if(token == BKVParser::eBlockBegin)
+        {
+            if(aEqualsIgnoreCase(item.value(), "EVENT")){
+                // 一定是 Implicit 类型吗?
+                _aLoadEventTimeImplicit(parser, internal_time);
+            }
+        }
+        else if(token == BKVParser::eBlockEnd)
+        {
+            if(aEqualsIgnoreCase(item.value(), "EVENT")){
+                if(isImplicit && internal_time){
+                    eventTime = internal_time;
+                }else{
+                    eventTime = EventTimeExplicit::New(TimePoint::Parse(item.value()));
+                }
+            }else{
+                // @todo 处理异常情况
+            }
+            break;
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
+err_t _aLoadEventIntervalImplicit(BKVParser& parser, SharedPtr<EventInterval>& eventInterval)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    std::string type;  // 这个变量目前没有使用
+    std::string name;
+    std::string absolutePath;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "Type")){
+                type = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "Name")){
+                name = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "AbsolutePath")){
+                absolutePath = item.value().toString();
+            }
+        }
+        else if(token == BKVParser::eBlockBegin)
+        {
+
+        }
+        else if(token == BKVParser::eBlockEnd)
+        {
+            if(aEqualsIgnoreCase(item.value(), "EVENTINTERVAL")){
+                eventInterval = EventIntervalLinkTo::New(name, absolutePath);
+            }else{
+                // @todo 处理异常情况
+            }
+            break;
+        }
+    }while(token != BKVParser::eBlockEnd);
+    return eNoError;
+}
+
+err_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInterval)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    bool isImplicit = false;
+    TimeInterval interval{};
+    SharedPtr<EventInterval> internal_interval;
+    token = parser.getNext(item);
+    if(token != BKVParser::eBlockBegin || !aEqualsIgnoreCase(item.value(), "EVENTINTERVAL")){
+        aError("expect EVENTINTERVAL block");
+        return -1;
+    }
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "EventInterval")){
+                // @todo
+            }else if(aEqualsIgnoreCase(item.key(), "IntervalState")){
+                isImplicit = aEqualsIgnoreCase(item.value(), "Implicit");  // "Implicit" 或 "Explicit"
+            }
+        }
+        else if(token == BKVParser::eBlockBegin)
+        {
+            if(aEqualsIgnoreCase(item.value(), "EVENTINTERVAL")){
+                // 一定是 Implicit 类型吗?
+                _aLoadEventIntervalImplicit(parser, internal_interval);
+            }
+        }
+        else if(token == BKVParser::eBlockEnd)
+        {
+            if(aEqualsIgnoreCase(item.value(), "EVENTINTERVAL")){
+                if(isImplicit && internal_interval){
+                    eventInterval = internal_interval;
+                }else{
+                    eventInterval = EventIntervalExplicit::New(interval);
+                }
+            }else{
+                // @todo 处理异常情况
+            }
+            break;
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
+AST_NAMESPACE_END

@@ -54,6 +54,8 @@ public:
     /// @return 运动定义指针
     MotionProfile* getMotionProfile() const { return motionProfile_.get(); }
 
+    ScopedPtr<MotionProfile>& getMotionProfileHandle() { return motionProfile_; }
+
     /// @brief 设置运动定义
     void setMotionProfile(MotionProfile* profile) { motionProfile_ = profile; }
 

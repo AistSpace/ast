@@ -33,6 +33,10 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class MotionBasic;
+using PMotionBasic = MotionBasic*;
+// using HMotionBasic = SharedPtr<MotionBasic>;
+
 /// @brief 基础运动模型数据结构
 class AST_SIM_API MotionBasic: public MotionProfile
 {

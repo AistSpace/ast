@@ -145,13 +145,18 @@ err_t BKVParser::parse(BKVSax &sax)
         token = getNext(item);
         if(token == eKeyValue)
         {
-            sax.keyValue(item.key(), item.value());
-        }else if(token == eBlockBegin)
+            if(err_t rc = sax.keyValue(item.key(), item.value()))
+                return rc;
+        }
+        else if(token == eBlockBegin)
         {
-            sax.begin(item.value().toStringView());
-        }else if(token == eBlockEnd)
+            if(err_t rc = sax.begin(item.value().toStringView()))
+                return rc;
+        }
+        else if(token == eBlockEnd)
         {
-            sax.end(item.value().toStringView());
+            if(err_t rc = sax.end(item.value().toStringView()))
+                return rc;
         }
     }while(token != eEOF);
     return eNoError;

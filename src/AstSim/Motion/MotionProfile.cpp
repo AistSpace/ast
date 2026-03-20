@@ -19,9 +19,23 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "MotionProfile.hpp"
+#include "MotionTwoBody.hpp"
+#include "MotionHPOP.hpp"
 
 AST_NAMESPACE_BEGIN
 
 
+MotionHPOP *MotionProfile::toHPOP() const
+{
+    /// @todo 提升类型动态转换效率
+    return dynamic_cast<MotionHPOP*>(const_cast<MotionProfile*>(this));
+}
+
+MotionTwoBody *MotionProfile::toTwoBody() const
+{
+    /// @todo 提升类型动态转换效率
+    return dynamic_cast<MotionTwoBody*>(const_cast<MotionProfile*>(this));
+}
 
 AST_NAMESPACE_END
+

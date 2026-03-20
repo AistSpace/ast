@@ -94,6 +94,19 @@ double State::getBodyRadius() const
     return 0.0;
 }
 
+err_t State::getStateInBodyInertial(Body * body, CartState & state) const
+{
+    if(!body)
+        return eErrorNullInput;
+    auto frameInertial = body->makeFrameInertial();
+    KinematicTransform transform;
+    err_t rc = aFrameTransform(frame_, frameInertial, getStateEpoch(), transform);
+    if(rc) return rc;
+    state = transform.transformPositionVelocity(state);
+    return eNoError;
+}
+
+
 #if 0 
 
 void State::setCoordEpoch(const TimePoint &coordEpoch)

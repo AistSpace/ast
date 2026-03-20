@@ -1,12 +1,12 @@
 ///
-/// @file      EventTime.hpp
+/// @file      BasicComponentLoader.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-14
+/// @date      2026-03-19
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
-/// ast项目（https://github.com/space-ast/ast）
+/// SpaceAST项目（https://github.com/space-ast/ast）
 /// 本项目基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
 /// 许可证全文请见：
@@ -21,8 +21,10 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstUtil/Object.hpp"
-#include "AstCore/TimePoint.hpp"
+#include "AstCore/EventInterval.hpp"
+#include "AstCore/EventTime.hpp"
+#include "AstCore/CelestialBody.hpp"
+
 
 AST_NAMESPACE_BEGIN
 
@@ -31,23 +33,17 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class EventTime;
-using PEventTime = EventTime*;
-using HEventTime = SharedPtr<EventTime>;
 
-
-/// @brief 事件时间
-/// @details 
-class AST_CORE_API EventTime: public Object
+struct VehiclePathData
 {
-public:
-    virtual ~EventTime() override = default;
-    /// @brief 获取时间点
-    /// @param tp 时间点
-    /// @return 
-    virtual err_t getTime(TimePoint& tp) const = 0;
-
+    SharedPtr<CelestialBody> centralBody_;
+    bool storeEphemeris_ = false;
+    bool smoothInterp_ = false;
 };
+
+err_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInterval);
+err_t _aLoadEventTime(BKVParser& parser, SharedPtr<EventTime>& eventTime);
+
 
 /*! @} */
 

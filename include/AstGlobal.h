@@ -326,6 +326,7 @@ class System;
 class Axes;
 class Point;
 class CelestialBody;
+using Body = CelestialBody;
 
 class EventTime;
 class EventInterval;

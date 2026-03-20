@@ -19,288 +19,31 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "MoverLoader.hpp"
-#include "AstUtil/StringView.hpp"
-#include "AstUtil/BKVParser.hpp"
-#include "AstUtil/BKVItemView.hpp"
-#include "AstUtil/Literals.hpp"
-#include "AstUtil/MathDegree.hpp"
-#include "AstSim/Mover.hpp"
-#include "AstSim/MotionTwoBody.hpp"
-#include "AstSim/MotionHPOP.hpp"
-#include "AstCore/StateKeplerian.hpp"
-#include "AstCore/StateCartesian.hpp"
-#include "AstCore/EventIntervalExplicit.hpp"
-#include "AstCore/EventIntervalLinkTo.hpp"
-#include "AstCore/EventIntervalFallback.hpp"
-#include "AstCore/EventTimeLinkTo.hpp"
-#include "AstCore/EventTimeExplicit.hpp"
-#include "AstCore/EventTimeFallback.hpp"
-#include "AstCore/RunTime.hpp"
-#include "AstCore/BuiltinAxes.hpp"
-#include "AstCore/CelestialBody.hpp"
+#include "CommonlyUsedHeaders.hpp"
+#include "MotionTwoBodySax.hpp"
+#include "MotionHPOPSax.hpp"
 
 AST_NAMESPACE_BEGIN
 
-err_t _aLoadEventTimeImplicit(BKVParser& parser, SharedPtr<EventTime>& eventTime)
+
+
+
+err_t _aLoadTwoBody(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
 {
-    return -1;
+    MotionTwoBodySax sax(parser, vehiclePathData);
+    err_t rc = parser.parse(sax);
+    A_UNUSED(rc);
+    return sax.getMotion(motionProfile);
 }
 
-err_t _aLoadEventTime(BKVParser& parser, SharedPtr<EventTime>& eventTime)
+err_t _aLoadHPOP(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
 {
-    BKVItemView item;
-    BKVParser::EToken token;
-    TimePoint epoch{};
-    bool isImplicit = false;
-    do{
-        token = parser.getNext(item);
-        if(token == BKVParser::eKeyValue)
-        {
-            if(aEqualsIgnoreCase(item.key(), "Epoch")){
-                epoch = TimePoint::Parse(item.value());
-            }else if(aEqualsIgnoreCase(item.key(), "EpochState")){
-                isImplicit = aEqualsIgnoreCase(item.value(), "Implicit");  // "Implicit" 或 "Explicit"
-            }
-        }
-        else if(token == BKVParser::eBlockBegin)
-        {
-
-        }
-        else if(token == BKVParser::eBlockEnd)
-        {
-            if(aEqualsIgnoreCase(item.value(), "EVENT")){
-                if(isImplicit){
-                    return _aLoadEventTimeImplicit(parser, eventTime);
-                }else{
-                    eventTime = EventTimeExplicit::New(TimePoint::Parse(item.value()));
-                }
-            }else{
-                // @todo 处理异常情况
-            }
-            break;
-        }
-    }while(token != BKVParser::eEOF);
-    return eNoError;
+    MotionHPOPSax sax(parser, vehiclePathData);
+    err_t rc = parser.parse(sax);
+    A_UNUSED(rc);
+    return sax.getMotion(motionProfile);
 }
 
-err_t _aLoadEventIntervalImplicit(BKVParser& parser, SharedPtr<EventInterval>& eventInterval)
-{
-    BKVItemView item;
-    BKVParser::EToken token;
-    std::string type;
-    std::string name;
-    std::string absolutePath;
-    do{
-        token = parser.getNext(item);
-        if(token == BKVParser::eKeyValue)
-        {
-            if(aEqualsIgnoreCase(item.key(), "Type")){
-                type = item.value().toString();
-            }else if(aEqualsIgnoreCase(item.key(), "Name")){
-                name = item.value().toString();
-            }else if(aEqualsIgnoreCase(item.key(), "AbsolutePath")){
-                absolutePath = item.value().toString();
-            }
-        }
-        else if(token == BKVParser::eBlockBegin)
-        {
-
-        }
-        else if(token == BKVParser::eBlockEnd)
-        {
-            if(aEqualsIgnoreCase(item.value(), "EVENTINTERVAL")){
-                // @todo 怎么处理 EVENTINTERVAL_LINKTO 类型??
-                // 目前这里的实现是空的
-                eventInterval = EventIntervalLinkTo::New(name, absolutePath);
-            }else{
-                // @todo 处理异常情况
-            }
-        }
-    }while(token != BKVParser::eBlockEnd);
-    return eNoError;
-}
-
-err_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInterval)
-{
-    BKVItemView item;
-    BKVParser::EToken token;
-    bool isImplicit = false;
-    TimeInterval interval{};
-    do{
-        token = parser.getNext(item);
-        if(token == BKVParser::eKeyValue)
-        {
-            if(aEqualsIgnoreCase(item.key(), "EventInterval")){
-                // @todo
-            }else if(aEqualsIgnoreCase(item.key(), "IntervalState")){
-                isImplicit = aEqualsIgnoreCase(item.value(), "Implicit");  // "Implicit" 或 "Explicit"
-            }
-        }
-        else if(token == BKVParser::eBlockBegin)
-        {
-
-        }
-        else if(token == BKVParser::eBlockEnd)
-        {
-            if(aEqualsIgnoreCase(item.value(), "EVENTINTERVAL")){
-                if(isImplicit){
-                    return _aLoadEventIntervalImplicit(parser, eventInterval);
-                }else{
-                    eventInterval = EventIntervalExplicit::New(interval);
-                }
-            }else{
-                // @todo 处理异常情况
-            }
-            break;
-        }
-    }while(token != BKVParser::eEOF);
-    return eNoError;
-}
-
-struct VehiclePathData
-{
-    SharedPtr<CelestialBody> centralBody_;
-    bool storeEphemeris_ = false;
-    bool smoothInterp_ = false;
-};
-
-
-err_t _aLoadTwoBody(BKVParser& parser, const VehiclePathData& vehiclePathData, MotionTwoBody& motionProfile)
-{
-    BKVItemView item;
-    BKVParser::EToken token;
-    SharedPtr<StateKeplerian> stateKeplerian = StateKeplerian::New();
-    struct {
-        SharedPtr<EventTime> ephemSmartEpoch_;
-        SharedPtr<EventInterval> ephemSmartInterval_;
-        TimePoint ephemEpoch_;
-        TimePoint startTime_;
-        TimePoint stopTime_;
-        bool useScenTime_ = false;
-        double radiusOfPerigee_ = 0.0;
-        double inclination_ = 0.0;
-        double eccentricity_ = 0.0;
-        double argOfPerigee_ = 0.0;
-        double rightAscension_ = 0.0;
-        double trueAnomaly_ = 0.0;
-        double timeStep_ = 0.0;
-        std::string orbElemCoordSys_;
-        SharedPtr<Axes> orbElemCoordAxes_;
-        std::string propagationCoordSys_;
-        SharedPtr<Axes> propagationCoordAxes_;
-        int displayCoordType_ = 0;
-        std::string displayCoordSys_;
-        SharedPtr<Axes> displayCoordAxes_;
-        /* ellipseType_ */
-    } data;
-    do{
-        token = parser.getNext(item);
-        if(token == BKVParser::eKeyValue)
-        {
-            if(aEqualsIgnoreCase(item.key(), "EphemSmartEpoch")){
-                if(err_t rc = _aLoadEventTime(parser, data.ephemSmartEpoch_))
-                    return rc;
-            }else if(aEqualsIgnoreCase(item.key(), "EphemSmartInterval")){
-                if(err_t rc = _aLoadEventInterval(parser, data.ephemSmartInterval_))
-                    return rc;
-            }else if(aEqualsIgnoreCase(item.key(), "EphemEpoch")){
-                // @note 这不是与EphemSmartEpoch重复了吗？为什么有两个地方都有值，应该以哪个为准?
-                data.ephemEpoch_ = TimePoint::Parse(item.value());
-            }else if(aEqualsIgnoreCase(item.key(), "StartTime")){
-                // @note 这里也和EphemSmartInterval重复了，但是这里才有实际数据
-                data.startTime_ = TimePoint::Parse(item.value());
-            }else if(aEqualsIgnoreCase(item.key(), "StopTime")){
-                // @note 这里也和EphemSmartInterval重复了，但是这里才有实际数据
-                data.stopTime_ = TimePoint::Parse(item.value());
-            }else if(aEqualsIgnoreCase(item.key(), "UseScenTime")){
-                data.useScenTime_ = item.value().toBool();
-            }else if(aEqualsIgnoreCase(item.key(), "RadiusOfPerigee")){
-                data.radiusOfPerigee_ = item.value().toDouble();
-            }else if(aEqualsIgnoreCase(item.key(), "Inclination")){
-                data.inclination_ = deg2rad(item.value().toDouble());
-            }else if(aEqualsIgnoreCase(item.key(), "Eccentricity")){
-                data.eccentricity_ = item.value().toDouble();
-            }else if(aEqualsIgnoreCase(item.key(), "ArgOfPerigee")){
-                data.argOfPerigee_ = deg2rad(item.value().toDouble());
-            }else if(aEqualsIgnoreCase(item.key(), "RightAscension")){
-                data.rightAscension_ = deg2rad(item.value().toDouble());
-            }else if(aEqualsIgnoreCase(item.key(), "TrueAnomaly")){
-                data.trueAnomaly_ = deg2rad(item.value().toDouble());
-            }else if(aEqualsIgnoreCase(item.key(), "TimeStep")){
-                data.timeStep_ = item.value().toDouble();
-            }else if(aEqualsIgnoreCase(item.key(), "OrbElemCoordSys")){
-                data.orbElemCoordSys_ = item.value().toString();
-                data.orbElemCoordAxes_ = aGetAxes(data.orbElemCoordSys_);
-            }else if(aEqualsIgnoreCase(item.key(), "PropagationCoordSys")){
-                data.propagationCoordSys_ = item.value().toString();
-                data.propagationCoordAxes_ = aGetAxes(data.propagationCoordSys_);
-            }else if(aEqualsIgnoreCase(item.key(), "DisplayCoordType")){
-                data.displayCoordType_ = item.value().toInt();
-            }else if(aEqualsIgnoreCase(item.key(), "DisplayCoordSys")){
-                data.displayCoordSys_ = item.value().toString();
-                data.displayCoordAxes_ = aGetAxes(data.displayCoordSys_);
-            }else if(aEqualsIgnoreCase(item.key(), "EllipseType")){
-                // @todo 这是什么??? 椭圆类型是什么意思???
-            }
-        }else if(token == BKVParser::eBlockBegin){
-            if(aEqualsIgnoreCase(item.value(), "DisplayFlags")){
-                // @todo 处理显示标志
-            }
-        }else if(token == BKVParser::eBlockEnd){
-            if(aEqualsIgnoreCase(item.value(), "TwoBody")){
-                ModOrbElem modOrbElem;
-                modOrbElem.rp() = data.radiusOfPerigee_;
-                modOrbElem.e() = data.eccentricity_;
-                modOrbElem.i() = data.inclination_;
-                modOrbElem.raan() = data.rightAscension_;
-                modOrbElem.argper() = data.argOfPerigee_;
-                modOrbElem.trueA() = data.trueAnomaly_;
-
-                auto explicitEpoch = EventTimeExplicit::New(data.ephemEpoch_);
-                auto explicitInterval = EventIntervalExplicit::New(data.startTime_, data.stopTime_);
-                auto frame = vehiclePathData.centralBody_->makeFrame(data.orbElemCoordAxes_);
-                stateKeplerian->setFrame(frame);
-                stateKeplerian->setState(modOrbElem);
-                stateKeplerian->setStateEpoch(EventTimeFallback::New(data.ephemSmartEpoch_, explicitEpoch));
-                motionProfile.setInitialState(stateKeplerian);
-                motionProfile.setInterval(EventIntervalFallback::New(data.ephemSmartInterval_, explicitInterval));
-                return eNoError;
-            }
-        }
-    }while(token != BKVParser::eEOF);
-    return eNoError;
-}
-
-err_t _aLoadHPOP(BKVParser& parser, const VehiclePathData& vehiclePathData, MotionHPOP& motionProfile)
-{
-    return eNoError;
-}
-
-err_t _aLoadTwoBody(BKVParser& parser, const VehiclePathData& vehiclePathData, Mover& mover)
-{
-    PMotionTwoBody motionProfile = MotionTwoBody::New();
-    if(!motionProfile){
-        return eErrorInvalidParam;
-    }
-    if(err_t rc = _aLoadTwoBody(parser, vehiclePathData, *motionProfile)){
-        return rc;
-    }
-    mover.setMotionProfile(motionProfile);
-    return eNoError;
-}
-
-err_t _aLoadHPOP(BKVParser& parser, const VehiclePathData& vehiclePathData, Mover& mover)
-{
-    PMotionHPOP motionProfile = MotionHPOP::New();
-    if(!motionProfile){
-        return eErrorInvalidParam;
-    }
-    if(err_t rc = _aLoadHPOP(parser, vehiclePathData, *motionProfile)){
-        return rc;
-    }
-    mover.setMotionProfile(motionProfile);
-    return eNoError;
-}
 
 err_t _aLoadPassDefn(BKVParser& parser, Mover& mover)
 {
@@ -367,13 +110,13 @@ err_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
             }
         }else if(token == BKVParser::eBlockBegin){
             if(aEqualsIgnoreCase(item.value(), "TwoBody")){
-                if(err_t rc = _aLoadTwoBody(parser, data, mover)){
+                if(err_t rc = _aLoadTwoBody(parser, data, mover.getMotionProfileHandle())){
                     return rc;
                 }
             }
             else if(aEqualsIgnoreCase(item.value(), "HPOP"))
             {
-                if(err_t rc = _aLoadHPOP(parser, data, mover)){
+                if(err_t rc = _aLoadHPOP(parser, data, mover.getMotionProfileHandle())){
                     return rc;
                 }
             }

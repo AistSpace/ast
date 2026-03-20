@@ -100,7 +100,7 @@ public:
     SharedPtr<EventTime>& getStateEpochHandle(){ return stateEpoch_; }
 
     /// @brief 获取天体
-    CelestialBody* getBody() const;
+    Body* getBody() const;
 
     /// @brief 获取天体半径
     /// @return double 天体半径
@@ -113,7 +113,14 @@ public:
     /// @brief 设置引力常数
     /// @param gm 引力常数
     void setGM(double gm){ gm_ = gm; }
+public:
+    /// @brief 获取在给定天体惯性坐标系下的状态量
+    /// @param body 天体
+    /// @param state 状态
+    /// @return err_t 错误码
+    err_t getStateInBodyInertial(Body* body, CartState& state) const;
 
+public:
 
 
 #if 0 

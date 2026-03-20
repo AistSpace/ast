@@ -63,6 +63,20 @@ public:
     /// @return 速度
     const Vector3d& vel() const {return vel_;} 
     Vector3d& vel() {return vel_;}
+
+    double& x() {return pos_.x();}
+    double& y() {return pos_.y();}
+    double& z() {return pos_.z();}
+    double& vx() {return vel_.x();}
+    double& vy() {return vel_.y();}
+    double& vz() {return vel_.z();}
+
+    double x() const {return pos_.x();}
+    double y() const {return pos_.y();}
+    double z() const {return pos_.z();}
+    double vx() const {return vel_.x();}
+    double vy() const {return vel_.y();}
+    double vz() const {return vel_.z();}
 };
 
 

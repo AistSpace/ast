@@ -31,12 +31,22 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class MotionProfile;
+using PMotionProfile = MotionProfile*;
+// using HMotionProfile = ScopedPtr<MotionProfile>;
+
+class MotionTwoBody;
+class MotionHPOP;
+
 /// @brief 运动定义接口
 class AST_SIM_API MotionProfile
 {
 public:
     MotionProfile() = default;
     virtual ~MotionProfile() = default;
+public:
+    MotionHPOP* toHPOP() const;
+    MotionTwoBody* toTwoBody() const;
 public:
     /// @brief 生成特定星历
     /// @param eph 星历指针

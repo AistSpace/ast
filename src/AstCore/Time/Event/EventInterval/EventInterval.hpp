@@ -31,6 +31,10 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class EventInterval;
+using PEventInterval = EventInterval*;
+using HEventInterval = SharedPtr<EventInterval>;
+
 /// @brief 事件时间段
 class AST_CORE_API EventInterval: public Object
 {

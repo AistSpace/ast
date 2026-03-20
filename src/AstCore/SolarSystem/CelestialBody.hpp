@@ -43,6 +43,9 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class CelestialBody;
+using Body = CelestialBody;
+
 /// @brief 天体
 class AST_CORE_API CelestialBody : public Point
 {
