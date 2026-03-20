@@ -34,6 +34,9 @@ AST_NAMESPACE_BEGIN
 
 static bool isCommentLine(StringView line)
 {
+    // 特殊情况：nullptr 字符串不是注释行
+    if(line.data() == nullptr)
+        return false;
     for(char c : line)
     {
         if(!isspace(static_cast<unsigned char>(c)))
@@ -121,7 +124,7 @@ StringView BKVParser::getLineSkipComment()
     StringView line;
     do{
         line = getLine();
-    }while(isCommentLine(line));
+    }while(isCommentLine(line) && line.data() != nullptr);
     return line;
 }
 

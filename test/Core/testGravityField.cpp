@@ -121,6 +121,36 @@ TEST(GravityField, load_gfc)
 
 }
 
+TEST(GravityField, loadATK)
+{
+    std::string file1 = aDataDirGet() + "/Test/ATK/v1/GEMT1.grv";
+    std::string file2 = aDataDirGet() + "/Test/ATK/v1/GEMT1.grv";
+
+    GravityField gf1, gf2;
+    err_t err1 = gf1.load(file1);
+    err_t err2 = gf2.load(file2);
+    EXPECT_EQ(err1, eNoError);
+    EXPECT_EQ(err2, eNoError);
+    
+    EXPECT_EQ(gf1.getMaxDegree(), 36);
+    EXPECT_EQ(gf2.getMaxDegree(), 36);
+    EXPECT_EQ(gf1.getMaxOrder(), 36);
+    EXPECT_EQ(gf2.getMaxOrder(), 36);
+    EXPECT_EQ(gf1.getGM(), 3.98600436000e+14);
+    EXPECT_EQ(gf2.getGM(), 3.98600436000e+14);
+    EXPECT_EQ(gf1.getRefDistance(), 6378137.0);
+    EXPECT_EQ(gf2.getRefDistance(), 6378137.0);
+
+    EXPECT_TRUE(gf1.isNormalized());
+    EXPECT_TRUE(gf2.isNormalized());
+
+    EXPECT_EQ(gf1.getCnm(3, 0), 0.957237510000e-06);
+    EXPECT_EQ(gf1.getSnm(3, 0), 0.0);
+    EXPECT_EQ(gf1.getCnm(16, 8), -0.134375890000e-07);
+    EXPECT_EQ(gf1.getSnm(16, 9), -0.509824550e-07);
+
+}
+
 
 TEST(GravityField, normalize)
 {

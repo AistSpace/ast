@@ -133,8 +133,7 @@ public: // 辅助信息
     /// @param file 文件指针
     void setOwnedFile(FILE* file);
 
-
-protected:
+    /// @brief 获取当前解析器使用的文件指针
     FILE* getFile() const { return file_; }
 protected:
     FILE*             file_{nullptr};           ///< 文件指针
