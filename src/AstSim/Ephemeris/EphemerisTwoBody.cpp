@@ -27,7 +27,7 @@ AST_NAMESPACE_BEGIN
 EphemerisTwoBody::EphemerisTwoBody()
     : frame_{aFrameECI()}
 {
-
+    gm_ = frame_->getGM();
 }
 
 EphemerisTwoBody::EphemerisTwoBody(Frame *frame, double gm, const TimePoint &epoch, const Vector3d &pos, const Vector3d &vel)

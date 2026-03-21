@@ -1,5 +1,5 @@
 ///
-/// @file      CowVector.hpp
+/// @file      CorVector.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -90,7 +90,12 @@ public:
     
     CorVector(CorVector&& other) noexcept 
     {
-        this->swap(other);
+        this->data_ = other.data_;
+        this->size_ = other.size_;
+        this->allocator_ = other.allocator_;
+        other.data_ = nullptr;
+        other.size_ = 0;
+        other.allocator_ = {nullptr};
     }
     
     ~CorVector() {
@@ -429,9 +434,9 @@ protected:
         return allocator_.end_of_storage_;
     }
 protected:
-    T*                 data_;            ///< 指向数据的指针
-    size_t             size_;            ///< 容器当前大小
-    CorVectorAllocator allocator_{};     ///< 内存分配器
+    T*                 data_{nullptr};      ///< 指向数据的指针
+    size_t             size_{0};            ///< 容器当前大小
+    CorVectorAllocator allocator_{};        ///< 内存分配器
 protected:
 
     // 分配内存并复制数据

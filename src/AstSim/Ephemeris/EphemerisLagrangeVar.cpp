@@ -43,7 +43,7 @@ err_t EphemerisLagrangeVar::getPos(const TimePoint &tp, Vector3d &pos) const
         return 0;
     }else{
         // 插值
-        int n = std::max(interpolateOrder_ + 1, static_cast<int>(positions_.size()));
+        int n = std::min(interpolateOrder_ + 1, static_cast<int>(positions_.size()));
         int start = index - n / 2;
         if(start < 0){
             start = 0;

@@ -44,7 +44,7 @@ public: // 从Point继承重写的函数
     err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
 protected:
     SharedPtr<CelestialBody> body_;                 ///< 设施所在的天体
-    GeodeticPoint            position_;             ///< 设施位置
+    GeodeticPoint            position_{};           ///< 设施位置
 };
 
 /*! @} */

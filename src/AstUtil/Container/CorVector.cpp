@@ -1,5 +1,5 @@
 ///
-/// @file      CowVector.cpp
+/// @file      CorVector.cpp
 /// @brief     
 /// @details   
 /// @author    axel

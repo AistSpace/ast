@@ -76,7 +76,7 @@ protected:
     SharedPtr<State>            initialState_;          ///< 初始状态
     SharedPtr<EventInterval>    interval_;              ///< 时间段
     SharedPtr<Frame>            propagationFrame_;      ///< 预报坐标系
-    double                      stepSize_;              ///< 生成星历步长
+    double                      stepSize_{60.0};        ///< 生成星历步长
 };
 
 /*! @} */

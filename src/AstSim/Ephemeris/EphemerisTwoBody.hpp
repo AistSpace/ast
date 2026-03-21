@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "AstSim/Ephemeris.hpp"
 #include "AstCore/TimePoint.hpp"
+#include "AstCore/BuiltinFrame.hpp"
 #include "AstMath/Vector.hpp"
 
 AST_NAMESPACE_BEGIN
@@ -52,7 +53,7 @@ public:
     err_t getPos(const TimePoint& tp, Vector3d& pos) const override;
     err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
 protected:
-    SharedPtr<Frame> frame_{};
+    SharedPtr<Frame> frame_{aFrameECI()};
     double           gm_{0.0};
     TimePoint        epoch_{};
     Vector3d         initpos_{};
