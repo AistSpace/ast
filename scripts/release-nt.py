@@ -178,6 +178,94 @@ def create_zip():
     
     print(f"Created zip file: {zip_path}")
 
+def count_code_lines():
+    """统计src目录下每个模块的代码行数，分为总行数、头文件行数、源文件行数"""
+    src_dir = os.path.join(ROOT_DIR, 'src')
+    total_lines = 0
+    total_lines_header = 0
+    total_lines_source = 0
+    total_files = 0
+    module_stats = {}
+    
+    print("\nCounting code lines in src directory...")
+    
+    for root, dirs, files in os.walk(src_dir):
+        # 跳过不需要统计的目录
+        dirs[:] = [d for d in dirs if d not in EXCLUDE_DIRS]
+        
+        # 确定当前模块名称
+        rel_path = os.path.relpath(root, src_dir)
+        if rel_path == '.':
+            # 处理src根目录下的文件
+            for file in files:
+                if file.endswith('.hpp') or file.endswith('.cpp'):
+                    file_path = os.path.join(root, file)
+                    try:
+                        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                            lines = len(f.readlines())
+                            total_lines += lines
+                            total_files += 1
+                            if file.endswith('.hpp'):
+                                total_lines_header += lines
+                            else:
+                                total_lines_source += lines
+                    except Exception as e:
+                        print(f"Error reading {file_path}: {e}")
+            continue
+        
+        # 获取模块名称（第一个目录）
+        module_name = rel_path.split(os.sep)[0]
+        
+        # 初始化模块统计数据
+        if module_name not in module_stats:
+            module_stats[module_name] = {
+                'total_lines': 0,
+                'header_lines': 0,
+                'source_lines': 0,
+                'total_files': 0,
+                'header_files': 0,
+                'source_files': 0
+            }
+        
+        for file in files:
+            if file.endswith('.hpp') or file.endswith('.cpp'):
+                file_path = os.path.join(root, file)
+                try:
+                    with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                        lines = len(f.readlines())
+                        total_lines += lines
+                        total_files += 1
+                        if file.endswith('.hpp'):
+                            total_lines_header += lines
+                        else:
+                            total_lines_source += lines
+                        
+                        # 更新模块统计数据
+                        module_stats[module_name]['total_lines'] += lines
+                        module_stats[module_name]['total_files'] += 1
+                        if file.endswith('.hpp'):
+                            module_stats[module_name]['header_lines'] += lines
+                            module_stats[module_name]['header_files'] += 1
+                        elif file.endswith('.cpp'):
+                            module_stats[module_name]['source_lines'] += lines
+                            module_stats[module_name]['source_files'] += 1
+                except Exception as e:
+                    print(f"Error reading {file_path}: {e}")
+    
+    # 打印每个模块的统计结果
+    print("\nModule code line statistics:")
+    print("-" * 100)
+    print(f"{'Module':<20} {'Total Files':<12} {'Header Files':<12} {'Source Files':<12} {'Total Lines':<12} {'Header Lines':<12} {'Source Lines':<12}")
+    print("-" * 100)
+    
+    for module_name, stats in sorted(module_stats.items()):
+        print(f"{module_name:<20} {stats['total_files']:<12} {stats['header_files']:<12} {stats['source_files']:<12} {stats['total_lines']:<12} {stats['header_lines']:<12} {stats['source_lines']:<12}")
+    
+    print("-" * 100)
+    print(f"{'Total':<20} {total_files:<12} {'-':<12} {'-':<12} {total_lines:<12} {total_lines_header:<12} {total_lines_source:<12}")
+    
+    return total_lines
+
 def main():
     """主函数"""
     print("Starting release process...")
@@ -191,14 +279,23 @@ def main():
     # 合并模块源文件
     merge_module_sources()
     
+    
     # 创建压缩包
     create_zip()
     
-    # 复原所有被修改的文件
+    # 复原所有被修改的文件，但排除脚本本身
     import subprocess
     print("Restoring modified files...")
+    # 首先获取脚本的相对路径
+    script_rel_path = os.path.relpath(__file__, ROOT_DIR)
+    # 执行git checkout，排除脚本本身
+    subprocess.run(['git', 'add', script_rel_path], cwd=ROOT_DIR, check=True)
     subprocess.run(['git', 'checkout', '--', '.'], cwd=ROOT_DIR, check=True)
+    restore_module_sources()
     print("Files restored successfully!")
+
+    # 统计代码行数
+    count_code_lines()
     
     print("Release process completed!")
 
