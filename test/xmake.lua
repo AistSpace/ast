@@ -1,8 +1,19 @@
 ﻿set_group("test")
-add_deps("AstCore", "AstUtil", "AstOpt", "AstMock", "AstMath", "AstScript", "AstWeather", "AstSPICE")
+add_deps(
+    "AstCore", 
+    "AstUtil", 
+    "AstOpt", 
+    "AstMock", 
+    "AstMath", 
+    "AstScript", 
+    "AstWeather", 
+    "AstSPICE", 
+    "AstSim"
+)
 add_packages("gtest")
 add_packages("benchmark")
 
+set_warnings("more")
 
 if has_package("gtest") then
     local test_files = os.files("**/test*.c*|Archive/**")
@@ -36,7 +47,7 @@ for _, file in ipairs(asc_files) do
     local basename = path.basename(file)
     local filepath = path.join(os.scriptdir(), file)
     target(basename)
-        add_files(file)
+        -- add_files(file)
         set_kind("phony")
         add_deps("ascript")
         add_tests("script")

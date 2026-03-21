@@ -253,4 +253,36 @@ TEST(QuantityParser, ScientificNotation)
     EXPECT_NEAR(quantity.value(), 1230.0, 1e-9);
 }
 
+TEST(QuantityParser, DegreeUnit)
+{
+    Quantity quantity;
+    
+    err_t err = aQuantityParse("123 deg", quantity);
+    EXPECT_EQ(err, eNoError);
+    EXPECT_EQ(quantity, 123 * deg);
+    EXPECT_TRUE(quantity.isValid());
+    EXPECT_NEAR(quantity.value(), 123.0, 1e-9);
+
+
+    err = aQuantityParse(aText("456 °"), quantity);
+    EXPECT_EQ(err, eNoError);
+    EXPECT_EQ(quantity, 456 * deg);
+    EXPECT_TRUE(quantity.isValid());
+    EXPECT_NEAR(quantity.value(), 456.0, 1e-9);
+
+    err = aQuantityParse(aText("789.123 ″"), quantity);
+    EXPECT_EQ(err, eNoError);
+    EXPECT_EQ(quantity, 789.123 * arcsec);
+    EXPECT_TRUE(quantity.isValid());
+    EXPECT_NEAR(quantity.value(), 789.123, 1e-9);
+
+    // 测试对于空格的支持
+    err = aQuantityParse(aText("  123.456  ″  "), quantity);
+    EXPECT_EQ(err, eNoError);
+    EXPECT_EQ(quantity, 123.456 * arcsec);
+    EXPECT_TRUE(quantity.isValid());
+    EXPECT_NEAR(quantity.value(), 123.456, 1e-9);
+
+}
+
 GTEST_MAIN()

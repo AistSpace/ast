@@ -21,7 +21,12 @@
 #include "OrbitParam.hpp" 
 #include "AstCore/MathOperator.hpp"
 #include "AstCore/Constants.h"
+#include "AstCore/TimePoint.hpp"
+#include "AstCore/Axes.hpp"
+#include "AstUtil/Math.hpp"
 #include "AstUtil/Logger.hpp"
+#include "AstMath/Vector.hpp"
+#include "AstMath/Rotation.hpp"
 #include <cmath>
 
 #define PI kPI
@@ -29,60 +34,58 @@
  
 AST_NAMESPACE_BEGIN
 
+using namespace math;
 
 
 // #define INVALID_PARAM(val) val
 #define INVALID_PARAM(val) NAN
 
-double aApoAltToApoRad(double apogeeAlt, double cbRadius)
-{
-    return apogeeAlt + cbRadius;
-}
 
-double aApoAltToMeanMotn(double apogeeAlt, double eccentricity, double cbRadius, double gm)
+
+double aApoAltToMeanMotion(double apogeeAlt, double eccentricity, double bodyRadius, double gm)
 {
-    double apoRad = apogeeAlt + cbRadius;
+    double apoRad = apogeeAlt + bodyRadius;
     double smajAx = apoRad / (1 + eccentricity);
     return sqrt(gm / (smajAx * smajAx * smajAx));
 }
 
-double aApoAltToPeriAlt(double apogeeAlt, double eccentricity, double cbRadius)
+double aApoAltToPeriAlt(double apogeeAlt, double eccentricity, double bodyRadius)
 {
-    return (apogeeAlt + cbRadius) / (1 + eccentricity) * (1 - eccentricity) - cbRadius;
+    return (apogeeAlt + bodyRadius) / (1 + eccentricity) * (1 - eccentricity) - bodyRadius;
 }
 
-double aApoAltToPeriRad(double apogeeAlt, double eccentricity, double cbRadius)
+double aApoAltToPeriRad(double apogeeAlt, double eccentricity, double bodyRadius)
 {
-    return (apogeeAlt + cbRadius) * (1 - eccentricity) / (1 + eccentricity);
+    return (apogeeAlt + bodyRadius) * (1 - eccentricity) / (1 + eccentricity);
 }
 
-double aApoAltToPeriod(double apogeeAlt, double eccentricity, double cbRadius, double gm)
+double aApoAltToPeriod(double apogeeAlt, double eccentricity, double bodyRadius, double gm)
 {
-    double apoRad = apogeeAlt + cbRadius;
+    double apoRad = apogeeAlt + bodyRadius;
     double smajAx = apoRad / (1 + eccentricity);
     return  kTwoPI * sqrt((smajAx * smajAx * smajAx) / gm);
 }
 
-double aApoAltToSMajAx(double apogeeAlt, double eccentricity, double cbRadius)
+double aApoAltToSMA(double apogeeAlt, double eccentricity, double bodyRadius)
 {
-    double apoRad = apogeeAlt + cbRadius;
+    double apoRad = apogeeAlt + bodyRadius;
     return apoRad / (1 + eccentricity);
 }
 
-double aApoRadToApoAlt(double apogeeRad, double cbRadius)
+double aApoRadToApoAlt(double apogeeRad, double bodyRadius)
 {
-    return apogeeRad - cbRadius;
+    return apogeeRad - bodyRadius;
 }
 
-double aApoRadToMeanMotn(double apogeeRad, double eccentricity, double gm)
+double aApoRadToMeanMotion(double apogeeRad, double eccentricity, double gm)
 {
     double smajAx = apogeeRad / (1 + eccentricity);
     return sqrt(gm / (smajAx * smajAx * smajAx));
 }
 
-double aApoRadToPeriAlt(double apogeeRad, double eccentricity, double cbRadius)
+double aApoRadToPeriAlt(double apogeeRad, double eccentricity, double bodyRadius)
 {
-    return apogeeRad * (1 - eccentricity) / (1 + eccentricity) - cbRadius;
+    return apogeeRad * (1 - eccentricity) / (1 + eccentricity) - bodyRadius;
 }
 
 
@@ -97,7 +100,8 @@ double	aApoRadToPeriRad(double apogeeRad, double eccentricity)
     assert(eccentricity >=0);
     return apogeeRad * (1 - eccentricity) / (1 + eccentricity);
 }
-double	aApoRadToSMajAx(double apogeeRad, double eccentricity)
+
+double aApoRadToSMA(double apogeeRad, double eccentricity)
 {
     return apogeeRad / (1 + eccentricity);
 }
@@ -143,12 +147,12 @@ double	aEccToTrue(double E, double e)
     return f;
 }
 // time pass ascn node 过升交点时间
-double	aEccToTPAN(double E, double argPeri, double semiMajorAxis, double e, double gm)
+double	aEccToTimePastAscNode(double E, double argPeri, double semiMajorAxis, double e, double gm)
 {
-    return aEccToTPP(E, semiMajorAxis, e, gm) + aTrueToTPP(argPeri, semiMajorAxis, e, gm);
+    return aEccToTimePastPeri(E, semiMajorAxis, e, gm) + aTrueToTimePastPeri(argPeri, semiMajorAxis, e, gm);
 }
 // time pass perigee 过近心点时间
-double	aEccToTPP(double E, double semiMajorAxis, double e, double gm)
+double	aEccToTimePastPeri(double E, double semiMajorAxis, double e, double gm)
 {
     if (e < 0) {
         return INVALID_PARAM(E);
@@ -169,33 +173,33 @@ double	aEccToTPP(double E, double semiMajorAxis, double e, double gm)
     }
 }
 
-double	aMeanMotnToApoAlt(double meanMotion, double eccentricity, double cbRadius, double gm)
+double	aMeanMotionToApoAlt(double meanMotion, double eccentricity, double bodyRadius, double gm)
 {
     double smjax = cbrt(gm / (meanMotion * meanMotion));
-    return smjax * (1 + eccentricity) - cbRadius;
+    return smjax * (1 + eccentricity) - bodyRadius;
 }
 
-double	aMeanMotnToApoRad(double meanMotion, double eccentricity, double gm)
+double	aMeanMotionToApoRad(double meanMotion, double eccentricity, double gm)
 {
     double smjax = cbrt(gm / (meanMotion * meanMotion));
     return smjax * (1 + eccentricity);
 }
-double	aMeanMotnToPeriAlt(double meanMotion, double eccentricity, double cbRadius, double gm)
+double	aMeanMotionToPeriAlt(double meanMotion, double eccentricity, double bodyRadius, double gm)
 {
     double smjax = cbrt(gm / (meanMotion * meanMotion));
-    return smjax * (1 - eccentricity) - cbRadius;
+    return smjax * (1 - eccentricity) - bodyRadius;
 }
 
-double	aMeanMotnToPeriRad(double meanMotion, double eccentricity, double gm)
+double	aMeanMotionToPeriRad(double meanMotion, double eccentricity, double gm)
 {
     double smjax = cbrt(gm / (meanMotion * meanMotion));
     return smjax * (1 - eccentricity);
 }
-double	aMeanMotnToPeriod(double meanMotn)
+double	aMeanMotionToPeriod(double meanMotn)
 {
     return PI2 / meanMotn;
 }
-double	aMeanMotnToSMajAx(double meanMotn, double gm)
+double	aMeanMotionToSMA(double meanMotn, double gm)
 {
     return cbrt(gm / (meanMotn * meanMotn));
 }
@@ -266,11 +270,11 @@ double	aMeanToEcc(double M, double e, double eps, int maxIter)
     }
     return E;
 }
-double	aMeanToTPAN(double meanAnomaly, double argPeri, double semiMajorAxis, double eccentricity, double gm)
+double	aMeanToTimePastAscNode(double meanAnomaly, double argPeri, double semiMajorAxis, double eccentricity, double gm)
 {
-    return aMeanToTPP(meanAnomaly, semiMajorAxis, gm) + aTrueToTPP(argPeri, semiMajorAxis, eccentricity, gm);
+    return aMeanToTimePastPeri(meanAnomaly, semiMajorAxis, gm) + aTrueToTimePastPeri(argPeri, semiMajorAxis, eccentricity, gm);
 }
-double	aMeanToTPP(double meanAnomaly, double semiMajorAxis, double gm)
+double	aMeanToTimePastPeri(double meanAnomaly, double semiMajorAxis, double gm)
 {
     return meanAnomaly * sqrt(pow(std::abs(semiMajorAxis), 3) / gm);
 }
@@ -279,173 +283,175 @@ double	aMeanToTrue(double meanAnomaly, double eccentricity, double eps, int maxI
     double E = aMeanToEcc(meanAnomaly, eccentricity, eps, maxIter);
     return aEccToTrue(E, eccentricity);
 }
-double	aPeriAltToApoAlt(double perigeeAlt, double eccentricity, double cbRadius)
+double	aPeriAltToApoAlt(double perigeeAlt, double eccentricity, double bodyRadius)
 {
-    return (perigeeAlt + cbRadius) * (1 + eccentricity) / (1 - eccentricity) - cbRadius;
+    return (perigeeAlt + bodyRadius) * (1 + eccentricity) / (1 - eccentricity) - bodyRadius;
 }
-double	aPeriAltToApoRad(double perigeeAlt, double eccentricity, double cbRadius)
+double	aPeriAltToApoRad(double perigeeAlt, double eccentricity, double bodyRadius)
 {
-    return (perigeeAlt + cbRadius) * (1 + eccentricity) / (1 - eccentricity);
+    return (perigeeAlt + bodyRadius) * (1 + eccentricity) / (1 - eccentricity);
 }
-double	aPeriAltToMeanMotn(double perigeeAlt, double eccentricity, double cbRadius, double gm)
+double	aPeriAltToMeanMotion(double perigeeAlt, double eccentricity, double bodyRadius, double gm)
 {
-    double smjax = (perigeeAlt + cbRadius) / (1 - eccentricity);
+    double smjax = (perigeeAlt + bodyRadius) / (1 - eccentricity);
     return sqrt(gm / (smjax * smjax * smjax));
 }
-double	aPeriAltToPeriRad(double perigeeAlt, double cbRadius)
+double	aPeriAltToPeriRad(double perigeeAlt, double bodyRadius)
 {
-    return perigeeAlt + cbRadius;
+    return perigeeAlt + bodyRadius;
 }
-double	aPeriAltToPeriod(double perigeeAlt, double eccentricity, double cbRadius, double gm)
+double	aPeriAltToPeriod(double perigeeAlt, double eccentricity, double bodyRadius, double gm)
 {
-    double smjax = (perigeeAlt + cbRadius) / (1 - eccentricity);
+    double smjax = (perigeeAlt + bodyRadius) / (1 - eccentricity);
     return PI2 * sqrt((smjax * smjax * smjax) / gm);
 }
-double	aPeriAltToSMajAx(double perigeeAlt, double eccentricity, double cbRadius)
+double	aPeriAltToSMA(double perigeeAlt, double eccentricity, double bodyRadius)
 {
-    return (perigeeAlt + cbRadius) / (1 - eccentricity);
+    return (perigeeAlt + bodyRadius) / (1 - eccentricity);
 }
-double	aPeriRadToApoAlt(double perigeeRad, double eccentricity, double cbRadius)
+double	aPeriRadToApoAlt(double perigeeRad, double eccentricity, double bodyRadius)
 {
-    return perigeeRad * (1 + eccentricity) / (1 - eccentricity) - cbRadius;
+    return perigeeRad * (1 + eccentricity) / (1 - eccentricity) - bodyRadius;
 }
 double	aPeriRadToApoRad(double perigeeRad, double eccentricity)
 {
     return perigeeRad * (1 + eccentricity) / (1 - eccentricity);
 
 }
-double	aPeriRadToMeanMotn(double perigeeRad, double eccentricity, double gm)
+double	aPeriRadToMeanMotion(double perigeeRad, double eccentricity, double gm)
 {
     double smjax = perigeeRad / (1 - eccentricity);
     return sqrt(gm / (smjax * smjax * smjax));
 }
-double	aPeriRadToPeriAlt(double perigeeRad, double cbRadius)
+double	aPeriRadToPeriAlt(double perigeeRad, double bodyRadius)
 {
-    return perigeeRad - cbRadius;
+    return perigeeRad - bodyRadius;
 }
 double	aPeriRadToPeriod(double perigeeRad, double eccentricity, double gm)
 {
     double smjax = perigeeRad / (1 - eccentricity);
     return PI2 * sqrt((smjax * smjax * smjax) / gm);
 }
-double	aPeriRadToSMajAx(double perigeeRad, double eccentricity)
+double	aPeriRadToSMA(double perigeeRad, double eccentricity)
 {
     return perigeeRad / (1 - eccentricity);
 }
-double	aPeriodToApoAlt(double period, double eccentricity, double cbRadius, double gm)
+double	aPeriodToApoAlt(double period, double eccentricity, double bodyRadius, double gm)
 {
     double smajax = pow(period * sqrt(gm) / PI2, 2. / 3.);
-    return smajax * (1 + eccentricity) - cbRadius;
+    return smajax * (1 + eccentricity) - bodyRadius;
 }
 double	aPeriodToApoRad(double period, double eccentricity, double gm)
 {
     double smajax = pow(period * sqrt(gm) / PI2, 2. / 3.);
     return smajax * (1 + eccentricity);
 }
-double	aPeriodToMeanMotn(double period)
+double	aPeriodToMeanMotion(double period)
 {
     return PI2 / period;
 }
-double	aPeriodToPeriAlt(double period, double eccentricity, double cbRadius, double gm)
+double	aPeriodToPeriAlt(double period, double eccentricity, double bodyRadius, double gm)
 {
     double smajax = pow(period * sqrt(gm) / PI2, 2. / 3.);
-    return smajax * (1 - eccentricity) - cbRadius;
+    return smajax * (1 - eccentricity) - bodyRadius;
 }
 double	aPeriodToPeriRad(double period, double eccentricity, double gm)
 {
     double smajax = pow(period * sqrt(gm) / PI2, 2. / 3.);
     return smajax * (1 - eccentricity);
 }
-double	aPeriodToSMajAx(double period, double gm)
+double	aPeriodToSMA(double period, double gm)
 {
     return  pow(period * sqrt(gm) / PI2, 2. / 3.);
 }
-double	aRadiiToEcc(double perigeeRad, double apogeeRad)
+double	aPeriRadApoRadToEcc(double perigeeRad, double apogeeRad)
 {
     return std::abs(apogeeRad - perigeeRad) / (perigeeRad + apogeeRad);
 }
-double	aSMajAxToApoAlt(double semiMajorAxis, double eccentricity, double cbRadius)
+double aPeriAltApoAltToEcc(double perigeeAlt, double apogeeAlt, double bodyRadius)
 {
-    return semiMajorAxis * (1 + eccentricity) - cbRadius;
+    return std::abs(apogeeAlt - perigeeAlt) / (perigeeAlt + apogeeAlt + 2*bodyRadius);
 }
-double	aSMajAxToApoRad(double semiMajorAxis, double eccentricity)
+
+double aSMAToApoAlt(double semiMajorAxis, double eccentricity, double bodyRadius)
+{
+    return semiMajorAxis * (1 + eccentricity) - bodyRadius;
+}
+double	aSMAToApoRad(double semiMajorAxis, double eccentricity)
 {
     return semiMajorAxis * (1 + eccentricity);
 }
-double	aSMajAxToMeanMotn(double semiMajorAxis, double gm)
+double	aSMAToMeanMotion(double semiMajorAxis, double gm)
 {
     return sqrt(gm / (semiMajorAxis * semiMajorAxis * semiMajorAxis));
 }
-double	aSMajAxToPeriAlt(double semiMajorAxis, double eccentricity, double cbRadius)
+double	aSMAToPeriAlt(double semiMajorAxis, double eccentricity, double bodyRadius)
 {
-    return semiMajorAxis * (1 - eccentricity) - cbRadius;
+    return semiMajorAxis * (1 - eccentricity) - bodyRadius;
 }
-double	aSMajAxToPeriRad(double semiMajorAxis, double eccentricity)
-{
-    return semiMajorAxis * (1 - eccentricity);
-}
-double	aSMajAxToPeriod(double semiMajorAxis, double gm)
+
+double	aSMAToPeriod(double semiMajorAxis, double gm)
 {
     return PI2 * sqrt((semiMajorAxis * semiMajorAxis * semiMajorAxis) / gm);
 }
 // 半短轴
-double	aSMajAxToSMinAx(double semiMajorAxis, double eccentricity)
+double	aSMAToSMinAx(double semiMajorAxis, double eccentricity)
 {
     return semiMajorAxis * sqrt(std::abs(1 - eccentricity * eccentricity));
 }
 // p? 半通径
-double	aSMajAxToSParam(double semiMajorAxis, double eccentricity)
+double	aSMAToSParam(double semiMajorAxis, double eccentricity)
 {
     return  semiMajorAxis * (1 - eccentricity * eccentricity);
 }
 
-double	aSMinAxToSMajAx(double semiminorAxis, double eccentricity)
+double	aSMinAxToSMA(double semiminorAxis, double eccentricity)
 {
     return semiminorAxis / sqrt(std::abs(1 - eccentricity * eccentricity));
 }
-double	aTPANToEcc(double TPAN, double argPeri, double semiMajorAxis, double eccentricity, double gm, double eps, int maxIter)
+double	aTimePastAscNodeToEcc(double TimePastAscNode, double argPeri, double semiMajorAxis, double eccentricity, double gm, double eps, int maxIter)
 {
-    double TTP = TPAN - aTrueToTPP(argPeri, semiMajorAxis, eccentricity, gm);
-    return aTPPToEcc(TTP, semiMajorAxis, eccentricity, gm, eps, maxIter);
+    double TTP = TimePastAscNode - aTrueToTimePastPeri(argPeri, semiMajorAxis, eccentricity, gm);
+    return aTimePastPeriToEcc(TTP, semiMajorAxis, eccentricity, gm, eps, maxIter);
 }
 
-double	aTPANToMean(double TPAN, double argPeri, double semiMajorAxis,
+double	aTimePastAscNodeToMean(double TimePastAscNode, double argPeri, double semiMajorAxis,
     double eccentricity, double gm)
 {
-    double TTP = TPAN - aTrueToTPP(argPeri, semiMajorAxis, eccentricity, gm);
-    return aTPPToMean(TTP, semiMajorAxis, gm);
+    double TTP = TimePastAscNode - aTrueToTimePastPeri(argPeri, semiMajorAxis, eccentricity, gm);
+    return aTimePastPeriToMean(TTP, semiMajorAxis, gm);
 }
-double	aTPANToTPP(double TPAN, double argPeri, double semiMajorAxis,
+double	aTimePastAscNodeToTimePastPeri(double TimePastAscNode, double argPeri, double semiMajorAxis,
     double eccentricity, double gm)
 {
-    return TPAN - aTrueToTPP(argPeri, semiMajorAxis, eccentricity, gm);
+    return TimePastAscNode - aTrueToTimePastPeri(argPeri, semiMajorAxis, eccentricity, gm);
 }
 
-double	aTPANToTrue(double TPAN, double argPeri, double semiMajorAxis,
+double	aTimePastAscNodeToTrue(double TimePastAscNode, double argPeri, double semiMajorAxis,
     double eccentricity, double gm, double eps, int maxIter)
 {
-    double TTP = TPAN - aTrueToTPP(argPeri, semiMajorAxis, eccentricity, gm);
-    return aTPPToTrue(TTP, semiMajorAxis, eccentricity, gm, eps, maxIter);
+    double TTP = TimePastAscNode - aTrueToTimePastPeri(argPeri, semiMajorAxis, eccentricity, gm);
+    return aTimePastPeriToTrue(TTP, semiMajorAxis, eccentricity, gm, eps, maxIter);
 }
 
-double	aTPPToEcc(double TPP, double semiMajorAxis, double eccentricity, double gm, double eps, int maxIter)
+double	aTimePastPeriToEcc(double TimePastPeri, double semiMajorAxis, double eccentricity, double gm, double eps, int maxIter)
 {
-    double M = TPP * sqrt(gm / pow(std::abs(semiMajorAxis), 3));
+    double M = TimePastPeri * sqrt(gm / pow(std::abs(semiMajorAxis), 3));
     return aMeanToEcc(M, eccentricity, eps, maxIter);
 }
-double	aTPPToMean(double TPP, double semiMajorAxis, double gm)
+double	aTimePastPeriToMean(double TimePastPeri, double semiMajorAxis, double gm)
 {
-    return TPP * sqrt(gm / pow(std::abs(semiMajorAxis), 3));
+    return TimePastPeri * sqrt(gm / pow(std::abs(semiMajorAxis), 3));
 }
-double	aTPPToTrue(double TPP, double semiMajorAxis, double eccentricity, double gm, double eps, int maxIter)
+double	aTimePastPeriToTrue(double TimePastPeri, double semiMajorAxis, double eccentricity, double gm, double eps, int maxIter)
 {
-    double M = TPP * sqrt(gm / pow(std::abs(semiMajorAxis), 3));
+    double M = TimePastPeri * sqrt(gm / pow(std::abs(semiMajorAxis), 3));
     return aMeanToTrue(M, eccentricity, eps, maxIter);
 }
-double	aTPPToTPAN(double TPP, double argPeri, double semiMajorAxis,
+double	aTimePastPeriToTimePastAscNode(double TimePastPeri, double argPeri, double semiMajorAxis,
     double eccentricity, double gm)
 {
-    return TPP + aTrueToTPP(argPeri, semiMajorAxis, eccentricity, gm);
+    return TimePastPeri + aTrueToTimePastPeri(argPeri, semiMajorAxis, eccentricity, gm);
 }
 
 double	aTrueToEcc(double f, double e)
@@ -480,21 +486,17 @@ double	aTrueToMean(double trueAnomaly, double eccentricity)
     double E = aTrueToEcc(trueAnomaly, eccentricity);
     return aEccToMean(E, eccentricity);
 }
-double	aTrueToTPAN(double trueAnomaly, double argPeri, double semiMajorAxis,
+double	aTrueToTimePastAscNode(double trueAnomaly, double argPeri, double semiMajorAxis,
     double eccentricity, double gm)
 {
-    return aTrueToTPP(trueAnomaly, semiMajorAxis, eccentricity, gm) + aTrueToTPP(argPeri, semiMajorAxis, eccentricity, gm);
+    return aTrueToTimePastPeri(trueAnomaly, semiMajorAxis, eccentricity, gm) + aTrueToTimePastPeri(argPeri, semiMajorAxis, eccentricity, gm);
 }
-double	aTrueToTPP(double trueAnomaly, double semiMajorAxis, double eccentricity, double gm)
+double	aTrueToTimePastPeri(double trueAnomaly, double semiMajorAxis, double eccentricity, double gm)
 {
     double E = aTrueToEcc(trueAnomaly, eccentricity);
-    return aEccToTPP(E, semiMajorAxis, eccentricity, gm);
+    return aEccToTimePastPeri(E, semiMajorAxis, eccentricity, gm);
 }
 
-double	aTrueToArgLat(double trueAnomaly, double argPeri)
-{
-    return trueAnomaly + argPeri;
-}
 
 double	aTrueToTrueLong(double trueAnomaly, double argPeri, double raan)
 {
@@ -506,10 +508,32 @@ double	aArgPeriToLongPeri(double argPeri, double raan)
     return argPeri + raan;
 }
 
-double	aRepeatGrndTrk(int daysToRepeat, int revsToRepeat, double gm, double cbRotRate)
+double aRAANToLAN(double raan, Axes* inertialAxes, const TimePoint& timeOfAscNodePassage, Axes* bodyFixedAxes)
 {
-    double meanMotn = revsToRepeat * cbRotRate / daysToRepeat;
-    return aMeanMotnToSMajAx(meanMotn, gm);
+    double cosRAAN, sinRAAN;
+    sincos(raan, &sinRAAN, &cosRAAN);
+    Vector3d vecBodyFixed{ cosRAAN, sinRAAN, 0.0 };
+    Rotation rotation;
+    aAxesTransform(inertialAxes, bodyFixedAxes, timeOfAscNodePassage, rotation);
+    vecBodyFixed = rotation.transformVector(vecBodyFixed);
+    return atan2(vecBodyFixed.y(), vecBodyFixed.x());
+}
+
+double aLANToRAAN(double lan, Axes *bodyFixedAxes, const TimePoint &timeOfAscNodePassage, Axes *inertialAxes)
+{
+    double cosLAN, sinLAN;
+    sincos(lan, &sinLAN, &cosLAN);
+    Vector3d vecBodyFixed{ cosLAN, sinLAN, 0.0 };
+    Rotation rotation;
+    aAxesTransform(bodyFixedAxes, inertialAxes, timeOfAscNodePassage, rotation);
+    vecBodyFixed = rotation.transformVector(vecBodyFixed);
+    return atan2(vecBodyFixed.y(), vecBodyFixed.x());
+}
+
+double	aRepeatGroundTrackSMA(int daysToRepeat, int revsToRepeat, double gm, double bodyRotRate)
+{
+    double meanMotn = revsToRepeat * bodyRotRate / daysToRepeat;
+    return aMeanMotionToSMA(meanMotn, gm);
 }
 
 double  aEccToFlat(double eccentricity)

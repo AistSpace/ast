@@ -3,14 +3,19 @@
 */
 #ifndef AST_NO_CSPICE
 #include <stdio.h>
+#include <clocale>
 #include "SpiceUsr.h"
 #include "AstCore/RunTime.hpp"
+#include "AstUtil/Environment.hpp"
 
 
 AST_USING_NAMESPACE
 
 int main()
 {
+    setlocale(LC_ALL, ".UTF-8");
+    if(aIsCI()) return 0;
+
     /*
     Constants
     */

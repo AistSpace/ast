@@ -267,82 +267,85 @@ err_t SpiceSPKParser::getStateNative(double et, int target, Vector3d &pos, Vecto
     }
     if(spkDescriptor->type == 2)
     {
-        int rsize;
-        {
-            SPK_Type2_Trailer trailer;
-            size_t offset = 8 * spkDescriptor->end_addr - sizeof(SPK_Type2_Trailer);
-            size_t size = read(&trailer, sizeof(SPK_Type2_Trailer), offset);
-            if(size != sizeof(SPK_Type2_Trailer))
-            {
-                aError("failed to read spk type 2 trailer for target %d", target);
-                return eErrorNotFound;
-            }
-            rsize = (int)trailer.rsize;
-            buffer_.resize(rsize);
-            size_t idxseg = (size_t)((et - spkDescriptor->start_time) / trailer.intlen);
-            if(idxseg >= trailer.n)
-            {
-                aError("et %f out of range for target %d", et, target);
-                return eErrorNotFound;
-            }
-            size_t sseg = rsize * 8;
-            offset = 8 * (spkDescriptor->begin_addr-1) + idxseg * sseg;
-            size = read(buffer_.data(), sseg, offset);
-            if(size != sseg)
-            {
-                aError("failed to read spk type 2 record for target %d", target);
-                return eErrorNotFound;
-            }
-        }
-        const double mid = buffer_[0];
-        const double radius = buffer_[1];
-        // double tspan = radius * 2;
-        const double* coeff = buffer_.data() + 2;
-        const double tc = (et - mid) / radius;
-        const double twot = 2.0 * tc;
-        const int ncf = (rsize - 2) / 3;
-
-        assert(tc >= -1);
-        assert(tc <= 1);
-        assert(ncf < MAX_CHEBY);
-        if (ncf >= MAX_CHEBY) {
-            aError("ncf %d exceeds MAX_CHEBY", ncf);
-            return eErrorNotFound;
-        }
-
-        double  pos_coeff[MAX_CHEBY];
-        pos_coeff[0] = 1.0;
-        pos_coeff[1] = tc;
-        for(int j = 2; j <= ncf; ++j)
-        {
-            pos_coeff[j] = twot * pos_coeff[j - 1] - pos_coeff[j - 2];
-        }
-        for(int i=0;i<3;i++){
-            double sum = 0;
-            for(int j = ncf - 1; j > -1; j--)
-                sum += coeff[j + i * ncf] * pos_coeff[j];
-            pos[i] = sum * 1e3;
-        }
-        if(!vel)
-            return eNoError;
-            
-        double  vel_coeff[MAX_CHEBY];
-        vel_coeff[0] = 0.0;
-        vel_coeff[1] = 1.0;
-        for(int j=2;j<=ncf;j++){
-            vel_coeff[j] = twot * vel_coeff[j - 1] + 2.0 * pos_coeff[j - 1] - vel_coeff[j - 2];
-        }
-        for(int i=0;i<3;i++){
-            double sum = 0;
-            for(int j = ncf - 1; j > -1; j--)
-                sum += coeff[j + i * ncf] * vel_coeff[j];
-            (*vel)[i] = sum / radius * 1e3;
-        }
-        return eNoError;
+        return getStateType2(*spkDescriptor, et, target, pos, vel);
     }else{
         aError("spk type %d is not supported yet", spkDescriptor->type);
     }
     return -1;
+}
+
+err_t SpiceSPKParser::getStateType2(const SPK_Descriptor& spkDescriptor, double et, int target, Vector3d &pos, Vector3d *vel) const
+{
+    int rsize;
+    {
+        SPK_Type2_Trailer trailer;
+        size_t offset = 8 * spkDescriptor.end_addr - sizeof(SPK_Type2_Trailer);
+        size_t size = read(&trailer, sizeof(SPK_Type2_Trailer), offset);
+        if(size != sizeof(SPK_Type2_Trailer))
+        {
+            aError("failed to read spk type 2 trailer for target %d", target);
+            return eErrorNotFound;
+        }
+        rsize = (int)trailer.rsize;
+        buffer_.resize(rsize);
+        size_t idxseg = (size_t)((et - spkDescriptor.start_time) / trailer.intlen);
+        if(idxseg >= trailer.n)
+        {
+            aError("et %f out of range for target %d", et, target);
+            return eErrorNotFound;
+        }
+        size_t sseg = rsize * 8;
+        offset = 8 * (spkDescriptor.begin_addr-1) + idxseg * sseg;
+        size = read(buffer_.data(), sseg, offset);
+        if(size != sseg)
+        {
+            aError("failed to read spk type 2 record for target %d", target);
+            return eErrorNotFound;
+        }
+    }
+    const double mid = buffer_[0];
+    const double radius = buffer_[1];
+    // double tspan = radius * 2;
+    const double* coeff = buffer_.data() + 2;
+    const double tc = (et - mid) / radius;
+    const double twot = 2.0 * tc;
+    const int ncf = (rsize - 2) / 3;
+    assert(tc >= -1);
+    assert(tc <= 1);
+    assert(ncf < MAX_CHEBY);
+    if (ncf >= MAX_CHEBY) {
+        aError("ncf %d exceeds MAX_CHEBY", ncf);
+        return eErrorNotFound;
+    }
+    double  pos_coeff[MAX_CHEBY];
+    pos_coeff[0] = 1.0;
+    pos_coeff[1] = tc;
+    for(int j = 2; j <= ncf; ++j)
+    {
+        pos_coeff[j] = twot * pos_coeff[j - 1] - pos_coeff[j - 2];
+    }
+    for(int i=0;i<3;i++){
+        double sum = 0;
+        for(int j = ncf - 1; j > -1; j--)
+            sum += coeff[j + i * ncf] * pos_coeff[j];
+        pos[i] = sum * 1e3;
+    }
+    if(!vel)
+        return eNoError;
+        
+    double  vel_coeff[MAX_CHEBY];
+    vel_coeff[0] = 0.0;
+    vel_coeff[1] = 1.0;
+    for(int j=2;j<=ncf;j++){
+        vel_coeff[j] = twot * vel_coeff[j - 1] + 2.0 * pos_coeff[j - 1] - vel_coeff[j - 2];
+    }
+    for(int i=0;i<3;i++){
+        double sum = 0;
+        for(int j = ncf - 1; j > -1; j--)
+            sum += coeff[j + i * ncf] * vel_coeff[j];
+        (*vel)[i] = sum / radius * 1e3;
+    }
+    return eNoError;
 }
 
 AST_NAMESPACE_END

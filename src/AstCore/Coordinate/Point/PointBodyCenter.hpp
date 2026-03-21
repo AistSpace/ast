@@ -39,6 +39,8 @@ public:
     PointBodyCenter() = default;
     PointBodyCenter(CelestialBody* body);
     ~PointBodyCenter() = default;
+    CelestialBody* getBody() const{ return body_; }
+    void setBody(CelestialBody* body){ body_ = body; }
     Frame* getFrame() const override;
     err_t getPos(const TimePoint& tp, Vector3d& pos) const override;
     err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;

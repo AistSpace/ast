@@ -56,6 +56,7 @@ public:
     static KinematicTransform Identity();
 
     using Transform::getTranslation;
+    using Transform::setTranslation;
 
     /// @brief 获取变换
     /// @return 变换

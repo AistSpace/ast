@@ -43,8 +43,6 @@ FrameAssembly::FrameAssembly(Point *origin, Axes *axes)
 {
 }
 
-
-
 Frame *FrameAssembly::getParent() const
 {
     if(origin_)
@@ -59,15 +57,15 @@ err_t FrameAssembly::getTransform(const TimePoint &tp, Transform &transform) con
         return eErrorInvalidParam;
     if(origin_)
     {
-        err_t ret = origin_->getPosIn(parent, tp, transform.getTranslation());
-        if(ret != 0)
-            return ret;
+        err_t rc = origin_->getPosIn(parent, tp, transform.getTranslation());
+        if(rc != 0)
+            return rc;
     }
     if(axes_)
     {
-        err_t ret = axes_->getTransformFrom(parent->getAxes(), tp, transform.getRotation());
-        if(ret != 0)
-            return ret;
+        err_t rc = axes_->getTransformFrom(parent->getAxes(), tp, transform.getRotation());
+        if(rc != 0)
+            return rc;
     }
     return eNoError;
 }
@@ -79,15 +77,15 @@ err_t FrameAssembly::getTransform(const TimePoint &tp, KinematicTransform &trans
         return eErrorInvalidParam;
     if(origin_)
     {
-        err_t ret = origin_->getPosVelIn(parent, tp, transform.getTranslation(), transform.getVelocity());
-        if(ret != 0)
-            return ret;
+        err_t rc = origin_->getPosVelIn(parent, tp, transform.getTranslation(), transform.getVelocity());
+        if(rc != 0)
+            return rc;
     }
     if(axes_)
     {
-        err_t ret = axes_->getTransformFrom(parent->getAxes(), tp, transform.getKinematicRotation());
-        if(ret != 0)
-            return ret;
+        err_t rc = axes_->getTransformFrom(parent->getAxes(), tp, transform.getKinematicRotation());
+        if(rc != 0)
+            return rc;
     }
     return eNoError;
 }

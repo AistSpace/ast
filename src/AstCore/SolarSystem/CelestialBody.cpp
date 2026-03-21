@@ -29,6 +29,8 @@
 #include "AstCore/FrameICRF.hpp"
 #include "AstCore/FrameAssembly.hpp"
 #include "AstCore/BuiltinAxes.hpp"
+#include "AstCore/SolarSystem.hpp"
+#include "AstUtil/Class.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/String.hpp"
 #include "AstUtil/BKVParser.hpp"
@@ -39,21 +41,33 @@
 
 AST_NAMESPACE_BEGIN
 
+_AST_IMPL_OBJECT(CelestialBody)
+
 CelestialBody::CelestialBody()
     : CelestialBody(StringView{})
 {
     
 }
 
-CelestialBody::CelestialBody(StringView name)
-    : name_(name)
+CelestialBody::CelestialBody(SolarSystem *solarSystem)
+    : CelestialBody(StringView{}, solarSystem)
+{
+}
+
+CelestialBody::CelestialBody(StringView name, SolarSystem *solarSystem)
+    : solarSystem_(solarSystem)
+    , name_{name}
 {
     orientation_  = new NoopOrientation();
     ephemeris_    = new EphemerisDE(this);
-    axesFixed_    = new AxesBodyFixed(this);
-    axesInertial_ = new AxesBodyInertial(this);
-    axesMOD_      = new AxesBodyMOD(this);
-    axesTOD_      = new AxesBodyTOD(this);
+    axesFixed_    = AxesBodyFixed::New(this);
+    axesInertial_ = AxesBodyInertial::New(this);
+    axesMOD_      = AxesBodyMOD::New(this);
+    axesTOD_      = AxesBodyTOD::New(this);
+}
+
+CelestialBody::~CelestialBody()
+{
 }
 
 void CelestialBody::setJplIndex(int index)
@@ -62,6 +76,11 @@ void CelestialBody::setJplIndex(int index)
     if(auto de =  dynamic_cast<EphemerisDE*>(ephemeris_.get())){
         de->setJplIndex(index);
     }
+}
+
+SolarSystem *CelestialBody::getSolarSystem() const
+{
+    return solarSystem_.get();
 }
 
 err_t CelestialBody::load(StringView filepath)
@@ -74,7 +93,7 @@ err_t CelestialBody::load(StringView filepath)
     BKVParser parser(path.string());
     if(!parser.isOpen())
     {
-        aError("failed to open file %s", path.string().c_str());
+        // aError("failed to open file %s", path.string().c_str());
         return eErrorInvalidFile;
     }
     BKVItemView item;
@@ -121,10 +140,16 @@ err_t CelestialBody::setGravityModel(StringView model)
 {
     err_t rc = this->loadGravityModel(model);
     if(rc){
-        fs::path filepath = fs::path(SolarSystem::defaultSolarSystemDir()) / this->name_ / std::string(model);
+        auto ss = getSolarSystem();
+        fs::path filepath;
+        if(ss)
+            filepath = ss->getDirpath();
+        else
+            filepath = SolarSystem::defaultSolarSystemDir();
+        filepath = filepath / this->name_ / std::string(model);
         rc = this->loadGravityModel(filepath.string());
         if(rc){
-            aError("failed to load gravity model %.*s", (int)model.size(), model.data());
+            aError("failed to load gravity model '%.*s'", (int)model.size(), model.data());
         }
     }
     return rc;
@@ -153,6 +178,56 @@ err_t CelestialBody::getPos(const TimePoint &tp, Vector3d &pos) const
 err_t CelestialBody::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     return getPosVelICRF(tp, pos, vel);
+}
+
+HFrame CelestialBody::makeEpochFrame(Axes *sourceAxes, const TimePoint &tp, Axes *reference) const
+{
+    return makeFrame(aMakeEpochAxes(sourceAxes, tp, reference));
+}
+
+HFrame CelestialBody::makeEpochFrame(Axes *sourceAxes, EventTime *time, Axes *reference) const
+{
+    return makeFrame(aMakeEpochAxes(sourceAxes, time, reference));
+}
+
+HAxes CelestialBody::makeAxesMOE(const TimePoint &tp) const
+{
+    return makeEpochAxes(getAxesMOD(), tp, getEpochAxesReference());
+}
+
+HAxes CelestialBody::makeAxesMOE(EventTime *time) const
+{
+    return makeEpochAxes(getAxesMOD(), time, getEpochAxesReference());
+}
+
+HAxes CelestialBody::makeAxesTOE(const TimePoint &tp) const
+{
+    return makeEpochAxes(getAxesTOD(), tp, getEpochAxesReference());
+}
+
+HAxes CelestialBody::makeAxesTOE(EventTime *time) const
+{
+    return makeEpochAxes(getAxesTOD(), time, getEpochAxesReference());
+}
+
+HFrame CelestialBody::makeFrameMOE(const TimePoint &tp) const
+{
+    return makeFrame(makeAxesMOE(tp));
+}
+
+HFrame CelestialBody::makeFrameMOE(EventTime *time) const
+{
+    return makeFrame(makeAxesMOE(time));
+}
+
+HFrame CelestialBody::makeFrameTOE(const TimePoint &tp) const
+{
+    return makeFrame(makeAxesTOE(tp));
+}
+
+HFrame CelestialBody::makeFrameTOE(EventTime *time) const
+{
+    return makeFrame(makeAxesTOE(time));
 }
 
 HFrame CelestialBody::makeFrame(Axes *axes) const
@@ -188,6 +263,15 @@ HFrame CelestialBody::makeFrameJ2000() const
 HFrame CelestialBody::makeFrameICRF() const
 {
     return makeFrame(aAxesICRF());
+}
+
+Axes *CelestialBody::getEpochAxesReference() const
+{
+    if(this->isEarth()){
+        return aAxesJ2000();
+    }else{
+        return this->getAxesInertial();
+    }
 }
 
 err_t CelestialBody::loadGravityModel(StringView model)

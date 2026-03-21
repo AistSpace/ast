@@ -438,6 +438,7 @@ namespace units
 
     Unit deg = Unit::Degree();
     Unit rad = Unit::Radian();
+    Unit arcsec = Unit::ArcSecond();
 
     Unit A = Unit::Ampere();
 

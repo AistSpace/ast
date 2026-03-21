@@ -102,7 +102,7 @@ err_t HPOPEquation::setForceModel(const HPOPForceModel& forceModel)
     this->addBlock(derivativeBlock);
 
     // 添加重力函数块
-    if(0 == gravity.degree_){
+    if(0 == gravity.maxDegree_){
         GravityFieldHead gfHead;
         err_t err = gfHead.load(gravity.model_);
         if(err != eNoError){
@@ -112,7 +112,7 @@ err_t HPOPEquation::setForceModel(const HPOPForceModel& forceModel)
         derivativeBlock = new BlockTwoBody(gfHead.gm_);
         this->addBlock(derivativeBlock);
     }else{
-        derivativeBlock = new BlockGravity(gravity.model_, gravity.degree_, gravity.order_);
+        derivativeBlock = new BlockGravity(gravity.model_, gravity.maxDegree_, gravity.maxOrder_);
         this->addBlock(derivativeBlock);
     }
 

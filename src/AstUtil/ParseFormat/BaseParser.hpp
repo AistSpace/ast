@@ -43,6 +43,14 @@ AST_UTIL_CAPI char* fgetlinetrim(char* buffer, int size, FILE* file);
 
 
 
+/// @brief 判断是否为#注释行
+/// @details 检查给定的文本行是否以井号 '#' 开头，且行首没有空白字符。
+/// @param line 文本行视图，指定要检查的文本行。
+/// @return 如果是注释行则返回 true，否则返回 false。
+AST_UTIL_CAPI bool aIsHashCommentLine(StringView line);
+
+
+
 /// @brief 解析器基类
 class AST_UTIL_API BaseParser
 {
@@ -51,8 +59,8 @@ public:
     BaseParser(StringView filepath);
     ~BaseParser();
 
-    // 基础操作
-public: 
+    
+public: // 基础操作
     /// @brief 打开文件
     /// @details 打开指定路径的文件，用于后续的解析操作。
     /// @param filepath 文件路径视图，指定要打开的文件路径。
@@ -81,7 +89,7 @@ public:
     /// @brief 是否到达文件末尾
     /// @details 判断当前文件指针是否到达文件末尾。
     /// @return 如果到达文件末尾则返回 true，否则返回 false。
-    bool eof() const { return feof(file_); }
+    bool eof() const { return feof(file_) != 0; }
 
     /// @brief 读取文件内容
     /// @details 从当前文件指针位置读取指定数量的字节到缓冲区。
@@ -107,8 +115,12 @@ public:
     /// @return 当前行的内容（去除首尾空格）
     StringView getLineTrim();
 
-    // 辅助信息
-public:
+    /// @brief 获取当前非#注释行（跳过#注释行）
+    /// @details 获取当前行的内容，不包含行结束符，跳过以井号 '#' 开头的行。
+    /// @return 当前行的内容（跳过#注释行）
+    StringView getLineSkipHashComment();
+    
+public: // 辅助信息
     /// @brief 获取当前行号
     /// @details 获取当前解析器所在的行号。
     /// @return 当前行号
@@ -133,8 +145,7 @@ public:
     /// @param file 文件指针
     void setOwnedFile(FILE* file);
 
-
-protected:
+    /// @brief 获取当前解析器使用的文件指针
     FILE* getFile() const { return file_; }
 protected:
     FILE*             file_{nullptr};           ///< 文件指针

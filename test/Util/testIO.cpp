@@ -1,6 +1,7 @@
 ﻿#include "AstTest/AstTestMacro.h"
 #include "AstUtil/IO.hpp"
 #include "AstCore/RunTime.hpp"
+#include <clocale>
 
 #ifdef _WIN32
 #include <Windows.h>

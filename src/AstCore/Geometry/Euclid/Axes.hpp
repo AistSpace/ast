@@ -33,6 +33,8 @@ AST_NAMESPACE_BEGIN
 class Rotation;
 class KinematicRotation;
 class Axes;
+using PAxes = Axes*;
+using HAxes = SharedPtr<Axes>;
 
 /// @brief 计算轴系之间的旋转变换。
 /// @param source 源轴系
@@ -155,7 +157,7 @@ public:
 };
 
 using PAxes = Axes*;                ///< 轴系指针(pointer to axes)
-using HAxes = SharedPtr<Axes>;      ///< 轴系句柄(handler to axes)
+using HAxes = SharedPtr<Axes>;      ///< 轴系句柄(handle to axes)
 
 /*! @} */
 

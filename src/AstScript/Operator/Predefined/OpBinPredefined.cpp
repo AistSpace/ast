@@ -471,13 +471,13 @@ template<typename T>
 Class* aValueType();
 
 template<>
-Class* aValueType<int>() { return &aValInt_Type; }
+Class* aValueType<int>() { return &ValInt::staticType; }
 
 template<>
-Class* aValueType<double>() { return &aValDouble_Type; }
+Class* aValueType<double>() { return &ValDouble::staticType; }
 
 template<>
-Class* aValueType<bool>() { return &aValBool_Type; }
+Class* aValueType<bool>() { return &ValBool::staticType; }
 
 // 注册标量类型运算函数
 #define REGISTER_OPBIN(op, left_type, right_type, func) \
@@ -538,27 +538,27 @@ void opbin_init_registry() {
     register_scalar_opbin<int, double>();
     
     // 单独为int类型注册位运算（只支持int类型的位运算）
-    opbin_register_func(EOpBinType::eBitAnd, &aValInt_Type, &aValInt_Type, (OpBinFunc)opbin_bit_and_scalar_scalar<int, int>);
-    opbin_register_func(EOpBinType::eBitOr, &aValInt_Type, &aValInt_Type, (OpBinFunc)opbin_bit_or_scalar_scalar<int, int>);
-    opbin_register_func(EOpBinType::eBitXor, &aValInt_Type, &aValInt_Type, (OpBinFunc)opbin_bit_xor_scalar_scalar<int, int>);
-    opbin_register_func(EOpBinType::eBitLeftShift, &aValInt_Type, &aValInt_Type, (OpBinFunc)opbin_bit_left_shift_scalar_scalar<int, int>);
-    opbin_register_func(EOpBinType::eBitRightShift, &aValInt_Type, &aValInt_Type, (OpBinFunc)opbin_bit_right_shift_scalar_scalar<int, int>);
+    opbin_register_func(EOpBinType::eBitAnd, &ValInt::staticType, &ValInt::staticType, (OpBinFunc)opbin_bit_and_scalar_scalar<int, int>);
+    opbin_register_func(EOpBinType::eBitOr, &ValInt::staticType, &ValInt::staticType, (OpBinFunc)opbin_bit_or_scalar_scalar<int, int>);
+    opbin_register_func(EOpBinType::eBitXor, &ValInt::staticType, &ValInt::staticType, (OpBinFunc)opbin_bit_xor_scalar_scalar<int, int>);
+    opbin_register_func(EOpBinType::eBitLeftShift, &ValInt::staticType, &ValInt::staticType, (OpBinFunc)opbin_bit_left_shift_scalar_scalar<int, int>);
+    opbin_register_func(EOpBinType::eBitRightShift, &ValInt::staticType, &ValInt::staticType, (OpBinFunc)opbin_bit_right_shift_scalar_scalar<int, int>);
 
     // 注册数量类型运算函数
-    opbin_register_func(EOpBinType::eAdd, &aValQuantity_Type, &aValQuantity_Type, (OpBinFunc)opbin_add_quantity_quantity);
-    opbin_register_func(EOpBinType::eSub, &aValQuantity_Type, &aValQuantity_Type, (OpBinFunc)opbin_sub_quantity_quantity);
-    opbin_register_func(EOpBinType::eMul, &aValQuantity_Type, &aValQuantity_Type, (OpBinFunc)opbin_mul_quantity_quantity);
-    opbin_register_func(EOpBinType::eDiv, &aValQuantity_Type, &aValQuantity_Type, (OpBinFunc)opbin_div_quantity_quantity);
+    opbin_register_func(EOpBinType::eAdd, &ValQuantity::staticType, &ValQuantity::staticType, (OpBinFunc)opbin_add_quantity_quantity);
+    opbin_register_func(EOpBinType::eSub, &ValQuantity::staticType, &ValQuantity::staticType, (OpBinFunc)opbin_sub_quantity_quantity);
+    opbin_register_func(EOpBinType::eMul, &ValQuantity::staticType, &ValQuantity::staticType, (OpBinFunc)opbin_mul_quantity_quantity);
+    opbin_register_func(EOpBinType::eDiv, &ValQuantity::staticType, &ValQuantity::staticType, (OpBinFunc)opbin_div_quantity_quantity);
 
     // 注册数量类型与标量类型运算函数
-    opbin_register_func(EOpBinType::eMul, &aValQuantity_Type, aValueType<double>(), (OpBinFunc)opbin_mul_quantity_scalar<double>);
-    opbin_register_func(EOpBinType::eDiv, &aValQuantity_Type, aValueType<double>(), (OpBinFunc)opbin_div_quantity_scalar<double>);
-    opbin_register_func(EOpBinType::eMul, &aValQuantity_Type, aValueType<int>(), (OpBinFunc)opbin_mul_quantity_scalar<int>);
-    opbin_register_func(EOpBinType::eDiv, &aValQuantity_Type, aValueType<int>(), (OpBinFunc)opbin_div_quantity_scalar<int>);
-    opbin_register_func(EOpBinType::eMul, aValueType<double>(),  &aValQuantity_Type, (OpBinFunc)opbin_mul_scalar_quantity<double>);
-    opbin_register_func(EOpBinType::eDiv, aValueType<double>(),  &aValQuantity_Type, (OpBinFunc)opbin_div_scalar_quantity<double>);
-    opbin_register_func(EOpBinType::eMul, aValueType<int>(),  &aValQuantity_Type, (OpBinFunc)opbin_mul_scalar_quantity<int>);
-    opbin_register_func(EOpBinType::eDiv, aValueType<int>(),  &aValQuantity_Type, (OpBinFunc)opbin_div_scalar_quantity<int>);
+    opbin_register_func(EOpBinType::eMul, &ValQuantity::staticType, aValueType<double>(), (OpBinFunc)opbin_mul_quantity_scalar<double>);
+    opbin_register_func(EOpBinType::eDiv, &ValQuantity::staticType, aValueType<double>(), (OpBinFunc)opbin_div_quantity_scalar<double>);
+    opbin_register_func(EOpBinType::eMul, &ValQuantity::staticType, aValueType<int>(), (OpBinFunc)opbin_mul_quantity_scalar<int>);
+    opbin_register_func(EOpBinType::eDiv, &ValQuantity::staticType, aValueType<int>(), (OpBinFunc)opbin_div_quantity_scalar<int>);
+    opbin_register_func(EOpBinType::eMul, aValueType<double>(),  &ValQuantity::staticType, (OpBinFunc)opbin_mul_scalar_quantity<double>);
+    opbin_register_func(EOpBinType::eDiv, aValueType<double>(),  &ValQuantity::staticType, (OpBinFunc)opbin_div_scalar_quantity<double>);
+    opbin_register_func(EOpBinType::eMul, aValueType<int>(),  &ValQuantity::staticType, (OpBinFunc)opbin_mul_scalar_quantity<int>);
+    opbin_register_func(EOpBinType::eDiv, aValueType<int>(),  &ValQuantity::staticType, (OpBinFunc)opbin_div_scalar_quantity<int>);
   
 }
 

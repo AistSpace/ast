@@ -179,15 +179,15 @@ Value* opunary(EOpUnaryType op, Value* value)
 void register_scalar_opunary()
 {
     // 注册bool类型的一元运算符
-    REGISTER_OPUNARY(eNot, &aValBool_Type, (opunary_not_scalar<bool>));
-    REGISTER_OPUNARY(eBitNot, &aValBool_Type, (opunary_bit_not_scalar<bool>));
+    REGISTER_OPUNARY(eNot, &ValBool::staticType, (opunary_not_scalar<bool>));
+    REGISTER_OPUNARY(eBitNot, &ValBool::staticType, (opunary_bit_not_scalar<bool>));
     
     // 注册int类型的一元运算符
-    REGISTER_OPUNARY(eNeg, &aValInt_Type, (opunary_neg_scalar<int>));
-    REGISTER_OPUNARY(eBitNot, &aValInt_Type, (opunary_bit_not_scalar<int>));
+    REGISTER_OPUNARY(eNeg, &ValInt::staticType, (opunary_neg_scalar<int>));
+    REGISTER_OPUNARY(eBitNot, &ValInt::staticType, (opunary_bit_not_scalar<int>));
     
     // 注册double类型的一元运算符
-    REGISTER_OPUNARY(eNeg, &aValDouble_Type, (opunary_neg_scalar<double>));
+    REGISTER_OPUNARY(eNeg, &ValDouble::staticType, (opunary_neg_scalar<double>));
 }
 
 #undef REGISTER_OPUNARY

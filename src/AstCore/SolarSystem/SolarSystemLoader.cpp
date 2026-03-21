@@ -33,6 +33,7 @@ err_t SolarSystem::load(StringView dirpath)
     if(fs::is_regular_file(status)){
         return loadPCK(dirpath);
     }else if(fs::is_directory(status)){
+        dirpath_ = path.string();
         for (const auto& entry : fs::directory_iterator(path)) {
             if (fs::is_directory(entry.status())) {
                 std::string bodyname = entry.path().filename();

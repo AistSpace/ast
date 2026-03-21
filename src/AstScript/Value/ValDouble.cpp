@@ -27,9 +27,9 @@ AST_NAMESPACE_BEGIN
 
 static_assert(sizeof(ValDouble) == sizeof(ValScalar<double>), "ValDouble must be same size as ValScalar<double>");
 
-Class* ValDouble::staticType()
-{
-    return &aValDouble_Type;
-}
+// Class* ValDouble::staticType()
+// {
+//     return &aValDouble_Type;
+// }
 
 AST_NAMESPACE_END

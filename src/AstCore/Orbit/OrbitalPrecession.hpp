@@ -48,7 +48,7 @@ AST_CORE_CAPI double aRAANRate(double gm, double j2, double rb, double a, double
 /// @param ecc 轨道的偏心率
 /// @param inc 轨道的倾角
 /// @return 轨道近点幅角变化率
-AST_CORE_CAPI double aArgPerRate(double gm, double j2, double rb, double a, double ecc, double inc);
+AST_CORE_CAPI double aArgPeriRate(double gm, double j2, double rb, double a, double ecc, double inc);
 
 
 /// @brief 计算轨道平近点角变化率

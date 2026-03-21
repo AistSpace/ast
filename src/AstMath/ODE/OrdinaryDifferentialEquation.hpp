@@ -48,7 +48,7 @@ public:
     /// @param dy 输出导数向量。
     /// @param t 时间点。
     /// @return 错误码。
-    virtual err_t evaluate(const double* y, double* dy, const double t) = 0;
+    virtual err_t evaluate(const double* y, double* dy, double t) = 0;
 
     /// 兼容性处理
     A_ALWAYS_INLINE 
@@ -73,7 +73,7 @@ public:
         return dim_;
     }
     
-    err_t evaluate(const double* y, double* dy, const double t) override {
+    err_t evaluate(const double* y, double* dy, double t) override {
         return func_(y, dy, t);
     }
     

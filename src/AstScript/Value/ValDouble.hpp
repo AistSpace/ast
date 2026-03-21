@@ -32,10 +32,10 @@ class ValDouble: public ValScalar<double>
 public:
     AST_EXPR(ValDouble)
     ValDouble()
-        : ValScalar<double>(staticType(), 0.0)
+        : ValScalar<double>(0.0)
     {}
     ValDouble(double value)
-        : ValScalar<double>(staticType(), value)
+        : ValScalar<double>(value)
     {}
 };
 

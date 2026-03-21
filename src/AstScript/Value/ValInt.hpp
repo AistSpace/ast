@@ -32,10 +32,10 @@ class ValInt: public ValScalar<int>
 public:
     AST_EXPR(ValInt)
     ValInt()
-        : ValScalar<int>(staticType(), 0)
+        : ValScalar<int>(0)
     {}
     ValInt(int value)
-        : ValScalar<int>(staticType(), value)
+        : ValScalar<int>(value)
     {}
 };
 

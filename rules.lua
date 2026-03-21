@@ -16,4 +16,8 @@ rule("ast")
             -- 添加wasm预加载文件
             target:set("values", "wasm.preloadfiles", "data")
         end
+        local include_dir = path.join(os.scriptdir(), "include", target:name())
+        if os.isdir(include_dir) then
+            target:add("includedirs", include_dir)
+        end
     end)

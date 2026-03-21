@@ -13,7 +13,7 @@ int main() {
     // 计算其他轨道参数
     double perigeeRad = aPeriAltToPeriRad(perigeeAlt, earthRadius);
     double apogeeAlt = aPeriAltToApoAlt(perigeeAlt, eccentricity, earthRadius);
-    double semiMajorAxis = aPeriRadToSMajAx(perigeeRad, eccentricity);
+    double semiMajorAxis = aPeriRadToSMA(perigeeRad, eccentricity);
     double period = aPeriRadToPeriod(perigeeRad, eccentricity, gmEarth);
-    double meanMotion = aSMajAxToMeanMotn(semiMajorAxis, gmEarth);
+    double meanMotion = aSMAToMeanMotion(semiMajorAxis, gmEarth);
 }

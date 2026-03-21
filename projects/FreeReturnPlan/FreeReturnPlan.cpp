@@ -88,8 +88,8 @@ int FreeRreturnTargetFunction::operator()(const double* variable, double* constr
     HPOPForceModel forceModel;
     forceModel.useMoonGravity_ = true;
     forceModel.moonGravity_ = 4.90280030555540e12;
-    forceModel.gravity_.degree_ = 0;
-    forceModel.gravity_.order_ = 0;
+    forceModel.gravity_.maxDegree_ = 0;
+    forceModel.gravity_.maxOrder_ = 0;
     forceModel.gravity_.model_ = "JGM3";
     
     // 全程轨道状态量

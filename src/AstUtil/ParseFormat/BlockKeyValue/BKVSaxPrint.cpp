@@ -52,7 +52,7 @@ BKVSaxPrint::~BKVSaxPrint()
     }
 }
 
-void BKVSaxPrint::begin(StringView name)
+err_t BKVSaxPrint::begin(StringView name)
 {
     posix::fprintf(file_, "%*s", depth_ * indent_, "");
     depth_++;
@@ -62,9 +62,10 @@ void BKVSaxPrint::begin(StringView name)
     #endif
     
     posix::fprintf(file_, "BEGIN %.*s\n", static_cast<int>(name.size()), name.data());
+    return eNoError;
 }
 
-void BKVSaxPrint::end(StringView name)
+err_t BKVSaxPrint::end(StringView name)
 {
     depth_--;
     
@@ -74,12 +75,14 @@ void BKVSaxPrint::end(StringView name)
 
     posix::fprintf(file_, "%*s", depth_ * indent_, "");
     posix::fprintf(file_, "END %.*s\n", static_cast<int>(name.size()), name.data());
+    return eNoError;
 }
 
-void BKVSaxPrint::keyValue(StringView key, const GenericValue &value)
+err_t BKVSaxPrint::keyValue(StringView key, const ValueView &value)
 {
     posix::fprintf(file_, "%*s", depth_ * indent_, "");
-    posix::fprintf(file_, "%.*s %s\n", static_cast<int>(key.size()), key.data(), value.c_str());
+    posix::fprintf(file_, "%.*s %.*s\n", static_cast<int>(key.size()), key.data(), (int)value.size(), value.data());
+    return eNoError;
 }
 
 AST_NAMESPACE_END

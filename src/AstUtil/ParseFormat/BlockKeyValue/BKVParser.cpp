@@ -32,17 +32,6 @@ AST_NAMESPACE_BEGIN
 
 
 
-static bool isCommentLine(StringView line)
-{
-    for(char c : line)
-    {
-        if(!isspace(static_cast<unsigned char>(c)))
-        {
-            return c == '#';
-        }
-    }
-    return true;
-}
 
 BKVParser::BKVParser()
     : BaseParser()
@@ -116,16 +105,8 @@ BKVParser::EToken BKVParser::getNext(BKVItemView &item)
     return getNext(item.key(), item.value());
 }
 
-StringView BKVParser::getLineSkipComment()
-{
-    StringView line;
-    do{
-        line = getLine();
-    }while(isCommentLine(line));
-    return line;
-}
 
-err_t BKVParser::parseFile(const StringView filepath, BKVSax &sax)
+err_t BKVParser::parseFile(StringView filepath, BKVSax &sax)
 {
     open(filepath);
     return parse(sax);
@@ -145,13 +126,18 @@ err_t BKVParser::parse(BKVSax &sax)
         token = getNext(item);
         if(token == eKeyValue)
         {
-            sax.keyValue(item.key(), item.value().toValue());
-        }else if(token == eBlockBegin)
+            if(err_t rc = sax.keyValue(item.key(), item.value()))
+                return rc;
+        }
+        else if(token == eBlockBegin)
         {
-            sax.begin(item.value().toStringView());
-        }else if(token == eBlockEnd)
+            if(err_t rc = sax.begin(item.value().toStringView()))
+                return rc;
+        }
+        else if(token == eBlockEnd)
         {
-            sax.end(item.value().toStringView());
+            if(err_t rc = sax.end(item.value().toStringView()))
+                return rc;
         }
     }while(token != eEOF);
     return eNoError;

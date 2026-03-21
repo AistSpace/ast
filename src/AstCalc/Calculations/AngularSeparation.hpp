@@ -21,14 +21,17 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "Calculation.hpp"
 
 AST_NAMESPACE_BEGIN
 
-class AST_CALC_API  AngularSeparation
+class AST_CALC_API  AngularSeparation : public Calculation
 {
 public:
     AngularSeparation() = default;
     ~AngularSeparation() = default;
 };
+
+
 
 AST_NAMESPACE_END

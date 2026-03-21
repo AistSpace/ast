@@ -5,6 +5,7 @@
 #include <vector>
 #include <memory>
 #include <clocale>
+#include <string>
 
 AST_USING_NAMESPACE
 

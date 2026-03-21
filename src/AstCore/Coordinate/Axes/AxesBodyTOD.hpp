@@ -32,11 +32,17 @@ AST_NAMESPACE_BEGIN
 
 class CelestialBody;
 class BodyOrientation;
+class AxesBodyTOD;
+using PAxesBodyTOD = AxesBodyTOD*;
+using HAxesBodyTOD = SharedPtr<AxesBodyTOD>;
 
 /// @brief  天体TOD轴系
 class AST_CORE_API AxesBodyTOD : public AxesBodyRelated
 {
 public:
+    static PAxesBodyTOD New(CelestialBody* body);
+    static HAxesBodyTOD NewShared(CelestialBody* body);
+    
     using AxesBodyRelated::AxesBodyRelated;
     Axes* getParent() const override;
     err_t getTransform(const TimePoint& tp, Rotation& rotation) const override;

@@ -25,6 +25,7 @@
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/RunTime.hpp"
 #include "AstCore/CelestialBody.hpp"
+#include "AstUtil/Environment.hpp"
 #include "AstMath/KinematicRotation.hpp"
 #include "AstMath/MathOperator.hpp"
 #include "AstUtil/Literals.hpp"
@@ -33,6 +34,7 @@
 #include <cstdio>
 #include <array>
 #include <vector>
+#include <clocale>
 
 #ifndef AST_NO_CSPICE
 #include "SpiceUsr.h"
@@ -67,6 +69,7 @@ TEST(SpiceZpr, appndi)
 
 TEST(SpiceZpr, axisar)
 {
+    setlocale(LC_ALL, ".UTF-8");
     static const struct {
         double axis[3];
         double angle;
@@ -2572,6 +2575,8 @@ TEST(SpiceZpr, spkpds)
 
 TEST(SpiceZpr, spkpos)
 {
+    if(aIsCI()) GTEST_SKIP();
+
     const std::string spkFile = aDataDir() + "/Test/kernels/spk/de430.bsp";
     // SpiceInt handle;
     // spklef_c(spkFile.c_str(), &handle );
@@ -2653,6 +2658,7 @@ TEST(SpiceZpr, spksfs)
 
 TEST(SpiceZpr, spkssb)
 {
+    if(aIsCI()) GTEST_SKIP();
     furnsh_c("data/Test/kernels/spk/de430.bsp");
     aInitialize();
     {

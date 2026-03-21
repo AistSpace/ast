@@ -24,11 +24,11 @@ AST_NAMESPACE_BEGIN
 
 // @todo metadata register
 
-Class aValBool_Type;     
-Class aValInt_Type;   
-Class aValDouble_Type;
-Class aValString_Type;
-Class aValQuantity_Type;
-Class aValRange_Type;
+// Class aValBool_Type;     
+// Class aValInt_Type;   
+// Class aValDouble_Type;
+// Class aValString_Type;
+// Class aValQuantity_Type;
+// Class aValRange_Type;
 
 AST_NAMESPACE_END

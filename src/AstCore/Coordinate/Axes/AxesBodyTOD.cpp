@@ -26,6 +26,16 @@
 
 AST_NAMESPACE_BEGIN
 
+PAxesBodyTOD AxesBodyTOD::New(CelestialBody *body)
+{
+    return new AxesBodyTOD(body);
+}
+
+HAxesBodyTOD AxesBodyTOD::NewShared(CelestialBody *body)
+{
+    return new AxesBodyTOD(body);
+}
+
 Axes *AxesBodyTOD::getParent() const
 {
     return getBodyOrientation()->getTODParent();

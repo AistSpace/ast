@@ -32,10 +32,10 @@ class ValBool: public ValScalar<bool>
 public:
     AST_EXPR(ValBool)
     ValBool()
-        : ValScalar<bool>(staticType(), false)
+        : ValScalar<bool>(false)
     {}
     ValBool(bool value)
-        : ValScalar<bool>(staticType(), value)
+        : ValScalar<bool>(value)
     {}
 
     using ValScalar<bool>::ValScalar;

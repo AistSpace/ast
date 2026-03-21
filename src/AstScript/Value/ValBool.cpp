@@ -26,10 +26,10 @@ AST_NAMESPACE_BEGIN
 
 static_assert(sizeof(ValBool) == sizeof(ValScalar<bool>), "ValBool must be same size as ValScalar<bool>");
 
-Class* ValBool::staticType()
-{
-    return &aValBool_Type;
-}
+// Class* ValBool::staticType()
+// {
+//     return &aValBool_Type;
+// }
 
 
 

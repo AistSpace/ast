@@ -142,6 +142,7 @@ A_ALWAYS_INLINE err_t aGeometryTransform(GeometryType *source, GeometryType *tar
                 return rc;
             commonToTarget = tempRot * commonToTarget;
         }
+        /// @todo 这里应该可以专门写个函数将 `.inverse() *` 的计算进行合并 
         rotation = commonToSource.inverse() * commonToTarget;
     }
     return eNoError;
@@ -149,11 +150,24 @@ A_ALWAYS_INLINE err_t aGeometryTransform(GeometryType *source, GeometryType *tar
 
 err_t aFrameTransform(Frame* source, Frame* target, const TimePoint &tp, Transform& transform)
 {
+    auto sourcePoint = source->getOrigin();
+    auto targetPoint = target->getOrigin();
+    if(sourcePoint == targetPoint){
+        transform.setTranslation(Vector3d::Zero());
+        return aAxesTransform(source->getAxes(), target->getAxes(), tp, transform.getRotation());
+    }
     return aGeometryTransform<Frame, Transform>(source, target, tp, transform);
 }
 
 err_t aFrameTransform(Frame *source, Frame *target, const TimePoint &tp, KinematicTransform &transform)
 {
+    auto sourcePoint = source->getOrigin();
+    auto targetPoint = target->getOrigin();
+    if(sourcePoint == targetPoint){
+        transform.setTranslation(Vector3d::Zero());
+        transform.setVelocity(Vector3d::Zero());
+        return aAxesTransform(source->getAxes(), target->getAxes(), tp, transform.getKinematicRotation());
+    }
     return aGeometryTransform<Frame, KinematicTransform>(source, target, tp, transform);
 }
 

@@ -110,4 +110,16 @@ TEST(FrameTransformTest, Transform_Case2)
 }
 
 
+TEST(FrameTransformTest, Transform_Case3)
+{
+    aInitialize();
+    KinematicTransform transform;
+    auto earth = aGetEarth();
+    auto eci = earth->makeFrameICRF();
+    auto ecf = earth->makeFrameFixed();
+    TimePoint tp = TimePoint::FromUTC(2026, 3, 5, 0, 0, 0);
+    err_t rc = aFrameTransform(eci, ecf, tp, transform);
+    EXPECT_FALSE(rc);
+}
+
 GTEST_MAIN()

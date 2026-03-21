@@ -76,6 +76,22 @@ char* fgetlinetrim(char* buffer, int size, FILE* file)
 }
 
 
+
+bool aIsHashCommentLine(StringView line)
+{
+    // 特殊情况：nullptr 字符串不是注释行
+    if(line.data() == nullptr)
+        return false;
+    for(char c : line)
+    {
+        if(!isspace(static_cast<unsigned char>(c)))
+        {
+            return c == '#';
+        }
+    }
+    return true;
+}
+
 BaseParser::BaseParser()
     : lineBuffer_(1024)
 {
@@ -155,6 +171,15 @@ StringView BaseParser::getLineTrim()
 {
     char* line = fgetlinetrim(lineBuffer_.data(), (int)lineBuffer_.size(), file_);
     return StringView(line);
+}
+
+StringView BaseParser::getLineSkipHashComment()
+{
+    StringView line;
+    do{
+        line = getLine();
+    }while(aIsHashCommentLine(line) && line.data() != nullptr);
+    return line;
 }
 
 

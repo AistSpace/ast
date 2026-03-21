@@ -22,6 +22,6 @@
 
 AST_NAMESPACE_BEGIN
 
-
+// const int sizeofClass = sizeof(Class);
 
 AST_NAMESPACE_END

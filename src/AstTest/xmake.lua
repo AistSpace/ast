@@ -1,0 +1,5 @@
+target("AstTest")
+    add_files("**.cpp")
+    set_kind("shared")
+    add_deps("AstUtil", "AstMath", "AstCore")
+    add_defines("AST_BUILD_LIB_TEST")

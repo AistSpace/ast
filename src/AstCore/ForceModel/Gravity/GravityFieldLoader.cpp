@@ -42,6 +42,13 @@ static err_t loadGravityFieldGMAT(GravityFieldLoaderContext& ctx);
 /// @return 错误码
 static err_t loadGravityFieldSTK(GravityFieldLoaderContext& ctx);
 
+
+/// @brief 从ATK格式文件(.grv文件)加载重力场
+/// @param ctx 上下文
+/// @return 错误码
+static err_t loadGravityFieldATK(GravityFieldLoaderContext& ctx);
+
+
 /// @brief 从GFC格式文件(.gfc文件)加载重力场
 /// @param parser 解析器
 /// @return 错误码
@@ -134,9 +141,13 @@ err_t loadGravityField(StringView model, GravityFieldLoaderContext& ctx)
     {
         return loadGravityFieldGMAT(ctx);
     }
-    else if(firstline.starts_with("stk") || model.ends_with(".grv"))
+    else if(model.ends_with(".grv"))
     {
-        return loadGravityFieldSTK(ctx);
+        if(firstline.starts_with("stk")){
+            return loadGravityFieldSTK(ctx);
+        }else{
+            return loadGravityFieldATK(ctx);
+        }
     }
     else if(model.ends_with(".gfc"))
     {
@@ -179,6 +190,99 @@ static bool gfCoeffIsLoaded(const GravityField& gf)
     return false;
 }
 
+err_t _loadGravityCoeffsXTK(GravityFieldLoaderContext& ctx, GravityField& gf, bool& skipRest)
+{
+    while(1)
+    {
+        StringView line = ctx.parser_.getLineSkipComment();
+        int degree, order;
+        double cnm, snm;
+        // #pragma warning(suppress: 4996)
+        if(line.empty()){
+            break;
+        }
+        int status = sscanf(
+            line.data(), 
+            "%d %d %lf %lf", 
+            &degree, &order, &cnm, &snm
+        );
+        if(status == 4){
+            if(A_LIKELY(gf.isValidDegreeOrder(degree, order)))
+            {
+                gf.snm(degree, order) = snm;
+                gf.cnm(degree, order) = cnm;
+            }else{
+                if(gfCoeffIsLoaded(gf)){
+                    skipRest = true;
+                    return 0;
+                }else{
+                    continue;
+                    // 忽略超出最大阶数的系数
+                    
+                    // aError(
+                    //     "Invalid degree or order: %d %d, with max degree %d and max order %d", 
+                    //     degree, order, gf.getMaxDegree(), gf.getMaxOrder()
+                    // );
+                    // return eErrorParse;
+                }
+            }
+        }else{
+            break;
+        }
+    }
+    skipRest = false;
+    return 0;
+}
+
+err_t loadGravityFieldATK(GravityFieldLoaderContext& ctx)
+{
+    ctx.parser_.seek(0, std::ios_base::beg);
+    FILE* file = ctx.parser_.getFile();
+    if(!file){
+        return eErrorInvalidFile;
+    }
+    bool loadCoeff = ctx.coeff_ != nullptr;
+    GravityField gf;
+    // 读取重力场头
+    double v1, v2, v3;
+    int status = fscanf(file, "%lf %lf %lf", &v1, &v2, &v3);
+    if(status != 3){
+        aError("failed to read gravity field header");
+        return eErrorParse;
+    }
+    gf.model_ = fs::path(ctx.parser_.getFilePath()).stem();
+    gf.normalized_ = true;
+    if(v2 > v1)
+    {
+        gf.maxDegree_ = static_cast<int>(v1);
+        gf.maxOrder_ = static_cast<int>(v1);
+        gf.gm_ = v2;
+        gf.refDistance_ = v3;
+    }else{
+        gf.maxDegree_ = static_cast<int>(v1);
+        gf.maxOrder_ = static_cast<int>(v2);
+        gf.gm_ = v3;
+        status = fscanf(file, "%lf", &gf.refDistance_);
+        if(status != 1){
+            aError("failed to read gravity field header");
+            return eErrorParse;
+        }
+    }
+    gfInitCoeffMatrices(gf, ctx);
+    // 读取系数
+    bool skipRest = false;
+    err_t rc = _loadGravityCoeffsXTK(ctx, gf, skipRest);
+    if(rc != 0){
+        aError("failed to load gravity field coefficients");
+        return rc;
+    }
+    if(ctx.head_ != nullptr)
+        *ctx.head_ = gf.getHead();
+    if(loadCoeff)
+        *ctx.coeff_ = std::move(gf);
+    return eNoError;
+}
+
 err_t loadGravityFieldSTK(GravityFieldLoaderContext& ctx)
 {
     BKVParser::EToken token;
@@ -192,41 +296,14 @@ err_t loadGravityFieldSTK(GravityFieldLoaderContext& ctx)
             if(aEqualsIgnoreCase(item.value(), "Coefficients") && loadCoeff)
             {
                 gfInitCoeffMatrices(gf, ctx);
-                while(1)
-                {
-                    StringView line = ctx.parser_.getLineSkipComment();
-                    int degree, order;
-                    double cnm, snm;
-                    // #pragma warning(suppress: 4996)
-                    int status = sscanf(
-                        line.data(), 
-                        "%d %d %lf %lf", 
-                        &degree, &order, &cnm, &snm
-                    );
-                    if(status == 4){
-                        if(A_LIKELY(gf.isValidDegreeOrder(degree, order)))
-                        {
-                            gf.snm(degree, order) = snm;
-                            gf.cnm(degree, order) = cnm;
-                        }else{
-                            if(gfCoeffIsLoaded(gf)){
-                                goto endparse;
-                                // aWarning("already loaded coefficients, ignore the rest");
-                                break;
-                            }else{
-                                continue;
-                                // 忽略超出最大阶数的系数
-                                
-                                // aError(
-                                //     "Invalid degree or order: %d %d, with max degree %d and max order %d", 
-                                //     degree, order, gf.getMaxDegree(), gf.getMaxOrder()
-                                // );
-                                // return eErrorParse;
-                            }
-                        }
-                    }else{
-                        break;
-                    }
+                bool skipRest = false;
+                err_t rc = _loadGravityCoeffsXTK(ctx, gf, skipRest);
+                if(rc != 0){
+                    aError("failed to load gravity field coefficients");
+                    return rc;
+                }
+                if(skipRest){
+                    goto endparse;
                 }
             }
         }

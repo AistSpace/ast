@@ -90,7 +90,7 @@ private:
             m_object->decWeakRef();
     }
 protected:
-    _Object* m_object;
+    _Object* m_object{nullptr};
 };
 
 

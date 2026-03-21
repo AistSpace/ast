@@ -33,7 +33,7 @@ double aRAANRate(double gm, double j2, double rb, double a, double ecc, double i
     return -3./2. * j2 * n * pow(rb / a, 2) * cos(inc) / pow(1 - ecc * ecc, 2);
 }
 
-double aArgPerRate(double gm, double j2, double rb, double a, double ecc, double inc)
+double aArgPeriRate(double gm, double j2, double rb, double a, double ecc, double inc)
 {
     // double n = sqrt(gm / pow(a, 3));
     double n = aMeanAnomalyRate(gm, j2, rb, a, ecc, inc);
@@ -48,7 +48,7 @@ double aMeanAnomalyRate(double gm, double j2, double rb, double a, double ecc, d
 
 double aMeanArgLatRate(double gm, double j2, double rb, double a, double ecc, double inc)
 {
-    return aMeanAnomalyRate(gm, j2, rb, a, ecc, inc) + aArgPerRate(gm, j2, rb, a, ecc, inc);
+    return aMeanAnomalyRate(gm, j2, rb, a, ecc, inc) + aArgPeriRate(gm, j2, rb, a, ecc, inc);
 }
 
 double aJ2Period(double gm, double j2, double rb, double a, double ecc, double inc)

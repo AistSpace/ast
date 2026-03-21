@@ -106,24 +106,24 @@ TEST(OrbitParam, OrbitalElementConversion)
     // 测试长半轴 ←→ 平均角速度
     {
         double semiMajorAxis = 42164000.0 + CB_RADIUS; // 地球同步轨道长半轴
-        double meanMotion = aSMajAxToMeanMotn(semiMajorAxis, GM);
-        double semiMajorAxisBack = aMeanMotnToSMajAx(meanMotion, GM);
+        double meanMotion = aSMAToMeanMotion(semiMajorAxis, GM);
+        double semiMajorAxisBack = aMeanMotionToSMA(meanMotion, GM);
         EXPECT_NEAR(semiMajorAxis, semiMajorAxisBack, EPS);
     }
     
     // 测试长半轴 ←→ 轨道周期
     {
         double semiMajorAxis = 42164000.0 + CB_RADIUS; // 地球同步轨道长半轴
-        double period = aSMajAxToPeriod(semiMajorAxis, GM);
-        double semiMajorAxisBack = aPeriodToSMajAx(period, GM);
+        double period = aSMAToPeriod(semiMajorAxis, GM);
+        double semiMajorAxisBack = aPeriodToSMA(period, GM);
         EXPECT_NEAR(semiMajorAxis, semiMajorAxisBack, EPS);
     }
     
     // 测试平均角速度 ←→ 轨道周期
     {
         double meanMotion = 7.2921158553e-5; // 地球自转角速度
-        double period = aMeanMotnToPeriod(meanMotion);
-        double meanMotionBack = aPeriodToMeanMotn(period);
+        double period = aMeanMotionToPeriod(meanMotion);
+        double meanMotionBack = aPeriodToMeanMotion(period);
         EXPECT_NEAR(meanMotion, meanMotionBack, EPS);
     }
     
@@ -132,13 +132,13 @@ TEST(OrbitParam, OrbitalElementConversion)
         double perigeeAlt = 200000.0;  // 近地点高度
         double eccentricity = 0.05;    // 偏心率
         
-        double semiMajorAxis = aPeriAltToSMajAx(perigeeAlt, eccentricity, CB_RADIUS);
-        double perigeeAltBack = aSMajAxToPeriAlt(semiMajorAxis, eccentricity, CB_RADIUS);
+        double semiMajorAxis = aPeriAltToSMA(perigeeAlt, eccentricity, CB_RADIUS);
+        double perigeeAltBack = aSMAToPeriAlt(semiMajorAxis, eccentricity, CB_RADIUS);
         EXPECT_NEAR(perigeeAlt, perigeeAltBack, EPS);
         
         double apogeeAlt = aPeriAltToApoAlt(perigeeAlt, eccentricity, CB_RADIUS);
-        double semiMajorAxisFromApo = aApoAltToSMajAx(apogeeAlt, eccentricity, CB_RADIUS);
-        double apogeeAltBack = aSMajAxToApoAlt(semiMajorAxisFromApo, eccentricity, CB_RADIUS);
+        double semiMajorAxisFromApo = aApoAltToSMA(apogeeAlt, eccentricity, CB_RADIUS);
+        double apogeeAltBack = aSMAToApoAlt(semiMajorAxisFromApo, eccentricity, CB_RADIUS);
         EXPECT_NEAR(apogeeAlt, apogeeAltBack, EPS);
     }
     
@@ -179,7 +179,7 @@ TEST(OrbitParam, SpecificScenarios)
         double semiMajorAxis = 42164000.0; // 地球同步轨道长半轴
         double eccentricity = 0.0;
         
-        double period = aSMajAxToPeriod(semiMajorAxis, GM);
+        double period = aSMAToPeriod(semiMajorAxis, GM);
         double expectedPeriod = 23 * 3600 + 56 * 60 + 4.0916; // 恒星日
         EXPECT_NEAR(period, expectedPeriod, 1.0); // 允许1秒误差
 
@@ -258,72 +258,72 @@ TEST(OrbitParam, TimeConversions)
     // 测试平近点角 ←→ 过近心点时间
     {
         double meanAnomaly = 0.5; // 平近点角
-        double tpp = aMeanToTPP(meanAnomaly, semiMajorAxis, GM);
-        double meanAnomalyBack = aTPPToMean(tpp, semiMajorAxis, GM);
+        double tpp = aMeanToTimePastPeri(meanAnomaly, semiMajorAxis, GM);
+        double meanAnomalyBack = aTimePastPeriToMean(tpp, semiMajorAxis, GM);
         EXPECT_NEAR(meanAnomaly, meanAnomalyBack, EPS);
     }
     
     // 测试偏近点角 ←→ 过近心点时间
     {
         double eccAnomaly = 0.5; // 偏近点角
-        double tpp = aEccToTPP(eccAnomaly, semiMajorAxis, eccentricity, GM);
-        double eccAnomalyBack = aTPPToEcc(tpp, semiMajorAxis, eccentricity, GM);
+        double tpp = aEccToTimePastPeri(eccAnomaly, semiMajorAxis, eccentricity, GM);
+        double eccAnomalyBack = aTimePastPeriToEcc(tpp, semiMajorAxis, eccentricity, GM);
         EXPECT_NEAR(eccAnomaly, eccAnomalyBack, EPS);
     }
     
     // 测试真近点角 ←→ 过近心点时间
     {
         double trueAnomaly = 0.5; // 真近点角
-        double tpp = aTrueToTPP(trueAnomaly, semiMajorAxis, eccentricity, GM);
-        double trueAnomalyBack = aTPPToTrue(tpp, semiMajorAxis, eccentricity, GM);
+        double tpp = aTrueToTimePastPeri(trueAnomaly, semiMajorAxis, eccentricity, GM);
+        double trueAnomalyBack = aTimePastPeriToTrue(tpp, semiMajorAxis, eccentricity, GM);
         EXPECT_NEAR(trueAnomaly, trueAnomalyBack, EPS);
     }
     
     // 测试过升交点时间 ←→ 过近心点时间
     {
         double tpp = 1000.0; // 过近心点时间
-        double tpan = aTPPToTPAN(tpp, argPeri, semiMajorAxis, eccentricity, GM);
-        double tppBack = aTPANToTPP(tpan, argPeri, semiMajorAxis, eccentricity, GM);
+        double tpan = aTimePastPeriToTimePastAscNode(tpp, argPeri, semiMajorAxis, eccentricity, GM);
+        double tppBack = aTimePastAscNodeToTimePastPeri(tpan, argPeri, semiMajorAxis, eccentricity, GM);
         EXPECT_NEAR(tpp, tppBack, EPS);
     }
     
     // 测试过升交点时间 ←→ 平近点角
     {
         double tpan = 5000.0; // 过升交点时间
-        double meanAnomaly = aTPANToMean(tpan, argPeri, semiMajorAxis, eccentricity, GM);
+        double meanAnomaly = aTimePastAscNodeToMean(tpan, argPeri, semiMajorAxis, eccentricity, GM);
         // 这里需要通过其他函数组合来验证
-        double tpp = aTPANToTPP(tpan, argPeri, semiMajorAxis, eccentricity, GM);
-        double meanAnomalyVerify = aTPPToMean(tpp, semiMajorAxis, GM);
+        double tpp = aTimePastAscNodeToTimePastPeri(tpan, argPeri, semiMajorAxis, eccentricity, GM);
+        double meanAnomalyVerify = aTimePastPeriToMean(tpp, semiMajorAxis, GM);
         EXPECT_NEAR(meanAnomaly, meanAnomalyVerify, EPS);
     }
     
     // 测试过升交点时间 ←→ 偏近点角
     {
         double tpan = 5000.0; // 过升交点时间
-        double eccAnomaly = aTPANToEcc(tpan, argPeri, semiMajorAxis, eccentricity, GM);
+        double eccAnomaly = aTimePastAscNodeToEcc(tpan, argPeri, semiMajorAxis, eccentricity, GM);
         // 验证逻辑
-        double tpp = aTPANToTPP(tpan, argPeri, semiMajorAxis, eccentricity, GM);
-        double eccAnomalyVerify = aTPPToEcc(tpp, semiMajorAxis, eccentricity, GM);
+        double tpp = aTimePastAscNodeToTimePastPeri(tpan, argPeri, semiMajorAxis, eccentricity, GM);
+        double eccAnomalyVerify = aTimePastPeriToEcc(tpp, semiMajorAxis, eccentricity, GM);
         EXPECT_NEAR(eccAnomaly, eccAnomalyVerify, EPS);
     }
     
     // 测试过升交点时间 ←→ 真近点角
     {
         double tpan = 5000.0; // 过升交点时间
-        double trueAnomaly = aTPANToTrue(tpan, argPeri, semiMajorAxis, eccentricity, GM);
+        double trueAnomaly = aTimePastAscNodeToTrue(tpan, argPeri, semiMajorAxis, eccentricity, GM);
         // 验证逻辑
-        double tpp = aTPANToTPP(tpan, argPeri, semiMajorAxis, eccentricity, GM);
-        double trueAnomalyVerify = aTPPToTrue(tpp, semiMajorAxis, eccentricity, GM);
+        double tpp = aTimePastAscNodeToTimePastPeri(tpan, argPeri, semiMajorAxis, eccentricity, GM);
+        double trueAnomalyVerify = aTimePastPeriToTrue(tpp, semiMajorAxis, eccentricity, GM);
         EXPECT_NEAR(trueAnomaly, trueAnomalyVerify, EPS);
     }
     
     // 测试真近点角 ←→ 过升交点时间
     {
         double trueAnomaly = 0.5; // 真近点角
-        double tpan = aTrueToTPAN(trueAnomaly, argPeri, semiMajorAxis, eccentricity, GM);   // 过升交点后时间
+        double tpan = aTrueToTimePastAscNode(trueAnomaly, argPeri, semiMajorAxis, eccentricity, GM);   // 过升交点后时间
         // 验证逻辑
-        double tppFromTrue = aTrueToTPP(trueAnomaly, semiMajorAxis, eccentricity, GM);      // 过近心点后时间
-        double tppFromArgPeri = aTrueToTPP(argPeri, semiMajorAxis, eccentricity, GM);       // 升交点到近心点时间
+        double tppFromTrue = aTrueToTimePastPeri(trueAnomaly, semiMajorAxis, eccentricity, GM);      // 过近心点后时间
+        double tppFromArgPeri = aTrueToTimePastPeri(argPeri, semiMajorAxis, eccentricity, GM);       // 升交点到近心点时间
         double tpanVerify = tppFromTrue + tppFromArgPeri;
         EXPECT_NEAR(tpan, tpanVerify, EPS);
     }
@@ -339,8 +339,8 @@ TEST(OrbitParam, GeometricParams)
         double semiMajorAxis = 7000000.0; // 长半轴
         double eccentricity = 0.01; // 偏心率
         
-        double semiMinorAxis = aSMajAxToSMinAx(semiMajorAxis, eccentricity);
-        double semiMajorAxisBack = aSMinAxToSMajAx(semiMinorAxis, eccentricity);
+        double semiMinorAxis = aSMAToSMinAx(semiMajorAxis, eccentricity);
+        double semiMajorAxisBack = aSMinAxToSMA(semiMinorAxis, eccentricity);
         EXPECT_NEAR(semiMajorAxis, semiMajorAxisBack, EPS);
         
         // 验证几何关系：b = a * sqrt(1 - e^2)
@@ -353,7 +353,7 @@ TEST(OrbitParam, GeometricParams)
         double semiMajorAxis = 7000000.0; // 长半轴
         double eccentricity = 0.01; // 偏心率
         
-        double semiParam = aSMajAxToSParam(semiMajorAxis, eccentricity);
+        double semiParam = aSMAToSParam(semiMajorAxis, eccentricity);
         // 验证几何关系：p = a * (1 - e^2)
         double expectedSemiParam = semiMajorAxis * (1.0 - eccentricity * eccentricity);
         EXPECT_NEAR(semiParam, expectedSemiParam, EPS);
@@ -364,7 +364,7 @@ TEST(OrbitParam, GeometricParams)
         double perigeeRad = 6778000.0; // 近地点半径
         double apogeeRad = 7000000.0;  // 远地点半径
         
-        double eccentricity = aRadiiToEcc(perigeeRad, apogeeRad);
+        double eccentricity = aPeriRadApoRadToEcc(perigeeRad, apogeeRad);
         // 验证偏心率计算：e = (Ra - Rp) / (Ra + Rp)
         double expectedEccentricity = (apogeeRad - perigeeRad) / (apogeeRad + perigeeRad);
         EXPECT_NEAR(eccentricity, expectedEccentricity, EPS);
@@ -431,13 +431,13 @@ TEST(OrbitParam, GroundTrackRepeat)
         int daysToRepeat = 1;
         int revsToRepeat = 16;
         
-        double semiMajorAxis = aRepeatGrndTrk(daysToRepeat, revsToRepeat, GM, EARTH_ROT_RATE);
+        double semiMajorAxis = aRepeatGroundTrackSMA(daysToRepeat, revsToRepeat, GM, EARTH_ROT_RATE);
         
         // 计算平均角速度
-        double meanMotion = aSMajAxToMeanMotn(semiMajorAxis, GM);
+        double meanMotion = aSMAToMeanMotion(semiMajorAxis, GM);
         
         // 验证轨道周期与地球自转的关系
-        double orbitalPeriod = aMeanMotnToPeriod(meanMotion);
+        double orbitalPeriod = aMeanMotionToPeriod(meanMotion);
         double earthDayInSeconds = 24 * 3600.0;
         
         // 检查在一天内是否完成约16圈
@@ -450,13 +450,13 @@ TEST(OrbitParam, GroundTrackRepeat)
         int daysToRepeat = 2;
         int revsToRepeat = 31; // 2天31圈
         
-        double semiMajorAxis = aRepeatGrndTrk(daysToRepeat, revsToRepeat, GM, EARTH_ROT_RATE);
+        double semiMajorAxis = aRepeatGroundTrackSMA(daysToRepeat, revsToRepeat, GM, EARTH_ROT_RATE);
         
         // 计算平均角速度
-        double meanMotion = aSMajAxToMeanMotn(semiMajorAxis, GM);
+        double meanMotion = aSMAToMeanMotion(semiMajorAxis, GM);
         
         // 验证轨道周期
-        double orbitalPeriod = aMeanMotnToPeriod(meanMotion);
+        double orbitalPeriod = aMeanMotionToPeriod(meanMotion);
         double totalTime = daysToRepeat * 24 * 3600.0;
         
         // 检查在指定天数内是否完成指定圈数

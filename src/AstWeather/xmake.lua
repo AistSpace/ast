@@ -12,4 +12,4 @@ target("AstWeather")
         add_defines("AST_NO_LIBF2C")
     end
 
-includes("*")
+includes("*/xmake.lua")

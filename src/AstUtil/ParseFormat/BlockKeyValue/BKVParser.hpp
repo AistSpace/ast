@@ -81,14 +81,14 @@ public:
     /// @brief 获取当前行（跳过注释行）
     /// @details 获取当前行的内容，不包含行结束符。
     /// @return 当前行的内容（去除首尾空格）
-    StringView getLineSkipComment();
+    StringView getLineSkipComment(){return getLineSkipHashComment();}
     
     /// @brief 解析文件
     /// @details 解析指定路径的文件，将解析结果传递给指定的 sax 解析器。
     /// @param filepath 文件路径视图，指定要解析的文件路径。
     /// @param sax sax 解析器，用于处理解析结果。
     /// @return 解析错误码（err_t）。
-    err_t parseFile(const StringView filepath, BKVSax& sax);
+    err_t parseFile(StringView filepath, BKVSax& sax);
 
     /// @brief 解析当前打开的文件
     /// @details 解析当前打开的文件，将解析结果传递给指定的 sax 解析器。

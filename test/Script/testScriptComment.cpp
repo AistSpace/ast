@@ -39,7 +39,7 @@ void testScriptComment(StringView str, double expectedValue)
     if(aValueIsDouble(value.get())){
         EXPECT_DOUBLE_EQ(aValueUnboxDouble(value.get()), expectedValue);
     }else if(aValueIsBool(value.get())){
-        EXPECT_TRUE(aValueUnboxBool(value.get()) == (bool)expectedValue);
+        EXPECT_TRUE(aValueUnboxBool(value.get()) == (bool)(expectedValue != 0.0));
     }
     // else if(aValueIsString(value.get())){
         //@todo 字符串比较

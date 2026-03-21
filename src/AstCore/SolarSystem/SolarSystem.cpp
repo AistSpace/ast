@@ -20,7 +20,9 @@
 
 #include "SolarSystem.hpp"
 #include "AstCore/JplDe.hpp"
+#include "AstCore/EarthOrientation.hpp"
 #include "AstUtil/StringView.hpp"
+#include "AstUtil/Constants.hpp"
 #include <iostream>
 
 
@@ -58,6 +60,8 @@ void SolarSystem::init()
         mercury_->name_ = "Mercury";
         mercury_->jplIndex_ = JplDe::eMercury;
         mercury_->jplSpiceId_ = ESpiceId::eMercury;
+        mercury_->gm_ = kMercuryGrav;
+        mercury_->radius_ = kMercuryRadius;
         bodies_.push_back(mercury_);
         nameMap_["Mercury"] = mercury_;
     }
@@ -66,6 +70,8 @@ void SolarSystem::init()
         venus_->name_ = "Venus";
         venus_->jplIndex_ = JplDe::eVenus;
         venus_->jplSpiceId_ = ESpiceId::eVenus;
+        venus_->gm_ = kVenusGrav;
+        venus_->radius_ = kVenusRadius;
         bodies_.push_back(venus_);
         nameMap_["Venus"] = venus_;
     }
@@ -74,6 +80,9 @@ void SolarSystem::init()
         earth_->name_ = "Earth";
         earth_->jplIndex_ = JplDe::eEarth;
         earth_->jplSpiceId_ = ESpiceId::eEarth;
+        earth_->orientation_ = new EarthOrientation();
+        earth_->gm_ = kEarthGrav_EGM2008;
+        earth_->radius_ = kEarthRadius;
         bodies_.push_back(earth_);
         nameMap_["Earth"] = earth_;
     }
@@ -83,6 +92,8 @@ void SolarSystem::init()
         mars_->name_ = "Mars";
         mars_->jplIndex_ = JplDe::eMars;
         mars_->jplSpiceId_ = ESpiceId::eMars;
+        mars_->gm_ = kMarsGrav;
+        mars_->radius_ = kMarsRadius;
         bodies_.push_back(mars_);
         nameMap_["Mars"] = mars_;
     }
@@ -91,6 +102,8 @@ void SolarSystem::init()
         jupiter_->name_ = "Jupiter";
         jupiter_->jplIndex_ = JplDe::eJupiter;
         jupiter_->jplSpiceId_ = ESpiceId::eJupiter;
+        jupiter_->gm_ = kJupiterGrav;
+        jupiter_->radius_ = kJupiterRadius;
         bodies_.push_back(jupiter_);
         nameMap_["Jupiter"] = jupiter_;
     }
@@ -99,6 +112,8 @@ void SolarSystem::init()
         saturn_->name_ = "Saturn";
         saturn_->jplIndex_ = JplDe::eSaturn;
         saturn_->jplSpiceId_ = ESpiceId::eSaturn;
+        saturn_->gm_ = kSaturnGrav;
+        saturn_->radius_ = kSaturnRadius;
         bodies_.push_back(saturn_);
         nameMap_["Saturn"] = saturn_;
     }
@@ -107,6 +122,8 @@ void SolarSystem::init()
         uranus_->name_ = "Uranus";
         uranus_->jplIndex_ = JplDe::eUranus;
         uranus_->jplSpiceId_ = ESpiceId::eUranus;
+        uranus_->gm_ = kUranusGrav;
+        uranus_->radius_ = kUranusRadius;
         bodies_.push_back(uranus_);
         nameMap_["Uranus"] = uranus_;
     }
@@ -115,6 +132,8 @@ void SolarSystem::init()
         neptune_->name_ = "Neptune";
         neptune_->jplIndex_ = JplDe::eNeptune;
         neptune_->jplSpiceId_ = ESpiceId::eNeptune;
+        neptune_->gm_ = kNeptuneGrav;
+        neptune_->radius_ = kNeptuneRadius;
         bodies_.push_back(neptune_);
         nameMap_["Neptune"] = neptune_;
     }
@@ -123,6 +142,8 @@ void SolarSystem::init()
         pluto_->name_ = "Pluto";
         pluto_->jplIndex_ = JplDe::ePluto;
         pluto_->jplSpiceId_ = ESpiceId::ePluto;
+        pluto_->gm_ = kPlutoGrav;
+        pluto_->radius_ = kPlutoRadius;
         bodies_.push_back(pluto_);
         nameMap_["Pluto"] = pluto_;
     }
@@ -131,6 +152,8 @@ void SolarSystem::init()
         moon_->name_ = "Moon";
         moon_->jplIndex_ = JplDe::eMoon;
         moon_->jplSpiceId_ = ESpiceId::eMoon;
+        moon_->gm_ = kMoonGrav;
+        moon_->radius_ = kMoonRadius;
         bodies_.push_back(moon_);
         nameMap_["Moon"] = moon_;
     }
@@ -139,6 +162,8 @@ void SolarSystem::init()
         sun_->name_ = "Sun";
         sun_->jplIndex_ = JplDe::eSun;
         sun_->jplSpiceId_ = ESpiceId::eSun;
+        sun_->gm_ = kSunGrav;
+        sun_->radius_ = kSunRadius;
         bodies_.push_back(sun_);
         nameMap_["Sun"] = sun_;
     }

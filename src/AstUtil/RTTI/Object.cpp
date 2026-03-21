@@ -26,7 +26,12 @@
 AST_NAMESPACE_BEGIN
  
 
-static_assert(sizeof(Object) == sizeof(void*) * 2 + sizeof(uint32_t) * 2, "size not correct");      // 检查 Object 类的大小是否正确
+static_assert(sizeof(Object) == sizeof(void*) * 1 + sizeof(uint32_t) * 2, "size not correct");      // 检查 Object 类的大小是否正确
+
+Class *Object::getType() const
+{
+    return nullptr;
+}
 
 err_t Object::getAttrBool(StringView path, bool &value) const
 {
@@ -58,6 +63,34 @@ err_t Object::getAttrString(StringView path, std::string &value) const
     if(!prop)
         return eErrorInvalidParam;
     return prop->getValueString(this, value);
+}
+
+double Object::getAttrDouble(StringView path) const
+{
+    double value = 0.0;
+    getAttrDouble(path, value);
+    return value;
+}
+
+int Object::getAttrInt(StringView path) const
+{
+    int value = 0;
+    getAttrInt(path, value);
+    return value;
+}
+
+bool Object::getAttrBool(StringView path) const
+{
+    bool value = false;
+    getAttrBool(path, value);
+    return value;
+}
+
+std::string Object::getAttrString(StringView path) const
+{
+    std::string value;
+    getAttrString(path, value);
+    return value;
 }
 
 err_t Object::setAttrBool(StringView path, bool value)
@@ -94,7 +127,11 @@ err_t Object::setAttrString(StringView path, StringView value)
 
 Property *Object::getProperty(StringView fieldName) const
 {
-    return m_type->getProperty(fieldName);
+    if(auto type = getType())
+    {
+        return type->getProperty(fieldName);
+    }
+    return nullptr;
 }
 
 

@@ -22,7 +22,18 @@
 #include "AxesICRF.hpp"
 #include "AstCore/BodyOrientation.hpp"
 
+
 AST_NAMESPACE_BEGIN
+
+PAxesBodyFixed AxesBodyFixed::New(CelestialBody *body)
+{
+    return new AxesBodyFixed(body);
+}
+
+HAxesBodyFixed AxesBodyFixed::NewShared(CelestialBody *body)
+{
+    return new AxesBodyFixed(body);
+}
 
 Axes* AxesBodyFixed::getParent() const
 {

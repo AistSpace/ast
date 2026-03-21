@@ -22,6 +22,7 @@
 #include "DataContext.hpp"
 #include "AstUtil/FileSystem.hpp"
 #include "AstUtil/Logger.hpp"
+#include "AstUtil/StartupConfig.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/FundamentalArguments.hpp"
 #include "AstCore/GlobalContext.hpp"
@@ -41,6 +42,21 @@
 
 AST_NAMESPACE_BEGIN
 
+
+/// @brief 初始化配置
+struct InitalizeConfig
+{
+    fs::path dataDir_;               ///< 数据目录路径
+    fs::path leapSecondFile_;        ///< 跳秒文件路径
+    fs::path jplDeFile_;             ///< JPL DE文件路径
+    fs::path eopFile_;               ///< EOP文件路径
+    fs::path spaceWeatherFile_;      ///< 空间天气文件路径
+    fs::path iauxFile_;              ///< IAU-X系数文件路径
+    fs::path iauyFile_;              ///< IAU-Y系数文件路径
+    fs::path iausFile_;              ///< IAU-Z系数文件路径
+    fs::path iauXYSPrecomputedFile_; ///< IAU-XYS预计算数据文件路径
+    fs::path solarSystemDir_;        ///< 太阳系目录路径
+};
 
 
 // 线程本地存储的当前全局上下文指针
@@ -146,7 +162,7 @@ std::string SolarSystem::defaultSolarSystemDir()
     return fs::path(aDataDirGet()) / AST_DEFAULT_DIR_SOLARSYSTEM;
 }
 
-err_t aInitialize(DataContext* context)
+err_t aInitializeByDefault(DataContext* context)
 {
     err_t err = 0;
     
@@ -172,11 +188,97 @@ err_t aInitialize(DataContext* context)
 }
 
 
+err_t aInitializeByConfig(DataContext* context, const InitalizeConfig& config)
+{
+    err_t err = 0;
+
+    // init global context
+    context->setDataDir(config.dataDir_.string());
+
+    auto globalCxt = aGlobalContext_Get();
+    if(!globalCxt->iauXYS()->isLoaded())
+    {
+        err |= globalCxt->iauXYS()->load(
+            config.iauxFile_.string(), config.iauyFile_.string(), config.iausFile_.string()
+        );
+    }
+    
+    // init thread local data context
+    err |= context->leapSecond()->load(config.leapSecondFile_.string());
+    err |= context->jplDe()->open(config.jplDeFile_.c_str());
+    err |= context->eop()->load(config.eopFile_.string());
+    err |= context->spaceWeather()->load(config.spaceWeatherFile_.string());
+    err |= context->iauXYSPrecomputed()->load(config.iauXYSPrecomputedFile_.string());
+    err |= context->solarSystem()->load(config.solarSystemDir_.string());
+
+    if(err != eNoError) {
+        aError("initialize failed: failed to load data.");
+    }
+    return err;
+}
+
+
+fs::path aRelPathToAbs(const fs::path& relpath, const fs::path& basedir)
+{
+    if(!relpath.empty() && relpath.string()[0] == '.')
+    {
+        return basedir / relpath;
+    }
+    return relpath;
+}
+
+err_t aInitializeByConfig(DataContext* context, StringView configfile)
+{
+    StartupConfig startupConfig;
+    err_t rc = startupConfig.load(configfile);
+    if(rc) return rc;
+    InitalizeConfig initalizeConfig;
+    fs::path libdir = aLibDir();
+    initalizeConfig.dataDir_ = aRelPathToAbs(startupConfig.getConfig("DATA_DIR").toString(), libdir);
+    initalizeConfig.leapSecondFile_ = aRelPathToAbs(startupConfig.getConfig("LSK_FILE").toString(), libdir);
+    initalizeConfig.jplDeFile_ = aRelPathToAbs(startupConfig.getConfig("JPLDE_FILE").toString(), libdir);
+    initalizeConfig.eopFile_ = aRelPathToAbs(startupConfig.getConfig("EOP_FILE").toString(), libdir);
+    initalizeConfig.spaceWeatherFile_ = aRelPathToAbs(startupConfig.getConfig("SPACEWEATHER_FILE").toString(), libdir);
+    initalizeConfig.iauxFile_ = aRelPathToAbs(startupConfig.getConfig("IAUX_FILE").toString(), libdir);
+    initalizeConfig.iauyFile_ = aRelPathToAbs(startupConfig.getConfig("IAUY_FILE").toString(), libdir);
+    initalizeConfig.iausFile_ = aRelPathToAbs(startupConfig.getConfig("IAUS_FILE").toString(), libdir);
+    initalizeConfig.iauXYSPrecomputedFile_ = aRelPathToAbs(startupConfig.getConfig("IAUXYS_PRECOMPUTED_FILE").toString(), libdir);
+    initalizeConfig.solarSystemDir_ = aRelPathToAbs(startupConfig.getConfig("SOLARSYSTEM_DIR").toString(), libdir);
+    return aInitializeByConfig(context, initalizeConfig);
+}
+
+err_t aInitializeByConfig(StringView configfile)
+{
+    auto context = aDataContext_EnsureCurrent();
+    return aInitializeByConfig(context, configfile);
+}
+
+err_t aInitialize(DataContext* context)
+{
+    // check for startup config file
+    fs::path libdir = aLibDir();
+    fs::path startupConfigFile1 = libdir / "ast_startup_file.txt";
+    if(fs::is_regular_file(startupConfigFile1))
+    {
+        return aInitializeByConfig(context, startupConfigFile1.string());
+    }
+    else{
+        fs::path startupConfigFile2 = libdir / "atk_startup_file.txt";
+        if(fs::is_directory(startupConfigFile2))
+        {
+            return aInitializeByConfig(context, startupConfigFile2.string());
+        }
+    }
+    return aInitializeByDefault(context);
+}
+
+
 err_t aInitialize()
 {
     auto context = aDataContext_EnsureCurrent();
     return aInitialize(context);
 }
+
 
 err_t aUninitialize()
 {
@@ -501,6 +603,11 @@ CelestialBody *aGetBody(StringView name)
 {
     auto context = aDataContext_EnsureCurrent();
     return context->solarSystem()->getBody(name);
+}
+
+CelestialBody *aGetDefaultBody()
+{
+    return aGetEarth();
 }
 
 CelestialBody* aGetMercury()

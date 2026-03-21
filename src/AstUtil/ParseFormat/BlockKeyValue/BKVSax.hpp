@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/GenericValue.hpp"
+#include "AstUtil/ValueView.hpp"
 #include "AstUtil/Color.hpp"
 
 AST_NAMESPACE_BEGIN
@@ -34,30 +35,32 @@ class ValueView;
 class AST_UTIL_API BKVSax
 {
 public:
+    static constexpr int endParse = 1;
+
     /// @brief 析构函数
     virtual ~BKVSax() = default;
 
     /// @brief 开始解析一个块
     /// @param name 块名
-    virtual void begin(StringView name) = 0;
+    virtual err_t begin(StringView name) = 0;
     
     /// @brief 结束解析一个块
     /// @param name 块名
-    virtual void end(StringView name) = 0;
+    virtual err_t end(StringView name) = 0;
     
     /// @brief 迭代解析一个键值对
     /// @param key 键
     /// @param value 值
-    virtual void keyValue(StringView key, const GenericValue& value) = 0;
+    virtual err_t keyValue(StringView key, const ValueView& value) = 0;
 
-    void begin() { begin(StringView{});}
-    void end() { end(StringView{});}
-    void keyValue(StringView key, const char* value){ keyValue(key, GenericValue(value)); }
-    void keyValue(StringView key, int value){ keyValue(key, GenericValue(value)); }
-    void keyValue(StringView key, bool value){ keyValue(key, GenericValue(value)); }
-    void keyValue(StringView key, double value){ keyValue(key, GenericValue(value)); }
-    void keyValue(StringView key, Color value){ keyValue(key, GenericValue(value)); }
-    void keyValue(StringView key, StringView value){ keyValue(key, GenericValue(value)); }
+    err_t begin() { return begin(StringView{});}
+    err_t end() { return end(StringView{});}
+    err_t keyValue(StringView key, const char* value){ return keyValue(key, ValueView(value)); }
+    err_t keyValue(StringView key, int value){ return keyValue(key, GenericValue(value)); }
+    err_t keyValue(StringView key, bool value){ return keyValue(key, GenericValue(value)); }
+    err_t keyValue(StringView key, double value){ return keyValue(key, GenericValue(value)); }
+    err_t keyValue(StringView key, Color value){ return keyValue(key, GenericValue(value)); }
+    err_t keyValue(StringView key, StringView value){ return keyValue(key, ValueView(value)); }
 };
 
 

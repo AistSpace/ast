@@ -100,7 +100,13 @@
 
 
 // AST 对象运行时元信息
-#define AST_OBJECT(TYPE) Class* staticType();
+#define AST_OBJECT(TYPE) \
+    static Class staticType;\
+    static inline Class* getStaticType(){return &staticType;}\
+    Class* getType() const{return &staticType;}\
+
+#define _AST_IMPL_OBJECT(TYPE) \
+    Class TYPE::staticType;\
 
 #ifdef AST_PROPERTIES_MARK
 #   define AST_PROPERTIES AST_PROPERTIES_MARK public
@@ -221,6 +227,14 @@
 #define AST_SPICE_CAPI A_DECL_EXTERN_C AST_SPICE_API
 
 
+/// ast项目测试模块导出声明
+#ifdef AST_BUILD_LIB_TEST
+#    define AST_TEST_API A_DECL_EXPORT
+#else
+#    define AST_TEST_API A_DECL_IMPORT
+#endif
+#define AST_TEST_CAPI A_DECL_EXTERN_C AST_TEST_API
+
 
 AST_NAMESPACE_BEGIN
 
@@ -231,6 +245,7 @@ AST_NAMESPACE_BEGIN
 typedef enum EError
 {
 	eNoError = 0,       ///< 没有错误
+    eErrorNullPtr = 1,  ///< 空指针错误
     eErrorNullInput,    ///< 输入参数是空指针
     eErrorInvalidParam, ///< 非法输入参数
     eErrorNotInit,      ///< 没有初始化
@@ -310,8 +325,8 @@ class Object;                ///< 对象
 class Class;                 ///< 类
 using Type = Class;          ///< 类型
 
-class AbsTime;              
 class TimePoint;            ///< 时间点
+class TimeInterval;         ///< 时间段
 class JulianDate;           ///< 儒略日
 class ModJulianDate;        ///< 简约儒略日
 
@@ -319,9 +334,16 @@ class System;
 class Axes;
 class Point;
 class CelestialBody;
+using Body = CelestialBody;
+
+class EventTime;
+class EventInterval;
 
 class Identifier;           ///< 标识符
 class BKVParser;            ///< BKV解析器
+
+class Dimension;
+class Unit;
 
 #endif
 

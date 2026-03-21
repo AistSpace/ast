@@ -179,8 +179,8 @@ TEST(OrbitParam, HyperbolaOrbit)
             // 双曲线轨道长半轴为负值
             double semiMajorAxis = -10000000.0; // 负值
             
-            double periRad = aSMajAxToPeriRad(semiMajorAxis, eccentricity);
-            double semiMajorAxisBack = aPeriRadToSMajAx(periRad, eccentricity);
+            double periRad = aSMAToPeriRad(semiMajorAxis, eccentricity);
+            double semiMajorAxisBack = aPeriRadToSMA(periRad, eccentricity);
             
             // 验证往返转换
             EXPECT_NEAR(semiMajorAxis, semiMajorAxisBack, EPS);

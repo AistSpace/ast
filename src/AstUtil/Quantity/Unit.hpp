@@ -25,6 +25,7 @@
 #include "AstUtil/Object.hpp"
 #include "AstUtil/SharedPtr.hpp"
 #include "AstUtil/StringView.hpp"
+#include "AstUtil/Constants.h"
 #include <cmath>
 #include <string>
 #include <vector>
@@ -79,6 +80,7 @@ namespace units
 
     extern AST_UTIL_API Unit deg;       ///< 度
     extern AST_UTIL_API Unit rad;       ///< 弧度
+    extern AST_UTIL_API Unit arcsec;    ///< 弧秒
 
     extern AST_UTIL_API Unit A;         ///< 安培
 
@@ -308,7 +310,13 @@ public:
     static Unit Degree()
     {
         // return Unit("°", 0.017453292519943295, EDimension::eAngle);
-        return Unit(aText("\u00B0"), 0.017453292519943295, EDimension::eAngle);
+        return Unit(aText("\u00B0"), kDegToRad, EDimension::eAngle);
+    }
+
+    /// @brief 弧秒单位
+    static Unit ArcSecond()
+    {
+        return Unit(aText("\u2033"), kArcSecToRad, EDimension::eAngle);
     }
 
     /// @brief 牛顿单位

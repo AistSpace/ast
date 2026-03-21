@@ -46,11 +46,6 @@ public:
     
     std::string getExpression(Object* context=nullptr) const override{return aFormatScalar(value_);}
 protected:
-    ValScalar(Class* type, Scalar value)
-        : Value(type)
-        , value_(value)
-    {}
-protected:
     Scalar value_;
 };
 

@@ -25,6 +25,7 @@
 #include "AstCore/RunTime.hpp"      // for aXYS_IERS2010_NoCorrection
 #include "AstCore/TimePoint.hpp"
 #include "AstMath/LagrangeInterpolator.hpp"
+#include <cmath>
 
 AST_NAMESPACE_BEGIN
 
@@ -43,10 +44,13 @@ err_t IAUXYSPrecomputed::getValueTT(const JulianDate &jdTT, array3d &xys) const
 {
     double deltaDay = (jdTT.day() - this->refepoch_jed_) + jdTT.second() / kSecondsPerDay;
     double indexMiddleDouble = deltaDay / this->step_size_;
-    if(A_UNLIKELY(indexMiddleDouble < 0 || indexMiddleDouble > (int)this->xys_points_.size()-1))
+    
+    // 不用floor，因为 indexMiddleDouble 一定大于等于0
+    // 2026-03-18: 但是如果 indexMiddleDouble 为nan, 会导致 indexMiddle 为负数
+    // int indexMiddle = static_cast<int>(floor(indexMiddleDouble));
+    int indexMiddle = static_cast<int>(floor(indexMiddleDouble)); 
+    if(A_UNLIKELY(indexMiddle < 0 || indexMiddleDouble > (int)this->xys_points_.size()-1))
         return eErrorOutOfRange;
-    //int indexMiddle = static_cast<int>(floor(indexMiddleDouble));
-    int indexMiddle = static_cast<int>(indexMiddleDouble); // 不用floor，因为indexMiddleDouble一定大于等于0
     int n = this->interp_order_ + 1;        // 插值点数
     int half_n = n / 2;                     
     int indexBegin = indexMiddle - half_n;  // 插值点开始索引(含)

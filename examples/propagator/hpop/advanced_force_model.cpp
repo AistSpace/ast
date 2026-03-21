@@ -28,8 +28,8 @@ int main()
     
     // 1. 配置地球重力场 (JGM3模型)
     force_model.gravity_.model_ = "JGM3";  // 使用JGM3重力场模型
-    force_model.gravity_.degree_ = 4;     // 阶数
-    force_model.gravity_.order_ = 0;     // 次数
+    force_model.gravity_.maxDegree_ = 4;     // 阶数
+    force_model.gravity_.maxOrder_ = 0;     // 次数
     
     // 2. 配置大气阻力模型
     force_model.useDrag_ = true;         // 启用大气阻力
@@ -54,7 +54,7 @@ int main()
     std::cout << "HPOP初始化成功" << std::endl;
     std::cout << "力模型配置:" << std::endl;
     std::cout << "- 重力场: " << force_model.gravity_.model_ 
-              << " (阶数=" << force_model.gravity_.degree_ << ")" << std::endl;
+              << " (阶数=" << force_model.gravity_.maxDegree_ << ", 次数=" << force_model.gravity_.maxOrder_ << ")" << std::endl;
     std::cout << "- 大气阻力: " << (force_model.useDrag_ ? "启用" : "禁用") << std::endl;
     std::cout << "- 月球引力: " << (force_model.useMoonGravity_ ? "启用" : "禁用") << std::endl;
     std::cout << std::endl;

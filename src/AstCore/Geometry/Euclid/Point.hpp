@@ -31,12 +31,17 @@ AST_NAMESPACE_BEGIN
 */
 
 class Frame;
+class CelestialBody;
 
 class AST_CORE_API Point: public Object
 {
 public:
     Point() = default;
     ~Point() override = default;
+
+    /// @brief 将点转换为天体
+    /// @return 天体指针
+    CelestialBody* toBody() const;
 
     /// @brief 获取点所在的参考坐标系
     /// @return 点所在的参考坐标系指针

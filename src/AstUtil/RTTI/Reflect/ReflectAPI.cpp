@@ -23,6 +23,8 @@
 #include "PropertyInt.hpp"
 #include "PropertyDouble.hpp"
 #include "PropertyString.hpp"
+#include "PropertyQuantity.hpp"
+
 
 AST_NAMESPACE_BEGIN
 
@@ -48,5 +50,9 @@ Property* _aNewPropertyString(FPropertyGet getter, FPropertySet setter)
     return new PropertyString(getter, setter);
 }
 
+Property *_aNewPropertyQuantity(FPropertyGet getter, FPropertySet setter, Dimension dimension)
+{
+    return new PropertyQuantity(getter, setter, dimension);
+}
 
 AST_NAMESPACE_END

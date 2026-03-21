@@ -63,6 +63,15 @@ _AST_DECL_AXES(DE140)
 _AST_DECL_AXES(DE142)
 _AST_DECL_AXES(DE143)
 
+A_ALWAYS_INLINE Axes* aAxesECI()
+{
+    return aAxesICRF();
+}
+
+/// @brief      获取轴系
+/// @param      name 轴系名称
+/// @return     轴系指针
+AST_CORE_CAPI Axes* aGetAxes(StringView name);
 
 /*! @} */
 

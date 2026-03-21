@@ -25,4 +25,7 @@ ignore:
   - "docs"
   - "src/AstGui"
   - "src/AstGfx"
+  - "src/AstMock"
+  - "src/AstOpt"
+  - "src/AstOCP"
 

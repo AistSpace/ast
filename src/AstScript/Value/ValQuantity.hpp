@@ -35,7 +35,7 @@ public:
     AST_EXPR(ValQuantity)
 
     ValQuantity(const Quantity& q)
-        : Value(staticType())
+        : Value()
         , value_(q)
     {
     }

@@ -1,5 +1,5 @@
 ///
-/// @file      SpiceAxesRegister.cpp
+/// @file      BuiltinAxesRegistry.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,20 +18,20 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "SpiceAxesRegistry.hpp"
+#include "BuiltinAxesRegistry.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstCore/AxesTransform.hpp"
 
 
 AST_NAMESPACE_BEGIN
 
-SpiceAxesRegistry &SpiceAxesRegistry::Instance()
+BuiltinAxesRegistry &BuiltinAxesRegistry::Instance()
 {
-    static SpiceAxesRegistry instance(true);
+    static BuiltinAxesRegistry instance(true);
     return instance;
 }
 
-SpiceAxesRegistry::SpiceAxesRegistry(bool whetherInit)
+BuiltinAxesRegistry::BuiltinAxesRegistry(bool whetherInit)
 {
     if(whetherInit)
     {
@@ -40,7 +40,7 @@ SpiceAxesRegistry::SpiceAxesRegistry(bool whetherInit)
 }
 
 
-PAxes SpiceAxesRegistry::findAxes(StringView name) const
+PAxes BuiltinAxesRegistry::getAxes(StringView name) const
 {
     auto it = axesMap_.find(std::string(name));
     if (it == axesMap_.end())
@@ -50,7 +50,7 @@ PAxes SpiceAxesRegistry::findAxes(StringView name) const
     return it->second;
 }
 
-err_t SpiceAxesRegistry::init()
+err_t BuiltinAxesRegistry::init()
 {
     axesMap_["ICRF"] = aAxesICRF();
     axesMap_["ECF"] = aAxesECF();

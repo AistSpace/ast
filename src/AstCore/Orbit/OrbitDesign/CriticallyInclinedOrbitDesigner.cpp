@@ -45,10 +45,9 @@ CriticallyInclinedOrbitDesigner::CriticallyInclinedOrbitDesigner(CelestialBody* 
 
 err_t CriticallyInclinedOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
 {
-    double rp = perigeeAltitude_ + getBodyRadius();
-    double ra = apogeeAltitude_ + getBodyRadius();
-    orbElem.rp_ = rp;
-    orbElem.e_ = aRadiiToEcc(rp, ra);
+    const double rb = getBodyRadius();
+    orbElem.rp_ = perigeeAltitude_ + rb;
+    orbElem.e_ = aPeriAltApoAltToEcc(perigeeAltitude_, apogeeAltitude_, rb);
     if (direction_ == ePosigrade)
         orbElem.i_ = acos(1/ sqrt(5));
     else

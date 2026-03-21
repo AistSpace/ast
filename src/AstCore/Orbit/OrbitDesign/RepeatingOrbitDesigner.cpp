@@ -68,7 +68,7 @@ err_t RepeatingOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
         D = 1;
     const double expectDeltaLon = D * kTwoPI / N;                 // 期望每一圈的经度变化角度
     double approxMeanMotion = bodyAngleVel * kTwoPI / expectDeltaLon;
-    double approxA = aMeanMotnToSMajAx(approxMeanMotion, gm);
+    double approxA = aMeanMotionToSMA(approxMeanMotion, gm);
 
     auto func = [gm, j2, rb, inc, ecc, expectDeltaLon, bodyAngleVel](double a) -> double
     {
@@ -112,7 +112,7 @@ err_t RepeatingOrbitDesigner::setApproxAltitude(double alt)
     const double inc = inclination_;
     (void) j2; (void) ecc; (void) inc;
     // double meanMotion = aMeanArgLatRate(gm, j2, rb, a, ecc, inc);
-    double meanMotion = aSMajAxToMeanMotn(a, gm);
+    double meanMotion = aSMAToMeanMotion(a, gm);
     approxRevsPerDay_ = meanMotion * kSecondsPerDay / kTwoPI;
     return eNoError;
 }
@@ -127,7 +127,7 @@ err_t RepeatingOrbitDesigner::setApproxRevsPerDay(double revsPerDay)
     double gm = getGM();
     double rb = getBodyRadius();
     double meanMotion = revsPerDay * kTwoPI / kSecondsPerDay;
-    double a = aMeanMotnToSMajAx(meanMotion, gm);
+    double a = aMeanMotionToSMA(meanMotion, gm);
     double alt = a - rb;
     if(alt < 0)
     {

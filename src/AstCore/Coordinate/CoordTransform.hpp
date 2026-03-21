@@ -32,7 +32,7 @@
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup CoordTransform
+    @addtogroup Coordinate
     @{
 */
 
