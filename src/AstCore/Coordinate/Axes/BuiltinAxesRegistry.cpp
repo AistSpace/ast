@@ -31,9 +31,9 @@ BuiltinAxesRegistry &BuiltinAxesRegistry::Instance()
     return instance;
 }
 
-BuiltinAxesRegistry::BuiltinAxesRegistry(bool whetherInit)
+BuiltinAxesRegistry::BuiltinAxesRegistry(bool shouldInitialize)
 {
-    if(whetherInit)
+    if (shouldInitialize)
     {
         init();
     }
