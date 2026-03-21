@@ -1,7 +1,8 @@
 ///
 /// @file      BuiltinAxesRegistry.cpp
-/// @brief     
-/// @details   
+/// @brief     内置坐标轴注册表实现
+/// @details   实现 BuiltinAxesRegistry 单例，用于初始化和管理内置坐标轴名称到 PAxes 实例的映射，
+///            提供按名称检索坐标轴及统一完成各类内置天文/地心坐标系的注册。
 /// @author    axel
 /// @date      2026-03-05
 /// @copyright 版权所有 (C) 2026-present, ast项目.
