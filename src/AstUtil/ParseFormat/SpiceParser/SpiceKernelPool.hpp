@@ -43,6 +43,7 @@ AST_NAMESPACE_BEGIN
 /// 通过指针之间的地址差，判断是否可以安全地直接将一个数据容器转换为另一个数据容器
 /// 例如将一个char类型的数据容器转换为double类型的数据容器，
 /// 只需要判断地址差是否为sizeof(double)的整数倍即可
+/// @todo 使用union不太合适，考虑其他的实现方式
 union SpiceData
 {
 public:
