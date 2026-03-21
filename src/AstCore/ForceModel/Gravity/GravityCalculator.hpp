@@ -201,3 +201,10 @@ public:
 
 
 AST_NAMESPACE_END
+
+AST_DECL_TYPE_ALIAS(GravityCalculator)
+AST_DECL_TYPE_ALIAS(GravityCalculator1)
+AST_DECL_TYPE_ALIAS(GravityCalculator2)
+AST_DECL_TYPE_ALIAS(GravityCalculator3)
+AST_DECL_TYPE_ALIAS(GravityCalculator4)
+AST_DECL_TYPE_ALIAS(GravityCalculator5)
