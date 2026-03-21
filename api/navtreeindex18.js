@@ -1,5 +1,7 @@
 var NAVTREEINDEX18 =
 {
+"classast_1_1StateKeplerian.html#afc871da3423a5a850c46c1be01286203":[3,0,0,339,43],
+"classast_1_1StateKeplerian.html#afdceeeaedfe459b7c63e16c8a06939bc":[2,0,0,340,27],
 "classast_1_1StateKeplerian.html#afdceeeaedfe459b7c63e16c8a06939bc":[3,0,0,339,27],
 "classast_1_1StateVector.html":[2,0,0,341],
 "classast_1_1StateVector.html":[3,0,0,340],
@@ -247,7 +249,5 @@ var NAVTREEINDEX18 =
 "classast_1_1UnitConverter.html#ad2bfacefe3458c7133bfaec4d528ab84":[0,4,3,2,9],
 "classast_1_1UnitConverter.html#ad411a6d8311aff5b97f1b5a988a7b7ba":[0,4,3,2,6],
 "classast_1_1UnitManager.html":[0,4,3,3],
-"classast_1_1UnitManager.html#a7cd2cb391b7c941333c3abf296a6d9f0":[0,4,3,3,1],
-"classast_1_1UnitManager.html#a9bd8a97e370f6378367f50a169967d90":[0,4,3,3,2],
-"classast_1_1UnitManager.html#ac49f770ecfef3f24cbd41b08acaa6f9a":[0,4,3,3,3]
+"classast_1_1UnitManager.html#a7cd2cb391b7c941333c3abf296a6d9f0":[0,4,3,3,1]
 };

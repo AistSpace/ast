@@ -1,5 +1,7 @@
 var NAVTREEINDEX19 =
 {
+"classast_1_1UnitManager.html#a9bd8a97e370f6378367f50a169967d90":[0,4,3,3,2],
+"classast_1_1UnitManager.html#ac49f770ecfef3f24cbd41b08acaa6f9a":[0,4,3,3,3],
 "classast_1_1UnitManager.html#ad7b7dc07985e82bdb506f7955e392775":[0,4,3,3,4],
 "classast_1_1UnitManager.html#ae1f39dcd1cfe4464aac7422a4dde866b":[0,4,3,3,0],
 "classast_1_1Unit_1_1UnitRep.html":[0,4,3,1,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX19 =
 "functions_i.html":[3,3,0,9],
 "functions_j.html":[3,3,0,10],
 "functions_k.html":[3,3,0,11],
-"functions_l.html":[3,3,0,12],
-"functions_m.html":[3,3,0,13],
-"functions_n.html":[3,3,0,14]
+"functions_l.html":[3,3,0,12]
 };

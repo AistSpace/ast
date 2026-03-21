@@ -1,5 +1,7 @@
 var NAVTREEINDEX16 =
 {
+"classast_1_1Quaternion.html#a11df4a94ed81c80b6e4c95ca6821bf52":[0,1,1,2,17],
+"classast_1_1Quaternion.html#a19883c31504c687288ae7860b86deca8":[0,1,1,2,29],
 "classast_1_1Quaternion.html#a1c57c73d886111aaf291167635821f5c":[0,1,1,2,10],
 "classast_1_1Quaternion.html#a2f285c146ad2c66d87600b30ce4db809":[0,1,1,2,23],
 "classast_1_1Quaternion.html#a3184b5f50da9c8118b611baccf0ac7ac":[0,1,1,2,9],
@@ -247,7 +249,5 @@ var NAVTREEINDEX16 =
 "classast_1_1SpheroidShape.html#a2dd2a98719c5260fe02605c7e80d2ab3":[2,0,0,312,0],
 "classast_1_1SpheroidShape.html#a2dd2a98719c5260fe02605c7e80d2ab3":[3,0,0,311,0],
 "classast_1_1SpheroidShape.html#a7aea6a0c4df65e69c1867bb80901a313":[2,0,0,312,1],
-"classast_1_1SpheroidShape.html#a7aea6a0c4df65e69c1867bb80901a313":[3,0,0,311,1],
-"classast_1_1SpiceBodyRegistry.html":[0,3,1],
-"classast_1_1SpiceDAFParser.html":[2,0,0,314]
+"classast_1_1SpheroidShape.html#a7aea6a0c4df65e69c1867bb80901a313":[3,0,0,311,1]
 };
