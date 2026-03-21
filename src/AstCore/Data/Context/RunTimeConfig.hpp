@@ -1,9 +1,9 @@
 ///
-/// @file      KVParser.hpp
+/// @file      RunTimeConfig.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-20
+/// @date      2026-03-21
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,33 +21,33 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstUtil/BaseParser.hpp"
-#include "AstUtil/BKVItemView.hpp"
+#include "AstUtil/ValueView.hpp"
+#include <vector>
+#include <string>
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup 
+    @addtogroup Data
     @{
 */
 
-class ValueView;
+/// @brief 获取当前线程的数据上下文的配置值
+/// @param key 配置键
+/// @return 配置值
+AST_CORE_API ValueView aGetConfigValue(StringView key);
 
-class AST_UTIL_API KVParser : public BaseParser
-{
-public:
-    KVParser() = default;
-    ~KVParser() = default;
-    enum EToken{
-        eEqual,
-        eAddEqual,
-        eError,
-        eEOF = EOF,
-    };
+/// @brief 获取当前线程的数据上下文的配置字符串向量
+/// @param key 配置键
+/// @return 配置字符串向量
+AST_CORE_API std::vector<std::string> aGetConfigStringVector(StringView key);
 
-    EToken getNext(BKVItemView &item);
-    
-};
+
+/// @brief 获取当前线程的数据上下文的配置字符串视图向量
+/// @param key 配置键
+/// @return 配置字符串视图向量
+AST_CORE_API std::vector<StringView> aGetConfigStringViewVector(StringView key);
+
 
 
 /*! @} */

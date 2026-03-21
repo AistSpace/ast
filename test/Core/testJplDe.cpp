@@ -28,16 +28,11 @@ AST_USING_NAMESPACE
 
 TEST(JplDe, Load)
 {
+    aInitialize();
     JplDe jplDe;
-    std::vector<std::string> files{
-        "SolarSystem/plneph.430",
-        "Test/leDE1941.405",
-        "Test/leDE18002100.424",
-        "Test/leDE1900.421"
-    };
+    std::vector<std::string> files = aTestGetConfigStringVector("JPLDE_FILES");
     for (auto file : files) {
-        fs::path filepath = fs::path(aDataDirGet()) / file;
-        EXPECT_TRUE(jplDe.open(filepath.c_str()) == 0);
+        EXPECT_TRUE(jplDe.open(file.c_str()) == 0);
     }
 }
 

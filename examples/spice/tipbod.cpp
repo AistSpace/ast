@@ -1,10 +1,12 @@
 #ifndef AST_NO_CSPICE
 #include "SpiceUsr.h"
+#include "AstTest/TestConfig.hpp"
 
+AST_USING_NAMESPACE
 
 int main()
 {
-    furnsh_c("data/Test/kernels/pck/pck00011.tpc");
+    furnsh_c(aTestGetConfigValue("PCK_FILE").toString().c_str() );
     double tipm[3][3];
     enum {saturn = 699};
     tipbod_c("J2000", saturn, 0, tipm);

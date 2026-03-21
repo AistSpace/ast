@@ -1,9 +1,9 @@
 ///
-/// @file      KVParser.hpp
+/// @file      RunTimeConfig.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-20
+/// @date      2026-03-21
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -18,38 +18,29 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#pragma once
-
-#include "AstGlobal.h"
-#include "AstUtil/BaseParser.hpp"
-#include "AstUtil/BKVItemView.hpp"
+#include "RunTimeConfig.hpp"
+#include "AstUtil/StringView.hpp"
+#include "AstUtil/ValueView.hpp"
+#include "AstUtil/StartupConfig.hpp"
+#include "AstCore/DataContext.hpp"
+#include "RunTime.hpp"
 
 AST_NAMESPACE_BEGIN
 
-/*!
-    @addtogroup 
-    @{
-*/
-
-class ValueView;
-
-class AST_UTIL_API KVParser : public BaseParser
+ValueView aGetConfigValue(StringView key)
 {
-public:
-    KVParser() = default;
-    ~KVParser() = default;
-    enum EToken{
-        eEqual,
-        eAddEqual,
-        eError,
-        eEOF = EOF,
-    };
+    return aDataContext_GetConfig()->getConfig(key);
+}
 
-    EToken getNext(BKVItemView &item);
-    
-};
+std::vector<std::string> aGetConfigStringVector(StringView key)
+{
+    return aDataContext_GetConfig()->getStringVector(key);
+}
 
+std::vector<StringView> aGetConfigStringViewVector(StringView key)
+{
+    return aDataContext_GetConfig()->getStringViewVector(key);
+}
 
-/*! @} */
 
 AST_NAMESPACE_END

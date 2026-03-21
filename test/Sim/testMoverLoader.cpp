@@ -30,6 +30,8 @@ AST_USING_NAMESPACE
 
 TEST(MoverLoaderTest, LoadSatellite)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     {
         const std::string satelliteFile = "data/Test/STK/Satellite.sa";
         Mover mover;

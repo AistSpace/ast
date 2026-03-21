@@ -1,9 +1,9 @@
 ///
-/// @file      KVParser.hpp
+/// @file      TestConfig.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-20
+/// @date      2026-03-21
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,8 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstUtil/BaseParser.hpp"
-#include "AstUtil/BKVItemView.hpp"
+#include "AstUtil/StartupConfig.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -31,23 +30,28 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class ValueView;
+/// @brief 获取测试配置
+/// @return 测试配置指针
+AST_TEST_CAPI StartupConfig* aTestGetConfig();
 
-class AST_UTIL_API KVParser : public BaseParser
-{
-public:
-    KVParser() = default;
-    ~KVParser() = default;
-    enum EToken{
-        eEqual,
-        eAddEqual,
-        eError,
-        eEOF = EOF,
-    };
 
-    EToken getNext(BKVItemView &item);
-    
-};
+/// @brief 获取测试配置值
+/// @param key 配置键
+/// @return 配置值视图
+AST_TEST_API ValueView aTestGetConfigValue(StringView key);
+
+
+
+/// @brief 获取测试配置值向量
+/// @param key 配置键
+/// @return 配置值向量
+AST_TEST_API std::vector<std::string> aTestGetConfigStringVector(StringView key);
+
+
+/// @brief 获取测试配置值视图向量
+/// @param key 配置键
+/// @return 配置值视图向量
+AST_TEST_API std::vector<StringView> aTestGetConfigStringViewVector(StringView key);
 
 
 /*! @} */

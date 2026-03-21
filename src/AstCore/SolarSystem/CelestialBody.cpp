@@ -89,11 +89,15 @@ err_t CelestialBody::load(StringView filepath)
     if(!fs::is_regular_file(path))
     {
         path = path / (path.filename().string() + ".cb");
+        if(!fs::is_regular_file(path))
+        {
+            return eErrorInvalidFile;
+        }
     }
     BKVParser parser(path.string());
     if(!parser.isOpen())
     {
-        // aError("failed to open file %s", path.string().c_str());
+        aError("failed to open file %s", path.string().c_str());
         return eErrorInvalidFile;
     }
     BKVItemView item;

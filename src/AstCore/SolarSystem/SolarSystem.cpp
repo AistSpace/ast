@@ -21,6 +21,7 @@
 #include "SolarSystem.hpp"
 #include "AstCore/JplDe.hpp"
 #include "AstCore/EarthOrientation.hpp"
+#include "AstCore/CelestialBodyLoader.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/Constants.hpp"
 #include <iostream>
@@ -330,6 +331,15 @@ CelestialBody *SolarSystem::addBody(StringView name)
     CelestialBody *body = new CelestialBody(name);
     bodies_.push_back(body);
     nameMap_[std::string(name)] = body;
+    return body;
+}
+
+CelestialBody *SolarSystem::addBody(HCelestialBody body)
+{
+    if (getBody(body->name_))
+        return nullptr;
+    bodies_.push_back(body);
+    nameMap_[body->name_] = body;
     return body;
 }
 

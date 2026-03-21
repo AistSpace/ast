@@ -30,7 +30,7 @@ AST_USING_NAMESPACE
 TEST(GravityField, loadWGS84)
 {
     GravityField gf;
-    err_t err = gf.load(aDataDirGet() + "/Test/CentralBodies/Earth/WGS84.grv");
+    err_t err = gf.load(aTestGetConfigValue("SOLARSYSTEM_DIR").toString() + "/Earth/WGS84.grv");
     EXPECT_EQ(err, eNoError);
 
     EXPECT_EQ(gf.getModelName(), "WGS84");
@@ -55,6 +55,8 @@ TEST(GravityField, loadWGS84)
 
 TEST(GravityField, loadJGM3)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     std::vector<std::string> files;
     files.push_back(aDataDirGet() + "/Test/GMAT/gravity/earth/JGM3.cof");
     files.push_back(aDataDirGet() + "/Test/CentralBodies/Earth/JGM3.grv");
@@ -105,6 +107,8 @@ TEST(GravityField, loadJGM3)
 
 TEST(GravityField, load_gfc)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     std::string file = aDataDirGet() + "/Test/satkit/JGM2.gfc";
     GravityField gf;
     err_t err = gf.load(file);
@@ -123,6 +127,8 @@ TEST(GravityField, load_gfc)
 
 TEST(GravityField, loadATK)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     std::string file1 = aDataDirGet() + "/Test/ATK/v1/GEMT1.grv";
     std::string file2 = aDataDirGet() + "/Test/ATK/v1/GEMT1.grv";
 
@@ -156,9 +162,12 @@ TEST(GravityField, normalize)
 {
     GravityField gf_WGS84, gf_WGS84_old;
     err_t err;
-    err = gf_WGS84.load(aDataDirGet() + "/Test/CentralBodies/Earth/WGS84.grv");
+    err = gf_WGS84.load(aTestGetConfigValue("SOLARSYSTEM_DIR").toString() + "/Earth/WGS84.grv");
     EXPECT_EQ(err, eNoError);
-    err = gf_WGS84_old.load(aDataDirGet() + "/Test/CentralBodies/Earth/WGS84_old.grv");
+    if(!aIsGithubCI()) 
+        GTEST_SKIP();
+
+    err = gf_WGS84_old.load(aTestGetConfigValue("SOLARSYSTEM_DIR").toString() + "/Earth/WGS84_old.grv");
     EXPECT_EQ(err, eNoError);
 
     GravityField gf_WGS84_old_normalized = gf_WGS84_old.normalized();

@@ -236,6 +236,10 @@
 #define AST_TEST_CAPI A_DECL_EXTERN_C AST_TEST_API
 
 
+#ifndef AST_PROJECT_NAME
+#   define AST_PROJECT_NAME "ast"
+#endif
+
 AST_NAMESPACE_BEGIN
 
 /// ast项目公共枚举

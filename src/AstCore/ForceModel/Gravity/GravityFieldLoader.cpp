@@ -26,6 +26,7 @@
 #include "AstUtil/FileSystem.hpp"
 #include "AstUtil/Span.hpp"
 #include "AstCore/RunTime.hpp"
+#include "AstCore/SolarSystem.hpp"
 
 
 AST_NAMESPACE_BEGIN
@@ -92,6 +93,7 @@ static err_t openGravityFile(BKVParser &parser, StringView model, std::string& f
         if(no_dir_sep){
             prefixes = {
                 "",
+                aGetSolarSystem()->getDirpath() + "/Earth/",
                 aDataDirGet() + "/SolarSystem/Earth/"  // @fixme: 非地球如何处理？
             };
         }else{
@@ -268,6 +270,7 @@ err_t loadGravityFieldATK(GravityFieldLoaderContext& ctx)
             return eErrorParse;
         }
     }
+    gf.centralBody_ = fs::path(ctx.parser_.getFilePath()).parent_path().stem();
     gfInitCoeffMatrices(gf, ctx);
     // 读取系数
     bool skipRest = false;

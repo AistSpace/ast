@@ -48,6 +48,7 @@ public:
         eBlockBegin,         ///< 块开始
         eBlockEnd,           ///< 块结束
         eKeyValue,           ///< 键值对
+        eError,              ///< 错误
         eEOF=EOF,            ///< 文件结束
     };
 

@@ -59,6 +59,8 @@ BKVParser::~BKVParser()
 
 BKVParser::EToken BKVParser::getNext(StringView &key, ValueView &value)
 {
+    if(!file_)
+        return eError;
 start:
     // #pragma warning(suppress: 4996)
     if(fscanf(file_, "%1023s", keyBuffer_.data()) != EOF)

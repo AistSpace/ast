@@ -50,7 +50,11 @@ void igrf(double lon, double lat, double height, double year, double &xl, double
     fs::path datadir = aDataDir();
     datadir /= AST_DEFAULT_DIR_IGRF;
     // 切换工作目录到 igrf 数据目录
-    WorkingDirectory _{datadir.string()};
+    WorkingDirectory cwd{datadir.string()};
+    if(!cwd.isChanged()){
+        aError("failed to change working directory to '%.*s'", datadir.string().size(), datadir.string().data());
+        return;
+    }
     
     initize_();
     double dimo;

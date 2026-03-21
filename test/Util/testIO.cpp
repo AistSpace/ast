@@ -52,9 +52,7 @@ TEST(IO, printf)
 TEST(IO, getFilePath)
 {
     {
-        std::string datadir = aDataDirGet();
-        EXPECT_FALSE(datadir.empty());
-        datadir += "/README.md";
+        std::string datadir = aTestGetConfigValue("LSK_FILE").toString();
         FILE* file = posix::fopen(datadir.c_str(), "r");
         EXPECT_TRUE(file != nullptr);
 

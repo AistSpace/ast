@@ -42,20 +42,31 @@ public:
     {
         oldpath_ = posix::getcwd();
         /// @todo 需要考虑如何避免创建临时std::string对象 
-        int ret = posix::chdir(std::string(path).c_str());
-        if(ret != 0){
+        int rc = posix::chdir(std::string(path).c_str());
+        if(rc != 0){
             aError("failed to change working directory to %.*s", path.size(), path.data());
+        }else{
+            curpath_ = path;
         }
     }
     ~WorkingDirectory()
     {
-        int ret = posix::chdir(oldpath_.c_str());
-        if(ret != 0){
+        int rc = posix::chdir(oldpath_.c_str());
+        if(rc != 0){
             aError("failed to change working directory to %s", oldpath_.c_str());
         }
     }
+    /// @brief 检查是否成功切换工作目录
+    operator bool() const { return isChanged(); }
+
+    /// @brief 检查是否成功切换工作目录
+    bool isChanged() const { return !curpath_.empty(); }
+
+    /// @brief 获取切换后的工作目录
+    StringView getCurrentPath() const { return curpath_; }
 protected:
     std::string oldpath_;
+    StringView curpath_;
 };
 
 

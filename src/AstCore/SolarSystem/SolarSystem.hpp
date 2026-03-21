@@ -134,10 +134,15 @@ public:
 	/// @retval             - 天体指针
 	CelestialBody* getBodyBySpiceId(int id) const;
 
-	/// @brief 添加一个新的天体
+	/// @brief 添加一个新的天体，如果name已存在，则返回nullptr
 	/// @param  name        - 天体名称
 	/// @retval             - 天体指针
 	CelestialBody* addBody(StringView name);
+
+	/// @brief 添加一个新的天体，如果相应名称的天体已存在，则返回nullptr
+	/// @param  body        - 天体指针
+	/// @retval             - 天体指针
+	CelestialBody* addBody(HCelestialBody body);
 	
 	/// @brief 获取指定名称的天体，若不存在则添加
 	/// @param  name        - 天体名称

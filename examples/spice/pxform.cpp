@@ -1,10 +1,13 @@
 #ifndef AST_NO_CSPICE
 #include "SpiceUsr.h"
+#include "AstTest/TestConfig.hpp"
 #include <cstdio>
+
+AST_USING_NAMESPACE
 
 int main()
 {
-    furnsh_c("data/Test/kernels/pck/pck00011.tpc");
+    furnsh_c( aTestGetConfigValue("PCK_FILE").toString().c_str() );
     double mtx_c[3][3];
     pxform_c("J2000", "IAU_MARS", 0, mtx_c);
     for(int i = 0; i < 3; i++)

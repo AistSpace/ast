@@ -81,7 +81,16 @@ err_t LeapSecond::loadDefault()
     err_t err = this->load(datafile.string().c_str());
     if (err)
     {
-        aWarning("failed to load leapsecond from default data file: %s", datafile.string().c_str());
+        if(err)
+        {
+            datafile = aGetConfigValue("LSK_FILE").toString();
+            err = this->load(datafile.string().c_str());
+            if(err)
+            {
+                // 加载失败也没关系，程序有内置的闰秒数据
+                aWarning("failed to load leapsecond from default data file: '%s'", datafile.string().c_str());
+            }
+        }
     }
     return err;
 }
@@ -91,10 +100,16 @@ err_t JplDe::openDefault()
     fs::path datafile = fs::path(aDataDirGet()) / AST_DEFAULT_FILE_JPLDE;
 
     err_t err = this->open(datafile.string().c_str());
-    if (err)
+    if(err)
     {
-        aWarning("failed to load jpl de from default data file:\n%s", datafile.string().c_str());
+        datafile = fs::path(aGetConfigValue("JPLDE_FILE").toString());
+        err = this->open(datafile.string().c_str());
+        if (err)
+        {
+            aWarning("failed to load jpl de from default data file: '%s'", datafile.string().c_str());
+        }
     }
+    
     return err;
 }
 
@@ -229,21 +244,21 @@ fs::path aRelPathToAbs(const fs::path& relpath, const fs::path& basedir)
 
 err_t aInitializeByConfig(DataContext* context, StringView configfile)
 {
-    StartupConfig startupConfig;
-    err_t rc = startupConfig.load(configfile);
+    auto config = context->config();
+    err_t rc = config->load(configfile);
     if(rc) return rc;
     InitalizeConfig initalizeConfig;
     fs::path libdir = aLibDir();
-    initalizeConfig.dataDir_ = aRelPathToAbs(startupConfig.getConfig("DATA_DIR").toString(), libdir);
-    initalizeConfig.leapSecondFile_ = aRelPathToAbs(startupConfig.getConfig("LSK_FILE").toString(), libdir);
-    initalizeConfig.jplDeFile_ = aRelPathToAbs(startupConfig.getConfig("JPLDE_FILE").toString(), libdir);
-    initalizeConfig.eopFile_ = aRelPathToAbs(startupConfig.getConfig("EOP_FILE").toString(), libdir);
-    initalizeConfig.spaceWeatherFile_ = aRelPathToAbs(startupConfig.getConfig("SPACEWEATHER_FILE").toString(), libdir);
-    initalizeConfig.iauxFile_ = aRelPathToAbs(startupConfig.getConfig("IAUX_FILE").toString(), libdir);
-    initalizeConfig.iauyFile_ = aRelPathToAbs(startupConfig.getConfig("IAUY_FILE").toString(), libdir);
-    initalizeConfig.iausFile_ = aRelPathToAbs(startupConfig.getConfig("IAUS_FILE").toString(), libdir);
-    initalizeConfig.iauXYSPrecomputedFile_ = aRelPathToAbs(startupConfig.getConfig("IAUXYS_PRECOMPUTED_FILE").toString(), libdir);
-    initalizeConfig.solarSystemDir_ = aRelPathToAbs(startupConfig.getConfig("SOLARSYSTEM_DIR").toString(), libdir);
+    initalizeConfig.dataDir_ = aRelPathToAbs(config->getConfig("DATA_DIR").toString(), libdir);
+    initalizeConfig.leapSecondFile_ = aRelPathToAbs(config->getConfig("LSK_FILE").toString(), libdir);
+    initalizeConfig.jplDeFile_ = aRelPathToAbs(config->getConfig("JPLDE_FILE").toString(), libdir);
+    initalizeConfig.eopFile_ = aRelPathToAbs(config->getConfig("EOP_FILE").toString(), libdir);
+    initalizeConfig.spaceWeatherFile_ = aRelPathToAbs(config->getConfig("SPACEWEATHER_FILE").toString(), libdir);
+    initalizeConfig.iauxFile_ = aRelPathToAbs(config->getConfig("IAUX_FILE").toString(), libdir);
+    initalizeConfig.iauyFile_ = aRelPathToAbs(config->getConfig("IAUY_FILE").toString(), libdir);
+    initalizeConfig.iausFile_ = aRelPathToAbs(config->getConfig("IAUS_FILE").toString(), libdir);
+    initalizeConfig.iauXYSPrecomputedFile_ = aRelPathToAbs(config->getConfig("IAUXYS_PRECOMPUTED_FILE").toString(), libdir);
+    initalizeConfig.solarSystemDir_ = aRelPathToAbs(config->getConfig("SOLARSYSTEM_DIR").toString(), libdir);
     return aInitializeByConfig(context, initalizeConfig);
 }
 
@@ -257,17 +272,10 @@ err_t aInitialize(DataContext* context)
 {
     // check for startup config file
     fs::path libdir = aLibDir();
-    fs::path startupConfigFile1 = libdir / "ast_startup_file.txt";
-    if(fs::is_regular_file(startupConfigFile1))
+    fs::path startupConfigFile = libdir / AST_PROJECT_NAME "_startup_file.txt";
+    if(fs::is_regular_file(startupConfigFile))
     {
-        return aInitializeByConfig(context, startupConfigFile1.string());
-    }
-    else{
-        fs::path startupConfigFile2 = libdir / "atk_startup_file.txt";
-        if(fs::is_directory(startupConfigFile2))
-        {
-            return aInitializeByConfig(context, startupConfigFile2.string());
-        }
+        return aInitializeByConfig(context, startupConfigFile.string());
     }
     return aInitializeByDefault(context);
 }
@@ -378,7 +386,13 @@ IAUXYSPrecomputed* aDataContext_GetIAUXYSPrecomputed()
     return context->iauXYSPrecomputed();
 }
 
-DataContext* aDataContext_New()
+StartupConfig *aDataContext_GetConfig()
+{
+    auto context = aDataContext_EnsureCurrent();
+    return context->config();
+}
+
+DataContext *aDataContext_New()
 {
     return new DataContext{};
 }

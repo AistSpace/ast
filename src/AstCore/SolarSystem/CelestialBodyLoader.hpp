@@ -30,6 +30,11 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+/// @brief 从文件加载一个天体
+/// @param  filepath    - 天体文件路径
+/// @param  body        - 天体指针
+/// @retval             - 错误码
+AST_CORE_CAPI err_t aLoadBody(StringView filepath, HCelestialBody& body);
 
 
 /*! @} */

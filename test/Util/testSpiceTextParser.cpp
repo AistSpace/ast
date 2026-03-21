@@ -47,7 +47,7 @@ TEST(SpiceTextParser, SpiceData)
 
 TEST(SpiceTextParser, readData)
 {
-    SpiceTextParser parser(aDataDir() + "/Test/kernels/pck/pck00011.tpc");
+    SpiceTextParser parser(aTestGetConfigValue("PCK_FILE").toString());
     SpiceKernelPool kernelPool;
     err_t ret = parser.readData(kernelPool);
     EXPECT_EQ(ret, 0);

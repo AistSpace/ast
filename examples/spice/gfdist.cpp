@@ -7,6 +7,7 @@
 #include "SpiceUsr.h"
 #include "AstCore/RunTime.hpp"
 #include "AstUtil/Environment.hpp"
+#include "AstTest/TestConfig.hpp"
 
 
 AST_USING_NAMESPACE
@@ -49,9 +50,9 @@ int main()
     /*
     Load kernels.
     */
-    furnsh_c ( (aDataDirGet() +  "/Test/kernels/lsk/naif0012.tls").c_str() );
-    furnsh_c ( (aDataDirGet() +  "/Test/kernels/pck/pck00011.tpc").c_str() );
-    furnsh_c ( (aDataDirGet() +  "/Test/kernels/spk/de430.bsp").c_str() );
+    furnsh_c ( aTestGetConfigValue("SPK_FILE").toString().c_str() );
+    furnsh_c ( aTestGetConfigValue("LSK_FILE").toString().c_str() );
+    furnsh_c ( aTestGetConfigValue("PCK_FILE").toString().c_str() );
 
     /*
     Store the time bounds of our search interval in

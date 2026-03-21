@@ -8,7 +8,8 @@ add_deps(
     "AstScript", 
     "AstWeather", 
     "AstSPICE", 
-    "AstSim"
+    "AstSim",
+    "AstTest"
 )
 add_packages("gtest")
 add_packages("benchmark")

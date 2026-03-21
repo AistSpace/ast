@@ -50,11 +50,43 @@ public:
     /// @return 
     ValueView getConfig(StringView key) const;
 
+    /// @brief  获取配置，返回字符串向量
+    /// @return 
+    std::vector<std::string> getStringVector(StringView key) const;
+
+
+    /// @brief  获取配置，返回字符串视图向量
+    /// @return 
+    std::vector<StringView> getStringViewVector(StringView key) const;
+
+    
     /// @brief  获取配置
     /// @param key 
     /// @param value 
     /// @return 
     err_t getConfig(StringView key, ValueView &value) const;
+
+public: // 修改配置
+
+    /// @brief  设置配置（进行解码）
+    /// @param key 
+    /// @param value 
+    void setConfig(StringView key, ValueView value);
+
+    /// @brief  设置配置（不进行解码），不追加值
+    /// @param key 
+    /// @param value 
+    void setConfigRaw(StringView key, ValueView value);
+
+    /// @brief  添加配置, 如果配置不存在则创建, 否则追加值
+    /// @param key 
+    /// @param value 
+    void addConfig(StringView key, ValueView value);
+
+    /// @brief  添加配置, 如果配置不存在则创建, 否则追加值, 不进行解码
+    /// @param key 
+    /// @param value 
+    void addConfigRaw(StringView key, ValueView value);
 
     /// @brief  检查配置是否存在
     /// @param key 

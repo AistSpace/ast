@@ -21,6 +21,7 @@
 #include "SolarSystemLoader.hpp"
 #include "AstUtil/FileSystem.hpp"
 #include "AstUtil/SpiceTextParser.hpp"
+#include "AstCore/CelestialBodyLoader.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -37,8 +38,16 @@ err_t SolarSystem::load(StringView dirpath)
         for (const auto& entry : fs::directory_iterator(path)) {
             if (fs::is_directory(entry.status())) {
                 std::string bodyname = entry.path().filename();
-                CelestialBody *body = getOrAddBody(bodyname);
-                rc |= body->load(entry.path().string());
+                CelestialBody* body = getBody(bodyname);
+                if(body){
+                    rc |= body->load(entry.path().string());
+                }else{
+                    HBody newbody = new CelestialBody();
+                    if(newbody->load(entry.path().string()) == 0)
+                    {
+                        addBody(newbody);
+                    }
+                }
             }
         }
         return rc;

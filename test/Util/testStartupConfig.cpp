@@ -26,6 +26,7 @@ AST_USING_NAMESPACE
 
 TEST(StartupConfig, gmat_startup_file)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
     const char filepath[] = "data/Test/GMAT/gmat_startup_file.txt";
     StartupConfig config;
     err_t rc = config.load(filepath);

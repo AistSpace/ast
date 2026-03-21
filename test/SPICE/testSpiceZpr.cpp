@@ -2577,11 +2577,11 @@ TEST(SpiceZpr, spkpos)
 {
     if(aIsCI()) GTEST_SKIP();
 
-    const std::string spkFile = aDataDir() + "/Test/kernels/spk/de430.bsp";
+    const std::string spkFile = aTestGetConfigValue("SPK_FILE").toString();
     // SpiceInt handle;
     // spklef_c(spkFile.c_str(), &handle );
     furnsh_c(spkFile.c_str());
-    furnsh_c((aDataDir() + "/Test/kernels/lsk/naif0012.tls").c_str());
+    furnsh_c(aTestGetConfigValue("LSK_FILE").toString().c_str());
     {
         SpiceInt i, n;
         SpiceChar file[256];
@@ -2659,7 +2659,7 @@ TEST(SpiceZpr, spksfs)
 TEST(SpiceZpr, spkssb)
 {
     if(aIsCI()) GTEST_SKIP();
-    furnsh_c("data/Test/kernels/spk/de430.bsp");
+    furnsh_c(aTestGetConfigValue("SPK_FILE").toString().c_str());
     aInitialize();
     {
         double et = 3000;
@@ -2862,7 +2862,7 @@ TEST(SpiceZpr, timout)
 
 TEST(SpiceZpr, tipbod)
 {
-    furnsh_c("data/Test/kernels/pck/pck00011.tpc");
+    furnsh_c(aTestGetConfigValue("PCK_FILE").toString().c_str());
     double tipm_c[3][3];
     double tipm[3][3];
     enum {jupiter = 599};
@@ -2979,7 +2979,7 @@ TEST(SpiceZpr, unorm)
 
 TEST(SpiceZpr, utc2et)
 {
-    furnsh_c("data/Test/kernels/lsk/naif0012.tls");
+    furnsh_c(aTestGetConfigValue("LSK_FILE").toString().c_str());
     aInitialize();
     double et_c;
     double et;
