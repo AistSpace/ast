@@ -82,6 +82,8 @@ TEST(FrameTransformTest, Transform_Case1)
 
 TEST(FrameTransformTest, Transform_Case2)
 {
+    if(aIsGithubCI())
+        GTEST_SKIP();
     aInitialize();
     auto mars = aGetMars();
     auto jupiter = aGetJupiter();

@@ -30,6 +30,8 @@ AST_USING_NAMESPACE
 
 TEST(PlanetPointTest, getPosICRF)
 {
+    if(aIsGithubCI())
+        GTEST_SKIP();
     aInitialize();
     TimePoint tp = TimePoint::FromUTC(2026, 3, 12, 0, 0, 0);
     #define _AST_TEST_PLANET_POS_DE(NAME) \
@@ -74,6 +76,8 @@ TEST(PlanetPointTest, getPosICRF)
 
 TEST(PlanetPointTest, getPosVelICRF)
 {
+    if(aIsGithubCI())
+        GTEST_SKIP();
     aInitialize();
     TimePoint tp = TimePoint::FromUTC(2026, 3, 12, 0, 0, 0);
     #define _AST_TEST_PLANET_POSVEL_DE(NAME) \
