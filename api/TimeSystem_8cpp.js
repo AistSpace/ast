@@ -1,8 +1,10 @@
 var TimeSystem_8cpp =
 [
     [ "aJulianCenturyFromJ2000", "TimeSystem_8cpp.html#ga3889f3687fe79a83c571bbd951c58f2e", null ],
+    [ "aSpiceEtToTimePoint", "TimeSystem_8cpp.html#gae57a9d98f6f51268ec563b5ed83f8b39", null ],
     [ "aTAIToUTC", "TimeSystem_8cpp.html#ga1bc96d9158bdcbabecbba670dceeced3", null ],
     [ "aTDBMinusTT", "TimeSystem_8cpp.html#gab4397fac34d74477cfa5c0807e7c07ed", null ],
+    [ "aTimePointToSpiceEt", "TimeSystem_8cpp.html#ga6b3307b89a273542c8aab409e5fe2063", null ],
     [ "aTTMinusTDB", "TimeSystem_8cpp.html#ga25ea2bbf4fb12700e240244f04513cbc", null ],
     [ "aTTToTDB", "TimeSystem_8cpp.html#gacc7ba905b0072e09b8b6c599491d1850", null ],
     [ "aTTToUTC", "TimeSystem_8cpp.html#ga98088e571167c6a650c6f6964e97d801", null ],

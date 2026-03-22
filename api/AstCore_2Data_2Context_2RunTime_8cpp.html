@@ -102,6 +102,7 @@ $(function(){initNavTree('AstCore_2Data_2Context_2RunTime_8cpp.html',''); initRe
 <a href="#nested-classes">类</a> &#124;
 <a href="#namespaces">命名空间</a> &#124;
 <a href="#define-members">宏定义</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
 <a href="#func-members">函数</a> &#124;
 <a href="#var-members">变量</a>  </div>
   <div class="headertitle"><div class="title">RunTime.cpp 文件参考</div></div>
@@ -115,9 +116,13 @@ $(function(){initNavTree('AstCore_2Data_2Context_2RunTime_8cpp.html',''); initRe
 <code>#include &quot;AstCore/TimePoint.hpp&quot;</code><br />
 <code>#include &quot;AstCore/FundamentalArguments.hpp&quot;</code><br />
 <code>#include &quot;AstCore/GlobalContext.hpp&quot;</code><br />
-<code>#include &lt;assert.h&gt;</code><br />
+<code>#include &quot;AstCore/SpiceApi.hpp&quot;</code><br />
+<code>#include &quot;AstCore/TimeSystem.hpp&quot;</code><br />
+<code>#include &quot;AstCore/OrbitElement.hpp&quot;</code><br />
+<code>#include &quot;AstMath/MathOperator.hpp&quot;</code><br />
 <code>#include &quot;<a class="el" href="RunTimeData_8hpp_source.html">RunTimeData.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="RunTimeSolarSystem_8hpp_source.html">RunTimeSolarSystem.hpp</a>&quot;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 类</h2></td></tr>
@@ -160,6 +165,12 @@ $(function(){initNavTree('AstCore_2Data_2Context_2RunTime_8cpp.html',''); initRe
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>AST_DEFAULT_DIR_SOLARSYSTEM</b>&#160;&#160;&#160;&quot;SolarSystem/&quot;</td></tr>
 <tr class="separator:a4cc1768917c179ab072ea2f33431ecc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:ad05cb223f6538e3c07ef9ae82e77f16f" id="r_ad05cb223f6538e3c07ef9ae82e77f16f"><td class="memItemLeft" align="right" valign="top"><a id="ad05cb223f6538e3c07ef9ae82e77f16f" name="ad05cb223f6538e3c07ef9ae82e77f16f"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ast::StringVector</b> = std::vector&lt;std::string&gt;</td></tr>
+<tr class="separator:ad05cb223f6538e3c07ef9ae82e77f16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
 <tr class="memitem:ga4ccfea60ec40a0b914aee9714febd94e" id="r_ga4ccfea60ec40a0b914aee9714febd94e"><td class="memItemLeft" align="right" valign="top">
@@ -177,8 +188,7 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aInitializeByCo
 <tr class="memitem:a9ea59fd443facaacf60f0585319dd684" id="r_a9ea59fd443facaacf60f0585319dd684"><td class="memItemLeft" align="right" valign="top"><a id="a9ea59fd443facaacf60f0585319dd684" name="a9ea59fd443facaacf60f0585319dd684"></a>
 <a class="el" href="classast_1_1fs__simple_1_1path.html">fs::path</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aRelPathToAbs</b> (const <a class="el" href="classast_1_1fs__simple_1_1path.html">fs::path</a> &amp;relpath, const <a class="el" href="classast_1_1fs__simple_1_1path.html">fs::path</a> &amp;basedir)</td></tr>
 <tr class="separator:a9ea59fd443facaacf60f0585319dd684"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74d61ba4cc8eb10407f626364a293438" id="r_a74d61ba4cc8eb10407f626364a293438"><td class="memItemLeft" align="right" valign="top"><a id="a74d61ba4cc8eb10407f626364a293438" name="a74d61ba4cc8eb10407f626364a293438"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aInitializeByConfig</b> (<a class="el" href="classast_1_1DataContext.html">DataContext</a> *context, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> configfile)</td></tr>
+<tr class="memitem:a74d61ba4cc8eb10407f626364a293438" id="r_a74d61ba4cc8eb10407f626364a293438"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html#a74d61ba4cc8eb10407f626364a293438">ast::aInitializeByConfig</a> (<a class="el" href="classast_1_1DataContext.html">DataContext</a> *context, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> configfile)</td></tr>
 <tr class="separator:a74d61ba4cc8eb10407f626364a293438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaabcb6d72bbf7efcce989334376fb071f" id="r_gaabcb6d72bbf7efcce989334376fb071f"><td class="memItemLeft" align="right" valign="top">
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aInitializeByConfig</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> configfile)</td></tr>
@@ -321,6 +331,12 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aTheoreticalXYS
 <tr class="memitem:ga47273e9f78df27ff3d50232d7249ed16" id="r_ga47273e9f78df27ff3d50232d7249ed16"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aGetEMBarycenter</b> ()</td></tr>
 <tr class="separator:ga47273e9f78df27ff3d50232d7249ed16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf797c6a58f13d83595a57755293d9d2e" id="r_gaf797c6a58f13d83595a57755293d9d2e"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aSpiceGetPosICRF</b> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;time, int target, int referenceBody, Vector3d &amp;pos)</td></tr>
+<tr class="separator:gaf797c6a58f13d83595a57755293d9d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9c8afab9e295d8f1e468bc300e9c86ee" id="r_ga9c8afab9e295d8f1e468bc300e9c86ee"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aSpiceGetPosVelICRF</b> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;time, int target, int referenceBody, Vector3d &amp;pos, Vector3d &amp;vel)</td></tr>
+<tr class="separator:ga9c8afab9e295d8f1e468bc300e9c86ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 变量</h2></td></tr>

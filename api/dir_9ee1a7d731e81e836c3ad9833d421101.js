@@ -15,5 +15,6 @@ var dir_9ee1a7d731e81e836c3ad9833d421101 =
     [ "RunTimeJplDe.hpp", "RunTimeJplDe_8hpp.html", "RunTimeJplDe_8hpp" ],
     [ "RunTimeLeapSecond.hpp", "RunTimeLeapSecond_8hpp.html", "RunTimeLeapSecond_8hpp" ],
     [ "RunTimeSolarSystem.hpp", "RunTimeSolarSystem_8hpp.html", "RunTimeSolarSystem_8hpp" ],
+    [ "RunTimeSpice.hpp", "RunTimeSpice_8hpp.html", null ],
     [ "RunTimeXYS.hpp", "RunTimeXYS_8hpp.html", "RunTimeXYS_8hpp" ]
 ];

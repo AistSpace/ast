@@ -240,6 +240,12 @@ $(function(){initNavTree('namespaceast.html',''); initResizable(true); });
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BodyEphemeris.html">BodyEphemeris</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BodyEphemerisDE.html">BodyEphemerisDE</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BodyEphemerisNoop.html">BodyEphemerisNoop</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BodyEphemerisSPK.html">BodyEphemerisSPK</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BodyOrientation.html">BodyOrientation</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BodyShape.html">BodyShape</a></td></tr>
@@ -322,11 +328,7 @@ $(function(){initNavTree('namespaceast.html',''); initResizable(true); });
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Ephemeris.html">Ephemeris</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1EphemerisDE.html">EphemerisDE</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1EphemerisLagrangeVar.html">EphemerisLagrangeVar</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1EphemerisNoop.html">EphemerisNoop</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1EphemerisTwoBody.html">EphemerisTwoBody</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -953,6 +955,9 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>HFrameWithEpoch</b> 
 <tr class="memitem:ad57515be7a1e3fc8b89328349dafeed9" id="r_ad57515be7a1e3fc8b89328349dafeed9"><td class="memItemLeft" align="right" valign="top"><a id="ad57515be7a1e3fc8b89328349dafeed9" name="ad57515be7a1e3fc8b89328349dafeed9"></a>
 typedef err_t(*&#160;</td><td class="memItemRight" valign="bottom"><b>NutationFunc</b>) (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, double &amp;dpsi, double &amp;deps)</td></tr>
 <tr class="separator:ad57515be7a1e3fc8b89328349dafeed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05cb223f6538e3c07ef9ae82e77f16f" id="r_ad05cb223f6538e3c07ef9ae82e77f16f"><td class="memItemLeft" align="right" valign="top"><a id="ad05cb223f6538e3c07ef9ae82e77f16f" name="ad05cb223f6538e3c07ef9ae82e77f16f"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>StringVector</b> = std::vector&lt;std::string&gt;</td></tr>
+<tr class="separator:ad05cb223f6538e3c07ef9ae82e77f16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a817e678845a152edb9df4ca21aeaaed5" id="r_a817e678845a152edb9df4ca21aeaaed5"><td class="memItemLeft" align="right" valign="top"><a id="a817e678845a152edb9df4ca21aeaaed5" name="a817e678845a152edb9df4ca21aeaaed5"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>GravityCalculatorDefault</b> = <a class="el" href="classast_1_1GravityCalculator3.html">GravityCalculator3</a></td></tr>
 <tr class="separator:a817e678845a152edb9df4ca21aeaaed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2116,8 +2121,7 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>aInitializeByConfig<
 <tr class="memitem:a9ea59fd443facaacf60f0585319dd684" id="r_a9ea59fd443facaacf60f0585319dd684"><td class="memItemLeft" align="right" valign="top"><a id="a9ea59fd443facaacf60f0585319dd684" name="a9ea59fd443facaacf60f0585319dd684"></a>
 <a class="el" href="classast_1_1fs__simple_1_1path.html">fs::path</a>&#160;</td><td class="memItemRight" valign="bottom"><b>aRelPathToAbs</b> (const <a class="el" href="classast_1_1fs__simple_1_1path.html">fs::path</a> &amp;relpath, const <a class="el" href="classast_1_1fs__simple_1_1path.html">fs::path</a> &amp;basedir)</td></tr>
 <tr class="separator:a9ea59fd443facaacf60f0585319dd684"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74d61ba4cc8eb10407f626364a293438" id="r_a74d61ba4cc8eb10407f626364a293438"><td class="memItemLeft" align="right" valign="top"><a id="a74d61ba4cc8eb10407f626364a293438" name="a74d61ba4cc8eb10407f626364a293438"></a>
-err_t&#160;</td><td class="memItemRight" valign="bottom"><b>aInitializeByConfig</b> (<a class="el" href="classast_1_1DataContext.html">DataContext</a> *context, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> configfile)</td></tr>
+<tr class="memitem:a74d61ba4cc8eb10407f626364a293438" id="r_a74d61ba4cc8eb10407f626364a293438"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74d61ba4cc8eb10407f626364a293438">aInitializeByConfig</a> (<a class="el" href="classast_1_1DataContext.html">DataContext</a> *context, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> configfile)</td></tr>
 <tr class="separator:a74d61ba4cc8eb10407f626364a293438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaabcb6d72bbf7efcce989334376fb071f" id="r_gaabcb6d72bbf7efcce989334376fb071f"><td class="memItemLeft" align="right" valign="top">
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>aInitializeByConfig</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> configfile)</td></tr>
@@ -2260,6 +2264,12 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>aTheoreticalXYS_IERS
 <tr class="memitem:ga47273e9f78df27ff3d50232d7249ed16" id="r_ga47273e9f78df27ff3d50232d7249ed16"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>aGetEMBarycenter</b> ()</td></tr>
 <tr class="separator:ga47273e9f78df27ff3d50232d7249ed16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf797c6a58f13d83595a57755293d9d2e" id="r_gaf797c6a58f13d83595a57755293d9d2e"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>aSpiceGetPosICRF</b> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;time, int target, int referenceBody, Vector3d &amp;pos)</td></tr>
+<tr class="separator:gaf797c6a58f13d83595a57755293d9d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9c8afab9e295d8f1e468bc300e9c86ee" id="r_ga9c8afab9e295d8f1e468bc300e9c86ee"><td class="memItemLeft" align="right" valign="top">
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>aSpiceGetPosVelICRF</b> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;time, int target, int referenceBody, Vector3d &amp;pos, Vector3d &amp;vel)</td></tr>
+<tr class="separator:ga9c8afab9e295d8f1e468bc300e9c86ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga112b383f9e38ecd5e5915091b9685c5d" id="r_ga112b383f9e38ecd5e5915091b9685c5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1ValueView.html">ValueView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#ga112b383f9e38ecd5e5915091b9685c5d">aGetConfigValue</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key)</td></tr>
 <tr class="separator:ga112b383f9e38ecd5e5915091b9685c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf52f55e5d4c1192128caaac0837f7fae" id="r_gaf52f55e5d4c1192128caaac0837f7fae"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#gaf52f55e5d4c1192128caaac0837f7fae">aGetConfigStringVector</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key)</td></tr>
@@ -2278,6 +2288,9 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>aTheoreticalXYS_IERS
 <tr class="separator:ga1113e5f1f7eb8d2579d81f23832d2a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94f4cf75f889ec56c67b248dea11ef71" id="r_a94f4cf75f889ec56c67b248dea11ef71"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94f4cf75f889ec56c67b248dea11ef71">loadSpaceWeather</a> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, int numPoints, std::vector&lt; <a class="el" href="structast_1_1SpaceWeather_1_1Entry.html">SpaceWeather::Entry</a> &gt; &amp;data)</td></tr>
 <tr class="separator:a94f4cf75f889ec56c67b248dea11ef71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86f1aa5910f4fb3bf3a61033101469f5" id="r_a86f1aa5910f4fb3bf3a61033101469f5"><td class="memItemLeft" align="right" valign="top"><a id="a86f1aa5910f4fb3bf3a61033101469f5" name="a86f1aa5910f4fb3bf3a61033101469f5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>funcarray_isfull</b> (const SpiceApi::funcarray &amp;funcs)</td></tr>
+<tr class="separator:a86f1aa5910f4fb3bf3a61033101469f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa971fd3c4bf1fdc1c5a3f1bc9f9622f9" id="r_aa971fd3c4bf1fdc1c5a3f1bc9f9622f9"><td class="memItemLeft" align="right" valign="top"><a id="aa971fd3c4bf1fdc1c5a3f1bc9f9622f9" name="aa971fd3c4bf1fdc1c5a3f1bc9f9622f9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>createCosSinArrays</b> (double cosLambda, double sinLambda, int maxOrder, std::vector&lt; double &gt; &amp;cosML, std::vector&lt; double &gt; &amp;sinML)</td></tr>
 <tr class="separator:aa971fd3c4bf1fdc1c5a3f1bc9f9622f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2628,9 +2641,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>aGetJ4AnalyticalParam
 <tr class="separator:gadf777d101a8b60116f7b28aec4248b78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cc0688110cb987c542ae6a06b72e5cc" id="r_a9cc0688110cb987c542ae6a06b72e5cc"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9cc0688110cb987c542ae6a06b72e5cc">aLoadBody</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath, <a class="el" href="group__SolarSystem.html#ga3b2fe87cceca735335ef7ade4e48add5">HCelestialBody</a> &amp;body)</td></tr>
 <tr class="separator:a9cc0688110cb987c542ae6a06b72e5cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86f1aa5910f4fb3bf3a61033101469f5" id="r_a86f1aa5910f4fb3bf3a61033101469f5"><td class="memItemLeft" align="right" valign="top"><a id="a86f1aa5910f4fb3bf3a61033101469f5" name="a86f1aa5910f4fb3bf3a61033101469f5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>funcarray_isfull</b> (const SpiceApi::funcarray &amp;funcs)</td></tr>
-<tr class="separator:a86f1aa5910f4fb3bf3a61033101469f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad088c8a2d3a1a68850d5b43e53be4a24" id="r_gad088c8a2d3a1a68850d5b43e53be4a24"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Time.html#gad088c8a2d3a1a68850d5b43e53be4a24">aMoonFullName</a> (int month)</td></tr>
 <tr class="separator:gad088c8a2d3a1a68850d5b43e53be4a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7cd83ff0997da45192a2fb505c6e8fed" id="r_ga7cd83ff0997da45192a2fb505c6e8fed"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Time.html#ga7cd83ff0997da45192a2fb505c6e8fed">aMoonShortName</a> (int month)</td></tr>
@@ -2894,6 +2904,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>aTDBToTT</b> (const <
 <tr class="separator:ga25ea2bbf4fb12700e240244f04513cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab4397fac34d74477cfa5c0807e7c07ed" id="r_gab4397fac34d74477cfa5c0807e7c07ed"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Time.html#gab4397fac34d74477cfa5c0807e7c07ed">aTDBMinusTT</a> (const <a class="el" href="classast_1_1JulianDate.html">JulianDate</a> &amp;jdTT)</td></tr>
 <tr class="separator:gab4397fac34d74477cfa5c0807e7c07ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae57a9d98f6f51268ec563b5ed83f8b39" id="r_gae57a9d98f6f51268ec563b5ed83f8b39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1TimePoint.html">TimePoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Time.html#gae57a9d98f6f51268ec563b5ed83f8b39">aSpiceEtToTimePoint</a> (double et)</td></tr>
+<tr class="separator:gae57a9d98f6f51268ec563b5ed83f8b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6b3307b89a273542c8aab409e5fe2063" id="r_ga6b3307b89a273542c8aab409e5fe2063"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Time.html#ga6b3307b89a273542c8aab409e5fe2063">aTimePointToSpiceEt</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
+<tr class="separator:ga6b3307b89a273542c8aab409e5fe2063"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa6bf9ef3b76fdb0610cfb64300306039" id="r_gaa6bf9ef3b76fdb0610cfb64300306039"><td class="memTemplParams" colspan="2">template&lt;typename <a class="el" href="classast_1_1Time.html">Time</a> &gt; </td></tr>
 <tr class="memitem:gaa6bf9ef3b76fdb0610cfb64300306039"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Time.html#gaa6bf9ef3b76fdb0610cfb64300306039">aTAIToTT</a> (const <a class="el" href="classast_1_1Time.html">Time</a> &amp;tmTAI, <a class="el" href="classast_1_1Time.html">Time</a> &amp;tmTT)</td></tr>
 <tr class="separator:gaa6bf9ef3b76fdb0610cfb64300306039"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3580,10 +3594,6 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadSatellite</b> 
 <tr class="separator:ga12f41a902b92a5041319c0929ea394b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadf49677a9b4e1aaf420ed77715228f43" id="r_gadf49677a9b4e1aaf420ed77715228f43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#gadf49677a9b4e1aaf420ed77715228f43">aSpiceFindBody</a> (int id)</td></tr>
 <tr class="separator:gadf49677a9b4e1aaf420ed77715228f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga28fa4207db53a0374e67d175d4177703" id="r_ga28fa4207db53a0374e67d175d4177703"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1TimePoint.html">TimePoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga28fa4207db53a0374e67d175d4177703">aSpiceEtToTimePoint</a> (double et)</td></tr>
-<tr class="separator:ga28fa4207db53a0374e67d175d4177703"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3558747ca0fbfda64a15f91f8fc5b64c" id="r_ga3558747ca0fbfda64a15f91f8fc5b64c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga3558747ca0fbfda64a15f91f8fc5b64c">aTimePointToSpiceEt</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
-<tr class="separator:ga3558747ca0fbfda64a15f91f8fc5b64c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa492a6a07aed235f9ef4ea65c0ec1017" id="r_gaa492a6a07aed235f9ef4ea65c0ec1017"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#gaa492a6a07aed235f9ef4ea65c0ec1017">axisar</a> (const Vector3d &amp;axis, double angle, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;r)</td></tr>
 <tr class="separator:gaa492a6a07aed235f9ef4ea65c0ec1017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga70544ad5025e6d1ee6668980a7ec6230" id="r_ga70544ad5025e6d1ee6668980a7ec6230"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga70544ad5025e6d1ee6668980a7ec6230">azlrec</a> (double range, double az, double el, bool azccw, bool elplsz, Vector3d &amp;rectan)</td></tr>
@@ -5487,8 +5497,8 @@ template&lt;typename GeometryType , typename RotationType &gt; </div>
 </div><div class="memdoc">
 <p>计算出源坐标系和目标坐标系的深度， 同时分别填充源坐标系路径和目标坐标系路径。 最后从源坐标系路径和目标坐标系路径的末尾开始比较， 找到第一个相同的坐标系， 则该坐标系为最近公共祖先</p>
 <p>假设坐标系的深度不会超过256层， 因此使用了一个256层的栈数组来存储源坐标系路径和目标坐标系路径。 为了避免缓冲区溢出，我们使用uint8_t类型来存储深度</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">待办事项</a></b></dt><dd>在寻找最近公共祖先时，如果出现了超过256层的意外情况（非常非常罕见）， 需要进入动态分配内存的计算模式 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">待办事项</a></b></dt><dd>这里应该可以专门写个函数将 <code>.inverse() *</code> 的计算进行合并 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">待办事项</a></b></dt><dd>在寻找最近公共祖先时，如果出现了超过256层的意外情况（非常非常罕见）， 需要进入动态分配内存的计算模式 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">待办事项</a></b></dt><dd>这里应该可以专门写个函数将 <code>.inverse() *</code> 的计算进行合并 </dd></dl>
 
 </div>
 </div>
@@ -6110,6 +6120,28 @@ template&lt;typename GeometryType , typename RotationType &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>标识符指针 </dd></dl>
+
+</div>
+</div>
+<a id="a74d61ba4cc8eb10407f626364a293438" name="a74d61ba4cc8eb10407f626364a293438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74d61ba4cc8eb10407f626364a293438">&#9670;&#160;</a></span>aInitializeByConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::aInitializeByConfig </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1DataContext.html">DataContext</a> *</td>          <td class="paramname"><span class="paramname"><em>context</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>configfile</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">待办事项</a></b></dt><dd>这里获取到的路径可能是相对路径，要处理相对路径问题! </dd></dl>
 
 </div>
 </div>

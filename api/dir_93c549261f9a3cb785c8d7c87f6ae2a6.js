@@ -6,7 +6,8 @@ var dir_93c549261f9a3cb785c8d7c87f6ae2a6 =
     [ "EphemerisLagrangeFixed.hpp", "EphemerisLagrangeFixed_8hpp.html", null ],
     [ "EphemerisLagrangeVar.cpp", "EphemerisLagrangeVar_8cpp.html", null ],
     [ "EphemerisLagrangeVar.hpp", "EphemerisLagrangeVar_8hpp.html", "EphemerisLagrangeVar_8hpp" ],
-    [ "EphemerisSPK.hpp", "AstSim_2Ephemeris_2EphemerisSPK_8hpp_source.html", null ],
+    [ "EphemerisSPK.cpp", "EphemerisSPK_8cpp.html", null ],
+    [ "EphemerisSPK.hpp", "EphemerisSPK_8hpp.html", null ],
     [ "EphemerisTwoBody.cpp", "EphemerisTwoBody_8cpp.html", null ],
     [ "EphemerisTwoBody.hpp", "EphemerisTwoBody_8hpp.html", "EphemerisTwoBody_8hpp" ]
 ];

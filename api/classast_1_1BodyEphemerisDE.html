@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>🛰️航天仿真算法库 SpaceAST: ast::BodyEphemerisDE类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">🛰️航天仿真算法库 SpaceAST<span id="projectnumber">&#160;0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classast_1_1BodyEphemerisDE.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classast_1_1BodyEphemerisDE-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ast::BodyEphemerisDE类 参考<div class="ingroups"><a class="el" href="group__Core.html">航天模块</a> &raquo; <a class="el" href="group__SolarSystem.html">太阳系</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> 类 ast::BodyEphemerisDE 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+ <div class="center">
+  <img src="classast_1_1BodyEphemerisDE.png" usemap="#ast::BodyEphemerisDE_map" alt=""/>
+  <map id="ast::BodyEphemerisDE_map" name="ast::BodyEphemerisDE_map">
+<area href="classast_1_1BodyEphemeris.html" title="天体星历" alt="ast::BodyEphemeris" shape="rect" coords="0,0,139,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ac782be6a174ed8b4627790c9454c9204" id="r_ac782be6a174ed8b4627790c9454c9204"><td class="memItemLeft" align="right" valign="top"><a id="ac782be6a174ed8b4627790c9454c9204" name="ac782be6a174ed8b4627790c9454c9204"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BodyEphemerisDE</b> (int jplIndex)</td></tr>
+<tr class="separator:ac782be6a174ed8b4627790c9454c9204"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66b396174411d2a9fc7782e03a6c40c8" id="r_a66b396174411d2a9fc7782e03a6c40c8"><td class="memItemLeft" align="right" valign="top"><a id="a66b396174411d2a9fc7782e03a6c40c8" name="a66b396174411d2a9fc7782e03a6c40c8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BodyEphemerisDE</b> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *body)</td></tr>
+<tr class="separator:a66b396174411d2a9fc7782e03a6c40c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59654ae38ef0f62b151ef3ff70f58716" id="r_a59654ae38ef0f62b151ef3ff70f58716"><td class="memItemLeft" align="right" valign="top"><a id="a59654ae38ef0f62b151ef3ff70f58716" name="a59654ae38ef0f62b151ef3ff70f58716"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getJplIndex</b> () const</td></tr>
+<tr class="separator:a59654ae38ef0f62b151ef3ff70f58716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9702fcdd937f3410887822b75e85977" id="r_ab9702fcdd937f3410887822b75e85977"><td class="memItemLeft" align="right" valign="top"><a id="ab9702fcdd937f3410887822b75e85977" name="ab9702fcdd937f3410887822b75e85977"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setJplIndex</b> (int jplIndex)</td></tr>
+<tr class="separator:ab9702fcdd937f3410887822b75e85977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a236a5d8193b0577a7a434e6cf33a2a19" id="r_a236a5d8193b0577a7a434e6cf33a2a19"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a236a5d8193b0577a7a434e6cf33a2a19">getPosICRF</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos) const override</td></tr>
+<tr class="separator:a236a5d8193b0577a7a434e6cf33a2a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5126cd6a132d7e6645f6f20dbc7ac3ce" id="r_a5126cd6a132d7e6645f6f20dbc7ac3ce"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5126cd6a132d7e6645f6f20dbc7ac3ce">getPosVelICRF</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) const override</td></tr>
+<tr class="separator:a5126cd6a132d7e6645f6f20dbc7ac3ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classast_1_1BodyEphemeris"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1BodyEphemeris')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1BodyEphemeris.html">ast::BodyEphemeris</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:aefc3b2b7d5f934e85b7209138fb55aa0" id="r_aefc3b2b7d5f934e85b7209138fb55aa0"><td class="memItemLeft" align="right" valign="top"><a id="aefc3b2b7d5f934e85b7209138fb55aa0" name="aefc3b2b7d5f934e85b7209138fb55aa0"></a>
+<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>body_</b> {nullptr}</td></tr>
+<tr class="separator:aefc3b2b7d5f934e85b7209138fb55aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abad15706ae170a29f42fd61947f17ffb" id="r_abad15706ae170a29f42fd61947f17ffb"><td class="memItemLeft" align="right" valign="top"><a id="abad15706ae170a29f42fd61947f17ffb" name="abad15706ae170a29f42fd61947f17ffb"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>jplIndex_</b> {-1}</td></tr>
+<tr class="separator:abad15706ae170a29f42fd61947f17ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a236a5d8193b0577a7a434e6cf33a2a19" name="a236a5d8193b0577a7a434e6cf33a2a19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a236a5d8193b0577a7a434e6cf33a2a19">&#9670;&#160;</a></span>getPosICRF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::BodyEphemerisDE::getPosICRF </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取天体在ICRF坐标系下的位置 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tp</td><td>时间点 </td></tr>
+    <tr><td class="paramname">pos</td><td>输出位置 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>err_t 错误码 </dd></dl>
+
+<p>实现了 <a class="el" href="classast_1_1BodyEphemeris.html#ad5f246b6d9ed53136bb585b2318c34ce">ast::BodyEphemeris</a>.</p>
+
+</div>
+</div>
+<a id="a5126cd6a132d7e6645f6f20dbc7ac3ce" name="a5126cd6a132d7e6645f6f20dbc7ac3ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5126cd6a132d7e6645f6f20dbc7ac3ce">&#9670;&#160;</a></span>getPosVelICRF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::BodyEphemerisDE::getPosVelICRF </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3d &amp;</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取天体在ICRF坐标系下的位置和速度 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tp</td><td>时间点 </td></tr>
+    <tr><td class="paramname">pos</td><td>输出位置 </td></tr>
+    <tr><td class="paramname">vel</td><td>输出速度 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>err_t 错误码 </dd></dl>
+
+<p>实现了 <a class="el" href="classast_1_1BodyEphemeris.html#a49d6c99d843a8a8906af1ce5eb1015ba">ast::BodyEphemeris</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>src/AstCore/SolarSystem/Ephemeris/<a class="el" href="BodyEphemerisDE_8hpp_source.html">BodyEphemerisDE.hpp</a></li>
+<li>src/AstCore/SolarSystem/Ephemeris/<b>BodyEphemerisDE.cpp</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceast.html">ast</a></li><li class="navelem"><a class="el" href="classast_1_1BodyEphemerisDE.html">BodyEphemerisDE</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

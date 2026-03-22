@@ -1,9 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"IteratePredefined_8hpp.html#a236320bc52680eb15582c6283715aa95":[4,0,0,10,6,0,1,1],
-"IteratePredefined_8hpp.html#a62018e586bdff7fd154f7c71b4bd6af2":[4,0,0,10,6,0,1,0],
-"IteratePredefined_8hpp_source.html":[4,0,0,10,6,0,1],
-"J2Analytical_8cpp.html":[4,0,0,2,7,2],
 "J2Analytical_8cpp.html#a1070a6486b7531bf23e580154394bfb4":[4,0,0,2,7,2,0],
 "J2Analytical_8hpp.html":[4,0,0,2,7,3],
 "J2Analytical_8hpp_source.html":[4,0,0,2,7,3],
@@ -32,9 +28,9 @@ var NAVTREEINDEX3 =
 "JplDe_8cpp.html#ad226f5138693fa4cb352f8c2201281dfafa4ba5ef8b80084b8cfb20328a7719e9":[4,0,0,2,3,3,1,5],
 "JplDe_8hpp.html":[4,0,0,2,3,4],
 "JplDe_8hpp_source.html":[4,0,0,2,3,4],
-"JulianDate_8cpp.html":[4,0,0,2,10,9],
-"JulianDate_8hpp.html":[4,0,0,2,10,10],
-"JulianDate_8hpp_source.html":[4,0,0,2,10,10],
+"JulianDate_8cpp.html":[4,0,0,2,9,9],
+"JulianDate_8hpp.html":[4,0,0,2,9,10],
+"JulianDate_8hpp_source.html":[4,0,0,2,9,10],
 "KVParser_8cpp.html":[4,0,0,14,2,1,0],
 "KVParser_8hpp.html":[4,0,0,14,2,1,1],
 "KVParser_8hpp_source.html":[4,0,0,14,2,1,1],
@@ -156,8 +152,8 @@ var NAVTREEINDEX3 =
 "MockStringView_8cpp.html":[4,0,0,6,7],
 "MockStringView_8hpp.html":[4,0,0,6,8],
 "MockStringView_8hpp_source.html":[4,0,0,6,8],
-"ModJulianDate_8hpp.html":[4,0,0,2,10,11],
-"ModJulianDate_8hpp_source.html":[4,0,0,2,10,11],
+"ModJulianDate_8hpp.html":[4,0,0,2,9,11],
+"ModJulianDate_8hpp_source.html":[4,0,0,2,9,11],
 "MolniyaOrbitDesigner_8cpp.html":[4,0,0,2,6,0,8],
 "MolniyaOrbitDesigner_8hpp.html":[4,0,0,2,6,0,9],
 "MolniyaOrbitDesigner_8hpp_source.html":[4,0,0,2,6,0,9],
@@ -249,5 +245,9 @@ var NAVTREEINDEX3 =
 "OCPSolver_8hpp_source.html":[4,0,0,7,1],
 "ODEEventDetectorList_8hpp_source.html":[4,0,0,5,5,1,0],
 "ODEEventDetector_8cpp.html":[4,0,0,5,5,4],
-"ODEEventDetector_8hpp.html":[4,0,0,5,5,5]
+"ODEEventDetector_8hpp.html":[4,0,0,5,5,5],
+"ODEEventDetector_8hpp_source.html":[4,0,0,5,5,5],
+"ODEEventObserver_8hpp_source.html":[4,0,0,5,5,1,1],
+"ODEFixedStepIntegrator_8cpp.html":[4,0,0,5,5,6],
+"ODEFixedStepIntegrator_8hpp.html":[4,0,0,5,5,7]
 };

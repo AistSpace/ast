@@ -1,9 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"ODEEventDetector_8hpp_source.html":[4,0,0,5,5,5],
-"ODEEventObserver_8hpp_source.html":[4,0,0,5,5,1,1],
-"ODEFixedStepIntegrator_8cpp.html":[4,0,0,5,5,6],
-"ODEFixedStepIntegrator_8hpp.html":[4,0,0,5,5,7],
 "ODEFixedStepIntegrator_8hpp_source.html":[4,0,0,5,5,7],
 "ODEInnerStateObserver_8cpp.html":[4,0,0,5,5,1,2],
 "ODEInnerStateObserver_8hpp.html":[4,0,0,5,5,1,3],
@@ -220,8 +216,10 @@ var NAVTREEINDEX4 =
 "RunTimeLeapSecond_8hpp_source.html":[4,0,0,2,3,0,13],
 "RunTimeSolarSystem_8hpp.html":[4,0,0,2,3,0,14],
 "RunTimeSolarSystem_8hpp_source.html":[4,0,0,2,3,0,14],
-"RunTimeXYS_8hpp.html":[4,0,0,2,3,0,15],
-"RunTimeXYS_8hpp_source.html":[4,0,0,2,3,0,15],
+"RunTimeSpice_8hpp.html":[4,0,0,2,3,0,15],
+"RunTimeSpice_8hpp_source.html":[4,0,0,2,3,0,15],
+"RunTimeXYS_8hpp.html":[4,0,0,2,3,0,16],
+"RunTimeXYS_8hpp_source.html":[4,0,0,2,3,0,16],
 "SOFA_8cpp.html":[4,0,0,2,2,2,9],
 "SOFA_8cpp.html#a1a15ff0a546fe42e25b499c9df6f59a7":[4,0,0,2,2,2,9,6],
 "SOFA_8cpp.html#a63ce81e5e98b83011c987b0de9ffed83":[4,0,0,2,2,2,9,7],
@@ -249,5 +247,7 @@ var NAVTREEINDEX4 =
 "SOFA_8hpp.html#ace797c75c8b047ff468d01432be425fa":[4,0,0,2,2,2,10,12],
 "SOFA_8hpp.html#ad4d33fedb094a2588449938697651f14":[4,0,0,2,2,2,10,0],
 "SOFA_8hpp.html#add4db3984e4ac425671893e9151d776c":[4,0,0,2,2,2,10,4],
-"SOFA_8hpp.html#aeeb54fffcc4d1190586e6148f16be37e":[4,0,0,2,2,2,10,5]
+"SOFA_8hpp.html#aeeb54fffcc4d1190586e6148f16be37e":[4,0,0,2,2,2,10,5],
+"SOFA_8hpp.html#af01f70ad0322291b74d4cbfc99cccd2a":[4,0,0,2,2,2,10,9],
+"SOFA_8hpp.html#af57cd650f14fa0b1587bf66c47bf65db":[4,0,0,2,2,2,10,14]
 };

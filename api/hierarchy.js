@@ -40,8 +40,9 @@ var hierarchy =
     ] ],
     [ "ast::BKVTree", "classast_1_1BKVTree.html", null ],
     [ "ast::BodyEphemeris", "classast_1_1BodyEphemeris.html", [
-      [ "ast::EphemerisDE", "classast_1_1EphemerisDE.html", null ],
-      [ "ast::EphemerisNoop", "classast_1_1EphemerisNoop.html", null ]
+      [ "ast::BodyEphemerisDE", "classast_1_1BodyEphemerisDE.html", null ],
+      [ "ast::BodyEphemerisNoop", "classast_1_1BodyEphemerisNoop.html", null ],
+      [ "ast::BodyEphemerisSPK", "classast_1_1BodyEphemerisSPK.html", null ]
     ] ],
     [ "ast::BodyOrientation", "classast_1_1BodyOrientation.html", [
       [ "ast::EarthOrientation", "classast_1_1EarthOrientation.html", null ],

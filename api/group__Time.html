@@ -572,6 +572,10 @@ A_ALWAYS_INLINE <a class="el" href="classast_1_1DateTime.html">DateTime</a>&#160
 <tr class="separator:ga25ea2bbf4fb12700e240244f04513cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3889f3687fe79a83c571bbd951c58f2e" id="r_ga3889f3687fe79a83c571bbd951c58f2e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga3889f3687fe79a83c571bbd951c58f2e">ast::aJulianCenturyFromJ2000</a> (const <a class="el" href="classast_1_1JulianDate.html">JulianDate</a> &amp;jd)</td></tr>
 <tr class="separator:ga3889f3687fe79a83c571bbd951c58f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae57a9d98f6f51268ec563b5ed83f8b39" id="r_gae57a9d98f6f51268ec563b5ed83f8b39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1TimePoint.html">TimePoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gae57a9d98f6f51268ec563b5ed83f8b39">ast::aSpiceEtToTimePoint</a> (double et)</td></tr>
+<tr class="separator:gae57a9d98f6f51268ec563b5ed83f8b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6b3307b89a273542c8aab409e5fe2063" id="r_ga6b3307b89a273542c8aab409e5fe2063"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga6b3307b89a273542c8aab409e5fe2063">ast::aTimePointToSpiceEt</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
+<tr class="separator:ga6b3307b89a273542c8aab409e5fe2063"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 变量</h2></td></tr>
@@ -2099,6 +2103,32 @@ template&lt;typename <a class="el" href="classast_1_1Time.html">Time</a> &gt; </
 
 </div>
 </div>
+<a id="gae57a9d98f6f51268ec563b5ed83f8b39" name="gae57a9d98f6f51268ec563b5ed83f8b39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae57a9d98f6f51268ec563b5ed83f8b39">&#9670;&#160;</a></span>aSpiceEtToTimePoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_API <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> ast::aSpiceEtToTimePoint </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>et</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>将 SPICE 时间转换为 <a class="el" href="classast_1_1TimePoint.html" title="绝对时间点">TimePoint</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">et</td><td>SPICE 时间（秒） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>对应的 <a class="el" href="classast_1_1TimePoint.html" title="绝对时间点">TimePoint</a> 实例 </dd></dl>
+
+</div>
+</div>
 <a id="ga55303afacccf12da01ac94d4bae07903" name="ga55303afacccf12da01ac94d4bae07903"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga55303afacccf12da01ac94d4bae07903">&#9670;&#160;</a></span>aTAIToGPS()</h2>
 
@@ -2344,6 +2374,32 @@ template&lt;typename <a class="el" href="classast_1_1Time.html">Time</a> &gt; </
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ga6b3307b89a273542c8aab409e5fe2063" name="ga6b3307b89a273542c8aab409e5fe2063"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6b3307b89a273542c8aab409e5fe2063">&#9670;&#160;</a></span>aTimePointToSpiceEt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_API double ast::aTimePointToSpiceEt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>将 <a class="el" href="classast_1_1TimePoint.html" title="绝对时间点">TimePoint</a> 转换为 SPICE 时间 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tp</td><td><a class="el" href="classast_1_1TimePoint.html" title="绝对时间点">TimePoint</a> 实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>对应的 SPICE 时间（秒） </dd></dl>
 
 </div>
 </div>

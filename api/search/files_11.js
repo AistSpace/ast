@@ -39,5 +39,6 @@ var searchData=
   ['runtimejplde_2ehpp_36',['RunTimeJplDe.hpp',['../RunTimeJplDe_8hpp.html',1,'']]],
   ['runtimeleapsecond_2ehpp_37',['RunTimeLeapSecond.hpp',['../RunTimeLeapSecond_8hpp.html',1,'']]],
   ['runtimesolarsystem_2ehpp_38',['RunTimeSolarSystem.hpp',['../RunTimeSolarSystem_8hpp.html',1,'']]],
-  ['runtimexys_2ehpp_39',['RunTimeXYS.hpp',['../RunTimeXYS_8hpp.html',1,'']]]
+  ['runtimespice_2ehpp_39',['RunTimeSpice.hpp',['../RunTimeSpice_8hpp.html',1,'']]],
+  ['runtimexys_2ehpp_40',['RunTimeXYS.hpp',['../RunTimeXYS_8hpp.html',1,'']]]
 ];

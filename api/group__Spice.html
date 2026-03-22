@@ -124,10 +124,6 @@ $(function(){initNavTree('group__Spice.html',''); initResizable(true); });
 <tr class="separator:ga12f41a902b92a5041319c0929ea394b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadf49677a9b4e1aaf420ed77715228f43" id="r_gadf49677a9b4e1aaf420ed77715228f43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gadf49677a9b4e1aaf420ed77715228f43">ast::aSpiceFindBody</a> (int id)</td></tr>
 <tr class="separator:gadf49677a9b4e1aaf420ed77715228f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga28fa4207db53a0374e67d175d4177703" id="r_ga28fa4207db53a0374e67d175d4177703"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1TimePoint.html">TimePoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga28fa4207db53a0374e67d175d4177703">ast::aSpiceEtToTimePoint</a> (double et)</td></tr>
-<tr class="separator:ga28fa4207db53a0374e67d175d4177703"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3558747ca0fbfda64a15f91f8fc5b64c" id="r_ga3558747ca0fbfda64a15f91f8fc5b64c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga3558747ca0fbfda64a15f91f8fc5b64c">ast::aTimePointToSpiceEt</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
-<tr class="separator:ga3558747ca0fbfda64a15f91f8fc5b64c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa492a6a07aed235f9ef4ea65c0ec1017" id="r_gaa492a6a07aed235f9ef4ea65c0ec1017"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa492a6a07aed235f9ef4ea65c0ec1017">ast::axisar</a> (const Vector3d &amp;axis, double angle, <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a> &amp;r)</td></tr>
 <tr class="separator:gaa492a6a07aed235f9ef4ea65c0ec1017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga70544ad5025e6d1ee6668980a7ec6230" id="r_ga70544ad5025e6d1ee6668980a7ec6230"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga70544ad5025e6d1ee6668980a7ec6230">ast::azlrec</a> (double range, double az, double el, bool azccw, bool elplsz, Vector3d &amp;rectan)</td></tr>
@@ -212,32 +208,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::vrotv</b> (const
 <tr class="separator:ga75714f9c2dbc696555d3abd96e88b9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">函数说明</h2>
-<a id="ga28fa4207db53a0374e67d175d4177703" name="ga28fa4207db53a0374e67d175d4177703"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga28fa4207db53a0374e67d175d4177703">&#9670;&#160;</a></span>aSpiceEtToTimePoint()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">AST_SPICE_API <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> ast::aSpiceEtToTimePoint </td>
-          <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>et</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>将 SPICE 时间转换为 <a class="el" href="classast_1_1TimePoint.html" title="绝对时间点">TimePoint</a> </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">et</td><td>SPICE 时间（秒） </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>对应的 <a class="el" href="classast_1_1TimePoint.html" title="绝对时间点">TimePoint</a> 实例 </dd></dl>
-
-</div>
-</div>
 <a id="ga3245987ee7f10c497082ce21a60c4857" name="ga3245987ee7f10c497082ce21a60c4857"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga3245987ee7f10c497082ce21a60c4857">&#9670;&#160;</a></span>aSpiceFindAxes()</h2>
 
@@ -313,32 +283,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::vrotv</b> (const
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>指向 <a class="el" href="classast_1_1CelestialBody.html" title="天体">CelestialBody</a> 实例的指针，如果未找到则为 nullptr </dd></dl>
-
-</div>
-</div>
-<a id="ga3558747ca0fbfda64a15f91f8fc5b64c" name="ga3558747ca0fbfda64a15f91f8fc5b64c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3558747ca0fbfda64a15f91f8fc5b64c">&#9670;&#160;</a></span>aTimePointToSpiceEt()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">AST_SPICE_API double ast::aTimePointToSpiceEt </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tp</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>将 <a class="el" href="classast_1_1TimePoint.html" title="绝对时间点">TimePoint</a> 转换为 SPICE 时间 </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tp</td><td><a class="el" href="classast_1_1TimePoint.html" title="绝对时间点">TimePoint</a> 实例 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>对应的 SPICE 时间（秒） </dd></dl>
 
 </div>
 </div>

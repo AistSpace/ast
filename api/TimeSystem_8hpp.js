@@ -2,10 +2,12 @@ var TimeSystem_8hpp =
 [
     [ "aGPSToTAI", "TimeSystem_8hpp.html#ga2a30b67ffa7dadc252eb8a9359cb8006", null ],
     [ "aJulianCenturyFromJ2000", "TimeSystem_8hpp.html#ga3889f3687fe79a83c571bbd951c58f2e", null ],
+    [ "aSpiceEtToTimePoint", "TimeSystem_8hpp.html#gae57a9d98f6f51268ec563b5ed83f8b39", null ],
     [ "aTAIToGPS", "TimeSystem_8hpp.html#ga55303afacccf12da01ac94d4bae07903", null ],
     [ "aTAIToTT", "TimeSystem_8hpp.html#gaa6bf9ef3b76fdb0610cfb64300306039", null ],
     [ "aTAIToUTC", "TimeSystem_8hpp.html#ga1bc96d9158bdcbabecbba670dceeced3", null ],
     [ "aTDBMinusTT", "TimeSystem_8hpp.html#gab4397fac34d74477cfa5c0807e7c07ed", null ],
+    [ "aTimePointToSpiceEt", "TimeSystem_8hpp.html#ga6b3307b89a273542c8aab409e5fe2063", null ],
     [ "aTTMinusTDB", "TimeSystem_8hpp.html#ga25ea2bbf4fb12700e240244f04513cbc", null ],
     [ "aTTToTAI", "TimeSystem_8hpp.html#gab3ceebedb7ef5971f124fe9fdf9811ae", null ],
     [ "aTTToTDB", "TimeSystem_8hpp.html#gacc7ba905b0072e09b8b6c599491d1850", null ],

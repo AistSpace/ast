@@ -33,7 +33,7 @@ var searchData=
   ['repeatingsunsyncorbitdesigner_30',['RepeatingSunSyncOrbitDesigner',['../classast_1_1RepeatingSunSyncOrbitDesigner.html',1,'ast']]],
   ['repeatingsunsyncorbitdesigner_2ecpp_31',['RepeatingSunSyncOrbitDesigner.cpp',['../RepeatingSunSyncOrbitDesigner_8cpp.html',1,'']]],
   ['repeatingsunsyncorbitdesigner_2ehpp_32',['RepeatingSunSyncOrbitDesigner.hpp',['../RepeatingSunSyncOrbitDesigner_8hpp.html',1,'']]],
-  ['reset_33',['reset',['../classast_1_1BlockDynamicSystem.html#a584b629039b50fc779be23fbd316eea1',1,'ast::BlockDynamicSystem::reset()'],['../classast_1_1SpiceApi.html#a4b915270175529fe76f7c3546fd33194',1,'ast::SpiceApi::reset()']]],
+  ['reset_33',['reset',['../classast_1_1SpiceApi.html#a4b915270175529fe76f7c3546fd33194',1,'ast::SpiceApi::reset()'],['../classast_1_1BlockDynamicSystem.html#a584b629039b50fc779be23fbd316eea1',1,'ast::BlockDynamicSystem::reset()']]],
   ['resolvesymbol_34',['resolveSymbol',['../classast_1_1SymbolScope.html#a73e138777d10e10510eccd3f3dc6424a',1,'ast::SymbolScope']]],
   ['rgb_35',['rgb',['../group__Util.html#gae0dd3e8dec613bf26344801182b864b7',1,'ast']]],
   ['rgba_36',['rgba',['../group__Util.html#gad75b6bc25cadaa8a25b2d91e98ca072c',1,'ast']]],
@@ -94,9 +94,10 @@ var searchData=
   ['runtimejplde_2ehpp_91',['RunTimeJplDe.hpp',['../RunTimeJplDe_8hpp.html',1,'']]],
   ['runtimeleapsecond_2ehpp_92',['RunTimeLeapSecond.hpp',['../RunTimeLeapSecond_8hpp.html',1,'']]],
   ['runtimesolarsystem_2ehpp_93',['RunTimeSolarSystem.hpp',['../RunTimeSolarSystem_8hpp.html',1,'']]],
-  ['runtimexys_2ehpp_94',['RunTimeXYS.hpp',['../RunTimeXYS_8hpp.html',1,'']]],
-  ['rv2coe_95',['rv2coe',['../group__Orbit.html#ga2934344a945ed762eb2d934a8df5b8c3',1,'ast']]],
-  ['rv2ee_96',['rv2ee',['../group__Orbit.html#ga1fdffc5972383581fa15ec65315fbccb',1,'ast']]],
-  ['rv2mee_97',['rv2mee',['../group__Orbit.html#ga8f2374fbba0e603f2998e11f2903dfb0',1,'ast']]],
-  ['rv2moe_98',['rv2moe',['../group__Orbit.html#ga4246b7633292726bb795b8d590b46391',1,'ast']]]
+  ['runtimespice_2ehpp_94',['RunTimeSpice.hpp',['../RunTimeSpice_8hpp.html',1,'']]],
+  ['runtimexys_2ehpp_95',['RunTimeXYS.hpp',['../RunTimeXYS_8hpp.html',1,'']]],
+  ['rv2coe_96',['rv2coe',['../group__Orbit.html#ga2934344a945ed762eb2d934a8df5b8c3',1,'ast']]],
+  ['rv2ee_97',['rv2ee',['../group__Orbit.html#ga1fdffc5972383581fa15ec65315fbccb',1,'ast']]],
+  ['rv2mee_98',['rv2mee',['../group__Orbit.html#ga8f2374fbba0e603f2998e11f2903dfb0',1,'ast']]],
+  ['rv2moe_99',['rv2moe',['../group__Orbit.html#ga4246b7633292726bb795b8d590b46391',1,'ast']]]
 ];

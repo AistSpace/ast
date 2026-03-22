@@ -9,5 +9,6 @@ var structast_1_1InitalizeConfig =
     [ "jplDeFile_", "structast_1_1InitalizeConfig.html#a2e33e41f65194dae452b13d7c9669dc9", null ],
     [ "leapSecondFile_", "structast_1_1InitalizeConfig.html#aab54959512d8958594d1fb9a5e73feaf", null ],
     [ "solarSystemDir_", "structast_1_1InitalizeConfig.html#ac5f76bc464e252ffacd27baf5302823f", null ],
-    [ "spaceWeatherFile_", "structast_1_1InitalizeConfig.html#a5fb10c17af12bfb3a0316d17aab2f605", null ]
+    [ "spaceWeatherFile_", "structast_1_1InitalizeConfig.html#a5fb10c17af12bfb3a0316d17aab2f605", null ],
+    [ "spkFiles_", "structast_1_1InitalizeConfig.html#a51fcfed8c44f352a6cc18801760ec5c2", null ]
 ];
