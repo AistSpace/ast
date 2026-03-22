@@ -40,7 +40,11 @@ err_t SolarSystem::load(StringView dirpath)
                 std::string bodyname = entry.path().filename();
                 CelestialBody* body = getBody(bodyname);
                 if(body){
-                    rc |= body->load(entry.path().string());
+                    err_t rc1 = body->load(entry.path().string());
+                    if(rc1){
+                        rc = rc1;
+                        aError("failed to load body %s", bodyname.c_str());
+                    }
                 }else{
                     HBody newbody = new CelestialBody();
                     if(newbody->load(entry.path().string()) == 0)

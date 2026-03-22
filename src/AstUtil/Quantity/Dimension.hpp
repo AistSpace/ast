@@ -32,25 +32,25 @@ constexpr size_t bits_of_dimension = sizeof_dimension * 8;
 
 
 #define _AST_DIM_EXP_OPBIN(value1, value2, op) \
-    ((( dim_get_exponent(value1, 0) op dim_get_exponent(value2, 0)) & 0xF) << 0) | \
-    ((( dim_get_exponent(value1, 1) op dim_get_exponent(value2, 1)) & 0xF) << 4) | \
-    ((( dim_get_exponent(value1, 2) op dim_get_exponent(value2, 2)) & 0xF) << 8) | \
-    ((( dim_get_exponent(value1, 3) op dim_get_exponent(value2, 3)) & 0xF) << 12) | \
-    ((( dim_get_exponent(value1, 4) op dim_get_exponent(value2, 4)) & 0xF) << 16) | \
-    ((( dim_get_exponent(value1, 5) op dim_get_exponent(value2, 5)) & 0xF) << 20) | \
-    ((( dim_get_exponent(value1, 6) op dim_get_exponent(value2, 6)) & 0xF) << 24) | \
-    ((( dim_get_exponent(value1, 7) op dim_get_exponent(value2, 7)) & 0xF) << 28)
+    (unsigned(( dim_get_exponent(value1, 0) op dim_get_exponent(value2, 0)) & 0xF) << 0) | \
+    (unsigned(( dim_get_exponent(value1, 1) op dim_get_exponent(value2, 1)) & 0xF) << 4) | \
+    (unsigned(( dim_get_exponent(value1, 2) op dim_get_exponent(value2, 2)) & 0xF) << 8) | \
+    (unsigned(( dim_get_exponent(value1, 3) op dim_get_exponent(value2, 3)) & 0xF) << 12) | \
+    (unsigned(( dim_get_exponent(value1, 4) op dim_get_exponent(value2, 4)) & 0xF) << 16) | \
+    (unsigned(( dim_get_exponent(value1, 5) op dim_get_exponent(value2, 5)) & 0xF) << 20) | \
+    (unsigned(( dim_get_exponent(value1, 6) op dim_get_exponent(value2, 6)) & 0xF) << 24) | \
+    (unsigned(( dim_get_exponent(value1, 7) op dim_get_exponent(value2, 7)) & 0xF) << 28)
 
 
 #define _AST_DIM_EXP_TIMES(value, times)\
-    ((( dim_get_exponent(value, 0) * times) & 0xF) << 0) | \
-    ((( dim_get_exponent(value, 1) * times) & 0xF) << 4) | \
-    ((( dim_get_exponent(value, 2) * times) & 0xF) << 8) | \
-    ((( dim_get_exponent(value, 3) * times) & 0xF) << 12) | \
-    ((( dim_get_exponent(value, 4) * times) & 0xF) << 16) | \
-    ((( dim_get_exponent(value, 5) * times) & 0xF) << 20) | \
-    ((( dim_get_exponent(value, 6) * times) & 0xF) << 24) | \
-    ((( dim_get_exponent(value, 7) * times) & 0xF) << 28)
+    (unsigned(( dim_get_exponent(value, 0) * times) & 0xF) << 0) | \
+    (unsigned(( dim_get_exponent(value, 1) * times) & 0xF) << 4) | \
+    (unsigned(( dim_get_exponent(value, 2) * times) & 0xF) << 8) | \
+    (unsigned(( dim_get_exponent(value, 3) * times) & 0xF) << 12) | \
+    (unsigned(( dim_get_exponent(value, 4) * times) & 0xF) << 16) | \
+    (unsigned(( dim_get_exponent(value, 5) * times) & 0xF) << 20) | \
+    (unsigned(( dim_get_exponent(value, 6) * times) & 0xF) << 24) | \
+    (unsigned(( dim_get_exponent(value, 7) * times) & 0xF) << 28)
 
 
 #ifdef A_CXX14

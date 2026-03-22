@@ -137,10 +137,16 @@ err_t aFreeLibrary(void* lib)
 
 #if defined(_WIN32) || defined(_WIN64)
     // Windows平台
-    return FreeLibrary((HMODULE)lib) != 0;
+    if(FreeLibrary((HMODULE)lib) == 0){
+        return eErrorInvalidParam;
+    }
+    return eNoError;
 #else
     // Linux/Unix平台
-    return dlclose(lib) == 0;
+    if(dlclose(lib) != 0){
+        return eErrorInvalidParam;
+    }
+    return eNoError;
 #endif
 }
 

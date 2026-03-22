@@ -19,6 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "TestConfig.hpp"
+#include "AstCore/RunTime.hpp"
 #include <memory>
 
 AST_NAMESPACE_BEGIN
@@ -27,28 +28,14 @@ AST_NAMESPACE_BEGIN
 #define AST_DEFAULT_TEST_CONFIG_PATH AST_PROJECT_NAME "_testconfig_file.txt"
 
 
-void aTestConfigSetDefault(StartupConfig* config)
-{
-    if(!config) return;
-    config->addConfig("SPK_FILES", "data/Test/kernels/spk/de430.bsp"   );
-    config->addConfig("SPK_FILES", "data/Test/kernels/spk/planets.bsp" );
-    config->addConfig("SPK_FILES", "data/Test/kernels/spk/ceres.bsp"   );
-    config->addConfig("SPK_FILES", "data/Test/kernels/spk/jupiter.bsp" );
-    config->addConfig("SPK_FILES", "data/Test/kernels/spk/mars.bsp"    );
-    config->addConfig("SPK_FILES", "data/Test/kernels/spk/neptune.bsp" );
-    config->addConfig("SPK_FILES", "data/Test/kernels/spk/pluto.bsp"   );
-    config->addConfig("SPK_FILES", "data/Test/kernels/spk/saturn.bsp"  );
-    config->addConfig("SPK_FILES", "data/Test/kernels/spk/uranus.bsp"  );
-    // config->addConfig("SPK_FILE", "data/Test/kernels/lsk/naif0012.tls");
-    
-}
-
 std::shared_ptr<StartupConfig> aTestLoadConfig()
 {
     auto config = std::make_shared<StartupConfig>();
     err_t rc = config->load(AST_DEFAULT_TEST_CONFIG_PATH);
     if(rc){
-        aTestConfigSetDefault(config.get());
+        std::string configfile = aDataDir() + "/Config/" + AST_DEFAULT_TEST_CONFIG_PATH;
+        aInfo("using test config file: %s", configfile.c_str());
+        rc = config->load(configfile);
     }
     return config;
 }
