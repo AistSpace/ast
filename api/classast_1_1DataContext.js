@@ -1,5 +1,6 @@
 var classast_1_1DataContext =
 [
+    [ "config", "classast_1_1DataContext.html#a073f8155a29574c5d7d9ab2347698e47", null ],
     [ "dataDir", "classast_1_1DataContext.html#a21fda55c34849ca1f11b0988534751f0", null ],
     [ "eop", "classast_1_1DataContext.html#a978e12ad204a3d7d56453f28a5013a2a", null ],
     [ "epoch", "classast_1_1DataContext.html#a4cdf43d0849a9dfa516305a2090592fe", null ],
@@ -10,6 +11,7 @@ var classast_1_1DataContext =
     [ "setEpoch", "classast_1_1DataContext.html#ad707287da6e562678dfe48f80e59b7a1", null ],
     [ "solarSystem", "classast_1_1DataContext.html#a12c161c9f2a2dce896249e216112b1df", null ],
     [ "spaceWeather", "classast_1_1DataContext.html#ab522069b2cc15392f226c659e464e29e", null ],
+    [ "m_config", "classast_1_1DataContext.html#afefd18987d378043a66082691085b19d", null ],
     [ "m_dataDir", "classast_1_1DataContext.html#aab49aca89b54823adbd51caeecbd5cfa", null ],
     [ "m_eop", "classast_1_1DataContext.html#ae1fde47899a36efe881fef87f650564b", null ],
     [ "m_epoch", "classast_1_1DataContext.html#a490a64f91a789525f385cfc46036d5f5", null ],

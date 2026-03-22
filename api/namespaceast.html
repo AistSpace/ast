@@ -740,6 +740,8 @@ $(function(){initNavTree('namespaceast.html',''); initResizable(true); });
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1SpheroidShape.html">SpheroidShape</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1SpiceApi.html">SpiceApi</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1SpiceBodyRegistry.html">SpiceBodyRegistry</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1SpiceDAFParser.html">SpiceDAFParser</a></td></tr>
@@ -1112,9 +1114,6 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>PMotionProfile</b> =
 <tr class="memitem:a0164477235d635095a52b259d251ef3c" id="r_a0164477235d635095a52b259d251ef3c"><td class="memItemLeft" align="right" valign="top"><a id="a0164477235d635095a52b259d251ef3c" name="a0164477235d635095a52b259d251ef3c"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>PMotionTwoBody</b> = <a class="el" href="classast_1_1MotionTwoBody.html">MotionTwoBody</a>*</td></tr>
 <tr class="separator:a0164477235d635095a52b259d251ef3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a606a268e2ce5778cddaa5724bd9f8d23" id="r_a606a268e2ce5778cddaa5724bd9f8d23"><td class="memItemLeft" align="right" valign="top"><a id="a606a268e2ce5778cddaa5724bd9f8d23" name="a606a268e2ce5778cddaa5724bd9f8d23"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>SpiceDouble</b> = double</td></tr>
-<tr class="separator:a606a268e2ce5778cddaa5724bd9f8d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fa539ef205cdc24b5d1151798002026" id="r_a7fa539ef205cdc24b5d1151798002026"><td class="memItemLeft" align="right" valign="top"><a id="a7fa539ef205cdc24b5d1151798002026" name="a7fa539ef205cdc24b5d1151798002026"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>SpiceInt</b> = int</td></tr>
 <tr class="separator:a7fa539ef205cdc24b5d1151798002026"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1510,9 +1509,9 @@ typedef std::array&lt; <a class="el" href="classast_1_1AEP8Data.html">AEP8Data</
 <br />
  }</td></tr>
 <tr class="separator:ga737f9c579e31cebe46bb5406d9a08cd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga83fcc8c48f72a3eeed3f184286e9347f" id="r_ga83fcc8c48f72a3eeed3f184286e9347f"><td class="memItemLeft" align="right" valign="top"><a id="ga83fcc8c48f72a3eeed3f184286e9347f" name="ga83fcc8c48f72a3eeed3f184286e9347f"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>eIterBegin</b> =0
+<tr class="memitem:gada0cf11a34db419d663fd9c7fbf10f98" id="r_gada0cf11a34db419d663fd9c7fbf10f98"><td class="memItemLeft" align="right" valign="top"><a id="gada0cf11a34db419d663fd9c7fbf10f98" name="gada0cf11a34db419d663fd9c7fbf10f98"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>eIterBegin</b> =0
  }</td></tr>
-<tr class="separator:ga83fcc8c48f72a3eeed3f184286e9347f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:gada0cf11a34db419d663fd9c7fbf10f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga82f2843bc989eecb3ee2ca749615c015" id="r_ga82f2843bc989eecb3ee2ca749615c015"><td class="memItemLeft" align="right" valign="top"><a id="ga82f2843bc989eecb3ee2ca749615c015" name="ga82f2843bc989eecb3ee2ca749615c015"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>kDefaultFormatDoubleEps</b> = -1
  }</td></tr>
 <tr class="separator:ga82f2843bc989eecb3ee2ca749615c015"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2159,6 +2158,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>aDataContext_SetCurre
 <tr class="memitem:gadbb534974c08b459d882595abb9a930e" id="r_gadbb534974c08b459d882595abb9a930e"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classast_1_1IAUXYSPrecomputed.html">IAUXYSPrecomputed</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>aDataContext_GetIAUXYSPrecomputed</b> ()</td></tr>
 <tr class="separator:gadbb534974c08b459d882595abb9a930e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga93abea7bea04f5667e212fb829e51cb7" id="r_ga93abea7bea04f5667e212fb829e51cb7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StartupConfig.html">StartupConfig</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#ga93abea7bea04f5667e212fb829e51cb7">aDataContext_GetConfig</a> ()</td></tr>
+<tr class="separator:ga93abea7bea04f5667e212fb829e51cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaba56bd6c13a2672901309a0c4c695caf" id="r_gaba56bd6c13a2672901309a0c4c695caf"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classast_1_1DataContext.html">DataContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>aDataContext_New</b> ()</td></tr>
 <tr class="separator:gaba56bd6c13a2672901309a0c4c695caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2259,6 +2260,12 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>aTheoreticalXYS_IERS
 <tr class="memitem:ga47273e9f78df27ff3d50232d7249ed16" id="r_ga47273e9f78df27ff3d50232d7249ed16"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>aGetEMBarycenter</b> ()</td></tr>
 <tr class="separator:ga47273e9f78df27ff3d50232d7249ed16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga112b383f9e38ecd5e5915091b9685c5d" id="r_ga112b383f9e38ecd5e5915091b9685c5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1ValueView.html">ValueView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#ga112b383f9e38ecd5e5915091b9685c5d">aGetConfigValue</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key)</td></tr>
+<tr class="separator:ga112b383f9e38ecd5e5915091b9685c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf52f55e5d4c1192128caaac0837f7fae" id="r_gaf52f55e5d4c1192128caaac0837f7fae"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#gaf52f55e5d4c1192128caaac0837f7fae">aGetConfigStringVector</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key)</td></tr>
+<tr class="separator:gaf52f55e5d4c1192128caaac0837f7fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7403a5583c64010dd3f68104915d0b51" id="r_ga7403a5583c64010dd3f68104915d0b51"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#ga7403a5583c64010dd3f68104915d0b51">aGetConfigStringViewVector</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key)</td></tr>
+<tr class="separator:ga7403a5583c64010dd3f68104915d0b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae98fe2e8d9036153d0b35e27561c5845" id="r_gae98fe2e8d9036153d0b35e27561c5845"><td class="memItemLeft" align="right" valign="top">A_ALWAYS_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#gae98fe2e8d9036153d0b35e27561c5845">aPoleMotion</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="structast_1_1PoleMotion.html">PoleMotion</a> &amp;pm)</td></tr>
 <tr class="separator:gae98fe2e8d9036153d0b35e27561c5845"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac7287134b18258e16ddef203e04c8f07" id="r_gac7287134b18258e16ddef203e04c8f07"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#gac7287134b18258e16ddef203e04c8f07">aTimePointToEpochSecond</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
@@ -2619,6 +2626,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>aGetJ4AnalyticalParam
 <tr class="separator:gaa3c744175335e2929db90d25ab7a96ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadf777d101a8b60116f7b28aec4248b78" id="r_gadf777d101a8b60116f7b28aec4248b78"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Propagator.html#gadf777d101a8b60116f7b28aec4248b78">aTwoBodyProp</a> (double duration, double gm, Vector3d &amp;r, Vector3d &amp;v)</td></tr>
 <tr class="separator:gadf777d101a8b60116f7b28aec4248b78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cc0688110cb987c542ae6a06b72e5cc" id="r_a9cc0688110cb987c542ae6a06b72e5cc"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9cc0688110cb987c542ae6a06b72e5cc">aLoadBody</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath, <a class="el" href="group__SolarSystem.html#ga3b2fe87cceca735335ef7ade4e48add5">HCelestialBody</a> &amp;body)</td></tr>
+<tr class="separator:a9cc0688110cb987c542ae6a06b72e5cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86f1aa5910f4fb3bf3a61033101469f5" id="r_a86f1aa5910f4fb3bf3a61033101469f5"><td class="memItemLeft" align="right" valign="top"><a id="a86f1aa5910f4fb3bf3a61033101469f5" name="a86f1aa5910f4fb3bf3a61033101469f5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>funcarray_isfull</b> (const SpiceApi::funcarray &amp;funcs)</td></tr>
+<tr class="separator:a86f1aa5910f4fb3bf3a61033101469f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad088c8a2d3a1a68850d5b43e53be4a24" id="r_gad088c8a2d3a1a68850d5b43e53be4a24"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Time.html#gad088c8a2d3a1a68850d5b43e53be4a24">aMoonFullName</a> (int month)</td></tr>
 <tr class="separator:gad088c8a2d3a1a68850d5b43e53be4a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7cd83ff0997da45192a2fb505c6e8fed" id="r_ga7cd83ff0997da45192a2fb505c6e8fed"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Time.html#ga7cd83ff0997da45192a2fb505c6e8fed">aMoonShortName</a> (int month)</td></tr>
@@ -3717,6 +3729,17 @@ AST_SPICE_API void&#160;</td><td class="memItemRight" valign="bottom"><b>spkgeo<
 <tr class="memitem:gaeec3c2d0173bb2ecff524dcaddc4af61" id="r_gaeec3c2d0173bb2ecff524dcaddc4af61"><td class="memItemLeft" align="right" valign="top">
 AST_SPICE_API void&#160;</td><td class="memItemRight" valign="bottom"><b>spkgps</b> (<a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *targ, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;et, <a class="el" href="classast_1_1Axes.html">Axes</a> *ref, <a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *obs, Vector3d &amp;pos, double *lt=nullptr)</td></tr>
 <tr class="separator:gaeec3c2d0173bb2ecff524dcaddc4af61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dcaafbd4fbda1a9ada070c8086727f2" id="r_a9dcaafbd4fbda1a9ada070c8086727f2"><td class="memItemLeft" align="right" valign="top"><a id="a9dcaafbd4fbda1a9ada070c8086727f2" name="a9dcaafbd4fbda1a9ada070c8086727f2"></a>
+std::shared_ptr&lt; <a class="el" href="classast_1_1StartupConfig.html">StartupConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>aTestLoadConfig</b> ()</td></tr>
+<tr class="separator:a9dcaafbd4fbda1a9ada070c8086727f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d2eea3527f788ee7046d2fd6903d322" id="r_a8d2eea3527f788ee7046d2fd6903d322"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StartupConfig.html">StartupConfig</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d2eea3527f788ee7046d2fd6903d322">aTestGetConfig</a> ()</td></tr>
+<tr class="separator:a8d2eea3527f788ee7046d2fd6903d322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1ff3a1fb61aa0e1a6b6d38f511a9cb6" id="r_af1ff3a1fb61aa0e1a6b6d38f511a9cb6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1ValueView.html">ValueView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1ff3a1fb61aa0e1a6b6d38f511a9cb6">aTestGetConfigValue</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key)</td></tr>
+<tr class="separator:af1ff3a1fb61aa0e1a6b6d38f511a9cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c20ec1f57564498375e34be9c57c547" id="r_a5c20ec1f57564498375e34be9c57c547"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c20ec1f57564498375e34be9c57c547">aTestGetConfigStringVector</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key)</td></tr>
+<tr class="separator:a5c20ec1f57564498375e34be9c57c547"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e24c5375dc2a1ac080587d2d92a8fb2" id="r_a0e24c5375dc2a1ac080587d2d92a8fb2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e24c5375dc2a1ac080587d2d92a8fb2">aTestGetConfigStringViewVector</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key)</td></tr>
+<tr class="separator:a0e24c5375dc2a1ac080587d2d92a8fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a930e64b2b39e58ef31a9096fa8c10380" id="r_a930e64b2b39e58ef31a9096fa8c10380"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a930e64b2b39e58ef31a9096fa8c10380">aTestFromSTKFile</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath)</td></tr>
 <tr class="separator:a930e64b2b39e58ef31a9096fa8c10380"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59314e263ea0f031624ab0f565fc2e02" id="r_a59314e263ea0f031624ab0f565fc2e02"><td class="memItemLeft" align="right" valign="top"><a id="a59314e263ea0f031624ab0f565fc2e02" name="a59314e263ea0f031624ab0f565fc2e02"></a>
@@ -3828,6 +3851,12 @@ A_ALWAYS_INLINE std::string&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="separator:ga12c79e8e850e12d6ae0b9277d83ec0cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1b536eb0b193fd88914dd12e6895c229" id="r_ga1b536eb0b193fd88914dd12e6895c229"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Platform.html#ga1b536eb0b193fd88914dd12e6895c229">aIsCI</a> ()</td></tr>
 <tr class="separator:ga1b536eb0b193fd88914dd12e6895c229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga896cb0f1481cc05e35384abf68442985" id="r_ga896cb0f1481cc05e35384abf68442985"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Platform.html#ga896cb0f1481cc05e35384abf68442985">aIsGithubCI</a> ()</td></tr>
+<tr class="separator:ga896cb0f1481cc05e35384abf68442985"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga984700aaba6b3b8595fc90eeae730610" id="r_ga984700aaba6b3b8595fc90eeae730610"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Platform.html#ga984700aaba6b3b8595fc90eeae730610">aIsGitlabCI</a> ()</td></tr>
+<tr class="separator:ga984700aaba6b3b8595fc90eeae730610"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8f258fac09fba31d98abf7cd3bc27faa" id="r_ga8f258fac09fba31d98abf7cd3bc27faa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Platform.html#ga8f258fac09fba31d98abf7cd3bc27faa">aProjectName</a> ()</td></tr>
+<tr class="separator:ga8f258fac09fba31d98abf7cd3bc27faa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac053356c2d32bea10ac5221f6d52adc8" id="r_ac053356c2d32bea10ac5221f6d52adc8"><td class="memItemLeft" align="right" valign="top"><a id="ac053356c2d32bea10ac5221f6d52adc8" name="ac053356c2d32bea10ac5221f6d52adc8"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_term</b> (int fd)</td></tr>
 <tr class="separator:ac053356c2d32bea10ac5221f6d52adc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -6127,6 +6156,42 @@ template&lt;typename GeometryType , typename RotationType &gt; </div>
 
 </div>
 </div>
+<a id="a9cc0688110cb987c542ae6a06b72e5cc" name="a9cc0688110cb987c542ae6a06b72e5cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cc0688110cb987c542ae6a06b72e5cc">&#9670;&#160;</a></span>aLoadBody()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI err_t ast::aLoadBody </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>filepath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__SolarSystem.html#ga3b2fe87cceca735335ef7ade4e48add5">HCelestialBody</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>body</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>从文件加载一个天体 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>- 天体文件路径 </td></tr>
+    <tr><td class="paramname">body</td><td>- 天体指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">-</td><td>错误码 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a7a9b72954efc5273a80636b054d8726a" name="a7a9b72954efc5273a80636b054d8726a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7a9b72954efc5273a80636b054d8726a">&#9670;&#160;</a></span>aLoadMover()</h2>
 
@@ -6965,6 +7030,104 @@ template&lt;typename GeometryType , typename RotationType &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+</div>
+</div>
+<a id="a8d2eea3527f788ee7046d2fd6903d322" name="a8d2eea3527f788ee7046d2fd6903d322"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d2eea3527f788ee7046d2fd6903d322">&#9670;&#160;</a></span>aTestGetConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_TEST_CAPI <a class="el" href="classast_1_1StartupConfig.html">StartupConfig</a> * ast::aTestGetConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取测试配置 </p>
+<dl class="section return"><dt>返回</dt><dd>测试配置指针 </dd></dl>
+
+</div>
+</div>
+<a id="a5c20ec1f57564498375e34be9c57c547" name="a5c20ec1f57564498375e34be9c57c547"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c20ec1f57564498375e34be9c57c547">&#9670;&#160;</a></span>aTestGetConfigStringVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_TEST_API std::vector&lt; std::string &gt; ast::aTestGetConfigStringVector </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取测试配置值向量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>配置键 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>配置值向量 </dd></dl>
+
+</div>
+</div>
+<a id="a0e24c5375dc2a1ac080587d2d92a8fb2" name="a0e24c5375dc2a1ac080587d2d92a8fb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e24c5375dc2a1ac080587d2d92a8fb2">&#9670;&#160;</a></span>aTestGetConfigStringViewVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_TEST_API std::vector&lt; <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> &gt; ast::aTestGetConfigStringViewVector </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取测试配置值视图向量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>配置键 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>配置值视图向量 </dd></dl>
+
+</div>
+</div>
+<a id="af1ff3a1fb61aa0e1a6b6d38f511a9cb6" name="af1ff3a1fb61aa0e1a6b6d38f511a9cb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1ff3a1fb61aa0e1a6b6d38f511a9cb6">&#9670;&#160;</a></span>aTestGetConfigValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_TEST_API <a class="el" href="classast_1_1ValueView.html">ValueView</a> ast::aTestGetConfigValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取测试配置值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>配置键 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>配置值视图 </dd></dl>
 
 </div>
 </div>

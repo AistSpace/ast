@@ -38,7 +38,7 @@ var searchData=
   ['unitreppair_35',['UnitRepPair',['../classast_1_1Unit.html#affbd95f55a69380dc9d68e3c0d29a7d8',1,'ast::Unit']]],
   ['unitreppairconst_36',['UnitRepPairConst',['../classast_1_1Unit.html#ab58c5c61256f1ea280ca87f04889d858',1,'ast::Unit']]],
   ['units_5f_37',['units_',['../classast_1_1UnitManager.html#ad7b7dc07985e82bdb506f7955e392775',1,'ast::UnitManager']]],
-  ['unload_38',['unload',['../classast_1_1EOP.html#ad22f08d4b6dd5af598de1f9986225d85',1,'ast::EOP']]],
+  ['unload_38',['unload',['../classast_1_1EOP.html#ad22f08d4b6dd5af598de1f9986225d85',1,'ast::EOP::unload()'],['../classast_1_1SpiceApi.html#a0992c4f12d1cf1bfa2fc7b024e814fa1',1,'ast::SpiceApi::unload()']]],
   ['unnormalize_39',['unnormalize',['../classast_1_1GravityField.html#ae34a200427b3ee8dac132bb57be27598',1,'ast::GravityField']]],
   ['unnormalized_40',['unnormalized',['../classast_1_1GravityField.html#ace10e8e9a61a6fea914b1130db459297',1,'ast::GravityField']]],
   ['update_41',['update',['../classast_1_1AstGfxAPI.html#afd49c639f629c3b985309f0bd2d62963',1,'ast::AstGfxAPI::update()'],['../classast_1_1GfxCelestialBody.html#a4a13e86d282d1805f2e66f1982400fc5',1,'ast::GfxCelestialBody::update()'],['../classast_1_1GfxSolarSystem.html#a657b97b3ca30eb37db1d3a1affe2c8e7',1,'ast::GfxSolarSystem::update()']]],

@@ -1,6 +1,7 @@
 var group__Data =
 [
     [ "ast::DataContext", "classast_1_1DataContext.html", [
+      [ "config", "classast_1_1DataContext.html#a073f8155a29574c5d7d9ab2347698e47", null ],
       [ "dataDir", "classast_1_1DataContext.html#a21fda55c34849ca1f11b0988534751f0", null ],
       [ "eop", "classast_1_1DataContext.html#a978e12ad204a3d7d56453f28a5013a2a", null ],
       [ "epoch", "classast_1_1DataContext.html#a4cdf43d0849a9dfa516305a2090592fe", null ],
@@ -11,6 +12,7 @@ var group__Data =
       [ "setEpoch", "classast_1_1DataContext.html#ad707287da6e562678dfe48f80e59b7a1", null ],
       [ "solarSystem", "classast_1_1DataContext.html#a12c161c9f2a2dce896249e216112b1df", null ],
       [ "spaceWeather", "classast_1_1DataContext.html#ab522069b2cc15392f226c659e464e29e", null ],
+      [ "m_config", "classast_1_1DataContext.html#afefd18987d378043a66082691085b19d", null ],
       [ "m_dataDir", "classast_1_1DataContext.html#aab49aca89b54823adbd51caeecbd5cfa", null ],
       [ "m_eop", "classast_1_1DataContext.html#ae1fde47899a36efe881fef87f650564b", null ],
       [ "m_epoch", "classast_1_1DataContext.html#a490a64f91a789525f385cfc46036d5f5", null ],
@@ -114,6 +116,7 @@ var group__Data =
     ] ],
     [ "ast::aDataContext_EnsureCurrent", "group__Data.html#ga362102d8c58857b6e3d6b48b83bd0944", null ],
     [ "ast::aDataContext_EnsureDefault", "group__Data.html#ga6b71837a4fa5dcbe6f059efca4e75297", null ],
+    [ "ast::aDataContext_GetConfig", "group__Data.html#ga93abea7bea04f5667e212fb829e51cb7", null ],
     [ "ast::aDataContext_GetCurrent", "group__Data.html#ga40dcbf6fa05827fe9b7a7837a01105bd", null ],
     [ "ast::aDataContext_GetDefault", "group__Data.html#gabd352addd4bfd3dcecb35a480212d9f5", null ],
     [ "ast::aDataContext_GetEOP", "group__Data.html#ga636a52a4e547b682627be2f3d551b7ad", null ],
@@ -126,6 +129,9 @@ var group__Data =
     [ "ast::aDataDirSet", "group__Data.html#ga178274c33d5da80112cf792bdbae6d9f", null ],
     [ "ast::aEpochSecondToTimePoint", "group__Data.html#gabba1e7995f309f3916be00a8e94cd3e7", null ],
     [ "ast::aGetBody", "group__Data.html#gab5d0282ada45dcbf8c28009fc3c853bf", null ],
+    [ "ast::aGetConfigStringVector", "group__Data.html#gaf52f55e5d4c1192128caaac0837f7fae", null ],
+    [ "ast::aGetConfigStringViewVector", "group__Data.html#ga7403a5583c64010dd3f68104915d0b51", null ],
+    [ "ast::aGetConfigValue", "group__Data.html#ga112b383f9e38ecd5e5915091b9685c5d", null ],
     [ "ast::aGetDefaultBody", "group__Data.html#gafa4815df453dd0c6d4edf6274305e8dd", null ],
     [ "ast::aGetEarth", "group__Data.html#ga6a91df2c2ab249279ee7f949d16dce7d", null ],
     [ "ast::aGetEMBarycenter", "group__Data.html#ga47273e9f78df27ff3d50232d7249ed16", null ],

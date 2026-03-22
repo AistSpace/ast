@@ -44,5 +44,6 @@ var searchData=
   ['transformvectorinv_41',['transformVectorInv',['../classast_1_1Rotation.html#a0e2af3e0f26250f08eaf54655f6a57d1',1,'ast::Rotation']]],
   ['transformvectorvelocity_42',['transformVectorVelocity',['../classast_1_1KinematicRotation.html#a950848ca0984c4b5cfacf3614999a584',1,'ast::KinematicRotation']]],
   ['transformvectorvelocityinv_43',['transformVectorVelocityInv',['../classast_1_1KinematicRotation.html#a710d49d2e5b51f6433181ecd97a7187a',1,'ast::KinematicRotation']]],
-  ['type_44',['type',['../classast_1_1BKVNode.html#aa764560a757a7aa7e1ea9628b4ff8e3d',1,'ast::BKVNode::type()'],['../classast_1_1Object.html#ad30c577e616caa73f91c3866cc540157',1,'ast::Object::type()']]]
+  ['tryload_44',['tryload',['../classast_1_1SpiceApi.html#a71283c27c514500ee88e5e80cf492f45',1,'ast::SpiceApi']]],
+  ['type_45',['type',['../classast_1_1BKVNode.html#aa764560a757a7aa7e1ea9628b4ff8e3d',1,'ast::BKVNode::type()'],['../classast_1_1Object.html#ad30c577e616caa73f91c3866cc540157',1,'ast::Object::type()']]]
 ];

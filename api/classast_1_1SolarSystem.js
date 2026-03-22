@@ -1,5 +1,6 @@
 var classast_1_1SolarSystem =
 [
+    [ "addBody", "classast_1_1SolarSystem.html#a8e5d76d4feac84712ada9987953df821", null ],
     [ "addBody", "classast_1_1SolarSystem.html#ad340db934e89550a5e9b276f8a022a2f", null ],
     [ "getBody", "classast_1_1SolarSystem.html#a6d2635b97e1b7ab2ef413401a57e3f03", null ],
     [ "getBodyByJplIndex", "classast_1_1SolarSystem.html#a0107e9e57231843a22c4f7950becdbf3", null ],

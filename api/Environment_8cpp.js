@@ -2,7 +2,10 @@ var Environment_8cpp =
 [
     [ "aIsCI", "Environment_8cpp.html#ga1b536eb0b193fd88914dd12e6895c229", null ],
     [ "aIsFile", "Environment_8cpp.html#gaaf498fb8090810fb31ae8e36c9bf3942", null ],
+    [ "aIsGithubCI", "Environment_8cpp.html#ga896cb0f1481cc05e35384abf68442985", null ],
+    [ "aIsGitlabCI", "Environment_8cpp.html#ga984700aaba6b3b8595fc90eeae730610", null ],
     [ "aIsTerminal", "Environment_8cpp.html#ga895a0d59cc088ec5dc894a34864c3ffc", null ],
+    [ "aProjectName", "Environment_8cpp.html#ga8f258fac09fba31d98abf7cd3bc27faa", null ],
     [ "aStdErrIsFile", "Environment_8cpp.html#gaa4fb579361721abb83e54183b0521c32", null ],
     [ "aStdErrIsTerminal", "Environment_8cpp.html#ga7c187e91aa0366fdba00f57b685d20bf", null ],
     [ "aStdInIsFile", "Environment_8cpp.html#gaddfe9918c8b6de4bc127c1e11993aa7f", null ],

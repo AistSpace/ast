@@ -13,7 +13,7 @@ var searchData=
   ['removenode_10',['removeNode',['../classast_1_1GfxMain.html#a7e68143ded10c11a478c02eaba6d8b1a',1,'ast::GfxMain']]],
   ['removestateobserver_11',['removeStateObserver',['../classast_1_1ODEIntegrator.html#a6c80b043ed73939fd9ba49b6638abb9e',1,'ast::ODEIntegrator']]],
   ['removesymbol_12',['removeSymbol',['../classast_1_1SymbolScope.html#ab6ea36911efe9da67ddde29274f86aef',1,'ast::SymbolScope']]],
-  ['reset_13',['reset',['../classast_1_1BlockDynamicSystem.html#a584b629039b50fc779be23fbd316eea1',1,'ast::BlockDynamicSystem']]],
+  ['reset_13',['reset',['../classast_1_1BlockDynamicSystem.html#a584b629039b50fc779be23fbd316eea1',1,'ast::BlockDynamicSystem::reset()'],['../classast_1_1SpiceApi.html#a4b915270175529fe76f7c3546fd33194',1,'ast::SpiceApi::reset()']]],
   ['resolvesymbol_14',['resolveSymbol',['../classast_1_1SymbolScope.html#a73e138777d10e10510eccd3f3dc6424a',1,'ast::SymbolScope']]],
   ['rgb_15',['rgb',['../group__Util.html#gae0dd3e8dec613bf26344801182b864b7',1,'ast']]],
   ['rgba_16',['rgba',['../group__Util.html#gad75b6bc25cadaa8a25b2d91e98ca072c',1,'ast']]],

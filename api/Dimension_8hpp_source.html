@@ -117,25 +117,25 @@ $(function(){initNavTree('Dimension_8hpp_source.html',''); initResizable(true); 
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#define _AST_DIM_EXP_OPBIN(value1, value2, op) \</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">    ((( dim_get_exponent(value1, 0) op dim_get_exponent(value2, 0)) &amp; 0xF) &lt;&lt; 0) | \</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">    ((( dim_get_exponent(value1, 1) op dim_get_exponent(value2, 1)) &amp; 0xF) &lt;&lt; 4) | \</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">    ((( dim_get_exponent(value1, 2) op dim_get_exponent(value2, 2)) &amp; 0xF) &lt;&lt; 8) | \</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">    ((( dim_get_exponent(value1, 3) op dim_get_exponent(value2, 3)) &amp; 0xF) &lt;&lt; 12) | \</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">    ((( dim_get_exponent(value1, 4) op dim_get_exponent(value2, 4)) &amp; 0xF) &lt;&lt; 16) | \</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">    ((( dim_get_exponent(value1, 5) op dim_get_exponent(value2, 5)) &amp; 0xF) &lt;&lt; 20) | \</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">    ((( dim_get_exponent(value1, 6) op dim_get_exponent(value2, 6)) &amp; 0xF) &lt;&lt; 24) | \</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">    ((( dim_get_exponent(value1, 7) op dim_get_exponent(value2, 7)) &amp; 0xF) &lt;&lt; 28)</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value1, 0) op dim_get_exponent(value2, 0)) &amp; 0xF) &lt;&lt; 0) | \</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value1, 1) op dim_get_exponent(value2, 1)) &amp; 0xF) &lt;&lt; 4) | \</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value1, 2) op dim_get_exponent(value2, 2)) &amp; 0xF) &lt;&lt; 8) | \</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value1, 3) op dim_get_exponent(value2, 3)) &amp; 0xF) &lt;&lt; 12) | \</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value1, 4) op dim_get_exponent(value2, 4)) &amp; 0xF) &lt;&lt; 16) | \</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value1, 5) op dim_get_exponent(value2, 5)) &amp; 0xF) &lt;&lt; 20) | \</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value1, 6) op dim_get_exponent(value2, 6)) &amp; 0xF) &lt;&lt; 24) | \</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value1, 7) op dim_get_exponent(value2, 7)) &amp; 0xF) &lt;&lt; 28)</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#define _AST_DIM_EXP_TIMES(value, times)\</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">    ((( dim_get_exponent(value, 0) * times) &amp; 0xF) &lt;&lt; 0) | \</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">    ((( dim_get_exponent(value, 1) * times) &amp; 0xF) &lt;&lt; 4) | \</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">    ((( dim_get_exponent(value, 2) * times) &amp; 0xF) &lt;&lt; 8) | \</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">    ((( dim_get_exponent(value, 3) * times) &amp; 0xF) &lt;&lt; 12) | \</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">    ((( dim_get_exponent(value, 4) * times) &amp; 0xF) &lt;&lt; 16) | \</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">    ((( dim_get_exponent(value, 5) * times) &amp; 0xF) &lt;&lt; 20) | \</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">    ((( dim_get_exponent(value, 6) * times) &amp; 0xF) &lt;&lt; 24) | \</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">    ((( dim_get_exponent(value, 7) * times) &amp; 0xF) &lt;&lt; 28)</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value, 0) * times) &amp; 0xF) &lt;&lt; 0) | \</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value, 1) * times) &amp; 0xF) &lt;&lt; 4) | \</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value, 2) * times) &amp; 0xF) &lt;&lt; 8) | \</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value, 3) * times) &amp; 0xF) &lt;&lt; 12) | \</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value, 4) * times) &amp; 0xF) &lt;&lt; 16) | \</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value, 5) * times) &amp; 0xF) &lt;&lt; 20) | \</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value, 6) * times) &amp; 0xF) &lt;&lt; 24) | \</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">    (unsigned(( dim_get_exponent(value, 7) * times) &amp; 0xF) &lt;&lt; 28)</span></div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#ifdef A_CXX14</span></div>

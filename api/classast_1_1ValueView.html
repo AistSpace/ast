@@ -99,10 +99,9 @@ $(function(){initNavTree('classast_1_1ValueView.html',''); initResizable(true); 
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="#pub-attribs">Public 属性</a> &#124;
-<a href="#pro-types">Protected 类型</a> &#124;
-<a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="classast_1_1ValueView-members.html">所有成员列表</a>  </div>
   <div class="headertitle"><div class="title">ast::ValueView类 参考<div class="ingroups"><a class="el" href="group__Util.html">工具模块</a> &raquo; <a class="el" href="group__ParseFormat.html">文本解析和格式化</a></div></div></div>
 </div><!--header-->
@@ -110,6 +109,12 @@ $(function(){initNavTree('classast_1_1ValueView.html',''); initResizable(true); 
 
 <p><code>#include &lt;<a class="el" href="ValueView_8hpp_source.html">ValueView.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a7e23c4b0032e2c2fd5f32a31593046b9" id="r_a7e23c4b0032e2c2fd5f32a31593046b9"><td class="memItemLeft" align="right" valign="top"><a id="a7e23c4b0032e2c2fd5f32a31593046b9" name="a7e23c4b0032e2c2fd5f32a31593046b9"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>SplitterType</b> = <a class="el" href="classast_1_1strings__internal_1_1Splitter.html">Splitter</a>&lt;<a class="el" href="classast_1_1ByCommaAndRepeatedWhitespace.html">ByCommaAndRepeatedWhitespace</a>, <a class="el" href="structast_1_1SkipBracket.html">SkipBracket</a>&gt;</td></tr>
+<tr class="separator:a7e23c4b0032e2c2fd5f32a31593046b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
 <tr class="memitem:add3a338899cad1dae55c035375d828a7" id="r_add3a338899cad1dae55c035375d828a7"><td class="memItemLeft" align="right" valign="top"><a id="add3a338899cad1dae55c035375d828a7" name="add3a338899cad1dae55c035375d828a7"></a>
@@ -205,24 +210,19 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> () c
 <tr class="memitem:a028979b89309434eab87762e34beabc8" id="r_a028979b89309434eab87762e34beabc8"><td class="memItemLeft" align="right" valign="top"><a id="a028979b89309434eab87762e34beabc8" name="a028979b89309434eab87762e34beabc8"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const</td></tr>
 <tr class="separator:a028979b89309434eab87762e34beabc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad054684b08a426fd5f6ca4a5d05a8a3d" id="r_ad054684b08a426fd5f6ca4a5d05a8a3d"><td class="memItemLeft" align="right" valign="top"><a id="ad054684b08a426fd5f6ca4a5d05a8a3d" name="ad054684b08a426fd5f6ca4a5d05a8a3d"></a>
+<a class="el" href="classast_1_1strings__internal_1_1Splitter.html">SplitterType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>split</b> () const</td></tr>
+<tr class="separator:ad054684b08a426fd5f6ca4a5d05a8a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ce64e27c68026e8a8c3caa5b83a9583" id="r_a8ce64e27c68026e8a8c3caa5b83a9583"><td class="memTemplParams" colspan="2"><a id="a8ce64e27c68026e8a8c3caa5b83a9583" name="a8ce64e27c68026e8a8c3caa5b83a9583"></a>
+template&lt;typename Delimiter &gt; </td></tr>
+<tr class="memitem:a8ce64e27c68026e8a8c3caa5b83a9583"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classast_1_1strings__internal_1_1Splitter.html">strings_internal::Splitter</a>&lt; typename <a class="el" href="structast_1_1strings__internal_1_1SelectDelimiter.html">strings_internal::SelectDelimiter</a>&lt; Delimiter &gt;::type, <a class="el" href="structast_1_1strings__internal_1_1AllowEmpty.html">strings_internal::AllowEmpty</a>, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>split</b> (Delimiter delimiter) const</td></tr>
+<tr class="separator:a8ce64e27c68026e8a8c3caa5b83a9583"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public 属性</h2></td></tr>
 <tr class="memitem:aa3c9e79e0576b4dadd4027baff40974f" id="r_aa3c9e79e0576b4dadd4027baff40974f"><td class="memItemLeft" align="right" valign="top"><a id="aa3c9e79e0576b4dadd4027baff40974f" name="aa3c9e79e0576b4dadd4027baff40974f"></a>
 <a class="el" href="classast_1_1StringViewBasic.html">StringView</a>&#160;</td><td class="memItemRight" valign="bottom"><b>value_</b></td></tr>
 <tr class="separator:aa3c9e79e0576b4dadd4027baff40974f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
-Protected 类型</h2></td></tr>
-<tr class="memitem:a7e23c4b0032e2c2fd5f32a31593046b9" id="r_a7e23c4b0032e2c2fd5f32a31593046b9"><td class="memItemLeft" align="right" valign="top"><a id="a7e23c4b0032e2c2fd5f32a31593046b9" name="a7e23c4b0032e2c2fd5f32a31593046b9"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>SplitterType</b> = <a class="el" href="classast_1_1strings__internal_1_1Splitter.html">Splitter</a>&lt;<a class="el" href="classast_1_1ByCommaAndRepeatedWhitespace.html">ByCommaAndRepeatedWhitespace</a>, <a class="el" href="structast_1_1SkipBracket.html">SkipBracket</a>&gt;</td></tr>
-<tr class="separator:a7e23c4b0032e2c2fd5f32a31593046b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
-Protected 成员函数</h2></td></tr>
-<tr class="memitem:ad054684b08a426fd5f6ca4a5d05a8a3d" id="r_ad054684b08a426fd5f6ca4a5d05a8a3d"><td class="memItemLeft" align="right" valign="top"><a id="ad054684b08a426fd5f6ca4a5d05a8a3d" name="ad054684b08a426fd5f6ca4a5d05a8a3d"></a>
-<a class="el" href="classast_1_1strings__internal_1_1Splitter.html">SplitterType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>split</b> () const</td></tr>
-<tr class="separator:ad054684b08a426fd5f6ca4a5d05a8a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>值视图类 </p>

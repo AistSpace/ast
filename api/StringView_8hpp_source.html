@@ -258,14 +258,14 @@ $(function(){initNavTree('StringView_8hpp_source.html',''); initResizable(true);
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            <span class="comment">// 抛出异常或返回空视图</span></div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            <span class="keywordflow">return</span> <a class="code hl_class" href="classast_1_1StringViewBasic.html">StringViewBasic</a>();</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        }</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        size_type rlen = std::min(count, m_size - pos);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        size_type rlen = (std::min)(count, m_size - pos);</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="keywordflow">return</span> <a class="code hl_class" href="classast_1_1StringViewBasic.html">StringViewBasic</a>(m_data + pos, rlen);</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    }</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="comment">// 比较操作</span></div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordtype">int</span> compare(<a class="code hl_class" href="classast_1_1StringViewBasic.html">StringViewBasic</a> other) <span class="keyword">const</span> <span class="keyword">noexcept</span></div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    {</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        size_type len = std::min(m_size, other.m_size);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        size_type len = (std::min)(m_size, other.m_size);</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        <span class="keywordtype">int</span> result = traits_type::compare(m_data, other.m_data, len);</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <span class="keywordflow">if</span> (result != 0) <span class="keywordflow">return</span> result;</div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keywordflow">if</span> (m_size &lt; other.m_size) <span class="keywordflow">return</span> -1;</div>

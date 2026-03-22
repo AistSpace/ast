@@ -29,7 +29,10 @@ var group__Util =
       [ "toString", "classast_1_1Polynomial.html#a15d601a475b507decfe5f784509dd1b4", null ]
     ] ],
     [ "ast::WorkingDirectory", "classast_1_1WorkingDirectory.html", [
-      [ "WorkingDirectory", "classast_1_1WorkingDirectory.html#a244b21f6a2d8c6c94a913be2d8096f97", null ]
+      [ "WorkingDirectory", "classast_1_1WorkingDirectory.html#a244b21f6a2d8c6c94a913be2d8096f97", null ],
+      [ "getCurrentPath", "classast_1_1WorkingDirectory.html#ad5349edc69071c8e44dcf246e8b1fcb7", null ],
+      [ "isChanged", "classast_1_1WorkingDirectory.html#a537c6b0b61f0d64c6114ea3f0bde4f63", null ],
+      [ "operator bool", "classast_1_1WorkingDirectory.html#ab89e649adb74660ad1cfe38975e12b56", null ]
     ] ],
     [ "ast::EColor", "group__Util.html#gac1947c945d205687379e80f42bba8dfd", [
       [ "ast::eBlack", "group__Util.html#ggac1947c945d205687379e80f42bba8dfda8500bf00445c40642c4ba1e7a1152173", null ],

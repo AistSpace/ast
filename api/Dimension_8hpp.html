@@ -342,14 +342,14 @@ constexpr dimension_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast:
         </tr>
       </table>
 </div><div class="memdoc">
-<b>值:</b><div class="fragment"><div class="line">    ((( dim_get_exponent(value1, 0) op dim_get_exponent(value2, 0)) &amp; 0xF) &lt;&lt; 0) | \</div>
-<div class="line">    ((( dim_get_exponent(value1, 1) op dim_get_exponent(value2, 1)) &amp; 0xF) &lt;&lt; 4) | \</div>
-<div class="line">    ((( dim_get_exponent(value1, 2) op dim_get_exponent(value2, 2)) &amp; 0xF) &lt;&lt; 8) | \</div>
-<div class="line">    ((( dim_get_exponent(value1, 3) op dim_get_exponent(value2, 3)) &amp; 0xF) &lt;&lt; 12) | \</div>
-<div class="line">    ((( dim_get_exponent(value1, 4) op dim_get_exponent(value2, 4)) &amp; 0xF) &lt;&lt; 16) | \</div>
-<div class="line">    ((( dim_get_exponent(value1, 5) op dim_get_exponent(value2, 5)) &amp; 0xF) &lt;&lt; 20) | \</div>
-<div class="line">    ((( dim_get_exponent(value1, 6) op dim_get_exponent(value2, 6)) &amp; 0xF) &lt;&lt; 24) | \</div>
-<div class="line">    ((( dim_get_exponent(value1, 7) op dim_get_exponent(value2, 7)) &amp; 0xF) &lt;&lt; 28)</div>
+<b>值:</b><div class="fragment"><div class="line">    (unsigned(( dim_get_exponent(value1, 0) op dim_get_exponent(value2, 0)) &amp; 0xF) &lt;&lt; 0) | \</div>
+<div class="line">    (<span class="keywordtype">unsigned</span>(( dim_get_exponent(value1, 1) op dim_get_exponent(value2, 1)) &amp; 0xF) &lt;&lt; 4) | \</div>
+<div class="line">    (unsigned(( dim_get_exponent(value1, 2) op dim_get_exponent(value2, 2)) &amp; 0xF) &lt;&lt; 8) | \</div>
+<div class="line">    (<span class="keywordtype">unsigned</span>(( dim_get_exponent(value1, 3) op dim_get_exponent(value2, 3)) &amp; 0xF) &lt;&lt; 12) | \</div>
+<div class="line">    (unsigned(( dim_get_exponent(value1, 4) op dim_get_exponent(value2, 4)) &amp; 0xF) &lt;&lt; 16) | \</div>
+<div class="line">    (<span class="keywordtype">unsigned</span>(( dim_get_exponent(value1, 5) op dim_get_exponent(value2, 5)) &amp; 0xF) &lt;&lt; 20) | \</div>
+<div class="line">    (unsigned(( dim_get_exponent(value1, 6) op dim_get_exponent(value2, 6)) &amp; 0xF) &lt;&lt; 24) | \</div>
+<div class="line">    (<span class="keywordtype">unsigned</span>(( dim_get_exponent(value1, 7) op dim_get_exponent(value2, 7)) &amp; 0xF) &lt;&lt; 28)</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -371,14 +371,14 @@ constexpr dimension_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast:
         </tr>
       </table>
 </div><div class="memdoc">
-<b>值:</b><div class="fragment"><div class="line">    ((( dim_get_exponent(value, 0) * times) &amp; 0xF) &lt;&lt; 0) | \</div>
-<div class="line">    ((( dim_get_exponent(value, 1) * times) &amp; 0xF) &lt;&lt; 4) | \</div>
-<div class="line">    ((( dim_get_exponent(value, 2) * times) &amp; 0xF) &lt;&lt; 8) | \</div>
-<div class="line">    ((( dim_get_exponent(value, 3) * times) &amp; 0xF) &lt;&lt; 12) | \</div>
-<div class="line">    ((( dim_get_exponent(value, 4) * times) &amp; 0xF) &lt;&lt; 16) | \</div>
-<div class="line">    ((( dim_get_exponent(value, 5) * times) &amp; 0xF) &lt;&lt; 20) | \</div>
-<div class="line">    ((( dim_get_exponent(value, 6) * times) &amp; 0xF) &lt;&lt; 24) | \</div>
-<div class="line">    ((( dim_get_exponent(value, 7) * times) &amp; 0xF) &lt;&lt; 28)</div>
+<b>值:</b><div class="fragment"><div class="line">    (unsigned(( dim_get_exponent(value, 0) * times) &amp; 0xF) &lt;&lt; 0) | \</div>
+<div class="line">    (<span class="keywordtype">unsigned</span>(( dim_get_exponent(value, 1) * times) &amp; 0xF) &lt;&lt; 4) | \</div>
+<div class="line">    (unsigned(( dim_get_exponent(value, 2) * times) &amp; 0xF) &lt;&lt; 8) | \</div>
+<div class="line">    (<span class="keywordtype">unsigned</span>(( dim_get_exponent(value, 3) * times) &amp; 0xF) &lt;&lt; 12) | \</div>
+<div class="line">    (unsigned(( dim_get_exponent(value, 4) * times) &amp; 0xF) &lt;&lt; 16) | \</div>
+<div class="line">    (<span class="keywordtype">unsigned</span>(( dim_get_exponent(value, 5) * times) &amp; 0xF) &lt;&lt; 20) | \</div>
+<div class="line">    (unsigned(( dim_get_exponent(value, 6) * times) &amp; 0xF) &lt;&lt; 24) | \</div>
+<div class="line">    (<span class="keywordtype">unsigned</span>(( dim_get_exponent(value, 7) * times) &amp; 0xF) &lt;&lt; 28)</div>
 </div><!-- fragment -->
 </div>
 </div>

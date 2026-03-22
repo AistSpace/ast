@@ -169,9 +169,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aDataContext_Set
 <tr class="memitem:gadbb534974c08b459d882595abb9a930e" id="r_gadbb534974c08b459d882595abb9a930e"><td class="memItemLeft" align="right" valign="top"><a id="gadbb534974c08b459d882595abb9a930e" name="gadbb534974c08b459d882595abb9a930e"></a>
 <a class="el" href="classast_1_1IAUXYSPrecomputed.html">IAUXYSPrecomputed</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aDataContext_GetIAUXYSPrecomputed</b> ()</td></tr>
 <tr class="separator:gadbb534974c08b459d882595abb9a930e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga93abea7bea04f5667e212fb829e51cb7" id="r_ga93abea7bea04f5667e212fb829e51cb7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StartupConfig.html">StartupConfig</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga93abea7bea04f5667e212fb829e51cb7">ast::aDataContext_GetConfig</a> ()</td></tr>
+<tr class="separator:ga93abea7bea04f5667e212fb829e51cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaba56bd6c13a2672901309a0c4c695caf" id="r_gaba56bd6c13a2672901309a0c4c695caf"><td class="memItemLeft" align="right" valign="top"><a id="gaba56bd6c13a2672901309a0c4c695caf" name="gaba56bd6c13a2672901309a0c4c695caf"></a>
 <a class="el" href="classast_1_1DataContext.html">DataContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aDataContext_New</b> ()</td></tr>
 <tr class="separator:gaba56bd6c13a2672901309a0c4c695caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga112b383f9e38ecd5e5915091b9685c5d" id="r_ga112b383f9e38ecd5e5915091b9685c5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1ValueView.html">ValueView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga112b383f9e38ecd5e5915091b9685c5d">ast::aGetConfigValue</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key)</td></tr>
+<tr class="separator:ga112b383f9e38ecd5e5915091b9685c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf52f55e5d4c1192128caaac0837f7fae" id="r_gaf52f55e5d4c1192128caaac0837f7fae"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaf52f55e5d4c1192128caaac0837f7fae">ast::aGetConfigStringVector</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key)</td></tr>
+<tr class="separator:gaf52f55e5d4c1192128caaac0837f7fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7403a5583c64010dd3f68104915d0b51" id="r_ga7403a5583c64010dd3f68104915d0b51"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga7403a5583c64010dd3f68104915d0b51">ast::aGetConfigStringViewVector</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> key)</td></tr>
+<tr class="separator:ga7403a5583c64010dd3f68104915d0b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga69f5ec58e4208c07a64e3b6533a97da4" id="r_ga69f5ec58e4208c07a64e3b6533a97da4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga69f5ec58e4208c07a64e3b6533a97da4">ast::aUT1MinusUTC_UTC</a> (const <a class="el" href="classast_1_1JulianDate.html">JulianDate</a> &amp;jdUTC)</td></tr>
 <tr class="separator:ga69f5ec58e4208c07a64e3b6533a97da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga66a2f4b3e4796c751d597d272ac567dd" id="r_ga66a2f4b3e4796c751d597d272ac567dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga66a2f4b3e4796c751d597d272ac567dd">ast::aPoleMotion</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, double &amp;x, double &amp;y)</td></tr>
@@ -329,6 +337,27 @@ constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::kSiz
 
 </div>
 </div>
+<a id="ga93abea7bea04f5667e212fb829e51cb7" name="ga93abea7bea04f5667e212fb829e51cb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga93abea7bea04f5667e212fb829e51cb7">&#9670;&#160;</a></span>aDataContext_GetConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_CAPI <a class="el" href="classast_1_1StartupConfig.html">StartupConfig</a> * ast::aDataContext_GetConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取当前线程的数据上下文的配置 </p>
+<dl class="section return"><dt>返回</dt><dd><br  />
+ </dd></dl>
+
+</div>
+</div>
 <a id="ga40dcbf6fa05827fe9b7a7837a01105bd" name="ga40dcbf6fa05827fe9b7a7837a01105bd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga40dcbf6fa05827fe9b7a7837a01105bd">&#9670;&#160;</a></span>aDataContext_GetCurrent()</h2>
 
@@ -449,6 +478,84 @@ constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::kSiz
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="gaf52f55e5d4c1192128caaac0837f7fae" name="gaf52f55e5d4c1192128caaac0837f7fae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf52f55e5d4c1192128caaac0837f7fae">&#9670;&#160;</a></span>aGetConfigStringVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_API std::vector&lt; std::string &gt; ast::aGetConfigStringVector </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取当前线程的数据上下文的配置字符串向量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>配置键 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>配置字符串向量 </dd></dl>
+
+</div>
+</div>
+<a id="ga7403a5583c64010dd3f68104915d0b51" name="ga7403a5583c64010dd3f68104915d0b51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7403a5583c64010dd3f68104915d0b51">&#9670;&#160;</a></span>aGetConfigStringViewVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_API std::vector&lt; <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> &gt; ast::aGetConfigStringViewVector </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取当前线程的数据上下文的配置字符串视图向量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>配置键 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>配置字符串视图向量 </dd></dl>
+
+</div>
+</div>
+<a id="ga112b383f9e38ecd5e5915091b9685c5d" name="ga112b383f9e38ecd5e5915091b9685c5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga112b383f9e38ecd5e5915091b9685c5d">&#9670;&#160;</a></span>aGetConfigValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_API <a class="el" href="classast_1_1ValueView.html">ValueView</a> ast::aGetConfigValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取当前线程的数据上下文的配置值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>配置键 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>配置值 </dd></dl>
 
 </div>
 </div>

@@ -39,6 +39,7 @@ var group__ParseFormat =
         [ "eBlockBegin", "classast_1_1BKVParser.html#a84da3cc338200e6187bfffe0be8f2a7fa4e8dad2f1c3c9c645c98960d94e6e7e5", null ],
         [ "eBlockEnd", "classast_1_1BKVParser.html#a84da3cc338200e6187bfffe0be8f2a7fa4d2069dcb93679db4e5a32af903b3107", null ],
         [ "eKeyValue", "classast_1_1BKVParser.html#a84da3cc338200e6187bfffe0be8f2a7fae46045efa1f5d0c042eca15f8ab280b0", null ],
+        [ "eError", "classast_1_1BKVParser.html#a84da3cc338200e6187bfffe0be8f2a7fa5a0e2140e0ee176124e02790353d1967", null ],
         [ "eEOF", "classast_1_1BKVParser.html#a84da3cc338200e6187bfffe0be8f2a7fac7e1355f4ab9c9ddcd0f96af8cec7ec2", null ]
       ] ],
       [ "allowComment", "classast_1_1BKVParser.html#a63a52ed4f2a7c565015901f9bc82f385", null ],

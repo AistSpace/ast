@@ -341,6 +341,7 @@ var annotated_dup =
       [ "Sparse", "classast_1_1Sparse.html", null ],
       [ "SphereShape", "classast_1_1SphereShape.html", "classast_1_1SphereShape" ],
       [ "SpheroidShape", "classast_1_1SpheroidShape.html", "classast_1_1SpheroidShape" ],
+      [ "SpiceApi", "classast_1_1SpiceApi.html", "classast_1_1SpiceApi" ],
       [ "SpiceBodyRegistry", "classast_1_1SpiceBodyRegistry.html", null ],
       [ "SpiceDAFParser", "classast_1_1SpiceDAFParser.html", "classast_1_1SpiceDAFParser" ],
       [ "SpiceData", "unionast_1_1SpiceData.html", null ],
