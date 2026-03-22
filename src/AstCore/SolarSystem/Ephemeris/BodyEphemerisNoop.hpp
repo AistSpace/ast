@@ -1,9 +1,9 @@
 ///
-/// @file      SpiceRunTime.hpp
+/// @file      EphemerisNoop.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-05
+/// @date      2026-03-08
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -21,32 +21,24 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstCore/BodyEphemeris.hpp"
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup Spice
+    @addtogroup SolarSystem
     @{
 */
-class Axes;
-class CelestialBody;
-class TimePoint;
 
-/// @brief 查找指定名称的参考系统轴
-/// @param name 参考系统名称
-/// @return 指向 Axes 实例的指针，如果未找到则为 nullptr
-AST_SPICE_CAPI Axes* aSpiceFindAxes(StringView name);
 
-/// @brief 查找指定名称的天体
-/// @param name 天体名称
-/// @return 指向 CelestialBody 实例的指针，如果未找到则为 nullptr
-AST_SPICE_API CelestialBody* aSpiceFindBody(StringView name);
-
-/// @brief 查找指定 ID 的天体
-/// @param id 天体 ID
-/// @return 指向 CelestialBody 实例的指针，如果未找到则为 nullptr
-AST_SPICE_API CelestialBody* aSpiceFindBody(int id);
-
+class AST_CORE_API BodyEphemerisNoop : public BodyEphemeris
+{
+public:
+    BodyEphemerisNoop() = default;
+    ~BodyEphemerisNoop() = default;
+    err_t getPosICRF(const TimePoint& time, Vector3d& pos) const override;
+    err_t getPosVelICRF(const TimePoint& time, Vector3d& pos, Vector3d& vel) const override;
+};
 
 
 /*! @} */

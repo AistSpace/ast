@@ -42,17 +42,5 @@ CelestialBody *aSpiceFindBody(int id)
     return SpiceBodyRegistry::Instance().findBody(id);
 }
 
-TimePoint aSpiceEtToTimePoint(double et)
-{
-    JulianDate jdTDB{static_cast<int>(kJ2000Epoch), et};
-    return TimePoint::FromTDB(jdTDB);
-}
-
-double aTimePointToSpiceEt(const TimePoint &tp)
-{
-    JulianDate jdTDB = tp.toTDB();
-    return jdTDB.secondsFromJ2000();
-}
-
 AST_NAMESPACE_END
 

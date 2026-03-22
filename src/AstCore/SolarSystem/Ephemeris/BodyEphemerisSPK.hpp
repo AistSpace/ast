@@ -1,9 +1,9 @@
 ///
-/// @file      EphemerisNoop.hpp
+/// @file      EphemerisSPK.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-08
+/// @date      2026-03-06
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -21,7 +21,9 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstCore/BodyEphemeris.hpp"
+#include "BodyEphemeris.hpp"
+#include "CelestialBody.hpp"
+
 
 AST_NAMESPACE_BEGIN
 
@@ -31,13 +33,31 @@ AST_NAMESPACE_BEGIN
 */
 
 
-class AST_CORE_API EphemerisNoop : public BodyEphemeris
+class AST_CORE_API BodyEphemerisSPK : public BodyEphemeris
 {
 public:
-    EphemerisNoop() = default;
-    ~EphemerisNoop() = default;
-    err_t getPosICRF(const TimePoint& time, Vector3d& pos) const override;
-    err_t getPosVelICRF(const TimePoint& time, Vector3d& pos, Vector3d& vel) const override;
+    BodyEphemerisSPK() = default;
+    
+    BodyEphemerisSPK(int spiceIndex)
+        : spiceIndex_(spiceIndex)
+    {}
+    BodyEphemerisSPK(CelestialBody* body)
+        : body_(body)
+        , spiceIndex_(body->jplSpiceId_)
+    {}
+
+    ~BodyEphemerisSPK() override = default;
+
+    int getSpiceIndex() const;
+
+    void setSpiceIndex(int spiceIndex){spiceIndex_ = spiceIndex;}
+
+    err_t getPosICRF(const TimePoint& tp, Vector3d& pos) const override;
+
+    err_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
+protected:
+    CelestialBody* body_{nullptr};
+    int spiceIndex_{-1};
 };
 
 

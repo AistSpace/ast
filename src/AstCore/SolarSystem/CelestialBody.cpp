@@ -24,8 +24,9 @@
 #include "AstCore/RotationalData.hpp"
 #include "AstCore/EarthOrientation.hpp"
 #include "AstCore/MoonOrientation.hpp"
-#include "AstCore/EphemerisDE.hpp"
-#include "AstCore/EphemerisNoop.hpp"
+#include "AstCore/BodyEphemerisDE.hpp"
+#include "AstCore/BodyEphemerisSPK.hpp"
+#include "AstCore/BodyEphemerisNoop.hpp"
 #include "AstCore/FrameICRF.hpp"
 #include "AstCore/FrameAssembly.hpp"
 #include "AstCore/BuiltinAxes.hpp"
@@ -59,7 +60,7 @@ CelestialBody::CelestialBody(StringView name, SolarSystem *solarSystem)
     , name_{name}
 {
     orientation_  = new NoopOrientation();
-    ephemeris_    = new EphemerisDE(this);
+    ephemeris_    = new BodyEphemerisDE(this);
     axesFixed_    = AxesBodyFixed::New(this);
     axesInertial_ = AxesBodyInertial::New(this);
     axesMOD_      = AxesBodyMOD::New(this);
@@ -73,7 +74,7 @@ CelestialBody::~CelestialBody()
 void CelestialBody::setJplIndex(int index)
 {
     jplIndex_ = index;
-    if(auto de =  dynamic_cast<EphemerisDE*>(ephemeris_.get())){
+    if(auto de =  dynamic_cast<BodyEphemerisDE*>(ephemeris_.get())){
         de->setJplIndex(index);
     }
 }
@@ -381,7 +382,11 @@ err_t CelestialBody::loadEphemerisData(BKVParser & parser)
         token = parser.getNext(item);
         if(token == BKVParser::eKeyValue){
             if(aEqualsIgnoreCase(item.key(), "EphemerisSource")){
-                ephemeris_ = new EphemerisDE(jplIndex_);
+                if(aEqualsIgnoreCase(item.value(), "JplDe")){
+                    ephemeris_ = new BodyEphemerisDE(jplIndex_);
+                }else if(aEqualsIgnoreCase(item.value(), "JplSpice")){
+                    ephemeris_ = new BodyEphemerisSPK(jplSpiceId_);
+                }
             }else if(aEqualsIgnoreCase(item.key(), "JplSpiceId")){
                 jplSpiceId_ = item.value().toInt();
             }else if(aEqualsIgnoreCase(item.key(), "JplIndex")){

@@ -32,20 +32,20 @@ AST_NAMESPACE_BEGIN
 */
 
 
-class AST_CORE_API EphemerisDE : public BodyEphemeris
+class AST_CORE_API BodyEphemerisDE : public BodyEphemeris
 {
 public:
-    EphemerisDE() = default;
+    BodyEphemerisDE() = default;
 
-    EphemerisDE(int jplIndex)
+    BodyEphemerisDE(int jplIndex)
         : jplIndex_(jplIndex)
     {}
-    EphemerisDE(CelestialBody* body)
+    BodyEphemerisDE(CelestialBody* body)
         : body_(body)
         , jplIndex_(body->jplIndex_)
     {}
 
-    ~EphemerisDE() override = default;
+    ~BodyEphemerisDE() override = default;
 
     int getJplIndex() const;
 

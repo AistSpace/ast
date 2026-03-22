@@ -26,9 +26,13 @@
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/FundamentalArguments.hpp"
 #include "AstCore/GlobalContext.hpp"
-#include <assert.h>
+#include "AstCore/SpiceApi.hpp"
+#include "AstCore/TimeSystem.hpp"
+#include "AstCore/OrbitElement.hpp"
+#include "AstMath/MathOperator.hpp"
 #include "RunTimeData.hpp"
 #include "RunTimeSolarSystem.hpp"
+#include <assert.h>
 
 #define AST_DEFAULT_FILE_LEAPSECOND             "Time/Leap_Second.dat"
 #define AST_DEFAULT_FILE_JPLDE                  "SolarSystem/plneph.430"
@@ -42,20 +46,22 @@
 
 AST_NAMESPACE_BEGIN
 
+using StringVector = std::vector<std::string>;
 
 /// @brief 初始化配置
 struct InitalizeConfig
 {
-    fs::path dataDir_;               ///< 数据目录路径
-    fs::path leapSecondFile_;        ///< 跳秒文件路径
-    fs::path jplDeFile_;             ///< JPL DE文件路径
-    fs::path eopFile_;               ///< EOP文件路径
-    fs::path spaceWeatherFile_;      ///< 空间天气文件路径
-    fs::path iauxFile_;              ///< IAU-X系数文件路径
-    fs::path iauyFile_;              ///< IAU-Y系数文件路径
-    fs::path iausFile_;              ///< IAU-Z系数文件路径
-    fs::path iauXYSPrecomputedFile_; ///< IAU-XYS预计算数据文件路径
-    fs::path solarSystemDir_;        ///< 太阳系目录路径
+    fs::path dataDir_;                  ///< 数据目录路径
+    fs::path leapSecondFile_;           ///< 跳秒文件路径
+    fs::path jplDeFile_;                ///< JPL DE文件路径
+    fs::path eopFile_;                  ///< EOP文件路径
+    fs::path spaceWeatherFile_;         ///< 空间天气文件路径
+    fs::path iauxFile_;                 ///< IAU-X系数文件路径
+    fs::path iauyFile_;                 ///< IAU-Y系数文件路径
+    fs::path iausFile_;                 ///< IAU-Z系数文件路径
+    fs::path iauXYSPrecomputedFile_;    ///< IAU-XYS预计算数据文件路径
+    fs::path solarSystemDir_;           ///< 太阳系目录路径
+    StringVector spkFiles_;             ///< SPK文件路径列表
 };
 
 
@@ -177,6 +183,17 @@ std::string SolarSystem::defaultSolarSystemDir()
     return fs::path(aDataDirGet()) / AST_DEFAULT_DIR_SOLARSYSTEM;
 }
 
+
+static err_t loadSPK(const std::vector<std::string>& spkFiles)
+{
+    err_t rc = 0;
+    for(const auto& filepath : spkFiles)
+    {
+        rc |= SpiceApi::Instance()->furnsh(filepath.c_str());
+    }
+    return rc;
+}
+
 err_t aInitializeByDefault(DataContext* context)
 {
     err_t err = 0;
@@ -195,6 +212,18 @@ err_t aInitializeByDefault(DataContext* context)
     err |= context->spaceWeather()->loadDefault();
     err |= context->iauXYSPrecomputed()->loadDefault();
     err |= context->solarSystem()->loadDefault();
+    const std::string spkdir = aDataDirGet() + "/Test/kernels/spk/";
+    const std::vector<std::string> spkfiles = {
+        spkdir + "ceres.bsp",
+        spkdir + "jupiter.bsp",
+        spkdir + "mars.bsp",
+        spkdir + "neptune.bsp",
+        spkdir + "planets.bsp",
+        spkdir + "pluto.bsp",
+        spkdir + "saturn.bsp",
+        spkdir + "uranus.bsp",
+    };
+    err |= loadSPK(spkfiles);
 
     if(err != eNoError) {
         aError("initialize failed: failed to load data.");
@@ -225,6 +254,7 @@ err_t aInitializeByConfig(DataContext* context, const InitalizeConfig& config)
     err |= context->spaceWeather()->load(config.spaceWeatherFile_.string());
     err |= context->iauXYSPrecomputed()->load(config.iauXYSPrecomputedFile_.string());
     err |= context->solarSystem()->load(config.solarSystemDir_.string());
+    err |= loadSPK(config.spkFiles_);
 
     if(err != eNoError) {
         aError("initialize failed: failed to load data.");
@@ -259,6 +289,7 @@ err_t aInitializeByConfig(DataContext* context, StringView configfile)
     initalizeConfig.iausFile_ = aRelPathToAbs(config->getConfig("IAUS_FILE").toString(), libdir);
     initalizeConfig.iauXYSPrecomputedFile_ = aRelPathToAbs(config->getConfig("IAUXYS_PRECOMPUTED_FILE").toString(), libdir);
     initalizeConfig.solarSystemDir_ = aRelPathToAbs(config->getConfig("SOLARSYSTEM_DIR").toString(), libdir);
+    initalizeConfig.spkFiles_ = config->getStringVector("SPK_FILES");  /// @todo 这里获取到的路径可能是相对路径，要处理相对路径问题!
     return aInitializeByConfig(context, initalizeConfig);
 }
 
@@ -710,5 +741,41 @@ CelestialBody *aGetEMBarycenter()
     return context->solarSystem()->getEarthMoonBarycenter();
 }
 
+
+// ----------
+// Spice
+// ----------
+
+
+
+err_t aSpiceGetPosICRF(
+    const TimePoint& time,
+    int target,
+    int referenceBody,
+    Vector3d& pos
+){
+    double et = aTimePointToSpiceEt(time);
+    CartState state;
+    double lt;
+    err_t rc = SpiceApi::Instance()->spkgeo(target, et, "J2000", referenceBody, state.data(), &lt);
+    pos = state.pos() * 1e3;
+    return rc;
+}
+
+err_t aSpiceGetPosVelICRF(
+    const TimePoint& time,
+    int target,
+    int referenceBody,
+    Vector3d& pos,
+    Vector3d& vel
+){
+    double et = aTimePointToSpiceEt(time);
+    CartState state;
+    double lt;
+    err_t rc = SpiceApi::Instance()->spkgeo(target, et, "J2000", referenceBody, state.data(), &lt);
+    pos = state.pos() * 1e3;
+    vel = state.vel() * 1e3;
+    return rc;
+}
 
 AST_NAMESPACE_END

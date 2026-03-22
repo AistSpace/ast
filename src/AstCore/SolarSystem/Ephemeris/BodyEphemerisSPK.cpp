@@ -1,5 +1,5 @@
 ///
-/// @file      EphemerisSPK.cpp
+/// @file      BodyEphemerisSPK.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,10 +18,32 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "EphemerisSPK.hpp"
+#include "BodyEphemerisSPK.hpp"
+#include "AstCore/OrbitElement.hpp"
+#include "AstCore/TimeSystem.hpp"
+#include "AstCore/RunTime.hpp"
+#include "SpiceApi.hpp"
 
 AST_NAMESPACE_BEGIN
 
 
+
+int BodyEphemerisSPK::getSpiceIndex() const
+{
+    if(body_){
+        return body_->jplSpiceId_;
+    }
+    return spiceIndex_;
+}
+
+err_t BodyEphemerisSPK::getPosICRF(const TimePoint& tp, Vector3d& pos) const
+{
+    return aSpiceGetPosICRF(tp, getSpiceIndex(), ESpiceId::eSolarSystemBarycenter, pos);
+}
+
+err_t BodyEphemerisSPK::getPosVelICRF(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+{
+    return aSpiceGetPosVelICRF(tp, getSpiceIndex(), ESpiceId::eSolarSystemBarycenter, pos, vel);
+}
 
 AST_NAMESPACE_END

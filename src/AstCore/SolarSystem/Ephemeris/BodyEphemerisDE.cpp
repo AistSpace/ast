@@ -18,7 +18,7 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "EphemerisDE.hpp"
+#include "BodyEphemerisDE.hpp"
 #include "AstCore/RunTime.hpp"
 #include "AstCore/JplDe.hpp"
 
@@ -26,7 +26,7 @@
 AST_NAMESPACE_BEGIN
 
 
-int EphemerisDE::getJplIndex() const
+int BodyEphemerisDE::getJplIndex() const
 {
     if(body_){
         return body_->jplIndex_;
@@ -34,12 +34,12 @@ int EphemerisDE::getJplIndex() const
     return jplIndex_;
 }
 
-err_t EphemerisDE::getPosICRF(const TimePoint &tp, Vector3d &pos) const
+err_t BodyEphemerisDE::getPosICRF(const TimePoint &tp, Vector3d &pos) const
 {
     return aJplDeGetPosICRF(tp, getJplIndex(), JplDe::eSSBarycenter, pos);
 }
 
-err_t EphemerisDE::getPosVelICRF(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+err_t BodyEphemerisDE::getPosVelICRF(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     return aJplDeGetPosVelICRF(tp, getJplIndex(), JplDe::eSSBarycenter, pos, vel);
 }

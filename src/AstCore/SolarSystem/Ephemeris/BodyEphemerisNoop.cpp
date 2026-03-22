@@ -18,16 +18,16 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "EphemerisNoop.hpp"
+#include "BodyEphemerisNoop.hpp"
 
 AST_NAMESPACE_BEGIN
 
-err_t EphemerisNoop::getPosICRF(const TimePoint &time, Vector3d &pos) const
+err_t BodyEphemerisNoop::getPosICRF(const TimePoint &time, Vector3d &pos) const
 {
     return -1;
 }
 
-err_t EphemerisNoop::getPosVelICRF(const TimePoint &time, Vector3d &pos, Vector3d &vel) const
+err_t BodyEphemerisNoop::getPosVelICRF(const TimePoint &time, Vector3d &pos, Vector3d &vel) const
 {
     return -1;
 }

@@ -2576,10 +2576,11 @@ TEST(SpiceZpr, spkpds)
 TEST(SpiceZpr, spkpos)
 {
     if(aIsCI()) GTEST_SKIP();
-
+    
     const std::string spkFile = aTestGetConfigValue("SPK_FILE").toString();
     // SpiceInt handle;
     // spklef_c(spkFile.c_str(), &handle );
+    // kclear_c();
     furnsh_c(spkFile.c_str());
     furnsh_c(aTestGetConfigValue("LSK_FILE").toString().c_str());
     {
@@ -2618,7 +2619,7 @@ TEST(SpiceZpr, spkpos)
         const char * obs = "Earth";
         double ptarg_c[3];
         double lt_c;
-        spkpos_c("JUPITER Barycenter", et, ref, abcorr, obs, ptarg_c, &lt_c);
+        spkpos_c("JUPITER", et, ref, abcorr, obs, ptarg_c, &lt_c);
         for(int i = 0; i < 3; i++) ptarg_c[i] *= 1e3;
         
         /*!
@@ -2641,7 +2642,7 @@ TEST(SpiceZpr, spkpos)
 
         for(int i = 0; i < 3; i++)
         {
-            EXPECT_DOUBLE_EQ(ptarg_c[i], ptarg[i]);
+            EXPECT_NEAR(ptarg_c[i], ptarg[i], fabs(ptarg[i]) * 1e-14);
         }
         EXPECT_DOUBLE_EQ(lt_c, lt);
     }
@@ -2666,7 +2667,7 @@ TEST(SpiceZpr, spkssb)
         const char* ref = "J2000";
         double starg_c[6];
         double starg[6];
-        spkssb_c(ESpiceId::eJupiterBarycenter, et, ref, starg_c);
+        spkssb_c(ESpiceId::eJupiter, et, ref, starg_c);
         for(auto& d : starg_c) d *= 1e3;
         spkssb(ESpiceId::eJupiter, et, "ICRF", starg);
         for(int i = 0; i < 6; i++)

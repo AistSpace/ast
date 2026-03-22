@@ -1,12 +1,12 @@
 ///
-/// @file      EphemerisSPK.hpp
+/// @file      RunTimeSpice.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-06
+/// @date      2026-03-22
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
-/// ast项目（https://github.com/space-ast/ast）
+/// SpaceAST项目（https://github.com/space-ast/ast）
 /// 本项目基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
 /// 许可证全文请见：
@@ -25,11 +25,29 @@
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup SolarSystem
+    @addtogroup Data
     @{
 */
 
 
+
+AST_CORE_CAPI
+err_t aSpiceGetPosICRF(
+    const TimePoint& time,
+    int target,
+    int referenceBody,
+    Vector3d& pos
+);
+
+
+AST_CORE_CAPI
+err_t aSpiceGetPosVelICRF(
+    const TimePoint& time,
+    int target,
+    int referenceBody,
+    Vector3d& pos,
+    Vector3d& vel
+);
 
 /*! @} */
 

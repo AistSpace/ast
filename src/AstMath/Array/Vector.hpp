@@ -88,6 +88,8 @@ public:
     Self cross(const Self& other) const{return _ASTMATH cross(*this, other);}
     double dot(const Self& other) const{return _ASTMATH dot(*this, other);}
     void setZero(){x_ = y_ = z_ = 0;}
+    Self& operator*=(Scalar s){return *this = _ASTMATH operator*(*this, s);}
+    Self operator*(Scalar s) const{return _ASTMATH operator*(*this, s);}
     Self operator-() const{return Self{-x_, -y_, -z_};}
     Self operator-(const Self& other) const{return _ASTMATH operator-(*this, other);}
     Self operator+(const Self& other) const{return _ASTMATH operator+(*this, other);}
