@@ -1,5 +1,5 @@
 ///
-/// @file      SpiceAPI.hpp
+/// @file      SpiceApi.hpp
 /// @brief     
 /// @details   
 /// @author    axel

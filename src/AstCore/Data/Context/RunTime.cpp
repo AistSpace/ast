@@ -276,6 +276,13 @@ err_t aInitialize(DataContext* context)
     if(fs::is_regular_file(startupConfigFile))
     {
         return aInitializeByConfig(context, startupConfigFile.string());
+    }else{
+        fs::path exedir = aExeDir();
+        startupConfigFile = exedir / AST_PROJECT_NAME "_startup_file.txt";  
+        if(fs::is_regular_file(startupConfigFile))
+        {
+            return aInitializeByConfig(context, startupConfigFile.string());
+        }
     }
     return aInitializeByDefault(context);
 }

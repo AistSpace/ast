@@ -595,7 +595,7 @@ VectorN<_Scalar, J> operator*(
 
 
 template<typename T>
-constexpr const T& clamp(const T& val, const T& low, const T& high)
+A_CONSTEXPR_CXX14 const T& clamp(const T& val, const T& low, const T& high)
 {
     #ifdef A_CXX14
     assert(low <= high && "low must be less than or equal to high");

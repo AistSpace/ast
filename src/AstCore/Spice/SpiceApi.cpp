@@ -1,5 +1,5 @@
 ///
-/// @file      SpiceAPI.cpp
+/// @file      SpiceApi.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,10 +18,11 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "SpiceAPI.hpp"
+#include "SpiceApi.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/LibraryLoader.hpp"
 #include "AstCore/RunTimeConfig.hpp"
+#include "AstUtil/Logger.hpp"
 
 
 AST_NAMESPACE_BEGIN
@@ -150,24 +151,28 @@ err_t SpiceApi::unload()
 
 err_t SpiceApi::furnsh(const char* libpath)
 {
-    std::lock_guard<std::mutex> lock(mutex_);
-
     using functype = decltype(&spiceproto::furnsh_c);
-    functype furnsh = static_cast<functype>(functions_[ifurnsh]);
+    functype furnsh = reinterpret_cast<functype>(functions_[ifurnsh]);
     if(!furnsh)
+    {
+        aError("spice library not loaded, call SpiceApi::load first");
         return eErrorNullPtr;
+    }
+    std::lock_guard<std::mutex> lock(mutex_);
     furnsh(libpath);
-
     return checkerror();
 }
 
 err_t SpiceApi::spkgeo(int targ, double et, const char * ref, int obs, double state[6], double * lt)
 {
-    std::lock_guard<std::mutex> lock(mutex_);
     using functype = decltype(&spiceproto::spkgeo_c);
-    functype spkgeo = static_cast<functype>(functions_[ispkgeo]);
+    functype spkgeo = reinterpret_cast<functype>(functions_[ispkgeo]);
     if(!spkgeo)
+    {
+        aError("spice library not loaded, call SpiceApi::load first");
         return eErrorNullPtr;
+    }
+    std::lock_guard<std::mutex> lock(mutex_);
     spkgeo(targ, et, ref, obs, state, lt);
     return checkerror();
 }
@@ -175,7 +180,7 @@ err_t SpiceApi::spkgeo(int targ, double et, const char * ref, int obs, double st
 bool SpiceApi::failed()
 {
     using functype = decltype(&spiceproto::failed_c);
-    functype failed = static_cast<functype>(functions_[ifailed]);
+    functype failed = reinterpret_cast<functype>(functions_[ifailed]);
     if(!failed)
         return true;
     return failed();
@@ -184,7 +189,7 @@ bool SpiceApi::failed()
 void SpiceApi::reset()
 {
     using functype = decltype(&spiceproto::reset_c);
-    functype reset = static_cast<functype>(functions_[ireset]);
+    functype reset = reinterpret_cast<functype>(functions_[ireset]);
     if(!reset)
         return;
     reset();
@@ -193,7 +198,7 @@ void SpiceApi::reset()
 void SpiceApi::erract(const char * operation, int lenout, char * action)
 {
     using functype = decltype(&spiceproto::erract_c);
-    functype erract = static_cast<functype>(functions_[ierract]);
+    functype erract = reinterpret_cast<functype>(functions_[ierract]);
     if(!erract)
         return;
     erract(operation, lenout, action);
