@@ -681,7 +681,7 @@ $(function(){initNavTree('AstMath_2Array_2MathOperator_8hpp_source.html',''); in
 <div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span> </div>
 <div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span> </div>
 <div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span><span class="keyword">constexpr</span> <span class="keyword">const</span> T&amp; clamp(<span class="keyword">const</span> T&amp; val, <span class="keyword">const</span> T&amp; low, <span class="keyword">const</span> T&amp; high)</div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>A_CONSTEXPR_CXX14 <span class="keyword">const</span> T&amp; clamp(<span class="keyword">const</span> T&amp; val, <span class="keyword">const</span> T&amp; low, <span class="keyword">const</span> T&amp; high)</div>
 <div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>{</div>
 <div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span><span class="preprocessor">    #ifdef A_CXX14</span></div>
 <div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span>    assert(low &lt;= high &amp;&amp; <span class="stringliteral">&quot;low must be less than or equal to high&quot;</span>);</div>

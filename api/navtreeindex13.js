@@ -1,5 +1,7 @@
 var NAVTREEINDEX13 =
 {
+"classast_1_1KinematicRotation.html#a9f3ea8dc3c8c8d0f164ccce35f1d65d5":[3,0,0,189,12],
+"classast_1_1KinematicRotation.html#aa19ca4bf111909a5b8be50bf02ddb821":[2,0,0,190,5],
 "classast_1_1KinematicRotation.html#aa19ca4bf111909a5b8be50bf02ddb821":[3,0,0,189,5],
 "classast_1_1KinematicRotation.html#acfc1d8217c1e6a2d28a887ec6b5bad43":[2,0,0,190,1],
 "classast_1_1KinematicRotation.html#acfc1d8217c1e6a2d28a887ec6b5bad43":[3,0,0,189,1],
@@ -247,7 +249,5 @@ var NAVTREEINDEX13 =
 "classast_1_1MotionBasic.html#a38e44e47b17087b0ca077853cb9e0d7b":[3,0,0,209,11],
 "classast_1_1MotionBasic.html#a3bbc6ab4c68ffe986634f807084b85a6":[2,0,0,210,4],
 "classast_1_1MotionBasic.html#a3bbc6ab4c68ffe986634f807084b85a6":[3,0,0,209,4],
-"classast_1_1MotionBasic.html#a6e2a9cd563d991e062b7900a8d2854fc":[2,0,0,210,3],
-"classast_1_1MotionBasic.html#a6e2a9cd563d991e062b7900a8d2854fc":[3,0,0,209,3],
-"classast_1_1MotionBasic.html#aa4a5a08bb4281d3be6ca05a2da7557a0":[2,0,0,210,9]
+"classast_1_1MotionBasic.html#a6e2a9cd563d991e062b7900a8d2854fc":[2,0,0,210,3]
 };

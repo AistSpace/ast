@@ -1,5 +1,7 @@
 var NAVTREEINDEX16 =
 {
+"classast_1_1Quantity.html#a6886278043783d6f0bd106a4416df264":[0,4,3,0,6],
+"classast_1_1Quantity.html#a6df5a84f1a98aeafb0e946a832018835":[0,4,3,0,27],
 "classast_1_1Quantity.html#a77ac77a3ec344b585e0348647308f8f3":[0,4,3,0,1],
 "classast_1_1Quantity.html#a9ed5f218085ef11962b35f732c463ee7":[0,4,3,0,24],
 "classast_1_1Quantity.html#aa01eb8c8abfb269c461e9605517a6c1d":[0,4,3,0,9],
@@ -247,7 +249,5 @@ var NAVTREEINDEX16 =
 "classast_1_1SolarSystem.html#ae0679a4c0eedb7641a108d8d9769d2d2":[0,0,5,10,40],
 "classast_1_1SolarSystem.html#ae59cb7566b86ae10ae1439229fe41590":[0,0,5,10,37],
 "classast_1_1SolarSystem.html#af41e3aea49eec17b6722c835fa2f2f33":[0,0,5,10,18],
-"classast_1_1SolarSystem.html#af6350a447e1fbe7fcc6def88f9f965a9":[0,0,5,10,17],
-"classast_1_1SolarSystem.html#aff303030ede3db3a326e13d50e3cc63b":[0,0,5,10,22],
-"classast_1_1SpaceWeather.html":[0,0,1,6]
+"classast_1_1SolarSystem.html#af6350a447e1fbe7fcc6def88f9f965a9":[0,0,5,10,17]
 };

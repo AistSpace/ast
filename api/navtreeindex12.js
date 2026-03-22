@@ -1,5 +1,7 @@
 var NAVTREEINDEX12 =
 {
+"classast_1_1GravityFieldHead.html#abb600bf03f4fd719313dae90cbdb3682":[3,0,0,160,7],
+"classast_1_1GravityFieldHead.html#abf41169c929d25e079209590ebdf3f5a":[2,0,0,161,6],
 "classast_1_1GravityFieldHead.html#abf41169c929d25e079209590ebdf3f5a":[3,0,0,160,6],
 "classast_1_1GravityFieldLoader.html":[2,0,0,162],
 "classast_1_1GravityFieldLoader.html":[3,0,0,161],
@@ -247,7 +249,5 @@ var NAVTREEINDEX12 =
 "classast_1_1KinematicRotation.html#a82779c2bb75c29307caf234dd954649d":[3,0,0,189,8],
 "classast_1_1KinematicRotation.html#a950848ca0984c4b5cfacf3614999a584":[2,0,0,190,18],
 "classast_1_1KinematicRotation.html#a950848ca0984c4b5cfacf3614999a584":[3,0,0,189,18],
-"classast_1_1KinematicRotation.html#a9f3ea8dc3c8c8d0f164ccce35f1d65d5":[2,0,0,190,12],
-"classast_1_1KinematicRotation.html#a9f3ea8dc3c8c8d0f164ccce35f1d65d5":[3,0,0,189,12],
-"classast_1_1KinematicRotation.html#aa19ca4bf111909a5b8be50bf02ddb821":[2,0,0,190,5]
+"classast_1_1KinematicRotation.html#a9f3ea8dc3c8c8d0f164ccce35f1d65d5":[2,0,0,190,12]
 };

@@ -1,5 +1,7 @@
 var NAVTREEINDEX18 =
 {
+"classast_1_1StateKeplerian.html#a6e2aa5ea450d756ec9afe54211275e29":[3,0,0,340,41],
+"classast_1_1StateKeplerian.html#a6e74b893de9f91f718636527231d479d":[2,0,0,341,42],
 "classast_1_1StateKeplerian.html#a6e74b893de9f91f718636527231d479d":[3,0,0,340,42],
 "classast_1_1StateKeplerian.html#a6fdbc3bd5ca1c5779292cc84900a6fb2":[2,0,0,341,49],
 "classast_1_1StateKeplerian.html#a6fdbc3bd5ca1c5779292cc84900a6fb2":[3,0,0,340,49],
@@ -247,7 +249,5 @@ var NAVTREEINDEX18 =
 "classast_1_1UnarySolver.html#a097e8c7201ce12695046788db7019b17":[0,1,3,7,9],
 "classast_1_1UnarySolver.html#a10e51810834979c771e146426d6e86f3":[0,1,3,7,1],
 "classast_1_1UnarySolver.html#a1474da0302ac85d7817072179a042b2c":[0,1,3,7,8],
-"classast_1_1UnarySolver.html#a228d8e1f28052bb0fc164fe872e4e39a":[0,1,3,7,14],
-"classast_1_1UnarySolver.html#a278e223855671c9d6a1b31ab23f73adf":[0,1,3,7,11],
-"classast_1_1UnarySolver.html#a381d4fae57a8894282bd99df4d1d3dba":[0,1,3,7,5]
+"classast_1_1UnarySolver.html#a228d8e1f28052bb0fc164fe872e4e39a":[0,1,3,7,14]
 };

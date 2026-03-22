@@ -87,7 +87,9 @@ var NAVTREEINDEX5 =
 "SphereShape_8hpp_source.html":[4,0,0,2,5,2,0,3],
 "SpheroidShape_8hpp.html":[4,0,0,2,5,2,0,4],
 "SpheroidShape_8hpp_source.html":[4,0,0,2,5,2,0,4],
-"SpiceApi_8hpp_source.html":[4,0,0,2,9,0],
+"SpiceApi_8cpp.html":[4,0,0,2,9,0],
+"SpiceApi_8hpp.html":[4,0,0,2,9,1],
+"SpiceApi_8hpp_source.html":[4,0,0,2,9,1],
 "SpiceBodyRegistry_8cpp.html":[4,0,0,12,0,0],
 "SpiceBodyRegistry_8hpp.html":[4,0,0,12,0,1],
 "SpiceBodyRegistry_8hpp_source.html":[4,0,0,12,0,1],
@@ -247,7 +249,5 @@ var NAVTREEINDEX5 =
 "TimeInterval_8hpp.html":[4,0,0,2,10,15],
 "TimeInterval_8hpp_source.html":[4,0,0,2,10,15],
 "TimePoint_8hpp.html":[4,0,0,2,10,16],
-"TimePoint_8hpp_source.html":[4,0,0,2,10,16],
-"TimeScale_8cpp.html":[4,0,0,2,10,17],
-"TimeScale_8hpp.html":[4,0,0,2,10,18]
+"TimePoint_8hpp_source.html":[4,0,0,2,10,16]
 };

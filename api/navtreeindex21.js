@@ -1,5 +1,7 @@
 var NAVTREEINDEX21 =
 {
+"group__Coordinate.html#gafc43ca88443dcc9af6ff3f8c21718614":[0,0,0,57],
+"group__Coordinate.html#gaff57ad51629fa4949e4ac788621f7408":[0,0,0,97],
 "group__Coordinate.html#gaff66d5d23adff00d5ac71e6f4ee3006d":[0,0,0,88],
 "group__Coordinate.html#gaffb549279abc4fa3965477200daecc39":[0,0,0,90],
 "group__Core.html":[0,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX21 =
 "group__ParseFormat.html#gae9b51bc61cf9af3a7f467fa2d49a9670":[0,4,1,18],
 "group__ParseFormat.html#gaedc0b619600c9e9a0d252d2daac1d896":[0,4,1,20],
 "group__ParseFormat.html#gaee61ea763344f3f4320133dd07e94c90":[0,4,1,22],
-"group__ParseFormat.html#gaf44a279042760faa6761c53920365cf8":[0,4,1,41],
-"group__ParseFormat.html#gaf558cb2781e624e1228b2d61ab9de454":[0,4,1,19],
-"group__ParseFormat.html#gafa3bc05b20e1307e5911f952efe5cbbc":[0,4,1,40]
+"group__ParseFormat.html#gaf44a279042760faa6761c53920365cf8":[0,4,1,41]
 };
