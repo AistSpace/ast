@@ -165,6 +165,7 @@ var namespaceast =
     [ "EllipsoidShape", "classast_1_1EllipsoidShape.html", "classast_1_1EllipsoidShape" ],
     [ "EOP", "classast_1_1EOP.html", "classast_1_1EOP" ],
     [ "Ephemeris", "classast_1_1Ephemeris.html", "classast_1_1Ephemeris" ],
+    [ "EphemerisFileParser", "classast_1_1EphemerisFileParser.html", null ],
     [ "EphemerisLagrangeVar", "classast_1_1EphemerisLagrangeVar.html", "classast_1_1EphemerisLagrangeVar" ],
     [ "EphemerisTwoBody", "classast_1_1EphemerisTwoBody.html", "classast_1_1EphemerisTwoBody" ],
     [ "EquinElem", "classast_1_1EquinElem.html", "classast_1_1EquinElem" ],
@@ -403,6 +404,7 @@ var namespaceast =
     [ "StateKeplerian", "classast_1_1StateKeplerian.html", "classast_1_1StateKeplerian" ],
     [ "StateVector", "classast_1_1StateVector.html", null ],
     [ "StationaryOrbitDesigner", "classast_1_1StationaryOrbitDesigner.html", "classast_1_1StationaryOrbitDesigner" ],
+    [ "STKEphemerisFileParser", "classast_1_1STKEphemerisFileParser.html", null ],
     [ "StopCondition", "classast_1_1StopCondition.html", null ],
     [ "StreamScanner", "classast_1_1StreamScanner.html", "classast_1_1StreamScanner" ],
     [ "StringScanner", "classast_1_1StringScanner.html", "classast_1_1StringScanner" ],
@@ -658,6 +660,10 @@ var namespaceast =
     [ "EEndian", "group__Platform.html#gae5cf4de7adb0a012861b982458f81526", [
       [ "eLittleEndian", "group__Platform.html#ggae5cf4de7adb0a012861b982458f81526ae3046b598c718c3efb499423ed6272ec", null ],
       [ "eBigEndian", "group__Platform.html#ggae5cf4de7adb0a012861b982458f81526aa62c0343340b8ffd29f021d1546be637", null ]
+    ] ],
+    [ "EInterpolationMethod", "namespaceast.html#ad5260f2008c9ceaced8a537b5877c379", [
+      [ "eUnknown", "namespaceast.html#ad5260f2008c9ceaced8a537b5877c379aaf8a9112a5a055e50fee0d5ddad77ae5", null ],
+      [ "eLagrange", "namespaceast.html#ad5260f2008c9ceaced8a537b5877c379ab047d1c7477202d20a0272d6dc5f8126", null ]
     ] ],
     [ "ELogicalOperatorType", "namespaceast.html#a65999e43b74f73ebbbf95a9eea2e4269", [
       [ "eAnd", "namespaceast.html#a65999e43b74f73ebbbf95a9eea2e4269ae8b511f162a3e5ae4ba68f1661a5ce5a", null ],
@@ -1319,6 +1325,8 @@ var namespaceast =
     [ "aParseInt", "group__ParseFormat.html#gaf44a279042760faa6761c53920365cf8", null ],
     [ "aParsePolynomial", "group__Util.html#ga063244ad55f294e65da67be4f25c5d0d", null ],
     [ "aParsePolynomial", "group__Util.html#gaf5af162900868105143c862ef10787b5", null ],
+    [ "aParserSTKEphemeris", "namespaceast.html#a6135778a4981ccd01f8368e87f2a53da", null ],
+    [ "aParserSTKEphemeris", "namespaceast.html#a50d86ed1160204e1dc08ea5f54f25994", null ],
     [ "aPeriAltApoAltToEcc", "group__Orbit.html#ga9c64c5e4288ce21b299cc65b238f643b", null ],
     [ "aPeriAltToApoAlt", "group__Orbit.html#ga93f5abe4799006f1ef0dc374eebecbc2", null ],
     [ "aPeriAltToApoRad", "group__Orbit.html#gae37fb2c444e63d68f3c72576272b84aa", null ],

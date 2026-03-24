@@ -31,14 +31,13 @@ var searchData=
   ['stateobserverlist_5f_28',['stateObserverList_',['../classast_1_1ODEIntegrator.html#ad0ad6921c60e21109ea2c2b3da302727',1,'ast::ODEIntegrator']]],
   ['statetemp_5f_29',['stateTemp_',['../classast_1_1ODEIntegrator.html#a1c6e493465ff105019f6de8d20e7cd48',1,'ast::ODEIntegrator']]],
   ['stats_5f_30',['stats_',['../classast_1_1UnarySolver.html#a228d8e1f28052bb0fc164fe872e4e39a',1,'ast::UnarySolver']]],
-  ['step_5f_31',['step_',['../classast_1_1EphemerisLagrangeVar.html#a97fea90467b79dc785132a225bf900cd',1,'ast::EphemerisLagrangeVar']]],
-  ['stepsize_5f_32',['stepSize_',['../classast_1_1MotionBasic.html#a38e44e47b17087b0ca077853cb9e0d7b',1,'ast::MotionBasic']]],
-  ['subsatellitepoint_5f_33',['subsatellitePoint_',['../classast_1_1StationaryOrbitDesigner.html#aaaae8ed54c4beeed20f9dc5c44f0e8c2',1,'ast::StationaryOrbitDesigner']]],
-  ['subunits_5f_34',['subUnits_',['../classast_1_1Unit_1_1UnitRep.html#a183874826df2371d1aaf0fa6aa838fbd',1,'ast::Unit::UnitRep']]],
-  ['summaries_35',['summaries',['../structast_1_1DAF__SummaryRecords.html#a271092465c67a0f496e944b443dce465',1,'ast::DAF_SummaryRecords']]],
-  ['sun_5f_36',['sun_',['../classast_1_1SolarSystem.html#ae0679a4c0eedb7641a108d8d9769d2d2',1,'ast::SolarSystem']]],
-  ['sunposition_5f_37',['sunPosition_',['../structast_1_1HPOPForceModel_1_1SRP.html#a6f0f19647743d51f2c8daaf3940ae901',1,'ast::HPOPForceModel::SRP']]],
-  ['symbols_5f_38',['symbols_',['../classast_1_1SymbolScope.html#a37dda220f73c260bf892f75887614f00',1,'ast::SymbolScope']]],
-  ['symbolscope_5f_39',['symbolScope_',['../classast_1_1Interpreter.html#aa106735b22fc35d4d07fee94caa42989',1,'ast::Interpreter']]],
-  ['systemgm_5f_40',['systemGM_',['../classast_1_1CelestialBody.html#af7315bf6731ca1a1af2cfa28dde3edbf',1,'ast::CelestialBody']]]
+  ['stepsize_5f_31',['stepSize_',['../classast_1_1MotionBasic.html#a38e44e47b17087b0ca077853cb9e0d7b',1,'ast::MotionBasic']]],
+  ['subsatellitepoint_5f_32',['subsatellitePoint_',['../classast_1_1StationaryOrbitDesigner.html#aaaae8ed54c4beeed20f9dc5c44f0e8c2',1,'ast::StationaryOrbitDesigner']]],
+  ['subunits_5f_33',['subUnits_',['../classast_1_1Unit_1_1UnitRep.html#a183874826df2371d1aaf0fa6aa838fbd',1,'ast::Unit::UnitRep']]],
+  ['summaries_34',['summaries',['../structast_1_1DAF__SummaryRecords.html#a271092465c67a0f496e944b443dce465',1,'ast::DAF_SummaryRecords']]],
+  ['sun_5f_35',['sun_',['../classast_1_1SolarSystem.html#ae0679a4c0eedb7641a108d8d9769d2d2',1,'ast::SolarSystem']]],
+  ['sunposition_5f_36',['sunPosition_',['../structast_1_1HPOPForceModel_1_1SRP.html#a6f0f19647743d51f2c8daaf3940ae901',1,'ast::HPOPForceModel::SRP']]],
+  ['symbols_5f_37',['symbols_',['../classast_1_1SymbolScope.html#a37dda220f73c260bf892f75887614f00',1,'ast::SymbolScope']]],
+  ['symbolscope_5f_38',['symbolScope_',['../classast_1_1Interpreter.html#aa106735b22fc35d4d07fee94caa42989',1,'ast::Interpreter']]],
+  ['systemgm_5f_39',['systemGM_',['../classast_1_1CelestialBody.html#af7315bf6731ca1a1af2cfa28dde3edbf',1,'ast::CelestialBody']]]
 ];

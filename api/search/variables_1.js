@@ -26,10 +26,11 @@ var searchData=
   ['atmblendingrange_5f_23',['atmBlendingRange_',['../structast_1_1HPOPForceModel_1_1Drag.html#a82e21a018f18cd588a023a06ded75d79',1,'ast::HPOPForceModel::Drag']]],
   ['atmdensitymodel_5f_24',['atmDensityModel_',['../structast_1_1HPOPForceModel_1_1Drag.html#ae11a52931f528d66517a868ca0e60ccd',1,'ast::HPOPForceModel::Drag']]],
   ['attitudeprofile_5f_25',['attitudeProfile_',['../classast_1_1Mover.html#a44399eed2223ee3405ea24d41ca32eb8',1,'ast::Mover']]],
-  ['axes_5f_26',['axes_',['../classast_1_1AxesFrozen.html#a7d770abcd6cbdaa1b982a106414ca01c',1,'ast::AxesFrozen::axes_'],['../classast_1_1AxesFrozenAtEventTime.html#aa7bfcd5dbb0240fa55a11f28f5132cff',1,'ast::AxesFrozenAtEventTime::axes_'],['../classast_1_1FrameAssembly.html#a0d929700481c1b4f191a791d71d9b42e',1,'ast::FrameAssembly::axes_']]],
-  ['axesfixed_5f_27',['axesFixed_',['../classast_1_1CelestialBody.html#a3a3257e3f2c62fd3ca75f6cdb5d812ff',1,'ast::CelestialBody']]],
-  ['axesinertial_5f_28',['axesInertial_',['../classast_1_1CelestialBody.html#aa18f0b89f7fa2b1a50d417a589f42522',1,'ast::CelestialBody']]],
-  ['axesmod_5f_29',['axesMOD_',['../classast_1_1CelestialBody.html#a11879995b1f42dbcdff2f0c966b4ebd2',1,'ast::CelestialBody']]],
-  ['axestod_5f_30',['axesTOD_',['../classast_1_1CelestialBody.html#a3846f684b8934029ddd0c0c23f28e41f',1,'ast::CelestialBody']]],
-  ['axis_5f_31',['axis_',['../classast_1_1AngleAxis.html#ae403cba318176d5a4d12a6406c48c4e9',1,'ast::AngleAxis']]]
+  ['averagestep_5f_26',['averageStep_',['../classast_1_1EphemerisLagrangeVar.html#a489a8392204b2d4a342744efacd7be3e',1,'ast::EphemerisLagrangeVar']]],
+  ['axes_5f_27',['axes_',['../classast_1_1AxesFrozen.html#a7d770abcd6cbdaa1b982a106414ca01c',1,'ast::AxesFrozen::axes_'],['../classast_1_1AxesFrozenAtEventTime.html#aa7bfcd5dbb0240fa55a11f28f5132cff',1,'ast::AxesFrozenAtEventTime::axes_'],['../classast_1_1FrameAssembly.html#a0d929700481c1b4f191a791d71d9b42e',1,'ast::FrameAssembly::axes_']]],
+  ['axesfixed_5f_28',['axesFixed_',['../classast_1_1CelestialBody.html#a3a3257e3f2c62fd3ca75f6cdb5d812ff',1,'ast::CelestialBody']]],
+  ['axesinertial_5f_29',['axesInertial_',['../classast_1_1CelestialBody.html#aa18f0b89f7fa2b1a50d417a589f42522',1,'ast::CelestialBody']]],
+  ['axesmod_5f_30',['axesMOD_',['../classast_1_1CelestialBody.html#a11879995b1f42dbcdff2f0c966b4ebd2',1,'ast::CelestialBody']]],
+  ['axestod_5f_31',['axesTOD_',['../classast_1_1CelestialBody.html#a3846f684b8934029ddd0c0c23f28e41f',1,'ast::CelestialBody']]],
+  ['axis_5f_32',['axis_',['../classast_1_1AngleAxis.html#ae403cba318176d5a4d12a6406c48c4e9',1,'ast::AngleAxis']]]
 ];

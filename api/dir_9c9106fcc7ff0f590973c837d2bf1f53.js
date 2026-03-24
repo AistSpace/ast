@@ -1,7 +1,6 @@
 var dir_9c9106fcc7ff0f590973c837d2bf1f53 =
 [
     [ "Attitude", "dir_455ace0eeab4ac475b242b1d1f8df258.html", "dir_455ace0eeab4ac475b242b1d1f8df258" ],
-    [ "Ephemeris", "dir_93c549261f9a3cb785c8d7c87f6ae2a6.html", "dir_93c549261f9a3cb785c8d7c87f6ae2a6" ],
     [ "Loader", "dir_ab20f66dbe4b1cae9579ed01e4f7b7d8.html", "dir_ab20f66dbe4b1cae9579ed01e4f7b7d8" ],
     [ "Motion", "dir_0d88fe3c379cdebdd567bb4304149f2c.html", "dir_0d88fe3c379cdebdd567bb4304149f2c" ],
     [ "Object", "dir_128c6f41eb6cfa5c0de7e053913da9fb.html", "dir_128c6f41eb6cfa5c0de7e053913da9fb" ]
