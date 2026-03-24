@@ -42,18 +42,27 @@ err_t MotionTwoBodySax::keyValue(StringView key, const ValueView &value)
         timeStep_ = value.toDouble();
     }else if(aEqualsIgnoreCase(key, "OrbElemCoordSys")){
         orbElemCoordSys_ = value.toString();
-        /// @todo 这里需要根据天体来获取坐标系
-        orbElemCoordAxes_ = aGetAxes(orbElemCoordSys_);
+        orbElemCoordAxes_ = getBody()->getAxes(orbElemCoordSys_);
+        if(!orbElemCoordAxes_)
+        {
+            aError("failed to get orbElemCoordAxes '%.*s'", (int)orbElemCoordSys_.size(), orbElemCoordSys_.data());
+        }
     }else if(aEqualsIgnoreCase(key, "PropagationCoordSys")){
         propagationCoordSys_ = value.toString();
-        /// @todo 这里需要根据天体来获取坐标系
-        propagationCoordAxes_ = aGetAxes(propagationCoordSys_);
+        propagationCoordAxes_ = getBody()->getAxes(propagationCoordSys_);
+        if(!propagationCoordAxes_)
+        {
+            aError("failed to get propagationCoordAxes '%.*s'", (int)propagationCoordSys_.size(), propagationCoordSys_.data());
+        }
     }else if(aEqualsIgnoreCase(key, "DisplayCoordType")){
         displayCoordType_ = value.toInt();
     }else if(aEqualsIgnoreCase(key, "DisplayCoordSys")){
         displayCoordSys_ = value.toString();
-        /// @todo 这里需要根据天体来获取坐标系
-        displayCoordAxes_ = aGetAxes(displayCoordSys_);
+        displayCoordAxes_ = getBody()->getAxes(displayCoordSys_);
+        if(!displayCoordAxes_)
+        {
+            aError("failed to get displayCoordAxes '%.*s'", (int)displayCoordSys_.size(), displayCoordSys_.data());
+        }
     }else if(aEqualsIgnoreCase(key, "EllipseType")){
         // @todo 这是什么??? 椭圆类型是什么意思???
     }

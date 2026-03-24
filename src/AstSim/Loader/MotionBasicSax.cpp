@@ -84,5 +84,16 @@ HEventInterval MotionBasicSax::makeInterval() const
     return EventIntervalFallback::New(ephemSmartInterval_, explicitInterval);
 }
 
+Body *MotionBasicSax::getBody() const
+{
+    if(!vehiclePathData_.centralBody_)
+    {
+        auto body = aGetDefaultBody();
+        aWarning("vehicle's centralBody is not set, use default body '%s' instead", body->getName().c_str());
+        return body;
+    }
+    return vehiclePathData_.centralBody_;
+}
+
 AST_NAMESPACE_END
 

@@ -185,6 +185,30 @@ err_t CelestialBody::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel
     return getPosVelICRF(tp, pos, vel);
 }
 
+Axes *CelestialBody::getAxes(StringView name) const
+{
+    /// @todo 这里考虑使用哈希表来存储映射关系
+    if(aEqualsIgnoreCase(name, "Inertial"))
+        return axesInertial_.get();
+    else if(aEqualsIgnoreCase(name, "Fixed"))
+        return axesFixed_.get();
+    else if(aEqualsIgnoreCase(name, "MOD"))
+        return axesMOD_.get();
+    else if(aEqualsIgnoreCase(name, "TOD"))
+        return axesTOD_.get();
+    else if(aEqualsIgnoreCase(name, "TrueOfDate"))
+        return axesTOD_.get();
+    else if(aEqualsIgnoreCase(name, "MeanOfDate"))
+        return axesMOD_.get();
+    else {
+        // 尝试从全局哈希表中获取轴系
+        auto axes = aGetAxes(name);
+        if(!axes)
+            aWarning("unsupported axes name '%.*s'", (int)name.size(), name.data());
+        return axes;
+    }
+}
+
 HFrame CelestialBody::makeEpochFrame(Axes *sourceAxes, const TimePoint &tp, Axes *reference) const
 {
     return makeFrame(aMakeEpochAxes(sourceAxes, tp, reference));

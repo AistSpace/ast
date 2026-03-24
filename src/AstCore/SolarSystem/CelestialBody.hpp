@@ -158,6 +158,12 @@ public:
     /// @brief 获取天体TOD轴系
     Axes* getAxesTOD() const { return axesTOD_.get(); }
 
+    /// @brief 获取天体轴系
+    /// @param  name        - 轴系名称，例如Inertial、Fixed、MOD、TOD等
+    /// @retval             - 轴系指针
+    /// @note               - 如果轴系不存在，则返回nullptr
+    Axes* getAxes(StringView name) const;
+    
 public:
     /// @brief 创建新的历元轴系
     /// @param  sourceAxes  - 源轴系

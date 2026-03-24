@@ -55,6 +55,8 @@ public:
     HEventTime makeStateEpoch() const;
     HEventInterval makeInterval() const;
 protected:
+    Body* getBody() const;
+protected:
     BKVParser& parser_;
     const VehiclePathData& vehiclePathData_;
     SharedPtr<EventTime> ephemSmartEpoch_;
