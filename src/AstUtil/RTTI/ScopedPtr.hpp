@@ -85,6 +85,12 @@ public:
     }
     T* operator->() const{return m_pointer;}
     operator T*() const{return m_pointer;}
+    T* release()
+    {
+        T* ptr = m_pointer;
+        m_pointer = nullptr;
+        return ptr;
+    }
 private:
     ScopedPtr(const ScopedPtr&) = delete;
     ScopedPtr& operator =(const ScopedPtr&) = delete;

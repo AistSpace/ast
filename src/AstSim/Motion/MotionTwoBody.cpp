@@ -21,7 +21,9 @@
 #include "MotionTwoBody.hpp"
 #include "AstCore/EphemerisTwoBody.hpp"
 #include "AstCore/EphemerisLagrangeFixed.hpp"
-
+#include "AstCore/EphemerisLagrangeVar.hpp"
+#include "AstCore/CelestialBody.hpp"
+#include "AstCore/TwoBody.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,14 +32,38 @@ MotionTwoBody *MotionTwoBody::New()
     return new MotionTwoBody();
 }
 
+#define AST_CHECK_NULLPTR(obj) if(obj == nullptr){aError(#obj " is nullptr"); return eErrorNullPtr;}
+#define AST_CHECK_ERRCODE(rc, msg) if(rc){aError(msg); return rc;}
 
 err_t MotionTwoBody::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
 {
-    return err_t();
+    TimePoint epoch{};
+    auto initstate = this->getInitialState(); AST_CHECK_NULLPTR(initstate);
+
+    err_t rc = initstate->getStateEpoch(epoch); AST_CHECK_ERRCODE(rc, "failed to get initial epoch");
+
+    auto propFrame = this->getPropagationFrame(); AST_CHECK_NULLPTR(propFrame);
+
+    CartState cartState;
+    rc = initstate->getStateIn(propFrame, cartState); AST_CHECK_ERRCODE(rc, "failed to get initial state");
+    
+    auto ephTwoBody = EphemerisTwoBody::New(propFrame, epoch, cartState);
+    eph = ephTwoBody;
+    return eNoError;
 }
 
 err_t MotionTwoBody::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
 {
+    TimeInterval interval;
+    this->getInterval(interval);
+    auto frame = this->getPropagationFrame();
+    if(frame == nullptr){
+        // aWarning("propagation frame is nullptr, use body's initial frame as the default frame");
+        // frame = this->getInitialState()->getFrame()->getBody()->makeFrameInertial();
+        aError("propagation frame is nullptr");
+        return eErrorNullPtr;
+    }
+
     return err_t();
 }
 

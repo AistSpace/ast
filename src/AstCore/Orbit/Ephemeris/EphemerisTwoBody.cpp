@@ -30,13 +30,26 @@ EphemerisTwoBody::EphemerisTwoBody()
     gm_ = frame_->getGM();
 }
 
-EphemerisTwoBody::EphemerisTwoBody(Frame *frame, double gm, const TimePoint &epoch, const Vector3d &pos, const Vector3d &vel)
+EphemerisTwoBody::EphemerisTwoBody(Frame *frame, double gm, const TimePoint &epoch, const CartState &initstate)
     : frame_{frame}
     , gm_{gm}
     , epoch_{epoch}
-    , initpos_{pos}
-    , initvel_{vel}
+    , initstate_{initstate}
 {
+}
+
+EphemerisTwoBody *EphemerisTwoBody::New(Frame *frame, const TimePoint &epoch, const CartState &initstate)
+{
+    // if(!frame){
+    //     aError("frame is nullptr");
+    //     return nullptr;
+    // }
+    return new EphemerisTwoBody(frame, frame?frame->getGM():0.0, epoch, initstate);
+}
+
+EphemerisTwoBody *EphemerisTwoBody::New(Frame *frame, double gm, const TimePoint &epoch, const CartState &initstate)
+{
+    return new EphemerisTwoBody(frame, gm, epoch, initstate);
 }
 
 Frame *EphemerisTwoBody::getFrame() const
@@ -47,17 +60,23 @@ Frame *EphemerisTwoBody::getFrame() const
 err_t EphemerisTwoBody::getPos(const TimePoint &tp, Vector3d &pos) const
 {
     double duration = tp.durationFrom(epoch_);
-    pos = initpos_;
-    Vector3d vel = initvel_;
+    pos = initstate_.pos();
+    Vector3d vel = initstate_.vel();
     return aTwoBodyProp(duration, gm_, pos, vel);
 }
 
 err_t EphemerisTwoBody::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     double duration = tp.durationFrom(epoch_);
-    pos = initpos_;
-    vel = initvel_;
+    pos = initstate_.pos();
+    vel = initstate_.vel();
     return aTwoBodyProp(duration, gm_, pos, vel);
+}
+
+err_t EphemerisTwoBody::getInterval(TimeInterval &interval) const
+{
+    interval.setInfinite();
+    return eNoError;
 }
 
 AST_NAMESPACE_END

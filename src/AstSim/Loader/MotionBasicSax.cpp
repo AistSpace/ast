@@ -47,10 +47,16 @@ err_t MotionBasicSax::keyValue(StringView key, const ValueView &value)
 {
     if(aEqualsIgnoreCase(key, "EphemSmartEpoch")){
         if(err_t rc = _aLoadEventTime(parser_, ephemSmartEpoch_))
+        {
+            aError("EphemSmartEpoch is invalid");
             return rc;
+        }
     }else if(aEqualsIgnoreCase(key, "EphemSmartInterval")){
         if(err_t rc = _aLoadEventInterval(parser_, ephemSmartInterval_))
+        {
+            aError("EphemSmartInterval is invalid");
             return rc;
+        }
     }else if(aEqualsIgnoreCase(key, "EphemEpoch")){
         // @note 这不是与EphemSmartEpoch重复了吗？为什么有两个地方都有值，应该以哪个为准?
         ephemEpoch_ = TimePoint::Parse(value);

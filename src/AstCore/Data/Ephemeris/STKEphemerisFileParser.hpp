@@ -41,9 +41,16 @@ AST_CORE_API err_t aParserSTKEphemeris(StringView filepath, HEphemeris& ephemeri
 
 /// @brief 解析STK星历文件
 /// @param parser BKV解析器
-/// @param ephemeris 星历对象
+/// @param ephemeris 星历句柄
 /// @return 错误码
 AST_CORE_API err_t aParserSTKEphemeris(BKVParser& parser, HEphemeris &ephemeris);
+
+
+/// @brief 解析STK星历文件
+/// @param parser BKV解析器
+/// @param ephemeris 星历句柄
+/// @return 错误码
+AST_CORE_API err_t aParserSTKEphemeris(BKVParser& parser, ScopedPtr<Ephemeris>& ephemeris);
 
 
 /// @brief STK星历文件解析器

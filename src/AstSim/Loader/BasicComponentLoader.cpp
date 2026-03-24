@@ -69,7 +69,7 @@ err_t _aLoadEventTime(BKVParser& parser, SharedPtr<EventTime>& eventTime)
                 if(isImplicit && internal_time){
                     eventTime = internal_time;
                 }else{
-                    eventTime = EventTimeExplicit::New(TimePoint::Parse(item.value()));
+                    eventTime = EventTimeExplicit::New(epoch);
                 }
             }else{
                 // @todo 处理异常情况
@@ -116,6 +116,34 @@ err_t _aLoadEventIntervalImplicit(BKVParser& parser, SharedPtr<EventInterval>& e
     return eNoError;
 }
 
+err_t _aLoadInterval(BKVParser& parser, TimeInterval& interval)
+{
+    TimePoint start;
+    TimePoint stop;
+    BKVItemView item;
+    while(1){
+        BKVParser::EToken token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "Start")){
+                start = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "Stop")){
+                stop = TimePoint::Parse(item.value());
+            }else{
+                aError("unsupported key %.*s", item.key().size(), item.key().data());
+                return -1;
+            }
+        }
+        else if(token == BKVParser::eBlockEnd){
+            interval.setStartStop(start, stop);
+            break;
+        }else{
+            return 0;
+        }
+    }
+    return 0;
+}
+
 err_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInterval)
 {
     BKVItemView item;
@@ -143,6 +171,18 @@ err_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInte
             if(aEqualsIgnoreCase(item.value(), "EVENTINTERVAL")){
                 // 一定是 Implicit 类型吗?
                 _aLoadEventIntervalImplicit(parser, internal_interval);
+            }
+            else if(aEqualsIgnoreCase(item.value(), "Interval"))
+            {
+                err_t rc = _aLoadInterval(parser, interval);
+                if(rc != 0){
+                    aError("Interval is invalid");
+                    return rc;
+                }
+            }
+            else{
+                aError("unsupported block type %.*s", item.value().size(), item.value().data());
+                return -1;
             }
         }
         else if(token == BKVParser::eBlockEnd)

@@ -40,8 +40,9 @@ err_t aParserSTKEphemeris(StringView filepath, HEphemeris &ephemeris)
 
 enum EInterpolationMethod
 {
-    eUnknown=-1,    /// 未知插值方法
-    eLagrange,      /// Lagrange插值
+    eUnknown=-1,    ///< 未知插值方法
+    eLagrange,      ///< Lagrange插值
+    eOnePt,         /// 这是什么??? 1点插值?
 };
 
 
@@ -82,7 +83,7 @@ static err_t parsePosVel(
 }
 
 
-err_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
+err_t aParserSTKEphemeris(BKVParser &parser, ScopedPtr<Ephemeris> &ephemeris)
 {
     if(!parser.isOpen())
         return eErrorInvalidParam;
@@ -93,6 +94,7 @@ err_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
         TimePoint scenarioEpoch_{};                            ///< 场景时间点
         EInterpolationMethod interpolationMethod_{eUnknown};   ///< 插值方法
         int interpolationSamplesM1_{5};                        ///< 插值样本数减1(Minus 1)，相当于插值阶数
+        double distanceUnitFactor_{1.0};                       ///< 距离单位的因子
         HBody body_;                                           ///< 天体
         HFrame frame_;                                         ///< 坐标系
         std::vector<Vector3d> positions_;                      ///< 位置序列
@@ -112,7 +114,7 @@ err_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
             StringView key = item.key();
             ValueView value = item.value();
             
-            if(key == "NumberOfEphemerisPoints")
+            if(aEqualsIgnoreCase(key, "NumberOfEphemerisPoints"))
             {
                 data.numberOfEphemerisPoints_ = value.toInt();
                 if(data.numberOfEphemerisPoints_ <= 0){
@@ -123,29 +125,34 @@ err_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
                 data.positions_.reserve(data.numberOfEphemerisPoints_);
                 data.velocities_.reserve(data.numberOfEphemerisPoints_);
             }
-            else if(key == "ScenarioEpoch")
+            else if(aEqualsIgnoreCase(key, "ScenarioEpoch"))
             {
                 data.scenarioEpoch_ = TimePoint::Parse(value.data());
             }
-            else if(key == "InterpolationMethod")
+            else if(aEqualsIgnoreCase(key, "InterpolationMethod"))
             {
                 if(aEqualsIgnoreCase(value, "Lagrange"))
                     data.interpolationMethod_ = eLagrange;
+                else if(aEqualsIgnoreCase(value, "OnePt"))
+                {
+                    // 这个的含义还不清楚，1点插值?
+                    data.interpolationMethod_ = eOnePt;
+                }
                 else
                 {
                     aError("unsupported interpolation method: '%.*s'", (int)value.size(), value.data());
                     return eErrorParse;
                 }
             }
-            else if(key == "InterpolationSamplesM1")
+            else if(aEqualsIgnoreCase(key, "InterpolationSamplesM1"))
             {
                 data.interpolationSamplesM1_ = value.toInt();
             }
-            else if(key == "InterpolationOrder")
+            else if(aEqualsIgnoreCase(key, "InterpolationOrder"))
             {
                 data.interpolationSamplesM1_ = value.toInt();
             }
-            else if(key == "CentralBody")
+            else if(aEqualsIgnoreCase(key, "CentralBody"))
             {
                 // 获取天体对象
                 data.body_ = aGetBody(value.data());
@@ -157,7 +164,7 @@ err_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
                     return eErrorParse;
                 }
             }
-            else if(key == "CoordinateSystem")
+            else if(aEqualsIgnoreCase(key, "CoordinateSystem"))
             {
                 if(data.body_ == nullptr){
                     // 默认使用地球
@@ -186,7 +193,15 @@ err_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
                     return eErrorParse;
                 }
             }
-            else if(key == "EphemerisTimePosVel")
+            else if(aEqualsIgnoreCase(key, "DistanceUnit"))
+            {
+                // 解析距离单位因子
+                if(aEqualsIgnoreCase(value, "Meters"))
+                    data.distanceUnitFactor_ = 1.0;
+                else if(aEqualsIgnoreCase(value, "Kilometers"))
+                    data.distanceUnitFactor_ = 1e3;
+            }
+            else if(aEqualsIgnoreCase(key, "EphemerisTimePosVel"))
             {
                 err_t rc = parsePosVel(
                     parser, 
@@ -200,7 +215,7 @@ err_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
                     return rc;
                 }
             }
-            else if(key == "EphemerisEciTimePosVel")
+            else if(aEqualsIgnoreCase(key, "EphemerisEciTimePosVel"))
             {
                 data.body_ = aGetEarth();
                 data.frame_ = data.body_->makeFrameInertial();
@@ -219,7 +234,7 @@ err_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
         }
         else if(token == BKVParser::eBlockEnd)
         {
-            if(aEqualsIgnoreCase(item.key(), "Ephemeris"))
+            if(aEqualsIgnoreCase(item.value(), "Ephemeris"))
             {
                 break;
             }
@@ -234,8 +249,15 @@ err_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
             return eErrorParse;
         }
     }
-
-    SharedPtr<EphemerisLagrangeVar> ephemerisLagrangeVar = new EphemerisLagrangeVar();
+    // 转换距离单位
+    if(data.distanceUnitFactor_ != 1.0)
+    {
+        for(auto& pos: data.positions_)
+            pos *= data.distanceUnitFactor_;
+        for(auto& vel: data.velocities_)
+            vel *= data.distanceUnitFactor_;
+    }
+    EphemerisLagrangeVar* ephemerisLagrangeVar = new EphemerisLagrangeVar();
     ephemerisLagrangeVar->setEpoch(data.scenarioEpoch_);
     ephemerisLagrangeVar->setTimes(std::move(data.times_));
     ephemerisLagrangeVar->setPositions(std::move(data.positions_));
@@ -245,6 +267,16 @@ err_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
     
     ephemeris = ephemerisLagrangeVar;
     
+    return eNoError;
+}
+
+err_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
+{
+    ScopedPtr<Ephemeris> ephem;
+    err_t rc = aParserSTKEphemeris(parser, ephem);
+    if(rc)
+        return rc;
+    ephemeris = ephem.release();
     return eNoError;
 }
 

@@ -42,7 +42,7 @@ int EphemerisLagrangeVar::findIndex(double delta) const
     // 有效索引值的范围：[0, num_points - 1]
     // 当索引值返回的是num_points-1时，表示刚好在右侧边界上
 
-    int index = static_cast<int>(delta / averageStep_);
+    int index = static_cast<int>((delta - times_.front()) / averageStep_);
     if(index < 0)
         index = 0;
     else if(index > num_points - 1)
@@ -66,8 +66,12 @@ int EphemerisLagrangeVar::findIndex(double delta) const
             ++index;
             if(index > num_points - 1)
                 return num_points;
-            if(times_[index] > delta)
-                return index - 1;
+            if(times_[index] >= delta){
+                if(times_[index] > delta)
+                    return index - 1;
+                else
+                    return index;
+            }
         };
     }
     else
@@ -140,9 +144,23 @@ err_t EphemerisLagrangeVar::getPosVel(const TimePoint &tp, Vector3d &pos, Vector
         int start = index - n / 2;
         start = clamp(start, 0, num_points - n);
         // int end = start + n;
+
+        /// @todo 这里有一点优化空间，可以避免重复计算插值点的系数
         aLagrangeInterpolate(times_.data() + start, positions_[start].data(), n, 3, delta, pos.data());
         aLagrangeInterpolate(times_.data() + start, velocities_[start].data(), n, 3, delta, vel.data());
     }
+    return eNoError;
+}
+
+err_t EphemerisLagrangeVar::getInterval(TimeInterval &interval) const
+{
+    double start = 0;
+    double stop = 0;
+    if(!times_.empty()){
+        start = times_.front();
+        stop = times_.back();
+    }
+    interval.setStartStop(epoch_, start, stop);
     return eNoError;
 }
 

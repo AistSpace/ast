@@ -24,6 +24,7 @@
 #include "AstCore/Ephemeris.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/BuiltinFrame.hpp"
+#include "AstCore/OrbitElement.hpp"
 #include "AstMath/Vector.hpp"
 
 AST_NAMESPACE_BEGIN
@@ -38,26 +39,29 @@ AST_NAMESPACE_BEGIN
 class AST_CORE_API EphemerisTwoBody final: public Ephemeris
 {
 public:
+    static EphemerisTwoBody* New(Frame* frame, const TimePoint& epoch, const CartState& initstate);
+    static EphemerisTwoBody* New(Frame* frame, double gm, const TimePoint& epoch, const CartState& initstate);
+
     EphemerisTwoBody();
-    EphemerisTwoBody(Frame* frame, double gm, const TimePoint& epoch, const Vector3d& initpos, const Vector3d& initvel);
+    EphemerisTwoBody(Frame* frame, double gm, const TimePoint& epoch, const CartState& initstate);
     ~EphemerisTwoBody() override = default;
     void setFrame(Frame* frame){ frame_ = frame; }
     void setGM(double gm){ gm_ = gm; }
     double getGM() const{ return gm_; }
     void setEpoch(const TimePoint& epoch){ epoch_ = epoch; }
     const TimePoint& getEpoch() const{ return epoch_; }
-    void setOrbitState(const Vector3d& pos, const Vector3d& vel){ initpos_ = pos; initvel_ = vel; }
-    void getOrbitState(Vector3d& pos, Vector3d& vel) const{ pos = initpos_; vel = initvel_; }
+    void setOrbitState(const CartState& initstate){ initstate_ = initstate; }
+    void getOrbitState(CartState& initstate) const{ initstate = initstate_; }
 public:
     Frame* getFrame() const override;
     err_t getPos(const TimePoint& tp, Vector3d& pos) const override;
     err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
+    err_t getInterval(TimeInterval& interval) const override;
 protected:
     SharedPtr<Frame> frame_{aFrameECI()};
     double           gm_{0.0};
     TimePoint        epoch_{};
-    Vector3d         initpos_{};
-    Vector3d         initvel_{};
+    CartState        initstate_{};
 };
 
 /*! @} */

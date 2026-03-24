@@ -69,6 +69,10 @@ public:
     /// @return 预报坐标系指针
     Frame* getPropagationFrame() const { return propagationFrame_.get(); }
 
+    /// @brief 设置预报坐标系
+    /// @param frame 预报坐标系指针
+    void setPropagationFrame(Frame* frame) { propagationFrame_ = frame; }
+
     /// @brief 获取预报步长
     /// @return 预报步长
     double getStepSize() const { return stepSize_; }

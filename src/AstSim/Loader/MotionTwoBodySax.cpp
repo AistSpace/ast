@@ -42,14 +42,17 @@ err_t MotionTwoBodySax::keyValue(StringView key, const ValueView &value)
         timeStep_ = value.toDouble();
     }else if(aEqualsIgnoreCase(key, "OrbElemCoordSys")){
         orbElemCoordSys_ = value.toString();
+        /// @todo 这里需要根据天体来获取坐标系
         orbElemCoordAxes_ = aGetAxes(orbElemCoordSys_);
     }else if(aEqualsIgnoreCase(key, "PropagationCoordSys")){
         propagationCoordSys_ = value.toString();
+        /// @todo 这里需要根据天体来获取坐标系
         propagationCoordAxes_ = aGetAxes(propagationCoordSys_);
     }else if(aEqualsIgnoreCase(key, "DisplayCoordType")){
         displayCoordType_ = value.toInt();
     }else if(aEqualsIgnoreCase(key, "DisplayCoordSys")){
         displayCoordSys_ = value.toString();
+        /// @todo 这里需要根据天体来获取坐标系
         displayCoordAxes_ = aGetAxes(displayCoordSys_);
     }else if(aEqualsIgnoreCase(key, "EllipseType")){
         // @todo 这是什么??? 椭圆类型是什么意思???
@@ -60,8 +63,23 @@ err_t MotionTwoBodySax::keyValue(StringView key, const ValueView &value)
 
 err_t MotionTwoBodySax::getMotion(ScopedPtr<MotionProfile>& motion)
 {
+    if(vehiclePathData_.centralBody_ == nullptr){
+        aError("vehiclePathData's body is nullptr");
+        return eErrorNullPtr;
+    }
+    if(!orbElemCoordAxes_)
+    {
+        aError("orbElemCoordAxes_ is nullptr");
+        return eErrorNullPtr;
+    }
+    if(!propagationCoordAxes_)
+    {
+        aError("propagationCoordAxes_ is nullptr");
+        return eErrorNullPtr;
+    }
     // 这里可以通过类型来判断是否需要新建MotionProfile
     auto motionTwoBody = MotionTwoBody::New();
+    auto body = vehiclePathData_.centralBody_;
     ModOrbElem modOrbElem;
     modOrbElem.rp() = radiusOfPerigee_;
     modOrbElem.e() = eccentricity_;
@@ -69,13 +87,14 @@ err_t MotionTwoBodySax::getMotion(ScopedPtr<MotionProfile>& motion)
     modOrbElem.raan() = rightAscension_;
     modOrbElem.argper() = argOfPerigee_;
     modOrbElem.trueA() = trueAnomaly_;
-    auto frame = vehiclePathData_.centralBody_->makeFrame(orbElemCoordAxes_);
+    auto frame = body->makeFrame(orbElemCoordAxes_);
     SharedPtr<StateKeplerian> stateKeplerian = StateKeplerian::New();  // 一定是轨道根数吗??
     stateKeplerian->setFrame(frame);
     stateKeplerian->setState(modOrbElem);
     stateKeplerian->setStateEpoch(makeStateEpoch());
     motionTwoBody->setInitialState(stateKeplerian);
     motionTwoBody->setInterval(makeInterval());
+    motionTwoBody->setPropagationFrame(body->makeFrame(propagationCoordAxes_));
 
     motion = motionTwoBody;
     return eNoError;

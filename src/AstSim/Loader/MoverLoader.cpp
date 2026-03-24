@@ -22,6 +22,7 @@
 #include "CommonlyUsedHeaders.hpp"
 #include "MotionTwoBodySax.hpp"
 #include "MotionHPOPSax.hpp"
+#include "AstCore/STKEphemerisFileParser.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -132,6 +133,13 @@ err_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
         }
     }while(token != BKVParser::eEOF);
     return eNoError;
+}
+
+
+err_t _aLoadEphemeris(BKVParser& parser, Mover& mover)
+{
+    err_t rc = aParserSTKEphemeris(parser, mover.getEphemerisHandle());
+    return rc;
 }
 
 err_t _aLoadMassProperties(BKVParser& parser, Mover& mover)
@@ -342,7 +350,12 @@ err_t _aLoadSatellite(BKVParser& parser, Mover& mover)
                 if(err_t rc = _aLoadVehiclePath(parser, mover)){
                     return rc;
                 }
-            }else if(aEqualsIgnoreCase(item.value(), "MassProperties")){
+            }else if(aEqualsIgnoreCase(item.value(), "Ephemeris")){
+                if(err_t rc = _aLoadEphemeris(parser, mover)){
+                    return rc;
+                }
+            }
+            else if(aEqualsIgnoreCase(item.value(), "MassProperties")){
                 if(err_t rc = _aLoadMassProperties(parser, mover)){
                     return rc;
                 }
@@ -386,6 +399,7 @@ err_t aLoadMover(StringView filepath, Mover &mover)
     BKVParser::EToken token;
     BKVParser parser(filepath);
     if(!parser.isOpen()){
+        aError("failed to open file '%.*s'", (int)filepath.size(), filepath.data());
         return eErrorInvalidFile;
     }
     do{

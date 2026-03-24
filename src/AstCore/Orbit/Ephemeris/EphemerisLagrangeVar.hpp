@@ -45,6 +45,7 @@ public:
     Frame* getFrame() const override;
     err_t getPos(const TimePoint& tp, Vector3d& pos) const override;
     err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
+    err_t getInterval(TimeInterval& interval) const override;
 public:
     void setFrame(Frame* frame){frame_ = frame;}
     void setTimes(const std::vector<double>& times);

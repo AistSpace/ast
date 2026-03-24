@@ -22,28 +22,28 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t aTimeIntervalFormat(const TimeInterval &interval, std::string &strStart, std::string &strEnd)
+err_t aTimeIntervalFormat(const TimeInterval &interval, std::string &strStart, std::string &strStop)
 {
-    TimePoint start, end;
+    TimePoint start, stop;
     start = interval.getStart();
-    end = interval.getEnd();
+    stop = interval.getStop();
     err_t rc = aTimePointFormat(start, strStart);
-    rc |= aTimePointFormat(end, strEnd);
+    rc |= aTimePointFormat(stop, strStop);
     return rc;
 }
 
-err_t aTimeIntervalParse(StringView strStart, StringView strEnd, TimeInterval &interval)
+err_t aTimeIntervalParse(StringView strStart, StringView strStop, TimeInterval &interval)
 {
-    TimePoint start, end;
+    TimePoint start, stop;
     err_t rc = aTimePointParse(strStart, start);
     if(rc != 0){
         return rc;
     }
-    rc = aTimePointParse(strEnd, end);
+    rc = aTimePointParse(strStop, stop);
     if(rc != 0){
         return rc;
     }
-    interval = TimeInterval(start, end);
+    interval = TimeInterval(start, stop);
     return 0;
 }
 

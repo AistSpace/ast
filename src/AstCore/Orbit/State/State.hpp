@@ -120,6 +120,12 @@ public:
     /// @return err_t 错误码
     err_t getStateInBodyInertial(Body* body, CartState& state) const;
 
+    /// @brief 获取在给定坐标系下的状态量
+    /// @param frame 坐标系
+    /// @param state 状态
+    /// @return err_t 错误码
+    err_t getStateIn(Frame* frame, CartState& state) const;
+
 public:
 
 

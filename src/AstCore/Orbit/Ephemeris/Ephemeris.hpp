@@ -22,6 +22,8 @@
 
 #include "AstGlobal.h"
 #include "AstCore/Point.hpp"
+#include "AstCore/TimeInterval.hpp"
+
 
 AST_NAMESPACE_BEGIN
 
@@ -44,6 +46,8 @@ public:
     virtual Frame* getFrame() const override = 0;
     virtual err_t getPos(const TimePoint& tp, Vector3d& pos) const override = 0;
     virtual err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override = 0;
+public:
+    virtual err_t getInterval(TimeInterval& interval) const = 0;
 };
 
 /*! @} */

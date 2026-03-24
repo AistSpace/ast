@@ -20,6 +20,7 @@
 
 #include "AstSim/Mover.hpp"
 #include "AstSim/MoverLoader.hpp"
+#include "AstCore/RunTime.hpp"
 #include "AstTest/Test.h"
 #include "AstUtil/StringView.hpp"
 #include <string>
@@ -30,20 +31,20 @@ AST_USING_NAMESPACE
 
 TEST(MoverLoaderTest, LoadSatellite)
 {
-    if(!aIsGithubCI()) GTEST_SKIP();
+    // if(!aIsGithubCI()) GTEST_SKIP();
 
+    aInitialize();
+    std::vector<std::string> files = aTestGetConfigStringVector("STK_SATELLITE_FILES");
+    
+    for(auto& file: files)
     {
-        const std::string satelliteFile = "data/Test/STK/Satellite.sa";
+        printf("loading %s\n", file.c_str());
         Mover mover;
-        err_t ret = aLoadMover(satelliteFile, mover);
+        err_t ret = aLoadMover(file, mover);
         EXPECT_EQ(ret, eNoError);
+        printf("loaded %s\n", file.c_str());
     }
-    {
-        const std::string satelliteFile = "data/Test/STK/SatelliteHPOP.sa";
-        Mover mover;
-        err_t ret = aLoadMover(satelliteFile, mover);
-        EXPECT_EQ(ret, eNoError);
-    }
+    
 }
 
 GTEST_MAIN();

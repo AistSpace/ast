@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "TimePoint.hpp"
 #include <string>
+#include <limits>
 
 AST_NAMESPACE_BEGIN
 
@@ -58,8 +59,13 @@ public:
     TimeInterval() = default;
     ~TimeInterval() = default;
 
-    TimeInterval(const TimePoint& start, const TimePoint& end){
-        this->setStartEnd(start, end);
+    TimeInterval(const TimePoint& start, const TimePoint& stop){
+        this->setStartStop(start, stop);
+    }
+
+    TimeInterval(const TimePoint& epoch, double start, double stop)
+    {
+        this->setStartStop(epoch, start, stop);
     }
 
     /// @brief 时间区间的开始时间点
@@ -69,21 +75,36 @@ public:
     const TimePoint& getStart() const{return reinterpret_cast<const TimePoint&>(*this);}
 
     /// @brief 时间区间的结束时间点
-    TimePoint end() const{return {epoch_, end_};}
+    TimePoint stop() const{return {epoch_, stop_};}
 
     /// @brief 时间区间的结束时间点
-    TimePoint getEnd() const{return {epoch_, end_};}
+    TimePoint getStop() const{return {epoch_, stop_};}
 
 
     /// @brief 设置时间区间的开始时间点和结束时间点
-    void setStartEnd(const TimePoint& start, const TimePoint& end){
+    void setStartStop(const TimePoint& start, const TimePoint& stop){
         epoch_ = start.integerPart();
         start_ = start.fractionalPart();
-        end_ = end.fractionalPart() + (end.integerPart() - start.integerPart());
+        stop_ = stop.fractionalPart() + (stop.integerPart() - start.integerPart());
+    }
+
+    /// @brief 设置时间区间的开始时间点和结束时间点
+    void setStartStop(const TimePoint& epoch, double start, double stop){
+        epoch_ = epoch.integerPart();
+        start_ = epoch.fractionalPart() + start;
+        stop_ = epoch.fractionalPart() + stop;
+    }
+
+    /// @brief 设置时间区间为无限时间区间
+    void setInfinite()
+    {
+        epoch_ = 0;
+        start_ = -std::numeric_limits<double>::infinity();
+        stop_ = +std::numeric_limits<double>::infinity();
     }
 
     /// @brief 时间区间的持续时间（秒）
-    double duration() const{return end_ - start_;}
+    double duration() const{return stop_ - start_;}
 
 
     /// @brief 将时间区间转换为字符串
@@ -96,7 +117,7 @@ public:
 protected:
     int64_t epoch_;     ///< 时间区间的基准时间点（秒，从J2000.0 TAI 开始）
     double  start_;     ///< 相对开始时间(s)
-    double  end_;       ///< 相对结束时间(s)
+    double  stop_;      ///< 相对结束时间(s)
 };
 
 

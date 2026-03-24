@@ -99,13 +99,22 @@ err_t State::getStateInBodyInertial(Body * body, CartState & state) const
     if(!body)
         return eErrorNullInput;
     auto frameInertial = body->makeFrameInertial();
-    KinematicTransform transform;
-    err_t rc = aFrameTransform(frame_, frameInertial, getStateEpoch(), transform);
-    if(rc) return rc;
-    state = transform.transformPositionVelocity(state);
-    return eNoError;
+    return getStateIn(frameInertial, state);
 }
 
+err_t State::getStateIn(Frame *frame, CartState &state) const
+{
+    err_t rc = getState(state);
+    if(rc) return rc;
+    if(!frame)
+        return eErrorNullInput;
+    KinematicTransform transform;
+    rc = aFrameTransform(frame_, frame, getStateEpoch(), transform);
+    if(rc) return rc;
+    state = transform.transformPositionVelocity(state);
+    if(rc) return rc;
+    return eNoError;
+}
 
 #if 0 
 
