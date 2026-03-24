@@ -49,6 +49,10 @@ elseif is_plat("windows") then
         -- ,"/wd4244"           -- 忽略警告：转换可能丢失数据
         -- ,"/wd4090"           -- 忽略警告：不同的“const”限定符
     )
+    -- add_cxxflags(
+    --     "/analyze"               -- 开启代码分析
+    -- )
+    
     -- for clang
     add_cxflags(
         "-Wno-missing-braces"       -- 忽略警告：缺少大括号

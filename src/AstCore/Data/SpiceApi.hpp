@@ -56,8 +56,8 @@ public:
     /// @brief 默认构造函数
     SpiceApi() = default;
 
-    /// @param shouldload 是否自动加载库
-    SpiceApi(bool shouldload);
+    /// @param shouldLoadDynamicLib 是否自动加载动态库
+    SpiceApi(bool shouldLoadDynamicLib);
     
     ~SpiceApi();
 

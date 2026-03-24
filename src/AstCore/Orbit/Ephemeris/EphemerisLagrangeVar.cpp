@@ -37,29 +37,43 @@ int EphemerisLagrangeVar::findIndex(double delta) const
 
     const int num_points = static_cast<int>(times_.size());
     
-    // 根据平均步长猜测初始索引，然后调整到有效范围
-    // 有效索引值的范围：[0, num_points - 2]
-    // 要求：times_[index] <= delta < times_[index + 1]
+    // 根据平均步长猜测初始索引，然后调整索引直到满足以下条件
+    // 条件：times_[index] <= delta < times_[index + 1]
+    // 有效索引值的范围：[0, num_points - 1]
+    // 当索引值返回的是num_points-1时，表示刚好在右侧边界上
 
     int index = static_cast<int>(delta / averageStep_);
     if(index < 0)
         index = 0;
-    else if(index > num_points - 2)
-        index = num_points - 2;
+    else if(index > num_points - 1)
+        index = num_points - 1;
 
     if(times_[index] > delta)
     {
-        do{
+        while(1)
+        {
             --index;
-        }while(index >= 0 && times_[index] > delta);
+            if(index<0)
+                return -1;
+            if(times_[index] <= delta)
+                return index;
+        };
     }
-    else if(times_[index + 1] <= delta)
+    else if(times_[index] < delta)
     {
-        do{
+        while(1)
+        {
             ++index;
-        }while(index <= num_points - 2 && times_[index + 1] <= delta);
+            if(index > num_points - 1)
+                return num_points;
+            if(times_[index] > delta)
+                return index - 1;
+        };
     }
-    return index;
+    else
+    {
+        return index;
+    }
 }
 
 err_t EphemerisLagrangeVar::getPos(const TimePoint &tp, Vector3d &pos) const
@@ -73,8 +87,8 @@ err_t EphemerisLagrangeVar::getPos(const TimePoint &tp, Vector3d &pos) const
 
     const int index = findIndex(delta);
     
-    // 有效索引值的范围：[0, num_points - 2]
-    if(index < 0 || index > num_points - 2)
+    // 有效索引值的范围：[0, num_points - 1]
+    if(index < 0 || index > num_points - 1)
     {
         return eErrorOutOfRange;
     }
@@ -108,8 +122,8 @@ err_t EphemerisLagrangeVar::getPosVel(const TimePoint &tp, Vector3d &pos, Vector
 
     const int index = findIndex(delta);
     
-    // 有效索引值的范围：[0, num_points - 2]
-    if(index < 0 || index > num_points - 2)
+    // 有效索引值的范围：[0, num_points - 1]
+    if(index < 0 || index > num_points - 1)
     {
         return eErrorOutOfRange;
     }
@@ -122,7 +136,7 @@ err_t EphemerisLagrangeVar::getPosVel(const TimePoint &tp, Vector3d &pos, Vector
         return eNoError;
     }else{ // 插值
         // 插值点数n
-        int n = std::max(interpolateOrder_ + 1, static_cast<int>(positions_.size()));
+        int n = std::min(interpolateOrder_ + 1, num_points);
         int start = index - n / 2;
         start = clamp(start, 0, num_points - n);
         // int end = start + n;

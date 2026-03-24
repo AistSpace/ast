@@ -66,7 +66,7 @@ protected:
     std::vector<Vector3d> velocities_;              ///< 速度(单位：米/秒)
     TimePoint             epoch_{};                 ///< 历元时间
     double                averageStep_{60};         ///< 平均时间步长，用于估计插值开始的时间
-    int                   interpolateOrder_{1};     ///< 插值阶数
+    int                   interpolateOrder_{5};     ///< 插值阶数
 };
 
 

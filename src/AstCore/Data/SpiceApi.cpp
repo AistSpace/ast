@@ -90,14 +90,16 @@ SpiceApi* SpiceApi::Instance()
     return &instance_;
 }
 
-SpiceApi::SpiceApi(bool shouldload)
+SpiceApi::SpiceApi(bool shouldLoadDynamicLib)
 {
-    if(shouldload)
+    if(shouldLoadDynamicLib)
     {
+        // 遍历所配置的动态库路径
         auto lispaths = aGetConfigStringVector("CSPICE_LIBS");
         if(!lispaths.empty()){
             tryload(lispaths);
         }else{
+            // 尝试加载默认动态库
             load("cspice");
         }
     }
