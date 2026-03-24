@@ -1,7 +1,7 @@
 var classast_1_1SpiceApi =
 [
     [ "SpiceApi", "classast_1_1SpiceApi.html#abaeffe84eeb2aa37c8ab7dc167c5af64", null ],
-    [ "SpiceApi", "classast_1_1SpiceApi.html#acd2c277fd7c12f7e4c5a90208a326467", null ],
+    [ "SpiceApi", "classast_1_1SpiceApi.html#a90c2726ce57fa70e07ea2f45b695773c", null ],
     [ "erract", "classast_1_1SpiceApi.html#aee92aed76cbcbded2d70a9103a5a74e6", null ],
     [ "failed", "classast_1_1SpiceApi.html#af7ac4a12c1b7a3ac1b2e85d46462c456", null ],
     [ "furnsh", "classast_1_1SpiceApi.html#aca034c6c56c91bb2c314775763605dd4", null ],

@@ -163,7 +163,7 @@ var searchData=
   ['sortblocks_160',['sortBlocks',['../classast_1_1BlockDynamicSystem.html#a64919d6d8d66ff582a024a06db8e13da',1,'ast::BlockDynamicSystem']]],
   ['spaceweather_161',['spaceWeather',['../classast_1_1DataContext.html#ab522069b2cc15392f226c659e464e29e',1,'ast::DataContext']]],
   ['speed_162',['Speed',['../classast_1_1Dimension.html#a2c300cd84f7c3733747a74580a7f678a',1,'ast::Dimension']]],
-  ['spiceapi_163',['SpiceApi',['../classast_1_1SpiceApi.html#abaeffe84eeb2aa37c8ab7dc167c5af64',1,'ast::SpiceApi::SpiceApi()=default'],['../classast_1_1SpiceApi.html#acd2c277fd7c12f7e4c5a90208a326467',1,'ast::SpiceApi::SpiceApi(bool shouldload)']]],
+  ['spiceapi_163',['SpiceApi',['../classast_1_1SpiceApi.html#abaeffe84eeb2aa37c8ab7dc167c5af64',1,'ast::SpiceApi::SpiceApi()=default'],['../classast_1_1SpiceApi.html#a90c2726ce57fa70e07ea2f45b695773c',1,'ast::SpiceApi::SpiceApi(bool shouldLoadDynamicLib)']]],
   ['spkapo_164',['spkapo',['../group__Spice.html#ga2290dd9d542c794b8ff1e3f5404fcc48',1,'ast']]],
   ['spkgeo_165',['spkgeo',['../classast_1_1SpiceApi.html#a5730c7dfbcb5dcb699300de656bfb8ac',1,'ast::SpiceApi']]],
   ['spkpos_166',['spkpos',['../group__Spice.html#ga1ca1a0891d3cd67d545a68f198f74c5e',1,'ast']]],

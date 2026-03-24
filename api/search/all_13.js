@@ -273,7 +273,7 @@ var searchData=
   ['spheroidshape_270',['SpheroidShape',['../classast_1_1SpheroidShape.html',1,'ast']]],
   ['spheroidshape_2ehpp_271',['SpheroidShape.hpp',['../SpheroidShape_8hpp.html',1,'']]],
   ['spice_272',['Spice',['../group__Spice.html',1,'']]],
-  ['spiceapi_273',['SpiceApi',['../classast_1_1SpiceApi.html',1,'ast::SpiceApi'],['../classast_1_1SpiceApi.html#abaeffe84eeb2aa37c8ab7dc167c5af64',1,'ast::SpiceApi::SpiceApi()=default'],['../classast_1_1SpiceApi.html#acd2c277fd7c12f7e4c5a90208a326467',1,'ast::SpiceApi::SpiceApi(bool shouldload)']]],
+  ['spiceapi_273',['SpiceApi',['../classast_1_1SpiceApi.html',1,'ast::SpiceApi'],['../classast_1_1SpiceApi.html#abaeffe84eeb2aa37c8ab7dc167c5af64',1,'ast::SpiceApi::SpiceApi()=default'],['../classast_1_1SpiceApi.html#a90c2726ce57fa70e07ea2f45b695773c',1,'ast::SpiceApi::SpiceApi(bool shouldLoadDynamicLib)']]],
   ['spiceapi_2ecpp_274',['SpiceApi.cpp',['../SpiceApi_8cpp.html',1,'']]],
   ['spiceapi_2ehpp_275',['SpiceApi.hpp',['../SpiceApi_8hpp.html',1,'']]],
   ['spicebodyregistry_276',['SpiceBodyRegistry',['../classast_1_1SpiceBodyRegistry.html',1,'ast']]],
