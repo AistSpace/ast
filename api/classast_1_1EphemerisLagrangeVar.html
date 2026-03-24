@@ -129,6 +129,8 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a3d08b5a6b14901148c8695af08cbdfc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adca099841a2067f0aef417440ccdbf7f" id="r_adca099841a2067f0aef417440ccdbf7f"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adca099841a2067f0aef417440ccdbf7f">getPosVel</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) const override</td></tr>
 <tr class="separator:adca099841a2067f0aef417440ccdbf7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af66ef18f17f6453e13d4ddc4cc42ceb6" id="r_af66ef18f17f6453e13d4ddc4cc42ceb6"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af66ef18f17f6453e13d4ddc4cc42ceb6">getInterval</a> (<a class="el" href="classast_1_1TimeInterval.html">TimeInterval</a> &amp;interval) const override</td></tr>
+<tr class="separator:af66ef18f17f6453e13d4ddc4cc42ceb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c9b5d3c3450ae69a60b81a9dfde02d7" id="r_a8c9b5d3c3450ae69a60b81a9dfde02d7"><td class="memItemLeft" align="right" valign="top"><a id="a8c9b5d3c3450ae69a60b81a9dfde02d7" name="a8c9b5d3c3450ae69a60b81a9dfde02d7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setFrame</b> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame)</td></tr>
 <tr class="separator:a8c9b5d3c3450ae69a60b81a9dfde02d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -290,6 +292,33 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 
 </div>
 </div>
+<a id="af66ef18f17f6453e13d4ddc4cc42ceb6" name="af66ef18f17f6453e13d4ddc4cc42ceb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af66ef18f17f6453e13d4ddc4cc42ceb6">&#9670;&#160;</a></span>getInterval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::EphemerisLagrangeVar::getInterval </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1TimeInterval.html">TimeInterval</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>interval</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classast_1_1Ephemeris.html">ast::Ephemeris</a>.</p>
+
+</div>
+</div>
 <a id="a3d08b5a6b14901148c8695af08cbdfc1" name="a3d08b5a6b14901148c8695af08cbdfc1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3d08b5a6b14901148c8695af08cbdfc1">&#9670;&#160;</a></span>getPos()</h2>
 
@@ -373,6 +402,7 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">待办事项</a></b></dt><dd>这里有一点优化空间，可以避免重复计算插值点的系数 </dd></dl>
 
 <p>实现了 <a class="el" href="classast_1_1Ephemeris.html#ab6701630093566ad5068dc7426398a2b">ast::Ephemeris</a>.</p>
 

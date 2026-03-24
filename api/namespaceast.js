@@ -663,7 +663,8 @@ var namespaceast =
     ] ],
     [ "EInterpolationMethod", "namespaceast.html#ad5260f2008c9ceaced8a537b5877c379", [
       [ "eUnknown", "namespaceast.html#ad5260f2008c9ceaced8a537b5877c379aaf8a9112a5a055e50fee0d5ddad77ae5", null ],
-      [ "eLagrange", "namespaceast.html#ad5260f2008c9ceaced8a537b5877c379ab047d1c7477202d20a0272d6dc5f8126", null ]
+      [ "eLagrange", "namespaceast.html#ad5260f2008c9ceaced8a537b5877c379ab047d1c7477202d20a0272d6dc5f8126", null ],
+      [ "eOnePt", "namespaceast.html#ad5260f2008c9ceaced8a537b5877c379aa44aabb95f9e0b6818decb7a90a6562d", null ]
     ] ],
     [ "ELogicalOperatorType", "namespaceast.html#a65999e43b74f73ebbbf95a9eea2e4269", [
       [ "eAnd", "namespaceast.html#a65999e43b74f73ebbbf95a9eea2e4269ae8b511f162a3e5ae4ba68f1661a5ce5a", null ],
@@ -1162,7 +1163,7 @@ var namespaceast =
     [ "aInitializeByConfig", "namespaceast.html#a74d61ba4cc8eb10407f626364a293438", null ],
     [ "aInitializeByConfig", "group__Data.html#gaabcb6d72bbf7efcce989334376fb071f", null ],
     [ "aIsCI", "group__Platform.html#ga1b536eb0b193fd88914dd12e6895c229", null ],
-    [ "aIsClose", "namespaceast.html#a7961c646d34bf7ca8f9efac18fd43a70", null ],
+    [ "aIsClose", "namespaceast.html#a47e95e3bde022120d41e4da15744faba", null ],
     [ "aIsFile", "group__Platform.html#gaaf498fb8090810fb31ae8e36c9bf3942", null ],
     [ "aIsGithubCI", "group__Platform.html#ga896cb0f1481cc05e35384abf68442985", null ],
     [ "aIsGitlabCI", "group__Platform.html#ga984700aaba6b3b8595fc90eeae730610", null ],
@@ -1326,6 +1327,7 @@ var namespaceast =
     [ "aParsePolynomial", "group__Util.html#ga063244ad55f294e65da67be4f25c5d0d", null ],
     [ "aParsePolynomial", "group__Util.html#gaf5af162900868105143c862ef10787b5", null ],
     [ "aParserSTKEphemeris", "namespaceast.html#a6135778a4981ccd01f8368e87f2a53da", null ],
+    [ "aParserSTKEphemeris", "namespaceast.html#a2068c4237872b8bd070fea901635f6d1", null ],
     [ "aParserSTKEphemeris", "namespaceast.html#a50d86ed1160204e1dc08ea5f54f25994", null ],
     [ "aPeriAltApoAltToEcc", "group__Orbit.html#ga9c64c5e4288ce21b299cc65b238f643b", null ],
     [ "aPeriAltToApoAlt", "group__Orbit.html#ga93f5abe4799006f1ef0dc374eebecbc2", null ],

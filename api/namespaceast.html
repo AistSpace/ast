@@ -1212,8 +1212,9 @@ typedef std::array&lt; <a class="el" href="classast_1_1AEP8Data.html">AEP8Data</
 , <b>eUser</b> = 2
  }</td></tr>
 <tr class="separator:a90828bced58e37684b1e52e4d5597c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5260f2008c9ceaced8a537b5877c379" id="r_ad5260f2008c9ceaced8a537b5877c379"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5260f2008c9ceaced8a537b5877c379">EInterpolationMethod</a> { <b>eUnknown</b> =-1
+<tr class="memitem:ad5260f2008c9ceaced8a537b5877c379" id="r_ad5260f2008c9ceaced8a537b5877c379"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5260f2008c9ceaced8a537b5877c379">EInterpolationMethod</a> { <a class="el" href="#ad5260f2008c9ceaced8a537b5877c379aaf8a9112a5a055e50fee0d5ddad77ae5">eUnknown</a> =-1
 , <a class="el" href="#ad5260f2008c9ceaced8a537b5877c379ab047d1c7477202d20a0272d6dc5f8126">eLagrange</a>
+, <b>eOnePt</b>
  }</td></tr>
 <tr class="separator:ad5260f2008c9ceaced8a537b5877c379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad226f5138693fa4cb352f8c2201281df" id="r_ad226f5138693fa4cb352f8c2201281df"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad226f5138693fa4cb352f8c2201281df">EDeDataCode</a> { <br />
@@ -2302,6 +2303,8 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>aSpiceGetPosVelICRF<
 <tr class="separator:ga1113e5f1f7eb8d2579d81f23832d2a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50d86ed1160204e1dc08ea5f54f25994" id="r_a50d86ed1160204e1dc08ea5f54f25994"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50d86ed1160204e1dc08ea5f54f25994">aParserSTKEphemeris</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath, <a class="el" href="classast_1_1SharedPtr.html">HEphemeris</a> &amp;ephemeris)</td></tr>
 <tr class="separator:a50d86ed1160204e1dc08ea5f54f25994"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2068c4237872b8bd070fea901635f6d1" id="r_a2068c4237872b8bd070fea901635f6d1"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2068c4237872b8bd070fea901635f6d1">aParserSTKEphemeris</a> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1ScopedPtr.html">ScopedPtr</a>&lt; <a class="el" href="classast_1_1Ephemeris.html">Ephemeris</a> &gt; &amp;ephemeris)</td></tr>
+<tr class="separator:a2068c4237872b8bd070fea901635f6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6135778a4981ccd01f8368e87f2a53da" id="r_a6135778a4981ccd01f8368e87f2a53da"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6135778a4981ccd01f8368e87f2a53da">aParserSTKEphemeris</a> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1SharedPtr.html">HEphemeris</a> &amp;ephemeris)</td></tr>
 <tr class="separator:a6135778a4981ccd01f8368e87f2a53da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94f4cf75f889ec56c67b248dea11ef71" id="r_a94f4cf75f889ec56c67b248dea11ef71"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94f4cf75f889ec56c67b248dea11ef71">loadSpaceWeather</a> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, int numPoints, std::vector&lt; <a class="el" href="structast_1_1SpaceWeather_1_1Entry.html">SpaceWeather::Entry</a> &gt; &amp;data)</td></tr>
@@ -3161,8 +3164,8 @@ A_ALWAYS_INLINE <a class="el" href="classast_1_1MatrixMN.html">Matrix3d</a>&#160
 <tr class="memitem:gab0dea09a12487e53d0b32c0af1d2d597" id="r_gab0dea09a12487e53d0b32c0af1d2d597"><td class="memTemplParams" colspan="2">template&lt;typename Func &gt; </td></tr>
 <tr class="memitem:gab0dea09a12487e53d0b32c0af1d2d597"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NLE.html#gab0dea09a12487e53d0b32c0af1d2d597">secant</a> (Func f, double xa, double xb, double xtol, double rtol, int iter, scipy_zeros_info &amp;solver_stats)</td></tr>
 <tr class="separator:gab0dea09a12487e53d0b32c0af1d2d597"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7961c646d34bf7ca8f9efac18fd43a70" id="r_a7961c646d34bf7ca8f9efac18fd43a70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7961c646d34bf7ca8f9efac18fd43a70">aIsClose</a> (double a, double b, double relTol=kDefaultRelTol, double absTol=kDefaultAbsTol)</td></tr>
-<tr class="separator:a7961c646d34bf7ca8f9efac18fd43a70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47e95e3bde022120d41e4da15744faba" id="r_a47e95e3bde022120d41e4da15744faba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47e95e3bde022120d41e4da15744faba">aIsClose</a> (double a, double b, double relTol=kDefaultRelTol, double absTol=kDefaultAbsTol)</td></tr>
+<tr class="separator:a47e95e3bde022120d41e4da15744faba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0bc321a56f46458b70089851dd59ac0b" id="r_ga0bc321a56f46458b70089851dd59ac0b"><td class="memTemplParams" colspan="2">
 template&lt;typename Func &gt; </td></tr>
 <tr class="memitem:ga0bc321a56f46458b70089851dd59ac0b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classast_1_1ODEGeneric.html">ODEGeneric</a>&lt; Func &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>make_ode</b> (Func func, int dim)</td></tr>
@@ -3562,6 +3565,9 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadEventTime</b> 
 <tr class="memitem:acbacec34570d65a2a49fa7c8b6b3c7d0" id="r_acbacec34570d65a2a49fa7c8b6b3c7d0"><td class="memItemLeft" align="right" valign="top"><a id="acbacec34570d65a2a49fa7c8b6b3c7d0" name="acbacec34570d65a2a49fa7c8b6b3c7d0"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadEventIntervalImplicit</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventInterval.html">EventInterval</a> &gt; &amp;eventInterval)</td></tr>
 <tr class="separator:acbacec34570d65a2a49fa7c8b6b3c7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79c0a25322c9253674d32bea5209a0d0" id="r_a79c0a25322c9253674d32bea5209a0d0"><td class="memItemLeft" align="right" valign="top"><a id="a79c0a25322c9253674d32bea5209a0d0" name="a79c0a25322c9253674d32bea5209a0d0"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadInterval</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1TimeInterval.html">TimeInterval</a> &amp;interval)</td></tr>
+<tr class="separator:a79c0a25322c9253674d32bea5209a0d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e5ccc90a1c4536f68c41a1bffef122d" id="r_a6e5ccc90a1c4536f68c41a1bffef122d"><td class="memItemLeft" align="right" valign="top"><a id="a6e5ccc90a1c4536f68c41a1bffef122d" name="a6e5ccc90a1c4536f68c41a1bffef122d"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadEventInterval</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1EventInterval.html">EventInterval</a> &gt; &amp;eventInterval)</td></tr>
 <tr class="separator:a6e5ccc90a1c4536f68c41a1bffef122d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3580,6 +3586,9 @@ err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadPassDefn</b> (
 <tr class="memitem:a7cc80d792f75d4cc8c4e5f4f8e888328" id="r_a7cc80d792f75d4cc8c4e5f4f8e888328"><td class="memItemLeft" align="right" valign="top"><a id="a7cc80d792f75d4cc8c4e5f4f8e888328" name="a7cc80d792f75d4cc8c4e5f4f8e888328"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadVehiclePath</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
 <tr class="separator:a7cc80d792f75d4cc8c4e5f4f8e888328"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50b974c0a7fe78d6cc15427ccd182062" id="r_a50b974c0a7fe78d6cc15427ccd182062"><td class="memItemLeft" align="right" valign="top"><a id="a50b974c0a7fe78d6cc15427ccd182062" name="a50b974c0a7fe78d6cc15427ccd182062"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadEphemeris</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
+<tr class="separator:a50b974c0a7fe78d6cc15427ccd182062"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5860f25baf938e66ddf10d09c0f02748" id="r_a5860f25baf938e66ddf10d09c0f02748"><td class="memItemLeft" align="right" valign="top"><a id="a5860f25baf938e66ddf10d09c0f02748" name="a5860f25baf938e66ddf10d09c0f02748"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadMassProperties</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
 <tr class="separator:a5860f25baf938e66ddf10d09c0f02748"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -4915,7 +4924,9 @@ DataDirFunc&#160;</td><td class="memItemRight" valign="bottom"><b>fDataDir</b> {
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ad5260f2008c9ceaced8a537b5877c379ab047d1c7477202d20a0272d6dc5f8126" name="ad5260f2008c9ceaced8a537b5877c379ab047d1c7477202d20a0272d6dc5f8126"></a>eLagrange&#160;</td><td class="fielddoc"><p>未知插值方法 </p>
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ad5260f2008c9ceaced8a537b5877c379aaf8a9112a5a055e50fee0d5ddad77ae5" name="ad5260f2008c9ceaced8a537b5877c379aaf8a9112a5a055e50fee0d5ddad77ae5"></a>eUnknown&#160;</td><td class="fielddoc"><p>未知插值方法 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad5260f2008c9ceaced8a537b5877c379ab047d1c7477202d20a0272d6dc5f8126" name="ad5260f2008c9ceaced8a537b5877c379ab047d1c7477202d20a0272d6dc5f8126"></a>eLagrange&#160;</td><td class="fielddoc"><p>Lagrange插值 </p>
 </td></tr>
 </table>
 
@@ -6181,14 +6192,14 @@ template&lt;typename GeometryType , typename RotationType &gt; </div>
 
 </div>
 </div>
-<a id="a7961c646d34bf7ca8f9efac18fd43a70" name="a7961c646d34bf7ca8f9efac18fd43a70"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7961c646d34bf7ca8f9efac18fd43a70">&#9670;&#160;</a></span>aIsClose()</h2>
+<a id="a47e95e3bde022120d41e4da15744faba" name="a47e95e3bde022120d41e4da15744faba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47e95e3bde022120d41e4da15744faba">&#9670;&#160;</a></span>aIsClose()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool ast::aIsClose </td>
+          <td class="memname">AST_MATH_CAPI bool ast::aIsClose </td>
           <td>(</td>
           <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
         </tr>
@@ -6624,7 +6635,7 @@ template&lt;typename GeometryType , typename RotationType &gt; </div>
 </div>
 </div>
 <a id="a6135778a4981ccd01f8368e87f2a53da" name="a6135778a4981ccd01f8368e87f2a53da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6135778a4981ccd01f8368e87f2a53da">&#9670;&#160;</a></span>aParserSTKEphemeris() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6135778a4981ccd01f8368e87f2a53da">&#9670;&#160;</a></span>aParserSTKEphemeris() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6646,7 +6657,38 @@ template&lt;typename GeometryType , typename RotationType &gt; </div>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">parser</td><td>BKV解析器 </td></tr>
-    <tr><td class="paramname">ephemeris</td><td>星历对象 </td></tr>
+    <tr><td class="paramname">ephemeris</td><td>星历句柄 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+</div>
+</div>
+<a id="a2068c4237872b8bd070fea901635f6d1" name="a2068c4237872b8bd070fea901635f6d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2068c4237872b8bd070fea901635f6d1">&#9670;&#160;</a></span>aParserSTKEphemeris() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_CORE_API err_t ast::aParserSTKEphemeris </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>parser</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1ScopedPtr.html">ScopedPtr</a>&lt; <a class="el" href="classast_1_1Ephemeris.html">Ephemeris</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>ephemeris</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析STK星历文件 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parser</td><td>BKV解析器 </td></tr>
+    <tr><td class="paramname">ephemeris</td><td>星历句柄 </td></tr>
   </table>
   </dd>
 </dl>
@@ -6655,6 +6697,7 @@ template&lt;typename GeometryType , typename RotationType &gt; </div>
 <p>&lt; 场景时间点</p>
 <p>&lt; 插值方法</p>
 <p>&lt; 插值样本数减1(Minus 1)，相当于插值阶数</p>
+<p>&lt; 距离单位的因子</p>
 <p>&lt; 天体</p>
 <p>&lt; 坐标系</p>
 <p>&lt; 位置序列</p>
@@ -6664,7 +6707,7 @@ template&lt;typename GeometryType , typename RotationType &gt; </div>
 </div>
 </div>
 <a id="a50d86ed1160204e1dc08ea5f54f25994" name="a50d86ed1160204e1dc08ea5f54f25994"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50d86ed1160204e1dc08ea5f54f25994">&#9670;&#160;</a></span>aParserSTKEphemeris() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a50d86ed1160204e1dc08ea5f54f25994">&#9670;&#160;</a></span>aParserSTKEphemeris() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

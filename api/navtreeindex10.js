@@ -1,5 +1,8 @@
 var NAVTREEINDEX10 =
 {
+"classast_1_1EventTimeExplicit.html":[2,0,0,118],
+"classast_1_1EventTimeExplicit.html":[3,0,0,117],
+"classast_1_1EventTimeExplicit.html#ad2cd2a17a11641e0abf15a72fc0e5b46":[2,0,0,118,0],
 "classast_1_1EventTimeExplicit.html#ad2cd2a17a11641e0abf15a72fc0e5b46":[3,0,0,117,0],
 "classast_1_1EventTimeFallback.html":[2,0,0,119],
 "classast_1_1EventTimeFallback.html":[3,0,0,118],
@@ -246,8 +249,5 @@ var NAVTREEINDEX10 =
 "classast_1_1GeoCoordinate.html#a2ca96c7b7c7611c8d56ab74e6029ad6e":[3,0,0,150,4],
 "classast_1_1GeoCoordinate.html#a30fda041490b282feec98f6a4f5b4bc9":[2,0,0,151,19],
 "classast_1_1GeoCoordinate.html#a30fda041490b282feec98f6a4f5b4bc9":[3,0,0,150,19],
-"classast_1_1GeoCoordinate.html#a32cb9782b94e824cb45f05cffac1296e":[2,0,0,151,14],
-"classast_1_1GeoCoordinate.html#a32cb9782b94e824cb45f05cffac1296e":[3,0,0,150,14],
-"classast_1_1GeoCoordinate.html#a372ddc25c669aebc1d37e1d21837b8a9":[2,0,0,151,16],
-"classast_1_1GeoCoordinate.html#a372ddc25c669aebc1d37e1d21837b8a9":[3,0,0,150,16]
+"classast_1_1GeoCoordinate.html#a32cb9782b94e824cb45f05cffac1296e":[2,0,0,151,14]
 };

@@ -100,6 +100,7 @@ $(function(){initNavTree('classast_1_1EphemerisTwoBody.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="#pro-attribs">Protected 属性</a> &#124;
 <a href="classast_1_1EphemerisTwoBody-members.html">所有成员列表</a>  </div>
   <div class="headertitle"><div class="title">ast::EphemerisTwoBody类 参考<span class="mlabels"><span class="mlabel">final</span></span></div></div>
@@ -123,9 +124,9 @@ $(function(){initNavTree('classast_1_1EphemerisTwoBody.html',''); initResizable(
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:aea3df40ff6cb0cb661d32ead54aa4eb0" id="r_aea3df40ff6cb0cb661d32ead54aa4eb0"><td class="memItemLeft" align="right" valign="top"><a id="aea3df40ff6cb0cb661d32ead54aa4eb0" name="aea3df40ff6cb0cb661d32ead54aa4eb0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>EphemerisTwoBody</b> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame, double gm, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;epoch, const Vector3d &amp;initpos, const Vector3d &amp;initvel)</td></tr>
-<tr class="separator:aea3df40ff6cb0cb661d32ead54aa4eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade78937e2caf6d6b2de23add9931ed08" id="r_ade78937e2caf6d6b2de23add9931ed08"><td class="memItemLeft" align="right" valign="top"><a id="ade78937e2caf6d6b2de23add9931ed08" name="ade78937e2caf6d6b2de23add9931ed08"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>EphemerisTwoBody</b> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame, double gm, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;epoch, const <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;initstate)</td></tr>
+<tr class="separator:ade78937e2caf6d6b2de23add9931ed08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04ed15d8ca8a1994d9cc0d26bfd531a2" id="r_a04ed15d8ca8a1994d9cc0d26bfd531a2"><td class="memItemLeft" align="right" valign="top"><a id="a04ed15d8ca8a1994d9cc0d26bfd531a2" name="a04ed15d8ca8a1994d9cc0d26bfd531a2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setFrame</b> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame)</td></tr>
 <tr class="separator:a04ed15d8ca8a1994d9cc0d26bfd531a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,18 +142,20 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setEpoch</b> (const <
 <tr class="memitem:a393b98a1f7e172314735c85e56460e91" id="r_a393b98a1f7e172314735c85e56460e91"><td class="memItemLeft" align="right" valign="top"><a id="a393b98a1f7e172314735c85e56460e91" name="a393b98a1f7e172314735c85e56460e91"></a>
 const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getEpoch</b> () const</td></tr>
 <tr class="separator:a393b98a1f7e172314735c85e56460e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f6a0ca04cdfd8d7a689921b4d4995df" id="r_a8f6a0ca04cdfd8d7a689921b4d4995df"><td class="memItemLeft" align="right" valign="top"><a id="a8f6a0ca04cdfd8d7a689921b4d4995df" name="a8f6a0ca04cdfd8d7a689921b4d4995df"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setOrbitState</b> (const Vector3d &amp;pos, const Vector3d &amp;vel)</td></tr>
-<tr class="separator:a8f6a0ca04cdfd8d7a689921b4d4995df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58f2c85dd0ab167e671e5e1d4378597e" id="r_a58f2c85dd0ab167e671e5e1d4378597e"><td class="memItemLeft" align="right" valign="top"><a id="a58f2c85dd0ab167e671e5e1d4378597e" name="a58f2c85dd0ab167e671e5e1d4378597e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>getOrbitState</b> (Vector3d &amp;pos, Vector3d &amp;vel) const</td></tr>
-<tr class="separator:a58f2c85dd0ab167e671e5e1d4378597e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a650818dc60bfe3288a6a791929f37c2a" id="r_a650818dc60bfe3288a6a791929f37c2a"><td class="memItemLeft" align="right" valign="top"><a id="a650818dc60bfe3288a6a791929f37c2a" name="a650818dc60bfe3288a6a791929f37c2a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setOrbitState</b> (const <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;initstate)</td></tr>
+<tr class="separator:a650818dc60bfe3288a6a791929f37c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc0bcc641cd354a8fcd7d468d9328218" id="r_abc0bcc641cd354a8fcd7d468d9328218"><td class="memItemLeft" align="right" valign="top"><a id="abc0bcc641cd354a8fcd7d468d9328218" name="abc0bcc641cd354a8fcd7d468d9328218"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>getOrbitState</b> (<a class="el" href="classast_1_1CartState.html">CartState</a> &amp;initstate) const</td></tr>
+<tr class="separator:abc0bcc641cd354a8fcd7d468d9328218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7905713c7c9fd84ebb74759e09771887" id="r_a7905713c7c9fd84ebb74759e09771887"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Frame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7905713c7c9fd84ebb74759e09771887">getFrame</a> () const override</td></tr>
 <tr class="separator:a7905713c7c9fd84ebb74759e09771887"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a081d20700a18da67847a26d7464bc2c3" id="r_a081d20700a18da67847a26d7464bc2c3"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a081d20700a18da67847a26d7464bc2c3">getPos</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos) const override</td></tr>
 <tr class="separator:a081d20700a18da67847a26d7464bc2c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51562f5a8ac3fa44f4b986f006d3aada" id="r_a51562f5a8ac3fa44f4b986f006d3aada"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51562f5a8ac3fa44f4b986f006d3aada">getPosVel</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) const override</td></tr>
 <tr class="separator:a51562f5a8ac3fa44f4b986f006d3aada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0afe459a0e3fff010aefb3b85eedb82" id="r_ae0afe459a0e3fff010aefb3b85eedb82"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0afe459a0e3fff010aefb3b85eedb82">getInterval</a> (<a class="el" href="classast_1_1TimeInterval.html">TimeInterval</a> &amp;interval) const override</td></tr>
+<tr class="separator:ae0afe459a0e3fff010aefb3b85eedb82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classast_1_1Ephemeris"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1Ephemeris')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1Ephemeris.html">ast::Ephemeris</a></td></tr>
 <tr class="inherit_header pub_methods_classast_1_1Point"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1Point')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1Point.html">ast::Point</a></td></tr>
 <tr class="memitem:a3b46eeef9261d63d8418c7c3d1784e74 inherit pub_methods_classast_1_1Point" id="r_a3b46eeef9261d63d8418c7c3d1784e74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Point.html#a3b46eeef9261d63d8418c7c3d1784e74">toBody</a> () const</td></tr>
@@ -213,6 +216,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>getOrbitState</b> (Ve
 <tr class="memitem:aecd84a95fab6db0c0efb7fb34863b11c inherit pub_methods_classast_1_1Object" id="r_aecd84a95fab6db0c0efb7fb34863b11c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Object.html#aecd84a95fab6db0c0efb7fb34863b11c">decRefNoDelete</a> ()</td></tr>
 <tr class="separator:aecd84a95fab6db0c0efb7fb34863b11c inherit pub_methods_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a74f72f1e6bed1bcf66c5677c6094e053" id="r_a74f72f1e6bed1bcf66c5677c6094e053"><td class="memItemLeft" align="right" valign="top"><a id="a74f72f1e6bed1bcf66c5677c6094e053" name="a74f72f1e6bed1bcf66c5677c6094e053"></a>
+static <a class="el" href="classast_1_1EphemerisTwoBody.html">EphemerisTwoBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>New</b> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;epoch, const <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;initstate)</td></tr>
+<tr class="separator:a74f72f1e6bed1bcf66c5677c6094e053"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88f196386318d7c39f997b9464be1275" id="r_a88f196386318d7c39f997b9464be1275"><td class="memItemLeft" align="right" valign="top"><a id="a88f196386318d7c39f997b9464be1275" name="a88f196386318d7c39f997b9464be1275"></a>
+static <a class="el" href="classast_1_1EphemerisTwoBody.html">EphemerisTwoBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>New</b> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame, double gm, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;epoch, const <a class="el" href="classast_1_1CartState.html">CartState</a> &amp;initstate)</td></tr>
+<tr class="separator:a88f196386318d7c39f997b9464be1275"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
 <tr class="memitem:a0fe35c16c32344a50bc2de2f7ab8130d" id="r_a0fe35c16c32344a50bc2de2f7ab8130d"><td class="memItemLeft" align="right" valign="top"><a id="a0fe35c16c32344a50bc2de2f7ab8130d" name="a0fe35c16c32344a50bc2de2f7ab8130d"></a>
@@ -224,12 +236,9 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>gm_</b> {0.0}</td><
 <tr class="memitem:aa27090d649a53ff107623c298fe85f85" id="r_aa27090d649a53ff107623c298fe85f85"><td class="memItemLeft" align="right" valign="top"><a id="aa27090d649a53ff107623c298fe85f85" name="aa27090d649a53ff107623c298fe85f85"></a>
 <a class="el" href="classast_1_1TimePoint.html">TimePoint</a>&#160;</td><td class="memItemRight" valign="bottom"><b>epoch_</b> {}</td></tr>
 <tr class="separator:aa27090d649a53ff107623c298fe85f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37182e68f36bfe8def2d27d3ebf8d0f3" id="r_a37182e68f36bfe8def2d27d3ebf8d0f3"><td class="memItemLeft" align="right" valign="top"><a id="a37182e68f36bfe8def2d27d3ebf8d0f3" name="a37182e68f36bfe8def2d27d3ebf8d0f3"></a>
-Vector3d&#160;</td><td class="memItemRight" valign="bottom"><b>initpos_</b> {}</td></tr>
-<tr class="separator:a37182e68f36bfe8def2d27d3ebf8d0f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97292a79d4162dc4ade60966e51f83ae" id="r_a97292a79d4162dc4ade60966e51f83ae"><td class="memItemLeft" align="right" valign="top"><a id="a97292a79d4162dc4ade60966e51f83ae" name="a97292a79d4162dc4ade60966e51f83ae"></a>
-Vector3d&#160;</td><td class="memItemRight" valign="bottom"><b>initvel_</b> {}</td></tr>
-<tr class="separator:a97292a79d4162dc4ade60966e51f83ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeac77337d6ad7b3a6ab5af392478ac5" id="r_afeac77337d6ad7b3a6ab5af392478ac5"><td class="memItemLeft" align="right" valign="top"><a id="afeac77337d6ad7b3a6ab5af392478ac5" name="afeac77337d6ad7b3a6ab5af392478ac5"></a>
+<a class="el" href="classast_1_1CartState.html">CartState</a>&#160;</td><td class="memItemRight" valign="bottom"><b>initstate_</b> {}</td></tr>
+<tr class="separator:afeac77337d6ad7b3a6ab5af392478ac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classast_1_1Object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classast_1_1Object')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classast_1_1Object.html">ast::Object</a></td></tr>
 <tr class="memitem:ac9d7b9428b9e9c4771a1ece11a3b43e3 inherit pro_attribs_classast_1_1Object" id="r_ac9d7b9428b9e9c4771a1ece11a3b43e3"><td class="memItemLeft" align="right" valign="top">
 std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>refcnt_</b></td></tr>
@@ -275,6 +284,33 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <dl class="section return"><dt>返回</dt><dd>点所在的参考坐标系指针 </dd></dl>
 
 <p>实现了 <a class="el" href="classast_1_1Ephemeris.html#ac731ef1a7ad86ab8dff2fc569b9fe3d1">ast::Ephemeris</a>.</p>
+
+</div>
+</div>
+<a id="ae0afe459a0e3fff010aefb3b85eedb82" name="ae0afe459a0e3fff010aefb3b85eedb82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0afe459a0e3fff010aefb3b85eedb82">&#9670;&#160;</a></span>getInterval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::EphemerisTwoBody::getInterval </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1TimeInterval.html">TimeInterval</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>interval</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classast_1_1Ephemeris.html">ast::Ephemeris</a>.</p>
 
 </div>
 </div>

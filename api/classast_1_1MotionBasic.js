@@ -8,6 +8,7 @@ var classast_1_1MotionBasic =
     [ "setInitialState", "classast_1_1MotionBasic.html#ab5fbf153863b777065f08e728f1b3649", null ],
     [ "setInterval", "classast_1_1MotionBasic.html#a0b2dfb2a427b3503db827f5503e93f5a", null ],
     [ "setInterval", "classast_1_1MotionBasic.html#ade9f2e513f1302b0b9d8678ea321ce42", null ],
+    [ "setPropagationFrame", "classast_1_1MotionBasic.html#a75e6c22f7038500fa79dd2c78ab45b51", null ],
     [ "initialState_", "classast_1_1MotionBasic.html#ad2e7fe1771c94dec454b1a43a68c1693", null ],
     [ "interval_", "classast_1_1MotionBasic.html#aa4a5a08bb4281d3be6ca05a2da7557a0", null ],
     [ "propagationFrame_", "classast_1_1MotionBasic.html#abda0cbc13f0c9372b37005a92d96b0a0", null ],

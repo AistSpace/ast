@@ -9,6 +9,7 @@ var classast_1_1State =
     [ "getStateEpoch", "classast_1_1State.html#a3852deaf3a6d564c62e5632207058de4", null ],
     [ "getStateEpoch", "classast_1_1State.html#ad0d653a29509a9734cceb0e767cac895", null ],
     [ "getStateEpochHandle", "classast_1_1State.html#a8a1bd288e80210a7246180f525c80023", null ],
+    [ "getStateIn", "classast_1_1State.html#a46a4be688187917fa3e27d46028b9468", null ],
     [ "getStateInBodyInertial", "classast_1_1State.html#a80e17fe25814e4572e6cdde1b9ab26bb", null ],
     [ "getStateType", "classast_1_1State.html#a11f9784196ddaa52fb79ea823e3f00ea", null ],
     [ "setFrame", "classast_1_1State.html#af8fa9d8ed8c5008e1618021e80a531c2", null ],
