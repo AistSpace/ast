@@ -1,5 +1,6 @@
 var classast_1_1CelestialBody =
 [
+    [ "getAxes", "classast_1_1CelestialBody.html#a38e7ed7241c4ae5c7aff86d631779d62", null ],
     [ "getAxesFixed", "classast_1_1CelestialBody.html#a729ed0351ad2106a6ba2920285d326f8", null ],
     [ "getAxesInertial", "classast_1_1CelestialBody.html#ac13331296652904a16665245bbf8d54e", null ],
     [ "getAxesMOD", "classast_1_1CelestialBody.html#a685dabfa9855ac71a90a697214254e34", null ],

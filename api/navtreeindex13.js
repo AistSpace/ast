@@ -1,5 +1,6 @@
 var NAVTREEINDEX13 =
 {
+"classast_1_1KinematicRotation.html#a3beb4321f1643ac94191d8c1d98e5d13":[3,0,0,191,15],
 "classast_1_1KinematicRotation.html#a3d042cb5e63ad1c82c104987dedff523":[2,0,0,192,20],
 "classast_1_1KinematicRotation.html#a3d042cb5e63ad1c82c104987dedff523":[3,0,0,191,20],
 "classast_1_1KinematicRotation.html#a3d78420da24d3cc9fce0a5904b3fee34":[2,0,0,192,16],
@@ -248,6 +249,5 @@ var NAVTREEINDEX13 =
 "classast_1_1MolniyaOrbitDesigner.html#a130041e259459631c74a6df8e5aa80bd":[3,0,0,209,1],
 "classast_1_1MolniyaOrbitDesigner.html#a55c737b189f52bac72e246636527604a":[2,0,0,210,2],
 "classast_1_1MolniyaOrbitDesigner.html#a55c737b189f52bac72e246636527604a":[3,0,0,209,2],
-"classast_1_1MolniyaOrbitDesigner.html#ab3cb096abf0c2bb9b007f62555c2365c":[2,0,0,210,0],
-"classast_1_1MolniyaOrbitDesigner.html#ab3cb096abf0c2bb9b007f62555c2365c":[3,0,0,209,0]
+"classast_1_1MolniyaOrbitDesigner.html#ab3cb096abf0c2bb9b007f62555c2365c":[2,0,0,210,0]
 };

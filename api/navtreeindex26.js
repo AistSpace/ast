@@ -1,5 +1,6 @@
 var NAVTREEINDEX26 =
 {
+"namespacemembers_s.html":[2,1,0,19],
 "namespacemembers_t.html":[2,1,0,20],
 "namespacemembers_type.html":[2,1,3],
 "namespacemembers_u.html":[2,1,0,21],
@@ -248,6 +249,5 @@ var NAVTREEINDEX26 =
 "structast_1_1property__trait.html":[0,4,4,12],
 "structast_1_1property__trait_3_01std_1_1string_01_4.html":[0,4,4,13],
 "structast_1_1strings__internal_1_1AllowEmpty.html":[3,0,0,2,0],
-"structast_1_1strings__internal_1_1DelimiterConcept.html":[3,0,0,2,8],
-"structast_1_1strings__internal_1_1SelectDelimiter.html":[3,0,0,2,10]
+"structast_1_1strings__internal_1_1DelimiterConcept.html":[3,0,0,2,8]
 };

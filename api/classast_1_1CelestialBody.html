@@ -220,6 +220,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isEarth</b> () const<
 <tr class="memitem:a5608bdf86dd052260c8c155a1f4eb83e" id="r_a5608bdf86dd052260c8c155a1f4eb83e"><td class="memItemLeft" align="right" valign="top"><a id="a5608bdf86dd052260c8c155a1f4eb83e" name="a5608bdf86dd052260c8c155a1f4eb83e"></a>
 <a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getAxesTOD</b> () const</td></tr>
 <tr class="separator:a5608bdf86dd052260c8c155a1f4eb83e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38e7ed7241c4ae5c7aff86d631779d62" id="r_a38e7ed7241c4ae5c7aff86d631779d62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38e7ed7241c4ae5c7aff86d631779d62">getAxes</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name) const</td></tr>
+<tr class="separator:a38e7ed7241c4ae5c7aff86d631779d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1718be3321e4b5130bbe859799952829" id="r_a1718be3321e4b5130bbe859799952829"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__Geometry.html#ga52cecc91460a5123ebbfa0a7a4c7b0f9">HAxes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1718be3321e4b5130bbe859799952829">makeEpochAxes</a> (<a class="el" href="classast_1_1Axes.html">Axes</a> *sourceAxes, const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, <a class="el" href="classast_1_1Axes.html">Axes</a> *reference) const</td></tr>
 <tr class="separator:a1718be3321e4b5130bbe859799952829"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6641f03a0717036b3e98549d8161591a" id="r_a6641f03a0717036b3e98549d8161591a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__Geometry.html#ga52cecc91460a5123ebbfa0a7a4c7b0f9">HAxes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6641f03a0717036b3e98549d8161591a">makeEpochAxes</a> (<a class="el" href="classast_1_1Axes.html">Axes</a> *sourceAxes, <a class="el" href="classast_1_1EventTime.html">EventTime</a> *time, <a class="el" href="classast_1_1Axes.html">Axes</a> *reference) const</td></tr>
@@ -428,6 +430,39 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SolarSystem</b></td>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>天体 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
+<a id="a38e7ed7241c4ae5c7aff86d631779d62" name="a38e7ed7241c4ae5c7aff86d631779d62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38e7ed7241c4ae5c7aff86d631779d62">&#9670;&#160;</a></span>getAxes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1Axes.html">Axes</a> * ast::CelestialBody::getAxes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取天体轴系 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>- 轴系名称，例如Inertial、Fixed、MOD、TOD等 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">-</td><td>轴系指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>- 如果轴系不存在，则返回nullptr </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">待办事项</a></b></dt><dd>这里考虑使用哈希表来存储映射关系 </dd></dl>
+
+</div>
+</div>
 <a id="aa7c2d646d8e836996c70591dbeb3c910" name="aa7c2d646d8e836996c70591dbeb3c910"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa7c2d646d8e836996c70591dbeb3c910">&#9670;&#160;</a></span>getFrame()</h2>
 

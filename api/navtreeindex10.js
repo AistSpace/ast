@@ -1,5 +1,6 @@
 var NAVTREEINDEX10 =
 {
+"classast_1_1EventTime.html#a1f559d9b3df54c4826f707241a6de8a0":[3,0,0,116,0],
 "classast_1_1EventTimeExplicit.html":[2,0,0,118],
 "classast_1_1EventTimeExplicit.html":[3,0,0,117],
 "classast_1_1EventTimeExplicit.html#ad2cd2a17a11641e0abf15a72fc0e5b46":[2,0,0,118,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX10 =
 "classast_1_1GeoCoordinate.html#a2ca96c7b7c7611c8d56ab74e6029ad6e":[2,0,0,151,4],
 "classast_1_1GeoCoordinate.html#a2ca96c7b7c7611c8d56ab74e6029ad6e":[3,0,0,150,4],
 "classast_1_1GeoCoordinate.html#a30fda041490b282feec98f6a4f5b4bc9":[2,0,0,151,19],
-"classast_1_1GeoCoordinate.html#a30fda041490b282feec98f6a4f5b4bc9":[3,0,0,150,19],
-"classast_1_1GeoCoordinate.html#a32cb9782b94e824cb45f05cffac1296e":[2,0,0,151,14]
+"classast_1_1GeoCoordinate.html#a30fda041490b282feec98f6a4f5b4bc9":[3,0,0,150,19]
 };
