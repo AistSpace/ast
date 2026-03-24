@@ -25,7 +25,7 @@
 #include "AstCore/Point.hpp"
 #include "AstSim/AttitudeProfile.hpp"
 #include "AstSim/MotionProfile.hpp"
-#include "AstSim/Ephemeris.hpp"
+#include "AstCore/Ephemeris.hpp"
 #include "AstUtil/StringView.hpp"
 
 AST_NAMESPACE_BEGIN

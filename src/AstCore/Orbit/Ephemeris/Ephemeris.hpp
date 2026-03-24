@@ -30,8 +30,13 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class Ephemeris;
+using PEphemeris = Ephemeris*;
+using HEphemeris = SharedPtr<Ephemeris>;
+
+
 /// @brief 星历接口
-class AST_SIM_API Ephemeris: public Point
+class AST_CORE_API Ephemeris: public Point
 {
 public:
     Ephemeris() = default;

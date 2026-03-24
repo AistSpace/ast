@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstSim/Ephemeris.hpp"
+#include "AstCore/Ephemeris.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/BuiltinFrame.hpp"
 #include "AstMath/Vector.hpp"
@@ -35,7 +35,7 @@ AST_NAMESPACE_BEGIN
 
 
 /// @brief 二体星历
-class AST_SIM_API EphemerisTwoBody final: public Ephemeris
+class AST_CORE_API EphemerisTwoBody final: public Ephemeris
 {
 public:
     EphemerisTwoBody();

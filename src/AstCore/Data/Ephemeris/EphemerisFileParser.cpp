@@ -1,12 +1,12 @@
 ///
-/// @file      MotionTwoBody.cpp
+/// @file      EphemerisFileParser.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-14
+/// @date      2026-03-23
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
-/// ast项目（https://github.com/space-ast/ast）
+/// SpaceAST项目（https://github.com/space-ast/ast）
 /// 本项目基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
 /// 许可证全文请见：
@@ -18,29 +18,10 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "MotionTwoBody.hpp"
-#include "AstCore/EphemerisTwoBody.hpp"
-#include "AstCore/EphemerisLagrangeFixed.hpp"
-
+#include "EphemerisFileParser.hpp"
 
 AST_NAMESPACE_BEGIN
 
-MotionTwoBody *MotionTwoBody::New()
-{
-    return new MotionTwoBody();
-}
 
-
-err_t MotionTwoBody::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
-{
-    return err_t();
-}
-
-err_t MotionTwoBody::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
-{
-    return err_t();
-}
 
 AST_NAMESPACE_END
-
-

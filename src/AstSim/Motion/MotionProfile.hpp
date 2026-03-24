@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstSim/Ephemeris.hpp"
+#include "AstCore/Ephemeris.hpp"
 #include "AstUtil/ScopedPtr.hpp"
 
 AST_NAMESPACE_BEGIN
