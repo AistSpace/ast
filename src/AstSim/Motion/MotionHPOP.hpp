@@ -22,7 +22,7 @@
 
 #include "AstGlobal.h"
 #include "MotionBasic.hpp"
-#include "AstCore/HPOP.hpp"
+#include "AstCore/HPOPForceModel.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -44,6 +44,7 @@ public:
 public:
     err_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const override;
     err_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const override;
+    void accept(MotionProfileVisitor& visitor) override;
 public:
     /// @brief 设置力模型
     /// @param forceModel 力模型

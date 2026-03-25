@@ -24,8 +24,8 @@
 #include "AstMath/OrdinaryDifferentialEquation.hpp"
 #include "AstCore/BlockDynamicSystem.hpp"
 #include "AstCore/SimTime.hpp"
+#include "AstCore/HPOPForceModel.hpp"
 #include <memory>
-#include <vector>
 
 
 AST_NAMESPACE_BEGIN
@@ -64,13 +64,16 @@ protected:
     
     void clearBlocks();
     void reset();
-
+public:
     /// @brief 初始化仿真引擎
     err_t initialize();
 protected:
+    err_t initializeFromForceModel(const HPOPForceModel& forceModel);
+    err_t initBlocks(const HPOPForceModel& forceModel);
+protected:
     BlockDynamicSystem      dynamicSystem_; ///< 动力学系统
     TimePoint               epoch_;         ///< 仿真的参考历元
-    // HPOPForceModel          forcemodel_;    ///< 力模型配置
+    HPOPForceModel          forceModel_;    ///< 力模型配置
 };
 
 AST_NAMESPACE_END

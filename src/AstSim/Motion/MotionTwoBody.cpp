@@ -19,6 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "MotionTwoBody.hpp"
+#include "AstSim/MotionProfileVisitor.hpp"
 #include "AstCore/EphemerisTwoBody.hpp"
 #include "AstCore/EphemerisLagrangeFixed.hpp"
 #include "AstCore/EphemerisLagrangeVar.hpp"
@@ -78,6 +79,9 @@ err_t MotionTwoBody::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
     return eNoError;
 }
 
+void MotionTwoBody::accept(MotionProfileVisitor& visitor)
+{
+    visitor.visit(*this);
+}
+
 AST_NAMESPACE_END
-
-

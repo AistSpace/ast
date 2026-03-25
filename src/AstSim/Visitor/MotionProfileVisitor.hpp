@@ -1,12 +1,12 @@
 ///
-/// @file      MotionTwoBody.hpp
+/// @file      MotionProfileVisitor.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-13
+/// @date      2026-03-25
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
-/// ast项目（https://github.com/space-ast/ast）
+/// SpaceAST项目（https://github.com/space-ast/ast）
 /// 本项目基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
 /// 许可证全文请见：
@@ -21,10 +21,6 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstSim/MotionBasic.hpp"
-#include "AstSim/MotionProfile.hpp"
-#include "AstCore/State.hpp"
-#include "AstCore/EventInterval.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -33,19 +29,18 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class MotionProfile;
 class MotionTwoBody;
-using PMotionTwoBody = MotionTwoBody*;
+class MotionHPOP;
 
-class MotionTwoBody final: public MotionBasic
+class MotionProfileVisitor
 {
 public:
-    static MotionTwoBody* New();
-    MotionTwoBody() = default;
-    ~MotionTwoBody() override = default;
-public:
-    err_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const override;
-    err_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const override;
-    void accept(MotionProfileVisitor& visitor) override;
+    virtual ~MotionProfileVisitor() = default;
+    virtual void visit(MotionProfile& profile) = 0;
+    virtual void visit(MotionTwoBody& profile) = 0;
+    virtual void visit(MotionHPOP& profile) = 0;
+
 };
 
 /*! @} */

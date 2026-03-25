@@ -41,6 +41,9 @@ enum class EStateType
     eKeplerian,     ///< 开普勒状态
 };
 
+class State;
+using PState = State*;
+using HState = SharedPtr<State>;
 
 /// @brief 航天器状态
 /// @details 参考了orekit的Orbit类

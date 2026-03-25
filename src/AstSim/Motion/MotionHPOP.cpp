@@ -19,6 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "MotionHPOP.hpp"
+#include "AstSim/MotionProfileVisitor.hpp"
 #include "AstCore/HPOP.hpp"
 
 AST_NAMESPACE_BEGIN
@@ -54,5 +55,9 @@ err_t MotionHPOP::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
     return -1;
 }
 
-AST_NAMESPACE_END
+void MotionHPOP::accept(MotionProfileVisitor& visitor)
+{
+    visitor.visit(*this);
+}
 
+AST_NAMESPACE_END

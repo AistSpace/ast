@@ -37,6 +37,7 @@ using PMotionProfile = MotionProfile*;
 
 class MotionTwoBody;
 class MotionHPOP;
+class MotionProfileVisitor;
 
 /// @brief 运动定义接口
 class AST_SIM_API MotionProfile
@@ -57,6 +58,10 @@ public:
     /// @param eph 星历指针
     /// @return 错误码
     virtual err_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const = 0;
+
+    /// @brief 接受访问者
+    /// @param visitor 访问者
+    virtual void accept(MotionProfileVisitor& visitor) = 0;
 };
 
 /*! @} */

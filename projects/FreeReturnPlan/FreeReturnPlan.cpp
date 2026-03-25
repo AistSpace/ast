@@ -20,6 +20,7 @@
 
 #include "AstCore/FrameTransform.hpp"
 #include "AstCore/HPOP.hpp"
+#include "AstCore/HPOPForceModel.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/OrbitElement.hpp"
 #include "AstCore/TimePoint.hpp"

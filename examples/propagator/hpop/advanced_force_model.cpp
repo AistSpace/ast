@@ -1,4 +1,5 @@
 #include "AstCore/HPOP.hpp"
+#include "AstCore/HPOPForceModel.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/RunTime.hpp"
 #include "AstMath/Vector.hpp"

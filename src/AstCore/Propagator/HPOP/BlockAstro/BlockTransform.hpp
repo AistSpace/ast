@@ -1,12 +1,12 @@
 ///
-/// @file      MotionTwoBody.hpp
+/// @file      BlockTransform.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-13
+/// @date      2026-03-25
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
-/// ast项目（https://github.com/space-ast/ast）
+/// SpaceAST项目（https://github.com/space-ast/ast）
 /// 本项目基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
 /// 许可证全文请见：
@@ -21,10 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstSim/MotionBasic.hpp"
-#include "AstSim/MotionProfile.hpp"
-#include "AstCore/State.hpp"
-#include "AstCore/EventInterval.hpp"
+#include "BlockDerivative.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -33,19 +30,16 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class MotionTwoBody;
-using PMotionTwoBody = MotionTwoBody*;
-
-class MotionTwoBody final: public MotionBasic
+/// @brief 坐标系转换计算块
+class AST_CORE_API BlockTransform : public BlockDerivative
 {
 public:
-    static MotionTwoBody* New();
-    MotionTwoBody() = default;
-    ~MotionTwoBody() override = default;
-public:
-    err_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const override;
-    err_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const override;
-    void accept(MotionProfileVisitor& visitor) override;
+    BlockTransform() = default;
+    ~BlockTransform() = default;
+
+    err_t run(const SimTime& simTime) override;
+protected:
+    
 };
 
 /*! @} */

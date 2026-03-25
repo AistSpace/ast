@@ -29,21 +29,30 @@ AST_NAMESPACE_BEGIN
 
 BlockGravity::BlockGravity()
     : BlockDerivative{}
-    , posCBI{&vectorBuffer}
-    , accGravity{&vectorBuffer}
-    , velocityDerivative_{&vectorBuffer}
-    , vectorBuffer{}
+    , gravityAxes_{aAxesECF()}
+    , propagationAxes_{aAxesECI()}
+    , posPtr_{&vectorBuffer_}
+    , accGravityPtr_{&vectorBuffer_}
+    , velocityDerivativePtr_{&vectorBuffer_}
+    , vectorBuffer_{}
 {
     init();
 }
 
 BlockGravity::BlockGravity(StringView gravityModel, int degree, int order)
+    : BlockGravity{aAxesECF(), aAxesECI(), gravityModel, degree, order}
+{
+}
+
+BlockGravity::BlockGravity(Axes *gravityAxes, Axes *propagationAxes, StringView gravityModel, int degree, int order)
     : BlockDerivative{}
-    , posCBI{&vectorBuffer}
-    , accGravity{&vectorBuffer}
-    , velocityDerivative_{&vectorBuffer}
-    , vectorBuffer{}
-    , gravityCalculator(gravityModel, degree, order)
+    , gravityAxes_{gravityAxes}
+    , propagationAxes_{propagationAxes}
+    , posPtr_{&vectorBuffer_}
+    , accGravityPtr_{&vectorBuffer_}
+    , velocityDerivativePtr_{&vectorBuffer_}
+    , vectorBuffer_{}
+    , gravityCalculator_(gravityModel, degree, order)
 {
     init();
 }
@@ -58,7 +67,7 @@ void BlockGravity::init()
         // 位置
         {
             identifierPos,
-            (signal_t*)&posCBI,
+            (signal_t*)&posPtr_,
             3,
             DataPort::eDouble
         }
@@ -68,7 +77,7 @@ void BlockGravity::init()
         // 重力加速度
         {
             identifierAccGravity,
-            (signal_t*)&accGravity,
+            (signal_t*)&accGravityPtr_,
             3,
             DataPort::eDouble
         }
@@ -78,7 +87,7 @@ void BlockGravity::init()
         // 速度导数
         {
             identifierVel,
-            (signal_t*)&velocityDerivative_,
+            (signal_t*)&velocityDerivativePtr_,
             3,
             DataPort::eDouble
         }
@@ -87,19 +96,18 @@ void BlockGravity::init()
 
 err_t BlockGravity::run(const SimTime& simTime)
 {
-    // @fixme
-    // 现在只支持地球的计算
-    // 后续会考虑对其他星球的计算
-    Vector3d posCBF;
-    Vector3d accCBF;
+    Vector3d posInGravityAxes;  // 位置(重力坐标系下)
+    Vector3d accInGravityAxes;  // 重力加速度(重力坐标系下)
     auto& tp = simTime.timePoint();
-    Matrix3d matrix;
-    aICRFToECFMatrix(tp, matrix);
-    posCBF = matrix * (*posCBI);
-    gravityCalculator.calcTotalAcceleration(posCBF, accCBF);
-    Vector3d accCBI = accCBF * matrix;
-    *accGravity = accCBI;
-    *velocityDerivative_ += accCBI;
+    Rotation rotation;
+    err_t rc = aAxesTransform(propagationAxes_, gravityAxes_, tp, rotation);
+    A_UNUSED(rc);
+
+    posInGravityAxes = rotation.transformVector(*posPtr_);
+    gravityCalculator_.calcTotalAcceleration(posInGravityAxes, accInGravityAxes);
+    Vector3d accInPropagationAxes = rotation.transformVectorInv(accInGravityAxes);
+    *accGravityPtr_ = accInPropagationAxes;
+    *velocityDerivativePtr_ += accInPropagationAxes;
     return eNoError;
 }
 

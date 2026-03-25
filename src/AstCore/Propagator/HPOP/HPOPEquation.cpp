@@ -50,7 +50,7 @@ err_t HPOPEquation::evaluate(const double* y, double* dy, const double t)
     time.setElapsedTime(t);                         // 设置仿真的相对时间
     dynamicSystem_.fillDerivativeData(0.0);         // 填充导数数据为0
     dynamicSystem_.setStateData(y);                 // 设置状态数据
-    err_t err = dynamicSystem_.run(time);      // 执行动力学系统
+    err_t err = dynamicSystem_.run(time);           // 执行动力学系统
     dynamicSystem_.getDerivativeData(dy);           // 获取导数数据
     return err;                                     // 返回错误码
 }
@@ -64,31 +64,10 @@ int HPOPEquation::getDimension() const
 /// @brief 初始化仿真引擎
 err_t HPOPEquation::initialize()
 {
-    return dynamicSystem_.initialize();
+    return this->initializeFromForceModel(this->forceModel_);
 }
 
-
-void HPOPEquation::addBlock(FuncBlock *block)
-{
-    dynamicSystem_.addBlock(block);
-}
-
-void HPOPEquation::addBlock(BlockDerivative *block)
-{
-    dynamicSystem_.addBlock(block);
-}
-
-void HPOPEquation::clearBlocks()
-{
-    dynamicSystem_.clearBlocks();
-}
-
-void HPOPEquation::reset()
-{
-    dynamicSystem_.reset();
-}
-
-err_t HPOPEquation::setForceModel(const HPOPForceModel& forceModel)
+err_t HPOPEquation::initBlocks(const HPOPForceModel &forceModel)
 {
     // 将力模型配置转换为动力学系统的一个个函数块
     BlockDerivative* derivativeBlock;
@@ -122,8 +101,44 @@ err_t HPOPEquation::setForceModel(const HPOPForceModel& forceModel)
         derivativeBlock = new BlockThirdBody(forceModel.moonGravity_);
         this->addBlock(derivativeBlock);
     }
+    return eNoError;
+}
 
-    return this->initialize();
+void HPOPEquation::addBlock(FuncBlock *block)
+{
+    dynamicSystem_.addBlock(block);
+}
+
+void HPOPEquation::addBlock(BlockDerivative *block)
+{
+    dynamicSystem_.addBlock(block);
+}
+
+void HPOPEquation::clearBlocks()
+{
+    dynamicSystem_.clearBlocks();
+}
+
+void HPOPEquation::reset()
+{
+    dynamicSystem_.reset();
+}
+
+
+
+err_t HPOPEquation::initializeFromForceModel(const HPOPForceModel &forceModel)
+{
+    err_t rc = this->initBlocks(forceModel);
+    if(rc) return rc;
+    return dynamicSystem_.initialize();
+}
+
+err_t HPOPEquation::setForceModel(const HPOPForceModel& forceModel)
+{
+    err_t rc = this->initializeFromForceModel(forceModel);
+    if(rc) return rc;
+    this->forceModel_ = forceModel;
+    return eNoError;
 }
 
 

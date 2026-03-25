@@ -24,6 +24,7 @@
 #include "BlockAstro.hpp"
 #include "AstCore/GravityCalculator.hpp"
 #include "AstCore/BlockDerivative.hpp"
+#include "AstCore/Axes.hpp"
 #include "AstMath/Vector.hpp"
 #include "AstUtil/StringView.hpp"
 
@@ -35,15 +36,18 @@ class AST_CORE_API BlockGravity: public BlockDerivative
 public:
     BlockGravity();
     BlockGravity(StringView gravityModel, int degree, int order);
+    BlockGravity(Axes* gravityAxes, Axes* propagationAxes, StringView gravityModel, int degree, int order);
     err_t run(const SimTime& simTime) final;
 private:
     void init();
 protected:
-    Vector3d*                posCBI{&vectorBuffer};                 ///< 位置
-    Vector3d*                accGravity{&vectorBuffer};             ///< 重力加速度
-    Vector3d*                velocityDerivative_{&vectorBuffer};    ///< 速度导数
-    Vector3d                 vectorBuffer{};                        ///< 向量缓冲区
-    GravityCalculatorDefault gravityCalculator;                     ///< 重力计算器
+    HAxes                    gravityAxes_;                              ///< 重力坐标系
+    HAxes                    propagationAxes_;                          ///< 预报坐标系
+    Vector3d*                posPtr_{&vectorBuffer_};                   ///< 位置(预报坐标系下)
+    Vector3d*                accGravityPtr_{&vectorBuffer_};            ///< 重力加速度(预报坐标系下)
+    Vector3d*                velocityDerivativePtr_{&vectorBuffer_};    ///< 速度导数(预报坐标系下)
+    Vector3d                 vectorBuffer_{};                           ///< 向量缓冲区
+    GravityCalculatorDefault gravityCalculator_;                        ///< 重力计算器
 };
 
 
