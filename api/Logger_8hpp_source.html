@@ -328,8 +328,11 @@ $(function(){initNavTree('Logger_8hpp_source.html',''); initResizable(true); });
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="preprocessor">#define aFatal(...)    AST_PREPEND_NAMESPACE(MessageLogger)(__FILE__, __LINE__, __FUNCTION__).fatal(__VA_ARGS__)</span></div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="preprocessor">#define AST_CHECK_NULLPTR(variable) if(variable == nullptr){aError(#variable &quot; is nullptr&quot;); return eErrorNullPtr;}</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="preprocessor">#define AST_CHECK_ERRCODE(rc, msg) if(rc){aError(msg); return rc;}</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="preprocessor">#define AST_CHECK_INVALID(condition) if(condition){aError(&quot;invalid parameter, with &quot; #condition); return eErrorInvalidParam;}</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
 <div class="ttc" id="aclassast_1_1LoggerStream_html"><div class="ttname"><a href="classast_1_1LoggerStream.html">ast::LoggerStream</a></div><div class="ttdef"><b>定义</b> Logger.hpp:81</div></div>
 <div class="ttc" id="aclassast_1_1LoggerStream_html_a2d318dc5987cef0bbe3f03fe64552e70"><div class="ttname"><a href="classast_1_1LoggerStream.html#a2d318dc5987cef0bbe3f03fe64552e70">ast::LoggerStream::m_stream</a></div><div class="ttdeci">std::ostringstream m_stream</div><div class="ttdoc">缓冲区</div><div class="ttdef"><b>定义</b> Logger.hpp:158</div></div>
 <div class="ttc" id="aclassast_1_1LoggerStream_html_a8f0f7526bf75400264415fa1ed9dbd43"><div class="ttname"><a href="classast_1_1LoggerStream.html#a8f0f7526bf75400264415fa1ed9dbd43">ast::LoggerStream::m_level</a></div><div class="ttdeci">ELogLevel m_level</div><div class="ttdoc">等级</div><div class="ttdef"><b>定义</b> Logger.hpp:157</div></div>

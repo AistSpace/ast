@@ -144,6 +144,12 @@ $(function(){initNavTree('Logger_8hpp.html',''); initResizable(true); });
 <tr class="separator:a1d42fffb73fe169568e50753a1e1c037"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21afc561321c46306a082ef1660cd6aa" id="r_a21afc561321c46306a082ef1660cd6aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21afc561321c46306a082ef1660cd6aa">aFatal</a>(...)</td></tr>
 <tr class="separator:a21afc561321c46306a082ef1660cd6aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66e4f0c96c41a97045a9a532c6252092" id="r_a66e4f0c96c41a97045a9a532c6252092"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66e4f0c96c41a97045a9a532c6252092">AST_CHECK_NULLPTR</a>(variable)</td></tr>
+<tr class="separator:a66e4f0c96c41a97045a9a532c6252092"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af23159d7e97578bfd062c832f206f709" id="r_af23159d7e97578bfd062c832f206f709"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af23159d7e97578bfd062c832f206f709">AST_CHECK_ERRCODE</a>(rc,  msg)</td></tr>
+<tr class="separator:af23159d7e97578bfd062c832f206f709"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d57ec71c0ac5ecc5bafe61ab57a473f" id="r_a3d57ec71c0ac5ecc5bafe61ab57a473f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d57ec71c0ac5ecc5bafe61ab57a473f">AST_CHECK_INVALID</a>(condition)</td></tr>
+<tr class="separator:a3d57ec71c0ac5ecc5bafe61ab57a473f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 枚举</h2></td></tr>
@@ -265,6 +271,64 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aLogMessage</b> 
       </table>
 </div><div class="memdoc">
 <b>值:</b><div class="fragment"><div class="line">AST_PREPEND_NAMESPACE(MessageLogger)(__FILE__, __LINE__, __FUNCTION__).info(__VA_ARGS__)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="af23159d7e97578bfd062c832f206f709" name="af23159d7e97578bfd062c832f206f709"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af23159d7e97578bfd062c832f206f709">&#9670;&#160;</a></span>AST_CHECK_ERRCODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AST_CHECK_ERRCODE</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>rc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>msg</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span>(rc){aError(msg); <span class="keywordflow">return</span> rc;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3d57ec71c0ac5ecc5bafe61ab57a473f" name="a3d57ec71c0ac5ecc5bafe61ab57a473f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d57ec71c0ac5ecc5bafe61ab57a473f">&#9670;&#160;</a></span>AST_CHECK_INVALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AST_CHECK_INVALID</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>condition</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span>(condition){aError(<span class="stringliteral">&quot;invalid parameter, with &quot;</span> #condition); <span class="keywordflow">return</span> eErrorInvalidParam;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a66e4f0c96c41a97045a9a532c6252092" name="a66e4f0c96c41a97045a9a532c6252092"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66e4f0c96c41a97045a9a532c6252092">&#9670;&#160;</a></span>AST_CHECK_NULLPTR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AST_CHECK_NULLPTR</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>variable</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span>(variable == <span class="keyword">nullptr</span>){aError(#variable <span class="stringliteral">&quot; is nullptr&quot;</span>); <span class="keywordflow">return</span> eErrorNullPtr;}</div>
 </div><!-- fragment -->
 </div>
 </div>

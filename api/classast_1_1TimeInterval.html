@@ -143,6 +143,8 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>duration</b> () con
 <tr class="memitem:a9f131f0bfd39eb0ebe807981f6836f86" id="r_a9f131f0bfd39eb0ebe807981f6836f86"><td class="memItemLeft" align="right" valign="top"><a id="a9f131f0bfd39eb0ebe807981f6836f86" name="a9f131f0bfd39eb0ebe807981f6836f86"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>toString</b> () const</td></tr>
 <tr class="separator:a9f131f0bfd39eb0ebe807981f6836f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad09bcf881dcb28452f14558f31ea0bec" id="r_ad09bcf881dcb28452f14558f31ea0bec"><td class="memItemLeft" align="right" valign="top">AST_CORE_API err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad09bcf881dcb28452f14558f31ea0bec">discrete</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;epoch, double step, std::vector&lt; double &gt; &amp;times) const</td></tr>
+<tr class="separator:ad09bcf881dcb28452f14558f31ea0bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
@@ -159,8 +161,47 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>stop_</b></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>时间区间 </p>
 <p>时间区间表示一个连续时间区间，由开始时间点和结束时间点定义。 </p>
-</div><hr/>该类的文档由以下文件生成:<ul>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="ad09bcf881dcb28452f14558f31ea0bec" name="ad09bcf881dcb28452f14558f31ea0bec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad09bcf881dcb28452f14558f31ea0bec">&#9670;&#160;</a></span>discrete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::TimeInterval::discrete </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>epoch</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>step</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>times</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>将时间区间离散化 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">epoch</td><td>时间区间的基准时间点 </td></tr>
+    <tr><td class="paramname">step</td><td>离散化步长（秒） </td></tr>
+    <tr><td class="paramname">times</td><td>输出离散化时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>err_t 错误码 </dd></dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
 <li>src/AstCore/Time/<a class="el" href="TimeInterval_8hpp_source.html">TimeInterval.hpp</a></li>
+<li>src/AstCore/Time/<a class="el" href="TimeInterval_8cpp.html">TimeInterval.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

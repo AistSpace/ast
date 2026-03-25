@@ -1,5 +1,6 @@
 var classast_1_1MotionBasic =
 [
+    [ "PropagationParams", "structast_1_1MotionBasic_1_1PropagationParams.html", "structast_1_1MotionBasic_1_1PropagationParams" ],
     [ "getInitialState", "classast_1_1MotionBasic.html#a029ab7b18038084217df9de0a3e0aa9d", null ],
     [ "getInterval", "classast_1_1MotionBasic.html#afb01015ed8b09ad695304599235649a1", null ],
     [ "getIntervalHandle", "classast_1_1MotionBasic.html#ab7a7012405fefbc66c728dc7fb0830b5", null ],

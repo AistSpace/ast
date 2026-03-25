@@ -28,10 +28,11 @@ var searchData=
   ['dim_5fproduct_25',['dim_product',['../namespaceast.html#a0d4b4bb523a789e6b63bb92057d72b4a',1,'ast']]],
   ['dim_5fset_5fexponent_26',['dim_set_exponent',['../namespaceast.html#a0d25748c4c13cedd010bd2742ee3b56c',1,'ast']]],
   ['dimension_27',['Dimension',['../classast_1_1Dimension.html#a05b3ceca8d7ee96f583cbe1a95c72d35',1,'ast::Dimension::Dimension() noexcept'],['../classast_1_1Dimension.html#aca9f23658294c053ffcc25cc1812ab72',1,'ast::Dimension::Dimension(EDimension dimension) noexcept']]],
-  ['dimension_28',['dimension',['../classast_1_1Quantity.html#abbe7b095750a45049367f4b42e144393',1,'ast::Quantity::dimension()'],['../classast_1_1Unit.html#a737479417a4c6db862752355e6334984',1,'ast::Unit::dimension() const']]],
-  ['divide_29',['divide',['../classast_1_1Unit.html#a40d890822f24e239617f9aba3a87cf42',1,'ast::Unit']]],
-  ['dot_30',['dot',['../namespaceast_1_1math.html#aca33d22882041673d4a2e218e052cc3e',1,'ast::math']]],
-  ['dpr_31',['dpr',['../group__Spice.html#gae84bbf14131d083d3886978ca516e180',1,'ast']]],
-  ['duration_32',['duration',['../classast_1_1TimeInterval.html#a203d1051e9e7f49d721dad76848b0b4f',1,'ast::TimeInterval']]],
-  ['durationfrom_33',['durationFrom',['../classast_1_1TimePoint.html#a664c02ec8f67284d8b08333e818c6590',1,'ast::TimePoint']]]
+  ['dimension_28',['dimension',['../classast_1_1Quantity.html#abbe7b095750a45049367f4b42e144393',1,'ast::Quantity::dimension()'],['../classast_1_1Unit.html#a737479417a4c6db862752355e6334984',1,'ast::Unit::dimension()']]],
+  ['discrete_29',['discrete',['../classast_1_1TimeInterval.html#ad09bcf881dcb28452f14558f31ea0bec',1,'ast::TimeInterval']]],
+  ['divide_30',['divide',['../classast_1_1Unit.html#a40d890822f24e239617f9aba3a87cf42',1,'ast::Unit']]],
+  ['dot_31',['dot',['../namespaceast_1_1math.html#aca33d22882041673d4a2e218e052cc3e',1,'ast::math']]],
+  ['dpr_32',['dpr',['../group__Spice.html#gae84bbf14131d083d3886978ca516e180',1,'ast']]],
+  ['duration_33',['duration',['../classast_1_1TimeInterval.html#a203d1051e9e7f49d721dad76848b0b4f',1,'ast::TimeInterval']]],
+  ['durationfrom_34',['durationFrom',['../classast_1_1TimePoint.html#a664c02ec8f67284d8b08333e818c6590',1,'ast::TimePoint']]]
 ];

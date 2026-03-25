@@ -433,6 +433,7 @@ var hierarchy =
     [ "ast::PoleMotion", "structast_1_1PoleMotion.html", null ],
     [ "ast::PoleMotionSXY", "structast_1_1PoleMotionSXY.html", null ],
     [ "ast::Polynomial", "classast_1_1Polynomial.html", null ],
+    [ "ast::MotionBasic::PropagationParams", "structast_1_1MotionBasic_1_1PropagationParams.html", null ],
     [ "ast::property_trait< T >", "structast_1_1property__trait.html", null ],
     [ "ast::property_trait< std::string >", "structast_1_1property__trait_3_01std_1_1string_01_4.html", null ],
     [ "QMainWindow", null, [

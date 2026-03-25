@@ -97,6 +97,7 @@ var group__Time =
       [ "second_", "classast_1_1Time.html#a22cecce12e0d43b36797b1b691fb7721", null ]
     ] ],
     [ "ast::TimeInterval", "classast_1_1TimeInterval.html", [
+      [ "discrete", "classast_1_1TimeInterval.html#ad09bcf881dcb28452f14558f31ea0bec", null ],
       [ "duration", "classast_1_1TimeInterval.html#a203d1051e9e7f49d721dad76848b0b4f", null ],
       [ "getStart", "classast_1_1TimeInterval.html#a2cc19db7dc279938cd333aaee7345cbc", null ],
       [ "getStop", "classast_1_1TimeInterval.html#a1cf2e038267e85c9a0a98f308e522a6f", null ],
