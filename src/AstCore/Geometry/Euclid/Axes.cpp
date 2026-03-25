@@ -25,6 +25,7 @@
 #include "AstMath/KinematicTransform.hpp"
 #include <cmath>
 #include <limits>
+#include <cassert>
 
 AST_NAMESPACE_BEGIN
 
@@ -66,10 +67,15 @@ Axes* Axes::getAncestor(int depth) const{
 template<typename GeometryType, typename RotationType>
 A_ALWAYS_INLINE err_t aGeometryTransform(GeometryType *source, GeometryType *target, const TimePoint& tp, RotationType &rotation)
 {
-    if (A_UNLIKELY(source == nullptr || target == nullptr))
-    {
-        return eErrorNullInput;
-    }
+    // if (A_UNLIKELY(source == nullptr || target == nullptr))
+    // {
+    //     return eErrorNullInput;
+    // }
+    
+    assert(source != nullptr && target != nullptr);
+
+    A_ASSUME(source!=nullptr);
+    A_ASSUME(target!=nullptr);
     
     /*!
         计算出源坐标系和目标坐标系的深度，
@@ -150,6 +156,8 @@ A_ALWAYS_INLINE err_t aGeometryTransform(GeometryType *source, GeometryType *tar
 
 err_t aFrameTransform(Frame* source, Frame* target, const TimePoint &tp, Transform& transform)
 {
+    if (A_UNLIKELY(source == nullptr || target == nullptr))
+        return eErrorNullInput;
     auto sourcePoint = source->getOrigin();
     auto targetPoint = target->getOrigin();
     if(sourcePoint == targetPoint){
@@ -161,6 +169,8 @@ err_t aFrameTransform(Frame* source, Frame* target, const TimePoint &tp, Transfo
 
 err_t aFrameTransform(Frame *source, Frame *target, const TimePoint &tp, KinematicTransform &transform)
 {
+    if (A_UNLIKELY(source == nullptr || target == nullptr))
+        return eErrorNullInput;
     auto sourcePoint = source->getOrigin();
     auto targetPoint = target->getOrigin();
     if(sourcePoint == targetPoint){
@@ -174,17 +184,22 @@ err_t aFrameTransform(Frame *source, Frame *target, const TimePoint &tp, Kinemat
 
 err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, Rotation &rotation)
 {
+    if (A_UNLIKELY(source == nullptr || target == nullptr))
+        return eErrorNullInput;
     return aGeometryTransform<Axes, Rotation>(source, target, tp, rotation);
+}
+
+
+err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, KinematicRotation &rotation)
+{
+    if (A_UNLIKELY(source == nullptr || target == nullptr))
+        return eErrorNullInput;
+    return aGeometryTransform<Axes, KinematicRotation>(source, target, tp, rotation);
 }
 
 err_t aAxesTransform(Axes *source, Axes *target, const TimePoint &tp, Matrix3d &matrix)
 {
     return aAxesTransform(source, target, tp, Rotation::CastFrom(matrix));
-}
-
-err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, KinematicRotation &rotation)
-{
-    return aGeometryTransform<Axes, KinematicRotation>(source, target, tp, rotation);
 }
 
 AST_NAMESPACE_END

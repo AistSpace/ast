@@ -78,9 +78,14 @@ static err_t openGravityFile(GravityFieldLoaderContext &ctx, StringView model, s
         #else
         size_t last_slash = model.find_last_of('/');
         #endif
-
-        bool no_dot = (last_dot == StringView::npos) || ((last_dot != StringView::npos) && (last_dot < last_slash));
-	    bool no_dir_sep = last_slash == StringView::npos;
+	    
+        bool no_dir_sep = last_slash == StringView::npos;
+        bool no_dot;
+        if(no_dir_sep){
+            no_dot = (last_dot == StringView::npos);
+        }else{
+            no_dot = (last_dot == StringView::npos) || ((last_dot != StringView::npos) && (last_dot < last_slash));
+        }
         Span<char const* const> suffixes;
         std::vector<std::string> prefixes;
         if(no_dot){

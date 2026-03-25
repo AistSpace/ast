@@ -19,8 +19,10 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "MotionHPOP.hpp"
-#include "AstSim/MotionProfileVisitor.hpp"
 #include "AstCore/HPOP.hpp"
+#include "AstCore/EphemerisLagrangeVar.hpp"
+#include "AstMath/ODEIntegrator.hpp"
+#include "AstSim/MotionProfileVisitor.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -42,17 +44,51 @@ err_t MotionHPOP::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
     auto propFrame = params.propagationFrame_;
     const TimePoint& epoch = params.epoch_;
     const CartState& cartState = params.stateInPropagationFrame_;
+    TimeInterval interval;
+    rc = this->getInterval(interval);
+    const TimePoint& startTime = interval.getStart();
+    const TimePoint stopTime = interval.getStop();
 
     std::vector<double> times;
     std::vector<Vector3d> positions, velocities;
     
     HPOP hpop;
     hpop.setForceModel(this->forceModel_);
-    A_UNUSED(propFrame);
-    A_UNUSED(epoch);
-    A_UNUSED(cartState);
+    auto integrator = hpop.getIntegrator();  AST_CHECK_NULLPTR(integrator);
+    rc = hpop.setPropagationFrame(propFrame); AST_CHECK_ERRCODE(rc, "failed to set propagation frame");
 
-    return -1;
+    CartState cartStateAtStartTime = cartState;
+
+    // 先判断开始时间和轨道历元时间是否相同
+    const double startOffset = startTime - epoch;
+    if(startOffset != 0)
+    {
+        TimePoint startTimeTemp = startTime;
+        rc = hpop.propagate(epoch, startTimeTemp, cartStateAtStartTime.pos(), cartStateAtStartTime.vel());
+        AST_CHECK_ERRCODE(rc, "failed to propagate");
+    }
+    // 添加状态量观察者
+    integrator->addStateObserver([&](double* y, double& x, ODEIntegrator* integrator){
+        times.push_back(x);
+        positions.push_back(Vector3d{y[0], y[1], y[2]});
+        velocities.push_back(Vector3d{y[3], y[4], y[5]});
+    });
+
+    // 进行预报
+    TimePoint stopTimeTemp = stopTime;
+    rc = hpop.propagate(startTime, stopTimeTemp, cartStateAtStartTime.pos(), cartStateAtStartTime.vel());
+    AST_CHECK_ERRCODE(rc, "failed to propagate");
+
+    // 创建星历
+    auto ephemLag = new EphemerisLagrangeVar();
+    ephemLag->setTimes(times);
+    ephemLag->setPositions(positions);
+    ephemLag->setVelocities(velocities);
+    ephemLag->setEpoch(startTime);  // 注意：这里将开始时间作为星历数据的历元时间
+    ephemLag->setFrame(propFrame);
+    eph = ephemLag;
+
+    return rc;
 }
 
 void MotionHPOP::accept(MotionProfileVisitor& visitor)

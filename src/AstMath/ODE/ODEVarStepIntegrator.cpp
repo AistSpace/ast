@@ -81,7 +81,7 @@ err_t ODEVarStepIntegrator::integrate(ODE &ode, double* y, double& t, double tf)
     if(this->useMaxStep_){
         hmax = this->maxStepSize_;
     }else{
-        hmax = tf - t0;
+        hmax = fabs(tf - t0);
     }
 
     absh = std::abs(this->getStepSize());

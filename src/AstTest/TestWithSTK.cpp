@@ -75,73 +75,95 @@ err_t aTestFromSTKFile(StringView filepath)
     }
     ast_printf("specific generated ephemeris generated\n");
 
-    TimePoint stopTime = interval.getStop();
-    Vector3d pos, vel;
-    Vector3d posExpected, velExpected;
-    rc = ephem_spec_generated->getPosVel(stopTime, pos, vel);
-    if(rc != eNoError)
+    std::vector<TimePoint> timePointsToCheck;
     {
-        ast_printf("failed to get pos vel from specific generated ephemeris\n");
-        return rc;
-    }
-    rc = ephem_readed->getPosVel(stopTime, posExpected, velExpected);
-    if(rc != eNoError)
-    {
-        ast_printf("failed to get pos vel from readed ephemeris\n");
-        return rc;
-    }
-    ast_printf("pos: %.15g, %.15g, %.15g\n", pos[0], pos[1], pos[2]);
-    ast_printf("vel: %.15g, %.15g, %.15g\n", vel[0], vel[1], vel[2]);
-    ast_printf("posExpected: %.15g, %.15g, %.15g\n", posExpected[0], posExpected[1], posExpected[2]);
-    ast_printf("velExpected: %.15g, %.15g, %.15g\n", velExpected[0], velExpected[1], velExpected[2]);
-    for(int i = 0; i < 3; ++i)
-    {
-        if(!aIsClose(pos[i], posExpected[i], 1e-13))
-        {
-            ast_printf("pos %d not close\n", i);
-            return eErrorInvalidParam;
-        }
-        if(!aIsClose(vel[i], velExpected[i], 1e-13))
-        {
-            ast_printf("vel %d not close\n", i);
-            return eErrorInvalidParam;
-        }
-    }
-    ast_printf("specific generated ephemeris test passed\n");
+        const TimePoint stopTime = interval.getStop();
+        const TimePoint startTime = interval.getStart();
 
-    ast_printf("test simple ephemeris...\n");
-    ScopedPtr<Ephemeris> ephem_simple_generated;
-    rc = motion->makeEphemerisSimple(ephem_simple_generated);
-    if(rc != eNoError)
-    {
-        ast_printf("failed to make simple ephemeris\n");
-        return rc;
+        timePointsToCheck = {startTime, stopTime};
     }
-    ast_printf("simple ephemeris generated\n");
-    rc = ephem_simple_generated->getPosVel(stopTime, pos, vel);
-    if(rc != eNoError)
+    double reltol_pos = 1e-13;
+    double reltol_vel = 1e-13;
+    double abstol_pos = 1e-10;
+    double abstol_vel = 1e-10;
+
+    if(motion->toHPOP())
     {
-        ast_printf("failed to get pos vel from simple ephemeris\n");
-        return rc;
+        reltol_pos = 1e-10;
+        reltol_vel = 1e-10;
+        abstol_pos = 1e-3;
+        abstol_vel = 1e-5;
     }
-    ast_printf("pos: %.15g, %.15g, %.15g\n", pos[0], pos[1], pos[2]);
-    ast_printf("vel: %.15g, %.15g, %.15g\n", vel[0], vel[1], vel[2]);
-    ast_printf("posExpected: %.15g, %.15g, %.15g\n", posExpected[0], posExpected[1], posExpected[2]);
-    ast_printf("velExpected: %.15g, %.15g, %.15g\n", velExpected[0], velExpected[1], velExpected[2]);
-    for(int i = 0; i < 3; ++i)
-    {
-        if(!aIsClose(pos[i], posExpected[i], 1e-13))
+    for(auto& tp: timePointsToCheck){
+        ast_printf("\n------------------------------------\n");
+        printf("checking for timepoint %s\n", tp.toString().c_str());
+        Vector3d pos, vel;
+        Vector3d posExpected, velExpected;
+        rc = ephem_spec_generated->getPosVel(tp, pos, vel);
+        if(rc != eNoError)
         {
-            ast_printf("pos %d not close\n", i);
-            return eErrorInvalidParam;
+            ast_printf("failed to get pos vel from specific generated ephemeris\n");
+            return rc;
         }
-        if(!aIsClose(vel[i], velExpected[i], 1e-13))
+        rc = ephem_readed->getPosVel(tp, posExpected, velExpected);
+        if(rc != eNoError)
         {
-            ast_printf("vel %d not close\n", i);
-            return eErrorInvalidParam;
+            ast_printf("failed to get pos vel from readed ephemeris\n");
+            return rc;
         }
+        ast_printf("pos: %.15g, %.15g, %.15g\n", pos[0], pos[1], pos[2]);
+        ast_printf("vel: %.15g, %.15g, %.15g\n", vel[0], vel[1], vel[2]);
+        ast_printf("posExpected: %.15g, %.15g, %.15g\n", posExpected[0], posExpected[1], posExpected[2]);
+        ast_printf("velExpected: %.15g, %.15g, %.15g\n", velExpected[0], velExpected[1], velExpected[2]);
+        for(int i = 0; i < 3; ++i)
+        {
+            if(!aIsClose(pos[i], posExpected[i], reltol_pos, abstol_pos))
+            {
+                ast_printf("pos %d not close\n", i);
+                return eErrorInvalidParam;
+            }
+            if(!aIsClose(vel[i], velExpected[i], reltol_vel, abstol_vel))
+            {
+                ast_printf("vel %d not close\n", i);
+                return eErrorInvalidParam;
+            }
+        }
+        ast_printf("specific generated ephemeris test passed\n");
+
+        ast_printf("test simple ephemeris...\n");
+        ScopedPtr<Ephemeris> ephem_simple_generated;
+        rc = motion->makeEphemerisSimple(ephem_simple_generated);
+        if(rc != eNoError)
+        {
+            ast_printf("failed to make simple ephemeris\n");
+            return rc;
+        }
+        ast_printf("simple ephemeris generated\n");
+        rc = ephem_simple_generated->getPosVel(tp, pos, vel);
+        if(rc != eNoError)
+        {
+            ast_printf("failed to get pos vel from simple ephemeris\n");
+            return rc;
+        }
+        ast_printf("pos: %.15g, %.15g, %.15g\n", pos[0], pos[1], pos[2]);
+        ast_printf("vel: %.15g, %.15g, %.15g\n", vel[0], vel[1], vel[2]);
+        ast_printf("posExpected: %.15g, %.15g, %.15g\n", posExpected[0], posExpected[1], posExpected[2]);
+        ast_printf("velExpected: %.15g, %.15g, %.15g\n", velExpected[0], velExpected[1], velExpected[2]);
+        for(int i = 0; i < 3; ++i)
+        {
+            if(!aIsClose(pos[i], posExpected[i], reltol_pos, abstol_pos))
+            {
+                ast_printf("pos %d not close\n", i);
+                return eErrorInvalidParam;
+            }
+            if(!aIsClose(vel[i], velExpected[i], reltol_vel, abstol_vel))
+            {
+                ast_printf("vel %d not close\n", i);
+                return eErrorInvalidParam;
+            }
+        }
+        ast_printf("simple ephemeris test passed\n");
     }
-    ast_printf("simple ephemeris test passed\n");
 
     ast_printf("all tests passed\n");
     return 0;
