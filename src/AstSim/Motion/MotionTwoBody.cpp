@@ -32,39 +32,50 @@ MotionTwoBody *MotionTwoBody::New()
     return new MotionTwoBody();
 }
 
-#define AST_CHECK_NULLPTR(obj) if(obj == nullptr){aError(#obj " is nullptr"); return eErrorNullPtr;}
-#define AST_CHECK_ERRCODE(rc, msg) if(rc){aError(msg); return rc;}
 
 err_t MotionTwoBody::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
 {
-    TimePoint epoch{};
-    auto initstate = this->getInitialState(); AST_CHECK_NULLPTR(initstate);
-
-    err_t rc = initstate->getStateEpoch(epoch); AST_CHECK_ERRCODE(rc, "failed to get initial epoch");
-
-    auto propFrame = this->getPropagationFrame(); AST_CHECK_NULLPTR(propFrame);
-
-    CartState cartState;
-    rc = initstate->getStateIn(propFrame, cartState); AST_CHECK_ERRCODE(rc, "failed to get initial state");
+    err_t rc;
+    PropagationParams params;
+    rc = this->getPropagationParams(params);   AST_CHECK_ERRCODE(rc, "failed to get propagation params");
     
-    auto ephTwoBody = EphemerisTwoBody::New(propFrame, epoch, cartState);
+    auto ephTwoBody = EphemerisTwoBody::New(params.propagationFrame_, params.epoch_, params.stateInPropagationFrame_);
     eph = ephTwoBody;
     return eNoError;
 }
 
 err_t MotionTwoBody::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
 {
-    TimeInterval interval;
-    this->getInterval(interval);
-    auto frame = this->getPropagationFrame();
-    if(frame == nullptr){
-        // aWarning("propagation frame is nullptr, use body's initial frame as the default frame");
-        // frame = this->getInitialState()->getFrame()->getBody()->makeFrameInertial();
-        aError("propagation frame is nullptr");
-        return eErrorNullPtr;
+    err_t rc;
+    PropagationParams params;
+    rc = this->getPropagationParams(params);   AST_CHECK_ERRCODE(rc, "failed to get propagation params");
+    auto propFrame = params.propagationFrame_;
+    const TimePoint& epoch = params.epoch_;
+    const CartState& cartState = params.stateInPropagationFrame_;
+    double gm = propFrame->getGM();   AST_CHECK_INVALID(gm <= 0);
+
+    std::vector<double> times;
+    std::vector<Vector3d> positions, velocities;
+    rc = this->discreteInterval(epoch, stepSize_, times);   AST_CHECK_ERRCODE(rc, "failed to discrete interval");
+    positions.resize(times.size());
+    velocities.resize(times.size());
+    for(size_t i = 0; i < times.size(); i++){
+        double t = times[i];
+        CartState state = cartState;
+        aTwoBodyProp(t, gm, state.pos(), state.vel());
+        positions[i] = state.pos();
+        velocities[i] = state.vel();
     }
 
-    return err_t();
+    auto ephemLag = new EphemerisLagrangeVar();
+    ephemLag->setTimes(times);
+    ephemLag->setPositions(positions);
+    ephemLag->setVelocities(velocities);
+    ephemLag->setEpoch(epoch);
+    ephemLag->setFrame(propFrame);
+    eph = ephemLag;
+
+    return eNoError;
 }
 
 AST_NAMESPACE_END

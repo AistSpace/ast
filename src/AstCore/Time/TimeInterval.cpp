@@ -19,6 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "TimeInterval.hpp"
+#include <cmath>
 
 AST_NAMESPACE_BEGIN
 
@@ -47,6 +48,23 @@ err_t aTimeIntervalParse(StringView strStart, StringView strStop, TimeInterval &
     return 0;
 }
 
-AST_NAMESPACE_END
+err_t TimeInterval::discrete(const TimePoint &epoch, double step, std::vector<double> &times) const
+{
+    ptrdiff_t nnodes = static_cast<ptrdiff_t>(std::ceil(duration() / step));
+    if(nnodes <= 0){
+        aError("number of nodes (%ld) is invalid", nnodes);
+        return eErrorInvalidParam;
+    }
+    times.reserve(nnodes);
+    double offset = getStart() - epoch;
+    
+    for(ptrdiff_t i = 0; i < nnodes-1; i++){
+        times.push_back(offset + i * step);
+    }
+    times.push_back(getStop() - epoch);
+    return eNoError;
+}
 
+
+AST_NAMESPACE_END
 

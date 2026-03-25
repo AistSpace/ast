@@ -102,18 +102,25 @@ public:
         start_ = -std::numeric_limits<double>::infinity();
         stop_ = +std::numeric_limits<double>::infinity();
     }
-
+public:
     /// @brief 时间区间的持续时间（秒）
     double duration() const{return stop_ - start_;}
 
-
+public:
     /// @brief 将时间区间转换为字符串
     std::string toString() const{
         std::string strStart, strEnd;
         aTimeIntervalFormat(*this, strStart, strEnd);
         return strStart + " - " + strEnd;
     }
-
+public:
+    /// @brief 将时间区间离散化
+    /// @param epoch 时间区间的基准时间点
+    /// @param step 离散化步长（秒）
+    /// @param times 输出离散化时间点
+    /// @return err_t 错误码
+    AST_CORE_API
+    err_t discrete(const TimePoint& epoch, double step, std::vector<double>& times) const;
 protected:
     int64_t epoch_;     ///< 时间区间的基准时间点（秒，从J2000.0 TAI 开始）
     double  start_;     ///< 相对开始时间(s)

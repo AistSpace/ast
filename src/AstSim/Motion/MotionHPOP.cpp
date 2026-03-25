@@ -19,6 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "MotionHPOP.hpp"
+#include "AstCore/HPOP.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -29,11 +30,27 @@ PMotionHPOP MotionHPOP::New()
 
 err_t MotionHPOP::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
 {
-    return -1;
+    return makeEphemerisSimple(eph);
 }
 
 err_t MotionHPOP::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
 {
+    err_t rc;
+    PropagationParams params;
+    rc = this->getPropagationParams(params);   AST_CHECK_ERRCODE(rc, "failed to get propagation params");
+    auto propFrame = params.propagationFrame_;
+    const TimePoint& epoch = params.epoch_;
+    const CartState& cartState = params.stateInPropagationFrame_;
+
+    std::vector<double> times;
+    std::vector<Vector3d> positions, velocities;
+    
+    HPOP hpop;
+    hpop.setForceModel(this->forceModel_);
+    A_UNUSED(propFrame);
+    A_UNUSED(epoch);
+    A_UNUSED(cartState);
+
     return -1;
 }
 

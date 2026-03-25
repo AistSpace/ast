@@ -36,6 +36,26 @@ void MotionBasic::setInterval(const TimeInterval &interval)
     interval_ = EventIntervalExplicit::New(interval);
 }
 
+err_t MotionBasic::getPropagationParams(PropagationParams &params) const
+{
+    err_t rc;
+    // rc = this->getInterval(params.interval_);   AST_CHECK_ERRCODE(rc, "failed to get interval");
+    params.propagationFrame_ = this->getPropagationFrame();   AST_CHECK_NULLPTR(params.propagationFrame_);
+    auto initialState = this->getInitialState();   AST_CHECK_NULLPTR(initialState);
+    rc = initialState->getStateEpoch(params.epoch_);   AST_CHECK_ERRCODE(rc, "failed to get initial state epoch");
+    rc = initialState->getStateIn(params.propagationFrame_, params.stateInPropagationFrame_);   AST_CHECK_ERRCODE(rc, "failed to get initial state");
+    return eNoError;
+}
+
+err_t MotionBasic::discreteInterval(const TimePoint &epoch, double stepSize, std::vector<double> &times) const
+{
+    err_t rc;
+    TimeInterval interval;
+    rc = this->getInterval(interval);   AST_CHECK_ERRCODE(rc, "failed to get interval");
+    rc = interval.discrete(epoch, stepSize, times);   AST_CHECK_ERRCODE(rc, "failed to discrete interval");
+    return rc;
+}
+
 AST_NAMESPACE_END
 
 

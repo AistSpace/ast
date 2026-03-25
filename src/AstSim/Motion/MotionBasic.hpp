@@ -24,7 +24,7 @@
 #include "AstSim/MotionProfile.hpp"
 #include "AstCore/State.hpp"
 #include "AstCore/EventInterval.hpp"
-
+#include "AstCore/OrbitElement.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -76,6 +76,17 @@ public:
     /// @brief 获取预报步长
     /// @return 预报步长
     double getStepSize() const { return stepSize_; }
+protected:
+    struct PropagationParams
+    {
+        TimePoint    epoch_;                      ///< 预报时间点
+        CartState    stateInPropagationFrame_;    ///< 预报坐标系下的初始状态
+        Frame*       propagationFrame_;           ///< 预报坐标系指针
+    };
+
+    err_t getPropagationParams(PropagationParams& params) const;
+
+    err_t discreteInterval(const TimePoint& epoch, double stepSize, std::vector<double>& times) const;
 protected:
     SharedPtr<State>            initialState_;          ///< 初始状态
     SharedPtr<EventInterval>    interval_;              ///< 时间段
