@@ -1,11 +1,5 @@
 var NAVTREEINDEX27 =
 {
-"structast_1_1InitalizeConfig.html#ac5f76bc464e252ffacd27baf5302823f":[2,0,0,176,8],
-"structast_1_1InitalizeConfig.html#ac5f76bc464e252ffacd27baf5302823f":[3,0,0,175,8],
-"structast_1_1InitalizeConfig.html#ae20b57d4d9fa2e7ae8d68f50b6b94a93":[2,0,0,176,1],
-"structast_1_1InitalizeConfig.html#ae20b57d4d9fa2e7ae8d68f50b6b94a93":[3,0,0,175,1],
-"structast_1_1InitalizeConfig.html#af73dcf28647d734dfb220c15866cdac7":[2,0,0,176,0],
-"structast_1_1InitalizeConfig.html#af73dcf28647d734dfb220c15866cdac7":[3,0,0,175,0],
 "structast_1_1LeapSecond_1_1Entry.html":[0,0,1,5,0],
 "structast_1_1MotionBasic_1_1PropagationParams.html":[2,0,0,213,0],
 "structast_1_1MotionBasic_1_1PropagationParams.html":[3,0,0,212,0],

@@ -1,8 +1,7 @@
 var classast_1_1GravityCalculator =
 [
-    [ "GravityCalculator", "classast_1_1GravityCalculator.html#a6df7f82fb686a31c64d0fcc542a64b2b", null ],
-    [ "GravityCalculator", "classast_1_1GravityCalculator.html#a5966052f1a0f069c8c5dbdbae42aa0cf", null ],
-    [ "GravityCalculator", "classast_1_1GravityCalculator.html#a4f1d2d4af4cfeef7357f7c4e8d19f814", null ],
+    [ "GravityCalculator", "classast_1_1GravityCalculator.html#a8404681942399c5b44555eae43547b81", null ],
+    [ "GravityCalculator", "classast_1_1GravityCalculator.html#abcebe6c641bddf8b2dff9e4955af2b41", null ],
     [ "calcPertAcceleration", "classast_1_1GravityCalculator.html#a4c56ea3e0471dd9d27379f3e14e2524a", null ],
     [ "calcTotalAcceleration", "classast_1_1GravityCalculator.html#a2085c78cfe75bd0a4fe53b3c42c6fd8a", null ],
     [ "getDegree", "classast_1_1GravityCalculator.html#a13f7592832fd03f89cb176992f08995b", null ],
