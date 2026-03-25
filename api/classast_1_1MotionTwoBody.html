@@ -124,6 +124,8 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a197fc1b699f56a2b4715a6aa2ca2cb22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b736a11f35b00c9e18b2f1d2ba72c71" id="r_a6b736a11f35b00c9e18b2f1d2ba72c71"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b736a11f35b00c9e18b2f1d2ba72c71">makeEphemerisSimple</a> (<a class="el" href="classast_1_1ScopedPtr.html">ScopedPtr</a>&lt; <a class="el" href="classast_1_1Ephemeris.html">Ephemeris</a> &gt; &amp;eph) const override</td></tr>
 <tr class="separator:a6b736a11f35b00c9e18b2f1d2ba72c71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8dcf4eb809aebda9c322afc02f254e6" id="r_ac8dcf4eb809aebda9c322afc02f254e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8dcf4eb809aebda9c322afc02f254e6">accept</a> (<a class="el" href="classast_1_1MotionProfileVisitor.html">MotionProfileVisitor</a> &amp;visitor) override</td></tr>
+<tr class="separator:ac8dcf4eb809aebda9c322afc02f254e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classast_1_1MotionBasic"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1MotionBasic')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1MotionBasic.html">ast::MotionBasic</a></td></tr>
 <tr class="memitem:a029ab7b18038084217df9de0a3e0aa9d inherit pub_methods_classast_1_1MotionBasic" id="r_a029ab7b18038084217df9de0a3e0aa9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1State.html">State</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionBasic.html#a029ab7b18038084217df9de0a3e0aa9d">getInitialState</a> () const</td></tr>
 <tr class="separator:a029ab7b18038084217df9de0a3e0aa9d inherit pub_methods_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,6 +185,41 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>stepSize_</b> {60.0
 <tr class="separator:a38e44e47b17087b0ca077853cb9e0d7b inherit pro_attribs_classast_1_1MotionBasic"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">成员函数说明</h2>
+<a id="ac8dcf4eb809aebda9c322afc02f254e6" name="ac8dcf4eb809aebda9c322afc02f254e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8dcf4eb809aebda9c322afc02f254e6">&#9670;&#160;</a></span>accept()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::MotionTwoBody::accept </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1MotionProfileVisitor.html">MotionProfileVisitor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>visitor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>接受访问者 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">visitor</td><td>访问者 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>实现了 <a class="el" href="classast_1_1MotionProfile.html#aeb2121654e340e28d8e750cc5dbfff2b">ast::MotionProfile</a>.</p>
+
+</div>
+</div>
 <a id="a6b736a11f35b00c9e18b2f1d2ba72c71" name="a6b736a11f35b00c9e18b2f1d2ba72c71"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6b736a11f35b00c9e18b2f1d2ba72c71">&#9670;&#160;</a></span>makeEphemerisSimple()</h2>
 

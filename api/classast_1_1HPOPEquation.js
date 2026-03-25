@@ -7,5 +7,6 @@ var classast_1_1HPOPEquation =
     [ "setEpoch", "classast_1_1HPOPEquation.html#a4c7205d86fc1057cf517d1fe33f743ed", null ],
     [ "setForceModel", "classast_1_1HPOPEquation.html#aedba448027df557c5b049015c408f375", null ],
     [ "dynamicSystem_", "classast_1_1HPOPEquation.html#ad0c20d16cce4c511c79c09f464fb49d6", null ],
-    [ "epoch_", "classast_1_1HPOPEquation.html#a3accc94eaef2d5abd3bc134202770c48", null ]
+    [ "epoch_", "classast_1_1HPOPEquation.html#a3accc94eaef2d5abd3bc134202770c48", null ],
+    [ "forceModel_", "classast_1_1HPOPEquation.html#a8d093909e62a162d3c6c6020a6be7bcf", null ]
 ];

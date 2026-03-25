@@ -132,6 +132,7 @@ var hierarchy =
         [ "ast::BlockGravity", "classast_1_1BlockGravity.html", null ],
         [ "ast::BlockMotion", "classast_1_1BlockMotion.html", null ],
         [ "ast::BlockThirdBody", "classast_1_1BlockThirdBody.html", null ],
+        [ "ast::BlockTransform", "classast_1_1BlockTransform.html", null ],
         [ "ast::BlockTwoBody", "classast_1_1BlockTwoBody.html", null ]
       ] ],
       [ "ast::BlockDivide", "classast_1_1BlockDivide.html", null ],
@@ -282,6 +283,7 @@ var hierarchy =
         [ "ast::MotionTwoBody", "classast_1_1MotionTwoBody.html", null ]
       ] ]
     ] ],
+    [ "ast::MotionProfileVisitor", "classast_1_1MotionProfileVisitor.html", null ],
     [ "Multitype", "unionMultitype.html", null ],
     [ "Namelist", "structNamelist.html", null ],
     [ "ast::NLPBounds", "structast_1_1NLPBounds.html", null ],
@@ -481,7 +483,9 @@ var hierarchy =
     [ "ast::SharedPtr< ast::Frame >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::Point >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::State >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< Axes >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< CelestialBody >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< State >", "classast_1_1SharedPtr.html", null ],
     [ "ast::ShortDuration", "classast_1_1ShortDuration.html", null ],
     [ "ast::SimEngine", "classast_1_1SimEngine.html", null ],
     [ "ast::SimTime", "classast_1_1SimTime.html", null ],
@@ -492,6 +496,7 @@ var hierarchy =
     [ "ast::SnoptCAPI", "structast_1_1SnoptCAPI.html", null ],
     [ "ast::SolverStats", "structast_1_1SolverStats.html", null ],
     [ "ast::fs_simple::space_info", "structast_1_1fs__simple_1_1space__info.html", null ],
+    [ "ast::SpacecraftState", "classast_1_1SpacecraftState.html", null ],
     [ "ast::SpaceWeather", "classast_1_1SpaceWeather.html", null ],
     [ "ast::Span< T, Extent >", "classast_1_1Span.html", null ],
     [ "ast::SpanStorage< T, Extent >", "classast_1_1SpanStorage.html", null ],

@@ -6,6 +6,5 @@ var classast_1_1HPOP =
     [ "setForceModel", "classast_1_1HPOP.html#a07326436dca147ced7160576116b1091", null ],
     [ "setIntegrator", "classast_1_1HPOP.html#a441808f323a236e9916f7f0e7f774750", null ],
     [ "equation_", "classast_1_1HPOP.html#a35fca2be2f3d9005b6dc517d71a27611", null ],
-    [ "forcemodel_", "classast_1_1HPOP.html#a0b09762e785a6f7536afa526d7694a35", null ],
     [ "integrator_", "classast_1_1HPOP.html#a976ebf7b57933ac1e476ee098d95e467", null ]
 ];

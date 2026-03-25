@@ -125,6 +125,9 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a2b57e015ebcad97da19b73d0dd203317" id="r_a2b57e015ebcad97da19b73d0dd203317"><td class="memItemLeft" align="right" valign="top"><a id="a2b57e015ebcad97da19b73d0dd203317" name="a2b57e015ebcad97da19b73d0dd203317"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BlockGravity</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> gravityModel, int degree, int order)</td></tr>
 <tr class="separator:a2b57e015ebcad97da19b73d0dd203317"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4da0ff0545487ec22887ebeee09d8058" id="r_a4da0ff0545487ec22887ebeee09d8058"><td class="memItemLeft" align="right" valign="top"><a id="a4da0ff0545487ec22887ebeee09d8058" name="a4da0ff0545487ec22887ebeee09d8058"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BlockGravity</b> (<a class="el" href="classast_1_1Axes.html">Axes</a> *gravityAxes, <a class="el" href="classast_1_1Axes.html">Axes</a> *propagationAxes, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> gravityModel, int degree, int order)</td></tr>
+<tr class="separator:a4da0ff0545487ec22887ebeee09d8058"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b61eea5a888544fb20c1450195bd27a" id="r_a6b61eea5a888544fb20c1450195bd27a"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b61eea5a888544fb20c1450195bd27a">run</a> (const <a class="el" href="classast_1_1SimTime.html">SimTime</a> &amp;simTime) final</td></tr>
 <tr class="separator:a6b61eea5a888544fb20c1450195bd27a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classast_1_1BlockDerivative"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1BlockDerivative')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1BlockDerivative.html">ast::BlockDerivative</a></td></tr>
@@ -179,21 +182,27 @@ std::vector&lt; <a class="el" href="classast_1_1DataPort.html">DataPort</a> &gt;
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
-<tr class="memitem:a6ba510a84e05648c87daa380a5e09743" id="r_a6ba510a84e05648c87daa380a5e09743"><td class="memItemLeft" align="right" valign="top"><a id="a6ba510a84e05648c87daa380a5e09743" name="a6ba510a84e05648c87daa380a5e09743"></a>
-Vector3d *&#160;</td><td class="memItemRight" valign="bottom"><b>posCBI</b> {&amp;<a class="el" href="#ac3c57024bf663ad8011a891b08e5df88">vectorBuffer</a>}</td></tr>
-<tr class="separator:a6ba510a84e05648c87daa380a5e09743"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a210970043d74df617d3c3f9301bf14f5" id="r_a210970043d74df617d3c3f9301bf14f5"><td class="memItemLeft" align="right" valign="top"><a id="a210970043d74df617d3c3f9301bf14f5" name="a210970043d74df617d3c3f9301bf14f5"></a>
-Vector3d *&#160;</td><td class="memItemRight" valign="bottom"><b>accGravity</b> {&amp;<a class="el" href="#ac3c57024bf663ad8011a891b08e5df88">vectorBuffer</a>}</td></tr>
-<tr class="separator:a210970043d74df617d3c3f9301bf14f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88776bd9c4b6b9addcddd806ee639d03" id="r_a88776bd9c4b6b9addcddd806ee639d03"><td class="memItemLeft" align="right" valign="top"><a id="a88776bd9c4b6b9addcddd806ee639d03" name="a88776bd9c4b6b9addcddd806ee639d03"></a>
-Vector3d *&#160;</td><td class="memItemRight" valign="bottom"><b>velocityDerivative_</b> {&amp;<a class="el" href="#ac3c57024bf663ad8011a891b08e5df88">vectorBuffer</a>}</td></tr>
-<tr class="separator:a88776bd9c4b6b9addcddd806ee639d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3c57024bf663ad8011a891b08e5df88" id="r_ac3c57024bf663ad8011a891b08e5df88"><td class="memItemLeft" align="right" valign="top"><a id="ac3c57024bf663ad8011a891b08e5df88" name="ac3c57024bf663ad8011a891b08e5df88"></a>
-Vector3d&#160;</td><td class="memItemRight" valign="bottom"><b>vectorBuffer</b> {}</td></tr>
-<tr class="separator:ac3c57024bf663ad8011a891b08e5df88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef1e84dc2490768c5f44e4d6979bb197" id="r_aef1e84dc2490768c5f44e4d6979bb197"><td class="memItemLeft" align="right" valign="top"><a id="aef1e84dc2490768c5f44e4d6979bb197" name="aef1e84dc2490768c5f44e4d6979bb197"></a>
-<a class="el" href="classast_1_1GravityCalculator3.html">GravityCalculatorDefault</a>&#160;</td><td class="memItemRight" valign="bottom"><b>gravityCalculator</b></td></tr>
-<tr class="separator:aef1e84dc2490768c5f44e4d6979bb197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39a893dc50bb3ea09a8fabb9e9177a33" id="r_a39a893dc50bb3ea09a8fabb9e9177a33"><td class="memItemLeft" align="right" valign="top"><a id="a39a893dc50bb3ea09a8fabb9e9177a33" name="a39a893dc50bb3ea09a8fabb9e9177a33"></a>
+<a class="el" href="group__Geometry.html#ga52cecc91460a5123ebbfa0a7a4c7b0f9">HAxes</a>&#160;</td><td class="memItemRight" valign="bottom"><b>gravityAxes_</b></td></tr>
+<tr class="separator:a39a893dc50bb3ea09a8fabb9e9177a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2571399a390546fa721f27323c2b2e3d" id="r_a2571399a390546fa721f27323c2b2e3d"><td class="memItemLeft" align="right" valign="top"><a id="a2571399a390546fa721f27323c2b2e3d" name="a2571399a390546fa721f27323c2b2e3d"></a>
+<a class="el" href="group__Geometry.html#ga52cecc91460a5123ebbfa0a7a4c7b0f9">HAxes</a>&#160;</td><td class="memItemRight" valign="bottom"><b>propagationAxes_</b></td></tr>
+<tr class="separator:a2571399a390546fa721f27323c2b2e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c0b1bf649359f6393a234406da13157" id="r_a6c0b1bf649359f6393a234406da13157"><td class="memItemLeft" align="right" valign="top"><a id="a6c0b1bf649359f6393a234406da13157" name="a6c0b1bf649359f6393a234406da13157"></a>
+Vector3d *&#160;</td><td class="memItemRight" valign="bottom"><b>posPtr_</b> {&amp;<a class="el" href="#a45cdbab9fe8c492115a7057d61e94875">vectorBuffer_</a>}</td></tr>
+<tr class="separator:a6c0b1bf649359f6393a234406da13157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5072d45ae461ff36a3f140badb720916" id="r_a5072d45ae461ff36a3f140badb720916"><td class="memItemLeft" align="right" valign="top"><a id="a5072d45ae461ff36a3f140badb720916" name="a5072d45ae461ff36a3f140badb720916"></a>
+Vector3d *&#160;</td><td class="memItemRight" valign="bottom"><b>accGravityPtr_</b> {&amp;<a class="el" href="#a45cdbab9fe8c492115a7057d61e94875">vectorBuffer_</a>}</td></tr>
+<tr class="separator:a5072d45ae461ff36a3f140badb720916"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65eca9a55dec171af243476acd6a7764" id="r_a65eca9a55dec171af243476acd6a7764"><td class="memItemLeft" align="right" valign="top"><a id="a65eca9a55dec171af243476acd6a7764" name="a65eca9a55dec171af243476acd6a7764"></a>
+Vector3d *&#160;</td><td class="memItemRight" valign="bottom"><b>velocityDerivativePtr_</b> {&amp;<a class="el" href="#a45cdbab9fe8c492115a7057d61e94875">vectorBuffer_</a>}</td></tr>
+<tr class="separator:a65eca9a55dec171af243476acd6a7764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45cdbab9fe8c492115a7057d61e94875" id="r_a45cdbab9fe8c492115a7057d61e94875"><td class="memItemLeft" align="right" valign="top"><a id="a45cdbab9fe8c492115a7057d61e94875" name="a45cdbab9fe8c492115a7057d61e94875"></a>
+Vector3d&#160;</td><td class="memItemRight" valign="bottom"><b>vectorBuffer_</b> {}</td></tr>
+<tr class="separator:a45cdbab9fe8c492115a7057d61e94875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5718a224cb4bff62edde0db55afd6d9" id="r_ab5718a224cb4bff62edde0db55afd6d9"><td class="memItemLeft" align="right" valign="top"><a id="ab5718a224cb4bff62edde0db55afd6d9" name="ab5718a224cb4bff62edde0db55afd6d9"></a>
+<a class="el" href="classast_1_1GravityCalculator3.html">GravityCalculatorDefault</a>&#160;</td><td class="memItemRight" valign="bottom"><b>gravityCalculator_</b></td></tr>
+<tr class="separator:ab5718a224cb4bff62edde0db55afd6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classast_1_1BlockDerivative"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classast_1_1BlockDerivative')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classast_1_1BlockDerivative.html">ast::BlockDerivative</a></td></tr>
 <tr class="memitem:ac869516d83ef23185f2f1cadb151c573 inherit pro_attribs_classast_1_1BlockDerivative" id="r_ac869516d83ef23185f2f1cadb151c573"><td class="memItemLeft" align="right" valign="top">
 std::vector&lt; <a class="el" href="classast_1_1DataPort.html">DataPort</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>derivativePorts_</b></td></tr>

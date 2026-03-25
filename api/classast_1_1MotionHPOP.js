@@ -1,5 +1,6 @@
 var classast_1_1MotionHPOP =
 [
+    [ "accept", "classast_1_1MotionHPOP.html#a8fb791abe504e493fc96932ff459e945", null ],
     [ "getForceModel", "classast_1_1MotionHPOP.html#a276cb7369c6806ba6790d4092aba7bfc", null ],
     [ "makeEphemerisSimple", "classast_1_1MotionHPOP.html#ae4673d57845ece11978ce870a471076f", null ],
     [ "makeEphemerisSpec", "classast_1_1MotionHPOP.html#a253cdaeaa23fe33edd71150932383bca", null ],

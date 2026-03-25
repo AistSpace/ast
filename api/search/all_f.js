@@ -121,13 +121,14 @@ var searchData=
   ['orbitepoch_5f_118',['orbitEpoch_',['../classast_1_1BaseOrbitDesigner.html#ab82f58afe9a01ffe9b46e1cf55d685bb',1,'ast::BaseOrbitDesigner']]],
   ['orbitparam_2ecpp_119',['OrbitParam.cpp',['../OrbitParam_8cpp.html',1,'']]],
   ['orbitparam_2ehpp_120',['OrbitParam.hpp',['../OrbitParam_8hpp.html',1,'']]],
-  ['order_5f_121',['order_',['../classast_1_1GravityCalculator.html#a9212a7c9197e81fecdb52595c0cba4d5',1,'ast::GravityCalculator']]],
-  ['ordinarydifferentialequation_122',['OrdinaryDifferentialEquation',['../classast_1_1OrdinaryDifferentialEquation.html',1,'ast']]],
-  ['ordinarydifferentialequation_2ecpp_123',['OrdinaryDifferentialEquation.cpp',['../OrdinaryDifferentialEquation_8cpp.html',1,'']]],
-  ['ordinarydifferentialequation_2ehpp_124',['OrdinaryDifferentialEquation.hpp',['../OrdinaryDifferentialEquation_8hpp.html',1,'']]],
-  ['orientation_5f_125',['orientation_',['../classast_1_1CelestialBody.html#a44182741b2ae49b7c5ce5bfcde6275b0',1,'ast::CelestialBody']]],
-  ['orientationtype_5f_126',['orientationType_',['../classast_1_1StateKeplerian.html#a9f888ea2118ed7b1c80432fc851ec6a3',1,'ast::StateKeplerian']]],
-  ['origin_5f_127',['origin_',['../classast_1_1FrameAssembly.html#a153f06ae7eb2d61d664281e07050fa17',1,'ast::FrameAssembly::origin_'],['../classast_1_1FrameWithEpoch.html#a9a32767beac508031b47d6e53c027575',1,'ast::FrameWithEpoch::origin_']]],
-  ['osculatingelements_2ecpp_128',['OsculatingElements.cpp',['../OsculatingElements_8cpp.html',1,'']]],
-  ['osculatingelements_2ehpp_129',['OsculatingElements.hpp',['../OsculatingElements_8hpp.html',1,'']]]
+  ['orbitstate_5f_121',['orbitState_',['../classast_1_1SpacecraftState.html#a31f0896d001f73355e4f48e2827bc65d',1,'ast::SpacecraftState']]],
+  ['order_5f_122',['order_',['../classast_1_1GravityCalculator.html#a9212a7c9197e81fecdb52595c0cba4d5',1,'ast::GravityCalculator']]],
+  ['ordinarydifferentialequation_123',['OrdinaryDifferentialEquation',['../classast_1_1OrdinaryDifferentialEquation.html',1,'ast']]],
+  ['ordinarydifferentialequation_2ecpp_124',['OrdinaryDifferentialEquation.cpp',['../OrdinaryDifferentialEquation_8cpp.html',1,'']]],
+  ['ordinarydifferentialequation_2ehpp_125',['OrdinaryDifferentialEquation.hpp',['../OrdinaryDifferentialEquation_8hpp.html',1,'']]],
+  ['orientation_5f_126',['orientation_',['../classast_1_1CelestialBody.html#a44182741b2ae49b7c5ce5bfcde6275b0',1,'ast::CelestialBody']]],
+  ['orientationtype_5f_127',['orientationType_',['../classast_1_1StateKeplerian.html#a9f888ea2118ed7b1c80432fc851ec6a3',1,'ast::StateKeplerian']]],
+  ['origin_5f_128',['origin_',['../classast_1_1FrameAssembly.html#a153f06ae7eb2d61d664281e07050fa17',1,'ast::FrameAssembly::origin_'],['../classast_1_1FrameWithEpoch.html#a9a32767beac508031b47d6e53c027575',1,'ast::FrameWithEpoch::origin_']]],
+  ['osculatingelements_2ecpp_129',['OsculatingElements.cpp',['../OsculatingElements_8cpp.html',1,'']]],
+  ['osculatingelements_2ehpp_130',['OsculatingElements.hpp',['../OsculatingElements_8hpp.html',1,'']]]
 ];
