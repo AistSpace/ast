@@ -137,8 +137,9 @@ var searchData=
   ['propertystruct_134',['PropertyStruct',['../classast_1_1PropertyStruct.html',1,'ast']]],
   ['propertystruct_2ecpp_135',['PropertyStruct.cpp',['../PropertyStruct_8cpp.html',1,'']]],
   ['propertystruct_2ehpp_136',['PropertyStruct.hpp',['../PropertyStruct_8hpp.html',1,'']]],
-  ['propnonormalize_137',['propNoNormalize',['../classast_1_1J2J4Analytical.html#a2f6ef9d3c240981fd32b96a7a3a9b3cb',1,'ast::J2J4Analytical']]],
-  ['pstnul_138',['pstnul',['../structast_1_1DAF__FileRecord.html#ad311bd512ed672bee5193b0e30fef442',1,'ast::DAF_FileRecord']]],
-  ['push_5fback_139',['push_back',['../classast_1_1ExprContainer.html#a7693c4461fff8bd2095cbb0e54cbaad0',1,'ast::ExprContainer']]],
-  ['pxform_140',['pxform',['../group__Spice.html#ga5751be1205b7faa7f89fdda7fd242ea8',1,'ast']]]
+  ['propframe_5f_137',['propFrame_',['../classast_1_1HPOPEquation.html#a765b6c98f7fe701226715b4e6550e220',1,'ast::HPOPEquation']]],
+  ['propnonormalize_138',['propNoNormalize',['../classast_1_1J2J4Analytical.html#a2f6ef9d3c240981fd32b96a7a3a9b3cb',1,'ast::J2J4Analytical']]],
+  ['pstnul_139',['pstnul',['../structast_1_1DAF__FileRecord.html#ad311bd512ed672bee5193b0e30fef442',1,'ast::DAF_FileRecord']]],
+  ['push_5fback_140',['push_back',['../classast_1_1ExprContainer.html#a7693c4461fff8bd2095cbb0e54cbaad0',1,'ast::ExprContainer']]],
+  ['pxform_141',['pxform',['../group__Spice.html#ga5751be1205b7faa7f89fdda7fd242ea8',1,'ast']]]
 ];

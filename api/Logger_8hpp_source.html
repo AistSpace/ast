@@ -328,7 +328,7 @@ $(function(){initNavTree('Logger_8hpp_source.html',''); initResizable(true); });
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="preprocessor">#define aFatal(...)    AST_PREPEND_NAMESPACE(MessageLogger)(__FILE__, __LINE__, __FUNCTION__).fatal(__VA_ARGS__)</span></div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="preprocessor">#define AST_CHECK_NULLPTR(variable) if(variable == nullptr){aError(#variable &quot; is nullptr&quot;); return eErrorNullPtr;}</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="preprocessor">#define AST_CHECK_NULLPTR(variable) if(variable == nullptr){aError(#variable &quot; is notset(nullptr)&quot;); return eErrorNullPtr;}</span></div>
 <div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="preprocessor">#define AST_CHECK_ERRCODE(rc, msg) if(rc){aError(msg); return rc;}</span></div>
 <div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="preprocessor">#define AST_CHECK_INVALID(condition) if(condition){aError(&quot;invalid parameter, with &quot; #condition); return eErrorInvalidParam;}</span></div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>

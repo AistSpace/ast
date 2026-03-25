@@ -1,5 +1,6 @@
 var NAVTREEINDEX9 =
 {
+"classast_1_1CriticallyInclinedOrbitDesigner.html#afcb2cb7b085c6743c6b7f76ca0ef89dda2c960f38133fb827437b72b59d64875e":[0,0,3,3,0,1],
 "classast_1_1CriticallyInclinedOrbitDesigner.html#afcb2cb7b085c6743c6b7f76ca0ef89ddafff03efdc0d42aec622a56e1c3cc69ad":[0,0,3,3,0,0],
 "classast_1_1CriticallyInclinedSunSyncOrbitDesigner.html":[2,0,0,87],
 "classast_1_1CriticallyInclinedSunSyncOrbitDesigner.html":[3,0,0,86],
@@ -248,6 +249,5 @@ var NAVTREEINDEX9 =
 "classast_1_1EventInterval.html":[2,0,0,114],
 "classast_1_1EventInterval.html":[3,0,0,113],
 "classast_1_1EventInterval.html#a594d7b6da2677cba4349ed98a41b172e":[2,0,0,114,0],
-"classast_1_1EventInterval.html#a594d7b6da2677cba4349ed98a41b172e":[3,0,0,113,0],
-"classast_1_1EventIntervalExplicit.html":[2,0,0,115]
+"classast_1_1EventInterval.html#a594d7b6da2677cba4349ed98a41b172e":[3,0,0,113,0]
 };

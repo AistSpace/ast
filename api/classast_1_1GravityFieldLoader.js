@@ -5,6 +5,7 @@ var classast_1_1GravityFieldLoader =
     [ "setMaxLoadDegree", "classast_1_1GravityFieldLoader.html#a5b3bfe329480b0e273594fb0be4e2f7c", null ],
     [ "setMaxLoadOrder", "classast_1_1GravityFieldLoader.html#a18ead310481da288d31aa6cceb01a8b4", null ],
     [ "coeff_", "classast_1_1GravityFieldLoader.html#a612f301ad2a075b814daf792fca7a4d7", null ],
+    [ "dirpath_", "classast_1_1GravityFieldLoader.html#a35b4d83a3160eaed9fbed4959b7c5a32", null ],
     [ "head_", "classast_1_1GravityFieldLoader.html#a2596fc0d3b4b7b95daa41e76e3766853", null ],
     [ "maxLoadDegree_", "classast_1_1GravityFieldLoader.html#a1a478851d541f18113735a0a58edea94", null ],
     [ "maxLoadOrder_", "classast_1_1GravityFieldLoader.html#a50f089af73e109dddb6e209056a9b0cc", null ],

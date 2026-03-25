@@ -6,6 +6,7 @@ var group__Propagator =
       [ "propagate", "classast_1_1HPOP.html#ad359222c1e81033d1bb984987ed44c0f", null ],
       [ "setForceModel", "classast_1_1HPOP.html#a07326436dca147ced7160576116b1091", null ],
       [ "setIntegrator", "classast_1_1HPOP.html#a441808f323a236e9916f7f0e7f774750", null ],
+      [ "setPropagationFrame", "classast_1_1HPOP.html#a03f174c88b3d32478664a6782e73ab98", null ],
       [ "equation_", "classast_1_1HPOP.html#a35fca2be2f3d9005b6dc517d71a27611", null ],
       [ "integrator_", "classast_1_1HPOP.html#a976ebf7b57933ac1e476ee098d95e467", null ]
     ] ],

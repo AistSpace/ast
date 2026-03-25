@@ -110,9 +110,12 @@ $(function(){initNavTree('classast_1_1GravityFieldLoader.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a27ec7a7914124fdb586158cf82f89a03" id="r_a27ec7a7914124fdb586158cf82f89a03"><td class="memItemLeft" align="right" valign="top"><a id="a27ec7a7914124fdb586158cf82f89a03" name="a27ec7a7914124fdb586158cf82f89a03"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GravityFieldLoader</b> (int maxLoadDegree, int maxLoadOrder)</td></tr>
-<tr class="separator:a27ec7a7914124fdb586158cf82f89a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac271f8608466b5f2aca82feb8ed1442c" id="r_ac271f8608466b5f2aca82feb8ed1442c"><td class="memItemLeft" align="right" valign="top"><a id="ac271f8608466b5f2aca82feb8ed1442c" name="ac271f8608466b5f2aca82feb8ed1442c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>GravityFieldLoader</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> dirpath)</td></tr>
+<tr class="separator:ac271f8608466b5f2aca82feb8ed1442c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97635b3ec2e98cf2c00a50add974fc72" id="r_a97635b3ec2e98cf2c00a50add974fc72"><td class="memItemLeft" align="right" valign="top"><a id="a97635b3ec2e98cf2c00a50add974fc72" name="a97635b3ec2e98cf2c00a50add974fc72"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>GravityFieldLoader</b> (int maxLoadDegree, int maxLoadOrder, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> dirpath)</td></tr>
+<tr class="separator:a97635b3ec2e98cf2c00a50add974fc72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a994c007d0c01926aeeec67e2d3f354e6" id="r_a994c007d0c01926aeeec67e2d3f354e6"><td class="memItemLeft" align="right" valign="top"><a id="a994c007d0c01926aeeec67e2d3f354e6" name="a994c007d0c01926aeeec67e2d3f354e6"></a>
 AST_CORE_API err_t&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filePath, <a class="el" href="classast_1_1GravityField.html">GravityField</a> &amp;gravityField)</td></tr>
 <tr class="separator:a994c007d0c01926aeeec67e2d3f354e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,6 +146,9 @@ Public 属性</h2></td></tr>
 <tr class="memitem:a612f301ad2a075b814daf792fca7a4d7" id="r_a612f301ad2a075b814daf792fca7a4d7"><td class="memItemLeft" align="right" valign="top"><a id="a612f301ad2a075b814daf792fca7a4d7" name="a612f301ad2a075b814daf792fca7a4d7"></a>
 <a class="el" href="classast_1_1GravityField.html">GravityField</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>coeff_</b> {nullptr}</td></tr>
 <tr class="separator:a612f301ad2a075b814daf792fca7a4d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35b4d83a3160eaed9fbed4959b7c5a32" id="r_a35b4d83a3160eaed9fbed4959b7c5a32"><td class="memItemLeft" align="right" valign="top"><a id="a35b4d83a3160eaed9fbed4959b7c5a32" name="a35b4d83a3160eaed9fbed4959b7c5a32"></a>
+<a class="el" href="classast_1_1StringViewBasic.html">StringView</a>&#160;</td><td class="memItemRight" valign="bottom"><b>dirpath_</b></td></tr>
+<tr class="separator:a35b4d83a3160eaed9fbed4959b7c5a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a478851d541f18113735a0a58edea94" id="r_a1a478851d541f18113735a0a58edea94"><td class="memItemLeft" align="right" valign="top"><a id="a1a478851d541f18113735a0a58edea94" name="a1a478851d541f18113735a0a58edea94"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>maxLoadDegree_</b> {-1}</td></tr>
 <tr class="separator:a1a478851d541f18113735a0a58edea94"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,7 +158,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>maxLoadOrder_</b> {-1}
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>重力场加载器 </p>
-<p>用于加载重力场文件并解析其中的系数或头信息。 </p><dl class="section warning"><dt>警告</dt><dd>注意单个Loader实例不能同时加载多个重力场文件。 </dd></dl>
+<p>用于加载重力场文件并解析其中的系数或头信息 这个类记录了加载重力场时的一些选项参数 如最大加载阶数、最大加载次数、重力场模型文件所在目录路径等 </p><dl class="section warning"><dt>警告</dt><dd>注意单个Loader实例不能同时加载多个重力场文件 </dd></dl>
 </div><hr/>该类的文档由以下文件生成:<ul>
 <li>src/AstCore/ForceModel/Gravity/<a class="el" href="GravityFieldLoader_8hpp_source.html">GravityFieldLoader.hpp</a></li>
 <li>src/AstCore/ForceModel/Gravity/<a class="el" href="GravityFieldLoader_8cpp.html">GravityFieldLoader.cpp</a></li>

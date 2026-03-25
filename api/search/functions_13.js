@@ -106,7 +106,7 @@ var searchData=
   ['setperiradforshape_103',['setPeriRadForShape',['../classast_1_1StateKeplerian.html#a9bdcc8b1a5eff6205366e5d1acf62960',1,'ast::StateKeplerian']]],
   ['setperiradforsize_104',['setPeriRadForSize',['../classast_1_1StateKeplerian.html#ab19347f753a346f13168f432a3a8facc',1,'ast::StateKeplerian']]],
   ['setposition_105',['setPosition',['../classast_1_1GfxCelestialBody.html#a4738459b8d2f4004df0d96884ee9ad39',1,'ast::GfxCelestialBody']]],
-  ['setpropagationframe_106',['setPropagationFrame',['../classast_1_1MotionBasic.html#a75e6c22f7038500fa79dd2c78ab45b51',1,'ast::MotionBasic']]],
+  ['setpropagationframe_106',['setPropagationFrame',['../classast_1_1HPOP.html#a03f174c88b3d32478664a6782e73ab98',1,'ast::HPOP::setPropagationFrame()'],['../classast_1_1HPOPEquation.html#a5488c21cea447d12d1bebaf82d0f7046',1,'ast::HPOPEquation::setPropagationFrame()'],['../classast_1_1MotionBasic.html#a75e6c22f7038500fa79dd2c78ab45b51',1,'ast::MotionBasic::setPropagationFrame()']]],
   ['setquaternion_107',['setQuaternion',['../classast_1_1Rotation.html#a704b1e1b7ec3d0e94a7664da6e37a2ca',1,'ast::Rotation']]],
   ['setraan_108',['setRAAN',['../classast_1_1CircularOrbitDesigner.html#aa69aaae90682a4261c662cd9cf53d7ff',1,'ast::CircularOrbitDesigner::setRAAN()'],['../classast_1_1CriticallyInclinedOrbitDesigner.html#a44cc46e02c95a0ce7971bd3c8596b83d',1,'ast::CriticallyInclinedOrbitDesigner::setRAAN()'],['../classast_1_1StateKeplerian.html#a02941abdd894c53d4672922ba0dc010a',1,'ast::StateKeplerian::setRAAN()']]],
   ['setraandot_109',['setRaanDot',['../classast_1_1J2J4Analytical.html#a7b0fbd3170a83c2a6d4489151c059b41',1,'ast::J2J4Analytical']]],

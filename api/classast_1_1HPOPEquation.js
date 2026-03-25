@@ -3,10 +3,14 @@ var classast_1_1HPOPEquation =
     [ "addBlock", "classast_1_1HPOPEquation.html#a99d97e96c5df622ab2a2e389fb1bd761", null ],
     [ "evaluate", "classast_1_1HPOPEquation.html#afd7f7596d57de05ed502c0aa6455271d", null ],
     [ "getDimension", "classast_1_1HPOPEquation.html#a19111441810fd464cd417971458af223", null ],
+    [ "getPropagationFrame", "classast_1_1HPOPEquation.html#ae1e2847670ece5a486304476405abb07", null ],
+    [ "initBlocks", "classast_1_1HPOPEquation.html#a68bdb294f6db9f76e054725ed4e5654c", null ],
     [ "initialize", "classast_1_1HPOPEquation.html#ad09f369c52fbbdaac01ff6ec174acf4c", null ],
     [ "setEpoch", "classast_1_1HPOPEquation.html#a4c7205d86fc1057cf517d1fe33f743ed", null ],
     [ "setForceModel", "classast_1_1HPOPEquation.html#aedba448027df557c5b049015c408f375", null ],
+    [ "setPropagationFrame", "classast_1_1HPOPEquation.html#a5488c21cea447d12d1bebaf82d0f7046", null ],
     [ "dynamicSystem_", "classast_1_1HPOPEquation.html#ad0c20d16cce4c511c79c09f464fb49d6", null ],
     [ "epoch_", "classast_1_1HPOPEquation.html#a3accc94eaef2d5abd3bc134202770c48", null ],
-    [ "forceModel_", "classast_1_1HPOPEquation.html#a8d093909e62a162d3c6c6020a6be7bcf", null ]
+    [ "forceModel_", "classast_1_1HPOPEquation.html#a8d093909e62a162d3c6c6020a6be7bcf", null ],
+    [ "propFrame_", "classast_1_1HPOPEquation.html#a765b6c98f7fe701226715b4e6550e220", null ]
 ];

@@ -6,6 +6,7 @@ var group__SolarSystem =
       [ "getAxesInertial", "classast_1_1CelestialBody.html#ac13331296652904a16665245bbf8d54e", null ],
       [ "getAxesMOD", "classast_1_1CelestialBody.html#a685dabfa9855ac71a90a697214254e34", null ],
       [ "getAxesTOD", "classast_1_1CelestialBody.html#a5608bdf86dd052260c8c155a1f4eb83e", null ],
+      [ "getDirpath", "classast_1_1CelestialBody.html#a60bd1f6ff8fa1771a8b09fefb0da9821", null ],
       [ "getEphemeris", "classast_1_1CelestialBody.html#a3ced1c2f435fec0c81b013e4821ab4ab", null ],
       [ "getFrame", "classast_1_1CelestialBody.html#aa7c2d646d8e836996c70591dbeb3c910", null ],
       [ "getGM", "classast_1_1CelestialBody.html#a5fef29d135109b4b53feedfe50dc5c01", null ],

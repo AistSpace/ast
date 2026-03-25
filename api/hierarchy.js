@@ -485,6 +485,7 @@ var hierarchy =
     [ "ast::SharedPtr< ast::State >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< Axes >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< CelestialBody >", "classast_1_1SharedPtr.html", null ],
+    [ "ast::SharedPtr< Frame >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< State >", "classast_1_1SharedPtr.html", null ],
     [ "ast::ShortDuration", "classast_1_1ShortDuration.html", null ],
     [ "ast::SimEngine", "classast_1_1SimEngine.html", null ],

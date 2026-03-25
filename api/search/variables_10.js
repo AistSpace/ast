@@ -19,5 +19,6 @@ var searchData=
   ['primary_5f_16',['primary_',['../classast_1_1EventIntervalFallback.html#a92b6746ef8d3023b6222366038c6412e',1,'ast::EventIntervalFallback::primary_'],['../classast_1_1EventTimeFallback.html#a91508407059ecadfd2d10db6f9c52da4',1,'ast::EventTimeFallback::primary_']]],
   ['propagationaxes_5f_17',['propagationAxes_',['../classast_1_1BlockGravity.html#a2571399a390546fa721f27323c2b2e3d',1,'ast::BlockGravity']]],
   ['propagationframe_5f_18',['propagationFrame_',['../structast_1_1MotionBasic_1_1PropagationParams.html#ad7c760eafb9990d814ef7924167930b5',1,'ast::MotionBasic::PropagationParams::propagationFrame_'],['../classast_1_1MotionBasic.html#abda0cbc13f0c9372b37005a92d96b0a0',1,'ast::MotionBasic::propagationFrame_']]],
-  ['pstnul_19',['pstnul',['../structast_1_1DAF__FileRecord.html#ad311bd512ed672bee5193b0e30fef442',1,'ast::DAF_FileRecord']]]
+  ['propframe_5f_19',['propFrame_',['../classast_1_1HPOPEquation.html#a765b6c98f7fe701226715b4e6550e220',1,'ast::HPOPEquation']]],
+  ['pstnul_20',['pstnul',['../structast_1_1DAF__FileRecord.html#ad311bd512ed672bee5193b0e30fef442',1,'ast::DAF_FileRecord']]]
 ];
