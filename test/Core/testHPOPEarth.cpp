@@ -46,6 +46,7 @@ TEST_F(HPOPTest, HPOPEquation)
 {
     HPOPEquation equation;
     HPOPForceModel forcemodel;
+    forcemodel.gravity_.model_ = "WGS84";
     int ndim;
     err_t err;
     err = equation.setForceModel(forcemodel);

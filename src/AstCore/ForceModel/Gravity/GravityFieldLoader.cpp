@@ -136,7 +136,7 @@ err_t loadGravityField(StringView model, GravityFieldLoaderContext& ctx)
     std::string filepath;
     if(err_t err = openGravityFile(ctx, model, filepath))
     {
-        aError("failed to find gravity model %.*s", (int)model.size(), model.data());
+        aError("failed to find gravity model '%.*s'", (int)model.size(), model.data());
         return err;
     }
     model = filepath;

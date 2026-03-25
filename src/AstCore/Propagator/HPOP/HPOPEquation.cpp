@@ -27,7 +27,7 @@
 AST_NAMESPACE_BEGIN
 
 HPOPEquation::HPOPEquation()
-    : propFrame_{aFrameECI()}
+    : propFrame_{}
 {
 
 }
@@ -71,10 +71,20 @@ err_t HPOPEquation::initialize()
 
 err_t HPOPEquation::initBlocks(const HPOPForceModel &forceModel)
 {
+    if(!this->propFrame_)
+    {
+        if(auto cb = aGetEarth())
+        {
+            this->propFrame_ = cb->makeFrameInertial();
+            aWarning("propagation frame is not set, using earth inertial frame as the default propagation frame.");
+        }
+        if(!this->propFrame_)
+            aError("failed to set propagation frame to earth inertial frame.");
+    }
     // 将力模型配置转换为动力学系统的一个个函数块
     BlockDerivative* derivativeBlock;
     auto& gravity = forceModel.gravity_;
-    auto propFrame = this->propFrame_; AST_CHECK_NULLPTR(propFrame);
+    auto propFrame = this->propFrame_; 
     auto body = propFrame->getBody();   // 尝试获取预报坐标系原点对应的天体
 
     // 重置动力学系统
@@ -90,7 +100,7 @@ err_t HPOPEquation::initBlocks(const HPOPForceModel &forceModel)
             GravityFieldHead gfHead;
             err_t err = gfHead.load(gravity.model_, body->getDirpath());
             if(err != eNoError){
-                aError("Failed to load gravity field head from file: %s", gravity.model_.c_str());
+                aError("Failed to load gravity field head from file: '%s'", gravity.model_.c_str());
                 return err;
             }
             derivativeBlock = new BlockTwoBody(gfHead.getGM());
@@ -99,7 +109,7 @@ err_t HPOPEquation::initBlocks(const HPOPForceModel &forceModel)
             GravityField gravityField;
             err_t err = gravityField.load(gravity.model_, gravity.maxDegree_, gravity.maxOrder_, body->getDirpath());
             if(err != eNoError){
-                aError("Failed to load gravity field from file: %s", gravity.model_.c_str());
+                aError("Failed to load gravity field from file: '%s'", gravity.model_.c_str());
                 return err;
             }
             auto propAxes = propFrame->getAxes();
