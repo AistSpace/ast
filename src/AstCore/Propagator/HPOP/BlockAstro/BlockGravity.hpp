@@ -35,10 +35,9 @@ class AST_CORE_API BlockGravity: public BlockDerivative
 {
 public:
     BlockGravity();
-    BlockGravity(StringView gravityModel, int degree, int order);
-    BlockGravity(const GravityField &gravityField, int degree, int order);
-    BlockGravity(Axes* gravityAxes, Axes* propagationAxes, StringView gravityModel, int degree, int order);
-    BlockGravity(Axes* gravityAxes, Axes* propagationAxes, const GravityField &gravityField, int degree, int order);
+    BlockGravity(const GravityField &gravityField, int degree, int order, Axes* gravityAxes=nullptr, Axes* propagationAxes=nullptr);
+    BlockGravity(GravityField &&gravityField, int degree, int order, Axes* gravityAxes=nullptr, Axes* propagationAxes=nullptr);
+
     err_t run(const SimTime& simTime) final;
 private:
     void init();

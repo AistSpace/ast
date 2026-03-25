@@ -87,12 +87,13 @@ GravityCalculator3::GravityCalculator3(const GravityField &gravityModel, int deg
     init();
 }
 
-GravityCalculator3::GravityCalculator3(StringView gravityFilePath, int degree, int order)
-    : GravityCalculator(gravityFilePath, degree, order)
+GravityCalculator3::GravityCalculator3(GravityField &&gravityField, int degree, int order)
+    : GravityCalculator(std::move(gravityField), degree, order)
     , Factor(0.0)
 {
     init();
 }
+
 
 GravityCalculator3::~GravityCalculator3()
 {

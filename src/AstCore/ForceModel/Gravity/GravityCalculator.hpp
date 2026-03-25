@@ -43,19 +43,19 @@ class AST_CORE_API GravityCalculator
 {
 public:
     GravityCalculator();
-    /// @brief 构造函数
-    /// @param gravityField 重力场系数
-    GravityCalculator(const GravityField &gravityField);
+    
     /// @brief 构造函数
     /// @param gravityField 重力场系数
     /// @param degree 计算所使用的阶数
     /// @param order 计算所使用的次数
-    GravityCalculator(const GravityField &gravityField, int degree, int order);
+    GravityCalculator(const GravityField &gravityField, int degree=-1, int order=-1);
+
     /// @brief 构造函数
-    /// @param gravityModel 重力场模型文件路径，或者模型名称
+    /// @param gravityField 重力场系数
     /// @param degree 计算所使用的阶数
     /// @param order 计算所使用的次数
-    GravityCalculator(StringView gravityModel, int degree, int order);
+    GravityCalculator(GravityField &&gravityField, int degree=-1, int order=-1);
+
 
     /// @brief 获取重力场系数
     /// @return 重力场系数
@@ -91,10 +91,12 @@ public:
     /// @param positionCBF 位置向量（天体固连系）
     /// @param accelerationCBF 总加速度向量（天体固连系）
     virtual void calcTotalAcceleration (const Vector3d &positionCBF, Vector3d &accelerationCBF);
+private:
+    void initDegreeOrder(int degree, int order);
 protected:
-    GravityField gravityField_;     ///< 重力场系数
-    int degree_;                    ///< 计算所使用的阶数
-    int order_;                     ///< 计算所使用的次数
+    GravityField gravityField_;        ///< 重力场系数
+    int degree_{0};                    ///< 计算所使用的阶数
+    int order_{0};                     ///< 计算所使用的次数
 };
 
 #ifdef _AST_ENABLE_GRAVITY_CALCULATOR_1
@@ -166,7 +168,7 @@ class AST_CORE_API GravityCalculator3: public GravityCalculator
 public:
     GravityCalculator3();
     GravityCalculator3(const GravityField &gravityField, int degree, int order);
-    GravityCalculator3(StringView gravityModel, int degree, int order);
+    GravityCalculator3(GravityField &&gravityField, int degree, int order);
 
     ~GravityCalculator3() override;
     

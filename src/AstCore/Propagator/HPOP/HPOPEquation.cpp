@@ -116,7 +116,7 @@ err_t HPOPEquation::initBlocks(const HPOPForceModel &forceModel)
             /// @todo 这里要根据重力场的配置来获取重力场坐标系
             auto gravityAxes = body->getAxesFixed(); 
             /// @todo 这里产生了一次重力场系数复制，有一定的优化空间
-            derivativeBlock = new BlockGravity(gravityAxes, propAxes, gravityField, gravity.maxDegree_, gravity.maxOrder_);
+            derivativeBlock = new BlockGravity(gravityField, gravity.maxDegree_, gravity.maxOrder_, gravityAxes, propAxes);
             this->addBlock(derivativeBlock);
         }
     }else{

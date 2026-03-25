@@ -39,17 +39,13 @@ BlockGravity::BlockGravity()
     init();
 }
 
-BlockGravity::BlockGravity(StringView gravityModel, int degree, int order)
-    : BlockGravity{aAxesECF(), aAxesECI(), gravityModel, degree, order}
+BlockGravity::BlockGravity(const GravityField &gravityField, int degree, int order, Axes *gravityAxes, Axes *propagationAxes)
+    : BlockGravity(std::move(GravityField(gravityField)), degree, order, gravityAxes, propagationAxes)
 {
+    
 }
 
-BlockGravity::BlockGravity(const GravityField &gravityField, int degree, int order)
-    : BlockGravity{aAxesECF(), aAxesECI(), gravityField, degree, order}
-{
-}
-
-BlockGravity::BlockGravity(Axes *gravityAxes, Axes *propagationAxes, StringView gravityModel, int degree, int order)
+BlockGravity::BlockGravity(GravityField &&gravityField, int degree, int order, Axes *gravityAxes, Axes *propagationAxes)
     : BlockDerivative{}
     , gravityAxes_{gravityAxes}
     , propagationAxes_{propagationAxes}
@@ -57,23 +53,20 @@ BlockGravity::BlockGravity(Axes *gravityAxes, Axes *propagationAxes, StringView 
     , accGravityPtr_{&vectorBuffer_}
     , velocityDerivativePtr_{&vectorBuffer_}
     , vectorBuffer_{}
-    , gravityCalculator_(gravityModel, degree, order)
+    , gravityCalculator_(std::move(gravityField), degree, order)
 {
     init();
+    if(!gravityAxes)
+    {
+        gravityAxes_ = aAxesECF();
+    }
+    if(!propagationAxes)
+    {
+        propagationAxes_ = aAxesECI();
+    }
 }
 
-BlockGravity::BlockGravity(Axes *gravityAxes, Axes *propagationAxes, const GravityField &gravityField, int degree, int order)
-    : BlockDerivative{}
-    , gravityAxes_{gravityAxes}
-    , propagationAxes_{propagationAxes}
-    , posPtr_{&vectorBuffer_}
-    , accGravityPtr_{&vectorBuffer_}
-    , velocityDerivativePtr_{&vectorBuffer_}
-    , vectorBuffer_{}
-    , gravityCalculator_(gravityField, degree, order)
-{
-    init();
-}
+
 
 void BlockGravity::init()
 {
@@ -112,7 +105,9 @@ void BlockGravity::init()
     };
 }
 
-err_t BlockGravity::run(const SimTime& simTime)
+
+
+err_t BlockGravity::run(const SimTime &simTime)
 {
     Vector3d posInGravityAxes;  // 位置(重力坐标系下)
     Vector3d accInGravityAxes;  // 重力加速度(重力坐标系下)

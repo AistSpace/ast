@@ -137,4 +137,51 @@ TEST_F(HPOPMarsTest, OnlyGravity_2_0)
     EXPECT_NEAR(vel[2],  velExpected[2], 1e-8);
 }
 
+
+
+TEST_F(HPOPMarsTest, OnlyGravity_70_10)
+{
+    auto mars = aGetMars();
+    EXPECT_TRUE(mars!=nullptr);
+    auto marsInertial = mars->makeFrameInertial();
+    EXPECT_TRUE(marsInertial!=nullptr);
+
+    HPOPForceModel forcemodel;
+    forcemodel.useMoonGravity_ = false;
+    forcemodel.gravity_.model_ = "MRO110C";
+    forcemodel.gravity_.maxDegree_ = 70;
+    forcemodel.gravity_.maxOrder_ = 10;
+    HPOP propagator;
+    err_t err = propagator.setForceModel(forcemodel);
+    EXPECT_EQ(err, 0);
+    err = propagator.setPropagationFrame(marsInertial);
+    EXPECT_EQ(err, 0);
+    auto start = TimePoint::FromUTC(2026, 3, 22, 0, 0, 0);
+    auto end = TimePoint::FromUTC(2026, 3, 23, 0, 0, 0);
+    Vector3d pos{6792.4_km, 0, 0};
+    Vector3d vel{0, 1.775_km/sec, 1.776_km/sec};
+    
+    err = propagator.propagate(start, end, pos, vel);
+    EXPECT_EQ(err, 0);
+    printf("pos: %s\n", pos.toString().c_str());
+    printf("vel: %s\n", vel.toString().c_str());
+    Vector3d posExpected, velExpected;
+    posExpected = {
+        5756936.6053937152028084,
+        2500508.6478170398622751,
+        2595254.3992940662428737
+    };
+    velExpected = {
+        -1332.9202227406155998,
+        1515.2390413241971601,
+        1493.7296638859563700
+    };
+    EXPECT_NEAR(pos[0],  posExpected[0], 1e-4);
+    EXPECT_NEAR(pos[1],  posExpected[1], 1e-4);
+    EXPECT_NEAR(pos[2],  posExpected[2], 1e-4);
+    EXPECT_NEAR(vel[0],  velExpected[0], 1e-8);
+    EXPECT_NEAR(vel[1],  velExpected[1], 1e-8);
+    EXPECT_NEAR(vel[2],  velExpected[2], 1e-8);
+}
+
 GTEST_MAIN()
