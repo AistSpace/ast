@@ -68,6 +68,9 @@ public:
     int getJplIndex() const { return jplIndex_; }
     void setJplIndex(int index);
 
+    /// @brief 获取天体数据目录路径
+    std::string getDirpath() const;
+
     /// @brief 获取太阳系
     SolarSystem* getSolarSystem() const;
     

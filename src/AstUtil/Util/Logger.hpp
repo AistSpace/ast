@@ -245,7 +245,7 @@ AST_NAMESPACE_END
 #define aFatal(...)    AST_PREPEND_NAMESPACE(MessageLogger)(__FILE__, __LINE__, __FUNCTION__).fatal(__VA_ARGS__)
 
 
-#define AST_CHECK_NULLPTR(variable) if(variable == nullptr){aError(#variable " is nullptr"); return eErrorNullPtr;}
+#define AST_CHECK_NULLPTR(variable) if(variable == nullptr){aError(#variable " is notset(nullptr)"); return eErrorNullPtr;}
 #define AST_CHECK_ERRCODE(rc, msg) if(rc){aError(msg); return rc;}
 #define AST_CHECK_INVALID(condition) if(condition){aError("invalid parameter, with " #condition); return eErrorInvalidParam;}
 

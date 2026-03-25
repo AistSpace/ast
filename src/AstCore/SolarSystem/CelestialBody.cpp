@@ -79,6 +79,14 @@ void CelestialBody::setJplIndex(int index)
     }
 }
 
+std::string CelestialBody::getDirpath() const
+{
+    if(auto ss = solarSystem_.get()){
+        return fs::path(ss->getDirpath()) / name_;
+    }
+    return std::string();
+}
+
 SolarSystem *CelestialBody::getSolarSystem() const
 {
     return solarSystem_.get();
@@ -305,7 +313,7 @@ Axes *CelestialBody::getEpochAxesReference() const
 
 err_t CelestialBody::loadGravityModel(StringView model)
 {
-    return gravityField_.load(model, 6, 6);
+    return gravityField_.load(model, 6, 6, getDirpath());
 }
 
 err_t CelestialBody::loadAstroDefinition(BKVParser &parser)

@@ -49,12 +49,14 @@ TEST_F(HPOPTest, HPOPEquation)
     int ndim;
     err_t err;
     err = equation.setForceModel(forcemodel);
+    equation.initialize();
     ndim = equation.getDimension();
     EXPECT_EQ(err, 0);
     EXPECT_EQ(ndim, 6);
 
     forcemodel.useMoonGravity_ = true;
     err = equation.setForceModel(forcemodel);
+    equation.initialize();
     ndim = equation.getDimension();
     EXPECT_EQ(err, 0);
     EXPECT_EQ(ndim, 6);

@@ -44,6 +44,11 @@ BlockGravity::BlockGravity(StringView gravityModel, int degree, int order)
 {
 }
 
+BlockGravity::BlockGravity(const GravityField &gravityField, int degree, int order)
+    : BlockGravity{aAxesECF(), aAxesECI(), gravityField, degree, order}
+{
+}
+
 BlockGravity::BlockGravity(Axes *gravityAxes, Axes *propagationAxes, StringView gravityModel, int degree, int order)
     : BlockDerivative{}
     , gravityAxes_{gravityAxes}
@@ -53,6 +58,19 @@ BlockGravity::BlockGravity(Axes *gravityAxes, Axes *propagationAxes, StringView 
     , velocityDerivativePtr_{&vectorBuffer_}
     , vectorBuffer_{}
     , gravityCalculator_(gravityModel, degree, order)
+{
+    init();
+}
+
+BlockGravity::BlockGravity(Axes *gravityAxes, Axes *propagationAxes, const GravityField &gravityField, int degree, int order)
+    : BlockDerivative{}
+    , gravityAxes_{gravityAxes}
+    , propagationAxes_{propagationAxes}
+    , posPtr_{&vectorBuffer_}
+    , accGravityPtr_{&vectorBuffer_}
+    , velocityDerivativePtr_{&vectorBuffer_}
+    , vectorBuffer_{}
+    , gravityCalculator_(gravityField, degree, order)
 {
     init();
 }

@@ -25,6 +25,7 @@
 #include "AstCore/BlockDynamicSystem.hpp"
 #include "AstCore/SimTime.hpp"
 #include "AstCore/HPOPForceModel.hpp"
+#include "AstCore/Frame.hpp"
 #include <memory>
 
 
@@ -57,6 +58,12 @@ public:
 
     /// @brief 设置HPOP力模型
     err_t setForceModel(const HPOPForceModel& forceModel);
+
+    /// @brief 设置预报坐标系
+    err_t setPropagationFrame(Frame* frame);
+
+    /// @brief 获取预报坐标系
+    Frame* getPropagationFrame() const{return propFrame_;}
 protected:
     /// @brief 添加函数块
     void addBlock(FuncBlock* block);
@@ -74,6 +81,7 @@ protected:
     BlockDynamicSystem      dynamicSystem_; ///< 动力学系统
     TimePoint               epoch_;         ///< 仿真的参考历元
     HPOPForceModel          forceModel_;    ///< 力模型配置
+    HFrame                  propFrame_;     ///< 预报坐标系
 };
 
 AST_NAMESPACE_END

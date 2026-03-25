@@ -66,8 +66,9 @@ static err_t loadGravityField(StringView model, GravityFieldLoaderContext& ctx);
 /// @param model 模型名称或文件路径
 /// @param filepath 输出文件路径
 /// @return 错误码
-static err_t openGravityFile(BKVParser &parser, StringView model, std::string& filepath)
+static err_t openGravityFile(GravityFieldLoaderContext &ctx, StringView model, std::string& filepath)
 {
+    auto& parser = ctx.parser_;
     parser.open(model);
     if(!parser.isOpen()){
         // 判断是不是模型名称
@@ -93,8 +94,9 @@ static err_t openGravityFile(BKVParser &parser, StringView model, std::string& f
         if(no_dir_sep){
             prefixes = {
                 "",
+                std::string(ctx.dirpath_),
                 aGetSolarSystem()->getDirpath() + "/Earth/",
-                aDataDirGet() + "/SolarSystem/Earth/"  // @fixme: 非地球如何处理？
+                aDataDirGet() + "/SolarSystem/Earth/" 
             };
         }else{
             prefixes = {""};
@@ -132,7 +134,7 @@ static err_t openGravityFile(BKVParser &parser, StringView model, std::string& f
 err_t loadGravityField(StringView model, GravityFieldLoaderContext& ctx)
 {
     std::string filepath;
-    if(err_t err = openGravityFile(ctx.parser_, model, filepath))
+    if(err_t err = openGravityFile(ctx, model, filepath))
     {
         aError("failed to find gravity model %.*s", (int)model.size(), model.data());
         return err;

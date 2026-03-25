@@ -42,6 +42,11 @@ err_t HPOP::setForceModel(const HPOPForceModel& forcemodel)
     return equation_->setForceModel(forcemodel);
 }
 
+err_t HPOP::setPropagationFrame(Frame *frame)
+{
+    return equation_->setPropagationFrame(frame);
+}
+
 ODEIntegrator *HPOP::getIntegrator() const
 {
     if(A_UNLIKELY(!integrator_)){

@@ -48,6 +48,9 @@ public:
     /// @brief 设置力模型
     err_t setForceModel(const HPOPForceModel& forcemodel);
 
+    /// @brief 设置预报坐标系
+    err_t setPropagationFrame(Frame* frame);
+
     /// @brief 设置积分器
     void setIntegrator(ODEIntegrator* integrator);
 

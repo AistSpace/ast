@@ -37,7 +37,7 @@ void SolarSystem::init()
 
     bodies_.reserve(200);
     if(!solarSystemBarycenter_){
-        solarSystemBarycenter_ = new CelestialBody();
+        solarSystemBarycenter_ = new CelestialBody(this);
         solarSystemBarycenter_->name_ = "SolarSystemBarycenter";
         solarSystemBarycenter_->jplIndex_ = JplDe::eSSBarycenter;
         solarSystemBarycenter_->jplSpiceId_ = ESpiceId::eSolarSystemBarycenter;
@@ -47,7 +47,7 @@ void SolarSystem::init()
         nameMap_["SOLAR SYSTEM BARYCENTER"] = solarSystemBarycenter_;
     }
     if(!earthMoonBarycenter_){
-        earthMoonBarycenter_ = new CelestialBody();
+        earthMoonBarycenter_ = new CelestialBody(this);
         earthMoonBarycenter_->name_ = "EarthMoonBarycenter";
         earthMoonBarycenter_->jplIndex_ = JplDe::eEMBarycenter;
         earthMoonBarycenter_->jplSpiceId_ = ESpiceId::eEarthBarycenter;
@@ -57,7 +57,7 @@ void SolarSystem::init()
         nameMap_["EARTH BARYCENTER"] = earthMoonBarycenter_;
     }
     if(!mercury_){
-        mercury_ = new CelestialBody();
+        mercury_ = new CelestialBody(this);
         mercury_->name_ = "Mercury";
         mercury_->jplIndex_ = JplDe::eMercury;
         mercury_->jplSpiceId_ = ESpiceId::eMercury;
@@ -67,7 +67,7 @@ void SolarSystem::init()
         nameMap_["Mercury"] = mercury_;
     }
     if(!venus_){
-        venus_ = new CelestialBody();
+        venus_ = new CelestialBody(this);
         venus_->name_ = "Venus";
         venus_->jplIndex_ = JplDe::eVenus;
         venus_->jplSpiceId_ = ESpiceId::eVenus;
@@ -77,7 +77,7 @@ void SolarSystem::init()
         nameMap_["Venus"] = venus_;
     }
     if(!earth_){
-        earth_ = new CelestialBody();
+        earth_ = new CelestialBody(this);
         earth_->name_ = "Earth";
         earth_->jplIndex_ = JplDe::eEarth;
         earth_->jplSpiceId_ = ESpiceId::eEarth;
@@ -89,7 +89,7 @@ void SolarSystem::init()
     }
     if(!mars_)
     {
-        mars_ = new CelestialBody();
+        mars_ = new CelestialBody(this);
         mars_->name_ = "Mars";
         mars_->jplIndex_ = JplDe::eMars;
         mars_->jplSpiceId_ = ESpiceId::eMars;
@@ -99,7 +99,7 @@ void SolarSystem::init()
         nameMap_["Mars"] = mars_;
     }
     if(!jupiter_){
-        jupiter_ = new CelestialBody();
+        jupiter_ = new CelestialBody(this);
         jupiter_->name_ = "Jupiter";
         jupiter_->jplIndex_ = JplDe::eJupiter;
         jupiter_->jplSpiceId_ = ESpiceId::eJupiter;
@@ -109,7 +109,7 @@ void SolarSystem::init()
         nameMap_["Jupiter"] = jupiter_;
     }
     if(!saturn_){
-        saturn_ = new CelestialBody();
+        saturn_ = new CelestialBody(this);
         saturn_->name_ = "Saturn";
         saturn_->jplIndex_ = JplDe::eSaturn;
         saturn_->jplSpiceId_ = ESpiceId::eSaturn;
@@ -119,7 +119,7 @@ void SolarSystem::init()
         nameMap_["Saturn"] = saturn_;
     }
     if(!uranus_){
-        uranus_ = new CelestialBody();
+        uranus_ = new CelestialBody(this);
         uranus_->name_ = "Uranus";
         uranus_->jplIndex_ = JplDe::eUranus;
         uranus_->jplSpiceId_ = ESpiceId::eUranus;
@@ -129,7 +129,7 @@ void SolarSystem::init()
         nameMap_["Uranus"] = uranus_;
     }
     if(!neptune_){
-        neptune_ = new CelestialBody();
+        neptune_ = new CelestialBody(this);
         neptune_->name_ = "Neptune";
         neptune_->jplIndex_ = JplDe::eNeptune;
         neptune_->jplSpiceId_ = ESpiceId::eNeptune;
@@ -139,7 +139,7 @@ void SolarSystem::init()
         nameMap_["Neptune"] = neptune_;
     }
     if(!pluto_){
-        pluto_ = new CelestialBody();
+        pluto_ = new CelestialBody(this);
         pluto_->name_ = "Pluto";
         pluto_->jplIndex_ = JplDe::ePluto;
         pluto_->jplSpiceId_ = ESpiceId::ePluto;
@@ -149,7 +149,7 @@ void SolarSystem::init()
         nameMap_["Pluto"] = pluto_;
     }
     if(!moon_){
-        moon_ = new CelestialBody();
+        moon_ = new CelestialBody(this);
         moon_->name_ = "Moon";
         moon_->jplIndex_ = JplDe::eMoon;
         moon_->jplSpiceId_ = ESpiceId::eMoon;
@@ -159,7 +159,7 @@ void SolarSystem::init()
         nameMap_["Moon"] = moon_;
     }
     if(!sun_){
-        sun_ = new CelestialBody();
+        sun_ = new CelestialBody(this);
         sun_->name_ = "Sun";
         sun_->jplIndex_ = JplDe::eSun;
         sun_->jplSpiceId_ = ESpiceId::eSun;
@@ -328,7 +328,7 @@ CelestialBody *SolarSystem::addBody(StringView name)
 {
     if (getBody(name))
         return nullptr;
-    CelestialBody *body = new CelestialBody(name);
+    CelestialBody *body = new CelestialBody(name, this);
     bodies_.push_back(body);
     nameMap_[std::string(name)] = body;
     return body;
@@ -339,6 +339,7 @@ CelestialBody *SolarSystem::addBody(HCelestialBody body)
     if (getBody(body->name_))
         return nullptr;
     bodies_.push_back(body);
+    body->solarSystem_ = this;
     nameMap_[body->name_] = body;
     return body;
 }
@@ -348,7 +349,7 @@ CelestialBody *SolarSystem::getOrAddBody(StringView name)
     CelestialBody *body = getBody(name);
     if (!body)
     {
-        body = new CelestialBody(name);
+        body = new CelestialBody(name, this);
         bodies_.push_back(body);
         nameMap_[std::string(name)] = body;    
     }
