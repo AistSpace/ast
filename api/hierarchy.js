@@ -19,11 +19,11 @@ var hierarchy =
     [ "ast::BackTrace", "classast_1_1BackTrace.html", null ],
     [ "ast::BaseParser", "classast_1_1BaseParser.html", [
       [ "ast::BKVParser", "classast_1_1BKVParser.html", null ],
-      [ "ast::KVParser", "classast_1_1KVParser.html", null ],
-      [ "ast::SpiceDAFParser", "classast_1_1SpiceDAFParser.html", [
-        [ "ast::SpiceSPKParser", "classast_1_1SpiceSPKParser.html", null ]
+      [ "ast::DAFParser", "classast_1_1DAFParser.html", [
+        [ "ast::SPKParser", "classast_1_1SPKParser.html", null ]
       ] ],
-      [ "ast::SpiceTextParser", "classast_1_1SpiceTextParser.html", null ]
+      [ "ast::KVParser", "classast_1_1KVParser.html", null ],
+      [ "ast::PCKParser", "classast_1_1PCKParser.html", null ]
     ] ],
     [ "ast::BKVItemView", "classast_1_1BKVItemView.html", null ],
     [ "ast::BKVNode", "classast_1_1BKVNode.html", [
@@ -33,17 +33,12 @@ var hierarchy =
     [ "ast::BKVSax", "classast_1_1BKVSax.html", [
       [ "ast::BKVSaxDOM", "classast_1_1BKVSaxDOM.html", null ],
       [ "ast::BKVSaxPrint", "classast_1_1BKVSaxPrint.html", null ],
-      [ "ast::MotionBasicSax", "classast_1_1MotionBasicSax.html", [
+      [ "ast::MotionOrbitDynamicsSax", "classast_1_1MotionOrbitDynamicsSax.html", [
         [ "ast::MotionHPOPSax", "classast_1_1MotionHPOPSax.html", null ],
         [ "ast::MotionTwoBodySax", "classast_1_1MotionTwoBodySax.html", null ]
       ] ]
     ] ],
     [ "ast::BKVTree", "classast_1_1BKVTree.html", null ],
-    [ "ast::BodyEphemeris", "classast_1_1BodyEphemeris.html", [
-      [ "ast::BodyEphemerisDE", "classast_1_1BodyEphemerisDE.html", null ],
-      [ "ast::BodyEphemerisNoop", "classast_1_1BodyEphemerisNoop.html", null ],
-      [ "ast::BodyEphemerisSPK", "classast_1_1BodyEphemerisSPK.html", null ]
-    ] ],
     [ "ast::BodyOrientation", "classast_1_1BodyOrientation.html", [
       [ "ast::EarthOrientation", "classast_1_1EarthOrientation.html", null ],
       [ "ast::MoonOrientation", "classast_1_1MoonOrientation.html", null ],
@@ -91,6 +86,8 @@ var hierarchy =
     [ "ast::Dimension", "classast_1_1Dimension.html", null ],
     [ "ast::fs_simple::directory_entry", "classast_1_1fs__simple_1_1directory__entry.html", null ],
     [ "ast::fs_simple::directory_iterator", "classast_1_1fs__simple_1_1directory__iterator.html", null ],
+    [ "ast::TimeInterval::DiscreteEpochSecondRange", "classast_1_1TimeInterval_1_1DiscreteEpochSecondRange.html", null ],
+    [ "ast::TimeInterval::DiscreteTimePointRange", "classast_1_1TimeInterval_1_1DiscreteTimePointRange.html", null ],
     [ "doublecomplex", "structdoublecomplex.html", null ],
     [ "ast::HPOPForceModel::Drag", "structast_1_1HPOPForceModel_1_1Drag.html", null ],
     [ "ast::EOP::Entry", "structast_1_1EOP_1_1Entry.html", null ],
@@ -236,6 +233,8 @@ var hierarchy =
     [ "ast::is_callable< F, Args >", "structast_1_1is__callable.html", null ],
     [ "ast::math::is_vector_like< T >", "structast_1_1math_1_1is__vector__like.html", null ],
     [ "ast::strings_internal::Splitter< Delimiter, Predicate, StringType >::Iterator", "classast_1_1strings__internal_1_1Splitter_1_1Iterator.html", null ],
+    [ "ast::TimeInterval::DiscreteEpochSecondRange::iterator", "classast_1_1TimeInterval_1_1DiscreteEpochSecondRange_1_1iterator.html", null ],
+    [ "ast::TimeInterval::DiscreteTimePointRange::iterator", "classast_1_1TimeInterval_1_1DiscreteTimePointRange_1_1iterator.html", null ],
     [ "ast::IUnarySolver", "classast_1_1IUnarySolver.html", [
       [ "ast::UnarySolver", "classast_1_1UnarySolver.html", [
         [ "ast::BisectionSolver", "classast_1_1BisectionSolver.html", null ],
@@ -255,9 +254,12 @@ var hierarchy =
       [ "ast::J4Analytical", "classast_1_1J4Analytical.html", null ]
     ] ],
     [ "ast::JplDe", "classast_1_1JplDe.html", null ],
+    [ "ast::JplSpk", "classast_1_1JplSpk.html", null ],
     [ "ast::JulianDate", "classast_1_1JulianDate.html", [
       [ "ast::ModJulianDate", "classast_1_1ModJulianDate.html", null ]
     ] ],
+    [ "ast::KernelData", "unionast_1_1KernelData.html", null ],
+    [ "ast::KernelPool", "classast_1_1KernelPool.html", null ],
     [ "ast::LatLonAlt", "classast_1_1LatLonAlt.html", null ],
     [ "ast::LeapSecond", "classast_1_1LeapSecond.html", null ],
     [ "ast::Lexer", "classast_1_1Lexer.html", null ],
@@ -278,9 +280,12 @@ var hierarchy =
     [ "ast::ModEquinElem", "classast_1_1ModEquinElem.html", null ],
     [ "ast::ModOrbElem", "classast_1_1ModOrbElem.html", null ],
     [ "ast::MotionProfile", "classast_1_1MotionProfile.html", [
-      [ "ast::MotionBasic", "classast_1_1MotionBasic.html", [
-        [ "ast::MotionHPOP", "classast_1_1MotionHPOP.html", null ],
-        [ "ast::MotionTwoBody", "classast_1_1MotionTwoBody.html", null ]
+      [ "ast::MotionWithIntervalStep", "classast_1_1MotionWithIntervalStep.html", [
+        [ "ast::MotionOrbitDynamics", "classast_1_1MotionOrbitDynamics.html", [
+          [ "ast::MotionHPOP", "classast_1_1MotionHPOP.html", null ],
+          [ "ast::MotionTwoBody", "classast_1_1MotionTwoBody.html", null ]
+        ] ],
+        [ "ast::MotionSPICE", "classast_1_1MotionSPICE.html", null ]
       ] ]
     ] ],
     [ "ast::MotionProfileVisitor", "classast_1_1MotionProfileVisitor.html", null ],
@@ -386,12 +391,20 @@ var hierarchy =
       [ "ast::Point", "classast_1_1Point.html", [
         [ "ast::CelestialBody", "classast_1_1CelestialBody.html", null ],
         [ "ast::Ephemeris", "classast_1_1Ephemeris.html", [
+          [ "ast::BodyEphemeris", "classast_1_1BodyEphemeris.html", [
+            [ "ast::BodyEphemerisDE", "classast_1_1BodyEphemerisDE.html", null ],
+            [ "ast::BodyEphemerisNoop", "classast_1_1BodyEphemerisNoop.html", null ],
+            [ "ast::BodyEphemerisSPK", "classast_1_1BodyEphemerisSPK.html", null ]
+          ] ],
           [ "ast::EphemerisLagrangeVar", "classast_1_1EphemerisLagrangeVar.html", null ],
           [ "ast::EphemerisTwoBody", "classast_1_1EphemerisTwoBody.html", null ]
         ] ],
         [ "ast::Facility", "classast_1_1Facility.html", null ],
         [ "ast::Mover", "classast_1_1Mover.html", [
-          [ "ast::Spacecraft", "classast_1_1Spacecraft.html", null ]
+          [ "ast::SpaceObject", "classast_1_1SpaceObject.html", [
+            [ "ast::Asteroid", "classast_1_1Asteroid.html", null ],
+            [ "ast::Spacecraft", "classast_1_1Spacecraft.html", null ]
+          ] ]
         ] ],
         [ "ast::PointBodyCenter", "classast_1_1PointBodyCenter.html", null ],
         [ "ast::PointRoot", "classast_1_1PointRoot.html", null ],
@@ -435,7 +448,7 @@ var hierarchy =
     [ "ast::PoleMotion", "structast_1_1PoleMotion.html", null ],
     [ "ast::PoleMotionSXY", "structast_1_1PoleMotionSXY.html", null ],
     [ "ast::Polynomial", "classast_1_1Polynomial.html", null ],
-    [ "ast::MotionBasic::PropagationParams", "structast_1_1MotionBasic_1_1PropagationParams.html", null ],
+    [ "ast::MotionOrbitDynamics::PropagationParams", "structast_1_1MotionOrbitDynamics_1_1PropagationParams.html", null ],
     [ "ast::property_trait< T >", "structast_1_1property__trait.html", null ],
     [ "ast::property_trait< std::string >", "structast_1_1property__trait_3_01std_1_1string_01_4.html", null ],
     [ "QMainWindow", null, [
@@ -505,9 +518,7 @@ var hierarchy =
     [ "ast::Sparse", "classast_1_1Sparse.html", null ],
     [ "ast::SpiceApi", "classast_1_1SpiceApi.html", null ],
     [ "ast::SpiceBodyRegistry", "classast_1_1SpiceBodyRegistry.html", null ],
-    [ "ast::SpiceData", "unionast_1_1SpiceData.html", null ],
     [ "ast::SpiceFrameRegistry", "classast_1_1SpiceFrameRegistry.html", null ],
-    [ "ast::SpiceKernelPool", "classast_1_1SpiceKernelPool.html", null ],
     [ "ast::SPK_Descriptor", "structast_1_1SPK__Descriptor.html", null ],
     [ "ast::SPK_State", "structast_1_1SPK__State.html", null ],
     [ "ast::SPK_Type10_Constants", "structast_1_1SPK__Type10__Constants.html", null ],

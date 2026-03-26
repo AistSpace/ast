@@ -119,6 +119,8 @@ $(function(){initNavTree('AstCore_2Data_2Context_2RunTime_8cpp.html',''); initRe
 <code>#include &quot;AstCore/SpiceApi.hpp&quot;</code><br />
 <code>#include &quot;AstCore/TimeSystem.hpp&quot;</code><br />
 <code>#include &quot;AstCore/OrbitElement.hpp&quot;</code><br />
+<code>#include &quot;AstCore/JplSpk.hpp&quot;</code><br />
+<code>#include &quot;AstCore/JplDe.hpp&quot;</code><br />
 <code>#include &quot;AstMath/MathOperator.hpp&quot;</code><br />
 <code>#include &quot;<a class="el" href="RunTimeData_8hpp_source.html">RunTimeData.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="RunTimeSolarSystem_8hpp_source.html">RunTimeSolarSystem.hpp</a>&quot;</code><br />
@@ -179,6 +181,9 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ast::StringVector</b
 <tr class="memitem:gab6179a360a2bb2fa49e90ed13801fb7f" id="r_gab6179a360a2bb2fa49e90ed13801fb7f"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classast_1_1IAUXYS.html">IAUXYS</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aGlobalContext_GetIAUXYS</b> ()</td></tr>
 <tr class="separator:gab6179a360a2bb2fa49e90ed13801fb7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6421fe800633fc257cea57b0d0eea01c" id="r_ga6421fe800633fc257cea57b0d0eea01c"><td class="memItemLeft" align="right" valign="top">
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aGetDefaultSPKDir</b> ()</td></tr>
+<tr class="separator:ga6421fe800633fc257cea57b0d0eea01c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace5798c90ea0a10c1bbbc1295008866c" id="r_ace5798c90ea0a10c1bbbc1295008866c"><td class="memItemLeft" align="right" valign="top"><a id="ace5798c90ea0a10c1bbbc1295008866c" name="ace5798c90ea0a10c1bbbc1295008866c"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aInitializeByDefault</b> (<a class="el" href="classast_1_1DataContext.html">DataContext</a> *context)</td></tr>
 <tr class="separator:ace5798c90ea0a10c1bbbc1295008866c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -250,6 +255,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ast::aDataContext_Set
 <tr class="separator:gafb5ff2a33de9ab9f703291baea5ffc18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadaaaff473ede71f83781bc5623a395e7" id="r_gadaaaff473ede71f83781bc5623a395e7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#gadaaaff473ede71f83781bc5623a395e7">ast::aJplDeNum</a> ()</td></tr>
 <tr class="separator:gadaaaff473ede71f83781bc5623a395e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga14f9e9da003f9ee3a7f3dd22e9973e6b" id="r_ga14f9e9da003f9ee3a7f3dd22e9973e6b"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#ga14f9e9da003f9ee3a7f3dd22e9973e6b">ast::aJplDeGetInterval</a> (<a class="el" href="classast_1_1TimeInterval.html">TimeInterval</a> &amp;interval)</td></tr>
+<tr class="separator:ga14f9e9da003f9ee3a7f3dd22e9973e6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga886ee9d50d1b42b6924045ba73f515b0" id="r_ga886ee9d50d1b42b6924045ba73f515b0"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#ga886ee9d50d1b42b6924045ba73f515b0">ast::aJplDeOpen</a> (const char *filepath)</td></tr>
 <tr class="separator:ga886ee9d50d1b42b6924045ba73f515b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga86326fcd6c451bdbaff8e7d5cecd9215" id="r_ga86326fcd6c451bdbaff8e7d5cecd9215"><td class="memItemLeft" align="right" valign="top">

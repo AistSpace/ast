@@ -28,7 +28,7 @@ var NAVTREEINDEX0 =
 "AstCore_2Alias_2WeakPtr_8hpp_source.html":[4,0,0,2,0,9],
 "AstCore_2Data_2Context_2RunTime_8cpp.html":[4,0,0,2,3,0,4],
 "AstCore_2Data_2Context_2RunTime_8cpp.html#a5805211b4ae656f073656aa14cc7fd44":[4,0,0,2,3,0,4,2],
-"AstCore_2Data_2Context_2RunTime_8cpp.html#a74d61ba4cc8eb10407f626364a293438":[4,0,0,2,3,0,4,35],
+"AstCore_2Data_2Context_2RunTime_8cpp.html#a74d61ba4cc8eb10407f626364a293438":[4,0,0,2,3,0,4,36],
 "AstCore_2Data_2Context_2RunTime_8hpp.html":[4,0,0,2,3,0,5],
 "AstCore_2Data_2Context_2RunTime_8hpp_source.html":[4,0,0,2,3,0,5],
 "AstCore_2Geometry_2Euclid_2Vector_8hpp_source.html":[4,0,0,2,5,0,8],
@@ -98,6 +98,9 @@ var NAVTREEINDEX0 =
 "AstUtil_8hpp_source.html":[4,0,0,14,8],
 "AstWeather_8hpp.html":[4,0,0,15,3],
 "AstWeather_8hpp_source.html":[4,0,0,15,3],
+"Asteroid_8cpp.html":[4,0,0,11,3,0],
+"Asteroid_8hpp.html":[4,0,0,11,3,1],
+"Asteroid_8hpp_source.html":[4,0,0,11,3,1],
 "Atmosphere_8cpp.html":[4,0,0,15,0,4],
 "Atmosphere_8hpp.html":[4,0,0,15,0,5],
 "Atmosphere_8hpp_source.html":[4,0,0,15,0,5],
@@ -246,8 +249,5 @@ var NAVTREEINDEX0 =
 "BlockLogicalOperator_8hpp_source.html":[4,0,0,2,7,1,1,1,1],
 "BlockMotion_8cpp.html":[4,0,0,2,7,1,0,10],
 "BlockMotion_8hpp.html":[4,0,0,2,7,1,0,11],
-"BlockMotion_8hpp_source.html":[4,0,0,2,7,1,0,11],
-"BlockOut_8cpp.html":[4,0,0,2,7,1,1,4,0],
-"BlockOut_8hpp.html":[4,0,0,2,7,1,1,4,1],
-"BlockOut_8hpp_source.html":[4,0,0,2,7,1,1,4,1]
+"BlockMotion_8hpp_source.html":[4,0,0,2,7,1,0,11]
 };

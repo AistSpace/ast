@@ -130,6 +130,10 @@ $(function(){initNavTree('group__Time.html',''); initResizable(true); });
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1TimeInterval.html">ast::TimeInterval</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1TimeInterval_1_1DiscreteTimePointRange.html">ast::TimeInterval::DiscreteTimePointRange</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1TimeInterval_1_1DiscreteEpochSecondRange.html">ast::TimeInterval::DiscreteEpochSecondRange</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1TimePoint.html">ast::TimePoint</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -576,6 +580,10 @@ A_ALWAYS_INLINE <a class="el" href="classast_1_1DateTime.html">DateTime</a>&#160
 <tr class="separator:gae57a9d98f6f51268ec563b5ed83f8b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6b3307b89a273542c8aab409e5fe2063" id="r_ga6b3307b89a273542c8aab409e5fe2063"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga6b3307b89a273542c8aab409e5fe2063">ast::aTimePointToSpiceEt</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp)</td></tr>
 <tr class="separator:ga6b3307b89a273542c8aab409e5fe2063"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabe360a12179445a578f36cbb87b55aee" id="r_gabe360a12179445a578f36cbb87b55aee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1TimeInterval_1_1DiscreteTimePointRange.html">DiscreteTimePointRange</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gabe360a12179445a578f36cbb87b55aee">ast::TimeInterval::discrete</a> (double step) const</td></tr>
+<tr class="separator:gabe360a12179445a578f36cbb87b55aee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf30f22652768af0923dcc7729e84cb5" id="r_gabf30f22652768af0923dcc7729e84cb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1TimeInterval_1_1DiscreteEpochSecondRange.html">DiscreteEpochSecondRange</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gabf30f22652768af0923dcc7729e84cb5">ast::TimeInterval::discrete</a> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;epoch, double step) const</td></tr>
+<tr class="separator:gabf30f22652768af0923dcc7729e84cb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 变量</h2></td></tr>
@@ -2657,6 +2665,79 @@ template&lt;typename <a class="el" href="classast_1_1Time.html">Time</a> &gt; </
 
 <p>获取日期是这一年的第几天，从1开始计数 </p>
 <dl class="section return"><dt>返回</dt><dd>第几天 </dd></dl>
+
+</div>
+</div>
+<a id="gabf30f22652768af0923dcc7729e84cb5" name="gabf30f22652768af0923dcc7729e84cb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabf30f22652768af0923dcc7729e84cb5">&#9670;&#160;</a></span>discrete() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1TimeInterval_1_1DiscreteEpochSecondRange.html">TimeInterval::DiscreteEpochSecondRange</a> ast::TimeInterval::discrete </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>epoch</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>step</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将时间区间离散化 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">epoch</td><td>时间区间的基准时间点 </td></tr>
+    <tr><td class="paramname">step</td><td>离散化步长（秒） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>离散化时间点范围 </dd></dl>
+
+</div>
+</div>
+<a id="gabe360a12179445a578f36cbb87b55aee" name="gabe360a12179445a578f36cbb87b55aee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabe360a12179445a578f36cbb87b55aee">&#9670;&#160;</a></span>discrete() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1TimeInterval_1_1DiscreteTimePointRange.html">TimeInterval::DiscreteTimePointRange</a> ast::TimeInterval::discrete </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>step</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将时间区间离散化 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">step</td><td>离散化步长（秒） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>离散化时间点范围 </dd></dl>
 
 </div>
 </div>

@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>🛰️航天仿真算法库 SpaceAST: ast::KernelPool类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">🛰️航天仿真算法库 SpaceAST<span id="projectnumber">&#160;0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classast_1_1KernelPool.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classast_1_1KernelPool-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ast::KernelPool类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="KernelPool_8hpp_source.html">KernelPool.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:ab9c62994b3ae4d4fbe5df11360929b8c" id="r_ab9c62994b3ae4d4fbe5df11360929b8c"><td class="memItemLeft" align="right" valign="top"><a id="ab9c62994b3ae4d4fbe5df11360929b8c" name="ab9c62994b3ae4d4fbe5df11360929b8c"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>DataMap</b> = std::unordered_map&lt;std::string, <a class="el" href="unionast_1_1KernelData.html">KernelData</a>&gt;</td></tr>
+<tr class="separator:ab9c62994b3ae4d4fbe5df11360929b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aa70e3697b2df89f1366a000f32981981" id="r_aa70e3697b2df89f1366a000f32981981"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa70e3697b2df89f1366a000f32981981">setData</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name, const <a class="el" href="unionast_1_1KernelData.html">KernelData</a> &amp;data)</td></tr>
+<tr class="separator:aa70e3697b2df89f1366a000f32981981"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87a382438fcdf0566c1f758f4a31abc9" id="r_a87a382438fcdf0566c1f758f4a31abc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87a382438fcdf0566c1f758f4a31abc9">setDoubleData</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name, const std::vector&lt; double &gt; &amp;data)</td></tr>
+<tr class="separator:a87a382438fcdf0566c1f758f4a31abc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbf466d51dece62be2d971faf1edcb04" id="r_adbf466d51dece62be2d971faf1edcb04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbf466d51dece62be2d971faf1edcb04">setIntData</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name, const std::vector&lt; int &gt; &amp;data)</td></tr>
+<tr class="separator:adbf466d51dece62be2d971faf1edcb04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c2bdc9048ec5ccdc24e4580bc670107" id="r_a6c2bdc9048ec5ccdc24e4580bc670107"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c2bdc9048ec5ccdc24e4580bc670107">setCharData</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name, const std::vector&lt; char &gt; &amp;data)</td></tr>
+<tr class="separator:a6c2bdc9048ec5ccdc24e4580bc670107"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77444187195b25e2a68ee246aa807288" id="r_a77444187195b25e2a68ee246aa807288"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="unionast_1_1KernelData.html">KernelData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77444187195b25e2a68ee246aa807288">getData</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name) const</td></tr>
+<tr class="separator:a77444187195b25e2a68ee246aa807288"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8253c5c35525d040c61de5cd44919d38" id="r_a8253c5c35525d040c61de5cd44919d38"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; double &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8253c5c35525d040c61de5cd44919d38">getDoubleData</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name) const</td></tr>
+<tr class="separator:a8253c5c35525d040c61de5cd44919d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e5cbc37a4bac1e5470b80d9c3be1b9c" id="r_a5e5cbc37a4bac1e5470b80d9c3be1b9c"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e5cbc37a4bac1e5470b80d9c3be1b9c">getIntData</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name) const</td></tr>
+<tr class="separator:a5e5cbc37a4bac1e5470b80d9c3be1b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26f04def150d5caad6cf41b501b50aff" id="r_a26f04def150d5caad6cf41b501b50aff"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; char &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26f04def150d5caad6cf41b501b50aff">getCharData</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name) const</td></tr>
+<tr class="separator:a26f04def150d5caad6cf41b501b50aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f102af8e0172124c2c2626515644528" id="r_a3f102af8e0172124c2c2626515644528"><td class="memItemLeft" align="right" valign="top"><a id="a3f102af8e0172124c2c2626515644528" name="a3f102af8e0172124c2c2626515644528"></a>
+DataMap::iterator&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> ()</td></tr>
+<tr class="separator:a3f102af8e0172124c2c2626515644528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67ce25520091ce071dd738a938e6d8d4" id="r_a67ce25520091ce071dd738a938e6d8d4"><td class="memItemLeft" align="right" valign="top"><a id="a67ce25520091ce071dd738a938e6d8d4" name="a67ce25520091ce071dd738a938e6d8d4"></a>
+DataMap::iterator&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> ()</td></tr>
+<tr class="separator:a67ce25520091ce071dd738a938e6d8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bd5526d9c9bec4db68f137dcec4f84b" id="r_a6bd5526d9c9bec4db68f137dcec4f84b"><td class="memItemLeft" align="right" valign="top"><a id="a6bd5526d9c9bec4db68f137dcec4f84b" name="a6bd5526d9c9bec4db68f137dcec4f84b"></a>
+DataMap::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> () const</td></tr>
+<tr class="separator:a6bd5526d9c9bec4db68f137dcec4f84b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfc9e6a200ba5b87e86f6ab1f2bbcce6" id="r_acfc9e6a200ba5b87e86f6ab1f2bbcce6"><td class="memItemLeft" align="right" valign="top"><a id="acfc9e6a200ba5b87e86f6ab1f2bbcce6" name="acfc9e6a200ba5b87e86f6ab1f2bbcce6"></a>
+DataMap::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> () const</td></tr>
+<tr class="separator:acfc9e6a200ba5b87e86f6ab1f2bbcce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aa6ac4cbe39ae8088d5c95cdfc6c51e" id="r_a3aa6ac4cbe39ae8088d5c95cdfc6c51e"><td class="memItemLeft" align="right" valign="top"><a id="a3aa6ac4cbe39ae8088d5c95cdfc6c51e" name="a3aa6ac4cbe39ae8088d5c95cdfc6c51e"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const</td></tr>
+<tr class="separator:a3aa6ac4cbe39ae8088d5c95cdfc6c51e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a3abf2e5ab32c16550d38e103d3b405e7" id="r_a3abf2e5ab32c16550d38e103d3b405e7"><td class="memItemLeft" align="right" valign="top"><a id="a3abf2e5ab32c16550d38e103d3b405e7" name="a3abf2e5ab32c16550d38e103d3b405e7"></a>
+DataMap&#160;</td><td class="memItemRight" valign="bottom"><b>dataMap_</b></td></tr>
+<tr class="separator:a3abf2e5ab32c16550d38e103d3b405e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>SPICE 内核数据池 </p>
+<p>该类用于管理从 SPICE 内核文件加载的数据 </p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a26f04def150d5caad6cf41b501b50aff" name="a26f04def150d5caad6cf41b501b50aff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26f04def150d5caad6cf41b501b50aff">&#9670;&#160;</a></span>getCharData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; char &gt; * ast::KernelPool::getCharData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取字符数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>数据名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>指向字符数据的指针，若数据不存在则返回 nullptr </dd></dl>
+
+</div>
+</div>
+<a id="a77444187195b25e2a68ee246aa807288" name="a77444187195b25e2a68ee246aa807288"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77444187195b25e2a68ee246aa807288">&#9670;&#160;</a></span>getData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="unionast_1_1KernelData.html">KernelData</a> * ast::KernelPool::getData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>数据名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>指向数据的指针，若数据不存在则返回 nullptr </dd></dl>
+
+</div>
+</div>
+<a id="a8253c5c35525d040c61de5cd44919d38" name="a8253c5c35525d040c61de5cd44919d38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8253c5c35525d040c61de5cd44919d38">&#9670;&#160;</a></span>getDoubleData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; double &gt; * ast::KernelPool::getDoubleData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取双精度数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>数据名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>指向双精度数据的指针，若数据不存在则返回 nullptr </dd></dl>
+
+</div>
+</div>
+<a id="a5e5cbc37a4bac1e5470b80d9c3be1b9c" name="a5e5cbc37a4bac1e5470b80d9c3be1b9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e5cbc37a4bac1e5470b80d9c3be1b9c">&#9670;&#160;</a></span>getIntData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; int &gt; * ast::KernelPool::getIntData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取整数数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>数据名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>指向整数数据的指针，若数据不存在则返回 nullptr </dd></dl>
+
+</div>
+</div>
+<a id="a6c2bdc9048ec5ccdc24e4580bc670107" name="a6c2bdc9048ec5ccdc24e4580bc670107"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c2bdc9048ec5ccdc24e4580bc670107">&#9670;&#160;</a></span>setCharData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::KernelPool::setCharData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; char &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置字符数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>数据名称 </td></tr>
+    <tr><td class="paramname">data</td><td>数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa70e3697b2df89f1366a000f32981981" name="aa70e3697b2df89f1366a000f32981981"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa70e3697b2df89f1366a000f32981981">&#9670;&#160;</a></span>setData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::KernelPool::setData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="unionast_1_1KernelData.html">KernelData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>数据名称 </td></tr>
+    <tr><td class="paramname">data</td><td>数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a87a382438fcdf0566c1f758f4a31abc9" name="a87a382438fcdf0566c1f758f4a31abc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87a382438fcdf0566c1f758f4a31abc9">&#9670;&#160;</a></span>setDoubleData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::KernelPool::setDoubleData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置双精度数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>数据名称 </td></tr>
+    <tr><td class="paramname">data</td><td>数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adbf466d51dece62be2d971faf1edcb04" name="adbf466d51dece62be2d971faf1edcb04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbf466d51dece62be2d971faf1edcb04">&#9670;&#160;</a></span>setIntData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::KernelPool::setIntData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置整数数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>数据名称 </td></tr>
+    <tr><td class="paramname">data</td><td>数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>src/AstUtil/ParseFormat/SpiceParser/<a class="el" href="KernelPool_8hpp_source.html">KernelPool.hpp</a></li>
+<li>src/AstUtil/ParseFormat/SpiceParser/<a class="el" href="KernelPool_8cpp.html">KernelPool.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceast.html">ast</a></li><li class="navelem"><a class="el" href="classast_1_1KernelPool.html">KernelPool</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -29,7 +29,7 @@ var searchData=
   ['dim_5fset_5fexponent_26',['dim_set_exponent',['../namespaceast.html#a0d25748c4c13cedd010bd2742ee3b56c',1,'ast']]],
   ['dimension_27',['Dimension',['../classast_1_1Dimension.html#a05b3ceca8d7ee96f583cbe1a95c72d35',1,'ast::Dimension::Dimension() noexcept'],['../classast_1_1Dimension.html#aca9f23658294c053ffcc25cc1812ab72',1,'ast::Dimension::Dimension(EDimension dimension) noexcept']]],
   ['dimension_28',['dimension',['../classast_1_1Quantity.html#abbe7b095750a45049367f4b42e144393',1,'ast::Quantity::dimension()'],['../classast_1_1Unit.html#a737479417a4c6db862752355e6334984',1,'ast::Unit::dimension()']]],
-  ['discrete_29',['discrete',['../classast_1_1TimeInterval.html#ad09bcf881dcb28452f14558f31ea0bec',1,'ast::TimeInterval']]],
+  ['discrete_29',['discrete',['../classast_1_1TimeInterval.html#ad09bcf881dcb28452f14558f31ea0bec',1,'ast::TimeInterval::discrete(const TimePoint &amp;epoch, double step, std::vector&lt; double &gt; &amp;times) const'],['../classast_1_1TimeInterval.html#ab1d75f4c29e0daac02d00f8982d34411',1,'ast::TimeInterval::discrete(double step, std::vector&lt; TimePoint &gt; &amp;times) const'],['../group__Time.html#gabe360a12179445a578f36cbb87b55aee',1,'ast::TimeInterval::discrete(double step) const'],['../group__Time.html#gabf30f22652768af0923dcc7729e84cb5',1,'ast::TimeInterval::discrete(const TimePoint &amp;epoch, double step) const']]],
   ['divide_30',['divide',['../classast_1_1Unit.html#a40d890822f24e239617f9aba3a87cf42',1,'ast::Unit']]],
   ['dot_31',['dot',['../namespaceast_1_1math.html#aca33d22882041673d4a2e218e052cc3e',1,'ast::math']]],
   ['dpr_32',['dpr',['../group__Spice.html#gae84bbf14131d083d3886978ca516e180',1,'ast']]],

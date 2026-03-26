@@ -1,0 +1,618 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>🛰️航天仿真算法库 SpaceAST: ast::DAFParser类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">🛰️航天仿真算法库 SpaceAST<span id="projectnumber">&#160;0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classast_1_1DAFParser.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classast_1_1DAFParser-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ast::DAFParser类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="DAFParser_8hpp_source.html">DAFParser.hpp</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> 类 ast::DAFParser 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+ <div class="center">
+  <img src="classast_1_1DAFParser.png" usemap="#ast::DAFParser_map" alt=""/>
+  <map id="ast::DAFParser_map" name="ast::DAFParser_map">
+<area href="classast_1_1BaseParser.html" title="解析器基类" alt="ast::BaseParser" shape="rect" coords="0,0,100,24"/>
+<area href="classast_1_1SPKParser.html" title="SPICE二进制SPK内核文件解析器(parser for SPICE SPK kernel file)" alt="ast::SPKParser" shape="rect" coords="0,112,100,136"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:ae7ee7617e6c619738edc7cd3d14bea3a" id="r_ae7ee7617e6c619738edc7cd3d14bea3a"><td class="memItemLeft" align="right" valign="top"><a id="ae7ee7617e6c619738edc7cd3d14bea3a" name="ae7ee7617e6c619738edc7cd3d14bea3a"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>Record</b> = std::array&lt;char, 1024&gt;</td></tr>
+<tr class="separator:ae7ee7617e6c619738edc7cd3d14bea3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ab9f3bb8f4a9b37e3deb7dc7c656b7dba" id="r_ab9f3bb8f4a9b37e3deb7dc7c656b7dba"><td class="memItemLeft" align="right" valign="top"><a id="ab9f3bb8f4a9b37e3deb7dc7c656b7dba" name="ab9f3bb8f4a9b37e3deb7dc7c656b7dba"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>DAFParser</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath)</td></tr>
+<tr class="separator:ab9f3bb8f4a9b37e3deb7dc7c656b7dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d32959a44cc2dce733f74ad3a11a4fb" id="r_a5d32959a44cc2dce733f74ad3a11a4fb"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d32959a44cc2dce733f74ad3a11a4fb">parse</a> ()</td></tr>
+<tr class="separator:a5d32959a44cc2dce733f74ad3a11a4fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9907516568b09a25c0172840ef8fcfda" id="r_a9907516568b09a25c0172840ef8fcfda"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9907516568b09a25c0172840ef8fcfda">parse</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath)</td></tr>
+<tr class="separator:a9907516568b09a25c0172840ef8fcfda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1d1f2167184aebcdab33a2f3c69604e" id="r_ac1d1f2167184aebcdab33a2f3c69604e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1d1f2167184aebcdab33a2f3c69604e">isValidFile</a> () const</td></tr>
+<tr class="separator:ac1d1f2167184aebcdab33a2f3c69604e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d0725fc20a55de4d3dafe29a26fa7c3" id="r_a6d0725fc20a55de4d3dafe29a26fa7c3"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d0725fc20a55de4d3dafe29a26fa7c3">readRecord</a> (int recordIndex, void *buffer, size_t size) const</td></tr>
+<tr class="separator:a6d0725fc20a55de4d3dafe29a26fa7c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a175f6c1d2df6f20bbfd81af6f6738b65" id="r_a175f6c1d2df6f20bbfd81af6f6738b65"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a175f6c1d2df6f20bbfd81af6f6738b65">readFileRecord</a> (void *buffer, size_t size) const</td></tr>
+<tr class="separator:a175f6c1d2df6f20bbfd81af6f6738b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a166d6e4009385fccbd2be864a2100697" id="r_a166d6e4009385fccbd2be864a2100697"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a166d6e4009385fccbd2be864a2100697">getFileRecord</a> (<a class="el" href="#ae7ee7617e6c619738edc7cd3d14bea3a">Record</a> &amp;fileRecord) const</td></tr>
+<tr class="separator:a166d6e4009385fccbd2be864a2100697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af79ae19af402311df031e1967b094d25" id="r_af79ae19af402311df031e1967b094d25"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af79ae19af402311df031e1967b094d25">getSummaryRecords</a> (std::vector&lt; <a class="el" href="#ae7ee7617e6c619738edc7cd3d14bea3a">Record</a> &gt; &amp;summaryRecords) const</td></tr>
+<tr class="separator:af79ae19af402311df031e1967b094d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1900b5ef3a503c5d72c57090a0c565fb" id="r_a1900b5ef3a503c5d72c57090a0c565fb"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1900b5ef3a503c5d72c57090a0c565fb">getFileRecord</a> (int &amp;nd, int &amp;ni, int &amp;fward, int &amp;bward, int &amp;free) const</td></tr>
+<tr class="separator:a1900b5ef3a503c5d72c57090a0c565fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75c29b3f16867ca385688fc0e9b10e0a" id="r_a75c29b3f16867ca385688fc0e9b10e0a"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75c29b3f16867ca385688fc0e9b10e0a">getComment</a> (std::string &amp;comment) const</td></tr>
+<tr class="separator:a75c29b3f16867ca385688fc0e9b10e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3a9f9d70423d5737f0afa7f5a34bb49" id="r_ae3a9f9d70423d5737f0afa7f5a34bb49"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3a9f9d70423d5737f0afa7f5a34bb49">getComment</a> (std::vector&lt; std::string &gt; &amp;comments) const</td></tr>
+<tr class="separator:ae3a9f9d70423d5737f0afa7f5a34bb49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28c5491ef3ac9302e7526d61a63eaed4" id="r_a28c5491ef3ac9302e7526d61a63eaed4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28c5491ef3ac9302e7526d61a63eaed4">printComment</a> (std::FILE *fp=stdout) const</td></tr>
+<tr class="separator:a28c5491ef3ac9302e7526d61a63eaed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a668c69dc73c3e8e0ed327e6af19d569d" id="r_a668c69dc73c3e8e0ed327e6af19d569d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a668c69dc73c3e8e0ed327e6af19d569d">open</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath)</td></tr>
+<tr class="separator:a668c69dc73c3e8e0ed327e6af19d569d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classast_1_1BaseParser"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1BaseParser')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1BaseParser.html">ast::BaseParser</a></td></tr>
+<tr class="memitem:acb772a638cdba05ae44dd5b9a9c045bb inherit pub_methods_classast_1_1BaseParser" id="r_acb772a638cdba05ae44dd5b9a9c045bb"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>BaseParser</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath)</td></tr>
+<tr class="separator:acb772a638cdba05ae44dd5b9a9c045bb inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a668c69dc73c3e8e0ed327e6af19d569d inherit pub_methods_classast_1_1BaseParser" id="r_a668c69dc73c3e8e0ed327e6af19d569d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#a668c69dc73c3e8e0ed327e6af19d569d">open</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath)</td></tr>
+<tr class="separator:a668c69dc73c3e8e0ed327e6af19d569d inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24d5391a1aea013594950400a030065c inherit pub_methods_classast_1_1BaseParser" id="r_a24d5391a1aea013594950400a030065c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#a24d5391a1aea013594950400a030065c">isOpen</a> () const</td></tr>
+<tr class="separator:a24d5391a1aea013594950400a030065c inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf727ec1d7cf9c20af89b93523cad51a inherit pub_methods_classast_1_1BaseParser" id="r_aaf727ec1d7cf9c20af89b93523cad51a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#aaf727ec1d7cf9c20af89b93523cad51a">close</a> ()</td></tr>
+<tr class="separator:aaf727ec1d7cf9c20af89b93523cad51a inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8198c9c0e1d48ecbcef8dc936a57b1ac inherit pub_methods_classast_1_1BaseParser" id="r_a8198c9c0e1d48ecbcef8dc936a57b1ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#a8198c9c0e1d48ecbcef8dc936a57b1ac">seek</a> (std::streamoff pos, std::ios::seekdir dir)</td></tr>
+<tr class="separator:a8198c9c0e1d48ecbcef8dc936a57b1ac inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac368ef116424352bb0ad91ca29b49ded inherit pub_methods_classast_1_1BaseParser" id="r_ac368ef116424352bb0ad91ca29b49ded"><td class="memItemLeft" align="right" valign="top">std::streamoff&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#ac368ef116424352bb0ad91ca29b49ded">tell</a> ()</td></tr>
+<tr class="separator:ac368ef116424352bb0ad91ca29b49ded inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4807b86dfe5303eba5a8701cd9ad9f2d inherit pub_methods_classast_1_1BaseParser" id="r_a4807b86dfe5303eba5a8701cd9ad9f2d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#a4807b86dfe5303eba5a8701cd9ad9f2d">eof</a> () const</td></tr>
+<tr class="separator:a4807b86dfe5303eba5a8701cd9ad9f2d inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac170ef6035641cae5e3c7a9843c9c5 inherit pub_methods_classast_1_1BaseParser" id="r_a7ac170ef6035641cae5e3c7a9843c9c5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#a7ac170ef6035641cae5e3c7a9843c9c5">read</a> (void *buffer, size_t size, size_t pos) const</td></tr>
+<tr class="separator:a7ac170ef6035641cae5e3c7a9843c9c5 inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d27e9f9940a2cdf8416c7f4de164ea8 inherit pub_methods_classast_1_1BaseParser" id="r_a8d27e9f9940a2cdf8416c7f4de164ea8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#a8d27e9f9940a2cdf8416c7f4de164ea8">getLineWithNewline</a> ()</td></tr>
+<tr class="separator:a8d27e9f9940a2cdf8416c7f4de164ea8 inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bfcd16c7414029bccdd5eafb8d409b8 inherit pub_methods_classast_1_1BaseParser" id="r_a5bfcd16c7414029bccdd5eafb8d409b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#a5bfcd16c7414029bccdd5eafb8d409b8">getLine</a> ()</td></tr>
+<tr class="separator:a5bfcd16c7414029bccdd5eafb8d409b8 inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a388956100fb925864bcdb621d08911d9 inherit pub_methods_classast_1_1BaseParser" id="r_a388956100fb925864bcdb621d08911d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#a388956100fb925864bcdb621d08911d9">getLineTrim</a> ()</td></tr>
+<tr class="separator:a388956100fb925864bcdb621d08911d9 inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadd4560aa613c4fd0865a6b2cb5357a1 inherit pub_methods_classast_1_1BaseParser" id="r_aadd4560aa613c4fd0865a6b2cb5357a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#aadd4560aa613c4fd0865a6b2cb5357a1">getLineSkipHashComment</a> ()</td></tr>
+<tr class="separator:aadd4560aa613c4fd0865a6b2cb5357a1 inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21da5069622d910ae3784a60af89de6d inherit pub_methods_classast_1_1BaseParser" id="r_a21da5069622d910ae3784a60af89de6d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#a21da5069622d910ae3784a60af89de6d">getLineNumber</a> ()</td></tr>
+<tr class="separator:a21da5069622d910ae3784a60af89de6d inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f36fb73ad99afd14da9774aa18f41e8 inherit pub_methods_classast_1_1BaseParser" id="r_a4f36fb73ad99afd14da9774aa18f41e8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#a4f36fb73ad99afd14da9774aa18f41e8">getFilePath</a> () const</td></tr>
+<tr class="separator:a4f36fb73ad99afd14da9774aa18f41e8 inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ffc6e1ebca53ddfe3f0b78dd6dd8307 inherit pub_methods_classast_1_1BaseParser" id="r_a0ffc6e1ebca53ddfe3f0b78dd6dd8307"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#a0ffc6e1ebca53ddfe3f0b78dd6dd8307">setBorrowedFile</a> (FILE *file)</td></tr>
+<tr class="separator:a0ffc6e1ebca53ddfe3f0b78dd6dd8307 inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4e9236f80e0c1d50aa87bd46180d500 inherit pub_methods_classast_1_1BaseParser" id="r_af4e9236f80e0c1d50aa87bd46180d500"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1BaseParser.html#af4e9236f80e0c1d50aa87bd46180d500">setOwnedFile</a> (FILE *file)</td></tr>
+<tr class="separator:af4e9236f80e0c1d50aa87bd46180d500 inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4732cf70fbc24d627ea01a0fe63f975 inherit pub_methods_classast_1_1BaseParser" id="r_ac4732cf70fbc24d627ea01a0fe63f975"><td class="memItemLeft" align="right" valign="top">
+FILE *&#160;</td><td class="memItemRight" valign="bottom"><b>getFile</b> () const</td></tr>
+<tr class="separator:ac4732cf70fbc24d627ea01a0fe63f975 inherit pub_methods_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a6d206593774165655009262ea349f740" id="r_a6d206593774165655009262ea349f740"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d206593774165655009262ea349f740">runTest</a> ()</td></tr>
+<tr class="separator:a6d206593774165655009262ea349f740"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac76c84897348f76a767cb6270177c6e1" id="r_ac76c84897348f76a767cb6270177c6e1"><td class="memItemLeft" align="right" valign="top"><a id="ac76c84897348f76a767cb6270177c6e1" name="ac76c84897348f76a767cb6270177c6e1"></a>
+err_t&#160;</td><td class="memItemRight" valign="bottom"><b>readSummaryRecords</b> (int fward, int bward, std::vector&lt; <a class="el" href="#ae7ee7617e6c619738edc7cd3d14bea3a">Record</a> &gt; &amp;summaryRecords) const</td></tr>
+<tr class="separator:ac76c84897348f76a767cb6270177c6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa880e2b60171c20e00921194a4e1c0a1" id="r_aa880e2b60171c20e00921194a4e1c0a1"><td class="memItemLeft" align="right" valign="top"><a id="aa880e2b60171c20e00921194a4e1c0a1" name="aa880e2b60171c20e00921194a4e1c0a1"></a>
+const <a class="el" href="structast_1_1DAF__FileRecord.html">DAF_FileRecord</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getFileRecord</b> () const</td></tr>
+<tr class="separator:aa880e2b60171c20e00921194a4e1c0a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a87fd4ea05a9476c83b9a424203c3b1a9" id="r_a87fd4ea05a9476c83b9a424203c3b1a9"><td class="memItemLeft" align="right" valign="top"><a id="a87fd4ea05a9476c83b9a424203c3b1a9" name="a87fd4ea05a9476c83b9a424203c3b1a9"></a>
+<a class="el" href="#ae7ee7617e6c619738edc7cd3d14bea3a">Record</a>&#160;</td><td class="memItemRight" valign="bottom"><b>fileRecord_</b></td></tr>
+<tr class="separator:a87fd4ea05a9476c83b9a424203c3b1a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ca018e7a7259e9a150e9685c4db706a" id="r_a3ca018e7a7259e9a150e9685c4db706a"><td class="memItemLeft" align="right" valign="top"><a id="a3ca018e7a7259e9a150e9685c4db706a" name="a3ca018e7a7259e9a150e9685c4db706a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isValidFile_</b> =false</td></tr>
+<tr class="separator:a3ca018e7a7259e9a150e9685c4db706a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8039a409504d55b2be173ff7807d4a4" id="r_ab8039a409504d55b2be173ff7807d4a4"><td class="memItemLeft" align="right" valign="top"><a id="ab8039a409504d55b2be173ff7807d4a4" name="ab8039a409504d55b2be173ff7807d4a4"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isSameEndian_</b> =false</td></tr>
+<tr class="separator:ab8039a409504d55b2be173ff7807d4a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classast_1_1BaseParser"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classast_1_1BaseParser')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classast_1_1BaseParser.html">ast::BaseParser</a></td></tr>
+<tr class="memitem:acf99ca176b2891a208cc64b66768ad1f inherit pro_attribs_classast_1_1BaseParser" id="r_acf99ca176b2891a208cc64b66768ad1f"><td class="memItemLeft" align="right" valign="top">
+FILE *&#160;</td><td class="memItemRight" valign="bottom"><b>file_</b> {nullptr}</td></tr>
+<tr class="separator:acf99ca176b2891a208cc64b66768ad1f inherit pro_attribs_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af38d5b757affee30e69dfb7615d2acdc inherit pro_attribs_classast_1_1BaseParser" id="r_af38d5b757affee30e69dfb7615d2acdc"><td class="memItemLeft" align="right" valign="top">
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>fileBorrowed_</b> {false}</td></tr>
+<tr class="separator:af38d5b757affee30e69dfb7615d2acdc inherit pro_attribs_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29df168554b0f72f93c1bc9fb88bcca4 inherit pro_attribs_classast_1_1BaseParser" id="r_a29df168554b0f72f93c1bc9fb88bcca4"><td class="memItemLeft" align="right" valign="top">
+std::vector&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lineBuffer_</b></td></tr>
+<tr class="separator:a29df168554b0f72f93c1bc9fb88bcca4 inherit pro_attribs_classast_1_1BaseParser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>SPICE 双精度数组文件解析器 DAF（Double Precision Array File，双精度数组文件） </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000043">待办事项</a></b></dt><dd>在读取数据时需要处理数据的大小端问题 </dd></dl>
+<p>该类用于解析SPICE的双精度数组文件（DAF），提取其中的数组数据。 </p><dl class="section warning"><dt>警告</dt><dd>该类型的单个实例暂不支持多线程并发访问 </dd></dl>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a75c29b3f16867ca385688fc0e9b10e0a" name="a75c29b3f16867ca385688fc0e9b10e0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75c29b3f16867ca385688fc0e9b10e0a">&#9670;&#160;</a></span>getComment() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::DAFParser::getComment </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>comment</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取文件注释 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">comment</td><td>接收文件注释的字符串引用 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>成功返回0，否则返回错误码 </dd></dl>
+
+</div>
+</div>
+<a id="ae3a9f9d70423d5737f0afa7f5a34bb49" name="ae3a9f9d70423d5737f0afa7f5a34bb49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3a9f9d70423d5737f0afa7f5a34bb49">&#9670;&#160;</a></span>getComment() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::DAFParser::getComment </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>comments</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取文件注释 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">comment</td><td>接收文件注释的字符串向量引用 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>成功返回0，否则返回错误码 </dd></dl>
+
+</div>
+</div>
+<a id="a1900b5ef3a503c5d72c57090a0c565fb" name="a1900b5ef3a503c5d72c57090a0c565fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1900b5ef3a503c5d72c57090a0c565fb">&#9670;&#160;</a></span>getFileRecord() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::DAFParser::getFileRecord </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>nd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>ni</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>fward</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>bward</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>free</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取文件记录头信息 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nd</td><td>双精度分量个数 ND </td></tr>
+    <tr><td class="paramname">ni</td><td>整型分量个数 NI </td></tr>
+    <tr><td class="paramname">fward</td><td>第一个摘要记录号 </td></tr>
+    <tr><td class="paramname">bward</td><td>最后一个摘要记录号 </td></tr>
+    <tr><td class="paramname">free</td><td>第一个空闲字地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>成功返回0，否则返回错误码 </dd></dl>
+
+</div>
+</div>
+<a id="a166d6e4009385fccbd2be864a2100697" name="a166d6e4009385fccbd2be864a2100697"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a166d6e4009385fccbd2be864a2100697">&#9670;&#160;</a></span>getFileRecord() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::DAFParser::getFileRecord </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae7ee7617e6c619738edc7cd3d14bea3a">Record</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fileRecord</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取文件记录头 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileRecord</td><td>接收文件记录头的引用 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>成功返回0，否则返回错误码 </dd></dl>
+
+</div>
+</div>
+<a id="af79ae19af402311df031e1967b094d25" name="af79ae19af402311df031e1967b094d25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af79ae19af402311df031e1967b094d25">&#9670;&#160;</a></span>getSummaryRecords()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::DAFParser::getSummaryRecords </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="#ae7ee7617e6c619738edc7cd3d14bea3a">Record</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>summaryRecords</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取所有摘要记录 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">summaryRecords</td><td>接收摘要记录的向量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>成功返回实际读取的字节数 </dd></dl>
+
+</div>
+</div>
+<a id="ac1d1f2167184aebcdab33a2f3c69604e" name="ac1d1f2167184aebcdab33a2f3c69604e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1d1f2167184aebcdab33a2f3c69604e">&#9670;&#160;</a></span>isValidFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ast::DAFParser::isValidFile </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>检查解析结果是否有效 </p>
+<dl class="section return"><dt>返回</dt><dd>如果DAF文件解析成功且包含有效数据，则返回true；否则返回false </dd></dl>
+
+</div>
+</div>
+<a id="a668c69dc73c3e8e0ed327e6af19d569d" name="a668c69dc73c3e8e0ed327e6af19d569d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a668c69dc73c3e8e0ed327e6af19d569d">&#9670;&#160;</a></span>open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::BaseParser::open </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>filepath</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>打开文件 </p>
+<p>打开指定路径的文件，用于后续的解析操作。 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>文件路径视图，指定要打开的文件路径。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5d32959a44cc2dce733f74ad3a11a4fb" name="a5d32959a44cc2dce733f74ad3a11a4fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d32959a44cc2dce733f74ad3a11a4fb">&#9670;&#160;</a></span>parse() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::DAFParser::parse </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析DAF文件 </p>
+<p>读取文件记录头、摘要记录和名称记录。 </p><dl class="section return"><dt>返回</dt><dd>成功返回0，否则返回错误码 </dd></dl>
+<p>摘要大小 (size of a single summary)</p>
+<p>每个摘要记录可存储的摘要个数 (number of summaries)</p>
+<p>每个名称长度 (number of characters in a single name)</p>
+
+</div>
+</div>
+<a id="a9907516568b09a25c0172840ef8fcfda" name="a9907516568b09a25c0172840ef8fcfda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9907516568b09a25c0172840ef8fcfda">&#9670;&#160;</a></span>parse() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::DAFParser::parse </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>filepath</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析指定路径的DAF文件 </p>
+<p>打开文件、解析文件记录头、摘要记录和名称记录。 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>文件路径 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>成功返回0，否则返回错误码 </dd></dl>
+
+</div>
+</div>
+<a id="a28c5491ef3ac9302e7526d61a63eaed4" name="a28c5491ef3ac9302e7526d61a63eaed4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28c5491ef3ac9302e7526d61a63eaed4">&#9670;&#160;</a></span>printComment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::DAFParser::printComment </td>
+          <td>(</td>
+          <td class="paramtype">std::FILE *</td>          <td class="paramname"><span class="paramname"><em>fp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">stdout</span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>打印文件注释到指定文件流 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fp</td><td>文件流指针，默认输出到标准输出 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a175f6c1d2df6f20bbfd81af6f6738b65" name="a175f6c1d2df6f20bbfd81af6f6738b65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a175f6c1d2df6f20bbfd81af6f6738b65">&#9670;&#160;</a></span>readFileRecord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t ast::DAFParser::readFileRecord </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>读取文件记录头到缓冲区 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>指向接收数据的缓冲区指针 </td></tr>
+    <tr><td class="paramname">size</td><td>缓冲区大小，单位为字节 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>成功返回实际读取的字节数 </dd></dl>
+
+</div>
+</div>
+<a id="a6d0725fc20a55de4d3dafe29a26fa7c3" name="a6d0725fc20a55de4d3dafe29a26fa7c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d0725fc20a55de4d3dafe29a26fa7c3">&#9670;&#160;</a></span>readRecord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t ast::DAFParser::readRecord </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>recordIndex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>读取指定记录索引的数据到缓冲区 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">recordIndex</td><td>记录索引，从0开始 </td></tr>
+    <tr><td class="paramname">buffer</td><td>指向接收数据的缓冲区指针 </td></tr>
+    <tr><td class="paramname">size</td><td>缓冲区大小，单位为字节 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>成功返回实际读取的字节数 </dd></dl>
+
+</div>
+</div>
+<a id="a6d206593774165655009262ea349f740" name="a6d206593774165655009262ea349f740"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d206593774165655009262ea349f740">&#9670;&#160;</a></span>runTest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::DAFParser::runTest </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>摘要大小 (size of a single summary)</p>
+<p>每个摘要记录可存储的摘要个数 (number of summaries)</p>
+<p>每个名称长度 (number of characters in a single name)</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>src/AstUtil/ParseFormat/SpiceParser/<a class="el" href="DAFParser_8hpp_source.html">DAFParser.hpp</a></li>
+<li>src/AstUtil/ParseFormat/SpiceParser/<a class="el" href="DAFParser_8cpp.html">DAFParser.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceast.html">ast</a></li><li class="navelem"><a class="el" href="classast_1_1DAFParser.html">DAFParser</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

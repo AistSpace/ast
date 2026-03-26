@@ -16,7 +16,7 @@ var searchData=
   ['clearerrstring_13',['clearErrString',['../classast_1_1Interpreter.html#a145d9bc69a2f6b41de63774075cb0d15',1,'ast::Interpreter']]],
   ['clight_14',['clight',['../group__Spice.html#ga25c738419df2fd10336f9551c6c5c8a8',1,'ast']]],
   ['clone_15',['clone',['../classast_1_1Unit.html#a9c365643bf4c15fa51c06df158636d58',1,'ast::Unit']]],
-  ['close_16',['close',['../classast_1_1JplDe.html#a3195e2f276145ea57d57672b7b62d082',1,'ast::JplDe::close()'],['../classast_1_1BaseParser.html#aaf727ec1d7cf9c20af89b93523cad51a',1,'ast::BaseParser::close()']]],
+  ['close_16',['close',['../classast_1_1JplDe.html#a3195e2f276145ea57d57672b7b62d082',1,'ast::JplDe::close()'],['../classast_1_1JplSpk.html#a6b7cd967b492cf107dbfe8ff779ae76f',1,'ast::JplSpk::close()'],['../classast_1_1BaseParser.html#aaf727ec1d7cf9c20af89b93523cad51a',1,'ast::BaseParser::close()']]],
   ['coe2dela_17',['coe2dela',['../group__Orbit.html#ga5142dc920ac908e9773c3894d91dd2c4',1,'ast']]],
   ['coe2ee_18',['coe2ee',['../group__Orbit.html#gac24cf541c5331c1cd23900e1f8713a9c',1,'ast']]],
   ['coe2mee_19',['coe2mee',['../group__Orbit.html#gac33a5cab3147ae6ef5de7d276446e559',1,'ast']]],

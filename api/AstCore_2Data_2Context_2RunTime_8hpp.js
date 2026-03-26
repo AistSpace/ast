@@ -13,6 +13,7 @@ var AstCore_2Data_2Context_2RunTime_8hpp =
     [ "aDataDirGet", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga29c564259f5de9210b7e4e39eb4dd878", null ],
     [ "aDataDirGet", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga554406609d8c3a1b8dd7020142cd04e7", null ],
     [ "aDataDirSet", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga178274c33d5da80112cf792bdbae6d9f", null ],
+    [ "aGetDefaultSPKDir", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga6421fe800633fc257cea57b0d0eea01c", null ],
     [ "aGlobalContext_Get", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga4ccfea60ec40a0b914aee9714febd94e", null ],
     [ "aGlobalContext_GetIAUXYS", "AstCore_2Data_2Context_2RunTime_8hpp.html#gab6179a360a2bb2fa49e90ed13801fb7f", null ],
     [ "aInitialize", "AstCore_2Data_2Context_2RunTime_8hpp.html#gab6fd6e3387d57432da53d7bf5efd47a9", null ],

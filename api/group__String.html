@@ -183,6 +183,10 @@ template&lt;typename Delimiter &gt; </td></tr>
 <tr class="separator:ga6357c5f9fbf6021c3383fae609c39f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6827f727293f4d0b2eb9985dba0813b6" id="r_ga6827f727293f4d0b2eb9985dba0813b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga6827f727293f4d0b2eb9985dba0813b6">ast::aStripLeadingAsciiWhitespace</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> str) noexcept</td></tr>
 <tr class="separator:ga6827f727293f4d0b2eb9985dba0813b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga681ef188a882f2e8fdf9b8c8e50ec43f" id="r_ga681ef188a882f2e8fdf9b8c8e50ec43f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga681ef188a882f2e8fdf9b8c8e50ec43f">ast::aAsciiStrToLower</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> str)</td></tr>
+<tr class="separator:ga681ef188a882f2e8fdf9b8c8e50ec43f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b6cb9cc23c061e592fe4a40ff42d890" id="r_ga4b6cb9cc23c061e592fe4a40ff42d890"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga4b6cb9cc23c061e592fe4a40ff42d890">ast::aAsciiStrToUpper</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> str)</td></tr>
+<tr class="separator:ga4b6cb9cc23c061e592fe4a40ff42d890"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga81ed8edcd7c2e9ad1a8d8b97be9793f6" id="r_ga81ed8edcd7c2e9ad1a8d8b97be9793f6"><td class="memTemplParams" colspan="2"><a id="ga81ed8edcd7c2e9ad1a8d8b97be9793f6" name="ga81ed8edcd7c2e9ad1a8d8b97be9793f6"></a>
 template&lt;typename _Char &gt; </td></tr>
 <tr class="memitem:ga81ed8edcd7c2e9ad1a8d8b97be9793f6"><td class="memTemplItemLeft" align="right" valign="top">std::basic_ostream&lt; _Char &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>ast::operator&lt;&lt;</b> (std::basic_ostream&lt; _Char &gt; &amp;os, const <a class="el" href="classast_1_1StringViewBasic.html">StringViewBasic</a>&lt; _Char &gt; &amp;sv)</td></tr>
@@ -224,7 +228,75 @@ template&lt;typename _Char &gt; </td></tr>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
 <dl class="section warning"><dt>警告</dt><dd>仅在Windows平台上实现 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000046">待办事项</a></b></dt><dd>实现Linux平台上的ANSI到宽字符编码转换 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000050">待办事项</a></b></dt><dd>实现Linux平台上的ANSI到宽字符编码转换 </dd></dl>
+
+</div>
+</div>
+<a id="ga681ef188a882f2e8fdf9b8c8e50ec43f" name="ga681ef188a882f2e8fdf9b8c8e50ec43f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga681ef188a882f2e8fdf9b8c8e50ec43f">&#9670;&#160;</a></span>aAsciiStrToLower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ast::aAsciiStrToLower </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将字符串转换为小写 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>输入字符串 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>小写后的字符串 </dd></dl>
+
+</div>
+</div>
+<a id="ga4b6cb9cc23c061e592fe4a40ff42d890" name="ga4b6cb9cc23c061e592fe4a40ff42d890"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4b6cb9cc23c061e592fe4a40ff42d890">&#9670;&#160;</a></span>aAsciiStrToUpper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ast::aAsciiStrToUpper </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将字符串转换为大写 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>输入字符串 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>大写后的字符串 </dd></dl>
 
 </div>
 </div>
@@ -496,7 +568,7 @@ template&lt;typename Delimiter , typename Predicate &gt; </div>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
 <dl class="section warning"><dt>警告</dt><dd>仅在Windows平台上实现 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000047">待办事项</a></b></dt><dd>实现Linux平台上的UTF-8到宽字符编码转换 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000051">待办事项</a></b></dt><dd>实现Linux平台上的UTF-8到宽字符编码转换 </dd></dl>
 
 </div>
 </div>

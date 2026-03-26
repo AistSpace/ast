@@ -41,7 +41,7 @@ var searchData=
   ['clight_38',['clight',['../group__Spice.html#ga25c738419df2fd10336f9551c6c5c8a8',1,'ast']]],
   ['cllist_39',['cllist',['../structcllist.html',1,'']]],
   ['clone_40',['clone',['../classast_1_1Unit.html#a9c365643bf4c15fa51c06df158636d58',1,'ast::Unit']]],
-  ['close_41',['close',['../classast_1_1JplDe.html#a3195e2f276145ea57d57672b7b62d082',1,'ast::JplDe::close()'],['../classast_1_1BaseParser.html#aaf727ec1d7cf9c20af89b93523cad51a',1,'ast::BaseParser::close()']]],
+  ['close_41',['close',['../classast_1_1JplDe.html#a3195e2f276145ea57d57672b7b62d082',1,'ast::JplDe::close()'],['../classast_1_1JplSpk.html#a6b7cd967b492cf107dbfe8ff779ae76f',1,'ast::JplSpk::close()'],['../classast_1_1BaseParser.html#aaf727ec1d7cf9c20af89b93523cad51a',1,'ast::BaseParser::close()']]],
   ['cm_42',['cm',['../Unit_8cpp.html#a303e4126abedb9af71391110b791f9ce',1,'ast::units']]],
   ['cnleminpacksolver_43',['CNLEMinpackSolver',['../classast_1_1CNLEMinpackSolver.html',1,'ast']]],
   ['cnlpipoptsolver_44',['CNLPIpoptSolver',['../classast_1_1CNLPIpoptSolver.html',1,'ast']]],
