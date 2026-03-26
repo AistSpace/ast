@@ -18,17 +18,17 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AstUtil/SpiceTextParser.hpp"
+#include "AstUtil/PCKParser.hpp"
 #include "AstCore/RunTime.hpp"
 #include "AstTest/Test.h"
 
 AST_USING_NAMESPACE
 
-TEST(SpiceTextParser, SpiceData)
+TEST(PCKParser, KernelData)
 {
     {
         char buf[] = "KEY1 = VALUE12\n";
-        SpiceData data = std::vector<char>(buf, buf + sizeof(buf));
+        KernelData data = std::vector<char>(buf, buf + sizeof(buf));
         {
             auto doubleData = data.getDoubleData();
             EXPECT_TRUE(doubleData != nullptr);
@@ -39,16 +39,16 @@ TEST(SpiceTextParser, SpiceData)
         EXPECT_EQ(size, sizeof(buf));
     }
     {
-        SpiceData data = std::vector<double>{1.0, 2.0, 3.0};
+        KernelData data = std::vector<double>{1.0, 2.0, 3.0};
         auto charData = data.getCharData();
         EXPECT_EQ(charData->size(), 3 * sizeof(double));
     }
 }
 
-TEST(SpiceTextParser, readData)
+TEST(PCKParser, readData)
 {
-    SpiceTextParser parser(aTestGetConfigValue("PCK_FILE").toString());
-    SpiceKernelPool kernelPool;
+    PCKParser parser(aTestGetConfigValue("PCK_FILE").toString());
+    KernelPool kernelPool;
     err_t ret = parser.readData(kernelPool);
     EXPECT_EQ(ret, 0);
     size_t size = kernelPool.size();

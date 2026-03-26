@@ -23,7 +23,7 @@
 #include "AstGlobal.h"
 #include "AstUtil/BaseParser.hpp"
 #include "AstUtil/BKVItemView.hpp"
-#include "AstUtil/SpiceKernelPool.hpp"
+#include "AstUtil/KernelPool.hpp"
 #include <cstdio>
 
 AST_NAMESPACE_BEGIN
@@ -36,12 +36,12 @@ AST_NAMESPACE_BEGIN
 class BKVItemView;
 
 /// @brief SPICE文本内核文件解析器(parser for SPICE text kernel file)
-class AST_UTIL_API SpiceTextParser: public BaseParser
+class AST_UTIL_API PCKParser: public BaseParser
 {
 public:
-    SpiceTextParser();
-    SpiceTextParser(StringView filepath);
-    ~SpiceTextParser() = default;
+    PCKParser();
+    PCKParser(StringView filepath);
+    ~PCKParser() = default;
 
     /// @brief 获取下一个键值对项
     /// @param item 输出参数，用于存储获取到的键值对项
@@ -51,7 +51,7 @@ public:
     /// @brief 读取SPICE内核文件数据
     /// @param kernelPool 输出参数，用于存储读取到的SPICE内核数据
     /// @return 错误码，-1(EOF) 表示文件结束
-    err_t   readData(SpiceKernelPool& kernelPool);
+    err_t   readData(KernelPool& kernelPool);
     
 protected:
     std::vector<char>  keyBuffer_;              ///< 键缓冲区

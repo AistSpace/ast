@@ -293,7 +293,7 @@
 #   define A_DEBUG_BREAK() ::raise(SIGTRAP)
 #endif
 
-/// 为类型定义迭代器标准函数
+/// 为支持随机访问的类型定义迭代器标准函数
 #define A_DEF_ITERABLE(Scalar, Data, Size)                                      \
     size_t size() const noexcept{ return (Size) ;}                              \
     Scalar* data() noexcept{return (Data);}                                     \

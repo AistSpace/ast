@@ -49,6 +49,20 @@ err_t aSpiceGetPosVelICRF(
     Vector3d& vel
 );
 
+
+/// @brief 获取目标体的时间间隔
+/// @param filepath SPK文件路径
+/// @param target 目标体ID
+/// @param interval 时间间隔
+/// @return err_t 错误码
+/// @note 该函数会解析SPK文件，因此在调用前请确保文件存在
+AST_CORE_CAPI
+err_t aSpiceGetInterval(
+    StringView filepath,
+    int target,
+    TimeInterval& interval
+);
+
 /*! @} */
 
 AST_NAMESPACE_END

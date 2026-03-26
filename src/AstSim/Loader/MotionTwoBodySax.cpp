@@ -67,7 +67,7 @@ err_t MotionTwoBodySax::keyValue(StringView key, const ValueView &value)
         // @todo 这是什么??? 椭圆类型是什么意思???
     }
     // 其他公共参数
-    return MotionBasicSax::keyValue(key, value);
+    return MotionOrbitDynamicsSax::keyValue(key, value);
 }
 
 err_t MotionTwoBodySax::getMotion(ScopedPtr<MotionProfile>& motion)

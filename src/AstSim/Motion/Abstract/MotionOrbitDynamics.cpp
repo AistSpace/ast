@@ -1,5 +1,5 @@
 ///
-/// @file      MotionBasic.cpp
+/// @file      MotionOrbitDynamics.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,25 +18,14 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "MotionBasic.hpp"
+#include "MotionOrbitDynamics.hpp"
 #include "AstCore/EventInterval.hpp"
 #include "AstCore/EventIntervalExplicit.hpp"
 
 AST_NAMESPACE_BEGIN
 
-err_t MotionBasic::getInterval(TimeInterval &interval) const
-{
-    if(!interval_)
-        return eErrorNullInput;
-    return interval_->getInterval(interval);
-}
 
-void MotionBasic::setInterval(const TimeInterval &interval)
-{
-    interval_ = EventIntervalExplicit::New(interval);
-}
-
-err_t MotionBasic::getPropagationParams(PropagationParams &params) const
+err_t MotionOrbitDynamics::getPropagationParams(PropagationParams &params) const
 {
     err_t rc;
     // rc = this->getInterval(params.interval_);   AST_CHECK_ERRCODE(rc, "failed to get interval");
@@ -47,7 +36,7 @@ err_t MotionBasic::getPropagationParams(PropagationParams &params) const
     return eNoError;
 }
 
-err_t MotionBasic::discreteInterval(const TimePoint &epoch, double stepSize, std::vector<double> &times) const
+err_t MotionOrbitDynamics::discreteInterval(const TimePoint &epoch, double stepSize, std::vector<double> &times) const
 {
     err_t rc;
     TimeInterval interval;

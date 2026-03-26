@@ -1,5 +1,5 @@
 ///
-/// @file      SpiceKernelPool.cpp
+/// @file      KernelPool.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,33 +18,33 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "SpiceKernelPool.hpp"
+#include "KernelPool.hpp"
 #include "AstUtil/StringView.hpp"
 
 AST_NAMESPACE_BEGIN
 
 
-void SpiceKernelPool::setData(StringView name, const SpiceData &data)
+void KernelPool::setData(StringView name, const KernelData &data)
 {
     dataMap_[std::string(name)] = data;
 }
 
-void SpiceKernelPool::setDoubleData(StringView name, const std::vector<double> &data)
+void KernelPool::setDoubleData(StringView name, const std::vector<double> &data)
 {
-    return setData(name, SpiceData(data));
+    return setData(name, KernelData(data));
 }
 
-void SpiceKernelPool::setIntData(StringView name, const std::vector<int> &data)
+void KernelPool::setIntData(StringView name, const std::vector<int> &data)
 {
-    return setData(name, SpiceData(data));
+    return setData(name, KernelData(data));
 }
 
-void SpiceKernelPool::setCharData(StringView name, const std::vector<char> &data)
+void KernelPool::setCharData(StringView name, const std::vector<char> &data)
 {
-    return setData(name, SpiceData(data));
+    return setData(name, KernelData(data));
 }
 
-const SpiceData *SpiceKernelPool::getData(StringView name) const
+const KernelData *KernelPool::getData(StringView name) const
 {
     auto it = dataMap_.find(std::string(name));
     if (it == dataMap_.end())
@@ -52,7 +52,7 @@ const SpiceData *SpiceKernelPool::getData(StringView name) const
     return &it->second;
 }
 
-const std::vector<double> *SpiceKernelPool::getDoubleData(StringView name) const
+const std::vector<double> *KernelPool::getDoubleData(StringView name) const
 {
     auto data = getData(name);
     if (data == nullptr)
@@ -60,7 +60,7 @@ const std::vector<double> *SpiceKernelPool::getDoubleData(StringView name) const
     return data->getDoubleData();
 }
 
-const std::vector<int> *SpiceKernelPool::getIntData(StringView name) const
+const std::vector<int> *KernelPool::getIntData(StringView name) const
 {
     auto data = getData(name);
     if (data == nullptr)
@@ -68,7 +68,7 @@ const std::vector<int> *SpiceKernelPool::getIntData(StringView name) const
     return data->getIntData();
 }
 
-const std::vector<char> *SpiceKernelPool::getCharData(StringView name) const
+const std::vector<char> *KernelPool::getCharData(StringView name) const
 {
     auto data = getData(name);
     if (data == nullptr)

@@ -29,6 +29,8 @@
 #include "AstCore/SpiceApi.hpp"
 #include "AstCore/TimeSystem.hpp"
 #include "AstCore/OrbitElement.hpp"
+#include "AstCore/JplSpk.hpp"
+#include "AstCore/JplDe.hpp"
 #include "AstMath/MathOperator.hpp"
 #include "RunTimeData.hpp"
 #include "RunTimeSolarSystem.hpp"
@@ -194,6 +196,11 @@ static err_t loadSPK(const std::vector<std::string>& spkFiles)
     return rc;
 }
 
+std::string aGetDefaultSPKDir()
+{
+    return aDataDirGet() + "/Test/kernels/spk/";
+}
+
 err_t aInitializeByDefault(DataContext* context)
 {
     err_t err = 0;
@@ -212,7 +219,7 @@ err_t aInitializeByDefault(DataContext* context)
     err |= context->spaceWeather()->loadDefault();
     err |= context->iauXYSPrecomputed()->loadDefault();
     err |= context->solarSystem()->loadDefault();
-    const std::string spkdir = aDataDirGet() + "/Test/kernels/spk/";
+    const std::string spkdir = aGetDefaultSPKDir();
     const std::vector<std::string> spkfiles = {
         spkdir + "ceres.bsp",
         spkdir + "jupiter.bsp",
@@ -504,6 +511,12 @@ int aJplDeNum()
     return context->jplDe()->getEphemVersion();
 }
 
+err_t aJplDeGetInterval(TimeInterval& interval)
+{
+    auto context = aDataContext_EnsureCurrent();
+    return context->jplDe()->getInterval(interval);
+}
+
 err_t aJplDeOpen(const char *filepath)
 {
     auto context = aDataContext_EnsureCurrent();
@@ -754,12 +767,7 @@ err_t aSpiceGetPosICRF(
     int referenceBody,
     Vector3d& pos
 ){
-    double et = aTimePointToSpiceEt(time);
-    CartState state;
-    double lt;
-    err_t rc = SpiceApi::Instance()->spkgeo(target, et, "J2000", referenceBody, state.data(), &lt);
-    pos = state.pos() * 1e3;
-    return rc;
+    return JplSpk::getPosICRF(time, target, referenceBody, pos);
 }
 
 err_t aSpiceGetPosVelICRF(
@@ -769,13 +777,9 @@ err_t aSpiceGetPosVelICRF(
     Vector3d& pos,
     Vector3d& vel
 ){
-    double et = aTimePointToSpiceEt(time);
-    CartState state;
-    double lt;
-    err_t rc = SpiceApi::Instance()->spkgeo(target, et, "J2000", referenceBody, state.data(), &lt);
-    pos = state.pos() * 1e3;
-    vel = state.vel() * 1e3;
-    return rc;
+    return JplSpk::getPosVelICRF(time, target, referenceBody, pos, vel);
 }
+
+
 
 AST_NAMESPACE_END

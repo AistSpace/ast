@@ -24,7 +24,8 @@
 #include "AstUtil/BKVSax.hpp"
 #include "AstCore/EventTime.hpp"
 #include "AstCore/TimePoint.hpp"
-#include "AstSim/MotionBasic.hpp"
+#include "AstSim/MotionWithIntervalStep.hpp"
+#include "AstSim/MotionOrbitDynamics.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -32,19 +33,18 @@ AST_NAMESPACE_BEGIN
     @addtogroup 
     @{
 */
-class MotionBasic;
+class MotionOrbitDynamics;
 struct VehiclePathData;
 class BKVParser;
 
-
-class MotionBasicSax: public BKVSax
+class MotionOrbitDynamicsSax: public BKVSax
 {
 public:
-    MotionBasicSax(BKVParser& parser, const VehiclePathData& vehiclePathData)
+    MotionOrbitDynamicsSax(BKVParser& parser, const VehiclePathData& vehiclePathData)
         : parser_(parser)
         , vehiclePathData_(vehiclePathData)
     {}
-    ~MotionBasicSax() override = default;
+    ~MotionOrbitDynamicsSax() override = default;
 public:
     err_t begin(StringView name) override;
     err_t end(StringView name) override;

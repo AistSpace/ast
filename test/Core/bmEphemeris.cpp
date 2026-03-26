@@ -18,8 +18,8 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AstUtil/SpiceDAFParser.hpp"
-#include "AstUtil/SpiceSPKParser.hpp"
+#include "AstUtil/DAFParser.hpp"
+#include "AstUtil/SPKParser.hpp"
 #include "AstUtil/Environment.hpp"
 #include "AstCore/JplDe.hpp"
 #include "AstCore/TimePoint.hpp"
@@ -48,7 +48,7 @@ BENCHMARK(bmEphemerisDE);
 void bmEphemerisSpice(benchmark::State& state)
 {
     if(aIsCI()) return;
-    SpiceSPKParser spk("data/Test/kernels/spk/de430.bsp");
+    SPKParser spk("data/Test/kernels/spk/de430.bsp");
     double et = 0;
     for(auto _ : state)
     {

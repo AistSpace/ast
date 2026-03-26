@@ -31,6 +31,7 @@
 #include "AstCore/FrameAssembly.hpp"
 #include "AstCore/BuiltinAxes.hpp"
 #include "AstCore/SolarSystem.hpp"
+#include "AstCore/RunTime.hpp"
 #include "AstUtil/Class.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/String.hpp"
@@ -417,7 +418,18 @@ err_t CelestialBody::loadEphemerisData(BKVParser & parser)
                 if(aEqualsIgnoreCase(item.value(), "JplDe")){
                     ephemeris_ = new BodyEphemerisDE(jplIndex_);
                 }else if(aEqualsIgnoreCase(item.value(), "JplSpice")){
-                    ephemeris_ = new BodyEphemerisSPK(jplSpiceId_);
+                    auto ephemerisSPK = new BodyEphemerisSPK(jplSpiceId_);
+                    std::string spkDir = aGetConfigValue("SPK_DIR").toString();
+                    if(spkDir.empty())
+                        spkDir = aGetDefaultSPKDir();
+                    std::string spkFile = spkDir + "/" + aAsciiStrToLower(name_) + ".bsp";
+                    if(fs::is_regular_file(spkFile)){
+                        err_t rc = ephemerisSPK->openSPKFile(spkFile);
+                        if(rc){
+                            aWarning("failed to open SPK file '%s'", spkFile.c_str());
+                        }
+                    }
+                    ephemeris_ = ephemerisSPK;
                 }
             }else if(aEqualsIgnoreCase(item.key(), "JplSpiceId")){
                 jplSpiceId_ = item.value().toInt();

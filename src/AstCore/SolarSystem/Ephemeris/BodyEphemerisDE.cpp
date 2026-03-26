@@ -44,6 +44,11 @@ err_t BodyEphemerisDE::getPosVelICRF(const TimePoint &tp, Vector3d &pos, Vector3
     return aJplDeGetPosVelICRF(tp, getJplIndex(), JplDe::eSSBarycenter, pos, vel);
 }
 
+err_t BodyEphemerisDE::getInterval(TimeInterval &interval) const
+{
+    return aJplDeGetInterval(interval);
+}
+
 AST_NAMESPACE_END
 
 

@@ -51,6 +51,10 @@ AST_CORE_CAPI err_t aInitializeByConfig(StringView configfile);
 /// @brief 反初始化
 AST_CORE_CAPI err_t aUninitialize();
 
+
+/// @brief 获取默认SPK目录
+AST_CORE_API std::string aGetDefaultSPKDir();
+
  
 /// @brief 获取数据文件夹
 /// @return 数据文件夹路径

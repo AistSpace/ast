@@ -1,5 +1,5 @@
 ///
-/// @file      SpiceSPKParser.cpp
+/// @file      SPKParser.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,7 +18,7 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "SpiceSPKParser.hpp"
+#include "SPKParser.hpp"
 #include "AstUtil/Logger.hpp"
 #include "AstMath/Vector.hpp"
 
@@ -188,25 +188,25 @@ struct SPK_Type20_Trailer {
 
 #pragma pack(pop)
 
-SpiceSPKParser::SpiceSPKParser()
+SPKParser::SPKParser()
 {
 }
 
-SpiceSPKParser::SpiceSPKParser(StringView filepath)
+SPKParser::SPKParser(StringView filepath)
 {
     parse(filepath);
 }
 
-err_t SpiceSPKParser::parse(StringView filepath)
+err_t SPKParser::parse(StringView filepath)
 {
     open(filepath);
     return parse();
 }
 
-err_t SpiceSPKParser::parse()
+err_t SPKParser::parse()
 {
     err_t rc;
-    rc = SpiceDAFParser::parse();
+    rc = DAFParser::parse();
     if(rc) return rc;
     std::vector<DAF_SPKSummaryRecords> spkRecords;
 
@@ -232,17 +232,17 @@ err_t SpiceSPKParser::parse()
     return rc;
 }
 
-err_t SpiceSPKParser::getPosVelNative(double et, int target, Vector3d &pos, Vector3d &vel) const
+err_t SPKParser::getPosVelNative(double et, int target, Vector3d &pos, Vector3d &vel) const
 {
     return getStateNative(et, target, pos, &vel);
 }
 
-err_t SpiceSPKParser::getPosNative(double et, int target, Vector3d &pos) const
+err_t SPKParser::getPosNative(double et, int target, Vector3d &pos) const
 {
     return getStateNative(et, target, pos, nullptr);
 }
 
-const SPK_Descriptor *SpiceSPKParser::findSpkDescriptor(int target, double et) const
+const SPK_Descriptor *SPKParser::findSpkDescriptor(int target, double et) const
 {
     /*!
     @note 根据SPK星历规范，越后面的段优先级越高
@@ -257,7 +257,7 @@ const SPK_Descriptor *SpiceSPKParser::findSpkDescriptor(int target, double et) c
     return nullptr;
 }
 
-err_t SpiceSPKParser::getStateNative(double et, int target, Vector3d &pos, Vector3d *vel) const
+err_t SPKParser::getStateNative(double et, int target, Vector3d &pos, Vector3d *vel) const
 {
     const SPK_Descriptor* spkDescriptor = findSpkDescriptor(target, et);
     if(!spkDescriptor)
@@ -274,7 +274,7 @@ err_t SpiceSPKParser::getStateNative(double et, int target, Vector3d &pos, Vecto
     return -1;
 }
 
-err_t SpiceSPKParser::getStateType2(const SPK_Descriptor& spkDescriptor, double et, int target, Vector3d &pos, Vector3d *vel) const
+err_t SPKParser::getStateType2(const SPK_Descriptor& spkDescriptor, double et, int target, Vector3d &pos, Vector3d *vel) const
 {
     int rsize;
     {

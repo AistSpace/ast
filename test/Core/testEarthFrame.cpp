@@ -349,4 +349,29 @@ TEST_F(FrameTransformTest, ICRFToECF)
     }
 }
 
+
+TEST_F(FrameTransformTest, ICRFToTOD)
+{
+    aDataContext_GetEOP()->unload();
+    aNutationMethodSet(ENutationMethod::eJplDe);
+    const TimePoint tp = TimePoint::FromUTC(2026, 3, 26, 4, 0, 0);
+    const Vector3d vecICRF{6678.137_km, 0, 0};
+    {
+        Vector3d vecTOD;
+        Rotation rot;
+        aAxesTransform(aAxesICRF(), aAxesTOD(), tp, rot);
+        vecTOD = rot.transformVector(vecICRF);
+
+        printf("vecTOD: %.15f, %.15f, %.15f\n", vecTOD[0], vecTOD[1], vecTOD[2]);
+        // EXPECT_NEAR(vecTOD[0], 6677999.0795131570849_m, 1e-3);
+        // EXPECT_NEAR(vecTOD[1], 39364.3370563688890_m, 1e-3);
+        // EXPECT_NEAR(vecTOD[2], 17103.6182883611758_m, 1e-8);
+    }
+    {
+        Vector3d vecECF;
+        aICRFToECF(tp, vecICRF, vecECF);
+        printf("vecECF: %.15f, %.15f, %.15f\n", vecECF[0], vecECF[1], vecECF[2]);
+    }
+}
+
 GTEST_MAIN()

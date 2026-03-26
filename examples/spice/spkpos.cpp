@@ -37,9 +37,7 @@ int main() {
     //     "data/Test/kernels/lsk/naif0012.tls"         // 时间系统定义
     // };
 
-    // 加载时间系统定义核
-    std::string lsk = aTestGetConfigValue("LSK_FILE").toString();
-    furnsh_c(lsk.c_str());
+
 
     // 3. 尝试加载内核文件
     std::vector<std::string> kernels = aTestGetConfigValue("SPK_FILES").split(',');
@@ -49,9 +47,16 @@ int main() {
     for (const auto& kernel : kernels) {
         std::cout << "   尝试加载: " << kernel << "...";
         // 加载内核文件
-        furnsh_c(kernel.c_str());
+        // furnsh_c(kernel.c_str());
+        SpiceInt handle;
+        spklef_c(kernel.c_str(), &handle );
+        
         std::cout << " 成功" << std::endl;
     }
+
+    // 加载时间系统定义核
+    std::string lsk = aTestGetConfigValue("LSK_FILE").toString();
+    furnsh_c(lsk.c_str());
     
     // 4. 设置观测时间
     std::string utc_time = "2023-01-01T12:00:00.000";

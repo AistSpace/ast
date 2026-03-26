@@ -1,0 +1,154 @@
+///
+/// @file      JplSpk.cpp
+/// @brief     
+/// @details   
+/// @author    axel
+/// @date      2026-03-26
+/// @copyright 版权所有 (C) 2026-present, ast项目.
+///
+/// SpaceAST项目（https://github.com/space-ast/ast）
+/// 本项目基于 Apache 2.0 开源许可证分发。
+/// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
+/// 许可证全文请见：
+/// 
+///    http://www.apache.org/licenses/LICENSE-2.0
+/// 
+/// 重要须知：
+/// 软件按"现有状态"提供，无任何明示或暗示的担保条件。
+/// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
+/// 使用本软件所产生的风险，需由您自行承担。
+
+#include "JplSpk.hpp"
+#include "AstCore/TimeSystem.hpp"
+#include "AstCore/TimeInterval.hpp"
+#include "AstCore/SpiceApi.hpp"
+#include "AstCore/OrbitElement.hpp"
+#include "AstCore/RunTimeSpice.hpp"
+#include "AstUtil/Logger.hpp"
+#include "AstUtil/StringView.hpp"
+#include "AstUtil/SPKParser.hpp"
+
+
+AST_NAMESPACE_BEGIN
+
+JplSpk::JplSpk()
+    : handle_(0)
+    , isIntervalCached_(false)
+{
+}
+
+JplSpk::JplSpk(StringView spkfile)
+{
+    int rc = open(spkfile);
+    if (rc != eNoError)
+    {
+        aError("failed to open spk file '%.*s'", (int)spkfile.size(), spkfile.data());
+    }
+}
+
+JplSpk::~JplSpk()
+{
+    close();
+}
+
+err_t JplSpk::open(StringView filepath)
+{
+    close();
+    spkfile_ = std::string(filepath);
+    return SpiceApi::Instance()->spklef(spkfile_.c_str(), &handle_);
+}
+
+err_t JplSpk::close()
+{
+    if (handle_ > 0)
+    {
+        handle_ = 0;
+        spkfile_.clear();
+        isIntervalCached_ = false;
+        return SpiceApi::Instance()->spkuef(handle_);
+    }
+    return eNoError;
+}
+
+err_t JplSpk::getPosICRF(
+    const TimePoint &tp,
+    int target,
+    int referenceBody,
+    Vector3d &pos)
+{
+    double et = aTimePointToSpiceEt(tp);
+    CartState state;
+    double lt;
+    err_t rc = SpiceApi::Instance()->spkgeo(target, et, "J2000", referenceBody, state.data(), &lt);
+    pos = state.pos() * 1e3;
+    return rc;
+}
+
+err_t JplSpk::getPosVelICRF(
+    const TimePoint& tp, 
+    int target,
+    int referenceBody,
+    Vector3d& pos,
+    Vector3d& vel
+){
+    double et = aTimePointToSpiceEt(tp);
+    CartState state;
+    double lt;
+    err_t rc = SpiceApi::Instance()->spkgeo(target, et, "J2000", referenceBody, state.data(), &lt);
+    pos = state.pos() * 1e3;
+    vel = state.vel() * 1e3;
+    return rc;
+}
+
+
+err_t aSpiceGetInterval(StringView filepath, int target, TimeInterval &interval)
+{
+    /*!
+    @note
+    CSPICE 所提供的获取SPK段覆盖时间区间的方法涉及 `SpiceCell` 结构体，调用比较麻烦，
+    而且CSPICE提供的方法也需要重新打开文件
+    因此这里直接使用 `SPKParser` 类来获取SPK段描述符数组，然后从数组中提取目标体的时间间隔
+    */
+
+    SPKParser parser;
+    err_t rc = parser.parse(filepath);
+    if(rc != eNoError)
+    {
+        aError("failed to parse spk file '%.*s'", (int)filepath.size(), filepath.data());
+        return rc;
+    }
+    const std::vector<SPK_Descriptor>& spkDescriptors = parser.getDescriptors();
+    for(int i = (int)spkDescriptors.size() - 1; i >= 0; i--)
+    {
+        const auto& desc = spkDescriptors[i];
+        if(desc.target == target)
+        {
+            double start = desc.start_time;
+            double end = desc.end_time;
+            TimePoint startTime = aSpiceEtToTimePoint(start);
+            TimePoint endTime = aSpiceEtToTimePoint(end);
+            interval.setStartStop(startTime, endTime);
+            /// @todo 这里需要支持多个SPK段的时间间隔的合并
+            break;
+        }
+    }
+    return eNoError;
+}
+
+err_t JplSpk::getInterval(int target, TimeInterval &interval) const
+{
+    if(isIntervalCached_)
+    {
+        interval = intervalCache_;
+        return eNoError;
+    }else{
+        err_t rc = aSpiceGetInterval(spkfile_, target, interval);
+        if(rc == eNoError){
+            isIntervalCached_ = true;
+            intervalCache_ = interval;
+        }
+        return rc;
+    }
+}
+
+AST_NAMESPACE_END

@@ -38,6 +38,7 @@ using HEphemeris = SharedPtr<Ephemeris>;
 
 
 /// @brief 星历接口
+/// @details 在点接口的基础上增加了对可用时间间隔的获取方法
 class AST_CORE_API Ephemeris: public Point
 {
 public:

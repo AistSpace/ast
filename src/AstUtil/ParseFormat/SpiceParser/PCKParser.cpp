@@ -18,7 +18,7 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "SpiceTextParser.hpp"
+#include "PCKParser.hpp"
 #include "AstUtil/StringView.hpp"
 #include <algorithm>
 
@@ -27,7 +27,7 @@ AST_NAMESPACE_BEGIN
 static_assert(sizeof(std::vector<double>) == sizeof(std::vector<char>), "std::vector<double> and std::vector<char> must have the same size");
 static_assert(sizeof(std::vector<double>) == sizeof(std::vector<int>), "std::vector<double> and std::vector<int> must have the same size");
 
-SpiceTextParser::SpiceTextParser()
+PCKParser::PCKParser()
     : BaseParser()
     , keyBuffer_(1024)
     //, valueBuffer_(2048)
@@ -36,7 +36,7 @@ SpiceTextParser::SpiceTextParser()
 
 }
 
-SpiceTextParser::SpiceTextParser(StringView filepath)
+PCKParser::PCKParser(StringView filepath)
     : BaseParser(filepath)
     , keyBuffer_(1024)
     // , valueBuffer_(2048)
@@ -45,7 +45,7 @@ SpiceTextParser::SpiceTextParser(StringView filepath)
 
 }
 
-err_t SpiceTextParser::getNext(BKVItemView &item)
+err_t PCKParser::getNext(BKVItemView &item)
 {
     if(!file_)
         return eErrorInvalidFile;
@@ -105,7 +105,7 @@ err_t SpiceTextParser::getNext(BKVItemView &item)
     return EOF;
 }
 
-err_t SpiceTextParser::readData(SpiceKernelPool &kernelPool)
+err_t PCKParser::readData(KernelPool &kernelPool)
 {
     if(!isOpen())
     {

@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "SpiceDAFParser.hpp"
+#include "DAFParser.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -34,7 +34,7 @@ AST_NAMESPACE_BEGIN
 #pragma pack(push, 1)
 
 /// @brief SPK 段描述符
-/// 解包后的 SPK 段摘要信息
+/// 解包后的 SPK 段摘要信息，与SPK文件的二进制格式一致
 struct SPK_Descriptor
 {
     double start_time;          // 开始时间 (ET)
@@ -50,16 +50,18 @@ struct SPK_Descriptor
 #pragma pack(pop)
 
 /// @brief SPICE二进制SPK内核文件解析器(parser for SPICE SPK kernel file)
+/// @see cspice库里的文档 doc/html/req/spk.html
 /// @details 用于解析SPICE二进制SPK内核文件（.bsp），提供获取目标在指定时刻的原始位置和速度的功能。
 ///          “原始”意味着直接返回SPK文件中存储的相对于相应参考系的位置和速度，不进行任何额外的坐标转换。
 ///          使用前需通过 SpiceDAFParser::parse() 等方法打开并解析SPK文件
 /// @warning 该类型的单个实例暂不支持多线程并发访问
-class AST_UTIL_API SpiceSPKParser: public SpiceDAFParser
+/// @todo 处理不同类型的SPK数据，目前仅支持类型2
+class AST_UTIL_API SPKParser: public DAFParser
 {
 public:
-    SpiceSPKParser();
-    SpiceSPKParser(StringView filepath);
-    ~SpiceSPKParser() = default;
+    SPKParser();
+    SPKParser(StringView filepath);
+    ~SPKParser() = default;
 
     err_t parse(StringView filepath);
 
@@ -71,9 +73,9 @@ public:
     ///          不执行任何坐标转换
     /// @param et      相对于J2000 TDB的历元（秒）
     /// @param target  目标的NAIF ID代码（如399代表地球）
-    /// @param[out] pos  位置向量 (x, y, z)，单位公里(km)
-    /// @param[out] vel  速度向量 (vx, vy, vz)，单位公里/秒(km/s)
-    /// @return 错误码，成功返回0，失败返回非0值（如时间超出覆盖区间、目标不存在等）
+    /// @param[out] pos  位置向量 (x, y, z)，单位米(m)
+    /// @param[out] vel  速度向量 (vx, vy, vz)，单位米/秒(m/s)
+    /// @return 错误码，成功返回0，失败返回非0值（如时间超出时间区间、目标不存在等）
     err_t getPosVelNative(double et, int target, Vector3d& pos, Vector3d& vel) const;
     
     /// @brief 获取目标在指定时刻的原始位置（相对于其星历参考系）
@@ -81,13 +83,31 @@ public:
     ///          不执行任何坐标转换
     /// @param et      相对于J2000 TDB的历元（秒）
     /// @param target  目标的NAIF ID代码
-    /// @param[out] pos  位置向量 (x, y, z)，单位公里(km)
-    /// @return 错误码，成功返回0，失败返回非0值（如时间超出覆盖区间、目标不存在等）
+    /// @param[out] pos  位置向量 (x, y, z)，单位米(m)
+    /// @return 错误码，成功返回0，失败返回非0值（如时间超出时间区间、目标不存在等）
     err_t getPosNative(double et, int target, Vector3d& pos) const;
-protected:
+
+    /// @brief 查找目标在指定时间的SPK段描述符
+    /// @details 从SPK文件中查找给定目标在给定时间的SPK段描述符。
+    ///          如果目标在给定时间没有对应的段，返回nullptr。
+    /// @param target  目标的NAIF ID代码
+    /// @param et      相对于J2000 TDB的历元（秒）
+    /// @return 指向SPK段描述符的指针如果未找到）
     const SPK_Descriptor* findSpkDescriptor(int target, double et) const;
     
+    /// @brief 获取目标在指定时刻的原始位置和速度（相对于其星历参考系）
+    /// @details 直接从SPK内核文件中读取数据，返回目标在给定时刻相对于该段定义的参考系的位置和速度。
+    ///          不执行任何坐标转换
+    /// @param et      相对于J2000 TDB的历元（秒）
+    /// @param target  目标的NAIF ID代码
+    /// @param[out] pos  位置向量 (x, y, z)，单位米(m)
+    /// @param[out] vel  速度向量 (vx, vy, vz)，单位米/秒(m/s)
+    /// @return 错误码，成功返回0，失败返回非0值（如时间超出时间区间、目标不存在等）
     err_t getStateNative(double et, int target, Vector3d& pos, Vector3d* vel) const;
+
+    /// @brief 获取SPK段描述符数组
+    const std::vector<SPK_Descriptor>& getDescriptors() const{return spkDescriptors_;}
+protected:
 
     err_t getStateType2(const SPK_Descriptor& desc, double et, int target, Vector3d& pos, Vector3d* vel) const;
 protected:

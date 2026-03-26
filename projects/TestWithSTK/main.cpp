@@ -23,6 +23,8 @@
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/Posix.hpp"
 #include "AstCore/RunTime.hpp"
+#include "AstCore/EOP.hpp"
+
 #include <string>
 #ifdef _WIN32
 #include <windows.h>
@@ -33,6 +35,7 @@ AST_USING_NAMESPACE
 int main(int argc, char* argv[])
 {
     aInitialize();
+    aDataContext_GetEOP()->unload();
     if (argc > 1) {
         #ifdef _WIN32
         int argc;

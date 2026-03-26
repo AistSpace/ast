@@ -42,14 +42,14 @@ struct DAF_ElementRecords;
 /// @todo 在读取数据时需要处理数据的大小端问题
 /// @details 该类用于解析SPICE的双精度数组文件（DAF），提取其中的数组数据。
 /// @warning 该类型的单个实例暂不支持多线程并发访问
-class AST_UTIL_API SpiceDAFParser: public BaseParser
+class AST_UTIL_API DAFParser: public BaseParser
 {
 public:
     using Record = std::array<char, 1024>;            ///< 记录缓冲区
 
-    SpiceDAFParser()=default;
-    SpiceDAFParser(StringView filepath);
-    ~SpiceDAFParser()=default;
+    DAFParser()=default;
+    DAFParser(StringView filepath);
+    ~DAFParser()=default;
 
     using BaseParser::open;
     

@@ -32,6 +32,7 @@ AST_NAMESPACE_BEGIN
 class MotionProfile;
 class MotionTwoBody;
 class MotionHPOP;
+class MotionSPICE;
 
 class MotionProfileVisitor
 {
@@ -40,6 +41,7 @@ public:
     virtual void visit(MotionProfile& profile) = 0;
     virtual void visit(MotionTwoBody& profile) = 0;
     virtual void visit(MotionHPOP& profile) = 0;
+    virtual void visit(MotionSPICE& profile) = 0;
 
 };
 

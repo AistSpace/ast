@@ -34,7 +34,9 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief Spice API
-/// @details   
+/// @details 处理CSPICE库的动态加载、卸载、函数调用等
+/// @warning 注意CSPICE库的默认长度单位是**千米**
+/// 这里不会对CSPICE库进行额外的包装，只会进行一次调用的转发
 class AST_CORE_API SpiceApi
 {
 public:
@@ -42,9 +44,12 @@ public:
     enum{
         ifurnsh = 0,
         ispkgeo,
+        ispklef,
+        ispkuef,
         ierract,
         ifailed,
         ireset,
+        iktotal,
         numfunctions,
     };
     using funcarray = std::array<void*, numfunctions>;
@@ -103,6 +108,17 @@ public: // 包装函数
         double       * lt      
     );
 
+    /// @brief 加载SPK内核文件
+    /// @param libpath 内核文件路径
+    /// @param handle 内核句柄
+    /// @return 错误码
+    err_t spklef(const char* libpath, int* handle);
+
+    /// @brief 鞋子SPK内核文件
+    /// @param handle 内核句柄
+    /// @return 错误码
+    err_t spkuef(int handle);
+
     /// @brief 检查是否发生错误
     /// @return 是否发生错误
     bool failed();
@@ -114,14 +130,26 @@ public: // 包装函数
     /// @param action 错误处理操作
     void erract(const char* operation, int lenout, char* action);
 
+    /// @brief 获取已加载的内核数量
+    /// @param kind 内核类型
+    /// @param count 内核数量
+    /// @return 错误码
+    err_t ktotal(const char * kind, int* count);
+    int ktotal(const char * kind){
+        int count = 0;
+        ktotal(kind, &count);
+        return count;
+    }
+    
 protected:
     err_t checkerror();
     A_DISABLE_COPY(SpiceApi);
 protected:
     void*  library_{nullptr};           ///< 库句柄
     funcarray functions_{};             ///< 函数指针
-    std::mutex mutex_;                  ///< 互斥锁
+    std::mutex mutex_;                  ///< 互斥锁(CSPICE库的函数不是线程安全的，这里用于保护函数调用的线程安全问题)
 };
+
 
 
 /*! @} */

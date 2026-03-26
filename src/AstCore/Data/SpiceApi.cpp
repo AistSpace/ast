@@ -29,6 +29,7 @@ AST_NAMESPACE_BEGIN
 
 // 声明spice函数原型，参考SpiceZpr.h
 namespace spiceproto{
+    
 #if defined(__linux__)
 #   define CSPICE_PC_LINUX_64BIT_GCC
 #endif
@@ -61,6 +62,11 @@ namespace spiceproto{
                                 SpiceInt            obs,
                                 SpiceDouble         state[6],
                                 SpiceDouble       * lt       );
+                                
+    void              spklef_c ( ConstSpiceChar    * filename,
+                                SpiceInt          * handle   );
+
+    void              spkuef_c ( SpiceInt             handle );
 
     void              erract_c ( ConstSpiceChar    * operation,
                                 SpiceInt            lenout,
@@ -69,6 +75,9 @@ namespace spiceproto{
     SpiceBoolean      failed_c ( void );
 
     void              reset_c  ( void );
+
+    void              ktotal_c ( ConstSpiceChar   * kind,
+                                SpiceInt         * count );
 
     // 根据SpiceZdf.h的说明，SpiceInt的大小是SpiceDouble的一半
     // 在这里进行编译期检查
@@ -119,8 +128,11 @@ err_t SpiceApi::load(StringView dirpath)
     funcarray funcs{};
     funcs[ifurnsh] = aGetProcAddress(lib, "furnsh_c");
     funcs[ispkgeo] = aGetProcAddress(lib, "spkgeo_c");
+    funcs[ispklef] = aGetProcAddress(lib, "spklef_c");
+    funcs[ispkuef] = aGetProcAddress(lib, "spkuef_c");
     funcs[ierract] = aGetProcAddress(lib, "erract_c");
     funcs[ifailed] = aGetProcAddress(lib, "failed_c");
+    funcs[iktotal] = aGetProcAddress(lib, "ktotal_c");
     funcs[ireset]  = aGetProcAddress(lib, "reset_c");
     if(!funcarray_isfull(funcs))
     {
@@ -151,59 +163,109 @@ err_t SpiceApi::unload()
     return eNoError;
 }
 
+const char* kSpiceUnloadError = "spice library not loaded, call SpiceApi::load first";
+
 err_t SpiceApi::furnsh(const char* libpath)
 {
     using functype = decltype(&spiceproto::furnsh_c);
-    functype furnsh = reinterpret_cast<functype>(functions_[ifurnsh]);
-    if(!furnsh)
+    functype furnsh_c = reinterpret_cast<functype>(functions_[ifurnsh]);
+    if(!furnsh_c)
     {
-        aError("spice library not loaded, call SpiceApi::load first");
+        aError(kSpiceUnloadError);
         return eErrorNullPtr;
     }
     std::lock_guard<std::mutex> lock(mutex_);
-    furnsh(libpath);
+    furnsh_c(libpath);
     return checkerror();
 }
 
 err_t SpiceApi::spkgeo(int targ, double et, const char * ref, int obs, double state[6], double * lt)
 {
     using functype = decltype(&spiceproto::spkgeo_c);
-    functype spkgeo = reinterpret_cast<functype>(functions_[ispkgeo]);
-    if(!spkgeo)
+    functype spkgeo_c = reinterpret_cast<functype>(functions_[ispkgeo]);
+    if(!spkgeo_c)
     {
-        aError("spice library not loaded, call SpiceApi::load first");
+        aError(kSpiceUnloadError);
         return eErrorNullPtr;
     }
     std::lock_guard<std::mutex> lock(mutex_);
-    spkgeo(targ, et, ref, obs, state, lt);
+    spkgeo_c(targ, et, ref, obs, state, lt);
+    return checkerror();
+}
+
+err_t SpiceApi::spklef(const char *libpath, int *handle)
+{
+    using functype = decltype(&spiceproto::spklef_c);
+    functype spklef_c = reinterpret_cast<functype>(functions_[ispklef]);
+    if(!spklef_c)
+    {
+        aError(kSpiceUnloadError);
+        return eErrorNullPtr;
+    }
+    std::lock_guard<std::mutex> lock(mutex_);
+    spiceproto::SpiceInt h;
+    spklef_c(libpath, &h);
+    if(handle)
+        *handle = static_cast<int>(h);
+    return checkerror();
+}
+
+err_t SpiceApi::spkuef(int handle)
+{
+    using functype = decltype(&spiceproto::spkuef_c);
+    functype spkuef_c = reinterpret_cast<functype>(functions_[ispkuef]);
+    if(!spkuef_c)
+    {
+        aError(kSpiceUnloadError);
+        return eErrorNullPtr;
+    }
+    std::lock_guard<std::mutex> lock(mutex_);
+    spkuef_c(handle);
     return checkerror();
 }
 
 bool SpiceApi::failed()
 {
     using functype = decltype(&spiceproto::failed_c);
-    functype failed = reinterpret_cast<functype>(functions_[ifailed]);
-    if(!failed)
+    functype failed_c = reinterpret_cast<functype>(functions_[ifailed]);
+    if(!failed_c)
         return true;
-    return failed();
+    return failed_c();
 }
 
 void SpiceApi::reset()
 {
     using functype = decltype(&spiceproto::reset_c);
-    functype reset = reinterpret_cast<functype>(functions_[ireset]);
-    if(!reset)
+    functype reset_c = reinterpret_cast<functype>(functions_[ireset]);
+    if(!reset_c)
         return;
-    reset();
+    reset_c();
 }
 
 void SpiceApi::erract(const char * operation, int lenout, char * action)
 {
     using functype = decltype(&spiceproto::erract_c);
-    functype erract = reinterpret_cast<functype>(functions_[ierract]);
-    if(!erract)
+    functype erract_c = reinterpret_cast<functype>(functions_[ierract]);
+    if(!erract_c)
         return;
-    erract(operation, lenout, action);
+    erract_c(operation, lenout, action);
+}
+
+err_t SpiceApi::ktotal(const char *kind, int *count)
+{
+    using functype = decltype(&spiceproto::ktotal_c);
+    functype ktotal_c = reinterpret_cast<functype>(functions_[iktotal]);
+    if(!ktotal_c)
+    {
+        aError(kSpiceUnloadError);
+        return eErrorNullPtr;
+    }
+    std::lock_guard<std::mutex> lock(mutex_);
+    spiceproto::SpiceInt c;
+    ktotal_c(kind, &c);
+    if(count)
+        *count = static_cast<int>(c);
+    return checkerror();
 }
 
 err_t SpiceApi::checkerror()

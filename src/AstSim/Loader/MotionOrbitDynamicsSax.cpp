@@ -18,13 +18,13 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "MotionBasicSax.hpp"
+#include "MotionOrbitDynamicsSax.hpp"
 #include "CommonlyUsedHeaders.hpp"
 
 
 AST_NAMESPACE_BEGIN
 
-err_t MotionBasicSax::begin(StringView name)
+err_t MotionOrbitDynamicsSax::begin(StringView name)
 {
     if(aEqualsIgnoreCase(name, "DisplayFlags"))
     {
@@ -38,12 +38,12 @@ err_t MotionBasicSax::begin(StringView name)
     return eNoError;
 }
 
-err_t MotionBasicSax::end(StringView name)
+err_t MotionOrbitDynamicsSax::end(StringView name)
 {
     return endParse;
 }
 
-err_t MotionBasicSax::keyValue(StringView key, const ValueView &value)
+err_t MotionOrbitDynamicsSax::keyValue(StringView key, const ValueView &value)
 {
     if(aEqualsIgnoreCase(key, "EphemSmartEpoch")){
         if(err_t rc = _aLoadEventTime(parser_, ephemSmartEpoch_))
@@ -72,19 +72,19 @@ err_t MotionBasicSax::keyValue(StringView key, const ValueView &value)
     return eNoError;
 }
 
-HEventTime MotionBasicSax::makeStateEpoch() const
+HEventTime MotionOrbitDynamicsSax::makeStateEpoch() const
 {
     auto explicitEpoch = EventTimeExplicit::New(ephemEpoch_);
     return EventTimeFallback::New(ephemSmartEpoch_, explicitEpoch);
 }
 
-HEventInterval MotionBasicSax::makeInterval() const
+HEventInterval MotionOrbitDynamicsSax::makeInterval() const
 {
     auto explicitInterval = EventIntervalExplicit::New(startTime_, stopTime_);
     return EventIntervalFallback::New(ephemSmartInterval_, explicitInterval);
 }
 
-Body *MotionBasicSax::getBody() const
+Body *MotionOrbitDynamicsSax::getBody() const
 {
     if(!vehiclePathData_.centralBody_)
     {

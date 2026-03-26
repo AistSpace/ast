@@ -326,7 +326,7 @@ err_t MotionHPOPSax::keyValue(StringView key, const ValueView &value)
     else if(aEqualsIgnoreCase(key, "UsePlugin")){
         // @todo 处理UsePlugin
     }
-    return MotionBasicSax::keyValue(key, value);
+    return MotionOrbitDynamicsSax::keyValue(key, value);
 }
 
 err_t MotionHPOPSax::getMotion(ScopedPtr<MotionProfile> &motion)

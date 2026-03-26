@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "MotionBasic.hpp"
+#include "AstSim/MotionOrbitDynamics.hpp"
 #include "AstCore/HPOPForceModel.hpp"
 
 AST_NAMESPACE_BEGIN

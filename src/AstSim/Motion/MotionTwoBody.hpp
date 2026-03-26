@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstSim/MotionBasic.hpp"
+#include "AstSim/MotionOrbitDynamics.hpp"
 #include "AstSim/MotionProfile.hpp"
 #include "AstCore/State.hpp"
 #include "AstCore/EventInterval.hpp"

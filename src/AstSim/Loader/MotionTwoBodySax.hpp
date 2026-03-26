@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "MotionBasicSax.hpp"
+#include "MotionOrbitDynamicsSax.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,10 +30,10 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class MotionTwoBodySax: public MotionBasicSax
+class MotionTwoBodySax: public MotionOrbitDynamicsSax
 {
 public:
-    using MotionBasicSax::MotionBasicSax;
+    using MotionOrbitDynamicsSax::MotionOrbitDynamicsSax;
     ~MotionTwoBodySax() override = default;
 public:
     err_t keyValue(StringView key, const ValueView& value) override;

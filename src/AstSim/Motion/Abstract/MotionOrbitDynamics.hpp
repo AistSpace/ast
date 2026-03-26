@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstSim/MotionProfile.hpp"
+#include "AstSim/MotionWithIntervalStep.hpp"
 #include "AstCore/State.hpp"
 #include "AstCore/EventInterval.hpp"
 #include "AstCore/OrbitElement.hpp"
@@ -33,16 +34,17 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class MotionBasic;
-using PMotionBasic = MotionBasic*;
-// using HMotionBasic = SharedPtr<MotionBasic>;
+class MotionOrbitDynamics;
+using PMotionOrbitDynamics = MotionOrbitDynamics*;
+// using HMotionOrbitDynamics = SharedPtr<MotionOrbitDynamics>;
+using MotionBasic = MotionOrbitDynamics; // 兼容处理
 
-/// @brief 基础运动模型数据结构
-class AST_SIM_API MotionBasic: public MotionProfile
+/// @brief 轨道动力学基础运动模型数据结构
+class AST_SIM_API MotionOrbitDynamics: public MotionWithIntervalStep
 {
 public:
-    MotionBasic() = default;
-    ~MotionBasic() = default;
+    MotionOrbitDynamics() = default;
+    ~MotionOrbitDynamics() = default;
 
     /// @brief 获取初始状态
     /// @return 状态指针
@@ -51,19 +53,6 @@ public:
     /// @brief 设置初始状态
     void setInitialState(State* state) { initialState_ = state; }
 
-    /// @brief 获取运动时间间隔
-    /// @param interval 时间间隔引用
-    /// @return 错误码
-    err_t getInterval(TimeInterval& interval) const;
-
-    /// @brief 获取运动时间间隔句柄
-    SharedPtr<EventInterval>& getIntervalHandle() { return interval_; }
-
-    /// @brief 设置运动时间间隔
-    void setInterval(EventInterval* interval) { interval_ = interval;}
-
-    /// @brief 设置运动时间间隔
-    void setInterval(const TimeInterval& interval);
 
     /// @brief 获取预报坐标系
     /// @return 预报坐标系指针
@@ -73,9 +62,7 @@ public:
     /// @param frame 预报坐标系指针
     void setPropagationFrame(Frame* frame) { propagationFrame_ = frame; }
 
-    /// @brief 获取预报步长
-    /// @return 预报步长
-    double getStepSize() const { return stepSize_; }
+
 protected:
     struct PropagationParams
     {
@@ -89,9 +76,7 @@ protected:
     err_t discreteInterval(const TimePoint& epoch, double stepSize, std::vector<double>& times) const;
 protected:
     SharedPtr<State>            initialState_;          ///< 初始状态
-    SharedPtr<EventInterval>    interval_;              ///< 时间段
     SharedPtr<Frame>            propagationFrame_;      ///< 预报坐标系
-    double                      stepSize_{60.0};        ///< 生成星历步长
 };
 
 /*! @} */

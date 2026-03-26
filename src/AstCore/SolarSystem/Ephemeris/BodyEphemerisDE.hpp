@@ -54,6 +54,9 @@ public:
     err_t getPosICRF(const TimePoint& tp, Vector3d& pos) const override;
 
     err_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
+
+    err_t getInterval(TimeInterval& interval) const override;
+
 protected:
     CelestialBody* body_{nullptr};
     int jplIndex_{-1};

@@ -1,5 +1,5 @@
 ///
-/// @file      SpiceDAFParser.cpp
+/// @file      DAFParser.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,7 +18,7 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "SpiceDAFParser.hpp"
+#include "DAFParser.hpp"
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/StringSplit.hpp"
 #include <cstdint>
@@ -104,12 +104,12 @@ static_assert(sizeof(DAF_ElementRecords) == 1024, "DAF_ElementRecords size must 
 
 #pragma pack(pop)
 
-SpiceDAFParser::SpiceDAFParser(StringView filepath)
+DAFParser::DAFParser(StringView filepath)
 {
     this->parse(filepath);
 }
 
-err_t SpiceDAFParser::parse()
+err_t DAFParser::parse()
 {
     isValidFile_ = false;
     if(!file_)
@@ -152,30 +152,30 @@ err_t SpiceDAFParser::parse()
     return eNoError;
 }
 
-err_t SpiceDAFParser::parse(StringView filepath)
+err_t DAFParser::parse(StringView filepath)
 {
     open(filepath);
     return parse();
 }
 
-bool SpiceDAFParser::isValidFile() const
+bool DAFParser::isValidFile() const
 {
     return isValidFile_;
 }
 
-size_t SpiceDAFParser::readRecord(int recordIndex, void *buffer, size_t size) const
+size_t DAFParser::readRecord(int recordIndex, void *buffer, size_t size) const
 {
     if(recordIndex < 0)
         return 0;
     return read(buffer, size, recordIndex * sizeof(Record));
 }
 
-size_t SpiceDAFParser::readFileRecord(void *buffer, size_t size) const
+size_t DAFParser::readFileRecord(void *buffer, size_t size) const
 {
     return readRecord(0, buffer, size);
 }
 
-err_t SpiceDAFParser::getFileRecord(Record &fileRecord) const
+err_t DAFParser::getFileRecord(Record &fileRecord) const
 {
     if(!isValidFile_)
         return eErrorInvalidFile;
@@ -184,7 +184,7 @@ err_t SpiceDAFParser::getFileRecord(Record &fileRecord) const
 }
 
 
-err_t SpiceDAFParser::getSummaryRecords(std::vector<Record> &summaryRecords) const
+err_t DAFParser::getSummaryRecords(std::vector<Record> &summaryRecords) const
 {
     if(!isValidFile_)
         return eErrorInvalidFile;
@@ -194,7 +194,7 @@ err_t SpiceDAFParser::getSummaryRecords(std::vector<Record> &summaryRecords) con
     return readSummaryRecords(fward, bward, summaryRecords);
 }
 
-err_t SpiceDAFParser::getFileRecord(int &nd, int &ni, int &fward, int &bward, int &free) const
+err_t DAFParser::getFileRecord(int &nd, int &ni, int &fward, int &bward, int &free) const
 {
     if(!isValidFile_)
         return eErrorInvalidFile;
@@ -207,7 +207,7 @@ err_t SpiceDAFParser::getFileRecord(int &nd, int &ni, int &fward, int &bward, in
     return eNoError;
 }
 
-err_t SpiceDAFParser::getComment(std::string &comment) const
+err_t DAFParser::getComment(std::string &comment) const
 {
     if(!isValidFile_)
         return eErrorInvalidFile;
@@ -222,7 +222,7 @@ err_t SpiceDAFParser::getComment(std::string &comment) const
     return eNoError;
 }
 
-err_t SpiceDAFParser::getComment(std::vector<std::string> &comments) const
+err_t DAFParser::getComment(std::vector<std::string> &comments) const
 {
     std::string comment;
     err_t rc = getComment(comment);
@@ -232,7 +232,7 @@ err_t SpiceDAFParser::getComment(std::vector<std::string> &comments) const
     return eNoError;
 }
 
-void SpiceDAFParser::printComment(std::FILE *fp) const
+void DAFParser::printComment(std::FILE *fp) const
 {
     std::string comment;
     err_t rc = getComment(comment);
@@ -241,7 +241,7 @@ void SpiceDAFParser::printComment(std::FILE *fp) const
     std::fwrite(comment.data(), 1, comment.size(), fp);
 }
 
-err_t SpiceDAFParser::runTest()
+err_t DAFParser::runTest()
 {
     if(!file_)
         return -1;
@@ -277,7 +277,7 @@ err_t SpiceDAFParser::runTest()
 }
 
 
-err_t SpiceDAFParser::readSummaryRecords(int fward, int bward, std::vector<Record>& summaryRecords) const
+err_t DAFParser::readSummaryRecords(int fward, int bward, std::vector<Record>& summaryRecords) const
 {
     int recordIndex = fward;
     constexpr size_t max_elem = 1024 * 1024 * 1024 / sizeof(Record);    //  1GB
@@ -305,7 +305,7 @@ err_t SpiceDAFParser::readSummaryRecords(int fward, int bward, std::vector<Recor
     return eNoError;
 }
 
-const DAF_FileRecord *SpiceDAFParser::getFileRecord() const
+const DAF_FileRecord *DAFParser::getFileRecord() const
 {
     return reinterpret_cast<const DAF_FileRecord*>(fileRecord_.data());
 }

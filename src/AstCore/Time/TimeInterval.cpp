@@ -65,6 +65,22 @@ err_t TimeInterval::discrete(const TimePoint &epoch, double step, std::vector<do
     return eNoError;
 }
 
+err_t TimeInterval::discrete(double step, std::vector<TimePoint> &times) const
+{
+    ptrdiff_t nnodes = static_cast<ptrdiff_t>(std::ceil(duration() / step));
+    if(nnodes <= 0){
+        aError("number of nodes (%ld) is invalid", nnodes);
+        return eErrorInvalidParam;
+    }
+    times.reserve(nnodes);
+    TimePoint start = getStart();
+    
+    for(ptrdiff_t i = 0; i < nnodes-1; i++){
+        times.push_back(start + i * step);
+    }
+    times.push_back(getStop());
+    return eNoError;
+}
+
 
 AST_NAMESPACE_END
-

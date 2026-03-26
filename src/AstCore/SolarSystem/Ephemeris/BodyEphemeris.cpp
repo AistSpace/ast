@@ -19,9 +19,25 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "BodyEphemeris.hpp"
+#include "BuiltinFrame.hpp"
 
 AST_NAMESPACE_BEGIN
 
+Frame *BodyEphemeris::getFrame() const
+{
+    return aFrameICRF();
+}
 
+err_t BodyEphemeris::getPos(const TimePoint &tp, Vector3d &pos) const
+{
+    return getPosICRF(tp, pos);
+}
+
+err_t BodyEphemeris::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+{
+    return getPosVelICRF(tp, pos, vel);
+}
 
 AST_NAMESPACE_END
+
+

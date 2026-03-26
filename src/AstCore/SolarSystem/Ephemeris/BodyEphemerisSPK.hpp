@@ -22,7 +22,8 @@
 
 #include "AstGlobal.h"
 #include "BodyEphemeris.hpp"
-#include "CelestialBody.hpp"
+#include "AstCore/CelestialBody.hpp"
+#include "AstCore/JplSpk.hpp"
 
 
 AST_NAMESPACE_BEGIN
@@ -48,6 +49,8 @@ public:
 
     ~BodyEphemerisSPK() override = default;
 
+    err_t openSPKFile(StringView spkfile);
+
     int getSpiceIndex() const;
 
     void setSpiceIndex(int spiceIndex){spiceIndex_ = spiceIndex;}
@@ -55,9 +58,12 @@ public:
     err_t getPosICRF(const TimePoint& tp, Vector3d& pos) const override;
 
     err_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
+
+    err_t getInterval(TimeInterval &interval) const override;
 protected:
     CelestialBody* body_{nullptr};
-    int spiceIndex_{-1};
+    int            spiceIndex_{-1};
+    JplSpk         spk_;
 };
 
 

@@ -26,7 +26,10 @@
 
 AST_NAMESPACE_BEGIN
 
-
+err_t BodyEphemerisSPK::openSPKFile(StringView spkfile)
+{
+    return spk_.open(spkfile);
+}
 
 int BodyEphemerisSPK::getSpiceIndex() const
 {
@@ -44,6 +47,11 @@ err_t BodyEphemerisSPK::getPosICRF(const TimePoint& tp, Vector3d& pos) const
 err_t BodyEphemerisSPK::getPosVelICRF(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     return aSpiceGetPosVelICRF(tp, getSpiceIndex(), ESpiceId::eSolarSystemBarycenter, pos, vel);
+}
+
+err_t BodyEphemerisSPK::getInterval(TimeInterval &interval) const
+{
+    return spk_.getInterval(getSpiceIndex(), interval);
 }
 
 AST_NAMESPACE_END

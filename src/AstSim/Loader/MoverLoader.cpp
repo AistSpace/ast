@@ -45,6 +45,96 @@ err_t _aLoadHPOP(BKVParser& parser, const VehiclePathData& vehiclePathData, Scop
     return sax.getMotion(motionProfile);
 }
 
+err_t _aLoadSPICE(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+{
+    struct {
+        std::string filename_;
+        int satelliteID_{-1};
+        int segmentNumber_{1};
+        double stepSize_{60.0};
+        bool useLTDelay_{false};
+        bool use1stOrderDelay_{false};
+        bool use3rdOrderDelay_{false};
+        TimePoint startTime_;
+        TimePoint stopTime_;
+        SharedPtr<EventInterval> ephemSmartInterval_;
+    } data;
+
+
+    while(1)
+    {
+        BKVItemView item;
+        BKVParser::EToken token;
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "FileName")){
+                data.filename_ = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "SatelliteID")){
+                data.satelliteID_ = item.value().toInt();
+            }else if(aEqualsIgnoreCase(item.key(), "SegmentNumber")){
+                data.segmentNumber_ = item.value().toInt();
+            }else if(aEqualsIgnoreCase(item.key(), "StepSize")){
+                data.stepSize_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "UseLTDelay")){
+                data.useLTDelay_ = item.value().toBool();
+            }else if(aEqualsIgnoreCase(item.key(), "Use1stOrderDelay")){
+                data.use1stOrderDelay_ = item.value().toBool();
+            }else if(aEqualsIgnoreCase(item.key(), "Use3rdOrderDelay")){
+                data.use3rdOrderDelay_ = item.value().toBool();
+            }else if(aEqualsIgnoreCase(item.key(), "StartTime")){
+                data.startTime_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "StopTime")){
+                data.stopTime_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "EphemSmartInterval")){
+                err_t rc = _aLoadEventInterval(parser, data.ephemSmartInterval_);
+                if(rc)
+                    aError("failed to load EphemSmartInterval");
+            }
+        }else if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "EVENTINTERVAL")){
+                // 处理事件间隔
+                while(1){
+                    BKVItemView eventItem;
+                    BKVParser::EToken eventToken;
+                    eventToken = parser.getNext(eventItem);
+                    if(eventToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(eventItem.value(), "EVENTINTERVAL")){
+                            break;
+                        }
+                    }
+                }
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "SPICE")){
+                break;
+            }
+        }else if(token == BKVParser::eEOF){
+            return eNoError;
+        }else{
+            return eErrorInvalidFile;
+        }
+    }
+
+    // 创建 SPICE 运动模型
+    auto motionSPICE = MotionSPICE::New();
+    
+    // 设置 SPICE 文件路径
+    motionSPICE->setSpiceFile(data.filename_);
+    motionSPICE->setSpiceIndex(data.satelliteID_);
+    
+    // 设置步长
+    motionSPICE->setStepSize(data.stepSize_);
+    
+    // 设置时间间隔
+    auto explicitInterval = EventIntervalExplicit::New(data.startTime_, data.stopTime_);
+    auto fallbackInterval = EventIntervalFallback::New(data.ephemSmartInterval_, explicitInterval);
+    motionSPICE->setInterval(fallbackInterval);
+
+    motionProfile = motionSPICE;
+    
+    return eNoError;
+}
 
 err_t _aLoadPassDefn(BKVParser& parser, Mover& mover)
 {
@@ -118,6 +208,11 @@ err_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
             else if(aEqualsIgnoreCase(item.value(), "HPOP"))
             {
                 if(err_t rc = _aLoadHPOP(parser, data, mover.getMotionProfileHandle())){
+                    return rc;
+                }
+            }
+            else if(aEqualsIgnoreCase(item.value(), "SPICE")){
+                if(err_t rc = _aLoadSPICE(parser, data, mover.getMotionProfileHandle())){
                     return rc;
                 }
             }

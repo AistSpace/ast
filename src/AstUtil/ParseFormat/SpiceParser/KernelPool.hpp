@@ -44,43 +44,43 @@ AST_NAMESPACE_BEGIN
 /// 例如将一个char类型的数据容器转换为double类型的数据容器，
 /// 只需要判断地址差是否为sizeof(double)的整数倍即可
 /// @todo 使用union不太合适，考虑其他的实现方式
-union SpiceData
+union KernelData
 {
 public:
-    SpiceData(){
+    KernelData(){
         new (&doubleData_) std::vector<double>();
     }
-    SpiceData(const std::vector<double>& doubleData)
+    KernelData(const std::vector<double>& doubleData)
     {
         new (&doubleData_) std::vector<double>(doubleData);
     }
-    SpiceData(const std::vector<int>& intData)
+    KernelData(const std::vector<int>& intData)
     {
         new (&intData_) std::vector<int>(intData);
     }
-    SpiceData(const std::vector<char>& charData)
+    KernelData(const std::vector<char>& charData)
     {
         new (&charData_) std::vector<char>(charData);
     }
-    SpiceData(const SpiceData& other)
+    KernelData(const KernelData& other)
     {
         new (&charData_) std::vector<char>(other.charData_);
     }
-    SpiceData(SpiceData&& other)
+    KernelData(KernelData&& other)
     {
         new (&charData_) std::vector<char>(std::move(other.charData_));
     }
-    SpiceData& operator=(const SpiceData& other)
+    KernelData& operator=(const KernelData& other)
     {
         charData_ = other.charData_;
         return *this;
     }
-    SpiceData& operator=(SpiceData&& other)
+    KernelData& operator=(KernelData&& other)
     {
         charData_ = std::move(other.charData_);
         return *this;
     }
-    ~SpiceData()
+    ~KernelData()
     {
         charData_.~vector<char>();
     }
@@ -114,17 +114,17 @@ protected:
 
 /// @brief  SPICE 内核数据池
 /// @details 该类用于管理从 SPICE 内核文件加载的数据
-class AST_UTIL_API SpiceKernelPool
+class AST_UTIL_API KernelPool
 {
 public:
-    using DataMap = std::unordered_map<std::string, SpiceData>;
-    SpiceKernelPool() = default;
-    ~SpiceKernelPool() = default;
+    using DataMap = std::unordered_map<std::string, KernelData>;
+    KernelPool() = default;
+    ~KernelPool() = default;
 
     /// @brief 设置数据
     /// @param name 数据名称
     /// @param data 数据
-    void setData(StringView name, const SpiceData& data);
+    void setData(StringView name, const KernelData& data);
 
     /// @brief 设置双精度数据
     /// @param name 数据名称
@@ -145,7 +145,7 @@ public:
     /// @brief 获取数据
     /// @param name 数据名称
     /// @return 指向数据的指针，若数据不存在则返回 nullptr
-    const SpiceData* getData(StringView name) const;
+    const KernelData* getData(StringView name) const;
 
     /// @brief 获取双精度数据
     /// @param name 数据名称
