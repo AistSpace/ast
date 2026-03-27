@@ -116,8 +116,12 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a6f3022a6da59a0756a9ad3fc68582cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac37aa44ae1345867013e23f65fa2c70d" id="r_ac37aa44ae1345867013e23f65fa2c70d"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac37aa44ae1345867013e23f65fa2c70d">open</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> spkfile)</td></tr>
 <tr class="separator:ac37aa44ae1345867013e23f65fa2c70d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6c4c38069315c826c8ecd0031d3acb8" id="r_ac6c4c38069315c826c8ecd0031d3acb8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6c4c38069315c826c8ecd0031d3acb8">isOpen</a> () const</td></tr>
+<tr class="separator:ac6c4c38069315c826c8ecd0031d3acb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b7cd967b492cf107dbfe8ff779ae76f" id="r_a6b7cd967b492cf107dbfe8ff779ae76f"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b7cd967b492cf107dbfe8ff779ae76f">close</a> ()</td></tr>
 <tr class="separator:a6b7cd967b492cf107dbfe8ff779ae76f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac376bfb201e214d452fd2f5406fecadd" id="r_ac376bfb201e214d452fd2f5406fecadd"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac376bfb201e214d452fd2f5406fecadd">getFilePath</a> () const</td></tr>
+<tr class="separator:ac376bfb201e214d452fd2f5406fecadd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d6f92019ef1d4f9e2ab09ecb0ddab28" id="r_a0d6f92019ef1d4f9e2ab09ecb0ddab28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d6f92019ef1d4f9e2ab09ecb0ddab28">handle</a> () const</td></tr>
 <tr class="separator:a0d6f92019ef1d4f9e2ab09ecb0ddab28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63484cf3e03e340b8d6394577715f326" id="r_a63484cf3e03e340b8d6394577715f326"><td class="memItemLeft" align="right" valign="top"><a id="a63484cf3e03e340b8d6394577715f326" name="a63484cf3e03e340b8d6394577715f326"></a>
@@ -264,6 +268,34 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isIntervalCached_</b>
 
 </div>
 </div>
+<a id="ac376bfb201e214d452fd2f5406fecadd" name="ac376bfb201e214d452fd2f5406fecadd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac376bfb201e214d452fd2f5406fecadd">&#9670;&#160;</a></span>getFilePath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; ast::JplSpk::getFilePath </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取SPK文件路径 </p>
+<dl class="section return"><dt>返回</dt><dd>SPK文件路径 </dd></dl>
+
+</div>
+</div>
 <a id="a0d6f92019ef1d4f9e2ab09ecb0ddab28" name="a0d6f92019ef1d4f9e2ab09ecb0ddab28"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0d6f92019ef1d4f9e2ab09ecb0ddab28">&#9670;&#160;</a></span>handle()</h2>
 
@@ -289,6 +321,34 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isIntervalCached_</b>
 
 <p>获取SPK文件句柄(CSPICE库返回的文件句柄) </p>
 <dl class="section return"><dt>返回</dt><dd>SPK文件句柄 </dd></dl>
+
+</div>
+</div>
+<a id="ac6c4c38069315c826c8ecd0031d3acb8" name="ac6c4c38069315c826c8ecd0031d3acb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6c4c38069315c826c8ecd0031d3acb8">&#9670;&#160;</a></span>isOpen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ast::JplSpk::isOpen </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>检查SPK文件是否已打开 </p>
+<dl class="section return"><dt>返回</dt><dd>是否已打开 </dd></dl>
 
 </div>
 </div>

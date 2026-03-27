@@ -105,7 +105,7 @@ var searchData=
   ['isloaded_5f_102',['isLoaded_',['../classast_1_1IAUXYS.html#ab8872368ab4a6040eded4117a44484fd',1,'ast::IAUXYS']]],
   ['isnormalized_103',['isNormalized',['../classast_1_1GravityField.html#a91c361e7ae41455bd164122e91e693ea',1,'ast::GravityField']]],
   ['isoctaldigit_104',['isOctalDigit',['../namespaceast.html#a7355dae83cf21fdd8862a4f2e84dc01d',1,'ast']]],
-  ['isopen_105',['isOpen',['../classast_1_1JplDe.html#a5091d44c89924335deb184e72715723d',1,'ast::JplDe::isOpen()'],['../classast_1_1BaseParser.html#a24d5391a1aea013594950400a030065c',1,'ast::BaseParser::isOpen()']]],
+  ['isopen_105',['isOpen',['../classast_1_1JplDe.html#a5091d44c89924335deb184e72715723d',1,'ast::JplDe::isOpen()'],['../classast_1_1JplSpk.html#ac6c4c38069315c826c8ecd0031d3acb8',1,'ast::JplSpk::isOpen()'],['../classast_1_1BaseParser.html#a24d5391a1aea013594950400a030065c',1,'ast::BaseParser::isOpen()']]],
   ['issameendian_5f_106',['isSameEndian_',['../classast_1_1DAFParser.html#ab8039a409504d55b2be173ff7807d4a4',1,'ast::DAFParser']]],
   ['isunit_107',['isUnit',['../classast_1_1Dimension.html#a5b13432f8daf056d966cb4d5f38fa210',1,'ast::Dimension']]],
   ['isvalid_108',['isValid',['../classast_1_1Quantity.html#abcff1fb55869dbd60709752c0ec663c2',1,'ast::Quantity::isValid()'],['../classast_1_1Unit.html#aa588eedf33c16b12c0001ad440f6f32c',1,'ast::Unit::isValid()']]],

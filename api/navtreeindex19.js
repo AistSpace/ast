@@ -1,5 +1,7 @@
 var NAVTREEINDEX19 =
 {
+"classast_1_1StringScanner.html#ac1a5a37e500978996126b5a349081529":[2,0,0,357,2],
+"classast_1_1StringScanner.html#ac1a5a37e500978996126b5a349081529":[3,0,0,356,2],
 "classast_1_1StringViewBasic.html":[0,4,5,0],
 "classast_1_1Struct.html":[0,4,4,14],
 "classast_1_1Struct.html#a572384310c4a51b0ac7cb9534b159694":[0,4,4,14,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX19 =
 "classast_1_1ValNull.html":[0,2,36],
 "classast_1_1ValNull.html#a49c69dcc879d16578c123816fb7215e6":[0,2,36,0],
 "classast_1_1ValQuantity.html":[0,2,37],
-"classast_1_1ValQuantity.html#ab9ace26135a5f9f7b9df17af1d6ca97c":[0,2,37,0],
-"classast_1_1ValRange.html":[0,2,38],
-"classast_1_1ValRange.html#a08f0c6c3f27614346257b726228eb61c":[0,2,38,5]
+"classast_1_1ValQuantity.html#ab9ace26135a5f9f7b9df17af1d6ca97c":[0,2,37,0]
 };
