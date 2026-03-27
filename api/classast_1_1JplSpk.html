@@ -123,6 +123,10 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a63484cf3e03e340b8d6394577715f326" id="r_a63484cf3e03e340b8d6394577715f326"><td class="memItemLeft" align="right" valign="top"><a id="a63484cf3e03e340b8d6394577715f326" name="a63484cf3e03e340b8d6394577715f326"></a>
 err_t&#160;</td><td class="memItemRight" valign="bottom"><b>getInterval</b> (int target, <a class="el" href="classast_1_1TimeInterval.html">TimeInterval</a> &amp;interval) const</td></tr>
 <tr class="separator:a63484cf3e03e340b8d6394577715f326"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1678da743fd0fb442f716c2c8941b6c" id="r_ae1678da743fd0fb442f716c2c8941b6c"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1678da743fd0fb442f716c2c8941b6c">getBodyNames</a> (std::vector&lt; std::string &gt; &amp;names) const</td></tr>
+<tr class="separator:ae1678da743fd0fb442f716c2c8941b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc44c3b3862f1c258701b5d0f96a1512" id="r_acc44c3b3862f1c258701b5d0f96a1512"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc44c3b3862f1c258701b5d0f96a1512">getBodyIds</a> (std::vector&lt; int &gt; &amp;ids) const</td></tr>
+<tr class="separator:acc44c3b3862f1c258701b5d0f96a1512"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
@@ -132,6 +136,8 @@ static err_t&#160;</td><td class="memItemRight" valign="bottom"><b>getPosICRF</b
 <tr class="memitem:ab49f6982622995e92f8b53ed6926bb4b" id="r_ab49f6982622995e92f8b53ed6926bb4b"><td class="memItemLeft" align="right" valign="top"><a id="ab49f6982622995e92f8b53ed6926bb4b" name="ab49f6982622995e92f8b53ed6926bb4b"></a>
 static err_t&#160;</td><td class="memItemRight" valign="bottom"><b>getPosVelICRF</b> (const <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;tp, int target, int referenceBody, Vector3d &amp;pos, Vector3d &amp;vel)</td></tr>
 <tr class="separator:ab49f6982622995e92f8b53ed6926bb4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c60bb34dfbb3ca4e57389432df35652" id="r_a8c60bb34dfbb3ca4e57389432df35652"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c60bb34dfbb3ca4e57389432df35652">getBodyName</a> (int id)</td></tr>
+<tr class="separator:a8c60bb34dfbb3ca4e57389432df35652"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
@@ -168,6 +174,92 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isIntervalCached_</b>
 </div><div class="memdoc">
 
 <p>关闭SPK文件 </p>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+</div>
+</div>
+<a id="acc44c3b3862f1c258701b5d0f96a1512" name="acc44c3b3862f1c258701b5d0f96a1512"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc44c3b3862f1c258701b5d0f96a1512">&#9670;&#160;</a></span>getBodyIds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::JplSpk::getBodyIds </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>ids</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取所有目标体的ID </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ids</td><td>目标体ID向量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+</div>
+</div>
+<a id="a8c60bb34dfbb3ca4e57389432df35652" name="a8c60bb34dfbb3ca4e57389432df35652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c60bb34dfbb3ca4e57389432df35652">&#9670;&#160;</a></span>getBodyName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ast::JplSpk::getBodyName </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取目标体的名称 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>目标体ID </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>目标体名称 </dd></dl>
+
+</div>
+</div>
+<a id="ae1678da743fd0fb442f716c2c8941b6c" name="ae1678da743fd0fb442f716c2c8941b6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1678da743fd0fb442f716c2c8941b6c">&#9670;&#160;</a></span>getBodyNames()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::JplSpk::getBodyNames </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>names</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取所有目标体的名称 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">names</td><td>目标体名称向量 </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
 
 </div>

@@ -1,5 +1,10 @@
 var NAVTREEINDEX22 =
 {
+"group__Interpolator.html#gaa267788471ee95d2bf7e4af949601b35":[0,1,2,2],
+"group__Magnetosphere.html":[0,5,2],
+"group__Magnetosphere.html#ga76146fe3ab6056e3b54dc09881c96058":[0,5,2,1],
+"group__Magnetosphere.html#ga770033ee697753f6c5222ce2ba597a7f":[0,5,2,0],
+"group__Math.html":[0,1],
 "group__NLE.html":[0,1,3],
 "group__NLE.html#ga3fd74c177eb5fe393af345e07f6e8eaa":[0,1,3,10],
 "group__NLE.html#ga6d46ca1d998cb4c839bdf7e81086ce05":[0,1,3,11],
@@ -244,10 +249,5 @@ var NAVTREEINDEX22 =
 "group__RTTI.html#ga96095374d7bf89c87a0af56e355a4ace":[0,4,4,22],
 "group__RTTI.html#ga9dfce20ff9941ee9dca9fdf8e7a564cc":[0,4,4,37],
 "group__RTTI.html#gaa4dd17f5b45e7f5cb675773ac8228b44":[0,4,4,28],
-"group__RTTI.html#gab1de86ab568b3c12ac0a28cb2d5dda9a":[0,4,4,19],
-"group__RTTI.html#gab1f1da4e88219f2a7797a180f28a869f":[0,4,4,40],
-"group__RTTI.html#gabd7c4d54f077926b5ddc96f4e52de486":[0,4,4,27],
-"group__RTTI.html#gabd80cec7c92c81bef0fc0ded24e581fe":[0,4,4,36],
-"group__RTTI.html#gad3f0c83f3703a466479984a0b62fba71":[0,4,4,39],
-"group__RTTI.html#gad6d46bd09af04b2754ee1b1db37c1d26":[0,4,4,20]
+"group__RTTI.html#gab1de86ab568b3c12ac0a28cb2d5dda9a":[0,4,4,19]
 };
