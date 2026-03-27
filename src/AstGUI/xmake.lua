@@ -1,4 +1,4 @@
-﻿target("AstGui")
+﻿target("AstGUI")
     add_rules("qt.shared")
     add_files("**.cpp")
     add_files("**.hpp")

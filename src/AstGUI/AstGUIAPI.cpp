@@ -1,9 +1,9 @@
 ///
-/// @file      AppMain.cpp
+/// @file      GuiAPI.cpp
 /// @brief     ~
 /// @details   ~
 /// @author    axel
-/// @date      2025-12-19
+/// @date      2025-12-18
 /// @copyright 版权所有 (C) 2025-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,26 +18,38 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AppMain.hpp"
 #include "AstGUI/AstGUIAPI.hpp"
+#include "AstGUI/UiMainWindow.hpp"
+#include "AstUtil/GUI.hpp"
 #include <QApplication>
-#include <QMainWindow>
 
+AST_NAMESPACE_BEGIN
 
-
-int main(int argc, char *argv[])
+err_t aGuiInit()
 {
-    AST_USING_NAMESPACE
-    
-    // 创建Qt应用程序实例
-    aQAppInit(argc, argv);
-    
-    // 创建主窗口
-    QMainWindow* mainWindow = aUiNewMainWindow();
-    
-    // 显示主窗口
-    mainWindow->showMaximized();
-    
-    // 运行应用程序事件循环
-    return qApp->exec();
+    err_t err = 0;
+
+
+    return err;
 }
+
+
+err_t aQAppInit(int argc, char *argv[])
+{
+    if (aCanDisplayGUI()) {
+        QApplication* app = new QApplication(argc, argv);
+        (void)app;
+    }else{
+        QCoreApplication* app = new QCoreApplication(argc, argv);
+        (void)app;
+    }
+    return 0;
+}
+
+QMainWindow *aUiNewMainWindow()
+{
+    return new UiMainWindow();
+}
+
+AST_NAMESPACE_END
+

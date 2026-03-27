@@ -17,9 +17,9 @@ add_packages("benchmark")
 set_warnings("more")
 
 if has_package("gtest") then
-    local test_files = os.files("**/test*.c*|Archive/**")
+    local test_files = os.files("**/test*.c*|Archive/**|GUI/**")
     for _, file in ipairs(test_files) do
-        local targetname = file:gsub("[\\/]", "_"):gsub("%.[^.]*$", "")
+        -- local targetname = file:gsub("[\\/]", "_"):gsub("%.[^.]*$", "")
         local basename = path.basename(file)
         target(basename)
             add_files(file)
@@ -29,10 +29,26 @@ if has_package("gtest") then
     end
 end
 
+
+if has_package("qt5base") and has_package("qt5widgets") and has_package("qt5gui") then
+    local test_files = os.files("GUI/**.cpp")
+    for _, file in ipairs(test_files) do
+        -- local targetname = file:gsub("[\\/]", "_"):gsub("%.[^.]*$", "")
+        local basename = path.basename(file)
+        target(basename)
+            add_rules("qt.application")
+            add_files(file)
+            add_deps("AstGUI")
+            add_frameworks("QtWidgets", "QtGui")
+        target_end()
+    end
+end
+
+
 if has_package("benchmark") then
     local bm_files = os.files("**/bm*.cpp|Archive/**", "**/bm*.c")
     for _, file in ipairs(bm_files) do
-        local targetname = file:gsub("[\\/]", "_"):gsub("%.[^.]*$", "")
+        -- local targetname = file:gsub("[\\/]", "_"):gsub("%.[^.]*$", "")
         local basename = path.basename(file)
         target(basename)
             add_files(file)

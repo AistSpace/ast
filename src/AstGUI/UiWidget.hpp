@@ -1,9 +1,9 @@
 ///
-/// @file      GuiAPI.cpp
+/// @file      UiWidget.hpp
 /// @brief     ~
 /// @details   ~
 /// @author    axel
-/// @date      2025-12-18
+/// @date      2025-12-19
 /// @copyright 版权所有 (C) 2025-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,38 +18,19 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AstGui/AstGuiAPI.hpp"
-#include "AstGui/UiMainWindow.hpp"
-#include "AstUtil/GUI.hpp"
-#include <QApplication>
+#pragma once
+
+#include "AstGlobal.h"
+#include <QWidget>
 
 AST_NAMESPACE_BEGIN
 
-err_t aGuiInit()
+
+class AST_GUI_API UiWidget: public QWidget
 {
-    err_t err = 0;
-
-
-    return err;
-}
-
-
-err_t aQAppInit(int argc, char *argv[])
-{
-    if (aCanDisplayGUI()) {
-        QApplication* app = new QApplication(argc, argv);
-        (void)app;
-    }else{
-        QCoreApplication* app = new QCoreApplication(argc, argv);
-        (void)app;
-    }
-    return 0;
-}
-
-QMainWindow *aUiNewMainWindow()
-{
-    return new UiMainWindow();
-}
+public:
+    UiWidget();
+    ~UiWidget();
+};
 
 AST_NAMESPACE_END
-

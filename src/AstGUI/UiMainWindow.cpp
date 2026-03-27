@@ -1,5 +1,5 @@
-///
-/// @file      UiWidget.hpp
+﻿///
+/// @file      UiMainWindow.cpp
 /// @brief     ~
 /// @details   ~
 /// @author    axel
@@ -18,20 +18,32 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#pragma once
-
-#include "AstGlobal.h"
-#include <QWidget>
+#include "UiMainWindow.hpp"
+#include <QLabel>
 
 AST_NAMESPACE_BEGIN
 
 
-class UiWidget: public QWidget
+UiMainWindow::UiMainWindow(QWidget *parent)
+    : QMainWindow(parent)
 {
-public:
-    UiWidget();
-    ~UiWidget();
-};
+    // 设置窗口标题
+    setWindowTitle(QStringLiteral("AstGUIApp"));
+    
+    // 设置窗口大小
+    resize(800, 600);
+    
+    // 创建一个简单的标签
+    QLabel *label = new QLabel(QStringLiteral("welcome to ast project"), this);
+    label->setAlignment(Qt::AlignCenter);
+    
+    // 将标签设置为中央部件
+    setCentralWidget(label);
+}
+
+UiMainWindow::~UiMainWindow()
+{
+}
 
 
 AST_NAMESPACE_END
