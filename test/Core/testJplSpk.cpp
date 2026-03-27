@@ -39,6 +39,14 @@ TEST(JplSpkTest, open)
     EXPECT_EQ(rc, eNoError);
     EXPECT_NE(spk.handle(), 0);
     printf("interval: %s\n", interval.toString().c_str());
+
+    std::vector<std::string> names;
+    spk.getBodyNames(names);
+    EXPECT_GT(names.size(), 0);
+    for(const std::string& name : names)
+    {
+        printf("%s\n", name.c_str());
+    }
 }
 
 

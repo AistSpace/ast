@@ -135,6 +135,48 @@ err_t aSpiceGetInterval(StringView filepath, int target, TimeInterval &interval)
     return eNoError;
 }
 
+
+err_t aSpiceGetBodyIds(StringView filepath, std::vector<int>& ids)
+{
+    SPKParser parser;
+    err_t rc = parser.parse(filepath);
+    if(rc != eNoError)
+    {
+        aError("failed to parse spk file '%.*s'", (int)filepath.size(), filepath.data());
+        return rc;
+    }
+    const std::vector<SPK_Descriptor>& spkDescriptors = parser.getDescriptors();
+    for(const auto& desc : spkDescriptors)
+    {
+        ids.push_back(desc.target);
+    }
+    return eNoError;
+}
+
+
+err_t aSpiceGetBodyNames(StringView filepath, std::vector<std::string>& names)
+{
+    std::vector<int> ids;
+    aSpiceGetBodyIds(filepath, ids);
+    names.clear();
+    names.reserve(ids.size());
+    for(int id : ids)
+    {
+        names.push_back(JplSpk::getBodyName(id));
+    }
+    return eNoError;
+}
+
+std::string JplSpk::getBodyName(int id)
+{
+    std::string name;
+    err_t rc = SpiceApi::Instance()->bodc2n(id, name);
+    if(rc == eNoError){
+        return name;
+    }
+    return "NAIF ID " + aFormatInt(id);
+}
+
 err_t JplSpk::getInterval(int target, TimeInterval &interval) const
 {
     if(isIntervalCached_)
@@ -149,6 +191,16 @@ err_t JplSpk::getInterval(int target, TimeInterval &interval) const
         }
         return rc;
     }
+}
+
+err_t JplSpk::getBodyNames(std::vector<std::string> &names) const
+{
+    return aSpiceGetBodyNames(spkfile_, names);
+}
+
+err_t JplSpk::getBodyIds(std::vector<int> &ids) const
+{
+    return aSpiceGetBodyIds(spkfile_, ids);
 }
 
 AST_NAMESPACE_END

@@ -68,6 +68,14 @@ namespace spiceproto{
 
     void              spkuef_c ( SpiceInt             handle );
 
+    void              ktotal_c ( ConstSpiceChar   * kind,
+                                SpiceInt         * count );
+
+    void              bodc2n_c ( SpiceInt             code,
+                                SpiceInt             namelen,
+                                SpiceChar          * name,
+                                SpiceBoolean       * found   );
+
     void              erract_c ( ConstSpiceChar    * operation,
                                 SpiceInt            lenout,
                                 SpiceChar         * action    );
@@ -76,14 +84,21 @@ namespace spiceproto{
 
     void              reset_c  ( void );
 
-    void              ktotal_c ( ConstSpiceChar   * kind,
-                                SpiceInt         * count );
+    
 
     // 根据SpiceZdf.h的说明，SpiceInt的大小是SpiceDouble的一半
     // 在这里进行编译期检查
     static_assert(2 * sizeof(SpiceInt) == sizeof(SpiceDouble), "SpiceInt and SpiceDouble size must be 2:1");
 }
 
+int funcarray_loadedfunc(const SpiceApi::funcarray& funcs)
+{
+    int count = 0;
+    for(auto& func : funcs)
+        if(func)
+            count++;
+    return count;
+}
 
 bool funcarray_isfull(const SpiceApi::funcarray& funcs)
 {
@@ -130,12 +145,16 @@ err_t SpiceApi::load(StringView dirpath)
     funcs[ispkgeo] = aGetProcAddress(lib, "spkgeo_c");
     funcs[ispklef] = aGetProcAddress(lib, "spklef_c");
     funcs[ispkuef] = aGetProcAddress(lib, "spkuef_c");
+    funcs[iktotal] = aGetProcAddress(lib, "ktotal_c");
+    funcs[ibodc2n] = aGetProcAddress(lib, "bodc2n_c");
     funcs[ierract] = aGetProcAddress(lib, "erract_c");
     funcs[ifailed] = aGetProcAddress(lib, "failed_c");
-    funcs[iktotal] = aGetProcAddress(lib, "ktotal_c");
     funcs[ireset]  = aGetProcAddress(lib, "reset_c");
-    if(!funcarray_isfull(funcs))
+    
+    int numloaded = funcarray_loadedfunc(funcs);
+    if(numloaded < numfunctions)
     {
+        aError("failed to load all %d functions, only %d loaded", numfunctions, numloaded);
         aFreeLibrary(lib);
         return eErrorInvalidFile;
     }
@@ -222,6 +241,31 @@ err_t SpiceApi::spkuef(int handle)
     std::lock_guard<std::mutex> lock(mutex_);
     spkuef_c(handle);
     return checkerror();
+}
+
+void SpiceApi::bodc2n(int code, int namlen, char *name, bool *found)
+{
+    using functype = decltype(&spiceproto::bodc2n_c);
+    functype bodc2n_c = reinterpret_cast<functype>(functions_[ibodc2n]);
+    if(!bodc2n_c)
+        return;
+    spiceproto::SpiceBoolean f;
+    bodc2n_c(code, namlen, name, &f);
+    if(found)
+        *found = static_cast<bool>(f);
+    checkerror();
+}
+
+err_t SpiceApi::bodc2n(int code, std::string &name)
+{
+    char n[128];
+    bool found;
+    bodc2n(code, sizeof(n), n, &found);
+    if(found){
+        name = n;
+        return checkerror();
+    }
+    return eErrorNotFound;
 }
 
 bool SpiceApi::failed()

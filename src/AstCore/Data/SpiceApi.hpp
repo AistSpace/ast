@@ -46,10 +46,11 @@ public:
         ispkgeo,
         ispklef,
         ispkuef,
+        iktotal,
+        ibodc2n,
         ierract,
         ifailed,
         ireset,
-        iktotal,
         numfunctions,
     };
     using funcarray = std::array<void*, numfunctions>;
@@ -119,6 +120,24 @@ public: // 包装函数
     /// @return 错误码
     err_t spkuef(int handle);
 
+        /// @brief 获取已加载的内核数量
+    /// @param kind 内核类型
+    /// @param count 内核数量
+    /// @return 错误码
+    err_t ktotal(const char * kind, int* count);
+    int ktotal(const char * kind){
+        int count = 0;
+        ktotal(kind, &count);
+        return count;
+    }
+
+    /// @brief 通过天体ID获取天体名称
+    void bodc2n(int            code,
+                int            namlen,
+                char           * name,
+                bool           * found);
+    err_t bodc2n(int            code, std::string&    name);
+
     /// @brief 检查是否发生错误
     /// @return 是否发生错误
     bool failed();
@@ -130,16 +149,7 @@ public: // 包装函数
     /// @param action 错误处理操作
     void erract(const char* operation, int lenout, char* action);
 
-    /// @brief 获取已加载的内核数量
-    /// @param kind 内核类型
-    /// @param count 内核数量
-    /// @return 错误码
-    err_t ktotal(const char * kind, int* count);
-    int ktotal(const char * kind){
-        int count = 0;
-        ktotal(kind, &count);
-        return count;
-    }
+
     
 protected:
     err_t checkerror();

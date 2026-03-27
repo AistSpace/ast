@@ -32,7 +32,6 @@ AST_NAMESPACE_BEGIN
 */
 
 
-
 /// @brief  JPL SPK文件
 /// @details 用于读取JPL SPK文件
 class AST_CORE_API JplSpk
@@ -72,10 +71,29 @@ public:
         Vector3d& vel
     );
 
+    /// @brief 获取目标体的名称
+    /// @param id 目标体ID
+    /// @return 目标体名称
+    static std::string getBodyName(int id);
+
     /// @brief 获取目标体的时间间隔
     err_t getInterval(
         int target,
         TimeInterval& interval
+    ) const;
+
+    /// @brief 获取所有目标体的名称
+    /// @param names 目标体名称向量
+    /// @return 错误码
+    err_t getBodyNames(
+        std::vector<std::string>& names
+    ) const;
+
+    /// @brief 获取所有目标体的ID
+    /// @param ids 目标体ID向量
+    /// @return 错误码
+    err_t getBodyIds(
+        std::vector<int>& ids
     ) const;
 protected:
     std::string spkfile_;                   ///< SPK文件路径
