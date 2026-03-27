@@ -62,10 +62,11 @@ err_t JplSpk::close()
 {
     if (handle_ > 0)
     {
+        int handle = handle_;
         handle_ = 0;
         spkfile_.clear();
         isIntervalCached_ = false;
-        return SpiceApi::Instance()->spkuef(handle_);
+        return SpiceApi::Instance()->spkuef(handle);
     }
     return eNoError;
 }

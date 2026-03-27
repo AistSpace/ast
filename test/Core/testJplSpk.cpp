@@ -22,10 +22,31 @@
 #include "AstCore/SpiceApi.hpp"
 #include "AstCore/TimeInterval.hpp"
 #include "AstCore/CelestialBody.hpp"
+#include "AstMath/Vector.hpp"
 #include "AstTest/Test.h"
 
 
 AST_USING_NAMESPACE
+
+TEST(JplSpkTest, open_twice)
+{
+    Vector3d pos;
+    JplSpk spk1;
+    JplSpk spk2;
+    const std::string spkfile = aTestGetConfigValue("SPK_FILE").toString();
+
+    spk1.open(spkfile);
+    spk2.open(spkfile);
+    err_t rc1 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
+    spk2.close();
+    err_t rc2 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
+    spk1.close();
+    err_t rc0 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
+
+    printf("rc0: %d, rc1: %d, rc2: %d\n", rc0, rc1, rc2);
+    std::error_code;
+}
+
 
 TEST(JplSpkTest, open)
 {

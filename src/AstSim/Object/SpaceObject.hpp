@@ -30,7 +30,7 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class SpaceObject: public Mover
+class AST_SIM_API SpaceObject: public Mover
 {
 public:
     SpaceObject() = default;

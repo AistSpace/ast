@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "AstCore/EventInterval.hpp"
 #include "AstCore/BodyEphemerisSPK.hpp"
+#include "AstCore/JplSpk.hpp"
 #include "AstUtil/SPKParser.hpp"
 #include "AstSim/MotionProfile.hpp"
 #include "AstSim/MotionWithIntervalStep.hpp"
@@ -47,16 +48,15 @@ public:
     err_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const override;
     void accept(MotionProfileVisitor& visitor) override;
 
-    const std::string& getSpiceFile() const {return spiceFile_;}
+    const std::string& getSpiceFile() const {return spk_.getFilePath();}
     err_t setSpiceFile(StringView spiceFile);
 
     int getSpiceIndex() const {return spiceIndex_;}
     void setSpiceIndex(int spiceIndex){spiceIndex_ = spiceIndex;}
 protected:
-    std::string spiceFile_;             ///< SPICE星历文件路径
-    int spiceIndex_;                       ///< SPICE星历索引号
+    int spiceIndex_;                    ///< SPICE星历索引号
 private:
-    SPKParser spkParser_;               ///< SPICE星历文件解析器
+    JplSpk spk_;                        ///< SPICE星历接口
 };
 
 /*! @} */

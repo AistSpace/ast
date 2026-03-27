@@ -104,7 +104,7 @@
 #define AST_OBJECT(TYPE) \
     static Class staticType;\
     static inline Class* getStaticType(){return &staticType;}\
-    Class* getType() const{return &staticType;}\
+    Class* getType() const override{return &staticType;} \
 
 #define _AST_IMPL_OBJECT(TYPE) \
     Class TYPE::staticType;\

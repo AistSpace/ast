@@ -33,7 +33,7 @@ Frame *EphemerisLagrangeVar::getFrame() const
 int EphemerisLagrangeVar::findIndex(double delta) const
 {
     assert(!times_.empty());
-    A_ASSUME(!times_.empty());
+    // A_ASSUME(!times_.empty());
 
     const int num_points = static_cast<int>(times_.size());
     

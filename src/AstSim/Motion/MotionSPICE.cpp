@@ -44,9 +44,7 @@ err_t MotionSPICE::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
         aError("failed to get interval");
         return rc;
     }
-    JplSpk jplSpk;
-    rc = jplSpk.open(getSpiceFile());
-    if(rc)
+    if(!spk_.isOpen())
     {
         aError("failed to open spice file: '%s'", getSpiceFile().c_str());
         return rc;
@@ -66,7 +64,7 @@ err_t MotionSPICE::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
     {
         TimePoint tp = epoch + second;
         Vector3d pos, vel;
-        rc = jplSpk.getPosVelICRF(tp, getSpiceIndex(), ESpiceId::eSolarSystemBarycenter, pos, vel);
+        rc = spk_.getPosVelICRF(tp, getSpiceIndex(), ESpiceId::eSolarSystemBarycenter, pos, vel);
         if(rc)
         {
             aError("failed to get ephemeris at time %f", second);
@@ -95,12 +93,7 @@ void MotionSPICE::accept(MotionProfileVisitor &visitor)
 
 err_t MotionSPICE::setSpiceFile(StringView spiceFile)
 {
-    // 检查星历能否被正常解析
-    err_t rc = this->spkParser_.parse(spiceFile);
-    if(rc)
-        return rc;
-    spiceFile_ = std::string(spiceFile);
-    return eNoError;
+    return this->spk_.open(spiceFile);
 }
 
 MotionSPICE* MotionSPICE::New()

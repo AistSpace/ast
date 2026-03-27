@@ -32,7 +32,7 @@ AST_NAMESPACE_BEGIN
 
 
 /// @brief 小行星
-class Asteroid: public SpaceObject
+class AST_SIM_API Asteroid: public SpaceObject
 {
 public:
     Asteroid() = default;

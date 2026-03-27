@@ -35,7 +35,7 @@ GravityCalculator::GravityCalculator()
 
 
 GravityCalculator::GravityCalculator(const GravityField &gravityField, int degree, int order)
-    : GravityCalculator(std::move(GravityField(gravityField)), degree, order)
+    : GravityCalculator((GravityField(gravityField)), degree, order)
 {
 }
 

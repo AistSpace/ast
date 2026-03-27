@@ -40,7 +40,7 @@ BlockGravity::BlockGravity()
 }
 
 BlockGravity::BlockGravity(const GravityField &gravityField, int degree, int order, Axes *gravityAxes, Axes *propagationAxes)
-    : BlockGravity(std::move(GravityField(gravityField)), degree, order, gravityAxes, propagationAxes)
+    : BlockGravity((GravityField(gravityField)), degree, order, gravityAxes, propagationAxes)
 {
     
 }

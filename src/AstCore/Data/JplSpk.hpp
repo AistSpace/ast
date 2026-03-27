@@ -46,9 +46,17 @@ public:
     /// @return 错误码
     err_t open(StringView spkfile);
 
+    /// @brief 检查SPK文件是否已打开
+    /// @return 是否已打开
+    bool isOpen() const {return handle_ != 0;}
+
     /// @brief 关闭SPK文件
     /// @return 错误码
     err_t close();
+
+    /// @brief 获取SPK文件路径
+    /// @return SPK文件路径
+    const std::string& getFilePath() const {return spkfile_;}
 
     /// @brief 获取SPK文件句柄(CSPICE库返回的文件句柄)
     /// @return SPK文件句柄
