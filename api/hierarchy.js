@@ -457,6 +457,7 @@ var hierarchy =
     [ "ast::Quantity", "classast_1_1Quantity.html", null ],
     [ "ast::Quaternion", "classast_1_1Quaternion.html", null ],
     [ "QWidget", null, [
+      [ "ast::UiQuantity", "classast_1_1UiQuantity.html", null ],
       [ "ast::UiWidget", "classast_1_1UiWidget.html", null ]
     ] ],
     [ "ast::Rotation", "classast_1_1Rotation.html", [

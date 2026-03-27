@@ -5,5 +5,6 @@ var topics =
     [ "脚本模块", "group__Script.html", "group__Script" ],
     [ "Spice", "group__Spice.html", "group__Spice" ],
     [ "工具模块", "group__Util.html", "group__Util" ],
-    [ "空间天气模型", "group__Weather.html", "group__Weather" ]
+    [ "空间天气模型", "group__Weather.html", "group__Weather" ],
+    [ "AstGUI", "group__AstGUI.html", "group__AstGUI" ]
 ];

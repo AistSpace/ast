@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['spice_0',['Spice',['../group__Spice.html',1,'']]]
+  ['astgui_0',['AstGUI',['../group__AstGUI.html',1,'']]]
 ];

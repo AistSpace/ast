@@ -431,6 +431,7 @@ var namespaceast =
     [ "TraitObject", "classast_1_1TraitObject.html", null ],
     [ "Transform", "classast_1_1Transform.html", "classast_1_1Transform" ],
     [ "UiMainWindow", "classast_1_1UiMainWindow.html", null ],
+    [ "UiQuantity", "classast_1_1UiQuantity.html", "classast_1_1UiQuantity" ],
     [ "UiWidget", "classast_1_1UiWidget.html", null ],
     [ "UnaryScalarFunc", "classast_1_1UnaryScalarFunc.html", "classast_1_1UnaryScalarFunc" ],
     [ "UnaryScalarGenericFunc", "classast_1_1UnaryScalarGenericFunc.html", "classast_1_1UnaryScalarGenericFunc" ],

@@ -1,5 +1,13 @@
 var NAVTREEINDEX9 =
 {
+"classast_1_1CorVector.html#a102f70342aad1debc88867576900006b":[0,4,0,0,5],
+"classast_1_1CorVector.html#a9ad9b9cb9ab5dfee51adce5cf9a7ed42":[0,4,0,0,4],
+"classast_1_1CorVector.html#a9d8cd60ac0f55e1c06b60a9691456aed":[0,4,0,0,2],
+"classast_1_1CorVector.html#aa9f4cf8a5557db2093e47a32c58fb667":[0,4,0,0,3],
+"classast_1_1CorVector.html#ad189ee7ec64af1def41a8ec9ecce1c77":[0,4,0,0,1],
+"classast_1_1CorVector.html#ae2160345db2574af3870ddfd366b5fbc":[0,4,0,0,6],
+"classast_1_1CriticallyInclinedOrbitDesigner.html":[0,0,3,3],
+"classast_1_1CriticallyInclinedOrbitDesigner.html#a012a7748d666fd658ecbf871b5032984":[0,0,3,3,2],
 "classast_1_1CriticallyInclinedOrbitDesigner.html#a0c81042043d7bd005b6aa8a1d70b0b4d":[0,0,3,3,14],
 "classast_1_1CriticallyInclinedOrbitDesigner.html#a15641fcc9dcd29e521f9b62ca254d035":[0,0,3,3,15],
 "classast_1_1CriticallyInclinedOrbitDesigner.html#a26a28a91a9aa64c7119a1c6f560d9b35":[0,0,3,3,1],
@@ -241,13 +249,5 @@ var NAVTREEINDEX9 =
 "classast_1_1EllipsoidShape.html#a9ef7de645993d66fdd1647768a1ef573":[2,0,0,107,2],
 "classast_1_1EllipsoidShape.html#a9ef7de645993d66fdd1647768a1ef573":[3,0,0,106,2],
 "classast_1_1Ephemeris.html":[2,0,0,109],
-"classast_1_1Ephemeris.html":[3,0,0,108],
-"classast_1_1Ephemeris.html#a63e729cffb8ba355ea70784833b6d220":[2,0,0,109,1],
-"classast_1_1Ephemeris.html#a63e729cffb8ba355ea70784833b6d220":[3,0,0,108,1],
-"classast_1_1Ephemeris.html#ab6701630093566ad5068dc7426398a2b":[2,0,0,109,2],
-"classast_1_1Ephemeris.html#ab6701630093566ad5068dc7426398a2b":[3,0,0,108,2],
-"classast_1_1Ephemeris.html#ac731ef1a7ad86ab8dff2fc569b9fe3d1":[2,0,0,109,0],
-"classast_1_1Ephemeris.html#ac731ef1a7ad86ab8dff2fc569b9fe3d1":[3,0,0,108,0],
-"classast_1_1EphemerisFileParser.html":[2,0,0,110],
-"classast_1_1EphemerisFileParser.html":[3,0,0,109]
+"classast_1_1Ephemeris.html":[3,0,0,108]
 };
