@@ -18,9 +18,9 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "UiStateCartesian.hpp"
-#include "AstCore/Orbit/State/StateCartesian.hpp"
-#include "AstUtil/Quantity/Unit.hpp"
-#include "AstUtil/Quantity/Quantity.hpp"
+#include "AstCore/StateCartesian.hpp"
+#include "AstUtil/Unit.hpp"
+#include "AstUtil/Quantity.hpp"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QGridLayout>

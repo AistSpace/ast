@@ -1,4 +1,4 @@
-#include "AstGUI/Foundation/UiTimePoint.hpp"
+#include "AstGUI/UiTimePoint.hpp"
 #include <QApplication>
 #include <QMainWindow>
 #include <QVBoxLayout>

@@ -19,7 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "UiTimePoint.hpp"
-#include "AstCore/Time/TimePoint.hpp"
+#include "AstCore/TimePoint.hpp"
 #include "AstUtil/Logger.hpp"
 
 AST_NAMESPACE_BEGIN
