@@ -1,9 +1,9 @@
 ///
-/// @file      UiEventInterval.hpp
+/// @file      UiTimePoint.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-26
+/// @date      2026-03-28
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,8 +21,8 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstCore/EventInterval.hpp"
-
+#include "AstCore/TimePoint.hpp"
+#include <QLineEdit>
 
 AST_NAMESPACE_BEGIN
 
@@ -31,7 +31,19 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-
+class AST_GUI_API UiTimePoint : public QLineEdit
+{
+    Q_OBJECT
+public:
+    UiTimePoint(QWidget* parent = nullptr);
+    ~UiTimePoint() = default;
+    const TimePoint& getTimePoint() const { return timePoint_; }
+    void setTimePoint(const TimePoint& timePoint);
+private:
+    void onEditingFinished();
+private:
+    TimePoint timePoint_;
+};
 
 /*! @} */
 

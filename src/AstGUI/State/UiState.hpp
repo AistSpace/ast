@@ -1,9 +1,9 @@
 ///
-/// @file      UiEventInterval.hpp
+/// @file      UiState.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-26
+/// @date      2026-03-28
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,8 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstCore/EventInterval.hpp"
-
+#include "AstGUI/UiObject.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -31,7 +30,19 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class State;
 
+class AST_GUI_API UiState: public UiObject
+{
+    Q_OBJECT
+public:
+    using UiObject::UiObject;
+    ~UiState() = default;
+
+    State* getState() const;
+private:
+    
+};
 
 /*! @} */
 

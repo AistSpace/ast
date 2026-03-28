@@ -1,1 +1,1 @@
-#include "../../src/AstGUI/UiWidget.hpp"
+#include "../../src/AstGUI/Foundation/UiWidget.hpp"

@@ -1,9 +1,9 @@
 ///
-/// @file      testUiQuantity.cpp
-/// @brief     
-/// @details   
+/// @file      testUiTimeInterval.cpp
+/// @brief     测试时间区间编辑控件
+/// @details   ~
 /// @author    axel
-/// @date      2026-03-27
+/// @date      2026-03-28
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -18,7 +18,7 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AstGUI/UiQuantity.hpp"
+#include "AstGUI/Foundation/UiTimeInterval.hpp"
 #include <QApplication>
 #include <QMainWindow>
 #include <QVBoxLayout>
@@ -29,36 +29,30 @@ AST_USING_NAMESPACE
 
 int main(int argc, char* argv[])
 {
-    printf("testUiQuantity.cpp\n");
     QApplication app(argc, argv);
     
     QMainWindow window;
     QWidget* centralWidget = new QWidget(&window);
     QVBoxLayout* layout = new QVBoxLayout(centralWidget);
     
-    // 创建 UiQuantity 组件
-    UiQuantity* uiQuantity = new UiQuantity(centralWidget);
-    layout->addWidget(uiQuantity);
+    // 创建 UiTimeInterval 控件
+    UiTimeInterval* uiTimeInterval = new UiTimeInterval(centralWidget);
+    layout->addWidget(uiTimeInterval);
     
     // 创建测试按钮
     QPushButton* testButton = new QPushButton("测试", centralWidget);
     layout->addWidget(testButton);
     
-    QObject::connect(testButton, &QPushButton::clicked, [uiQuantity]() {
-        Quantity q = uiQuantity->getQuantity();
-        qDebug() << "Current quantity:" << q.toString().c_str();
+    // 连接测试按钮的点击事件
+    QObject::connect(testButton, &QPushButton::clicked, [uiTimeInterval]() {
+        // 获取当前时间区间并打印
+        const TimeInterval& timeInterval = uiTimeInterval->getTimeInterval();
+        qDebug() << "Start Time:" << QString::fromStdString(timeInterval.getStart().toString());
+        qDebug() << "Stop  Time:" << QString::fromStdString(timeInterval.getStop().toString());
     });
-
-
-    QObject::connect(uiQuantity, &UiQuantity::editingFinished, [uiQuantity]() {
-        qDebug() << "after editing finished:" << uiQuantity->getQuantity().toString().c_str();
-    });
-    
-    // 设置默认值
-    uiQuantity->setQuantity(Quantity(100, units::m));
     
     window.setCentralWidget(centralWidget);
-    window.setWindowTitle("UiQuantity Test");
+    window.setWindowTitle("UiTimeInterval Test");
     window.resize(400, 200);
     window.show();
     

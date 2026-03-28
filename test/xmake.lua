@@ -36,7 +36,7 @@ if has_package("qt5base") and has_package("qt5widgets") and has_package("qt5gui"
         -- local targetname = file:gsub("[\\/]", "_"):gsub("%.[^.]*$", "")
         local basename = path.basename(file)
         target(basename)
-            add_rules("qt.application")
+            add_rules("qt.console")
             add_files(file)
             add_deps("AstGUI")
             add_frameworks("QtWidgets", "QtGui")

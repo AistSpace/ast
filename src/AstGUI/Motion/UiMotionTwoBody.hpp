@@ -1,9 +1,9 @@
 ///
-/// @file      UiEventInterval.hpp
+/// @file      UiMotionTwoBody.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-26
+/// @date      2026-03-28
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,7 +21,8 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstCore/EventInterval.hpp"
+#include "AstGUI/UiMotionProfile.hpp"
+
 
 
 AST_NAMESPACE_BEGIN
@@ -30,6 +31,21 @@ AST_NAMESPACE_BEGIN
     @addtogroup 
     @{
 */
+
+class MotionTwoBody;
+
+class AST_GUI_API UiMotionTwoBody: public UiMotionProfile
+{
+    Q_OBJECT
+public:
+    UiMotionTwoBody(QWidget *parent = nullptr);
+    ~UiMotionTwoBody() = default;
+
+    MotionTwoBody* getMotionTwoBody() const;
+private:
+    
+};
+
 
 
 

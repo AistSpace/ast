@@ -20,12 +20,16 @@
 
 #include "UiQuantity.hpp"
 #include "AstUtil/QuantityParser.hpp"
+#include "AstUtil/Logger.hpp"
 
 AST_NAMESPACE_BEGIN
 
 UiQuantity::UiQuantity(QWidget* parent)
     : QLineEdit(parent)
-{}
+{
+    setToolTipDuration(0);
+    connect(this, &QLineEdit::editingFinished, this, &UiQuantity::onEditingFinished);
+}
 
 void UiQuantity::setQuantity(const Quantity& quantity)
 {
@@ -33,7 +37,7 @@ void UiQuantity::setQuantity(const Quantity& quantity)
     setText(QString::fromUtf8(currentQuantity_.toString().c_str()));
 }
 
-Quantity UiQuantity::quantity() const
+Quantity UiQuantity::getQuantity() const
 {
     return currentQuantity_;
 }
@@ -93,5 +97,22 @@ void UiQuantity::setValueUnit(double value, const Unit& unit)
     currentQuantity_.setValueUnit(value, unit);
     this->setQuantity(currentQuantity_);
 }
+
+void UiQuantity::onEditingFinished()
+{
+    QString text = this->text();
+    err_t rc = aQuantityParse(text.toUtf8().data(), currentQuantity_);
+    if(rc){
+        // 显示错误提示
+        aError("failed to parse quantity: %s", text.toUtf8().data());
+        setStyleSheet("background-color: #FFCCCC;");
+        setToolTip(tr("quantity format error, please input correct quantity format"));
+    }else{
+        // 解析成功，恢复默认样式
+        setStyleSheet("");
+        setToolTip("");
+    }
+}
+
 
 AST_NAMESPACE_END

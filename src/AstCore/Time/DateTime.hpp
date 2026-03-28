@@ -48,6 +48,15 @@ AST_CORE_CAPI void aCurrentDateTimeLocal(DateTime& dttm);
 /// @brief 获取当前UTC日期时间
 AST_CORE_CAPI void aCurrentDateTimeUTC(DateTime& dttm);
 
+/// @brief 获取今日00:00:00 UTC日期时间
+/// @param dttm 
+/// @return 
+AST_CORE_CAPI void aTodayDateTimeUTC(DateTime& dttm);
+
+/// @brief 获取明天00:00:00 UTC日期时间
+/// @param dttm 
+/// @return 
+AST_CORE_CAPI void aTomorrowDateTimeUTC(DateTime& dttm);
 
 // --------------------
 // 日期时间规范化

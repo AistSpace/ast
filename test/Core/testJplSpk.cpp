@@ -44,7 +44,6 @@ TEST(JplSpkTest, open_twice)
     err_t rc0 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
 
     printf("rc0: %d, rc1: %d, rc2: %d\n", rc0, rc1, rc2);
-    std::error_code;
 }
 
 

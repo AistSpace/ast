@@ -1,9 +1,9 @@
 ///
-/// @file      UiEventInterval.hpp
+/// @file      UiState.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-26
+/// @date      2026-03-28
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -18,21 +18,15 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#pragma once
-
-#include "AstGlobal.h"
-#include "AstCore/EventInterval.hpp"
-
+#include "UiState.hpp"
+#include "AstCore/State.hpp"
 
 AST_NAMESPACE_BEGIN
 
-/*!
-    @addtogroup 
-    @{
-*/
 
-
-
-/*! @} */
+State* UiState::getState() const
+{
+    return dynamic_cast<State*>(getObject());
+}
 
 AST_NAMESPACE_END

@@ -1,1 +1,1 @@
-#include "../../src/AstGUI/UiMainWindow.hpp"
+#include "../../src/AstGUI/Window/UiMainWindow.hpp"

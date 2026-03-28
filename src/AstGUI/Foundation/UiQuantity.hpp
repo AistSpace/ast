@@ -52,7 +52,7 @@ public:
     
     /// @brief 获取数量值
     /// @return 数量值
-    Quantity quantity() const;
+    Quantity getQuantity() const;
 
     /// @brief 获取数值大小
     /// @return 数值大小
@@ -103,8 +103,8 @@ public:
     /// @param unit 单位
     void setValueUnit(double value, const Unit& unit);
 
-    
-    
+private:
+    void onEditingFinished();
 private:
     Quantity currentQuantity_;
 };

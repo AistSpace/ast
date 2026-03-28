@@ -1,9 +1,9 @@
 ///
-/// @file      UiEventInterval.hpp
+/// @file      UiObject.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-26
+/// @date      2026-03-28
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -18,21 +18,20 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#pragma once
-
-#include "AstGlobal.h"
-#include "AstCore/EventInterval.hpp"
-
+#include "UiObject.hpp"
 
 AST_NAMESPACE_BEGIN
 
-/*!
-    @addtogroup 
-    @{
-*/
+UiObject::UiObject(QWidget *parent)
+    : QWidget(parent)
+{
+}
 
-
-
-/*! @} */
+void UiObject::setObject(Object *object)
+{
+    object_ = object;
+}
 
 AST_NAMESPACE_END
+
+

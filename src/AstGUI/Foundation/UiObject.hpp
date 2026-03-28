@@ -1,9 +1,9 @@
 ///
-/// @file      UiEventInterval.hpp
+/// @file      UiObject.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-26
+/// @date      2026-03-28
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,8 +21,8 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstCore/EventInterval.hpp"
-
+#include <QWidget>
+#include "AstUtil/Object.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -31,6 +31,25 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+/// @brief 与对象关联的 QWidget
+class AST_GUI_API UiObject: public QWidget
+{
+    Q_OBJECT
+public:
+    UiObject(QWidget *parent = nullptr);
+    ~UiObject() = default;
+
+    /// @brief 获取关联的对象
+    /// @return 关联的对象指针
+    /// @note 如果对象已被销毁，返回 nullptr
+    Object* getObject() const{return object_.get();}
+
+    /// @brief 设置关联的对象
+    /// @param object 关联的对象指针
+    void setObject(Object* object);
+private:
+    WeakPtr<Object> object_;
+};
 
 
 /*! @} */

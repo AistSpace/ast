@@ -1,9 +1,9 @@
 ///
-/// @file      UiEventInterval.hpp
+/// @file      UiMotionProfile.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-26
+/// @date      2026-03-28
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,8 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstCore/EventInterval.hpp"
-
+#include "AstGUI/UiObject.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,6 +29,20 @@ AST_NAMESPACE_BEGIN
     @addtogroup 
     @{
 */
+
+class MotionProfile;
+
+class AST_GUI_API UiMotionProfile: public UiObject
+{
+    Q_OBJECT
+public:
+    UiMotionProfile(QWidget *parent = nullptr);
+    ~UiMotionProfile() = default;
+
+    MotionProfile* getMotionProfile() const;
+private:
+    
+};
 
 
 
