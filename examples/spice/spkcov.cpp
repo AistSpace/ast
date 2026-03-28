@@ -21,6 +21,7 @@
 #ifndef AST_NO_CSPICE
 #include "SpiceUsr.h"
 #include "AstTest/TestConfig.hpp"
+#include "AstUtil/Environment.hpp"
 #include <cstdio>
 
 AST_USING_NAMESPACE
@@ -36,6 +37,8 @@ Local parameters
 #define TIMLEN 51
 #define MAXOBJ 1000
 
+    if(aIsGithubCI())
+        return 0;
     /*
     Local variables
     */

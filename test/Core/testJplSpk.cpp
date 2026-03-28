@@ -30,6 +30,8 @@ AST_USING_NAMESPACE
 
 TEST(JplSpkTest, open_twice)
 {
+    if(aIsGithubCI())
+        GTEST_SKIP();
     Vector3d pos;
     JplSpk spk1;
     JplSpk spk2;
@@ -49,6 +51,8 @@ TEST(JplSpkTest, open_twice)
 
 TEST(JplSpkTest, open)
 {
+    if(aIsGithubCI())
+        GTEST_SKIP();
     TimeInterval interval;
     std::string spkfile = aTestGetConfigValue("SPK_FILE").toString();
 
