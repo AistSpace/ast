@@ -259,7 +259,7 @@ void SpiceApi::bodc2n(int code, int namlen, char *name, bool *found)
 err_t SpiceApi::bodc2n(int code, std::string &name)
 {
     char n[128];
-    bool found;
+    bool found = false;
     bodc2n(code, sizeof(n), n, &found);
     if(found){
         name = n;
