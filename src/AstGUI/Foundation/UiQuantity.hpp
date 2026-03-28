@@ -29,16 +29,17 @@
 #include "AstUtil/Quantity.hpp"
 #include "AstUtil/Unit.hpp"
 
-Q_DECLARE_METATYPE(ast::Unit)
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup AstGUI
+    @addtogroup GUI
     @{
 */
 
-class AST_GUI_API UiQuantity: public QWidget
+/// @brief 数量输入框
+/// @details 用于输入数量值，支持数值和单位选择。
+class AST_GUI_API UiQuantity: public QLineEdit
 {
     Q_OBJECT
 
@@ -53,21 +54,58 @@ public:
     /// @return 数量值
     Quantity quantity() const;
 
-signals:
-    /// @brief 数量值变化信号
-    void quantityChanged(const Quantity& quantity);
+    /// @brief 获取数值大小
+    /// @return 数值大小
+    double getMagnitude() const;
 
-private slots:
-    /// @brief 处理数值变化
-    void onValueChanged();
+    /// @brief 设置数值大小
+    /// @param value 数值大小
+    void setMagnitude(double value);
+
+    /// @brief 获取当前单位
+    /// @return 当前单位
+    Unit getUnit() const;
+
+    /// @brief 设置当前单位
+    /// @details 不会改变当前数量值的数值大小，仅改变单位表示
+    /// 例如将1000m转换为1000km，将1000kg转换为1000t等
+    /// @param unit 当前单位
+    void setUnit(const Unit& unit);
+
+    /// @brief 切换当前单位
+    /// @details 切换当前单位后，数量值会自动转换为该单位
+    /// 例如将1000m转换为1km，将1000kg转换为1t等
+    /// @param unit 当前单位
+    void changeUnit(const Unit& unit);
+
+    /// @brief 获取国际单位表示的值
+    /// @return 国际单位表示的值
+    double getValueSI() const;
+
+    /// @brief 设置国际单位下的值
+    /// @details 只会改变数量值的数值大小，不会改变数量值的单位
+    /// @param value 国际单位下的值
+    void setValueSI(double value);
+
+    /// @brief 获取指定单位下的值
+    /// @param unit 指定单位
+    /// @return 指定单位下的值
+    double getValueInUnit(const Unit& unit) const;    
+
+    /// @brief 设置指定单位下的值
+    /// @details 只会改变数量值的数值大小，不会改变数量值的单位
+    /// @param value 指定单位下的值
+    /// @param unit 指定单位
+    void setValueInUnit(double value, const Unit& unit);
+
+    /// @brief 设置数值大小和单位
+    /// @param value 数值大小
+    /// @param unit 单位
+    void setValueUnit(double value, const Unit& unit);
+
     
-    /// @brief 处理单位变化
-    void onUnitChanged(int index);
-
+    
 private:
-    QHBoxLayout* layout_;
-    QLineEdit* valueEdit_;
-    QComboBox* unitComboBox_;
     Quantity currentQuantity_;
 };
 

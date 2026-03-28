@@ -34,25 +34,25 @@ TEST(Quantity, Basic)
     
     auto zero = Quantity::Zero();
     EXPECT_TRUE(zero.isValid());
-    EXPECT_EQ(zero.value(), 0.0);
+    EXPECT_EQ(zero.magnitude(), 0.0);
     
     auto one = Quantity::One();
     EXPECT_TRUE(one.isValid());
-    EXPECT_EQ(one.value(), 1.0);
+    EXPECT_EQ(one.magnitude(), 1.0);
     
     auto scalar = Quantity::Scalar(5.0);
     EXPECT_TRUE(scalar.isValid());
-    EXPECT_EQ(scalar.value(), 5.0);
+    EXPECT_EQ(scalar.magnitude(), 5.0);
     EXPECT_TRUE(scalar.unit() == Unit::None());
     
     // 测试构造函数
     Quantity q(10.0, Unit::Meter());
-    EXPECT_EQ(q.value(), 10.0);
+    EXPECT_EQ(q.magnitude(), 10.0);
     EXPECT_TRUE(q.unit() == Unit::Meter());
     
     // 测试setter和getter
-    q.setValue(20.0);
-    EXPECT_EQ(q.value(), 20.0);
+    q.setMagnitude(20.0);
+    EXPECT_EQ(q.magnitude(), 20.0);
     
     q.setUnit(Unit::Kilogram());
     EXPECT_TRUE(q.unit() == Unit::Kilogram());
@@ -87,7 +87,7 @@ TEST(Quantity, Add)
     auto q1 = 10 * m;
     auto q2 = 20 * m;
     auto q3 = q1 + q2;
-    EXPECT_EQ(q3.value(), 30.0);
+    EXPECT_EQ(q3.magnitude(), 30.0);
     EXPECT_TRUE(q3.unit() == Unit::Meter());
     
     // 不同单位但相同量纲相加
@@ -101,7 +101,7 @@ TEST(Quantity, Add)
     // 测试加法赋值
     auto q7 = 10 * m;
     q7 += 20 * m;
-    EXPECT_EQ(q7.value(), 30.0);
+    EXPECT_EQ(q7.magnitude(), 30.0);
 }
 
 // 测试减法运算
@@ -111,7 +111,7 @@ TEST(Quantity, Sub)
     auto q1 = 30 * m;
     auto q2 = 10 * m;
     auto q3 = q1 - q2;
-    EXPECT_EQ(q3.value(), 20.0);
+    EXPECT_EQ(q3.magnitude(), 20.0);
     EXPECT_TRUE(q3.unit() == Unit::Meter());
     
     // 不同单位但相同量纲相减
@@ -125,7 +125,7 @@ TEST(Quantity, Sub)
     // 测试减法赋值
     auto q7 = 30 * m;
     q7 -= 10 * m;
-    EXPECT_EQ(q7.value(), 20.0);
+    EXPECT_EQ(q7.magnitude(), 20.0);
 }
 
 // 测试乘法运算
@@ -134,12 +134,12 @@ TEST(Quantity, Mul)
     // 数量乘以标量
     auto q1 = 10 * m;
     auto q2 = q1 * 2.0;
-    EXPECT_EQ(q2.value(), 20.0);
+    EXPECT_EQ(q2.magnitude(), 20.0);
     EXPECT_TRUE(q2.unit() == Unit::Meter());
     
     // 标量乘以数量
     auto q3 = 3.0 * q1;
-    EXPECT_EQ(q3.value(), 30.0);
+    EXPECT_EQ(q3.magnitude(), 30.0);
     EXPECT_EQ(q3, 30 * m);
     EXPECT_TRUE(q3.unit() == Unit::Meter());
     
@@ -161,7 +161,7 @@ TEST(Quantity, Mul)
     // 测试乘法赋值
     auto q9 = 10 * m;
     q9 *= 2.0;
-    EXPECT_EQ(q9.value(), 20.0);
+    EXPECT_EQ(q9.magnitude(), 20.0);
     
     auto q10 = 10 * m;
     q10 *= Unit::Second();
@@ -176,7 +176,7 @@ TEST(Quantity, Div)
     // 数量除以标量
     auto q1 = 20 * m;
     auto q2 = q1 / 2.0;
-    EXPECT_EQ(q2.value(), 10.0);
+    EXPECT_EQ(q2.magnitude(), 10.0);
     EXPECT_EQ(q2, 10.0 * m);
     EXPECT_TRUE(q2.unit() == Unit::Meter());
     
@@ -199,7 +199,7 @@ TEST(Quantity, Div)
     auto q8 = 20 * m;
     q8 /= 2.0;
     EXPECT_EQ(q8, 10 * m);
-    EXPECT_EQ(q8.value(), 10.0);
+    EXPECT_EQ(q8.magnitude(), 10.0);
     
     auto q9 = 10 * m;
     q9 /= Unit::Second();
@@ -262,7 +262,7 @@ TEST(Quantity, Invert)
     {
         auto q = Quantity::Scalar(2.0);
         auto inverted = q.invert();
-        EXPECT_EQ(inverted.value(), 0.5);
+        EXPECT_EQ(inverted.magnitude(), 0.5);
         EXPECT_TRUE(inverted.unit() == Unit::None());
     }
 
@@ -270,7 +270,7 @@ TEST(Quantity, Invert)
     {
         auto q = 10.0 * Unit::Meter(); // 10 m
         auto inverted = q.invert(); // 0.1 m⁻¹
-        EXPECT_EQ(inverted.value(), 0.1);
+        EXPECT_EQ(inverted.magnitude(), 0.1);
         EXPECT_EQ(inverted.dimension(), Dimension::Length().invert());
     }
 
@@ -278,7 +278,7 @@ TEST(Quantity, Invert)
     {
         auto q = 5.0 * (Unit::Meter() / Unit::Second()); // 5 m/s
         auto inverted = q.invert(); // 0.2 s/m
-        EXPECT_EQ(inverted.value(), 0.2);
+        EXPECT_EQ(inverted.magnitude(), 0.2);
         EXPECT_EQ(inverted.dimension(), (Dimension::Length() / Dimension::Time()).invert());
     }
 

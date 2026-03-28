@@ -42,7 +42,7 @@ public:
     std::string getExpression(Object* context=nullptr) const override;
     const Quantity& quantity() const { return value_; }
     const Unit& unit() const { return value_.unit(); }
-    double value() const { return value_.value(); }
+    double magnitude() const { return value_.magnitude(); }
     EDimension dimension() const { return value_.dimension(); }
 private:
     Quantity value_;

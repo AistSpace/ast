@@ -19,63 +19,18 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "UiQuantity.hpp"
-#include "AstUtil/Unit.hpp"
+#include "AstUtil/QuantityParser.hpp"
 
 AST_NAMESPACE_BEGIN
 
 UiQuantity::UiQuantity(QWidget* parent)
-    : QWidget(parent)
-    , layout_(new QHBoxLayout(this))
-    , valueEdit_(new QLineEdit(this))
-    , unitComboBox_(new QComboBox(this))
-{
-    layout_->setContentsMargins(0, 0, 0, 0);
-    layout_->addWidget(valueEdit_);
-    layout_->addWidget(unitComboBox_);
-    
-    connect(valueEdit_, &QLineEdit::textChanged, this, &UiQuantity::onValueChanged);
-    connect(unitComboBox_, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &UiQuantity::onUnitChanged);
-    
-    // 默认添加一些常用单位
-    unitComboBox_->addItem("sec", QVariant::fromValue(units::sec));
-    unitComboBox_->addItem("s", QVariant::fromValue(units::s));
-    unitComboBox_->addItem("ms", QVariant::fromValue(units::ms));
-    unitComboBox_->addItem("min", QVariant::fromValue(units::min));
-    unitComboBox_->addItem("hour", QVariant::fromValue(units::hour));
-    unitComboBox_->addItem("h", QVariant::fromValue(units::h));
-    unitComboBox_->addItem("day", QVariant::fromValue(units::day));
-    
-    unitComboBox_->addItem("mm", QVariant::fromValue(units::mm));
-    unitComboBox_->addItem("cm", QVariant::fromValue(units::cm));
-    unitComboBox_->addItem("dm", QVariant::fromValue(units::dm));
-    unitComboBox_->addItem("m", QVariant::fromValue(units::m));
-    unitComboBox_->addItem("km", QVariant::fromValue(units::km));
-    
-    unitComboBox_->addItem("g", QVariant::fromValue(units::g));
-    unitComboBox_->addItem("kg", QVariant::fromValue(units::kg));
-    unitComboBox_->addItem("mg", QVariant::fromValue(units::mg));
-    unitComboBox_->addItem("lb", QVariant::fromValue(units::lb));
-    
-    unitComboBox_->addItem("deg", QVariant::fromValue(units::deg));
-    unitComboBox_->addItem("rad", QVariant::fromValue(units::rad));
-    unitComboBox_->addItem("arcsec", QVariant::fromValue(units::arcsec));
-}
+    : QLineEdit(parent)
+{}
 
 void UiQuantity::setQuantity(const Quantity& quantity)
 {
     currentQuantity_ = quantity;
-    
-    // 更新数值输入框
-    valueEdit_->setText(QString::number(quantity.value()));
-    
-    // 更新单位下拉框
-    for (int i = 0; i < unitComboBox_->count(); ++i) {
-        Unit unit = unitComboBox_->itemData(i).value<Unit>();
-        if (unit == quantity.unit()) {
-            unitComboBox_->setCurrentIndex(i);
-            break;
-        }
-    }
+    setText(QString::fromUtf8(currentQuantity_.toString().c_str()));
 }
 
 Quantity UiQuantity::quantity() const
@@ -83,39 +38,60 @@ Quantity UiQuantity::quantity() const
     return currentQuantity_;
 }
 
-void UiQuantity::onValueChanged()
+double UiQuantity::getMagnitude() const
 {
-    bool ok;
-    double value = valueEdit_->text().toDouble(&ok);
-    if (ok) {
-        Unit unit = unitComboBox_->currentData().value<Unit>();
-        currentQuantity_ = Quantity(value, unit);
-        emit quantityChanged(currentQuantity_);
-    }
+    return currentQuantity_.magnitude();
 }
 
-void UiQuantity::onUnitChanged(int index)
+void UiQuantity::setMagnitude(double value)
 {
-    if (index >= 0) {
-        Unit newUnit = unitComboBox_->itemData(index).value<Unit>();
-        // 转换数值到新单位
-        double oldValue = currentQuantity_.value();
-        Unit oldUnit = currentQuantity_.unit();
-        
-        double newValue = oldValue;
-        if (oldUnit.isValid()) {
-            // 先转换到SI单位，再转换到新单位
-            double siValue = oldUnit.toSI(oldValue);
-            newValue = newUnit.fromSI(siValue);
-        }
-        
-        // 更新数值输入框
-        valueEdit_->setText(QString::number(newValue));
-        
-        // 更新当前数量值
-        currentQuantity_ = Quantity(newValue, newUnit);
-        emit quantityChanged(currentQuantity_);
-    }
+    currentQuantity_.setMagnitude(value);
+    this->setQuantity(currentQuantity_);
+}
+
+Unit UiQuantity::getUnit() const
+{
+    return currentQuantity_.unit();
+}
+
+void UiQuantity::setUnit(const Unit& unit)
+{
+    currentQuantity_.setUnit(unit);
+    this->setQuantity(currentQuantity_);
+}
+
+void UiQuantity::changeUnit(const Unit& unit)
+{
+    currentQuantity_.changeUnit(unit);
+    this->setQuantity(currentQuantity_);
+}
+
+double UiQuantity::getValueSI() const
+{
+    return currentQuantity_.getValueSI();
+}
+
+void UiQuantity::setValueSI(double value)
+{
+    currentQuantity_.setValueSI(value);
+    this->setQuantity(currentQuantity_);
+}
+
+double UiQuantity::getValueInUnit(const Unit& unit) const
+{
+    return currentQuantity_.getValueInUnit(unit);
+}
+
+void UiQuantity::setValueInUnit(double value, const Unit& unit)
+{
+    currentQuantity_.setValueInUnit(value, unit);
+    this->setQuantity(currentQuantity_);
+}
+
+void UiQuantity::setValueUnit(double value, const Unit& unit)
+{
+    currentQuantity_.setValueUnit(value, unit);
+    this->setQuantity(currentQuantity_);
 }
 
 AST_NAMESPACE_END

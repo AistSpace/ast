@@ -161,16 +161,16 @@ TEST(Unit, Conversion)
         auto h = Unit::Hour();
         
         // 1分钟 = 60秒
-        EXPECT_EQ(s.toInternal(60), min.toInternal(1));
-        EXPECT_EQ(s.fromInternal(1), min.fromInternal(60));
+        EXPECT_EQ(s.toSI(60), min.toSI(1));
+        EXPECT_EQ(s.fromSI(1), min.fromSI(60));
         
         // 1小时 = 3600秒
-        EXPECT_EQ(s.toInternal(3600), h.toInternal(1));
-        EXPECT_EQ(s.fromInternal(1), h.fromInternal(3600));
+        EXPECT_EQ(s.toSI(3600), h.toSI(1));
+        EXPECT_EQ(s.fromSI(1), h.fromSI(3600));
         
         // 1小时 = 60分钟
-        EXPECT_EQ(min.toInternal(60), h.toInternal(1));
-        EXPECT_EQ(min.fromInternal(1), h.fromInternal(60));
+        EXPECT_EQ(min.toSI(60), h.toSI(1));
+        EXPECT_EQ(min.fromSI(1), h.fromSI(60));
     }
     
     // 测试长度单位转换
@@ -179,8 +179,8 @@ TEST(Unit, Conversion)
         auto km = Unit::Kilometer();
         
         // 1千米 = 1000米
-        EXPECT_EQ(m.toInternal(1000), km.toInternal(1));
-        EXPECT_EQ(m.fromInternal(1), km.fromInternal(1000));
+        EXPECT_EQ(m.toSI(1000), km.toSI(1));
+        EXPECT_EQ(m.fromSI(1), km.fromSI(1000));
     }
     
     // 测试质量单位转换
@@ -189,8 +189,8 @@ TEST(Unit, Conversion)
         auto kg = Unit::Kilogram();
         
         // 1千克 = 1000克
-        EXPECT_EQ(g.toInternal(1000), kg.toInternal(1));
-        EXPECT_EQ(g.fromInternal(1), kg.fromInternal(1000));
+        EXPECT_EQ(g.toSI(1000), kg.toSI(1));
+        EXPECT_EQ(g.fromSI(1), kg.fromSI(1000));
     }
     
     // 测试角度单位转换
@@ -199,8 +199,8 @@ TEST(Unit, Conversion)
         auto deg = Unit::Degree();
         
         // 180度 = π弧度
-        EXPECT_NEAR(deg.toInternal(180), rad.toInternal(kPI), 1e-15);
-        EXPECT_NEAR(deg.fromInternal(kPI), rad.fromInternal(180), 1e-15);
+        EXPECT_NEAR(deg.toSI(180), rad.toSI(kPI), 1e-15);
+        EXPECT_NEAR(deg.fromSI(kPI), rad.fromSI(180), 1e-15);
     }
 }
 

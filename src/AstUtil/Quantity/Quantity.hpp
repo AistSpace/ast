@@ -140,22 +140,36 @@ public:
 
 public:
     Quantity()
-        : value_(0.0), unit_{}
+        : magnitude_(0.0), unit_{}
     {}
-    Quantity(double value, const Unit& unit)
-        : value_(value), unit_(unit)
+    /// @brief 构造函数
+    /// @param magnitude 数值大小
+    /// @param unit 单位
+    Quantity(double magnitude, const Unit& unit)
+        : magnitude_(magnitude), unit_(unit)
     {}
-    explicit Quantity(double value)
-        : value_(value), unit_(Unit::None())
+    /// @brief 构造函数
+    /// @param magnitude 数值大小
+    /// @param unit 单位
+    explicit Quantity(double magnitude)
+        : magnitude_(magnitude), unit_(Unit::None())
     {}
 public:
-    /// @brief 获取数量值
-    /// @return 数量值
-    double value() const { return value_; }
+    /// @brief 获取数值大小
+    /// @return 数值大小
+    double magnitude() const { return magnitude_; }
     
-    /// @brief 获取可修改的数量值
-    /// @return 可修改的数量值
-    double& value() { return value_; }
+    /// @brief 获取可修改的数值大小
+    /// @return 可修改的数值大小
+    double& magnitude() { return magnitude_; }
+
+    /// @brief 获取数值大小
+    /// @return 数值大小
+    double getMagnitude() const { return magnitude_; }
+
+    /// @brief 设置数值大小
+    /// @param value 数值大小
+    void setMagnitude(double value) { magnitude_ = value; }
 
     /// @brief 获取单位
     /// @return 单位
@@ -164,27 +178,51 @@ public:
     /// @brief 获取可修改的单位
     /// @return 可修改的单位
     Unit& unit() { return unit_; }
-    
+
+    /// @brief 获取单位
+    /// @return 单位
+    const Unit& getUnit() const { return unit_; }
+
+    /// @brief 设置单位
+    /// @details 不会改变当前数量值的数值大小，仅改变单位表示
+    /// 例如将1000m转换为1000km，将1000kg转换为1000t等
+    /// @param unit 单位
+    void setUnit(const Unit& unit) { unit_ = unit; }
+
+    /// @brief 切换当前单位
+    /// @details 切换当前单位后，数量值会自动转换为该单位
+    /// 例如将1000m转换为1km，将1000kg转换为1t等
+    /// @param unit 当前单位
+    void changeUnit(const Unit& unit);
+
     /// @brief 获取量纲
     /// @return 量纲
     EDimension dimension() const { return unit_.dimension(); }
 
-    /// @brief 设置数量值
-    /// @param value 数量值
-    void setValue(double value) { value_ = value; }
+    /// @brief 获取国际单位表示的值
+    /// @return 国际单位表示的值
+    double getValueSI() const { return unit_.toSI(magnitude_); }
 
-    /// @brief 设置单位
+    /// @brief 设置国际单位表示的值
+    /// @details 只会改变数量值的数值大小，不会改变数量值的单位
+    /// @param value 国际单位表示的值
+    void setValueSI(double value) { magnitude_ = unit_.fromSI(value); }
+
+    /// @brief 获取指定单位下的值
+    /// @param unit 指定单位
+    /// @return 指定单位下的值
+    double getValueInUnit(const Unit& unit) const { return unit_.convertTo(magnitude_, unit); }
+
+    /// @brief 设置指定单位下的值
+    /// @details 只会改变数量值的数值大小，不会改变数量值的单位
+    /// @param value 指定单位下的值
     /// @param unit 单位
-    void setUnit(const Unit& unit) { unit_ = unit; }
+    void setValueInUnit(double value, const Unit& unit) { magnitude_ = unit_.convertFrom(value, unit); }
 
-    
-    /// @brief 获取内部运行时单位表示的值
-    /// @return 内部运行时单位表示的值
-    double getInternalValue() const { return unit_.toInternal(value_); }
-
-    /// @brief 获取SI单位表示的值
-    /// @return SI单位表示的值
-    double getSIValue() const { return unit_.toSI(value_); }
+    /// @brief 设置数值大小和单位
+    /// @param value 数值大小
+    /// @param unit 单位
+    void setValueUnit(double value, const Unit& unit) { magnitude_ = value; unit_ = unit; }
 
     /// @brief 检查数量值是否有效
     /// @return 如果数量值有效则返回true，否则返回false
@@ -194,7 +232,7 @@ public:
     /// @param q 数量值
     /// @return 如果数量值相等则返回true，否则返回false
     bool operator ==(const Quantity& q) const{
-        return this->dimension() == q.dimension() && this->getInternalValue() == q.getInternalValue();
+        return this->dimension() == q.dimension() && this->getValueSI() == q.getValueSI();
     }
     /// @brief 检查数量值是否不相等
     /// @param q 数量值
@@ -205,7 +243,7 @@ public:
     /// @param value 标量值
     /// @return 如果数量值等于标量值则返回true，否则返回false
     bool operator == (double value) const{
-        return this->dimension() == EDimension::eUnit && this->getInternalValue() == value;
+        return this->dimension() == EDimension::eUnit && this->getValueSI() == value;
     }
 
     /// @brief 检查数量值是否不等于标量
@@ -216,21 +254,21 @@ public:
     }
 
     /// @brief 数量值取倒数
-    Quantity invert() const { return Quantity(1.0 / value_, unit_.invert()); }
+    Quantity invert() const { return Quantity(1.0 / magnitude_, unit_.invert()); }
 
     /// @brief 数量值取正
     Quantity operator+() const { return *this; }
     /// @brief 数量值取负
-    Quantity operator-() const { return Quantity(-value_, unit_); }
+    Quantity operator-() const { return Quantity(-magnitude_, unit_); }
 
     /// @brief 数量值缩放
-    Quantity operator*(double scale) const { return Quantity(value_ * scale, unit_); }
+    Quantity operator*(double scale) const { return Quantity(magnitude_ * scale, unit_); }
     /// @brief 数量值除法
-    Quantity operator/(double scale) const { return Quantity(value_ / scale, unit_); }
+    Quantity operator/(double scale) const { return Quantity(magnitude_ / scale, unit_); }
     /// @brief 数量值缩放赋值
-    Quantity& operator*=(double scale) { value_ *= scale; return *this; }
+    Quantity& operator*=(double scale) { magnitude_ *= scale; return *this; }
     /// @brief 数量值除法赋值
-    Quantity& operator/=(double scale) { value_ /= scale; return *this; }
+    Quantity& operator/=(double scale) { magnitude_ /= scale; return *this; }
     /// @brief 数量值单位乘法
     Quantity operator*(const Unit& unit) const { return aQuantityMul(*this, unit); }
     /// @brief 数量值单位除法
@@ -261,9 +299,15 @@ public:
     /// @return 数量值的字符串表示
     std::string toString() const{return aQuantityToString(*this);}
 private:
-    double value_;
+    double magnitude_;
     Unit unit_;
 };
+
+inline void Quantity::changeUnit(const Unit &unit)
+{
+    magnitude_ = unit_.convertTo(magnitude_, unit);
+    unit_ = unit;
+}
 
 inline Quantity operator*(double value, const Quantity& q)
 {

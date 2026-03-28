@@ -413,22 +413,21 @@ public:
     /// @return 外部值
     double fromSI(double value) const { return value / getScale(); }
 
-
     /// @brief 从该单位对应的值转换为国际单位制下的值
     /// @param value 该单位对应的值
     /// @return 国际单位制下的值
     double toSI(double value) const { return value * getScale(); }
 
-    /// @brief 从内部运行时单位对应的值转换为该单位对应的值
-    /// @param value 内部运行时单位对应的值
-    /// @return 该单位对应的值
-    double fromInternal(double value) const { return fromSI(value); }
-
-    /// @brief 从该单位对应的值转换为内部运行时单位对应值
+    /// @brief 转换为指定单位下的值
     /// @param value 该单位对应的值
-    /// @return 内部运行时单位对应的值
-    double toInternal(double value) const { return toSI(value); }
+    /// @return 指定单位下的值
+    double convertTo(double value, const Unit& unit) const { return value * (this->getScale() / unit.getScale()); }
 
+    /// @brief 转换为指定单位下的值
+    /// @param value 该单位对应的值
+    /// @return 指定单位下的值
+    double convertFrom(double value, const Unit& unit) const { return value * (unit.getScale() / this->getScale()); }
+    
     /// @brief 获取单位缩放因子
     /// @return 单位缩放因子
     double getScale() const { return rep_->scale_; }
@@ -440,7 +439,6 @@ public:
     /// @brief 获取单位名称
     /// @return 单位名称
     const std::string& name() const { return rep_->name_; }
-
 
     /// @brief 是否有效单位
     /// @return 是否有效单位

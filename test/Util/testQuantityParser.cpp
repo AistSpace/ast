@@ -43,25 +43,25 @@ TEST(QuantityParser, ParseToQuantity)
 
     EXPECT_EQ(q1, 123);
     EXPECT_TRUE(q1.isValid());
-    EXPECT_NEAR(q1.value(), 123.0, 1e-9);
+    EXPECT_NEAR(q1.magnitude(), 123.0, 1e-9);
     
     // 小数
     Quantity q2 = aQuantityParse("123.456");
     EXPECT_EQ(q2, 123.456);
     EXPECT_TRUE(q2.isValid());
-    EXPECT_NEAR(q2.value(), 123.456, 1e-9);
+    EXPECT_NEAR(q2.magnitude(), 123.456, 1e-9);
     
     // 带单位的整数
     Quantity q3 = aQuantityParse("456 m");
     EXPECT_EQ(q3, 456 * m);
     EXPECT_TRUE(q3.isValid());
-    EXPECT_NEAR(q3.value(), 456.0, 1e-9);
+    EXPECT_NEAR(q3.magnitude(), 456.0, 1e-9);
     
     // 带单位的小数
     Quantity q4 = aQuantityParse("789.123 km");
     EXPECT_EQ(q4, 789.123 * km);
     EXPECT_TRUE(q4.isValid());
-    EXPECT_NEAR(q4.value(), 789.123, 1e-9);
+    EXPECT_NEAR(q4.magnitude(), 789.123, 1e-9);
 }
 
 // 测试直接解析到 value 和 unit 的函数
@@ -105,28 +105,28 @@ TEST(QuantityParser, ComplexUnits)
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 10 * m /s);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 10.0, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 10.0, 1e-9);
     
     // 加速度单位
     err = aQuantityParse("9.8 m/s^2", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 9.8 * m / s / s);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 9.8, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 9.8, 1e-9);
     
     // 面积单位
     err = aQuantityParse("100 m^2", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 100 * m*m);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 100.0, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 100.0, 1e-9);
     
     // 体积单位
     err = aQuantityParse("1000 m^3", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 1000 * m * m * m);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 1000.0, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 1000.0, 1e-9);
 }
 
 // 测试带括号的单位
@@ -139,21 +139,21 @@ TEST(QuantityParser, BracketedUnits)
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 10 * m);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 10.0, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 10.0, 1e-9);
     
     // 带括号的复合单位
     err = aQuantityParse("9.8 [m/s^2]", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 9.8 * m/s/s);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 9.8, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 9.8, 1e-9);
     
     // 带括号的复杂单位
     err = aQuantityParse("50 [kg*m/s^2]", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 50 * N);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 50.0, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 50.0, 1e-9);
 }
 
 // 测试错误情况
@@ -216,14 +216,14 @@ TEST(QuantityParser, WhitespaceHandling)
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 123 * m/s);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 123.0, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 123.0, 1e-9);
     
     // 带括号的单位，括号内外有空格
     err = aQuantityParse("123  [  m/s  ]  ", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 123 * m / s);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 123.0, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 123.0, 1e-9);
 }
 
 // 测试科学计数法
@@ -236,21 +236,21 @@ TEST(QuantityParser, ScientificNotation)
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 1.23e3 * m);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 1230.0, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 1230.0, 1e-9);
     
     // 负指数
     err = aQuantityParse("1.23e-3 m", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 1.23e-3 * m);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 0.00123, 1e-12);
+    EXPECT_NEAR(quantity.magnitude(), 0.00123, 1e-12);
     
     // 大写 E
     err = aQuantityParse("1.23E3 m", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 1.23E3 * m);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 1230.0, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 1230.0, 1e-9);
 }
 
 TEST(QuantityParser, DegreeUnit)
@@ -261,27 +261,27 @@ TEST(QuantityParser, DegreeUnit)
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 123 * deg);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 123.0, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 123.0, 1e-9);
 
 
     err = aQuantityParse(aText("456 °"), quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 456 * deg);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 456.0, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 456.0, 1e-9);
 
     err = aQuantityParse(aText("789.123 ″"), quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 789.123 * arcsec);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 789.123, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 789.123, 1e-9);
 
     // 测试对于空格的支持
     err = aQuantityParse(aText("  123.456  ″  "), quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 123.456 * arcsec);
     EXPECT_TRUE(quantity.isValid());
-    EXPECT_NEAR(quantity.value(), 123.456, 1e-9);
+    EXPECT_NEAR(quantity.magnitude(), 123.456, 1e-9);
 
 }
 

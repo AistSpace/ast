@@ -27,7 +27,7 @@ AST_NAMESPACE_BEGIN
 
 std::string ValQuantity::getExpression(Object *context) const
 {
-    return aFormatDouble(value_.value()) + "[" + unit().name() + "]";
+    return aFormatDouble(value_.magnitude()) + "[" + unit().name() + "]";
 }
 
 // Class* ValQuantity::staticType()
