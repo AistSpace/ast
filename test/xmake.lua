@@ -40,7 +40,7 @@ if has_package("qt5base") and has_package("qt5widgets") and has_package("qt5gui"
             set_values("windows.subsystem", "console")
             add_files(file)
             add_deps("AstGUI")
-            add_frameworks("QtWidgets", "QtGui")
+            add_frameworks("QtWidgets", "QtGui", "QtCore")
         target_end()
     end
 end

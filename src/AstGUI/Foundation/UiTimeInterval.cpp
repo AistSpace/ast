@@ -44,8 +44,8 @@ UiTimeInterval::UiTimeInterval(QWidget* parent) : QWidget(parent)
     connect(stopTimeEdit_, &QLineEdit::editingFinished, this, &UiTimeInterval::onTimeEdited);
     
     // 设置默认时间区间
-    TimePoint start = TimePoint::FromUTC(2026, 3, 27, 16, 0, 0.0);
-    TimePoint end = TimePoint::FromUTC(2026, 3, 28, 16, 0, 0.0);
+    TimePoint start{}; // = TimePoint::TodayUTC();
+    TimePoint end{};  // = TimePoint::TomorrowUTC();
     TimeInterval interval(start, end);
     setTimeInterval(interval);
 }

@@ -27,7 +27,7 @@ AST_NAMESPACE_BEGIN
 UiTimePoint::UiTimePoint(QWidget* parent) : QLineEdit(parent)
 {
     // 设置默认时间为当前时间
-    TimePoint now{};
+    TimePoint now{}; // = TimePoint::TodayUTC();
     setTimePoint(now);
 
     // 设置 tooltip 显示延迟为 0，鼠标靠近时马上出现
