@@ -42,26 +42,53 @@ err_t MotionTwoBodySax::keyValue(StringView key, const ValueView &value)
         timeStep_ = value.toDouble();
     }else if(aEqualsIgnoreCase(key, "OrbElemCoordSys")){
         orbElemCoordSys_ = value.toString();
-        orbElemCoordAxes_ = aGetAxes(orbElemCoordSys_);
+        orbElemCoordAxes_ = getBody()->getAxes(orbElemCoordSys_);
+        if(!orbElemCoordAxes_)
+        {
+            aError("failed to get orbElemCoordAxes '%.*s'", (int)orbElemCoordSys_.size(), orbElemCoordSys_.data());
+        }
     }else if(aEqualsIgnoreCase(key, "PropagationCoordSys")){
         propagationCoordSys_ = value.toString();
-        propagationCoordAxes_ = aGetAxes(propagationCoordSys_);
+        propagationCoordAxes_ = getBody()->getAxes(propagationCoordSys_);
+        if(!propagationCoordAxes_)
+        {
+            aError("failed to get propagationCoordAxes '%.*s'", (int)propagationCoordSys_.size(), propagationCoordSys_.data());
+        }
     }else if(aEqualsIgnoreCase(key, "DisplayCoordType")){
         displayCoordType_ = value.toInt();
     }else if(aEqualsIgnoreCase(key, "DisplayCoordSys")){
         displayCoordSys_ = value.toString();
-        displayCoordAxes_ = aGetAxes(displayCoordSys_);
+        displayCoordAxes_ = getBody()->getAxes(displayCoordSys_);
+        if(!displayCoordAxes_)
+        {
+            aError("failed to get displayCoordAxes '%.*s'", (int)displayCoordSys_.size(), displayCoordSys_.data());
+        }
     }else if(aEqualsIgnoreCase(key, "EllipseType")){
         // @todo 这是什么??? 椭圆类型是什么意思???
     }
     // 其他公共参数
-    return MotionBasicSax::keyValue(key, value);
+    return MotionOrbitDynamicsSax::keyValue(key, value);
 }
 
 err_t MotionTwoBodySax::getMotion(ScopedPtr<MotionProfile>& motion)
 {
+    if(vehiclePathData_.centralBody_ == nullptr){
+        aError("vehiclePathData's body is nullptr");
+        return eErrorNullPtr;
+    }
+    if(!orbElemCoordAxes_)
+    {
+        aError("orbElemCoordAxes_ is nullptr");
+        return eErrorNullPtr;
+    }
+    if(!propagationCoordAxes_)
+    {
+        aError("propagationCoordAxes_ is nullptr");
+        return eErrorNullPtr;
+    }
     // 这里可以通过类型来判断是否需要新建MotionProfile
     auto motionTwoBody = MotionTwoBody::New();
+    auto body = vehiclePathData_.centralBody_; AST_CHECK_NULLPTR(body);
     ModOrbElem modOrbElem;
     modOrbElem.rp() = radiusOfPerigee_;
     modOrbElem.e() = eccentricity_;
@@ -69,13 +96,14 @@ err_t MotionTwoBodySax::getMotion(ScopedPtr<MotionProfile>& motion)
     modOrbElem.raan() = rightAscension_;
     modOrbElem.argper() = argOfPerigee_;
     modOrbElem.trueA() = trueAnomaly_;
-    auto frame = vehiclePathData_.centralBody_->makeFrame(orbElemCoordAxes_);
+    auto frame = body->makeFrame(orbElemCoordAxes_);
     SharedPtr<StateKeplerian> stateKeplerian = StateKeplerian::New();  // 一定是轨道根数吗??
     stateKeplerian->setFrame(frame);
     stateKeplerian->setState(modOrbElem);
     stateKeplerian->setStateEpoch(makeStateEpoch());
     motionTwoBody->setInitialState(stateKeplerian);
     motionTwoBody->setInterval(makeInterval());
+    motionTwoBody->setPropagationFrame(body->makeFrame(propagationCoordAxes_));
 
     motion = motionTwoBody;
     return eNoError;

@@ -66,8 +66,7 @@ public:
     {}
     ScopedPtr& operator=(T* ptr)
     {
-        this->_delete();
-        m_pointer = ptr;
+        this->reset(ptr);
         return *this;
     }
     ~ScopedPtr()
@@ -76,8 +75,9 @@ public:
     }
     void reset(T* ptr)
     {
-        this->_delete();
+        auto oldPtr = m_pointer;
         m_pointer = ptr;
+        this->_delete(oldPtr);
     }
     T* get() const
     {
@@ -85,15 +85,24 @@ public:
     }
     T* operator->() const{return m_pointer;}
     operator T*() const{return m_pointer;}
+    T* release()
+    {
+        T* ptr = m_pointer;
+        m_pointer = nullptr;
+        return ptr;
+    }
 private:
     ScopedPtr(const ScopedPtr&) = delete;
     ScopedPtr& operator =(const ScopedPtr&) = delete;
     void _delete()
     {
-        if(m_pointer)
-            ScopedPtrDeleter<T>::cleanup(m_pointer);
+        this->_delete(m_pointer);
     }
-
+    void _delete(T* ptr)
+    {
+        if(ptr)
+            ScopedPtrDeleter<T>::cleanup(ptr);
+    }
 protected:
     T* m_pointer;
 };

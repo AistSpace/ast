@@ -19,7 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "AppMain.hpp"
-#include "AstGui/AstGuiAPI.hpp"
+#include "AstGUI/AstGUIAPI.hpp"
 #include <QApplication>
 #include <QMainWindow>
 

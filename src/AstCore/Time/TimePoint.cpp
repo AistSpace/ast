@@ -105,7 +105,26 @@ void aTimePointToTDB(const TimePoint& time, JulianDate& jdTDB)
     aTTToTDB(jdTDB, jdTDB);
 }
 
-TimePoint TimePoint::FromUTC(const DateTime& dttmUTC)
+TimePoint TimePoint::CurrentTime()
+{
+    return FromUTC(aCurrentDateTimeUTC());
+}
+
+TimePoint TimePoint::TodayUTC()
+{
+    DateTime t;
+    aTodayDateTimeUTC(t);
+    return FromUTC(t);
+}
+
+TimePoint TimePoint::TomorrowUTC()
+{
+    DateTime t;
+    aTomorrowDateTimeUTC(t);
+    return FromUTC(t);
+}
+
+TimePoint TimePoint::FromUTC(const DateTime &dttmUTC)
 {
     JulianDate jdUTC;
     JulianDate jdTAI;
@@ -154,5 +173,3 @@ TimePoint TimePoint::FromIntegerFractional(int64_t integer, double fractional)
 }
 
 AST_NAMESPACE_END
-
-

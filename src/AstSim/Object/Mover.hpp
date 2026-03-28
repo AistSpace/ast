@@ -25,7 +25,7 @@
 #include "AstCore/Point.hpp"
 #include "AstSim/AttitudeProfile.hpp"
 #include "AstSim/MotionProfile.hpp"
-#include "AstSim/Ephemeris.hpp"
+#include "AstCore/Ephemeris.hpp"
 #include "AstUtil/StringView.hpp"
 
 AST_NAMESPACE_BEGIN
@@ -69,6 +69,10 @@ public:
     /// @brief 获取星历
     /// @return 星历指针
     Ephemeris* getEphemeris() const { return ephemeris_.get(); }
+
+    /// @brief 获取星历句柄
+    /// @return 星历句柄
+    ScopedPtr<Ephemeris>& getEphemerisHandle() { return ephemeris_; }
 public:
     /// @brief 生成星历
     /// @return 错误码

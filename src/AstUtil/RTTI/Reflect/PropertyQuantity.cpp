@@ -57,7 +57,7 @@ err_t PropertyQuantity::setValueString(void *container, StringView value)
     // 检查量纲是否匹配
     if(quant.dimension() != dimension_)
         return eErrorInvalidParam;
-    return PropertyDouble::setValueDouble(container, quant.getInternalValue());
+    return PropertyDouble::setValueDouble(container, quant.getValueSI());
 }
 
 AST_NAMESPACE_END

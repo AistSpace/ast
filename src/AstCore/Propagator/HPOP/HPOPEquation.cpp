@@ -22,10 +22,12 @@
 #include "HPOP.hpp"                 // for HPOPForceModel
 #include "AstUtil/Logger.hpp"
 #include "AstCore/Simulation.hpp"   // for blocks
+#include "AstCore/BuiltinFrame.hpp"
 
 AST_NAMESPACE_BEGIN
 
 HPOPEquation::HPOPEquation()
+    : propFrame_{}
 {
 
 }
@@ -50,7 +52,7 @@ err_t HPOPEquation::evaluate(const double* y, double* dy, const double t)
     time.setElapsedTime(t);                         // 设置仿真的相对时间
     dynamicSystem_.fillDerivativeData(0.0);         // 填充导数数据为0
     dynamicSystem_.setStateData(y);                 // 设置状态数据
-    err_t err = dynamicSystem_.run(time);      // 执行动力学系统
+    err_t err = dynamicSystem_.run(time);           // 执行动力学系统
     dynamicSystem_.getDerivativeData(dy);           // 获取导数数据
     return err;                                     // 返回错误码
 }
@@ -64,9 +66,71 @@ int HPOPEquation::getDimension() const
 /// @brief 初始化仿真引擎
 err_t HPOPEquation::initialize()
 {
-    return dynamicSystem_.initialize();
+    return this->initializeFromForceModel(this->forceModel_);
 }
 
+err_t HPOPEquation::initBlocks(const HPOPForceModel &forceModel)
+{
+    if(!this->propFrame_)
+    {
+        if(auto cb = aGetEarth())
+        {
+            this->propFrame_ = cb->makeFrameInertial();
+            aWarning("propagation frame is not set, using earth inertial frame as the default propagation frame.");
+        }
+        if(!this->propFrame_)
+            aError("failed to set propagation frame to earth inertial frame.");
+    }
+    // 将力模型配置转换为动力学系统的一个个函数块
+    BlockDerivative* derivativeBlock;
+    auto& gravity = forceModel.gravity_;
+    auto propFrame = this->propFrame_; 
+    auto body = propFrame->getBody();   // 尝试获取预报坐标系原点对应的天体
+
+    // 重置动力学系统
+    this->reset();
+
+    // 添加运动学函数块
+    derivativeBlock = new BlockMotion();
+    this->addBlock(derivativeBlock);
+
+    if(body){
+        // 添加重力函数块
+        if(0 == gravity.maxDegree_){
+            GravityFieldHead gfHead;
+            err_t err = gfHead.load(gravity.model_, body->getDirpath());
+            if(err != eNoError){
+                aError("Failed to load gravity field head from file: '%s'", gravity.model_.c_str());
+                return err;
+            }
+            derivativeBlock = new BlockTwoBody(gfHead.getGM());
+            this->addBlock(derivativeBlock);
+        }else{
+            GravityField gravityField;
+            err_t err = gravityField.load(gravity.model_, gravity.maxDegree_, gravity.maxOrder_, body->getDirpath());
+            if(err != eNoError){
+                aError("Failed to load gravity field from file: '%s'", gravity.model_.c_str());
+                return err;
+            }
+            auto propAxes = propFrame->getAxes();
+            /// @todo 这里要根据重力场的配置来获取重力场坐标系
+            auto gravityAxes = body->getAxesFixed(); 
+            /// @todo 这里产生了一次重力场系数复制，有一定的优化空间
+            derivativeBlock = new BlockGravity(gravityField, gravity.maxDegree_, gravity.maxOrder_, gravityAxes, propAxes);
+            this->addBlock(derivativeBlock);
+        }
+    }else{
+        aWarning("the propagation frame's center is not a celestial body, no gravity force will be added.");
+    }
+
+    // 添加月球引力函数块
+    if(forceModel.useMoonGravity_)
+    {
+        derivativeBlock = new BlockThirdBody(forceModel.moonGravity_);
+        this->addBlock(derivativeBlock);
+    }
+    return eNoError;
+}
 
 void HPOPEquation::addBlock(FuncBlock *block)
 {
@@ -88,43 +152,28 @@ void HPOPEquation::reset()
     dynamicSystem_.reset();
 }
 
-err_t HPOPEquation::setForceModel(const HPOPForceModel& forceModel)
+
+
+err_t HPOPEquation::initializeFromForceModel(const HPOPForceModel &forceModel)
 {
-    // 将力模型配置转换为动力学系统的一个个函数块
-    BlockDerivative* derivativeBlock;
-    auto& gravity = forceModel.gravity_;
-
-    // 重置动力学系统
-    this->reset();
-
-    // 添加运动学函数块
-    derivativeBlock = new BlockMotion();
-    this->addBlock(derivativeBlock);
-
-    // 添加重力函数块
-    if(0 == gravity.maxDegree_){
-        GravityFieldHead gfHead;
-        err_t err = gfHead.load(gravity.model_);
-        if(err != eNoError){
-            aError("Failed to load gravity field head from file: %s", gravity.model_.c_str());
-            return err;
-        }
-        derivativeBlock = new BlockTwoBody(gfHead.gm_);
-        this->addBlock(derivativeBlock);
-    }else{
-        derivativeBlock = new BlockGravity(gravity.model_, gravity.maxDegree_, gravity.maxOrder_);
-        this->addBlock(derivativeBlock);
-    }
-
-    // 添加月球引力函数块
-    if(forceModel.useMoonGravity_)
-    {
-        derivativeBlock = new BlockThirdBody(forceModel.moonGravity_);
-        this->addBlock(derivativeBlock);
-    }
-
-    return this->initialize();
+    err_t rc = this->initBlocks(forceModel);
+    if(rc) return rc;
+    return dynamicSystem_.initialize();
 }
 
+err_t HPOPEquation::setForceModel(const HPOPForceModel& forceModel)
+{
+    this->forceModel_ = forceModel;
+    return eNoError;
+}
+
+err_t HPOPEquation::setPropagationFrame(Frame *frame)
+{
+    if(!frame) return -1;
+    /// @todo 这里还需要检查frame是否是准惯性系
+    // if(!frame->isPseudoInertial()) return -1;
+    propFrame_ = frame;
+    return eNoError;
+}
 
 AST_NAMESPACE_END

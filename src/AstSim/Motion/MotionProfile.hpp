@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstSim/Ephemeris.hpp"
+#include "AstCore/Ephemeris.hpp"
 #include "AstUtil/ScopedPtr.hpp"
 
 AST_NAMESPACE_BEGIN
@@ -37,6 +37,8 @@ using PMotionProfile = MotionProfile*;
 
 class MotionTwoBody;
 class MotionHPOP;
+class MotionSPICE;
+class MotionProfileVisitor;
 
 /// @brief 运动定义接口
 class AST_SIM_API MotionProfile
@@ -47,6 +49,7 @@ public:
 public:
     MotionHPOP* toHPOP() const;
     MotionTwoBody* toTwoBody() const;
+    MotionSPICE* toSPICE() const;
 public:
     /// @brief 生成特定星历
     /// @param eph 星历指针
@@ -57,6 +60,10 @@ public:
     /// @param eph 星历指针
     /// @return 错误码
     virtual err_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const = 0;
+
+    /// @brief 接受访问者
+    /// @param visitor 访问者
+    virtual void accept(MotionProfileVisitor& visitor) = 0;
 };
 
 /*! @} */

@@ -41,6 +41,9 @@ enum class EStateType
     eKeplerian,     ///< 开普勒状态
 };
 
+class State;
+using PState = State*;
+using HState = SharedPtr<State>;
 
 /// @brief 航天器状态
 /// @details 参考了orekit的Orbit类
@@ -119,6 +122,12 @@ public:
     /// @param state 状态
     /// @return err_t 错误码
     err_t getStateInBodyInertial(Body* body, CartState& state) const;
+
+    /// @brief 获取在给定坐标系下的状态量
+    /// @param frame 坐标系
+    /// @param state 状态
+    /// @return err_t 错误码
+    err_t getStateIn(Frame* frame, CartState& state) const;
 
 public:
 

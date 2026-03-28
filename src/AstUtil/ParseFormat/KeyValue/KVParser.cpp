@@ -24,12 +24,12 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t KVParser::getNext(BKVItemView &item)
+KVParser::EToken KVParser::getNext(BKVItemView &item)
 {
     static_assert(eEOF == EOF, "eEOF must be EOF");
 
     if(!file_)
-        return eErrorInvalidFile;
+        return eError;
     
     while(fgets(lineBuffer_.data(), (int)lineBuffer_.size(), file_)){
         StringView line(lineBuffer_.data());
@@ -38,9 +38,16 @@ err_t KVParser::getNext(BKVItemView &item)
         auto pos = line.find('=');
         if(pos == StringView::npos)
             continue;
-        item.key() = aStripAsciiWhitespace(line.substr(0, pos));
         item.value() = aStripAsciiWhitespace(line.substr(pos + 1));
-        return eNoError;
+        auto key = line.substr(0, pos);
+        if(key.ends_with('+'))
+        {
+            item.key() = aStripAsciiWhitespace(key.substr(0, key.size() - 1));
+            return eAddEqual;
+        }else{
+            item.key() = aStripAsciiWhitespace(key);
+            return eEqual;
+        }
     }
     return eEOF;
 }

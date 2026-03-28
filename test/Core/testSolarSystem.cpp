@@ -41,6 +41,9 @@ TEST(SolarSystem, load)
 
 TEST(SolarSystem, loadPCK)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
+    
     SolarSystem system;
     err_t rc = system.loadPCK(aDataDirGet() + "/Test/kernels/pck/pck00011.tpc");
     // EXPECT_EQ(rc, 0);
@@ -49,6 +52,8 @@ TEST(SolarSystem, loadPCK)
 
 TEST(SolarSystem, getBody)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     SolarSystem system;
     err_t rc = system.load(aDataDirGet() + "/SolarSystem");
     EXPECT_EQ(rc, 0);
@@ -62,6 +67,8 @@ TEST(SolarSystem, getBody)
 
 TEST(CelestialBody, loadEarth)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     CelestialBody earth;
     err_t rc = earth.load(aDataDirGet() + "/SolarSystem/Earth/Earth.cb");
     EXPECT_EQ(rc, 0);
@@ -156,6 +163,8 @@ TEST(CelestialBody, bodyAxes)
 
 TEST(CelestialBody, getJn)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     CelestialBody earth;
     err_t rc = earth.load(aDataDirGet() + "/SolarSystem/Earth/Earth.cb");
     EXPECT_EQ(rc, 0);

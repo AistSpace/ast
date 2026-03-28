@@ -23,6 +23,7 @@
 #include "AstCore/TimeSystem.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/JulianDate.hpp"
+#include "AstCore/TimeInterval.hpp"
 #include "AstMath/Euler.hpp"
 #include "AstUtil/IO.hpp"       // for ast_fopen
 #include "AstUtil/Logger.hpp"   // for aError
@@ -200,6 +201,13 @@ JplDe::~JplDe()
     this->close();
 }
 
+err_t JplDe::getInterval(TimeInterval &interval) const
+{
+    TimePoint start = TimePoint::FromTDB(JulianDate::FromImpreciseDay(m_EphemStart));
+    TimePoint stop  = TimePoint::FromTDB(JulianDate::FromImpreciseDay(m_EphemEnd));
+    interval.setStartStop(start, stop);
+    return eNoError;
+}
 
 int JplDe::readDataBlock(size_t idx)
 {

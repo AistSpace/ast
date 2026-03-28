@@ -22,6 +22,7 @@
 #include "CommonlyUsedHeaders.hpp"
 #include "MotionTwoBodySax.hpp"
 #include "MotionHPOPSax.hpp"
+#include "AstCore/STKEphemerisFileParser.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -44,6 +45,96 @@ err_t _aLoadHPOP(BKVParser& parser, const VehiclePathData& vehiclePathData, Scop
     return sax.getMotion(motionProfile);
 }
 
+err_t _aLoadSPICE(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+{
+    struct {
+        std::string filename_;
+        int satelliteID_{-1};
+        int segmentNumber_{1};
+        double stepSize_{60.0};
+        bool useLTDelay_{false};
+        bool use1stOrderDelay_{false};
+        bool use3rdOrderDelay_{false};
+        TimePoint startTime_;
+        TimePoint stopTime_;
+        SharedPtr<EventInterval> ephemSmartInterval_;
+    } data;
+
+
+    while(1)
+    {
+        BKVItemView item;
+        BKVParser::EToken token;
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "FileName")){
+                data.filename_ = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "SatelliteID")){
+                data.satelliteID_ = item.value().toInt();
+            }else if(aEqualsIgnoreCase(item.key(), "SegmentNumber")){
+                data.segmentNumber_ = item.value().toInt();
+            }else if(aEqualsIgnoreCase(item.key(), "StepSize")){
+                data.stepSize_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "UseLTDelay")){
+                data.useLTDelay_ = item.value().toBool();
+            }else if(aEqualsIgnoreCase(item.key(), "Use1stOrderDelay")){
+                data.use1stOrderDelay_ = item.value().toBool();
+            }else if(aEqualsIgnoreCase(item.key(), "Use3rdOrderDelay")){
+                data.use3rdOrderDelay_ = item.value().toBool();
+            }else if(aEqualsIgnoreCase(item.key(), "StartTime")){
+                data.startTime_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "StopTime")){
+                data.stopTime_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "EphemSmartInterval")){
+                err_t rc = _aLoadEventInterval(parser, data.ephemSmartInterval_);
+                if(rc)
+                    aError("failed to load EphemSmartInterval");
+            }
+        }else if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "EVENTINTERVAL")){
+                // 处理事件间隔
+                while(1){
+                    BKVItemView eventItem;
+                    BKVParser::EToken eventToken;
+                    eventToken = parser.getNext(eventItem);
+                    if(eventToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(eventItem.value(), "EVENTINTERVAL")){
+                            break;
+                        }
+                    }
+                }
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "SPICE")){
+                break;
+            }
+        }else if(token == BKVParser::eEOF){
+            return eNoError;
+        }else{
+            return eErrorInvalidFile;
+        }
+    }
+
+    // 创建 SPICE 运动模型
+    auto motionSPICE = MotionSPICE::New();
+    
+    // 设置 SPICE 文件路径
+    motionSPICE->setSpiceFile(data.filename_);
+    motionSPICE->setSpiceIndex(data.satelliteID_);
+    
+    // 设置步长
+    motionSPICE->setStepSize(data.stepSize_);
+    
+    // 设置时间间隔
+    auto explicitInterval = EventIntervalExplicit::New(data.startTime_, data.stopTime_);
+    auto fallbackInterval = EventIntervalFallback::New(data.ephemSmartInterval_, explicitInterval);
+    motionSPICE->setInterval(fallbackInterval);
+
+    motionProfile = motionSPICE;
+    
+    return eNoError;
+}
 
 err_t _aLoadPassDefn(BKVParser& parser, Mover& mover)
 {
@@ -120,6 +211,11 @@ err_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
                     return rc;
                 }
             }
+            else if(aEqualsIgnoreCase(item.value(), "SPICE")){
+                if(err_t rc = _aLoadSPICE(parser, data, mover.getMotionProfileHandle())){
+                    return rc;
+                }
+            }
             else if(aEqualsIgnoreCase(item.value(), "PassDefn")){
                 if(err_t rc = _aLoadPassDefn(parser, mover)){
                     return rc;
@@ -132,6 +228,13 @@ err_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
         }
     }while(token != BKVParser::eEOF);
     return eNoError;
+}
+
+
+err_t _aLoadEphemeris(BKVParser& parser, Mover& mover)
+{
+    err_t rc = aParserSTKEphemeris(parser, mover.getEphemerisHandle());
+    return rc;
 }
 
 err_t _aLoadMassProperties(BKVParser& parser, Mover& mover)
@@ -342,7 +445,12 @@ err_t _aLoadSatellite(BKVParser& parser, Mover& mover)
                 if(err_t rc = _aLoadVehiclePath(parser, mover)){
                     return rc;
                 }
-            }else if(aEqualsIgnoreCase(item.value(), "MassProperties")){
+            }else if(aEqualsIgnoreCase(item.value(), "Ephemeris")){
+                if(err_t rc = _aLoadEphemeris(parser, mover)){
+                    return rc;
+                }
+            }
+            else if(aEqualsIgnoreCase(item.value(), "MassProperties")){
                 if(err_t rc = _aLoadMassProperties(parser, mover)){
                     return rc;
                 }
@@ -386,6 +494,7 @@ err_t aLoadMover(StringView filepath, Mover &mover)
     BKVParser::EToken token;
     BKVParser parser(filepath);
     if(!parser.isOpen()){
+        aError("failed to open file '%.*s'", (int)filepath.size(), filepath.data());
         return eErrorInvalidFile;
     }
     do{

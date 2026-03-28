@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "AstUtil/Environment.hpp"
+#include "AstTest/TestConfig.hpp"
 #include "AstCore/CelestialBody.hpp"
 
 #ifndef AST_NO_CSPICE
@@ -22,29 +23,40 @@ int main() {
     // 2. 定义需要的内核文件
     // 注意：实际使用时需要下载这些内核文件到本地目录
     // 可以从NASA的NAIF网站下载：https://naif.jpl.nasa.gov/pub/naif/generic_kernels/
-    std::vector<std::string> kernels = {
-        // 基础SPICE内核
-        "data/Test/kernels/spk/de430.bsp",           // 行星历表（DE430）
-        "data/Test/kernels/spk/planets.bsp",
-        "data/Test/kernels/spk/ceres.bsp",
-        "data/Test/kernels/spk/jupiter.bsp",
-        "data/Test/kernels/spk/mars.bsp",
-        "data/Test/kernels/spk/neptune.bsp",
-        "data/Test/kernels/spk/pluto.bsp",
-        "data/Test/kernels/spk/saturn.bsp",
-        "data/Test/kernels/spk/uranus.bsp",
-        "data/Test/kernels/lsk/naif0012.tls"         // 时间系统定义
-    };
-    
+    // std::vector<std::string> kernels = {
+    //     // 基础SPICE内核
+    //     "data/Test/kernels/spk/de430.bsp",           // 行星历表（DE430）
+    //     "data/Test/kernels/spk/planets.bsp",
+    //     "data/Test/kernels/spk/ceres.bsp",
+    //     "data/Test/kernels/spk/jupiter.bsp",
+    //     "data/Test/kernels/spk/mars.bsp",
+    //     "data/Test/kernels/spk/neptune.bsp",
+    //     "data/Test/kernels/spk/pluto.bsp",
+    //     "data/Test/kernels/spk/saturn.bsp",
+    //     "data/Test/kernels/spk/uranus.bsp",
+    //     "data/Test/kernels/lsk/naif0012.tls"         // 时间系统定义
+    // };
+
+
+
     // 3. 尝试加载内核文件
+    std::vector<std::string> kernels = aTestGetConfigValue("SPK_FILES").split(',');
+        
     std::cout << "\n1. 加载SPICE内核文件：" << std::endl;
     
     for (const auto& kernel : kernels) {
         std::cout << "   尝试加载: " << kernel << "...";
         // 加载内核文件
-        furnsh_c(kernel.c_str());
+        // furnsh_c(kernel.c_str());
+        SpiceInt handle;
+        spklef_c(kernel.c_str(), &handle );
+        
         std::cout << " 成功" << std::endl;
     }
+
+    // 加载时间系统定义核
+    std::string lsk = aTestGetConfigValue("LSK_FILE").toString();
+    furnsh_c(lsk.c_str());
     
     // 4. 设置观测时间
     std::string utc_time = "2023-01-01T12:00:00.000";

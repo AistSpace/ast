@@ -19,9 +19,12 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "MotionTwoBody.hpp"
-#include "AstSim/EphemerisTwoBody.hpp"
-#include "AstSim/EphemerisLagrangeFixed.hpp"
-
+#include "AstSim/MotionProfileVisitor.hpp"
+#include "AstCore/EphemerisTwoBody.hpp"
+#include "AstCore/EphemerisLagrangeFixed.hpp"
+#include "AstCore/EphemerisLagrangeVar.hpp"
+#include "AstCore/CelestialBody.hpp"
+#include "AstCore/TwoBody.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -33,14 +36,52 @@ MotionTwoBody *MotionTwoBody::New()
 
 err_t MotionTwoBody::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
 {
-    return err_t();
+    err_t rc;
+    PropagationParams params;
+    rc = this->getPropagationParams(params);   AST_CHECK_ERRCODE(rc, "failed to get propagation params");
+    
+    auto ephTwoBody = EphemerisTwoBody::New(params.propagationFrame_, params.epoch_, params.stateInPropagationFrame_);
+    eph = ephTwoBody;
+    return eNoError;
 }
 
 err_t MotionTwoBody::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
 {
-    return err_t();
+    err_t rc;
+    PropagationParams params;
+    rc = this->getPropagationParams(params);   AST_CHECK_ERRCODE(rc, "failed to get propagation params");
+    auto propFrame = params.propagationFrame_;
+    const TimePoint& epoch = params.epoch_;
+    const CartState& cartState = params.stateInPropagationFrame_;
+    double gm = propFrame->getGM();   AST_CHECK_INVALID(gm <= 0);
+
+    std::vector<double> times;
+    std::vector<Vector3d> positions, velocities;
+    rc = this->discreteInterval(epoch, stepSize_, times);   AST_CHECK_ERRCODE(rc, "failed to discrete interval");
+    positions.resize(times.size());
+    velocities.resize(times.size());
+    for(size_t i = 0; i < times.size(); i++){
+        double t = times[i];
+        CartState state = cartState;
+        aTwoBodyProp(t, gm, state.pos(), state.vel());
+        positions[i] = state.pos();
+        velocities[i] = state.vel();
+    }
+
+    auto ephemLag = new EphemerisLagrangeVar();
+    ephemLag->setTimes(times);
+    ephemLag->setPositions(positions);
+    ephemLag->setVelocities(velocities);
+    ephemLag->setEpoch(epoch);
+    ephemLag->setFrame(propFrame);
+    eph = ephemLag;
+
+    return eNoError;
+}
+
+void MotionTwoBody::accept(MotionProfileVisitor& visitor)
+{
+    visitor.visit(*this);
 }
 
 AST_NAMESPACE_END
-
-

@@ -24,12 +24,14 @@
 #include "AstCore/RotationalData.hpp"
 #include "AstCore/EarthOrientation.hpp"
 #include "AstCore/MoonOrientation.hpp"
-#include "AstCore/EphemerisDE.hpp"
-#include "AstCore/EphemerisNoop.hpp"
+#include "AstCore/BodyEphemerisDE.hpp"
+#include "AstCore/BodyEphemerisSPK.hpp"
+#include "AstCore/BodyEphemerisNoop.hpp"
 #include "AstCore/FrameICRF.hpp"
 #include "AstCore/FrameAssembly.hpp"
 #include "AstCore/BuiltinAxes.hpp"
 #include "AstCore/SolarSystem.hpp"
+#include "AstCore/RunTime.hpp"
 #include "AstUtil/Class.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/String.hpp"
@@ -59,7 +61,7 @@ CelestialBody::CelestialBody(StringView name, SolarSystem *solarSystem)
     , name_{name}
 {
     orientation_  = new NoopOrientation();
-    ephemeris_    = new EphemerisDE(this);
+    ephemeris_    = new BodyEphemerisDE(this);
     axesFixed_    = AxesBodyFixed::New(this);
     axesInertial_ = AxesBodyInertial::New(this);
     axesMOD_      = AxesBodyMOD::New(this);
@@ -73,9 +75,17 @@ CelestialBody::~CelestialBody()
 void CelestialBody::setJplIndex(int index)
 {
     jplIndex_ = index;
-    if(auto de =  dynamic_cast<EphemerisDE*>(ephemeris_.get())){
+    if(auto de =  dynamic_cast<BodyEphemerisDE*>(ephemeris_.get())){
         de->setJplIndex(index);
     }
+}
+
+std::string CelestialBody::getDirpath() const
+{
+    if(auto ss = solarSystem_.get()){
+        return fs::path(ss->getDirpath()) / name_;
+    }
+    return std::string();
 }
 
 SolarSystem *CelestialBody::getSolarSystem() const
@@ -89,11 +99,15 @@ err_t CelestialBody::load(StringView filepath)
     if(!fs::is_regular_file(path))
     {
         path = path / (path.filename().string() + ".cb");
+        if(!fs::is_regular_file(path))
+        {
+            return eErrorInvalidFile;
+        }
     }
     BKVParser parser(path.string());
     if(!parser.isOpen())
     {
-        // aError("failed to open file %s", path.string().c_str());
+        aError("failed to open file %s", path.string().c_str());
         return eErrorInvalidFile;
     }
     BKVItemView item;
@@ -178,6 +192,30 @@ err_t CelestialBody::getPos(const TimePoint &tp, Vector3d &pos) const
 err_t CelestialBody::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     return getPosVelICRF(tp, pos, vel);
+}
+
+Axes *CelestialBody::getAxes(StringView name) const
+{
+    /// @todo 这里考虑使用哈希表来存储映射关系
+    if(aEqualsIgnoreCase(name, "Inertial"))
+        return axesInertial_.get();
+    else if(aEqualsIgnoreCase(name, "Fixed"))
+        return axesFixed_.get();
+    else if(aEqualsIgnoreCase(name, "MOD"))
+        return axesMOD_.get();
+    else if(aEqualsIgnoreCase(name, "TOD"))
+        return axesTOD_.get();
+    else if(aEqualsIgnoreCase(name, "TrueOfDate"))
+        return axesTOD_.get();
+    else if(aEqualsIgnoreCase(name, "MeanOfDate"))
+        return axesMOD_.get();
+    else {
+        // 尝试从全局哈希表中获取轴系
+        auto axes = aGetAxes(name);
+        if(!axes)
+            aWarning("unsupported axes name '%.*s'", (int)name.size(), name.data());
+        return axes;
+    }
 }
 
 HFrame CelestialBody::makeEpochFrame(Axes *sourceAxes, const TimePoint &tp, Axes *reference) const
@@ -276,7 +314,7 @@ Axes *CelestialBody::getEpochAxesReference() const
 
 err_t CelestialBody::loadGravityModel(StringView model)
 {
-    return gravityField_.load(model, 6, 6);
+    return gravityField_.load(model, 6, 6, getDirpath());
 }
 
 err_t CelestialBody::loadAstroDefinition(BKVParser &parser)
@@ -377,7 +415,22 @@ err_t CelestialBody::loadEphemerisData(BKVParser & parser)
         token = parser.getNext(item);
         if(token == BKVParser::eKeyValue){
             if(aEqualsIgnoreCase(item.key(), "EphemerisSource")){
-                ephemeris_ = new EphemerisDE(jplIndex_);
+                if(aEqualsIgnoreCase(item.value(), "JplDe")){
+                    ephemeris_ = new BodyEphemerisDE(jplIndex_);
+                }else if(aEqualsIgnoreCase(item.value(), "JplSpice")){
+                    auto ephemerisSPK = new BodyEphemerisSPK(jplSpiceId_);
+                    std::string spkDir = aGetConfigValue("SPK_DIR").toString();
+                    if(spkDir.empty())
+                        spkDir = aGetDefaultSPKDir();
+                    std::string spkFile = spkDir + "/" + aAsciiStrToLower(name_) + ".bsp";
+                    if(fs::is_regular_file(spkFile)){
+                        err_t rc = ephemerisSPK->openSPKFile(spkFile);
+                        if(rc){
+                            aWarning("failed to open SPK file '%s'", spkFile.c_str());
+                        }
+                    }
+                    ephemeris_ = ephemerisSPK;
+                }
             }else if(aEqualsIgnoreCase(item.key(), "JplSpiceId")){
                 jplSpiceId_ = item.value().toInt();
             }else if(aEqualsIgnoreCase(item.key(), "JplIndex")){

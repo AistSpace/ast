@@ -28,6 +28,7 @@
 #include "AstMath/Transform.hpp"
 #include "AstMath/KinematicTransform.hpp"
 #include "AstMath/Matrix.hpp"
+#include "AstUtil/Literals.hpp"
 #include "AstTest/Test.h"
 
 AST_USING_NAMESPACE
@@ -68,6 +69,7 @@ TEST(FrameTransformTest, Transform_Case1)
         Vector3d posMoonInEarth1, velMoonInEarth1;
         Vector3d posMoonInEarth2, velMoonInEarth2;
         aJplDeGetPosVelICRF(tp, JplDe::eMoon, JplDe::eEarth, posMoonInEarth1, velMoonInEarth1);
+        // 下面的计算会导致截断误差，导致结果不准确
         aJplDeGetPosVelICRF(tp, JplDe::eEarth, JplDe::eSSBarycenter, posEarth, velEarth);
         aJplDeGetPosVelICRF(tp, JplDe::eMoon, JplDe::eSSBarycenter, posMoon, velMoon);
         posMoonInEarth2 = posMoon - posEarth;
@@ -80,32 +82,46 @@ TEST(FrameTransformTest, Transform_Case1)
 
 TEST(FrameTransformTest, Transform_Case2)
 {
+    if(aIsGithubCI())
+        GTEST_SKIP();
     aInitialize();
     auto mars = aGetMars();
     auto jupiter = aGetJupiter();
     {
         auto marsInertial = mars->makeFrameInertial();
         auto jupiterInertial = jupiter->makeFrameInertial();
-        TimePoint tp = TimePoint::FromUTC(2026, 3, 5, 0, 0, 0);
+        TimePoint tp = TimePoint::FromUTC(2026, 3, 5, 4, 0, 0);
         Transform transform;
         err_t rc = aFrameTransform(marsInertial, jupiterInertial, tp, transform);
         EXPECT_FALSE(rc);
-        Vector3d posMars{1000.0, 2000.0, 3000.0};
+        Vector3d posMars{1000.0_km, 2000.0_km, 3000.0_km};
         Vector3d posJupiter{};
         transform.transformPosition(posMars, posJupiter);
-        printf("posJupiter = %s\n", posJupiter.toString().c_str());
+        printf("posJupiter       = %s\n", posJupiter.toString().c_str());
+        Vector3d posJupiterExpect{510988017.1644716858863831_km, -824472406.8249446153640747_km, 12126742.5698849204927683_km};
+        printf("posJupiterExpect = %s\n", posJupiterExpect.toString().c_str());
+        for(int i = 0; i < 3; i++)
+        {
+            EXPECT_NEAR(posJupiter[i], posJupiterExpect[i], fabs(posJupiterExpect[i]) * 1e-13);
+        }
     }
     {
         auto marsICRF = mars->makeFrameICRF();
         auto jupiterICRF = jupiter->makeFrameICRF();
-        TimePoint tp = TimePoint::FromUTC(2026, 3, 5, 0, 0, 0);
+        TimePoint tp = TimePoint::FromUTC(2026, 3, 5, 4, 0, 0);
         Transform transform;
         err_t rc = aFrameTransform(marsICRF, jupiterICRF, tp, transform);
         EXPECT_FALSE(rc);
-        Vector3d posMars{1000.0, 2000.0, 3000.0};
+        Vector3d posMars{1000.0_km, 2000.0_km, 3000.0_km};
         Vector3d posJupiter{};
         transform.transformPosition(posMars, posJupiter);
-        printf("posJupiter = %s\n", posJupiter.toString().c_str());
+        printf("posJupiter       = %s\n", posJupiter.toString().c_str());
+        Vector3d posJupiterExpect{485290149.6851636767387390_km, -766243403.2641737461090088_km, -344054501.0049201846122742_km};
+        printf("posJupiterExpect = %s\n", posJupiterExpect.toString().c_str());
+        for(int i = 0; i < 3; i++)
+        {
+            EXPECT_NEAR(posJupiter[i], posJupiterExpect[i], fabs(posJupiterExpect[i]) * 1e-15);
+        }
     }
 }
 

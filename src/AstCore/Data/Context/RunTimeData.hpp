@@ -27,3 +27,5 @@
 #include "RunTimeSolarSystem.hpp"
 #include "RunTimeXYS.hpp"
 #include "RunTimeEpoch.hpp"
+#include "RunTimeConfig.hpp"
+#include "RunTimeSpice.hpp"

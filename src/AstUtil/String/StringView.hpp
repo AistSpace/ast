@@ -182,14 +182,14 @@ public:
             // 抛出异常或返回空视图
             return StringViewBasic();
         }
-        size_type rlen = std::min(count, m_size - pos);
+        size_type rlen = (std::min)(count, m_size - pos);
         return StringViewBasic(m_data + pos, rlen);
     }
 
     // 比较操作
     int compare(StringViewBasic other) const noexcept
     {
-        size_type len = std::min(m_size, other.m_size);
+        size_type len = (std::min)(m_size, other.m_size);
         int result = traits_type::compare(m_data, other.m_data, len);
         if (result != 0) return result;
         if (m_size < other.m_size) return -1;

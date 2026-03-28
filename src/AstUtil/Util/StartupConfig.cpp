@@ -32,15 +32,18 @@ err_t StartupConfig::load(StringView filepath)
         return eErrorInvalidFile;
     this->configMap_.clear();
     BKVItemView item;
-    while(parser.getNext(item) == eNoError)
+    while(1)
     {
-        std::string value = this->decodeConfig(item.value());
-        ValueView existsValue;
-        if(this->getConfig(item.key(), existsValue) == eNoError)
-        {
-            value = existsValue.toString() + "," + value;
+        auto token = parser.getNext(item);
+        if(token == KVParser::eEqual){
+            this->setConfig(item.key(), item.value());
+        }else if(token == KVParser::eAddEqual){
+            this->addConfig(item.key(), item.value());
+        }else if(token == KVParser::eEOF){
+            break;
+        }else if(token == KVParser::eError){
+            return eErrorInvalidFile;
         }
-        this->configMap_[std::string(item.key())] = value;
     }
     return eNoError;
 }
@@ -53,6 +56,16 @@ ValueView StartupConfig::getConfig(StringView key) const
     return value;
 }
 
+std::vector<std::string> StartupConfig::getStringVector(StringView key) const
+{
+    return this->getConfig(key).split(',');
+}
+
+std::vector<StringView> StartupConfig::getStringViewVector(StringView key) const
+{
+    return this->getConfig(key).split(',');
+}
+
 err_t StartupConfig::getConfig(StringView key, ValueView &value) const
 {
     auto it = this->configMap_.find(std::string(key));
@@ -60,6 +73,34 @@ err_t StartupConfig::getConfig(StringView key, ValueView &value) const
         return eErrorNotFound;
     value = it->second;
     return eNoError;
+}
+
+void StartupConfig::setConfig(StringView key, ValueView value)
+{
+    this->setConfigRaw(key, this->decodeConfig(value));
+}
+
+void StartupConfig::setConfigRaw(StringView key, ValueView value)
+{
+    this->configMap_[std::string(key)] = value.toString();
+}
+
+void StartupConfig::addConfig(StringView key, ValueView value)
+{
+    std::string valuestr = this->decodeConfig(value);
+    this->addConfigRaw(key, valuestr);
+}
+
+void StartupConfig::addConfigRaw(StringView key, ValueView value)
+{
+    ValueView existsValue;
+    if(this->getConfig(key, existsValue) == eNoError)
+    {
+        std::string valuestr = existsValue.toString() + "," + value.toString();
+        this->setConfigRaw(key, valuestr);
+    }else{
+        this->setConfigRaw(key, value);
+    }
 }
 
 bool StartupConfig::hasConfig(StringView key) const
@@ -71,10 +112,12 @@ bool StartupConfig::hasConfig(StringView key) const
 std::string StartupConfig::decodeConfig(StringView value)
 {
     auto pos = value.find('/');
-    if(pos != std::string::npos)
     {
         StringView prefix = value.substr(0, pos);
-        StringView suffix = value.substr(pos + 1);
+        StringView suffix;
+        if(pos != std::string::npos)
+            suffix = value.substr(pos + 1);
+        
         if(prefix.ends_with("_PATH") || prefix.ends_with("_DIR") || prefix.ends_with("_FILE"))
         {
             prefix = this->getConfig(prefix).toStringView();

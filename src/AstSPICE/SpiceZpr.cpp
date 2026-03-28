@@ -24,6 +24,7 @@
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/CelestialBody.hpp"
 #include "AstCore/OrbitElement.hpp"
+#include "AstCore/TimeSystem.hpp"
 #include "AstMath/AttitudeConvert.hpp"
 #include "AstMath/AngleAxis.hpp"
 #include "AstMath/Euler.hpp"

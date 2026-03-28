@@ -20,6 +20,7 @@
 
 #include "Environment.hpp"
 #include "AstUtil/Posix.hpp"
+#include "AstUtil/StringView.hpp"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -30,7 +31,21 @@
 AST_NAMESPACE_BEGIN
 
 
+static bool _aHasCIVar()
+{
+    // #pragma warning(suppress: 4996)
+    const char* ci_env = posix::getenv("CI");
+    if(ci_env && ci_env[0] != '\0')
+        return true;
+    return false;
+}
+
 bool aIsCI()
+{
+    return aIsGithubCI() || aIsGitlabCI() || _aHasCIVar();
+}
+
+bool aIsGithubCI()
 {
     // #pragma warning(suppress: 4996)
     const char* ci_env = posix::getenv("GITHUB_ACTION");
@@ -39,6 +54,19 @@ bool aIsCI()
     return false;
 }
 
+bool aIsGitlabCI()
+{
+    // #pragma warning(suppress: 4996)
+    const char* ci_env = posix::getenv("GITLAB_CI");
+    if(ci_env && ci_env[0] != '\0')
+        return true;
+    return false;
+}
+
+StringView aProjectName()
+{
+    return AST_PROJECT_NAME;
+}
 
 bool is_term(int fd)
 {

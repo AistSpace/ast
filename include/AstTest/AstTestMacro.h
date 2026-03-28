@@ -21,9 +21,11 @@
 #pragma once
  
 #include "AstGlobal.h"
-#include <cmath>	// for fabs
-#include <cstdio>	// for printf
-#include <iostream> // for std::cout 
+#include <cmath>						// for fabs
+#include <cstdio>						// for printf
+#include <iostream> 					// for std::cout 
+#include "AstTest/TestConfig.hpp"		// for test config
+#include "AstUtil/Environment.hpp"		// for env check
 #include <gtest/gtest.h>
 
 

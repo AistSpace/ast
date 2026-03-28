@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstSim/Mover.hpp"
+#include "AstSim/SpaceObject.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -31,7 +32,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 航天器对象
-class Spacecraft: public Mover
+class Spacecraft: public SpaceObject
 {
 public:
     Spacecraft() = default;

@@ -53,7 +53,8 @@
 
 
 #define AST_ENABLE_NAMESPACE                     // [影响ABI]是否使用命名空间
-#define AST_USE_CRT_SAFE                         // 是否使用CRT安全函数，例如_wfopen_s、_wfreopen_s等
+// #define AST_USE_CRT_SAFE                      // 是否使用CRT安全函数，例如_wfopen_s、_wfreopen_s等
+                                                 //（已废弃，这些函数不用共享文件，即同时打开相同文件，在一些情况下有问题）
 
 // #define AST_ENABLE_OVERRIDE_STDLIB            // 是否允许覆盖标准库的一些函数
 // #define AST_ENABLE_DATETIME_FORMAT_RFC        // 是否启用RFC系列的其他日期时间格式化，例如RFC 1123、RFC 2822等
@@ -103,7 +104,7 @@
 #define AST_OBJECT(TYPE) \
     static Class staticType;\
     static inline Class* getStaticType(){return &staticType;}\
-    Class* getType() const{return &staticType;}\
+    Class* getType() const override{return &staticType;} \
 
 #define _AST_IMPL_OBJECT(TYPE) \
     Class TYPE::staticType;\
@@ -235,6 +236,10 @@
 #endif
 #define AST_TEST_CAPI A_DECL_EXTERN_C AST_TEST_API
 
+
+#ifndef AST_PROJECT_NAME
+#   define AST_PROJECT_NAME "ast"
+#endif
 
 AST_NAMESPACE_BEGIN
 

@@ -105,6 +105,18 @@ AST_CORE_CAPI err_t aTimePointParse(StringView str, TimePoint& time);
 class TimePoint
 {
 public:
+    /// @brief 获取当前时间点
+    AST_CORE_API
+    static TimePoint CurrentTime();
+
+    /// @brief 获取今日00:00:00 UTC时间点
+    AST_CORE_API 
+    static TimePoint TodayUTC();
+
+    /// @brief 获取明天00:00:00 UTC时间点
+    AST_CORE_API
+    static TimePoint TomorrowUTC();
+
     /// @brief 从UTC日期时间创建时间点
     AST_CORE_API
     static TimePoint FromUTC(const DateTime& dttmUTC);

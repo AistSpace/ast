@@ -33,7 +33,7 @@ AST_NAMESPACE_BEGIN
 class Point;
 class Axes;
 
-class FrameICRF : public Frame
+class AST_CORE_API FrameICRF : public Frame
 {
 public:
     FrameICRF() = default;

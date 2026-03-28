@@ -48,17 +48,6 @@ AST_SPICE_API CelestialBody* aSpiceFindBody(StringView name);
 AST_SPICE_API CelestialBody* aSpiceFindBody(int id);
 
 
-/// @brief 将 SPICE 时间转换为 TimePoint
-/// @param et SPICE 时间（秒）
-/// @return 对应的 TimePoint 实例
-AST_SPICE_API TimePoint aSpiceEtToTimePoint(double et);
-
-
-/// @brief 将 TimePoint 转换为 SPICE 时间
-/// @param tp TimePoint 实例
-/// @return 对应的 SPICE 时间（秒）
-AST_SPICE_API double aTimePointToSpiceEt(const TimePoint& tp);
-
 
 /*! @} */
 

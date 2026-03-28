@@ -46,15 +46,18 @@ TEST_F(HPOPTest, HPOPEquation)
 {
     HPOPEquation equation;
     HPOPForceModel forcemodel;
+    forcemodel.gravity_.model_ = "WGS84";
     int ndim;
     err_t err;
     err = equation.setForceModel(forcemodel);
+    equation.initialize();
     ndim = equation.getDimension();
     EXPECT_EQ(err, 0);
     EXPECT_EQ(ndim, 6);
 
     forcemodel.useMoonGravity_ = true;
     err = equation.setForceModel(forcemodel);
+    equation.initialize();
     ndim = equation.getDimension();
     EXPECT_EQ(err, 0);
     EXPECT_EQ(ndim, 6);
@@ -141,9 +144,9 @@ TEST_F(HPOPTest, OnlyGravity_70_50)
 
 TEST_F(HPOPTest, OnlyGravity_20_20)
 {
-    if(!aIsCI()){
-        GTEST_SKIP();
-    }
+    // if(!aIsCI()){
+    //     GTEST_SKIP();
+    // }
     HPOPForceModel forcemodel;
     forcemodel.useMoonGravity_ = false;
     forcemodel.gravity_.model_ = "JGM3";

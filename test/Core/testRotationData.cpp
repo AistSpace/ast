@@ -31,6 +31,8 @@ using namespace _AST literals;
 
 TEST(RotationalData, load)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     RotationalData data;
     std::string datadir = aDataDirGet();
     std::vector<std::string> files;
@@ -51,6 +53,8 @@ TEST(RotationalData, load)
 
 TEST(RotationalData, MarsAttitude2000)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     RotationalData data;
     std::string datadir = aDataDirGet();
     err_t rc = data.load(datadir + "/SolarSystem/Mars/MarsAttitude2000.rot");
@@ -115,6 +119,8 @@ TEST(RotationalData, MarsAttitude2000)
 
 TEST(RotationalData, NeptuneAttitude2000)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     RotationalData data;
     std::string datadir = aDataDirGet();
     err_t rc = data.load(datadir + "/SolarSystem/Neptune/NeptuneAttitude2000.rot");
@@ -181,6 +187,8 @@ TEST(RotationalData, NeptuneAttitude2000)
 
 TEST(RotationalData, JupiterAttitude2009)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     RotationalData data;
     std::string datadir = aDataDirGet();
     err_t rc = data.load(datadir + "/SolarSystem/Jupiter/JupiterAttitude2009.rot");
@@ -246,6 +254,8 @@ TEST(RotationalData, JupiterAttitude2009)
 
 TEST(RotationalData, MoonAttitude2000)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     RotationalData data;
     std::string datadir = aDataDirGet();
     err_t rc = data.load(datadir + "/SolarSystem/Moon/MoonAttitude2000.rot");

@@ -19,34 +19,68 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "TimeInterval.hpp"
+#include <cmath>
 
 AST_NAMESPACE_BEGIN
 
-err_t aTimeIntervalFormat(const TimeInterval &interval, std::string &strStart, std::string &strEnd)
+err_t aTimeIntervalFormat(const TimeInterval &interval, std::string &strStart, std::string &strStop)
 {
-    TimePoint start, end;
+    TimePoint start, stop;
     start = interval.getStart();
-    end = interval.getEnd();
+    stop = interval.getStop();
     err_t rc = aTimePointFormat(start, strStart);
-    rc |= aTimePointFormat(end, strEnd);
+    rc |= aTimePointFormat(stop, strStop);
     return rc;
 }
 
-err_t aTimeIntervalParse(StringView strStart, StringView strEnd, TimeInterval &interval)
+err_t aTimeIntervalParse(StringView strStart, StringView strStop, TimeInterval &interval)
 {
-    TimePoint start, end;
+    TimePoint start, stop;
     err_t rc = aTimePointParse(strStart, start);
     if(rc != 0){
         return rc;
     }
-    rc = aTimePointParse(strEnd, end);
+    rc = aTimePointParse(strStop, stop);
     if(rc != 0){
         return rc;
     }
-    interval = TimeInterval(start, end);
+    interval = TimeInterval(start, stop);
     return 0;
 }
 
+err_t TimeInterval::discrete(const TimePoint &epoch, double step, std::vector<double> &times) const
+{
+    ptrdiff_t nnodes = static_cast<ptrdiff_t>(std::ceil(duration() / step));
+    if(nnodes <= 0){
+        aError("number of nodes (%ld) is invalid", nnodes);
+        return eErrorInvalidParam;
+    }
+    times.reserve(nnodes);
+    double offset = getStart() - epoch;
+    
+    for(ptrdiff_t i = 0; i < nnodes-1; i++){
+        times.push_back(offset + i * step);
+    }
+    times.push_back(getStop() - epoch);
+    return eNoError;
+}
+
+err_t TimeInterval::discrete(double step, std::vector<TimePoint> &times) const
+{
+    ptrdiff_t nnodes = static_cast<ptrdiff_t>(std::ceil(duration() / step));
+    if(nnodes <= 0){
+        aError("number of nodes (%ld) is invalid", nnodes);
+        return eErrorInvalidParam;
+    }
+    times.reserve(nnodes);
+    TimePoint start = getStart();
+    
+    for(ptrdiff_t i = 0; i < nnodes-1; i++){
+        times.push_back(start + i * step);
+    }
+    times.push_back(getStop());
+    return eNoError;
+}
+
+
 AST_NAMESPACE_END
-
-

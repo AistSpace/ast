@@ -21,6 +21,7 @@
 #include "AstCore/DateTime.hpp"
 #include "AstCore/JulianDate.hpp"
 #include "AstCore/RunTime.hpp"
+#include "AstCore/TimePoint.hpp"
 #include <cmath>
 
 
@@ -404,6 +405,21 @@ double aTDBMinusTT(const JulianDate& jdTT)
 	return iauDtdb(jdTTp1, jdTTp2, 0, 0, 0, 0);
 #endif
 }
+
+
+
+TimePoint aSpiceEtToTimePoint(double et)
+{
+    JulianDate jdTDB{static_cast<int>(kJ2000Epoch), et};
+    return TimePoint::FromTDB(jdTDB);
+}
+
+double aTimePointToSpiceEt(const TimePoint &tp)
+{
+    JulianDate jdTDB = tp.toTDB();
+    return jdTDB.secondsFromJ2000();
+}
+
 
 
 AST_NAMESPACE_END

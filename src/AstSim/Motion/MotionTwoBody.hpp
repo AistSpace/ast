@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstSim/MotionBasic.hpp"
+#include "AstSim/MotionOrbitDynamics.hpp"
 #include "AstSim/MotionProfile.hpp"
 #include "AstCore/State.hpp"
 #include "AstCore/EventInterval.hpp"
@@ -45,6 +45,7 @@ public:
 public:
     err_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const override;
     err_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const override;
+    void accept(MotionProfileVisitor& visitor) override;
 };
 
 /*! @} */

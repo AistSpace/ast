@@ -33,41 +33,38 @@ GravityCalculator::GravityCalculator()
     // @todo
 }
 
-GravityCalculator::GravityCalculator (const GravityField &gravityField)
-    : GravityCalculator(gravityField, gravityField.getMaxDegree(), gravityField.getMaxOrder())
-{}
-
 
 GravityCalculator::GravityCalculator(const GravityField &gravityField, int degree, int order)
-    : gravityField_(gravityField)
-    , degree_(degree)
-    , order_(order)
+    : GravityCalculator((GravityField(gravityField)), degree, order)
 {
-    degree_ = std::min(gravityField_.getMaxDegree(), degree);
-    order_ = std::min(gravityField_.getMaxOrder(), order);
 }
 
-GravityCalculator::GravityCalculator(StringView gravityFilePath, int degree, int order)
-    : gravityField_()
-    , degree_(degree)
-    , order_(order)
+GravityCalculator::GravityCalculator(GravityField &&gravityField, int degree, int order)
+    : gravityField_(std::move(gravityField))
+    // , degree_(degree)
+    // , order_(order)
 {
-    err_t err = gravityField_.load(gravityFilePath);
-    if(err != eNoError)
-    {
-        aError("Failed to load gravity file: %s", gravityFilePath.empty()?"(empty)":gravityFilePath.data());
-    }
-    degree_ = std::min(gravityField_.getMaxDegree(), degree);
-    order_ = std::min(gravityField_.getMaxOrder(), order);
+    initDegreeOrder(degree, order);
 }
-
-
 
 void GravityCalculator::calcTotalAcceleration(const Vector3d &positionCBF, Vector3d &accelerationCBF)
 {
     calcPertAcceleration(positionCBF, accelerationCBF);
     double factor = getGravityField().getGM() / (positionCBF.squaredNorm() * positionCBF.norm());
     accelerationCBF = accelerationCBF - positionCBF * factor;
+}
+
+void GravityCalculator::initDegreeOrder(int degree, int order)
+{
+    if(degree >= 0)
+        degree_ = std::min(gravityField_.getMaxDegree(), degree);
+    else
+        degree_ = gravityField_.getMaxDegree();
+    
+    if(order >= 0)
+        order_ = std::min(gravityField_.getMaxOrder(), order);
+    else
+        order_ = gravityField_.getMaxOrder();
 }
 
 AST_NAMESPACE_END

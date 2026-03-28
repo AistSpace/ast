@@ -92,6 +92,14 @@ AST_CORE_API err_t aJplDeGetLibration(
 );
 
 
+/// @brief 获取JPL DE星历数据的时间间隔
+/// @param interval 
+/// @return 
+AST_CORE_CAPI err_t aJplDeGetInterval(
+    TimeInterval& interval
+);
+
+
 /// @brief 获取JPL DE星历数据的版本号
 /// @return 星历版本号
 AST_CORE_CAPI int aJplDeNum();

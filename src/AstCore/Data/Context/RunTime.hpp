@@ -40,7 +40,7 @@ class EOP;
 class IAUXYS;
 class IAUXYSPrecomputed;
 class SolarSystem;
-
+class StartupConfig;
 
 /// @brief 初始化
 AST_CORE_CAPI err_t aInitialize();
@@ -50,6 +50,10 @@ AST_CORE_CAPI err_t aInitializeByConfig(StringView configfile);
 
 /// @brief 反初始化
 AST_CORE_CAPI err_t aUninitialize();
+
+
+/// @brief 获取默认SPK目录
+AST_CORE_API std::string aGetDefaultSPKDir();
 
  
 /// @brief 获取数据文件夹
@@ -109,6 +113,10 @@ AST_CORE_CAPI SolarSystem* aDataContext_GetSolarSystem();
 /// @brief 获取当前线程的数据上下文的IAUXYSPrecomputed
 AST_CORE_CAPI IAUXYSPrecomputed* aDataContext_GetIAUXYSPrecomputed();
 
+
+/// @brief 获取当前线程的数据上下文的配置
+/// @return 
+AST_CORE_CAPI StartupConfig* aDataContext_GetConfig();
 
 /// @brief 创建一个新的全局上下文
 AST_CORE_CAPI DataContext* aDataContext_New();

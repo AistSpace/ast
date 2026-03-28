@@ -30,7 +30,7 @@
 #include "AstUtil/ScopedPtr.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/StringSplit.hpp"
-#include "AstUtil/SpiceTextParser.hpp"
+#include "AstUtil/PCKParser.hpp"
 #include <assert.h>
 #include <fstream>
 #include <cmath>
@@ -214,7 +214,7 @@ err_t LeapSecond::loadHPIERS(FILE* file)
 
 err_t LeapSecond::loadSpice(FILE* file)
 {
-    SpiceTextParser parser;
+    PCKParser parser;
     parser.setBorrowedFile(file);
     BKVItemView item;
     err_t rc;

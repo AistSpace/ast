@@ -6,14 +6,15 @@
 #include <iostream>
 #include "AstUtil/FileSystem.hpp"
 #include "AstUtil/Environment.hpp"
+#include "AstTest/TestConfig.hpp"
 
 AST_USING_NAMESPACE
 int main(){
     setlocale(LC_ALL, ".UTF-8");
     if(aIsCI()) return 0;
-    std::string spkfile = "data/Test/kernels/spk/de430.bsp";
-    std::string pckfile = "data/Test/kernels/pck/pck00011.tpc";
-    std::vector<std::string> kernels = {spkfile, pckfile};
+    std::vector<std::string> kernels  = aTestGetConfigValue("SPK_FILES").split(',');
+    std::string pckfile = aTestGetConfigValue("PCK_FILE").toString();
+    kernels.push_back(pckfile);
     for(auto& kernel : kernels){
         if(!fs::exists(kernel)){
             std::cout << "Kernel file " << kernel << " does not exist." << std::endl;

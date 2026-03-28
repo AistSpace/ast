@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "MotionBasicSax.hpp"
+#include "MotionOrbitDynamicsSax.hpp"
 #include "AstCore/StateCartesian.hpp"
 #include "AstSim/MotionHPOP.hpp"
 
@@ -32,10 +32,10 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class MotionHPOPSax : public MotionBasicSax
+class MotionHPOPSax : public MotionOrbitDynamicsSax
 {
 public:
-    using MotionBasicSax::MotionBasicSax;
+    using MotionOrbitDynamicsSax::MotionOrbitDynamicsSax;
     ~MotionHPOPSax() override = default;
 public:
     err_t keyValue(StringView key, const ValueView& value) override;

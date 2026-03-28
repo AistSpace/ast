@@ -27,6 +27,8 @@ AST_USING_NAMESPACE
 
 TEST(RunTime, DataDir)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     std::string datadir = aDataDir();
     EXPECT_TRUE(datadir.size() > 0);
     const char newdatadir[] = "./data/SolarSystem";

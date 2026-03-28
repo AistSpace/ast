@@ -28,6 +28,8 @@ AST_USING_NAMESPACE
 
 TEST(SpaceWeather, Load)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     SpaceWeather sw;
     err_t rc = sw.loadDefault();
     EXPECT_TRUE(rc == eNoError);

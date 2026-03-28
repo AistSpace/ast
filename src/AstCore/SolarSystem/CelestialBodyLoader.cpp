@@ -22,6 +22,17 @@
 
 AST_NAMESPACE_BEGIN
 
+err_t aLoadBody(StringView filepath, HCelestialBody& body)
+{
+    HBody newbody = body;
+    if(!newbody)
+        newbody = new CelestialBody();
+    err_t rc = newbody->load(filepath);
+    if(rc)
+        return rc;
+    body = newbody;
+    return 0;
+}
 
 
 AST_NAMESPACE_END

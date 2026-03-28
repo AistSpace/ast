@@ -39,8 +39,12 @@ err_t HPOP::setForceModel(const HPOPForceModel& forcemodel)
     if(!equation_){
         equation_ = new HPOPEquation();
     }
-    forcemodel_ = forcemodel;
     return equation_->setForceModel(forcemodel);
+}
+
+err_t HPOP::setPropagationFrame(Frame *frame)
+{
+    return equation_->setPropagationFrame(frame);
 }
 
 ODEIntegrator *HPOP::getIntegrator() const
@@ -55,11 +59,12 @@ ODEIntegrator *HPOP::getIntegrator() const
 err_t HPOP::initialize()
 {
     if (!equation_){
-        equation_ = new HPOPEquation(forcemodel_);
+        equation_ = new HPOPEquation();
     }
     if (!integrator_){
         integrator_ = new RKF78();
     }
+    equation_->initialize();
     // err |= integrator_->initialize(equation_);
     return 0;
 }

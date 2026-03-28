@@ -32,7 +32,8 @@ FILES_TO_DELETE = [
 ZIP_NAME = 'ast-nt.zip'
 
 # 排除的目录
-EXCLUDE_DIRS = ['data', 'docs', '.git', 'build', '.xmake', ".trae", ".vscode", ".github"]
+EXCLUDE_DIRS = ['data', 'docs', '.git', 'build', '.xmake', ".trae", ".vscode", ".github", 
+                ".vs", "thirdparty", "vs2015", "vs2026", "vsxmake2022", "vsxmake2026"]
 
 # 合并模块源文件
 def merge_module_sources():

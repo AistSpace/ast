@@ -43,25 +43,35 @@ class AST_CORE_API GravityCalculator
 {
 public:
     GravityCalculator();
-    /// @brief 构造函数
-    /// @param gravityField 重力场系数
-    GravityCalculator(const GravityField &gravityField);
+    
     /// @brief 构造函数
     /// @param gravityField 重力场系数
     /// @param degree 计算所使用的阶数
     /// @param order 计算所使用的次数
-    GravityCalculator(const GravityField &gravityField, int degree, int order);
+    GravityCalculator(const GravityField &gravityField, int degree=-1, int order=-1);
+
     /// @brief 构造函数
-    /// @param gravityModel 重力场模型文件路径，或者模型名称
+    /// @param gravityField 重力场系数
     /// @param degree 计算所使用的阶数
     /// @param order 计算所使用的次数
-    GravityCalculator(StringView gravityModel, int degree, int order);
+    GravityCalculator(GravityField &&gravityField, int degree=-1, int order=-1);
+
 
     /// @brief 获取重力场系数
     /// @return 重力场系数
     const GravityField& getGravityField() const { return gravityField_; }
+
+    // 在这里不能公开提供返回可修改引用接口，否则会导致重力场系数等参数被修改
+    // 
+    // 例如: 在初始化重力场计算对象后，
+    // 通过重力场的可修改引用调用load函数重新加载重力场模型
+    // 可能导致加载重力场阶次比计算所需的阶次小，从而导致执行崩溃问题
+    // 或者导致加载重力场阶次比计算所需的阶次大，但是计算时并没有使用高阶项，容易导致与预期不符
+    // 
+    // 因此，在这里不能公开提供可修改引用，只能提供const引用
+protected:
     GravityField& getGravityField() { return gravityField_; }
-    
+public:
     /// @brief 获取计算阶数
     /// @return 计算阶数
     int getDegree() const { return degree_; }
@@ -81,10 +91,12 @@ public:
     /// @param positionCBF 位置向量（天体固连系）
     /// @param accelerationCBF 总加速度向量（天体固连系）
     virtual void calcTotalAcceleration (const Vector3d &positionCBF, Vector3d &accelerationCBF);
+private:
+    void initDegreeOrder(int degree, int order);
 protected:
-    GravityField gravityField_;     ///< 重力场系数
-    int degree_;                    ///< 计算所使用的阶数
-    int order_;                     ///< 计算所使用的次数
+    GravityField gravityField_;        ///< 重力场系数
+    int degree_{0};                    ///< 计算所使用的阶数
+    int order_{0};                     ///< 计算所使用的次数
 };
 
 #ifdef _AST_ENABLE_GRAVITY_CALCULATOR_1
@@ -156,7 +168,7 @@ class AST_CORE_API GravityCalculator3: public GravityCalculator
 public:
     GravityCalculator3();
     GravityCalculator3(const GravityField &gravityField, int degree, int order);
-    GravityCalculator3(StringView gravityModel, int degree, int order);
+    GravityCalculator3(GravityField &&gravityField, int degree, int order);
 
     ~GravityCalculator3() override;
     
@@ -201,3 +213,10 @@ public:
 
 
 AST_NAMESPACE_END
+
+AST_DECL_TYPE_ALIAS(GravityCalculator)
+AST_DECL_TYPE_ALIAS(GravityCalculator1)
+AST_DECL_TYPE_ALIAS(GravityCalculator2)
+AST_DECL_TYPE_ALIAS(GravityCalculator3)
+AST_DECL_TYPE_ALIAS(GravityCalculator4)
+AST_DECL_TYPE_ALIAS(GravityCalculator5)

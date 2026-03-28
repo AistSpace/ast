@@ -1,0 +1,16 @@
+﻿target("AstGUI")
+    add_rules("qt.shared")
+    add_files("**.cpp")
+    add_files("**.hpp")
+    add_files("**.ui")
+    add_deps("AstUtil", "AstSim", "AstCore", "AstMath")
+    add_frameworks("QtWidgets", "QtGui", "QtCore")
+    add_defines("AST_BUILD_LIB_GUI")
+    on_config(function (target)
+        target:add("qt.moc.flags", "-DAST_NAMESPACE_BEGIN=namespace ast{")
+    end)
+    set_default(false)
+    if not has_package("qt5widgets") then
+        set_enabled(false)
+    end
+    -- set_warnings("more")

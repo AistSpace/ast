@@ -34,7 +34,7 @@ TEST(IAUXYSPrecomputed, load)
 {
     IAUXYSPrecomputed xys;
     std::string datadir = aDataDirGet();
-    err_t ret = xys.load(datadir + "/Test/ICRF/IAU2006_XYS.dat");
+    err_t ret = xys.load(aTestGetConfigValue("IAUXYS_PRECOMPUTED_FILE").toString());
     EXPECT_EQ(ret, 0);
 }
 
@@ -46,7 +46,7 @@ TEST(IAUXYSPrecomputed, getValue)
     aInitialize();
     IAUXYSPrecomputed xysData;
     std::string datadir = aDataDirGet();
-    ret = xysData.load(datadir + "/Test/ICRF/IAU2006_XYS.dat");
+    ret = xysData.load(aTestGetConfigValue("IAUXYS_PRECOMPUTED_FILE").toString());
     EXPECT_EQ(ret, 0);
     double jd;
     {

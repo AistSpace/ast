@@ -28,7 +28,7 @@ void aQuantityReduce(Quantity& q)
 {
     double scale;
     aUnitFactorize(q.unit(), scale);
-    q.value() *= scale;
+    q.magnitude() *= scale;
 }
 
 Quantity aQuantityAdd(const Quantity& q1, const Quantity& q2)
@@ -41,11 +41,11 @@ Quantity aQuantityAdd(const Quantity& q1, const Quantity& q2)
         double scale2 = q2.unit().getScale();
         if(scale1 < scale2)
         {
-            return Quantity(q1.value() + q2.value() * scale2 / scale1, q1.unit());
+            return Quantity(q1.magnitude() + q2.magnitude() * scale2 / scale1, q1.unit());
         }else if(scale1 > scale2){
-            return Quantity(q1.value() * scale1 / scale2 + q2.value(), q2.unit());
+            return Quantity(q1.magnitude() * scale1 / scale2 + q2.magnitude(), q2.unit());
         }else{
-            return Quantity(q1.value() + q2.value(), q1.unit());
+            return Quantity(q1.magnitude() + q2.magnitude(), q1.unit());
         }
     }
     return Quantity::NaN();
@@ -58,28 +58,28 @@ Quantity aQuantitySub(const Quantity& q1, const Quantity& q2)
 
 Quantity aQuantityMul(const Quantity& q1, const Quantity& q2)
 {
-    Quantity q(q1.value() * q2.value(), q1.unit() * q2.unit());
+    Quantity q(q1.magnitude() * q2.magnitude(), q1.unit() * q2.unit());
     aQuantityReduce(q);
     return q;
 }
 
 Quantity aQuantityMul(const Quantity& q, const Unit& unit)
 {
-    Quantity q2(q.value(), q.unit() * unit);
+    Quantity q2(q.magnitude(), q.unit() * unit);
     aQuantityReduce(q2);
     return q2;
 }
 
 Quantity aQuantityDiv(const Quantity& q1, const Quantity& q2)
 {
-    Quantity q(q1.value() / q2.value(), q1.unit() / q2.unit());
+    Quantity q(q1.magnitude() / q2.magnitude(), q1.unit() / q2.unit());
     aQuantityReduce(q);
     return q;
 }
 
 Quantity aQuantityDiv(const Quantity& q, const Unit& unit)
 {
-    Quantity q2(q.value(), q.unit() / unit);
+    Quantity q2(q.magnitude(), q.unit() / unit);
     aQuantityReduce(q2);
     return q2;
 }
@@ -88,7 +88,7 @@ Quantity aQuantityDiv(const Quantity& q, const Unit& unit)
 
 std::string aQuantityToString(const Quantity &q)
 {
-    return aFormatDouble(q.value()) + " " + q.unit().name();
+    return aFormatDouble(q.magnitude()) + " " + q.unit().name();
 }
 
 Quantity operator*(double value, const Unit &unit)

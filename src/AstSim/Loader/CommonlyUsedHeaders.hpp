@@ -30,6 +30,7 @@
 #include "AstSim/Mover.hpp"
 #include "AstSim/MotionTwoBody.hpp"
 #include "AstSim/MotionHPOP.hpp"
+#include "AstSim/MotionSPICE.hpp"
 #include "AstCore/StateKeplerian.hpp"
 #include "AstCore/StateCartesian.hpp"
 #include "AstCore/EventIntervalExplicit.hpp"

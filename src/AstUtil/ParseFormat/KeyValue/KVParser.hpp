@@ -38,11 +38,14 @@ class AST_UTIL_API KVParser : public BaseParser
 public:
     KVParser() = default;
     ~KVParser() = default;
-    enum {
-        eEOF = EOF
+    enum EToken{
+        eEqual,
+        eAddEqual,
+        eError,
+        eEOF = EOF,
     };
 
-    err_t getNext(BKVItemView &item);
+    EToken getNext(BKVItemView &item);
     
 };
 

@@ -39,7 +39,7 @@ constexpr const int kDefaultMaxIter = 100;
 /// @param relTol 相对误差容限
 /// @param absTol 绝对误差容限
 /// @return 如果两个数接近，则返回true；否则返回false
-bool aIsClose(double a, double b, double relTol = kDefaultRelTol, double absTol = kDefaultAbsTol);
+AST_MATH_CAPI bool aIsClose(double a, double b, double relTol = kDefaultRelTol, double absTol = kDefaultAbsTol);
 
 
 

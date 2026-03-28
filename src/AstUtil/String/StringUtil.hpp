@@ -24,6 +24,8 @@
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/StringPosix.hpp"
 #include "AstUtil/StringSplit.hpp"
+#include <string>   // for std::string
+#include <cctype>   // for isspace(), tolower(), toupper()
 
 AST_NAMESPACE_BEGIN
 
@@ -58,7 +60,16 @@ StringView aStripTrailingAsciiWhitespace(StringView str) noexcept;
 StringView aStripLeadingAsciiWhitespace(StringView str) noexcept;
 
 
+/// @brief 将字符串转换为小写
+/// @param str 输入字符串
+/// @return 小写后的字符串
+std::string aAsciiStrToLower(StringView str);
 
+
+/// @brief 将字符串转换为大写
+/// @param str 输入字符串
+/// @return 大写后的字符串
+std::string aAsciiStrToUpper(StringView str);
 
 
 inline
@@ -114,6 +125,23 @@ StringView aStripLeadingAsciiWhitespace(StringView str) noexcept
     return StringView(begin, static_cast<size_t>(end - begin));
 }
 
+inline std::string aAsciiStrToLower(StringView sv)
+{
+    std::string str(sv);
+    for (char& c : str) {
+        c = std::tolower(static_cast<unsigned char>(c));
+    }
+    return str;
+}
+
+inline std::string aAsciiStrToUpper(StringView sv)
+{
+    std::string str(sv);
+    for (char& c : str) {
+        c = std::toupper(static_cast<unsigned char>(c));
+    }
+    return str;
+}
 
 /*! @} */
 

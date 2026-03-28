@@ -31,12 +31,15 @@ AST_USING_NAMESPACE
 
 TEST(LeapSecond, LoadDefault)
 {
+    aInitialize();
     LeapSecond leapSecond;
     err_t err = leapSecond.loadDefault();
     EXPECT_EQ(err, eNoError);
 }
 
 TEST(LeapSecond, load) {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     const auto atkfile = fs::path(aDataDirGet()) / "Test/LeapSecond.dat";
     const auto stkfile = fs::path(aDataDirGet()) / "Test/STK/LeapSecond.dat";
     const auto hiersfile = fs::path(aDataDirGet()) / "Time/Leap_Second.dat";
@@ -141,6 +144,8 @@ TEST(LeapSecond, loadATK) {
         err = leapSecond.loadHPIERS(tempFilePath.c_str());
         EXPECT_NE(err, 0);
     }
+    if(!aIsGithubCI()) GTEST_SKIP();
+    
     {
         LeapSecond leapSecond;
         auto filepath = fs::path(aDataDirGet()) / "Test/LeapSecond.dat";

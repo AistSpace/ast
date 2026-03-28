@@ -19,6 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "MotionHPOPSax.hpp"
+#include "CommonlyUsedHeaders.hpp"
 #include "AstCore/HPOP.hpp"
 #include "AstUtil/BKVParser.hpp"
 
@@ -325,7 +326,7 @@ err_t MotionHPOPSax::keyValue(StringView key, const ValueView &value)
     else if(aEqualsIgnoreCase(key, "UsePlugin")){
         // @todo 处理UsePlugin
     }
-    return MotionBasicSax::keyValue(key, value);
+    return MotionOrbitDynamicsSax::keyValue(key, value);
 }
 
 err_t MotionHPOPSax::getMotion(ScopedPtr<MotionProfile> &motion)
@@ -334,17 +335,21 @@ err_t MotionHPOPSax::getMotion(ScopedPtr<MotionProfile> &motion)
     if(!motionHPOP){
         return eErrorInvalidParam;
     }
+    auto body = vehiclePathData_.centralBody_; AST_CHECK_NULLPTR(body);
+    auto bodyInertial = body->makeFrameInertial();
     
     // 设置力模型
     motionHPOP->setForceModel(forceModel_);
-    
+
     // 设置初始状态
     auto cartState = StateCartesian::New();
     cartState->setState(cartState_);
     cartState->setStateEpoch(makeStateEpoch());
+    cartState->setFrame(bodyInertial);
 
     motionHPOP->setInitialState(cartState);
     motionHPOP->setInterval(makeInterval());
+    motionHPOP->setPropagationFrame(bodyInertial);
     
     motion = motionHPOP;
     return eNoError;

@@ -103,9 +103,17 @@ public:
 
     const char* data() const { return value_.data(); }
     size_t size() const { return value_.size(); }
-protected:
+
     using SplitterType = Splitter<ByCommaAndRepeatedWhitespace, SkipBracket>;
     SplitterType split() const;
+
+    template<typename Delimiter>
+    inline strings_internal::Splitter<typename strings_internal::SelectDelimiter<Delimiter>::type, strings_internal::AllowEmpty, StringView>
+    split(Delimiter delimiter) const { 
+        using DelimiterType = typename strings_internal::SelectDelimiter<Delimiter>::type;
+        return strings_internal::Splitter<DelimiterType, strings_internal::AllowEmpty, StringView>(
+        value_, DelimiterType(delimiter), strings_internal::AllowEmpty());
+    }
 public:
     StringView  value_;
 };

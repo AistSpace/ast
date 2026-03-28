@@ -38,6 +38,22 @@ AST_NAMESPACE_BEGIN
 AST_UTIL_CAPI bool aIsCI();
 
 
+/// @brief 检查是否在Github action CI环境中运行
+/// @return 如果在Github action CI环境中运行，返回true；否则返回false
+AST_UTIL_CAPI bool aIsGithubCI();
+
+
+/// @brief 检查是否在Gitlab runner CI环境中运行
+/// @return 如果在Gitlab runner CI环境中运行，返回true；否则返回false
+AST_UTIL_API bool aIsGitlabCI();
+
+
+
+/// @brief 获取当前项目的名称
+/// @return 项目的名称
+AST_UTIL_API StringView aProjectName();
+
+
 /// @brief 检查文件是否为终端
 /// @param file 文件指针
 /// @return 如果文件为终端，返回true；否则返回false

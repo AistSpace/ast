@@ -179,6 +179,12 @@ public:
     /// @retval             - 星历版本
     uint32_t getEphemVersion() const{ return m_EphemVerion; }
 
+
+    /// @brief  获取JPL DE星历数据的时间间隔
+    /// @param  interval   - 时间间隔
+    /// @retval             - 错误码
+    err_t getInterval(TimeInterval& interval) const;
+
 private:
     err_t         readDataBlock(size_t idx);
     err_t         getStateTDB(const JulianDate& jdTDB, int dataid, double pos[], double vel[]);

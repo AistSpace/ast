@@ -32,16 +32,16 @@ static void skipWhitespace(const char*& position, const char* end)
     }
 }
 
-err_t aQuantityParse(StringView sv, double& value, Unit& unit)
+err_t aQuantityParse(StringView sv, double& magnitude, Unit& unit)
 {
     std::string str(sv);
     const char* end = str.c_str() + str.size();
     const char* position = nullptr;
 
-    value = strtod(str.c_str(), const_cast<char**>(&position));
+    magnitude = strtod(str.c_str(), const_cast<char**>(&position));
     if (!position || position == str.c_str())
     {
-        value = 0;
+        magnitude = 0;
         unit = Unit::NaN();
         return eErrorParse;
     }
@@ -71,7 +71,7 @@ err_t aQuantityParse(StringView sv, double& value, Unit& unit)
 
 err_t aQuantityParse(StringView str, Quantity& quantity)
 {
-    return aQuantityParse(str, quantity.value(), quantity.unit());
+    return aQuantityParse(str, quantity.magnitude(), quantity.unit());
 }
 
 Quantity aQuantityParse(StringView str)

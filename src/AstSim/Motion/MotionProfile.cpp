@@ -21,6 +21,7 @@
 #include "MotionProfile.hpp"
 #include "MotionTwoBody.hpp"
 #include "MotionHPOP.hpp"
+#include "MotionSPICE.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -35,6 +36,12 @@ MotionTwoBody *MotionProfile::toTwoBody() const
 {
     /// @todo 提升类型动态转换效率
     return dynamic_cast<MotionTwoBody*>(const_cast<MotionProfile*>(this));
+}
+
+MotionSPICE *MotionProfile::toSPICE() const
+{
+    /// @todo 提升类型动态转换效率
+    return dynamic_cast<MotionSPICE*>(const_cast<MotionProfile*>(this));
 }
 
 AST_NAMESPACE_END

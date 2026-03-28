@@ -64,6 +64,19 @@ void aCurrentDateTimeUTC(DateTime &dttm)
 	dttm = DateTime::FromTimeTUTC(t);
 }
 
+void aTodayDateTimeUTC(DateTime &dttm)
+{
+    aCurrentDateTimeUTC(dttm);
+    dttm.time() = Time{0,0,0};
+}
+
+void aTomorrowDateTimeUTC(DateTime &dttm)
+{
+    aTodayDateTimeUTC(dttm);
+    dttm.time() = Time{0,0,0};
+    dttm.addDays(1);
+}
+
 void aDateTimeNormalize(DateTime& dttm)
 {
     aTimeNormalize(dttm.time());

@@ -30,6 +30,8 @@ AST_USING_NAMESPACE
 
 TEST(NutationSeries, loadSTK)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     {    
         NutationSeries series;
         err_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2000A_S.dat");
@@ -65,6 +67,8 @@ TEST(NutationSeries, loadSTK)
 
 TEST(NutationSeries, loadIERS)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     {
         NutationSeries series;
         err_t ret = series.loadIERS(aDataDirGet() + "/IERS-conventions/2010/tab5.2a.txt");
@@ -86,6 +90,8 @@ TEST(NutationSeries, loadIERS)
 
 TEST(NutationSeries, load)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
     {
         NutationSeries series;
         err_t ret = series.load(aDataDirGet() + "/IERS-conventions/2010/tab5.2a.txt");
@@ -137,6 +143,9 @@ TEST(NutationSeries, load)
 
 TEST(NutationSeries, evaluate)
 {
+    if(!aIsGithubCI()) GTEST_SKIP();
+
+    
     {
         NutationSeries XSeries;
         NutationSeries YSeries;

@@ -26,9 +26,15 @@
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/FundamentalArguments.hpp"
 #include "AstCore/GlobalContext.hpp"
-#include <assert.h>
+#include "AstCore/SpiceApi.hpp"
+#include "AstCore/TimeSystem.hpp"
+#include "AstCore/OrbitElement.hpp"
+#include "AstCore/JplSpk.hpp"
+#include "AstCore/JplDe.hpp"
+#include "AstMath/MathOperator.hpp"
 #include "RunTimeData.hpp"
 #include "RunTimeSolarSystem.hpp"
+#include <assert.h>
 
 #define AST_DEFAULT_FILE_LEAPSECOND             "Time/Leap_Second.dat"
 #define AST_DEFAULT_FILE_JPLDE                  "SolarSystem/plneph.430"
@@ -42,20 +48,22 @@
 
 AST_NAMESPACE_BEGIN
 
+using StringVector = std::vector<std::string>;
 
 /// @brief 初始化配置
 struct InitalizeConfig
 {
-    fs::path dataDir_;               ///< 数据目录路径
-    fs::path leapSecondFile_;        ///< 跳秒文件路径
-    fs::path jplDeFile_;             ///< JPL DE文件路径
-    fs::path eopFile_;               ///< EOP文件路径
-    fs::path spaceWeatherFile_;      ///< 空间天气文件路径
-    fs::path iauxFile_;              ///< IAU-X系数文件路径
-    fs::path iauyFile_;              ///< IAU-Y系数文件路径
-    fs::path iausFile_;              ///< IAU-Z系数文件路径
-    fs::path iauXYSPrecomputedFile_; ///< IAU-XYS预计算数据文件路径
-    fs::path solarSystemDir_;        ///< 太阳系目录路径
+    fs::path dataDir_;                  ///< 数据目录路径
+    fs::path leapSecondFile_;           ///< 跳秒文件路径
+    fs::path jplDeFile_;                ///< JPL DE文件路径
+    fs::path eopFile_;                  ///< EOP文件路径
+    fs::path spaceWeatherFile_;         ///< 空间天气文件路径
+    fs::path iauxFile_;                 ///< IAU-X系数文件路径
+    fs::path iauyFile_;                 ///< IAU-Y系数文件路径
+    fs::path iausFile_;                 ///< IAU-Z系数文件路径
+    fs::path iauXYSPrecomputedFile_;    ///< IAU-XYS预计算数据文件路径
+    fs::path solarSystemDir_;           ///< 太阳系目录路径
+    StringVector spkFiles_;             ///< SPK文件路径列表
 };
 
 
@@ -81,7 +89,16 @@ err_t LeapSecond::loadDefault()
     err_t err = this->load(datafile.string().c_str());
     if (err)
     {
-        aWarning("failed to load leapsecond from default data file: %s", datafile.string().c_str());
+        if(err)
+        {
+            datafile = aGetConfigValue("LSK_FILE").toString();
+            err = this->load(datafile.string().c_str());
+            if(err)
+            {
+                // 加载失败也没关系，程序有内置的闰秒数据
+                aWarning("failed to load leapsecond from default data file: '%s'", datafile.string().c_str());
+            }
+        }
     }
     return err;
 }
@@ -91,10 +108,16 @@ err_t JplDe::openDefault()
     fs::path datafile = fs::path(aDataDirGet()) / AST_DEFAULT_FILE_JPLDE;
 
     err_t err = this->open(datafile.string().c_str());
-    if (err)
+    if(err)
     {
-        aWarning("failed to load jpl de from default data file:\n%s", datafile.string().c_str());
+        datafile = fs::path(aGetConfigValue("JPLDE_FILE").toString());
+        err = this->open(datafile.string().c_str());
+        if (err)
+        {
+            aWarning("failed to load jpl de from default data file: '%s'", datafile.string().c_str());
+        }
     }
+    
     return err;
 }
 
@@ -162,6 +185,22 @@ std::string SolarSystem::defaultSolarSystemDir()
     return fs::path(aDataDirGet()) / AST_DEFAULT_DIR_SOLARSYSTEM;
 }
 
+
+static err_t loadSPK(const std::vector<std::string>& spkFiles)
+{
+    err_t rc = 0;
+    for(const auto& filepath : spkFiles)
+    {
+        rc |= SpiceApi::Instance()->furnsh(filepath.c_str());
+    }
+    return rc;
+}
+
+std::string aGetDefaultSPKDir()
+{
+    return aDataDirGet() + "/Test/kernels/spk/";
+}
+
 err_t aInitializeByDefault(DataContext* context)
 {
     err_t err = 0;
@@ -180,6 +219,18 @@ err_t aInitializeByDefault(DataContext* context)
     err |= context->spaceWeather()->loadDefault();
     err |= context->iauXYSPrecomputed()->loadDefault();
     err |= context->solarSystem()->loadDefault();
+    const std::string spkdir = aGetDefaultSPKDir();
+    const std::vector<std::string> spkfiles = {
+        spkdir + "ceres.bsp",
+        spkdir + "jupiter.bsp",
+        spkdir + "mars.bsp",
+        spkdir + "neptune.bsp",
+        spkdir + "planets.bsp",
+        spkdir + "pluto.bsp",
+        spkdir + "saturn.bsp",
+        spkdir + "uranus.bsp",
+    };
+    err |= loadSPK(spkfiles);
 
     if(err != eNoError) {
         aError("initialize failed: failed to load data.");
@@ -210,6 +261,7 @@ err_t aInitializeByConfig(DataContext* context, const InitalizeConfig& config)
     err |= context->spaceWeather()->load(config.spaceWeatherFile_.string());
     err |= context->iauXYSPrecomputed()->load(config.iauXYSPrecomputedFile_.string());
     err |= context->solarSystem()->load(config.solarSystemDir_.string());
+    err |= loadSPK(config.spkFiles_);
 
     if(err != eNoError) {
         aError("initialize failed: failed to load data.");
@@ -229,21 +281,22 @@ fs::path aRelPathToAbs(const fs::path& relpath, const fs::path& basedir)
 
 err_t aInitializeByConfig(DataContext* context, StringView configfile)
 {
-    StartupConfig startupConfig;
-    err_t rc = startupConfig.load(configfile);
+    auto config = context->config();
+    err_t rc = config->load(configfile);
     if(rc) return rc;
     InitalizeConfig initalizeConfig;
     fs::path libdir = aLibDir();
-    initalizeConfig.dataDir_ = aRelPathToAbs(startupConfig.getConfig("DATA_DIR").toString(), libdir);
-    initalizeConfig.leapSecondFile_ = aRelPathToAbs(startupConfig.getConfig("LSK_FILE").toString(), libdir);
-    initalizeConfig.jplDeFile_ = aRelPathToAbs(startupConfig.getConfig("JPLDE_FILE").toString(), libdir);
-    initalizeConfig.eopFile_ = aRelPathToAbs(startupConfig.getConfig("EOP_FILE").toString(), libdir);
-    initalizeConfig.spaceWeatherFile_ = aRelPathToAbs(startupConfig.getConfig("SPACEWEATHER_FILE").toString(), libdir);
-    initalizeConfig.iauxFile_ = aRelPathToAbs(startupConfig.getConfig("IAUX_FILE").toString(), libdir);
-    initalizeConfig.iauyFile_ = aRelPathToAbs(startupConfig.getConfig("IAUY_FILE").toString(), libdir);
-    initalizeConfig.iausFile_ = aRelPathToAbs(startupConfig.getConfig("IAUS_FILE").toString(), libdir);
-    initalizeConfig.iauXYSPrecomputedFile_ = aRelPathToAbs(startupConfig.getConfig("IAUXYS_PRECOMPUTED_FILE").toString(), libdir);
-    initalizeConfig.solarSystemDir_ = aRelPathToAbs(startupConfig.getConfig("SOLARSYSTEM_DIR").toString(), libdir);
+    initalizeConfig.dataDir_ = aRelPathToAbs(config->getConfig("DATA_DIR").toString(), libdir);
+    initalizeConfig.leapSecondFile_ = aRelPathToAbs(config->getConfig("LSK_FILE").toString(), libdir);
+    initalizeConfig.jplDeFile_ = aRelPathToAbs(config->getConfig("JPLDE_FILE").toString(), libdir);
+    initalizeConfig.eopFile_ = aRelPathToAbs(config->getConfig("EOP_FILE").toString(), libdir);
+    initalizeConfig.spaceWeatherFile_ = aRelPathToAbs(config->getConfig("SPACEWEATHER_FILE").toString(), libdir);
+    initalizeConfig.iauxFile_ = aRelPathToAbs(config->getConfig("IAUX_FILE").toString(), libdir);
+    initalizeConfig.iauyFile_ = aRelPathToAbs(config->getConfig("IAUY_FILE").toString(), libdir);
+    initalizeConfig.iausFile_ = aRelPathToAbs(config->getConfig("IAUS_FILE").toString(), libdir);
+    initalizeConfig.iauXYSPrecomputedFile_ = aRelPathToAbs(config->getConfig("IAUXYS_PRECOMPUTED_FILE").toString(), libdir);
+    initalizeConfig.solarSystemDir_ = aRelPathToAbs(config->getConfig("SOLARSYSTEM_DIR").toString(), libdir);
+    initalizeConfig.spkFiles_ = config->getStringVector("SPK_FILES");  /// @todo 这里获取到的路径可能是相对路径，要处理相对路径问题!
     return aInitializeByConfig(context, initalizeConfig);
 }
 
@@ -257,16 +310,16 @@ err_t aInitialize(DataContext* context)
 {
     // check for startup config file
     fs::path libdir = aLibDir();
-    fs::path startupConfigFile1 = libdir / "ast_startup_file.txt";
-    if(fs::is_regular_file(startupConfigFile1))
+    fs::path startupConfigFile = libdir / AST_PROJECT_NAME "_startup_file.txt";
+    if(fs::is_regular_file(startupConfigFile))
     {
-        return aInitializeByConfig(context, startupConfigFile1.string());
-    }
-    else{
-        fs::path startupConfigFile2 = libdir / "atk_startup_file.txt";
-        if(fs::is_directory(startupConfigFile2))
+        return aInitializeByConfig(context, startupConfigFile.string());
+    }else{
+        fs::path exedir = aExeDir();
+        startupConfigFile = exedir / AST_PROJECT_NAME "_startup_file.txt";  
+        if(fs::is_regular_file(startupConfigFile))
         {
-            return aInitializeByConfig(context, startupConfigFile2.string());
+            return aInitializeByConfig(context, startupConfigFile.string());
         }
     }
     return aInitializeByDefault(context);
@@ -378,7 +431,13 @@ IAUXYSPrecomputed* aDataContext_GetIAUXYSPrecomputed()
     return context->iauXYSPrecomputed();
 }
 
-DataContext* aDataContext_New()
+StartupConfig *aDataContext_GetConfig()
+{
+    auto context = aDataContext_EnsureCurrent();
+    return context->config();
+}
+
+DataContext *aDataContext_New()
 {
     return new DataContext{};
 }
@@ -450,6 +509,12 @@ int aJplDeNum()
 {
     auto context = aDataContext_EnsureCurrent();
     return context->jplDe()->getEphemVersion();
+}
+
+err_t aJplDeGetInterval(TimeInterval& interval)
+{
+    auto context = aDataContext_EnsureCurrent();
+    return context->jplDe()->getInterval(interval);
 }
 
 err_t aJplDeOpen(const char *filepath)
@@ -688,6 +753,33 @@ CelestialBody *aGetEMBarycenter()
     auto context = aDataContext_EnsureCurrent();
     return context->solarSystem()->getEarthMoonBarycenter();
 }
+
+
+// ----------
+// Spice
+// ----------
+
+
+
+err_t aSpiceGetPosICRF(
+    const TimePoint& time,
+    int target,
+    int referenceBody,
+    Vector3d& pos
+){
+    return JplSpk::getPosICRF(time, target, referenceBody, pos);
+}
+
+err_t aSpiceGetPosVelICRF(
+    const TimePoint& time,
+    int target,
+    int referenceBody,
+    Vector3d& pos,
+    Vector3d& vel
+){
+    return JplSpk::getPosVelICRF(time, target, referenceBody, pos, vel);
+}
+
 
 
 AST_NAMESPACE_END

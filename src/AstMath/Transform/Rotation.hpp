@@ -181,6 +181,12 @@ public:
     /// @return 变换后的向量
     Vector3d transformVector(const Vector3d& vector) const;
 
+
+    /// @brief 变换向量（逆变换）
+    /// @param vector 向量
+    /// @return 变换后的向量
+    Vector3d transformVectorInv(const Vector3d& vector) const;
+
 protected:
     Matrix3d matrix_;
 };
@@ -307,6 +313,13 @@ A_ALWAYS_INLINE Vector3d Rotation::transformVector(const Vector3d& vector) const
 {
     Vector3d retval;
     this->transformVector(vector, retval);
+    return retval;
+}
+
+A_ALWAYS_INLINE Vector3d Rotation::transformVectorInv(const Vector3d &vector) const
+{
+    Vector3d retval;
+    this->transformVectorInv(vector, retval);
     return retval;
 }
 
