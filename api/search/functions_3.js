@@ -46,5 +46,6 @@ var searchData=
   ['current_43',['Current',['../classast_1_1Dimension.html#a355b0590aaa630b473b4d29def7bd501',1,'ast::Dimension']]],
   ['currentlexeme_44',['currentLexeme',['../classast_1_1Parser.html#aeca390ef2b07e1e5fe0169687034dfc0',1,'ast::Parser']]],
   ['currentscope_45',['currentScope',['../classast_1_1Interpreter.html#a0772639e1ca5d4dfca4c39ffd38bbb2b',1,'ast::Interpreter']]],
-  ['currenttokentype_46',['currentTokenType',['../classast_1_1Parser.html#ad9d0cc741db76c6803aed27fe49cebb2',1,'ast::Parser']]]
+  ['currenttime_46',['CurrentTime',['../classast_1_1TimePoint.html#a1ca2a286c9ea94244924ea954fa525de',1,'ast::TimePoint']]],
+  ['currenttokentype_47',['currentTokenType',['../classast_1_1Parser.html#ad9d0cc741db76c6803aed27fe49cebb2',1,'ast::Parser']]]
 ];

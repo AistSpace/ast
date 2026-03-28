@@ -35,5 +35,7 @@ var DateTime_8cpp =
     [ "aDateTimeParseGregorian", "DateTime_8cpp.html#ga090d34f100816c9ce912e8fa94d91860", null ],
     [ "aDateTimeParseGregorianEn", "DateTime_8cpp.html#ga6a83327b8620ac82709c7696e8ac7355", null ],
     [ "aDateTimeParseISO8601", "DateTime_8cpp.html#gaf27207ecdb4c52cb3bbee6b4c5ce6586", null ],
-    [ "aDateTimeParseRFC3339", "DateTime_8cpp.html#ga5844311880f35f8c7f5005e937755f4d", null ]
+    [ "aDateTimeParseRFC3339", "DateTime_8cpp.html#ga5844311880f35f8c7f5005e937755f4d", null ],
+    [ "aTodayDateTimeUTC", "DateTime_8cpp.html#ga382382ba1cb82b1491c91a4733029199", null ],
+    [ "aTomorrowDateTimeUTC", "DateTime_8cpp.html#gad8a2e23b23b25203656666ce7b2744e2", null ]
 ];

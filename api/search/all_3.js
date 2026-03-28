@@ -105,5 +105,6 @@ var searchData=
   ['current_102',['Current',['../classast_1_1Dimension.html#a355b0590aaa630b473b4d29def7bd501',1,'ast::Dimension']]],
   ['currentlexeme_103',['currentLexeme',['../classast_1_1Parser.html#aeca390ef2b07e1e5fe0169687034dfc0',1,'ast::Parser']]],
   ['currentscope_104',['currentScope',['../classast_1_1Interpreter.html#a0772639e1ca5d4dfca4c39ffd38bbb2b',1,'ast::Interpreter']]],
-  ['currenttokentype_105',['currentTokenType',['../classast_1_1Parser.html#ad9d0cc741db76c6803aed27fe49cebb2',1,'ast::Parser']]]
+  ['currenttime_105',['CurrentTime',['../classast_1_1TimePoint.html#a1ca2a286c9ea94244924ea954fa525de',1,'ast::TimePoint']]],
+  ['currenttokentype_106',['currentTokenType',['../classast_1_1Parser.html#ad9d0cc741db76c6803aed27fe49cebb2',1,'ast::Parser']]]
 ];

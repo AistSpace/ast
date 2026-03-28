@@ -452,7 +452,8 @@ var hierarchy =
     [ "ast::property_trait< T >", "structast_1_1property__trait.html", null ],
     [ "ast::property_trait< std::string >", "structast_1_1property__trait_3_01std_1_1string_01_4.html", null ],
     [ "QLineEdit", null, [
-      [ "ast::UiQuantity", "classast_1_1UiQuantity.html", null ]
+      [ "ast::UiQuantity", "classast_1_1UiQuantity.html", null ],
+      [ "ast::UiTimePoint", "classast_1_1UiTimePoint.html", null ]
     ] ],
     [ "QMainWindow", null, [
       [ "ast::UiMainWindow", "classast_1_1UiMainWindow.html", null ]
@@ -460,6 +461,15 @@ var hierarchy =
     [ "ast::Quantity", "classast_1_1Quantity.html", null ],
     [ "ast::Quaternion", "classast_1_1Quaternion.html", null ],
     [ "QWidget", null, [
+      [ "ast::UiObject", "classast_1_1UiObject.html", [
+        [ "ast::UiMotionProfile", "classast_1_1UiMotionProfile.html", [
+          [ "ast::UiMotionTwoBody", "classast_1_1UiMotionTwoBody.html", null ]
+        ] ],
+        [ "ast::UiState", "classast_1_1UiState.html", [
+          [ "ast::UiStateCartesian", "classast_1_1UiStateCartesian.html", null ]
+        ] ]
+      ] ],
+      [ "ast::UiTimeInterval", "classast_1_1UiTimeInterval.html", null ],
       [ "ast::UiWidget", "classast_1_1UiWidget.html", null ]
     ] ],
     [ "ast::Rotation", "classast_1_1Rotation.html", [
@@ -577,6 +587,7 @@ var hierarchy =
     [ "ast::VectorX< _Scalar >", "classast_1_1VectorX.html", null ],
     [ "ast::VehiclePathData", "structast_1_1VehiclePathData.html", null ],
     [ "ast::WeakPtr< _Object >", "classast_1_1WeakPtr.html", null ],
+    [ "ast::WeakPtr< ast::Object >", "classast_1_1WeakPtr.html", null ],
     [ "ast::WorkingDirectory", "classast_1_1WorkingDirectory.html", null ],
     [ "ast::XYSCache", "structast_1_1XYSCache.html", null ]
 ];

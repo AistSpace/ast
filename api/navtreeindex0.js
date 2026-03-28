@@ -34,7 +34,7 @@ var NAVTREEINDEX0 =
 "AstCore_2Geometry_2Euclid_2Vector_8hpp_source.html":[4,0,0,2,5,0,8],
 "AstCore_8hpp.html":[4,0,0,2,11],
 "AstCore_8hpp_source.html":[4,0,0,2,11],
-"AstGUIAPI_8hpp_source.html":[4,0,0,4,1],
+"AstGUIAPI_8hpp_source.html":[4,0,0,4,0,0],
 "AstGfxAPI_8cpp.html":[4,0,0,3,0],
 "AstGfxAPI_8cpp.html#a17e7bc2be14712782c97c9c3f6d46d11":[4,0,0,3,0,2],
 "AstGfxAPI_8cpp.html#a20c44edd1c338d8e20533c3b288dbf49":[4,0,0,3,0,1],

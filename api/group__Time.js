@@ -233,6 +233,8 @@ var group__Time =
     [ "ast::aTimePointToUT1", "group__Time.html#ga75ce1901b3cae1292cfd714d1c2d6711", null ],
     [ "ast::aTimePointToUTC", "group__Time.html#ga0418cfc5f9a2d78a15fbdf2d7a8540e2", null ],
     [ "ast::aTimePointToUTC", "group__Time.html#ga71924ae7a77279ed8203166c618a49df", null ],
+    [ "ast::aTodayDateTimeUTC", "group__Time.html#ga382382ba1cb82b1491c91a4733029199", null ],
+    [ "ast::aTomorrowDateTimeUTC", "group__Time.html#gad8a2e23b23b25203656666ce7b2744e2", null ],
     [ "ast::aTTMinusTDB", "group__Time.html#ga25ea2bbf4fb12700e240244f04513cbc", null ],
     [ "ast::aTTToTAI", "group__Time.html#gab3ceebedb7ef5971f124fe9fdf9811ae", null ],
     [ "ast::aTTToTDB", "group__Time.html#gacc7ba905b0072e09b8b6c599491d1850", null ],
