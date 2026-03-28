@@ -114,42 +114,51 @@ $(function(){initNavTree('UiQuantity_8hpp_source.html',''); initResizable(true);
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;AstUtil/Quantity.hpp&quot;</span></div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;AstUtil/Unit.hpp&quot;</span></div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>Q_DECLARE_METATYPE(<a class="code hl_class" href="classast_1_1Unit.html">ast::Unit</a>)</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>AST_NAMESPACE_BEGIN</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classast_1_1UiQuantity.html">   41</a></span><span class="keyword">class </span>AST_GUI_API <a class="code hl_class" href="classast_1_1UiQuantity.html">UiQuantity</a>: <span class="keyword">public</span> QWidget</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    Q_OBJECT</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_class" href="classast_1_1UiQuantity.html">UiQuantity</a>(QWidget* parent = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> setQuantity(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1Quantity.html">Quantity</a>&amp; quantity);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_class" href="classast_1_1Quantity.html">Quantity</a> quantity() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>signals:</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classast_1_1UiQuantity.html#a0a0bb1985371db8d70b3213039770a1b">   58</a></span>    <span class="keywordtype">void</span> <a class="code hl_signal" href="classast_1_1UiQuantity.html#a0a0bb1985371db8d70b3213039770a1b">quantityChanged</a>(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1Quantity.html">Quantity</a>&amp; quantity);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">private</span> slots:</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> onValueChanged();</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> onUnitChanged(<span class="keywordtype">int</span> index);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    QHBoxLayout* layout_;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    QLineEdit* valueEdit_;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    QComboBox* unitComboBox_;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <a class="code hl_class" href="classast_1_1Quantity.html">Quantity</a> currentQuantity_;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>AST_NAMESPACE_BEGIN</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classast_1_1UiQuantity.html">   42</a></span><span class="keyword">class </span>AST_GUI_API <a class="code hl_class" href="classast_1_1UiQuantity.html">UiQuantity</a>: <span class="keyword">public</span> QLineEdit</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>{</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    Q_OBJECT</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_class" href="classast_1_1UiQuantity.html">UiQuantity</a>(QWidget* parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> setQuantity(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1Quantity.html">Quantity</a>&amp; quantity);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_class" href="classast_1_1Quantity.html">Quantity</a> quantity() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">double</span> getMagnitude() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> setMagnitude(<span class="keywordtype">double</span> value);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <a class="code hl_class" href="classast_1_1Unit.html">Unit</a> getUnit() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> setUnit(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1Unit.html">Unit</a>&amp; unit);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">void</span> changeUnit(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1Unit.html">Unit</a>&amp; unit);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">double</span> getValueSI() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">void</span> setValueSI(<span class="keywordtype">double</span> value);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">double</span> getValueInUnit(<span class="keyword">const</span> <a class="code hl_class" href="classast_1_1Unit.html">Unit</a>&amp; unit) <span class="keyword">const</span>;    </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">void</span> setValueInUnit(<span class="keywordtype">double</span> value, <span class="keyword">const</span> <a class="code hl_class" href="classast_1_1Unit.html">Unit</a>&amp; unit);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> setValueUnit(<span class="keywordtype">double</span> value, <span class="keyword">const</span> <a class="code hl_class" href="classast_1_1Unit.html">Unit</a>&amp; unit);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_class" href="classast_1_1Quantity.html">Quantity</a> currentQuantity_;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>};</div>
 </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>AST_NAMESPACE_END</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>AST_NAMESPACE_END</div>
 <div class="ttc" id="aclassast_1_1Quantity_html"><div class="ttname"><a href="classast_1_1Quantity.html">ast::Quantity</a></div><div class="ttdoc">数量值</div><div class="ttdef"><b>定义</b> Quantity.hpp:114</div></div>
-<div class="ttc" id="aclassast_1_1UiQuantity_html"><div class="ttname"><a href="classast_1_1UiQuantity.html">ast::UiQuantity</a></div><div class="ttdef"><b>定义</b> UiQuantity.hpp:42</div></div>
-<div class="ttc" id="aclassast_1_1UiQuantity_html_a0a0bb1985371db8d70b3213039770a1b"><div class="ttname"><a href="classast_1_1UiQuantity.html#a0a0bb1985371db8d70b3213039770a1b">ast::UiQuantity::quantityChanged</a></div><div class="ttdeci">void quantityChanged(const Quantity &amp;quantity)</div><div class="ttdoc">数量值变化信号</div></div>
+<div class="ttc" id="aclassast_1_1UiQuantity_html"><div class="ttname"><a href="classast_1_1UiQuantity.html">ast::UiQuantity</a></div><div class="ttdoc">数量输入框</div><div class="ttdef"><b>定义</b> UiQuantity.hpp:43</div></div>
 <div class="ttc" id="aclassast_1_1Unit_html"><div class="ttname"><a href="classast_1_1Unit.html">ast::Unit</a></div><div class="ttdoc">单位</div><div class="ttdef"><b>定义</b> Unit.hpp:136</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

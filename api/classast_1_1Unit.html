@@ -150,10 +150,10 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:ab063663d190520fb849f9a79280a2565"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43a01430624f51cbff0bcbdf71c5cfdc" id="r_a43a01430624f51cbff0bcbdf71c5cfdc"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43a01430624f51cbff0bcbdf71c5cfdc">toSI</a> (double value) const</td></tr>
 <tr class="separator:a43a01430624f51cbff0bcbdf71c5cfdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ea3bdf4b89bad68862a258de7800ad9" id="r_a7ea3bdf4b89bad68862a258de7800ad9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ea3bdf4b89bad68862a258de7800ad9">fromInternal</a> (double value) const</td></tr>
-<tr class="separator:a7ea3bdf4b89bad68862a258de7800ad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed92f92a0f8527a1020724c9dda09017" id="r_aed92f92a0f8527a1020724c9dda09017"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed92f92a0f8527a1020724c9dda09017">toInternal</a> (double value) const</td></tr>
-<tr class="separator:aed92f92a0f8527a1020724c9dda09017"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac04046bcfc043d2939553cb9cacadb69" id="r_ac04046bcfc043d2939553cb9cacadb69"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac04046bcfc043d2939553cb9cacadb69">convertTo</a> (double value, const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;unit) const</td></tr>
+<tr class="separator:ac04046bcfc043d2939553cb9cacadb69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ad3d51d0aea57211b4e07bd908f3ae7" id="r_a9ad3d51d0aea57211b4e07bd908f3ae7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ad3d51d0aea57211b4e07bd908f3ae7">convertFrom</a> (double value, const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;unit) const</td></tr>
+<tr class="separator:a9ad3d51d0aea57211b4e07bd908f3ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cb7d466a73c2e548d09ff3444f7dfb2" id="r_a2cb7d466a73c2e548d09ff3444f7dfb2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cb7d466a73c2e548d09ff3444f7dfb2">getScale</a> () const</td></tr>
 <tr class="separator:a2cb7d466a73c2e548d09ff3444f7dfb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a737479417a4c6db862752355e6334984" id="r_a737479417a4c6db862752355e6334984"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Dimension.html">Dimension</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a737479417a4c6db862752355e6334984">dimension</a> () const</td></tr>
@@ -415,6 +415,82 @@ Protected 成员函数</h2></td></tr>
 
 </div>
 </div>
+<a id="a9ad3d51d0aea57211b4e07bd908f3ae7" name="a9ad3d51d0aea57211b4e07bd908f3ae7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ad3d51d0aea57211b4e07bd908f3ae7">&#9670;&#160;</a></span>convertFrom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ast::Unit::convertFrom </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>unit</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>转换为指定单位下的值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>该单位对应的值 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>指定单位下的值 </dd></dl>
+
+</div>
+</div>
+<a id="ac04046bcfc043d2939553cb9cacadb69" name="ac04046bcfc043d2939553cb9cacadb69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac04046bcfc043d2939553cb9cacadb69">&#9670;&#160;</a></span>convertTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ast::Unit::convertTo </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>unit</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>转换为指定单位下的值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>该单位对应的值 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>指定单位下的值 </dd></dl>
+
+</div>
+</div>
 <a id="a737479417a4c6db862752355e6334984" name="a737479417a4c6db862752355e6334984"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a737479417a4c6db862752355e6334984">&#9670;&#160;</a></span>dimension()</h2>
 
@@ -479,40 +555,6 @@ Protected 成员函数</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>新单位 </dd></dl>
-
-</div>
-</div>
-<a id="a7ea3bdf4b89bad68862a258de7800ad9" name="a7ea3bdf4b89bad68862a258de7800ad9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ea3bdf4b89bad68862a258de7800ad9">&#9670;&#160;</a></span>fromInternal()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double ast::Unit::fromInternal </td>
-          <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>从内部运行时单位对应的值转换为该单位对应的值 </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>内部运行时单位对应的值 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>该单位对应的值 </dd></dl>
 
 </div>
 </div>
@@ -1020,40 +1062,6 @@ Protected 成员函数</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>新单位 </dd></dl>
-
-</div>
-</div>
-<a id="aed92f92a0f8527a1020724c9dda09017" name="aed92f92a0f8527a1020724c9dda09017"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed92f92a0f8527a1020724c9dda09017">&#9670;&#160;</a></span>toInternal()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double ast::Unit::toInternal </td>
-          <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>从该单位对应的值转换为内部运行时单位对应值 </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>该单位对应的值 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>内部运行时单位对应的值 </dd></dl>
 
 </div>
 </div>

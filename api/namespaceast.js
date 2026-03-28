@@ -1379,7 +1379,7 @@ var namespaceast =
     [ "aQuantityMul", "group__Quantity.html#ga0df729e7ac4bbf1d9fdedf901d76546d", null ],
     [ "aQuantityMul", "group__Quantity.html#ga80e261cb5f4d212d2492789fa4c943bb", null ],
     [ "aQuantityParse", "group__Quantity.html#gacd785ae8a141b12aa37bbe6ca0c8a8f3", null ],
-    [ "aQuantityParse", "group__Quantity.html#ga30b0ecfca2586371467bb900e31c86e2", null ],
+    [ "aQuantityParse", "group__Quantity.html#ga5aab6d500cd3061d112ea0667a0206c7", null ],
     [ "aQuantityParse", "group__Quantity.html#gab07738201b093cad9f85fb94b58b8bcc", null ],
     [ "aQuantityReduce", "group__Quantity.html#ga89c6eed05a174468c652e0bcb5d8f890", null ],
     [ "aQuantitySub", "group__Quantity.html#gab016c3c4c6666ff6ddfc51046ef715c8", null ],

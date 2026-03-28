@@ -31,7 +31,7 @@ var searchData=
   ['valstring_2ecpp_28',['ValString.cpp',['../ValString_8cpp.html',1,'']]],
   ['valstring_2ehpp_29',['ValString.hpp',['../ValString_8hpp.html',1,'']]],
   ['value_30',['Value',['../classast_1_1Value.html',1,'ast']]],
-  ['value_31',['value',['../classast_1_1BKVItemView.html#add0d25682e8dd0d088cf22e5c9e71a79',1,'ast::BKVItemView::value()'],['../classast_1_1ValueView.html#acdd1db334acdd72a72ab11f8480b6762',1,'ast::ValueView::value()'],['../classast_1_1Dimension.html#a28132d172a69ac7fa728105d545a9f7c',1,'ast::Dimension::value()'],['../classast_1_1Quantity.html#a4429b00c27d0a9cce61af4b7e496e636',1,'ast::Quantity::value() const'],['../classast_1_1Quantity.html#af85045d8aa88f1dd9afad8b5192968ea',1,'ast::Quantity::value()']]],
+  ['value_31',['value',['../classast_1_1BKVItemView.html#add0d25682e8dd0d088cf22e5c9e71a79',1,'ast::BKVItemView::value()'],['../classast_1_1ValueView.html#acdd1db334acdd72a72ab11f8480b6762',1,'ast::ValueView::value()'],['../classast_1_1Dimension.html#a28132d172a69ac7fa728105d545a9f7c',1,'ast::Dimension::value()']]],
   ['value_2ecpp_32',['Value.cpp',['../Value_8cpp.html',1,'']]],
   ['value_2ehpp_33',['Value.hpp',['../Value_8hpp.html',1,'']]],
   ['value_5f_34',['value_',['../classast_1_1BKVItemView.html#ad928159f3b3ea45268618ce2e35f27a9',1,'ast::BKVItemView']]],

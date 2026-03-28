@@ -147,8 +147,8 @@ A_ALWAYS_INLINE std::string&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="memitem:ga6bf06d7a7caf2d78346876e0433b8c9e" id="r_ga6bf06d7a7caf2d78346876e0433b8c9e"><td class="memItemLeft" align="right" valign="top"><a id="ga6bf06d7a7caf2d78346876e0433b8c9e" name="ga6bf06d7a7caf2d78346876e0433b8c9e"></a>
 <a class="el" href="classast_1_1Quantity.html">Quantity</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ast::operator/</b> (double value, const <a class="el" href="classast_1_1Quantity.html">Quantity</a> &amp;q)</td></tr>
 <tr class="separator:ga6bf06d7a7caf2d78346876e0433b8c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga30b0ecfca2586371467bb900e31c86e2" id="r_ga30b0ecfca2586371467bb900e31c86e2"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga30b0ecfca2586371467bb900e31c86e2">ast::aQuantityParse</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> str, double &amp;value, <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;unit)</td></tr>
-<tr class="separator:ga30b0ecfca2586371467bb900e31c86e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5aab6d500cd3061d112ea0667a0206c7" id="r_ga5aab6d500cd3061d112ea0667a0206c7"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga5aab6d500cd3061d112ea0667a0206c7">ast::aQuantityParse</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> str, double &amp;magnitude, <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;unit)</td></tr>
+<tr class="separator:ga5aab6d500cd3061d112ea0667a0206c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab07738201b093cad9f85fb94b58b8bcc" id="r_gab07738201b093cad9f85fb94b58b8bcc"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gab07738201b093cad9f85fb94b58b8bcc">ast::aQuantityParse</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> str, <a class="el" href="classast_1_1Quantity.html">Quantity</a> &amp;quantity)</td></tr>
 <tr class="separator:gab07738201b093cad9f85fb94b58b8bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacd785ae8a141b12aa37bbe6ca0c8a8f3" id="r_gacd785ae8a141b12aa37bbe6ca0c8a8f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Quantity.html">Quantity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gacd785ae8a141b12aa37bbe6ca0c8a8f3">ast::aQuantityParse</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> str)</td></tr>
@@ -191,6 +191,8 @@ A_ALWAYS_INLINE std::string&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="separator:ga8ddff75d49b2bdbcdfeed1c2b6456221"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga486f3eaffaaa752eeb95ea274c895690" id="r_ga486f3eaffaaa752eeb95ea274c895690"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Unit.html">Unit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga486f3eaffaaa752eeb95ea274c895690">ast::aUnitParse</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> str)</td></tr>
 <tr class="separator:ga486f3eaffaaa752eeb95ea274c895690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa38b0ddfa45747ce0c2b35f1822be4ba" id="r_gaa38b0ddfa45747ce0c2b35f1822be4ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa38b0ddfa45747ce0c2b35f1822be4ba">ast::Quantity::changeUnit</a> (const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;<a class="el" href="classast_1_1Quantity.html#ae10e6077bf6c2e5f5e66a26309a70b2c">unit</a>)</td></tr>
+<tr class="separator:gaa38b0ddfa45747ce0c2b35f1822be4ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">函数说明</h2>
 <a id="ga0efc7b9b7b4ec4c0eb1f5198a3aefc27" name="ga0efc7b9b7b4ec4c0eb1f5198a3aefc27"></a>
@@ -374,8 +376,8 @@ A_ALWAYS_INLINE std::string&#160;</td><td class="memItemRight" valign="bottom"><
 
 </div>
 </div>
-<a id="ga30b0ecfca2586371467bb900e31c86e2" name="ga30b0ecfca2586371467bb900e31c86e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga30b0ecfca2586371467bb900e31c86e2">&#9670;&#160;</a></span>aQuantityParse() <span class="overload">[2/3]</span></h2>
+<a id="ga5aab6d500cd3061d112ea0667a0206c7" name="ga5aab6d500cd3061d112ea0667a0206c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5aab6d500cd3061d112ea0667a0206c7">&#9670;&#160;</a></span>aQuantityParse() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -388,7 +390,7 @@ A_ALWAYS_INLINE std::string&#160;</td><td class="memItemRight" valign="bottom"><
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+          <td class="paramtype">double &amp;</td>          <td class="paramname"><span class="paramname"><em>magnitude</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -402,7 +404,7 @@ A_ALWAYS_INLINE std::string&#160;</td><td class="memItemRight" valign="bottom"><
 <p>例如 "123.456 m/s", "123.456m", "123.456[m/s]"。 </p><dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">str</td><td>量字符串 </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">value</td><td>解析得到的数值 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">magnitude</td><td>解析得到的数值 </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">unit</td><td>解析得到的单位 </td></tr>
   </table>
   </dd>
@@ -727,6 +729,39 @@ A_ALWAYS_INLINE std::string&#160;</td><td class="memItemRight" valign="bottom"><
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>err_t 错误码 </dd></dl>
+
+</div>
+</div>
+<a id="gaa38b0ddfa45747ce0c2b35f1822be4ba" name="gaa38b0ddfa45747ce0c2b35f1822be4ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa38b0ddfa45747ce0c2b35f1822be4ba">&#9670;&#160;</a></span>changeUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::Quantity::changeUnit </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>unit</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>切换当前单位 </p>
+<p>切换当前单位后，数量值会自动转换为该单位 例如将1000m转换为1km，将1000kg转换为1t等 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unit</td><td>当前单位 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

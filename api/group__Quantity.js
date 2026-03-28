@@ -1,11 +1,18 @@
 var group__Quantity =
 [
     [ "ast::Quantity", "classast_1_1Quantity.html", [
+      [ "Quantity", "classast_1_1Quantity.html#ac988a30e183d70dcae9d3c0ab4a758d4", null ],
+      [ "Quantity", "classast_1_1Quantity.html#aa4ba87f976a1bdca3c068e91cafc7284", null ],
+      [ "changeUnit", "group__Quantity.html#gaa38b0ddfa45747ce0c2b35f1822be4ba", null ],
       [ "dimension", "classast_1_1Quantity.html#abbe7b095750a45049367f4b42e144393", null ],
-      [ "getInternalValue", "classast_1_1Quantity.html#a77ac77a3ec344b585e0348647308f8f3", null ],
-      [ "getSIValue", "classast_1_1Quantity.html#a4f31be650b83e6dd74ad63d0f451a27e", null ],
+      [ "getMagnitude", "classast_1_1Quantity.html#adad848de198d445c66b4f15aaf2d576b", null ],
+      [ "getUnit", "classast_1_1Quantity.html#a848fd346c4efab2b57e962b9a06fb7d1", null ],
+      [ "getValueInUnit", "classast_1_1Quantity.html#a492123f949ff7f42bb70176028383bb3", null ],
+      [ "getValueSI", "classast_1_1Quantity.html#a5497edf2e03e51b29c138905ac291935", null ],
       [ "invert", "classast_1_1Quantity.html#accd68453f0bf216a913b04d0d38c4bb6", null ],
       [ "isValid", "classast_1_1Quantity.html#abcff1fb55869dbd60709752c0ec663c2", null ],
+      [ "magnitude", "classast_1_1Quantity.html#a8d7dce204b4f04fc3d0345fecf8c9937", null ],
+      [ "magnitude", "classast_1_1Quantity.html#af0f4e5fab2fe84bb594f847916bcfd51", null ],
       [ "operator!=", "classast_1_1Quantity.html#a516a4c733fb13be3f8e789bd96a11877", null ],
       [ "operator!=", "classast_1_1Quantity.html#a6886278043783d6f0bd106a4416df264", null ],
       [ "operator*", "classast_1_1Quantity.html#af3864a0d9986c5f6244315113278bdaf", null ],
@@ -28,13 +35,14 @@ var group__Quantity =
       [ "operator/=", "classast_1_1Quantity.html#a9ed5f218085ef11962b35f732c463ee7", null ],
       [ "operator==", "classast_1_1Quantity.html#a49e64b35acf8856c830869f4a58496c2", null ],
       [ "operator==", "classast_1_1Quantity.html#ad496589ba151e75319b80f9c6d2d048f", null ],
+      [ "setMagnitude", "classast_1_1Quantity.html#ac919c6d9f38c327aa414ef6918892098", null ],
       [ "setUnit", "classast_1_1Quantity.html#a6df5a84f1a98aeafb0e946a832018835", null ],
-      [ "setValue", "classast_1_1Quantity.html#a6438f5549765661de21f35854749f780", null ],
+      [ "setValueInUnit", "classast_1_1Quantity.html#ad3624b8c05237dc20588e076faf2f8fb", null ],
+      [ "setValueSI", "classast_1_1Quantity.html#a38b92d0020d2e9f15715e65e7752d71f", null ],
+      [ "setValueUnit", "classast_1_1Quantity.html#a3efa628ed6cbb2f6f55e55a4f9e49973", null ],
       [ "toString", "classast_1_1Quantity.html#ad848cec88687923bff9eca4d3e5f107f", null ],
       [ "unit", "classast_1_1Quantity.html#afc11f8398979bb9e565e99eb4cd7b86e", null ],
-      [ "unit", "classast_1_1Quantity.html#ae10e6077bf6c2e5f5e66a26309a70b2c", null ],
-      [ "value", "classast_1_1Quantity.html#af85045d8aa88f1dd9afad8b5192968ea", null ],
-      [ "value", "classast_1_1Quantity.html#a4429b00c27d0a9cce61af4b7e496e636", null ]
+      [ "unit", "classast_1_1Quantity.html#ae10e6077bf6c2e5f5e66a26309a70b2c", null ]
     ] ],
     [ "ast::Unit", "classast_1_1Unit.html", [
       [ "UnitRep", "classast_1_1Unit_1_1UnitRep.html", [
@@ -53,9 +61,10 @@ var group__Quantity =
       [ "Unit", "classast_1_1Unit.html#a01f131b66681d59fb0b731e0ec675080", null ],
       [ "Unit", "classast_1_1Unit.html#ac9c6a03f40114106d9347585c9d9903f", null ],
       [ "clone", "classast_1_1Unit.html#a9c365643bf4c15fa51c06df158636d58", null ],
+      [ "convertFrom", "classast_1_1Unit.html#a9ad3d51d0aea57211b4e07bd908f3ae7", null ],
+      [ "convertTo", "classast_1_1Unit.html#ac04046bcfc043d2939553cb9cacadb69", null ],
       [ "dimension", "classast_1_1Unit.html#a737479417a4c6db862752355e6334984", null ],
       [ "divide", "classast_1_1Unit.html#a40d890822f24e239617f9aba3a87cf42", null ],
-      [ "fromInternal", "classast_1_1Unit.html#a7ea3bdf4b89bad68862a258de7800ad9", null ],
       [ "fromSI", "classast_1_1Unit.html#ab063663d190520fb849f9a79280a2565", null ],
       [ "getScale", "classast_1_1Unit.html#a2cb7d466a73c2e548d09ff3444f7dfb2", null ],
       [ "invert", "classast_1_1Unit.html#a8325fb31cd46c4356e094983e027c33a", null ],
@@ -71,7 +80,6 @@ var group__Quantity =
       [ "pow", "classast_1_1Unit.html#a40e068f48d9b5e29685ea01d71639650", null ],
       [ "pow", "classast_1_1Unit.html#a3dc635b74bcdbf6ea00eb074a40b30ae", null ],
       [ "scale", "classast_1_1Unit.html#a2b697ff6be1a8f098a668a13b4c2cb9d", null ],
-      [ "toInternal", "classast_1_1Unit.html#aed92f92a0f8527a1020724c9dda09017", null ],
       [ "toSI", "classast_1_1Unit.html#a43a01430624f51cbff0bcbdf71c5cfdc", null ],
       [ "unit_divide", "classast_1_1Unit.html#a6c9966d0453a14df52220822add4e9f8", null ],
       [ "unit_multiply", "classast_1_1Unit.html#ab4c8c48d5b8a6c3a14601eef2c13cc01", null ],
@@ -103,7 +111,7 @@ var group__Quantity =
     [ "ast::aQuantityMul", "group__Quantity.html#ga0df729e7ac4bbf1d9fdedf901d76546d", null ],
     [ "ast::aQuantityMul", "group__Quantity.html#ga80e261cb5f4d212d2492789fa4c943bb", null ],
     [ "ast::aQuantityParse", "group__Quantity.html#gacd785ae8a141b12aa37bbe6ca0c8a8f3", null ],
-    [ "ast::aQuantityParse", "group__Quantity.html#ga30b0ecfca2586371467bb900e31c86e2", null ],
+    [ "ast::aQuantityParse", "group__Quantity.html#ga5aab6d500cd3061d112ea0667a0206c7", null ],
     [ "ast::aQuantityParse", "group__Quantity.html#gab07738201b093cad9f85fb94b58b8bcc", null ],
     [ "ast::aQuantityReduce", "group__Quantity.html#ga89c6eed05a174468c652e0bcb5d8f890", null ],
     [ "ast::aQuantitySub", "group__Quantity.html#gab016c3c4c6666ff6ddfc51046ef715c8", null ],
@@ -123,5 +131,6 @@ var group__Quantity =
     [ "ast::aUnitParse", "group__Quantity.html#ga8ddff75d49b2bdbcdfeed1c2b6456221", null ],
     [ "ast::aUnitPower", "group__Quantity.html#ga68bc55be726ee1de1ea63da4bdda201c", null ],
     [ "ast::aUnitPower", "group__Quantity.html#gada24ea182ac2af5f7547b4d644255994", null ],
+    [ "ast::Quantity::changeUnit", "group__Quantity.html#gaa38b0ddfa45747ce0c2b35f1822be4ba", null ],
     [ "ast::operator*", "group__Quantity.html#ga96636c1cefa7a8d2fcfe7b8c42cad802", null ]
 ];

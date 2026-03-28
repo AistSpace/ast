@@ -451,13 +451,15 @@ var hierarchy =
     [ "ast::MotionOrbitDynamics::PropagationParams", "structast_1_1MotionOrbitDynamics_1_1PropagationParams.html", null ],
     [ "ast::property_trait< T >", "structast_1_1property__trait.html", null ],
     [ "ast::property_trait< std::string >", "structast_1_1property__trait_3_01std_1_1string_01_4.html", null ],
+    [ "QLineEdit", null, [
+      [ "ast::UiQuantity", "classast_1_1UiQuantity.html", null ]
+    ] ],
     [ "QMainWindow", null, [
       [ "ast::UiMainWindow", "classast_1_1UiMainWindow.html", null ]
     ] ],
     [ "ast::Quantity", "classast_1_1Quantity.html", null ],
     [ "ast::Quaternion", "classast_1_1Quaternion.html", null ],
     [ "QWidget", null, [
-      [ "ast::UiQuantity", "classast_1_1UiQuantity.html", null ],
       [ "ast::UiWidget", "classast_1_1UiWidget.html", null ]
     ] ],
     [ "ast::Rotation", "classast_1_1Rotation.html", [

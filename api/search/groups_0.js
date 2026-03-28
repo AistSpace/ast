@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['astgui_0',['AstGUI',['../group__AstGUI.html',1,'']]]
+  ['gui_0',['GUI',['../group__GUI.html',1,'']]]
 ];

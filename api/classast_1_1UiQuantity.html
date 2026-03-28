@@ -99,12 +99,13 @@ $(function(){initNavTree('classast_1_1UiQuantity.html',''); initResizable(true);
 
 <div class="header">
   <div class="summary">
-<a href="#signals">信号</a> &#124;
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="classast_1_1UiQuantity-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">ast::UiQuantity类 参考<div class="ingroups"><a class="el" href="group__AstGUI.html">AstGUI</a></div></div></div>
+  <div class="headertitle"><div class="title">ast::UiQuantity类 参考<div class="ingroups"><a class="el" href="group__GUI.html">GUI</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="UiQuantity_8hpp_source.html">UiQuantity.hpp</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> 类 ast::UiQuantity 继承关系图:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -114,12 +115,6 @@ $(function(){initNavTree('classast_1_1UiQuantity.html',''); initResizable(true);
   <img src="classast_1_1UiQuantity.png" alt=""/>
  </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
-信号</h2></td></tr>
-<tr class="memitem:a0a0bb1985371db8d70b3213039770a1b" id="r_a0a0bb1985371db8d70b3213039770a1b"><td class="memItemLeft" align="right" valign="top"><a id="a0a0bb1985371db8d70b3213039770a1b" name="a0a0bb1985371db8d70b3213039770a1b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>quantityChanged</b> (const <a class="el" href="classast_1_1Quantity.html">Quantity</a> &amp;<a class="el" href="#afafaa78a289bf6f89628565c83359645">quantity</a>)</td></tr>
-<tr class="separator:a0a0bb1985371db8d70b3213039770a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
 <tr class="memitem:a5a89e92ddb70bc7268a3562214bf3c47" id="r_a5a89e92ddb70bc7268a3562214bf3c47"><td class="memItemLeft" align="right" valign="top"><a id="a5a89e92ddb70bc7268a3562214bf3c47" name="a5a89e92ddb70bc7268a3562214bf3c47"></a>
@@ -129,8 +124,142 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a164a50e10cc48a9840e0ee3282aa1d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afafaa78a289bf6f89628565c83359645" id="r_afafaa78a289bf6f89628565c83359645"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Quantity.html">Quantity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afafaa78a289bf6f89628565c83359645">quantity</a> () const</td></tr>
 <tr class="separator:afafaa78a289bf6f89628565c83359645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a481122ae0e746a799ff54b2b116ebceb" id="r_a481122ae0e746a799ff54b2b116ebceb"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a481122ae0e746a799ff54b2b116ebceb">getMagnitude</a> () const</td></tr>
+<tr class="separator:a481122ae0e746a799ff54b2b116ebceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b250de1ee70aee863b8de5cda4e953b" id="r_a3b250de1ee70aee863b8de5cda4e953b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b250de1ee70aee863b8de5cda4e953b">setMagnitude</a> (double value)</td></tr>
+<tr class="separator:a3b250de1ee70aee863b8de5cda4e953b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2916aa7279c9a41d545d5236204be47" id="r_aa2916aa7279c9a41d545d5236204be47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Unit.html">Unit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2916aa7279c9a41d545d5236204be47">getUnit</a> () const</td></tr>
+<tr class="separator:aa2916aa7279c9a41d545d5236204be47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acda7477cac5832188e65eba57728c641" id="r_acda7477cac5832188e65eba57728c641"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acda7477cac5832188e65eba57728c641">setUnit</a> (const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;unit)</td></tr>
+<tr class="separator:acda7477cac5832188e65eba57728c641"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2136077e991881affe099d594344c820" id="r_a2136077e991881affe099d594344c820"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2136077e991881affe099d594344c820">changeUnit</a> (const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;unit)</td></tr>
+<tr class="separator:a2136077e991881affe099d594344c820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16a124c3f22e8303b3396a0e296efe85" id="r_a16a124c3f22e8303b3396a0e296efe85"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16a124c3f22e8303b3396a0e296efe85">getValueSI</a> () const</td></tr>
+<tr class="separator:a16a124c3f22e8303b3396a0e296efe85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a030405447a04eccc960585cb76ab322e" id="r_a030405447a04eccc960585cb76ab322e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a030405447a04eccc960585cb76ab322e">setValueSI</a> (double value)</td></tr>
+<tr class="separator:a030405447a04eccc960585cb76ab322e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f74845a3a7c8339c9fc8102485bb557" id="r_a3f74845a3a7c8339c9fc8102485bb557"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f74845a3a7c8339c9fc8102485bb557">getValueInUnit</a> (const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;unit) const</td></tr>
+<tr class="separator:a3f74845a3a7c8339c9fc8102485bb557"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dabaa4ce22168ac6021e4a750b7f136" id="r_a0dabaa4ce22168ac6021e4a750b7f136"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0dabaa4ce22168ac6021e4a750b7f136">setValueInUnit</a> (double value, const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;unit)</td></tr>
+<tr class="separator:a0dabaa4ce22168ac6021e4a750b7f136"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedaec01af15bb3eb1c77a49276c67988" id="r_aedaec01af15bb3eb1c77a49276c67988"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedaec01af15bb3eb1c77a49276c67988">setValueUnit</a> (double value, const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;unit)</td></tr>
+<tr class="separator:aedaec01af15bb3eb1c77a49276c67988"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">成员函数说明</h2>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>数量输入框 </p>
+<p>用于输入数量值，支持数值和单位选择。 </p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a2136077e991881affe099d594344c820" name="a2136077e991881affe099d594344c820"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2136077e991881affe099d594344c820">&#9670;&#160;</a></span>changeUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::UiQuantity::changeUnit </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>unit</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>切换当前单位 </p>
+<p>切换当前单位后，数量值会自动转换为该单位 例如将1000m转换为1km，将1000kg转换为1t等 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unit</td><td>当前单位 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a481122ae0e746a799ff54b2b116ebceb" name="a481122ae0e746a799ff54b2b116ebceb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a481122ae0e746a799ff54b2b116ebceb">&#9670;&#160;</a></span>getMagnitude()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ast::UiQuantity::getMagnitude </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取数值大小 </p>
+<dl class="section return"><dt>返回</dt><dd>数值大小 </dd></dl>
+
+</div>
+</div>
+<a id="aa2916aa7279c9a41d545d5236204be47" name="aa2916aa7279c9a41d545d5236204be47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2916aa7279c9a41d545d5236204be47">&#9670;&#160;</a></span>getUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1Unit.html">Unit</a> ast::UiQuantity::getUnit </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取当前单位 </p>
+<dl class="section return"><dt>返回</dt><dd>当前单位 </dd></dl>
+
+</div>
+</div>
+<a id="a3f74845a3a7c8339c9fc8102485bb557" name="a3f74845a3a7c8339c9fc8102485bb557"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f74845a3a7c8339c9fc8102485bb557">&#9670;&#160;</a></span>getValueInUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ast::UiQuantity::getValueInUnit </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>unit</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取指定单位下的值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unit</td><td>指定单位 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>指定单位下的值 </dd></dl>
+
+</div>
+</div>
+<a id="a16a124c3f22e8303b3396a0e296efe85" name="a16a124c3f22e8303b3396a0e296efe85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16a124c3f22e8303b3396a0e296efe85">&#9670;&#160;</a></span>getValueSI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ast::UiQuantity::getValueSI </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取国际单位表示的值 </p>
+<dl class="section return"><dt>返回</dt><dd>国际单位表示的值 </dd></dl>
+
+</div>
+</div>
 <a id="afafaa78a289bf6f89628565c83359645" name="afafaa78a289bf6f89628565c83359645"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afafaa78a289bf6f89628565c83359645">&#9670;&#160;</a></span>quantity()</h2>
 
@@ -148,6 +277,31 @@ Public 成员函数</h2></td></tr>
 
 <p>获取数量值 </p>
 <dl class="section return"><dt>返回</dt><dd>数量值 </dd></dl>
+
+</div>
+</div>
+<a id="a3b250de1ee70aee863b8de5cda4e953b" name="a3b250de1ee70aee863b8de5cda4e953b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b250de1ee70aee863b8de5cda4e953b">&#9670;&#160;</a></span>setMagnitude()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::UiQuantity::setMagnitude </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置数值大小 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>数值大小 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -170,6 +324,116 @@ Public 成员函数</h2></td></tr>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">quantity</td><td>数量值 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acda7477cac5832188e65eba57728c641" name="acda7477cac5832188e65eba57728c641"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acda7477cac5832188e65eba57728c641">&#9670;&#160;</a></span>setUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::UiQuantity::setUnit </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>unit</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置当前单位 </p>
+<p>不会改变当前数量值的数值大小，仅改变单位表示 例如将1000m转换为1000km，将1000kg转换为1000t等 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unit</td><td>当前单位 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0dabaa4ce22168ac6021e4a750b7f136" name="a0dabaa4ce22168ac6021e4a750b7f136"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dabaa4ce22168ac6021e4a750b7f136">&#9670;&#160;</a></span>setValueInUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::UiQuantity::setValueInUnit </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>unit</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置指定单位下的值 </p>
+<p>只会改变数量值的数值大小，不会改变数量值的单位 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>指定单位下的值 </td></tr>
+    <tr><td class="paramname">unit</td><td>指定单位 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a030405447a04eccc960585cb76ab322e" name="a030405447a04eccc960585cb76ab322e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a030405447a04eccc960585cb76ab322e">&#9670;&#160;</a></span>setValueSI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::UiQuantity::setValueSI </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置国际单位下的值 </p>
+<p>只会改变数量值的数值大小，不会改变数量值的单位 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>国际单位下的值 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aedaec01af15bb3eb1c77a49276c67988" name="aedaec01af15bb3eb1c77a49276c67988"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedaec01af15bb3eb1c77a49276c67988">&#9670;&#160;</a></span>setValueUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ast::UiQuantity::setValueUnit </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classast_1_1Unit.html">Unit</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>unit</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置数值大小和单位 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>数值大小 </td></tr>
+    <tr><td class="paramname">unit</td><td>单位 </td></tr>
   </table>
   </dd>
 </dl>
