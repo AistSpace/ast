@@ -56,19 +56,6 @@ TimePastAscNode, TimeOfAscNodePassage: TrueAnomaly, ArgPeri, SMA, Ecc
 
 */
 
-void StateKeplerian_ClassInit(Class* cls);
-
-_AST_IMPL_OBJECT(StateKeplerian)
-
-
-bool aStateKeplerian_TypeInit()
-{
-    StateKeplerian_ClassInit(&StateKeplerian::staticType);
-    return true;
-}
-
-/// @todo 考虑怎么统一初始化StateKeplerian的类型信息并注册对象
-static bool inited = aStateKeplerian_TypeInit();
 
 PStateKeplerian StateKeplerian::New()
 {

@@ -53,11 +53,13 @@ class ClassInfo:
 
     def add_property(self, prop: PropertyInfo):
         """添加属性"""
-        self.properties[prop.name] = prop
+        # 存储时使用小写键，实现不区分大小写
+        self.properties[prop.name.lower()] = prop
     
     def get_property(self, name: str) -> Optional[PropertyInfo]:
         """获取属性"""
-        return self.properties.get(name)
+        # 查找时使用小写键，实现不区分大小写
+        return self.properties.get(name.lower())
 
 class TypeMapper:
     """类型映射器"""
@@ -121,9 +123,9 @@ class TypeMapper:
             return cls.TYPE_MAPPING[cpp_type]
         
         # 尝试查找部分匹配（如std::string）
-        for key, value in cls.TYPE_MAPPING.items():
-            if key in cpp_type:
-                return value
+        # for key, value in cls.TYPE_MAPPING.items():
+        #     if key in cpp_type:
+        #         return value
         
         # 默认返回UNKNOWN
         return PropertyType.UNKNOWN
@@ -168,31 +170,55 @@ class BaseHeaderAnalyzer:
     def _generate_class_init(self, class_info: ClassInfo) -> str:
         """生成单个类的初始化代码"""
         lines = []
-        lines.append(f"void {class_info.name}_ClassInit(Class* type)")
+        lines.append("AST_NAMESPACE_BEGIN")
+        lines.append("")
+        lines.append(f"Class {class_info.name}::staticType;")
+        lines.append("")
+        lines.append(f"static bool {class_info.name}_ClassInited = ({class_info.name}::ClassInit(&{class_info.name}::staticType), true);")
+        lines.append("")
+        lines.append(f"void {class_info.name}::ClassInit(Class* cls)")
         lines.append("{")
         
         lines.append("")  # 空行
         
         # 生成addProperty调用
-        for prop_name, prop_info in class_info.properties.items():
-            prop_func = TypeMapper.get_property_function(prop_info.property_type)
-            
-            if prop_info.getter and prop_info.setter:
-                # 有getter和setter
-                lines.append(f'    type->addProperty{prop_info.property_type.value}("{prop_name}", {prop_func}<{class_info.name}, &{class_info.name}::{prop_info.getter}, &{class_info.name}::{prop_info.setter}>());')
-            elif prop_info.getter and not prop_info.setter:
-                # 只有getter（只读）
-                lines.append(f'    type->addProperty{prop_info.property_type.value}("{prop_name}", {prop_func}<{class_info.name}, &{class_info.name}::{prop_info.getter}>());')
-            elif not prop_info.getter and prop_info.setter:
-                # 只有setter（不常见）
-                lines.append(f'    type->addProperty{prop_info.property_type.value}("{prop_name}", {prop_func}<{class_info.name}, nullptr, &{class_info.name}::{prop_info.setter}>());')
+        for _, prop_info in class_info.properties.items():
+            prop_name = prop_info.name  # 使用原始属性名
+            if prop_info.type_name in ['length_d', 'mass_d', 'time_d', 'area_d', 'speed_d', 'force_d', 'energy_d', 'power_d', 'angle_d', 'angvel_d']:
+                # 量纲类型
+                dimension_map = {
+                    'length_d': 'Dimension::Length()',
+                    'mass_d': 'Dimension::Mass()',
+                    'time_d': 'Dimension::Time()',
+                    'area_d': 'Dimension::Area()',
+                    'speed_d': 'Dimension::Speed()',
+                    'force_d': 'Dimension::Force()',
+                    'energy_d': 'Dimension::Energy()',
+                    'power_d': 'Dimension::Power()',
+                    'angle_d': 'Dimension::Angle()',
+                    'angvel_d': 'Dimension::AngularVelocity()'
+                }
+                dimension = dimension_map.get(prop_info.type_name, 'Dimension::None()')
+                if prop_info.getter and prop_info.setter:
+                    lines.append(f'    cls->addProperty("{prop_name}", aNewPropertyQuantity<{class_info.name}, &{class_info.name}::{prop_info.getter}, &{class_info.name}::{prop_info.setter}>({dimension}));')
+                elif prop_info.getter:
+                    lines.append(f'    cls->addProperty("{prop_name}", aNewPropertyQuantity<{class_info.name}, &{class_info.name}::{prop_info.getter}>({dimension}));')
             else:
-                lines.append(f"    constexpr auto member_{prop_name} = &{class_info.name}::{prop_info.original_name};")
-                # 只有成员变量
-                lines.append(f'    type->addProperty{prop_info.property_type.value}("{prop_name}", {prop_func}<{class_info.name}, member_{prop_name}>());')
-            lines.append("")  # 空行
+                # 普通类型
+                prop_func = TypeMapper.get_property_function(prop_info.property_type)
+                if prop_info.getter and prop_info.setter:
+                    lines.append(f'    cls->addProperty("{prop_name}", {prop_func}<{class_info.name}, &{class_info.name}::{prop_info.getter}, &{class_info.name}::{prop_info.setter}>());')
+                elif prop_info.getter:
+                    lines.append(f'    cls->addProperty("{prop_name}", {prop_func}<{class_info.name}, &{class_info.name}::{prop_info.getter}>());')
+                elif prop_info.setter:
+                    lines.append(f'    cls->addProperty("{prop_name}", {prop_func}<{class_info.name}, nullptr, &{class_info.name}::{prop_info.setter}>());')
+                else:
+                    lines.append(f"    constexpr auto member_{prop_name} = &{class_info.name}::{prop_info.original_name};")
+                    lines.append(f'    cls->addProperty("{prop_name}", {prop_func}<{class_info.name}, member_{prop_name}>());')
         
         lines.append("}")
+        lines.append("")
+        lines.append("AST_NAMESPACE_END")
         
         return "\n".join(lines)
     
@@ -210,7 +236,8 @@ class BaseHeaderAnalyzer:
             print(f"\n类: {class_name}")
             print(f"属性数量: {len(class_info.properties)}")
             
-            for prop_name, prop_info in class_info.properties.items():
+            for _, prop_info in class_info.properties.items():
+                prop_name = prop_info.name  # 使用原始属性名
                 print(f"  - {prop_name}: {prop_info.type_name} -> {prop_info.property_type.value}")
                 if prop_info.getter:
                     print(f"    getter: {prop_info.getter}")
@@ -224,6 +251,7 @@ class ClangHeaderAnalyzer(BaseHeaderAnalyzer):
         super().__init__(header_files, target_classes)
         self.index = Index.create()
         self.translation_units: Dict[str, TranslationUnit] = {}
+        self.typedefs: Dict[str, str] = {}  # 存储typedef映射
         
     def parse_files(self) -> bool:
         """解析所有头文件"""
@@ -238,7 +266,7 @@ class ClangHeaderAnalyzer(BaseHeaderAnalyzer):
                     '-x', 'c++',
                     '-std=c++11',
                     '-DAST_PROPERTIES_MARK=struct __properties_begin__;',
-                    '-I.',  # 包含当前目录
+                    '-Iinclude',  # 包含当前目录
                     '-I' + str(header_file.parent),  # 包含头文件所在目录
                 ]
                 
@@ -279,10 +307,12 @@ class ClangHeaderAnalyzer(BaseHeaderAnalyzer):
                 return
             
             # 创建类信息
-            if class_name and class_name not in self.classes:
-                class_info = ClassInfo(name=class_name, file_path=file_path)
-                self.classes[class_name] = class_info
-                
+            if class_name:
+                if class_name in self.classes:
+                    class_info = self.classes[class_name]                
+                else:
+                    class_info = ClassInfo(name=class_name, file_path=file_path)
+                    self.classes[class_name] = class_info
                 # 分析类的属性
                 self._analyze_class_properties(class_info, cursor)
         else:
@@ -400,7 +430,8 @@ class ClangHeaderAnalyzer(BaseHeaderAnalyzer):
                 prop_info.setter = method_name
                 prop_info.is_readonly = False
         else:
-            raise Exception("member function is not valid")
+            print(f"member function {method_name} is not valid, skip it")
+            # raise Exception("member function is not valid")
     
     def _get_type_name(self, cursor: Cursor, is_return_type: bool = False) -> str:
         """获取类型名"""
@@ -410,9 +441,9 @@ class ClangHeaderAnalyzer(BaseHeaderAnalyzer):
             else:
                 type_obj = cursor.type
             
-            # 获取规范类型
-            canonical_type = type_obj.get_canonical()
-            type_name = canonical_type.spelling
+            # 直接返回原始类型名，不使用规范类型
+            # 这样可以保持 length_d、time_d 等类型名
+            type_name = type_obj.spelling
             return type_name
         except:
             return "unknown"
@@ -471,18 +502,14 @@ class ClangHeaderAnalyzer(BaseHeaderAnalyzer):
     def _get_property_name_from_getter(self, getter_name: str) -> str:
         """从getter函数名提取属性名"""
         if getter_name.startswith('get'):
-            prop_name = getter_name[3:]
-            if prop_name:
-                return prop_name[0].lower() + prop_name[1:]
+            return getter_name[3:]
         
         return getter_name
     
     def _get_property_name_from_setter(self, setter_name: str) -> str:
         """从setter函数名提取属性名"""
         if setter_name.startswith('set'):
-            prop_name = setter_name[3:]
-            if prop_name:
-                return prop_name[0].lower() + prop_name[1:]
+            return setter_name[3:]
         
         return setter_name
     
@@ -512,8 +539,8 @@ def test():
     
     print(code)
 
-def main():
-    """主函数"""
+def parse_args():
+    """解析命令行参数"""
     import argparse
     
     parser = argparse.ArgumentParser(
@@ -535,18 +562,19 @@ def main():
     parser.add_argument('--add-typedefs', action='store_true', 
                        help='在输出中添加typedef映射（用于调试）')
     
-    args = parser.parse_args()
-    
-    # 收集头文件
+    return parser.parse_args()
+
+def collect_header_files(input_paths, recursive):
+    """收集头文件"""
     header_files = []
-    for input_path in args.input:
+    for input_path in input_paths:
         path = Path(input_path)
         
         if path.is_file():
             if path.suffix in ['.h', '.hpp', '.hh', '.hxx']:
                 header_files.append(path)
         elif path.is_dir():
-            if args.recursive:
+            if recursive:
                 pattern = '**/*.[hH][pPpP]*'
             else:
                 pattern = '*.[hH][pPpP]*'
@@ -559,49 +587,127 @@ def main():
         print("错误: 未找到头文件")
         sys.exit(1)
     
-    # 解析类名列表
-    target_classes = None
-    if args.classes:
-        target_classes = [c.strip() for c in args.classes.split(',')]
-        print(f"目标类: {target_classes}")
+    return header_files
+
+def parse_target_classes(classes_arg):
+    """解析目标类名列表"""
+    if not classes_arg:
+        return None
     
+    target_classes = [c.strip() for c in classes_arg.split(',')]
+    print(f"目标类: {target_classes}")
+    return target_classes
+
+def run_analysis(header_files, target_classes):
+    """执行分析"""
     analyzer = ClangHeaderAnalyzer(header_files, target_classes)
     
-    # 执行分析
     print(f"分析 {len(header_files)} 个头文件...")
     if not analyzer.analyze():
         print("分析失败")
         sys.exit(1)
     
-    # 打印摘要
     analyzer.print_summary()
-    
-    # 生成代码
+    return analyzer
+
+def generate_code(analyzer, add_typedefs):
+    """生成代码"""
     code = analyzer.generate_code()
     
     # 添加typedef映射（调试用）
-    if args.add_typedefs and hasattr(analyzer, 'typedefs'):
+    if add_typedefs and hasattr(analyzer, 'typedefs'):
         typedef_code = "\n\n// typedef映射:\n"
         for typedef, actual in analyzer.typedefs.items():
             typedef_code += f"//   {typedef} -> {actual}\n"
         code = typedef_code + code
     
-    # 输出结果
-    if args.output:
-        output_path = Path(args.output)
+    return code
+
+def output_results(code, output_file, header_files):
+    """输出结果"""
+    if output_file:
+        output_path = Path(output_file)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         
+        # 使用第一个头文件作为包含文件
+        if header_files:
+            header_file = Path(header_files[0]).name
+        else:
+            # 从输出文件名推导头文件名（去掉.rtti部分）
+            header_file = output_path.stem.replace('.rtti', '') + ".hpp"
+        
         with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(f"#include \"{header_file}\"\n\n")
             f.write("// 自动生成的属性初始化代码\n")
             f.write("// 警告: 不要手动修改此文件\n\n")
             f.write(code)
         
-        print(f"\n代码已生成到: {args.output}")
+        print(f"\n代码已生成到: {output_file}")
     else:
         print("\n生成的代码:")
         print("=" * 80)
         print(code)
         print("=" * 80)
+
+
+def run(input_paths, classes=None, output=None, recursive=False, add_typedefs=False):
+    """调试运行函数
+    
+    直接调用此函数进行调试，而不需要通过命令行参数
+    
+    Args:
+        input_paths: 输入头文件或目录列表
+        classes: 要分析的类名（逗号分隔，如："Test,AnotherClass"）
+        output: 输出文件路径
+        recursive: 是否递归查找头文件
+        add_typedefs: 是否添加typedef映射（用于调试）
+    """
+    # 收集头文件
+    header_files = collect_header_files(input_paths, recursive)
+    
+    # 解析目标类名
+    target_classes = parse_target_classes(classes)
+    
+    # 执行分析
+    analyzer = run_analysis(header_files, target_classes)
+    
+    # 生成代码
+    code = generate_code(analyzer, add_typedefs)
+    
+    # 如果没有指定输出文件，自动生成
+    if not output and header_files:
+        # 为每个头文件生成对应的 .rtti.cpp 文件
+        for header_file in header_files:
+            header_path = Path(header_file)
+            output_file = header_path.with_suffix('.rtti.cpp')
+            output_results(code, str(output_file), header_files)
+    else:
+        # 输出结果
+        output_results(code, output, header_files)
+
+def main():
+    """主函数"""
+    # 解析命令行参数
+    args = parse_args()
+    
+    # 调用调试运行函数，统一逻辑
+    run(
+        input_paths=args.input,
+        classes=args.classes,
+        output=args.output,
+        recursive=args.recursive,
+        add_typedefs=args.add_typedefs
+    )
+
+
+def test():
+    run(
+        input_paths=[r"src\AstCore\Orbit\State\StateKeplerian.hpp"],
+        classes="StateKeplerian",
+        output="StateKeplerian.rtti.cpp",
+        recursive=False,
+        add_typedefs=False
+    )
 
 if __name__ == "__main__":
     # test()

@@ -127,9 +127,13 @@ err_t Object::setAttrString(StringView path, StringView value)
 
 Property *Object::getProperty(StringView fieldName) const
 {
-    if(auto type = getType())
+    auto type = getType();
+    while(type)
     {
-        return type->getProperty(fieldName);
+        auto prop = type->getProperty(fieldName);
+        if(prop)
+            return prop;
+        type = type->getParent();
     }
     return nullptr;
 }

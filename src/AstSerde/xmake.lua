@@ -1,0 +1,5 @@
+target("AstSerde")
+    set_kind("shared")
+    add_files("**.cpp")
+    add_deps("AstUtil")
+    add_defines("AST_BUILD_LIB_SERDE")

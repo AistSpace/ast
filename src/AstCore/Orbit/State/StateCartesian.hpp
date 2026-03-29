@@ -39,6 +39,7 @@ using HStateCartesian = SharedPtr<StateCartesian>;
 class AST_CORE_API StateCartesian final: public State
 {
 public:
+    AST_OBJECT(StateCartesian)
     static PStateCartesian New();
     static HStateCartesian MakeShared();
     static PStateCartesian New(const CartState& state);

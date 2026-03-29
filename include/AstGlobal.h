@@ -105,7 +105,8 @@
     static Class staticType;\
     static inline Class* getStaticType(){return &staticType;}\
     Class* getType() const override{return &staticType;} \
-
+    static void ClassInit(Class* cls);\
+    
 #define _AST_IMPL_OBJECT(TYPE) \
     Class TYPE::staticType;\
 
@@ -235,6 +236,14 @@
 #    define AST_TEST_API A_DECL_IMPORT
 #endif
 #define AST_TEST_CAPI A_DECL_EXTERN_C AST_TEST_API
+
+// ast项目序列化模块导出声明
+#ifdef AST_BUILD_LIB_SERDE
+#    define AST_SERDE_API A_DECL_EXPORT
+#else
+#    define AST_SERDE_API A_DECL_IMPORT
+#endif
+#define AST_SERDE_CAPI A_DECL_EXTERN_C AST_SERDE_API
 
 
 #ifndef AST_PROJECT_NAME

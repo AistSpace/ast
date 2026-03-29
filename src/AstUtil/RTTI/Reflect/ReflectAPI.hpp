@@ -46,6 +46,13 @@ struct property_trait<std::string>
     using input_type = StringView;
 };
 
+template<>
+struct property_trait<TimePoint>
+{
+    using output_type = TimePoint;
+    using input_type = TimePoint;
+};
+
 
 
 typedef err_t (*FPropertyGet)(const void* obj, void* value);              ///< 获取属性值的函数指针
