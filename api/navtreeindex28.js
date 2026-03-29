@@ -1,5 +1,6 @@
 var NAVTREEINDEX28 =
 {
+"structast_1_1SnoptCAPI.html":[3,0,0,313],
 "structast_1_1SolverStats.html":[0,1,3,5],
 "structast_1_1SpaceWeather_1_1Entry.html":[0,0,1,6,0],
 "structast_1_1VehiclePathData.html":[2,0,0,406],

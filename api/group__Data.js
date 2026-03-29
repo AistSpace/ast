@@ -133,7 +133,8 @@ var group__Data =
       [ "unload", "classast_1_1SpiceApi.html#a0992c4f12d1cf1bfa2fc7b024e814fa1", null ],
       [ "functions_", "classast_1_1SpiceApi.html#a80bc4fe79b7450a41f7c0b88d8a23ad2", null ],
       [ "library_", "classast_1_1SpiceApi.html#aa2164d4212e7d542c98b5384813fb665", null ],
-      [ "mutex_", "classast_1_1SpiceApi.html#ab4b3bd1db404d3e719e928c78fd86a2a", null ]
+      [ "mutex_", "classast_1_1SpiceApi.html#ab4b3bd1db404d3e719e928c78fd86a2a", null ],
+      [ "spk_handles_", "classast_1_1SpiceApi.html#ab4ee7e4ae09ed4beab5f23e2960fb5bf", null ]
     ] ],
     [ "ast::aDataContext_EnsureCurrent", "group__Data.html#ga362102d8c58857b6e3d6b48b83bd0944", null ],
     [ "ast::aDataContext_EnsureDefault", "group__Data.html#ga6b71837a4fa5dcbe6f059efca4e75297", null ],

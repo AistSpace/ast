@@ -1,5 +1,6 @@
 var NAVTREEINDEX21 =
 {
+"examples.html":[5],
 "f2c_8h_source.html":[4,0,0,8,2],
 "files.html":[4,0],
 "functions.html":[3,3,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX21 =
 "group__Data.html#ga322f0ef44069d6d0286466ef3d8f5ec9":[0,0,1,66],
 "group__Data.html#ga362102d8c58857b6e3d6b48b83bd0944":[0,0,1,8],
 "group__Data.html#ga390ac1a8b1b53b9b991b39b68ca7f814":[0,0,1,62],
-"group__Data.html#ga40dcbf6fa05827fe9b7a7837a01105bd":[0,0,1,11],
-"group__Data.html#ga4174d1474102fd01849d4e1f0198f3d1":[0,0,1,68]
+"group__Data.html#ga40dcbf6fa05827fe9b7a7837a01105bd":[0,0,1,11]
 };

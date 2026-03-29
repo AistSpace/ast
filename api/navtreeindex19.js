@@ -1,5 +1,6 @@
 var NAVTREEINDEX19 =
 {
+"classast_1_1StationaryOrbitDesigner.html#a886e381c4baf80b2c34cd6cf614ba1e2":[0,0,3,7,2],
 "classast_1_1StationaryOrbitDesigner.html#a887551c2a93113f4e0f5764dc56e9e9c":[0,0,3,7,5],
 "classast_1_1StationaryOrbitDesigner.html#aaaae8ed54c4beeed20f9dc5c44f0e8c2":[0,0,3,7,8],
 "classast_1_1StationaryOrbitDesigner.html#ab3cb096abf0c2bb9b007f62555c2365c":[0,0,3,7,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX19 =
 "classast_1_1Unit.html#a2cb7d466a73c2e548d09ff3444f7dfb2":[0,4,3,1,16],
 "classast_1_1Unit.html#a324e97635b9183a22886dc4ef9d2439b":[0,4,3,1,34],
 "classast_1_1Unit.html#a3cf6cc9c71ab1480a5f0ad6ec031ccda":[0,4,3,1,21],
-"classast_1_1Unit.html#a3dc635b74bcdbf6ea00eb074a40b30ae":[0,4,3,1,28],
-"classast_1_1Unit.html#a40d890822f24e239617f9aba3a87cf42":[0,4,3,1,14]
+"classast_1_1Unit.html#a3dc635b74bcdbf6ea00eb074a40b30ae":[0,4,3,1,28]
 };
