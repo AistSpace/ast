@@ -1,7 +1,6 @@
 var dir_68267d1309a1af8e8297ef4c3efbcdba =
 [
     [ "AstCalc", "dir_b87c21d4b637542c7629bac9a1dde105.html", "dir_b87c21d4b637542c7629bac9a1dde105" ],
-    [ "AstCoder", "dir_59c853d336628da2f8f1344ff123f2c1.html", "dir_59c853d336628da2f8f1344ff123f2c1" ],
     [ "AstCore", "dir_ba29613c1d0899bb7dd064b57f92f413.html", "dir_ba29613c1d0899bb7dd064b57f92f413" ],
     [ "AstGfx", "dir_f1afd34b2bad830bd554bec46a4f84c3.html", "dir_f1afd34b2bad830bd554bec46a4f84c3" ],
     [ "AstGUI", "dir_1aa6ec13829cacb2d194b2b5829946f0.html", "dir_1aa6ec13829cacb2d194b2b5829946f0" ],
@@ -11,6 +10,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "AstOpt", "dir_4e08eb69a574dd068e91199ff0b09183.html", "dir_4e08eb69a574dd068e91199ff0b09183" ],
     [ "AstPlot", "dir_feae92dab5ce4d5f7cc8d9f72a3879bd.html", "dir_feae92dab5ce4d5f7cc8d9f72a3879bd" ],
     [ "AstScript", "dir_943b8559cfec6ca4c5bcb49ee46412f0.html", "dir_943b8559cfec6ca4c5bcb49ee46412f0" ],
+    [ "AstSerde", "dir_e602c0d48a61b1bd94fee8aaec0c68d8.html", "dir_e602c0d48a61b1bd94fee8aaec0c68d8" ],
     [ "AstSim", "dir_9c9106fcc7ff0f590973c837d2bf1f53.html", "dir_9c9106fcc7ff0f590973c837d2bf1f53" ],
     [ "AstSPICE", "dir_c28a40f339b370bd30d45f651e4adfe9.html", "dir_c28a40f339b370bd30d45f651e4adfe9" ],
     [ "AstTest", "dir_3d510ba8b0868dc0f4c18bbd5b6af976.html", "dir_3d510ba8b0868dc0f4c18bbd5b6af976" ],

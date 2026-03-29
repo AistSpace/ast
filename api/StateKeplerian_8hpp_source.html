@@ -218,95 +218,112 @@ $(function(){initNavTree('StateKeplerian_8hpp_source.html',''); initResizable(tr
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordtype">void</span> setPositionParam(<span class="keywordtype">double</span> positionParam, EPositionType positionType);</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordtype">void</span> setPositionParam(<span class="keywordtype">double</span> positionParam);</div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordtype">void</span> setPositionType(EPositionType positionType);</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>PROPERTIES:</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordtype">double</span> getSMA() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">void</span> setSMA(<span class="keywordtype">double</span> sma);</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordtype">double</span> getMeanMotion() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordtype">void</span> setMeanMotion(<span class="keywordtype">double</span> meanMotion);</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">double</span> getPeriod() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">void</span> setPeriod(<span class="keywordtype">double</span> period);</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordtype">double</span> getApoAlt() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordtype">void</span> setApoAltForSize(<span class="keywordtype">double</span> apoAlt);</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">void</span> setApoAltForShape(<span class="keywordtype">double</span> apoAlt);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordtype">double</span> getApoAlt() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">double</span> getApoRad() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordtype">double</span> getPeriAlt() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordtype">double</span> getPeriRad() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>PROPERTIES:</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    length_d getSMA() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordtype">void</span> setSMA(length_d sma);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    time_d getPeriod() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">void</span> setPeriod(time_d period);</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordtype">double</span> getApoRad() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">void</span> setApoRadForSize(<span class="keywordtype">double</span> apoRad);</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordtype">void</span> setApoRadForShape(<span class="keywordtype">double</span> apoRad);</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">double</span> getPeriAlt() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordtype">void</span> setPeriAltForSize(<span class="keywordtype">double</span> periAlt);</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordtype">void</span> setPeriAltForShape(<span class="keywordtype">double</span> periAlt);</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keywordtype">double</span> getPeriRad() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keywordtype">void</span> setPeriRadForSize(<span class="keywordtype">double</span> periRad);</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="keywordtype">void</span> setPeriRadForShape(<span class="keywordtype">double</span> periRad);</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    angvel_d getMeanMotion() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">void</span> setMeanMotion(angvel_d meanMotion);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    length_d getApoRadForSize()<span class="keyword"> const</span>{<span class="keywordflow">return</span> getApoRad();}</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordtype">void</span> setApoRadForSize(length_d apoRad);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    length_d getApoAltForSize()<span class="keyword"> const</span>{<span class="keywordflow">return</span> getApoAlt();}</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keywordtype">void</span> setApoAltForSize(length_d apoAlt);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    length_d getPeriRadForSize()<span class="keyword"> const</span>{<span class="keywordflow">return</span> getPeriRad();}</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keywordtype">void</span> setPeriRadForSize(length_d periRad);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    length_d getPeriAltForSize()<span class="keyword"> const</span>{<span class="keywordflow">return</span> getPeriAlt();}</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="keywordtype">void</span> setPeriAltForSize(length_d periAlt);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keywordtype">double</span> getEcc() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keywordtype">void</span> setEcc(<span class="keywordtype">double</span> ecc);</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keywordtype">double</span> getInc() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keywordtype">void</span> setInc(<span class="keywordtype">double</span> inc);</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordtype">double</span> getRAAN() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordtype">void</span> setRAAN(<span class="keywordtype">double</span> raan);</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordtype">double</span> getLAN() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordtype">void</span> setLAN(<span class="keywordtype">double</span> lan);</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordtype">double</span> getArgPeri() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordtype">void</span> setArgPeri(<span class="keywordtype">double</span> argPeri);</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordtype">double</span> getTrueAnomaly() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keywordtype">void</span> setTrueAnomaly(<span class="keywordtype">double</span> trueAnomaly);</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordtype">double</span> getMeanAnomaly() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keywordtype">void</span> setMeanAnomaly(<span class="keywordtype">double</span> meanAnomaly);</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="keywordtype">double</span> getEccAnomaly() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keywordtype">void</span> setEccAnomaly(<span class="keywordtype">double</span> eccAnomaly);</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordtype">double</span> getArgLat() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keywordtype">void</span> setArgLat(<span class="keywordtype">double</span> argLat);</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keywordtype">double</span> getTimePastPeri() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordtype">void</span> setTimePastPeri(<span class="keywordtype">double</span> timePastPeri);</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordtype">double</span> getTimePastAscNode() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keywordtype">void</span> setTimePastAscNode(<span class="keywordtype">double</span> timePastAscNode);</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordtype">void</span> getTimeOfPeriPassage(TimePoint&amp; tp) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    TimePoint getTimeOfPeriPassage() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keywordtype">void</span> setTimeOfPeriPassage(<span class="keyword">const</span> TimePoint&amp; tp);</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordtype">void</span> setTimeOfPeriPassage(<span class="keywordtype">double</span> epochsecond);</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keywordtype">void</span> getTimeOfAscNodePassage(TimePoint&amp; tp) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    TimePoint getTimeOfAscNodePassage() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keywordtype">void</span> setTimeOfAscNodePassage(<span class="keyword">const</span> TimePoint&amp; tp);</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordtype">void</span> setTimeOfAscNodePassage(<span class="keywordtype">double</span> epochsecond);</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keywordtype">void</span> changeEccHoldingOthers(<span class="keywordtype">double</span> ecc, <span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keywordtype">void</span> changePeriRadHoldingOthers(<span class="keywordtype">double</span> periRad, <span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordtype">void</span> changeArgPeriHoldingOthers(<span class="keywordtype">double</span> argPeri, <span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keywordtype">void</span> holdLAN(<span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="keywordtype">void</span> holdMeanAnomaly(<span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordtype">void</span> holdEccAnomaly(<span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keywordtype">void</span> holdArgLat(<span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keywordtype">void</span> holdTimePastAscNode(<span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keywordtype">void</span> holdTimePastPeri(<span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="classast_1_1StateKeplerian.html#a06ff1e1b6718b389a6e9e0140f036f53">  270</a></span>    <a class="code hl_class" href="classast_1_1ModOrbElem.html">ModOrbElem</a> modOrbElem_{};                                       </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="classast_1_1StateKeplerian.html#a1a94ded5950fb4057d783043f2757e9b">  271</a></span>    <a class="code hl_enumeration" href="namespaceast.html#a42503bc04b484437e930407c57f5658c">ESizeType</a>  sizeType_{ESizeType::eSMA};                          </div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="classast_1_1StateKeplerian.html#a666a7f30b5225199af10ea2d96af3095">  272</a></span>    <a class="code hl_enumeration" href="namespaceast.html#a800e22fae35d4cadd14cfbc2f191b4f9">EShapeType</a> shapeType_{EShapeType::eEcc};                        </div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="classast_1_1StateKeplerian.html#a9f888ea2118ed7b1c80432fc851ec6a3">  273</a></span>    <a class="code hl_enumeration" href="namespaceast.html#aebc46f63d4ca7b01bd3e9718282bc9b3">EOrientationType</a> orientationType_{EOrientationType::eRAAN};     </div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="classast_1_1StateKeplerian.html#ad3165abd763f4fc1958ec7627284f86c">  274</a></span>    <a class="code hl_enumeration" href="namespaceast.html#a9de38fd17316aadc192e14bfee3a2c30">EPositionType</a> positionType_{EPositionType::eTrueAnomaly};       </div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>};</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    length_d getApoRadForShape()<span class="keyword"> const</span>{<span class="keywordflow">return</span> getApoRad();}</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordtype">void</span> setApoRadForShape(length_d apoRad);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    length_d getApoAltForShape()<span class="keyword"> const</span>{<span class="keywordflow">return</span> getApoAlt();}</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordtype">void</span> setApoAltForShape(length_d apoAlt);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    length_d getPeriRadForShape()<span class="keyword"> const</span>{<span class="keywordflow">return</span> getPeriRad();}</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordtype">void</span> setPeriRadForShape(length_d periRad);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    length_d getPeriAltForShape()<span class="keyword"> const</span>{<span class="keywordflow">return</span> getPeriAlt();}</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordtype">void</span> setPeriAltForShape(length_d periAlt);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    angle_d getInc() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordtype">void</span> setInc(angle_d inc);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    angle_d getRAAN() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordtype">void</span> setRAAN(angle_d raan);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    angle_d getLAN() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordtype">void</span> setLAN(angle_d lan);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    angle_d getArgPeri() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="keywordtype">void</span> setArgPeri(<span class="keywordtype">double</span> argPeri);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    angle_d getTrueAnomaly() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordtype">void</span> setTrueAnomaly(angle_d trueAnomaly);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    angle_d getMeanAnomaly() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordtype">void</span> setMeanAnomaly(angle_d meanAnomaly);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    angle_d getEccAnomaly() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keywordtype">void</span> setEccAnomaly(angle_d eccAnomaly);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    angle_d getArgLat() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keywordtype">void</span> setArgLat(angle_d argLat);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    time_d getTimePastPeri() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordtype">void</span> setTimePastPeri(time_d timePastPeri);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    time_d getTimePastAscNode() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keywordtype">void</span> setTimePastAscNode(time_d timePastAscNode);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keywordtype">void</span> getTimeOfPeriPassage(TimePoint&amp; tp) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    TimePoint getTimeOfPeriPassage() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keywordtype">void</span> setTimeOfPeriPassage(<span class="keyword">const</span> TimePoint&amp; tp);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordtype">void</span> setTimeOfPeriPassage(<span class="keywordtype">double</span> epochsecond);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keywordtype">void</span> getTimeOfAscNodePassage(TimePoint&amp; tp) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    TimePoint getTimeOfAscNodePassage() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="keywordtype">void</span> setTimeOfAscNodePassage(<span class="keyword">const</span> TimePoint&amp; tp);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordtype">void</span> setTimeOfAscNodePassage(<span class="keywordtype">double</span> epochsecond);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="keywordtype">void</span> changeEccHoldingOthers(<span class="keywordtype">double</span> ecc, <span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keywordtype">void</span> changePeriRadHoldingOthers(<span class="keywordtype">double</span> periRad, <span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keywordtype">void</span> changeArgPeriHoldingOthers(<span class="keywordtype">double</span> argPeri, <span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordtype">void</span> holdLAN(<span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keywordtype">void</span> holdMeanAnomaly(<span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="keywordtype">void</span> holdEccAnomaly(<span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordtype">void</span> holdArgLat(<span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="keywordtype">void</span> holdTimePastAscNode(<span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="keywordtype">void</span> holdTimePastPeri(<span class="keyword">const</span> ModOrbElem&amp; originalElem);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="classast_1_1StateKeplerian.html#a06ff1e1b6718b389a6e9e0140f036f53">  287</a></span>    <a class="code hl_class" href="classast_1_1ModOrbElem.html">ModOrbElem</a> modOrbElem_{};                                       </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno"><a class="line" href="classast_1_1StateKeplerian.html#a1a94ded5950fb4057d783043f2757e9b">  288</a></span>    <a class="code hl_enumeration" href="namespaceast.html#a42503bc04b484437e930407c57f5658c">ESizeType</a>  sizeType_{ESizeType::eSMA};                          </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno"><a class="line" href="classast_1_1StateKeplerian.html#a666a7f30b5225199af10ea2d96af3095">  289</a></span>    <a class="code hl_enumeration" href="namespaceast.html#a800e22fae35d4cadd14cfbc2f191b4f9">EShapeType</a> shapeType_{EShapeType::eEcc};                        </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno"><a class="line" href="classast_1_1StateKeplerian.html#a9f888ea2118ed7b1c80432fc851ec6a3">  290</a></span>    <a class="code hl_enumeration" href="namespaceast.html#aebc46f63d4ca7b01bd3e9718282bc9b3">EOrientationType</a> orientationType_{EOrientationType::eRAAN};     </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno"><a class="line" href="classast_1_1StateKeplerian.html#ad3165abd763f4fc1958ec7627284f86c">  291</a></span>    <a class="code hl_enumeration" href="namespaceast.html#a9de38fd17316aadc192e14bfee3a2c30">EPositionType</a> positionType_{EPositionType::eTrueAnomaly};       </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>};</div>
 </div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>AST_NAMESPACE_END</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>AST_NAMESPACE_END</div>
 <div class="ttc" id="aclassast_1_1CartState_html"><div class="ttname"><a href="classast_1_1CartState.html">ast::CartState</a></div><div class="ttdoc">直角坐标</div><div class="ttdef"><b>定义</b> OrbitElement.hpp:46</div></div>
 <div class="ttc" id="aclassast_1_1ModOrbElem_html"><div class="ttname"><a href="classast_1_1ModOrbElem.html">ast::ModOrbElem</a></div><div class="ttdoc">修正轨道根数</div><div class="ttdef"><b>定义</b> OrbitElement.hpp:127</div></div>
 <div class="ttc" id="aclassast_1_1OrbElem_html"><div class="ttname"><a href="classast_1_1OrbElem.html">ast::OrbElem</a></div><div class="ttdoc">经典轨道根数</div><div class="ttdef"><b>定义</b> OrbitElement.hpp:85</div></div>

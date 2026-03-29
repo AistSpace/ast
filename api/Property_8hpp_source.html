@@ -107,7 +107,7 @@ $(function(){initNavTree('Property_8hpp_source.html',''); initResizable(true); }
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;AstGlobal.h&quot;</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="Field_8hpp.html">Field.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="ReflectAPI_8hpp.html">ReflectAPI.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="AstUtil_2RTTI_2Reflect_2ReflectAPI_8hpp.html">ReflectAPI.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>AST_NAMESPACE_BEGIN</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
@@ -188,8 +188,8 @@ $(function(){initNavTree('Property_8hpp_source.html',''); initResizable(true); }
 </div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>AST_NAMESPACE_END</div>
+<div class="ttc" id="aAstUtil_2RTTI_2Reflect_2ReflectAPI_8hpp_html"><div class="ttname"><a href="AstUtil_2RTTI_2Reflect_2ReflectAPI_8hpp.html">ReflectAPI.hpp</a></div><div class="ttdoc">~</div></div>
 <div class="ttc" id="aField_8hpp_html"><div class="ttname"><a href="Field_8hpp.html">Field.hpp</a></div><div class="ttdoc">~</div></div>
-<div class="ttc" id="aReflectAPI_8hpp_html"><div class="ttname"><a href="ReflectAPI_8hpp.html">ReflectAPI.hpp</a></div><div class="ttdoc">~</div></div>
 <div class="ttc" id="aclassast_1_1Field_html"><div class="ttname"><a href="classast_1_1Field.html">ast::Field</a></div><div class="ttdoc">反射字段类</div><div class="ttdef"><b>定义</b> Field.hpp:34</div></div>
 <div class="ttc" id="aclassast_1_1Property_html"><div class="ttname"><a href="classast_1_1Property.html">ast::Property</a></div><div class="ttdoc">反射属性类</div><div class="ttdef"><b>定义</b> Property.hpp:56</div></div>
 <div class="ttc" id="aclassast_1_1Property_html_a00cd32368849b4ec5da23d80ab675024"><div class="ttname"><a href="classast_1_1Property.html#a00cd32368849b4ec5da23d80ab675024">ast::Property::setValueString</a></div><div class="ttdeci">virtual err_t setValueString(void *container, StringView value)=0</div><div class="ttdoc">设置属性值（String类型）</div></div>
@@ -206,7 +206,7 @@ $(function(){initNavTree('Property_8hpp_source.html',''); initResizable(true); }
 <div class="ttc" id="aclassast_1_1StringViewBasic_html"><div class="ttname"><a href="classast_1_1StringViewBasic.html">ast::StringViewBasic&lt; char &gt;</a></div></div>
 <div class="ttc" id="agroup__RTTI_html_ga720e28060323da40e1e4b070d083476d"><div class="ttname"><a href="group__RTTI.html#ga720e28060323da40e1e4b070d083476d">ast::aFakeGet</a></div><div class="ttdeci">err_t aFakeGet(const void *container, void *value)</div><div class="ttdoc">模拟获取属性值的函数</div><div class="ttdef"><b>定义</b> Property.cpp:26</div></div>
 <div class="ttc" id="agroup__RTTI_html_gab1de86ab568b3c12ac0a28cb2d5dda9a"><div class="ttname"><a href="group__RTTI.html#gab1de86ab568b3c12ac0a28cb2d5dda9a">ast::EValueType</a></div><div class="ttdeci">EValueType</div><div class="ttdef"><b>定义</b> Property.hpp:34</div></div>
-<div class="ttc" id="agroup__RTTI_html_gae5e5616987acd034b10e01cd6edbbb48"><div class="ttname"><a href="group__RTTI.html#gae5e5616987acd034b10e01cd6edbbb48">ast::FPropertyGet</a></div><div class="ttdeci">err_t(* FPropertyGet)(const void *obj, void *value)</div><div class="ttdoc">获取属性值的函数指针</div><div class="ttdef"><b>定义</b> ReflectAPI.hpp:51</div></div>
+<div class="ttc" id="agroup__RTTI_html_gae5e5616987acd034b10e01cd6edbbb48"><div class="ttname"><a href="group__RTTI.html#gae5e5616987acd034b10e01cd6edbbb48">ast::FPropertyGet</a></div><div class="ttdeci">err_t(* FPropertyGet)(const void *obj, void *value)</div><div class="ttdoc">获取属性值的函数指针</div><div class="ttdef"><b>定义</b> ReflectAPI.hpp:58</div></div>
 <div class="ttc" id="agroup__RTTI_html_gaf362f75a91fc0ea3dbfa4192650b6a7f"><div class="ttname"><a href="group__RTTI.html#gaf362f75a91fc0ea3dbfa4192650b6a7f">ast::aFakeSet</a></div><div class="ttdeci">err_t aFakeSet(void *container, const void *value)</div><div class="ttdoc">模拟设置属性值的函数</div><div class="ttdef"><b>定义</b> Property.cpp:32</div></div>
 <div class="ttc" id="agroup__RTTI_html_ggab1de86ab568b3c12ac0a28cb2d5dda9aa005483d8e82f7e1a1c8fb4217956699b"><div class="ttname"><a href="group__RTTI.html#ggab1de86ab568b3c12ac0a28cb2d5dda9aa005483d8e82f7e1a1c8fb4217956699b">ast::eBool</a></div><div class="ttdeci">@ eBool</div><div class="ttdoc">bool类型</div><div class="ttdef"><b>定义</b> Property.hpp:37</div></div>
 <div class="ttc" id="agroup__RTTI_html_ggab1de86ab568b3c12ac0a28cb2d5dda9aa35382ccaf85aca20434f772622969e3e"><div class="ttname"><a href="group__RTTI.html#ggab1de86ab568b3c12ac0a28cb2d5dda9aa35382ccaf85aca20434f772622969e3e">ast::eString</a></div><div class="ttdeci">@ eString</div><div class="ttdoc">std::string类型</div><div class="ttdef"><b>定义</b> Property.hpp:38</div></div>

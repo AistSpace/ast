@@ -113,7 +113,8 @@ var hierarchy =
         [ "ast::PropertyObject", "classast_1_1PropertyObject.html", null ],
         [ "ast::PropertyPOD", "classast_1_1PropertyPOD.html", null ],
         [ "ast::PropertyString", "classast_1_1PropertyString.html", null ],
-        [ "ast::PropertyStruct", "classast_1_1PropertyStruct.html", null ]
+        [ "ast::PropertyStruct", "classast_1_1PropertyStruct.html", null ],
+        [ "ast::PropertyTimePoint", "classast_1_1PropertyTimePoint.html", null ]
       ] ],
       [ "ast::Struct", "classast_1_1Struct.html", [
         [ "ast::Class", "classast_1_1Class.html", null ]
@@ -388,6 +389,7 @@ var hierarchy =
         [ "ast::FrameRoot", "classast_1_1FrameRoot.html", null ],
         [ "ast::FrameWithEpoch", "classast_1_1FrameWithEpoch.html", null ]
       ] ],
+      [ "ast::MockObject", "classast_1_1MockObject.html", null ],
       [ "ast::Point", "classast_1_1Point.html", [
         [ "ast::CelestialBody", "classast_1_1CelestialBody.html", null ],
         [ "ast::Ephemeris", "classast_1_1Ephemeris.html", [
@@ -451,6 +453,7 @@ var hierarchy =
     [ "ast::MotionOrbitDynamics::PropagationParams", "structast_1_1MotionOrbitDynamics_1_1PropagationParams.html", null ],
     [ "ast::property_trait< T >", "structast_1_1property__trait.html", null ],
     [ "ast::property_trait< std::string >", "structast_1_1property__trait_3_01std_1_1string_01_4.html", null ],
+    [ "ast::property_trait< TimePoint >", "structast_1_1property__trait_3_01TimePoint_01_4.html", null ],
     [ "QLineEdit", null, [
       [ "ast::UiQuantity", "classast_1_1UiQuantity.html", null ],
       [ "ast::UiTimePoint", "classast_1_1UiTimePoint.html", null ]

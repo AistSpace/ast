@@ -13,5 +13,9 @@ var group__GUI =
       [ "setValueInUnit", "classast_1_1UiQuantity.html#a0dabaa4ce22168ac6021e4a750b7f136", null ],
       [ "setValueSI", "classast_1_1UiQuantity.html#a030405447a04eccc960585cb76ab322e", null ],
       [ "setValueUnit", "classast_1_1UiQuantity.html#aedaec01af15bb3eb1c77a49276c67988", null ]
+    ] ],
+    [ "ast::UiTimeInterval", "classast_1_1UiTimeInterval.html", [
+      [ "getTimeInterval", "classast_1_1UiTimeInterval.html#a181efaf4a9a516d56fd5fe26080b1a7c", null ],
+      [ "setTimeInterval", "classast_1_1UiTimeInterval.html#affb9e1d1fb777462e3ed29e2432a5dc3", null ]
     ] ]
 ];
