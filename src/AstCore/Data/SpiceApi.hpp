@@ -25,6 +25,7 @@
 #include <vector>
 #include <string>
 #include <array>
+#include <cstdint>
 
 AST_NAMESPACE_BEGIN
 
@@ -110,12 +111,14 @@ public: // 包装函数
     );
 
     /// @brief 加载SPK内核文件
+    /// @details 在CSPICE的接口基础上增加了引用计数机制
     /// @param libpath 内核文件路径
     /// @param handle 内核句柄
     /// @return 错误码
     err_t spklef(const char* libpath, int* handle);
 
     /// @brief 鞋子SPK内核文件
+    /// @details 在CSPICE的接口基础上增加了引用计数机制
     /// @param handle 内核句柄
     /// @return 错误码
     err_t spkuef(int handle);
@@ -156,6 +159,7 @@ protected:
     A_DISABLE_COPY(SpiceApi);
 protected:
     void*  library_{nullptr};           ///< 库句柄
+    std::vector<uint32_t> spk_handles_; ///< 已加载的SPK内核句柄列表
     funcarray functions_{};             ///< 函数指针
     std::mutex mutex_;                  ///< 互斥锁(CSPICE库的函数不是线程安全的，这里用于保护函数调用的线程安全问题)
 };

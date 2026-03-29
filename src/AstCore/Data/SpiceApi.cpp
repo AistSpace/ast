@@ -221,9 +221,16 @@ err_t SpiceApi::spklef(const char *libpath, int *handle)
         aError(kSpiceUnloadError);
         return eErrorNullPtr;
     }
+    spiceproto::SpiceInt h=0;
     std::lock_guard<std::mutex> lock(mutex_);
-    spiceproto::SpiceInt h;
     spklef_c(libpath, &h);
+    if(h >= spk_handles_.size())
+    {
+        spk_handles_.resize(h + 1);
+    }
+    if(h>=0){
+        spk_handles_[h] ++;
+    }
     if(handle)
         *handle = static_cast<int>(h);
     return checkerror();
@@ -238,8 +245,13 @@ err_t SpiceApi::spkuef(int handle)
         aError(kSpiceUnloadError);
         return eErrorNullPtr;
     }
+    if(handle >= spk_handles_.size() || handle < 0)
+        return eErrorInvalidParam;
     std::lock_guard<std::mutex> lock(mutex_);
-    spkuef_c(handle);
+    spk_handles_[handle] --;
+    if(spk_handles_[handle] == 0){
+        spkuef_c(handle);
+    }
     return checkerror();
 }
 

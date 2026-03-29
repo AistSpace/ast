@@ -41,11 +41,16 @@ TEST(JplSpkTest, open_twice)
     spk2.open(spkfile);
     err_t rc1 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
     spk2.close();
+    EXPECT_EQ(rc1, eNoError);
+    
     err_t rc2 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
     spk1.close();
-    err_t rc0 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
+    EXPECT_EQ(rc2, eNoError);
+    
+    err_t rc3 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
+    EXPECT_NE(rc3, eNoError);
 
-    printf("rc0: %d, rc1: %d, rc2: %d\n", rc0, rc1, rc2);
+    printf("rc1: %d, rc2: %d, rc3: %d\n", rc1, rc2, rc3);
 }
 
 
