@@ -34,10 +34,11 @@ AST_NAMESPACE_BEGIN
 class Property;
 
 /// @brief 对象的特定属性
+template<typename PropertyType=Property>
 class Attribute
 {
 public:
-    Attribute(void* object, Property* property)
+    Attribute(void* object, PropertyType* property)
         : object_(object), property_(property)
     {
     }
@@ -148,7 +149,7 @@ public:
     }   
 protected:
     void*     object_{nullptr};
-    Property* property_{nullptr};
+    PropertyType* property_{nullptr};
 };
 
 /*! @} */

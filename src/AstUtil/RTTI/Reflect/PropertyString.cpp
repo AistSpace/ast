@@ -20,6 +20,7 @@
 
 #include "PropertyString.hpp"
 #include "AstUtil/ParseFormat.hpp"
+#include "AstUtil/PropertyVisitor.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -95,6 +96,11 @@ err_t PropertyString::setValueDouble(void* container, double value)
     }
     StringView strview = str;
     return this->setValue(container, &strview);
+}
+
+err_t PropertyString::accept(PropertyVisitor& visitor, const void* container)
+{
+    return visitor.visit(*this, container);
 }
 
 AST_NAMESPACE_END

@@ -32,6 +32,13 @@ AST_NAMESPACE_BEGIN
 class PropertyPOD : public Property
 {
 public:
+    using Property::Property;
+    
+    /// @brief 接受访问者
+    /// @param visitor 访问者对象
+    /// @param container 容器对象指针
+    /// @return err_t 错误码
+    err_t accept(PropertyVisitor& visitor, const void* container) override;
 
 protected:
 

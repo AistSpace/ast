@@ -1,7 +1,7 @@
 ///
-/// @file      PropertyObject.cpp
-/// @brief     ~
-/// @details   ~
+/// @file      PropertyVisitor.cpp
+/// @brief     
+/// @details   
 /// @author    axel
 /// @date      2026-03-30
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
@@ -18,14 +18,10 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "PropertyObject.hpp"
-#include "AstUtil/PropertyVisitor.hpp"
+#include "PropertyVisitor.hpp"
 
 AST_NAMESPACE_BEGIN
 
-err_t PropertyObject::accept(PropertyVisitor& visitor, const void* container)
-{
-    return visitor.visit(*this, container);
-}
+
 
 AST_NAMESPACE_END

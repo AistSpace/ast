@@ -48,6 +48,12 @@ public:
     err_t setValueDouble(void* container, double value) override;
     err_t getValueString(const void* container, std::string& value) override;
     err_t setValueString(void* container, StringView value) override;
+    
+    /// @brief 接受访问者
+    /// @param visitor 访问者对象
+    /// @param container 容器对象指针
+    /// @return err_t 错误码
+    err_t accept(PropertyVisitor& visitor, const void* container) override;
 public:
     /// @brief 设置属性值（时间点类型）
     /// @param container 容器指针

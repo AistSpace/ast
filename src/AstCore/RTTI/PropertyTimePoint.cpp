@@ -20,6 +20,7 @@
 
 #include "PropertyTimePoint.hpp"
 #include "AstUtil/ParseFormat.hpp"
+#include "AstUtil/PropertyVisitor.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -100,6 +101,11 @@ err_t PropertyTimePoint::setValueDouble(void* container, double value)
     TimePoint time;
     aEpochSecondToTimePoint(value, time);
     return this->setValue(container, &time);
+}
+
+err_t PropertyTimePoint::accept(PropertyVisitor& visitor, const void* container)
+{
+    return visitor.visit(*this, container);
 }
 
 AST_NAMESPACE_END

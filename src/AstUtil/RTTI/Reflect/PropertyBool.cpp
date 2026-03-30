@@ -20,6 +20,7 @@
 
 #include "PropertyBool.hpp"
 #include "AstUtil/ParseFormat.hpp"
+#include "AstUtil/PropertyVisitor.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -86,6 +87,11 @@ err_t PropertyBool::setValueDouble(void* container, double value)
 {
     bool b = value != 0.0;
     return setValue(container, &b);
+}
+
+err_t PropertyBool::accept(PropertyVisitor& visitor, const void* container)
+{
+    return visitor.visit(*this, container);
 }
 
 AST_NAMESPACE_END

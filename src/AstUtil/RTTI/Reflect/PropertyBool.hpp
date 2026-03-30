@@ -44,6 +44,12 @@ public:
     err_t setValueString(void* container, StringView value) override;
     err_t getValueDouble(const void* container, double& value) override;
     err_t setValueDouble(void* container, double value) override;
+    
+    /// @brief 接受访问者
+    /// @param visitor 访问者对象
+    /// @param container 容器对象指针
+    /// @return err_t 错误码
+    err_t accept(PropertyVisitor& visitor, const void* container) override;
 protected:
     /// @brief 设置属性值（bool类型）
     /// @param container 容器指针

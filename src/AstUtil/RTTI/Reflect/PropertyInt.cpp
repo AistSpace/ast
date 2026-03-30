@@ -20,6 +20,7 @@
 
 #include "PropertyInt.hpp"
 #include "AstUtil/ParseFormat.hpp"
+#include "AstUtil/PropertyVisitor.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -87,6 +88,11 @@ err_t PropertyInt::setValueDouble(void* container, double value)
 {
     int i = (int)value;
     return this->setValue(container, &i);
+}
+
+err_t PropertyInt::accept(PropertyVisitor& visitor, const void* container)
+{
+    return visitor.visit(*this, container);
 }
 
 AST_NAMESPACE_END

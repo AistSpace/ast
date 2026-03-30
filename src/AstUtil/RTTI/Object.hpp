@@ -65,9 +65,9 @@ public:
     /// @brief 获取属性，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @return Attribute 属性
-    Attribute attr(StringView path)
+    Attribute<Property> attr(StringView path)
     {
-        return Attribute(this, this->getProperty(path));
+        return Attribute<Property>(this, this->getProperty(path));
     }
 
 public:

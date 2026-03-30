@@ -26,6 +26,8 @@
 
 AST_NAMESPACE_BEGIN
 
+class PropertyVisitor;
+
 /*!
     @addtogroup RTTI
     @{
@@ -73,6 +75,12 @@ public:
     {}
     Property() = default;
     ~Property() = default;
+    
+    /// @brief 接受访问者
+    /// @param visitor 访问者对象
+    /// @param container 容器对象指针
+    /// @return err_t 错误码
+    virtual err_t accept(PropertyVisitor& visitor, const void* container) = 0;
 
     /// @param container 容器对象指针
     /// @param value 指向double类型变量的引用，用于存储属性值
