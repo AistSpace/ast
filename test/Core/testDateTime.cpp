@@ -309,7 +309,7 @@ TEST(DateTime, Formatting)
     std::string str;
     
     // 测试格里高利历格式
-    err_t err = aDateTimeFormatGregorian(dttm, str);
+    errc_t err = aDateTimeFormatGregorian(dttm, str);
     EXPECT_EQ(err, eNoError);
     EXPECT_TRUE(str.find("2023-12-25") != std::string::npos);
     EXPECT_TRUE(str.find("10:30:45") != std::string::npos);
@@ -348,7 +348,7 @@ TEST(DateTime, Parsing)
     DateTime dttm;
     
     // 测试解析ISO 8601格式
-    err_t err = aDateTimeParseISO8601("2023-12-25T10:30:45Z", dttm);
+    errc_t err = aDateTimeParseISO8601("2023-12-25T10:30:45Z", dttm);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(dttm.year(), 2023);
     EXPECT_EQ(dttm.month(), 12);
@@ -468,7 +468,7 @@ TEST(DateTime, EdgeCases)
     dttm.day() = 1;
     
     std::string str;
-    err_t err = aDateTimeFormatGregorian(dttm, str);
+    errc_t err = aDateTimeFormatGregorian(dttm, str);
     EXPECT_EQ(err, eNoError);
     
     // 测试时间组件的边界值
@@ -805,7 +805,7 @@ TEST(DateTime, AdditionalParsingFunctions)
     DateTime dttm;
     
     // 测试aDateTimeParse自定义格式
-    err_t err = aDateTimeParse("2023-12-25 10:30:45", "%Y-%m-%d %H:%M:%S", dttm);
+    errc_t err = aDateTimeParse("2023-12-25 10:30:45", "%Y-%m-%d %H:%M:%S", dttm);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(dttm.year(), 2023);
     EXPECT_EQ(dttm.month(), 12);
@@ -894,7 +894,7 @@ TEST(DateTime, RFCFormatting)
     std::string str;
     
     // 测试RFC 1123格式
-    err_t err = aDateTimeFormatRFC1123(dttm, str);
+    errc_t err = aDateTimeFormatRFC1123(dttm, str);
     EXPECT_EQ(err, eNoError);
     EXPECT_TRUE(str.find("2023") != std::string::npos);
     EXPECT_TRUE(str.find("GMT") != std::string::npos);
@@ -921,7 +921,7 @@ TEST(DateTime, UncoveredBranches)
     dttm.second() = 45.0;  // 确保毫秒为0
     
     std::string str;
-    err_t err = aDateTimeFormatISO8601(dttm, str);
+    errc_t err = aDateTimeFormatISO8601(dttm, str);
     EXPECT_EQ(err, eNoError);
     EXPECT_TRUE(str == "2023-12-25T10:30:45Z");
     

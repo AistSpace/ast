@@ -41,13 +41,13 @@ Axes *AxesBodyTOD::getParent() const
     return getBodyOrientation()->getTODParent();
 }
 
-err_t AxesBodyTOD::getTransform(const TimePoint &tp, Rotation &rotation) const
+errc_t AxesBodyTOD::getTransform(const TimePoint &tp, Rotation &rotation) const
 {
     getBodyOrientation()->getTODTransform(tp, rotation);
     return eNoError;
 }
 
-err_t AxesBodyTOD::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
+errc_t AxesBodyTOD::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
 {
     getBodyOrientation()->getTODTransform(tp, rotation.getRotation());
     rotation.setRotationRate(Vector3d::Zero());

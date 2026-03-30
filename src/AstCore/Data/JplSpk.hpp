@@ -44,7 +44,7 @@ public:
     /// @brief 打开SPK文件
     /// @param filepath SPK文件路径
     /// @return 错误码
-    err_t open(StringView spkfile);
+    errc_t open(StringView spkfile);
 
     /// @brief 检查SPK文件是否已打开
     /// @return 是否已打开
@@ -52,7 +52,7 @@ public:
 
     /// @brief 关闭SPK文件
     /// @return 错误码
-    err_t close();
+    errc_t close();
 
     /// @brief 获取SPK文件路径
     /// @return SPK文件路径
@@ -63,7 +63,7 @@ public:
     int handle() const{return handle_;}
 
     /// @brief 获取目标体相对于参考体的时间点的位置(ICRF系下)
-    static err_t getPosICRF(
+    static errc_t getPosICRF(
         const TimePoint& tp, 
         int target,
         int referenceBody,
@@ -71,7 +71,7 @@ public:
     );
 
     /// @brief 获取目标体相对于参考体的时间点的速度和位置(ICRF系下)
-    static err_t getPosVelICRF(
+    static errc_t getPosVelICRF(
         const TimePoint& tp, 
         int target,
         int referenceBody,
@@ -85,7 +85,7 @@ public:
     static std::string getBodyName(int id);
 
     /// @brief 获取目标体的时间间隔
-    err_t getInterval(
+    errc_t getInterval(
         int target,
         TimeInterval& interval
     ) const;
@@ -93,14 +93,14 @@ public:
     /// @brief 获取所有目标体的名称
     /// @param names 目标体名称向量
     /// @return 错误码
-    err_t getBodyNames(
+    errc_t getBodyNames(
         std::vector<std::string>& names
     ) const;
 
     /// @brief 获取所有目标体的ID
     /// @param ids 目标体ID向量
     /// @return 错误码
-    err_t getBodyIds(
+    errc_t getBodyIds(
         std::vector<int>& ids
     ) const;
 protected:

@@ -285,7 +285,7 @@ void aDateTimeAddSecondsBJT(DateTime& dttm, double seconds)
 }
 
 // 格式化函数实现
-err_t aDateTimeFormatISO8601(const DateTime& dttm, std::string& str)
+errc_t aDateTimeFormatISO8601(const DateTime& dttm, std::string& str)
 {
     char buffer[100];
     int year = dttm.year();
@@ -308,7 +308,7 @@ err_t aDateTimeFormatISO8601(const DateTime& dttm, std::string& str)
     return eNoError;
 }
 
-err_t aDateTimeFormatGregorian(const DateTime& dttm, std::string& str, int precision)
+errc_t aDateTimeFormatGregorian(const DateTime& dttm, std::string& str, int precision)
 {
     char buffer[64];
     sprintf(buffer, "%04d-%02d-%02d %02d:%02d:%02.*f", 
@@ -319,7 +319,7 @@ err_t aDateTimeFormatGregorian(const DateTime& dttm, std::string& str, int preci
     return eNoError;
 }
 
-err_t aDateTimeFormatGregorianEn(const DateTime& dttm, std::string& str)
+errc_t aDateTimeFormatGregorianEn(const DateTime& dttm, std::string& str)
 {
     char buffer[64];
     const char* monthName = dttm.date().monthShortName();
@@ -331,7 +331,7 @@ err_t aDateTimeFormatGregorianEn(const DateTime& dttm, std::string& str)
     return eNoError;
 }
 
-err_t aDateTimeFormatGMT(const DateTime& dttm, std::string& str)
+errc_t aDateTimeFormatGMT(const DateTime& dttm, std::string& str)
 {
     char buffer[64];
     const char* weekdayName = dttm.date().weekDayShortName();
@@ -344,7 +344,7 @@ err_t aDateTimeFormatGMT(const DateTime& dttm, std::string& str)
     return eNoError;
 }
 
-err_t aDateTimeFormatRFC3339(const DateTime& dttm, std::string& str)
+errc_t aDateTimeFormatRFC3339(const DateTime& dttm, std::string& str)
 {
     char buffer[64];
     // 默认使用+00:00时区，实际使用时可能需要根据具体时区调整
@@ -357,13 +357,13 @@ err_t aDateTimeFormatRFC3339(const DateTime& dttm, std::string& str)
 }
 
 #ifdef AST_ENABLE_DATETIME_FORMAT_RFC
-err_t aDateTimeFormatRFC1123(const DateTime& dttm, std::string& str)
+errc_t aDateTimeFormatRFC1123(const DateTime& dttm, std::string& str)
 {
     // RFC 1123格式与GMT格式类似
     return aDateTimeFormatGMT(dttm, str);
 }
 
-err_t aDateTimeFormatRFC2822(const DateTime& dttm, std::string& str)
+errc_t aDateTimeFormatRFC2822(const DateTime& dttm, std::string& str)
 {
     char buffer[64];
     const char* weekdayName = dttm.date().weekDayShortName();
@@ -379,7 +379,7 @@ err_t aDateTimeFormatRFC2822(const DateTime& dttm, std::string& str)
 #endif
 
 // 解析函数实现
-err_t aDateTimeParseISO8601(StringView str, DateTime& dttm)
+errc_t aDateTimeParseISO8601(StringView str, DateTime& dttm)
 {
     // 简化实现，支持基本的ISO 8601格式：YYYY-MM-DDThh:mm:ss.sssZ
     // 实际应用中可能需要更复杂的解析逻辑
@@ -405,14 +405,14 @@ err_t aDateTimeParseISO8601(StringView str, DateTime& dttm)
     return eErrorInvalidParam;
 }
 
-err_t aDateTimeParseRFC3339(StringView str, DateTime& dttm)
+errc_t aDateTimeParseRFC3339(StringView str, DateTime& dttm)
 {
     // RFC 3339格式与ISO 8601格式类似，可以复用解析逻辑
     // 这里简化实现，不处理时区部分
     return aDateTimeParseISO8601(str, dttm);
 }
 
-err_t aDateTimeParseGregorian(StringView str, DateTime& dttm)
+errc_t aDateTimeParseGregorian(StringView str, DateTime& dttm)
 {
     // 解析格式：YYYY-MM-DD HH:mm:ss.sss
     const char* s = str.data();
@@ -433,7 +433,7 @@ err_t aDateTimeParseGregorian(StringView str, DateTime& dttm)
     return eErrorInvalidParam;
 }
 
-err_t aDateTimeParseGregorianEn(StringView str, DateTime& dttm)
+errc_t aDateTimeParseGregorianEn(StringView str, DateTime& dttm)
 {
     // 解析格式：dd Mon YYYY HH:mm:ss.sss
     const char* s = str.data();
@@ -466,7 +466,7 @@ err_t aDateTimeParseGregorianEn(StringView str, DateTime& dttm)
     return eErrorInvalidParam;
 }
 
-err_t aDateTimeParseGMT(StringView str, DateTime& dttm)
+errc_t aDateTimeParseGMT(StringView str, DateTime& dttm)
 {
     // 解析格式：Day, dd Mon YYYY HH:mm:ss.sss GMT
     const char* s = str.data();
@@ -500,9 +500,9 @@ err_t aDateTimeParseGMT(StringView str, DateTime& dttm)
 }
 
 
-err_t aDateTimeParseAny(StringView str, DateTime &dttm)
+errc_t aDateTimeParseAny(StringView str, DateTime &dttm)
 {
-    err_t ret = aDateTimeParseISO8601(str, dttm);
+    errc_t ret = aDateTimeParseISO8601(str, dttm);
     if (ret == eNoError) {
         return ret;
     }
@@ -541,7 +541,7 @@ DateTime DateTime::FromJD(const JulianDate &jd)
 DateTime DateTime::FromString(StringView str, StringView format)
 {
     DateTime dttm;
-    err_t err = aDateTimeParse(str, format, dttm);
+    errc_t err = aDateTimeParse(str, format, dttm);
     if (err != eNoError) {
         // 如果解析失败
         aError("Failed to parse datetime string '%s' with format '%s'", str.data(), format.data());
@@ -553,7 +553,7 @@ DateTime DateTime::FromString(StringView str)
 {
     // 采用默认格式解析
     DateTime dttm;
-    err_t err = aDateTimeParseAny(str, dttm);
+    errc_t err = aDateTimeParseAny(str, dttm);
     if(err != eNoError) {
         // 如果解析失败
         aError("Failed to parse datetime string '%s'", str.data());

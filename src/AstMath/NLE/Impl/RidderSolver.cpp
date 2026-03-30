@@ -23,7 +23,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t RidderSolver::solve(UnaryScalarFunc &func, double min, double max, double &result)
+errc_t RidderSolver::solve(UnaryScalarFunc &func, double min, double max, double &result)
 {
     this->stats_ = {};
     result = ridder(unarycfunc, min, max, absTol_, relTol_, maxIter_, &func, &stats_);

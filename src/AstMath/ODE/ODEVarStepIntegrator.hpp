@@ -37,10 +37,10 @@ public:
     using ODEFixedStepIntegrator::integrate;
 
     /// @see ODEIntegrator
-    err_t integrate(ODE& ode, double* y, double& t, double tf) final;
+    errc_t integrate(ODE& ode, double* y, double& t, double tf) final;
 
     /// @see ODEIntegrator
-    err_t integrateStep(ODE& ode, double* y, double& t, double tf) final;
+    errc_t integrateStep(ODE& ode, double* y, double& t, double tf) final;
 
     /// @brief 设置最大绝对误差
     void setMaxAbsErr(double maxAbsErr){maxAbsErr_ = maxAbsErr;};

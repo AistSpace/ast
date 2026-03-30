@@ -45,16 +45,16 @@ public:
     ~RepeatingSunSyncOrbitDesigner() = default;
     
     using BaseOrbitDesigner::getOrbitState;
-    err_t getOrbitState(ModOrbElem &orbElem) const override;
+    errc_t getOrbitState(ModOrbElem &orbElem) const override;
 
     EPositionType getPositionType() const { return positionType_; }
     void setPositionType(EPositionType type) { positionType_ = type; }
 
     double getApproxAltitude() const { return approxAltitude_; }
-    err_t setApproxAltitude(double alt);
+    errc_t setApproxAltitude(double alt);
 
     double getApproxRevsPerDay() const { return approxRevsPerDay_; }
-    err_t setApproxRevsPerDay(double revs);
+    errc_t setApproxRevsPerDay(double revs);
 
     int getNumberOfRevsRepeat() const { return numberOfRevsRepeat_; }
     void setNumberOfRevsRepeat(int revs) { numberOfRevsRepeat_ = revs; }

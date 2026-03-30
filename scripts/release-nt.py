@@ -35,6 +35,9 @@ ZIP_NAME = 'ast-nt.zip'
 EXCLUDE_DIRS = ['data', 'docs', '.git', 'build', '.xmake', ".trae", ".vscode", ".github", 
                 ".vs", "thirdparty", "vs2015", "vs2026", "vsxmake2022", "vsxmake2026"]
 
+# 空行替换内容（可配置）
+EMPTY_LINE_REPLACEMENT = '// 请不要修改此文件(do not modify this file)'  # 默认替换为空字符串，即删除空行
+
 # 合并模块源文件
 def merge_module_sources():
     """合并每个模块的.cpp文件为一个文件"""
@@ -133,6 +136,25 @@ def convert_to_utf8_bom(file_path):
         f.write(content)
     print(f"Converted to utf8-bom: {file_path}")
 
+def replace_empty_lines(file_path):
+    """替换文件中的空行为指定内容"""
+    with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+        lines = f.readlines()
+    
+    new_lines = []
+    for line in lines:
+        if line.strip() == '':
+            # 空行，替换为指定内容
+            if EMPTY_LINE_REPLACEMENT:
+                new_lines.append(EMPTY_LINE_REPLACEMENT + '\n')
+            # 如果替换内容为空，则不添加该行
+        else:
+            new_lines.append(line)
+    
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.writelines(new_lines)
+    print(f"Replaced empty lines in: {file_path}")
+
 def process_files():
     """处理所有文件"""
     for root, dirs, files in os.walk(ROOT_DIR):
@@ -150,6 +172,10 @@ def process_files():
             # 转换编码
             if any(encode_dir in root for encode_dir in ENCODE_DIRS) and ext in SOURCE_EXTENSIONS:
                 convert_to_utf8_bom(file_path)
+            
+            # 替换空行（只处理.hpp和.cpp文件）
+            if ext in ['.cpp']:
+                replace_empty_lines(file_path)
 
 def delete_files():
     """删除指定文件"""

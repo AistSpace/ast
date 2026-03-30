@@ -32,7 +32,7 @@
 
 AST_NAMESPACE_BEGIN
 
-static err_t loadEOP(BKVParser& parser, int numlines, std::vector<EOP::Entry>& data)
+static errc_t loadEOP(BKVParser& parser, int numlines, std::vector<EOP::Entry>& data)
 {
     if(numlines<=0){
         return eErrorInvalidParam;
@@ -83,9 +83,9 @@ static err_t loadEOP(BKVParser& parser, int numlines, std::vector<EOP::Entry>& d
 
 
 
-err_t EOP::load(StringView filepath)
+errc_t EOP::load(StringView filepath)
 {
-    err_t err = load(filepath, m_data);
+    errc_t err = load(filepath, m_data);
     if(!m_data.empty()){
         m_startMJD = m_data.front().mjd;
         m_endMJD = m_data.back().mjd;
@@ -100,7 +100,7 @@ void EOP::unload()
     m_endMJD = 0;
 }
 
-err_t EOP::load(StringView filepath, std::vector<Entry>& data)
+errc_t EOP::load(StringView filepath, std::vector<Entry>& data)
 {
     BKVParser parser(filepath);
 
@@ -131,12 +131,12 @@ err_t EOP::load(StringView filepath, std::vector<Entry>& data)
         }else if(token == BKVParser::eBlockBegin){
             // 块开始
             if(aEqualsIgnoreCase(item.value(), "OBSERVED")){
-                err_t err = loadEOP(parser, num_observed_points, datalist);
+                errc_t err = loadEOP(parser, num_observed_points, datalist);
                 if(err!=eNoError){
                     return err;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "PREDICTED")){
-                err_t err = loadEOP(parser, num_predicted_points, datalist);
+                errc_t err = loadEOP(parser, num_predicted_points, datalist);
                 if(err!=eNoError){
                     return err;
                 }
@@ -161,7 +161,7 @@ const EOP::Entry *EOP::getEntry(int mjd) const
     return &m_data[index];
 }
 
-err_t EOP::setEntry(int mjd, const Entry &entry)
+errc_t EOP::setEntry(int mjd, const Entry &entry)
 {
     int index = 0;
     double frac = 0.0;

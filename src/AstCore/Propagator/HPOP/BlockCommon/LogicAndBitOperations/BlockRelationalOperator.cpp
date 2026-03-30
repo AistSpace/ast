@@ -58,7 +58,7 @@ BlockRelationalOperator::BlockRelationalOperator(ERelationalOperatorType type)
     };
 }
 
-err_t BlockRelationalOperator::run(const SimTime &simTime)
+errc_t BlockRelationalOperator::run(const SimTime &simTime)
 {
     if (input1_ == nullptr || input2_ == nullptr || output_ == nullptr)
     {

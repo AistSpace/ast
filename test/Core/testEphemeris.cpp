@@ -45,7 +45,7 @@ TEST_F(EphemerisTest, EphemerisLagrangeVar_Empty)
     EphemerisLagrangeVar ephem;
     TimePoint tp = TimePoint::FromUTC(2026, 3, 24, 0, 0, 0);
     Vector3d pos, vel;
-    err_t rc = ephem.getPos(tp, pos);
+    errc_t rc = ephem.getPos(tp, pos);
     EXPECT_TRUE(rc != eNoError);
     rc = ephem.getPosVel(tp, pos, vel);
     EXPECT_TRUE(rc != eNoError);
@@ -66,7 +66,7 @@ TEST_F(EphemerisTest, EphemerisLagrangeVar_GetPosVel)
         Vector3d pos, vel;
         Vector3d pos_expected = {1, 0, 0};
         Vector3d vel_expected = {0, 0, 1};
-        err_t rc = ephem.getPos(tp, pos);
+        errc_t rc = ephem.getPos(tp, pos);
         EXPECT_TRUE(rc == eNoError);
         printf("pos = %s\n", pos.toString().c_str());
         EXPECT_NEAR(pos[0], pos_expected[0], 1e-2);
@@ -91,7 +91,7 @@ TEST_F(EphemerisTest, EphemerisLagrangeVar_GetPosVel)
         Vector3d pos, vel;
         Vector3d pos_expected = {1, 0, 0};
         Vector3d vel_expected = {0, 0, 1};
-        err_t rc = ephem.getPos(tp, pos);
+        errc_t rc = ephem.getPos(tp, pos);
         EXPECT_TRUE(rc == eNoError);
         EXPECT_EQ(pos[0], pos_expected[0]);
         EXPECT_EQ(pos[1], pos_expected[1]);
@@ -111,7 +111,7 @@ TEST_F(EphemerisTest, EphemerisLagrangeVar_GetPosVel)
     {
         Vector3d pos, vel;
         TimePoint tp = epoch + 120.01;
-        err_t rc = ephem.getPos(tp, pos);
+        errc_t rc = ephem.getPos(tp, pos);
         EXPECT_TRUE(rc != eNoError);
         rc = ephem.getPosVel(tp, pos, vel);
         EXPECT_TRUE(rc != eNoError);
@@ -127,7 +127,7 @@ TEST_F(EphemerisTest, EphemerisLagrangeVar_GetPosVel)
     {
         TimePoint tp = epoch;
         Vector3d pos, vel;
-        err_t rc = ephem.getPos(tp, pos);
+        errc_t rc = ephem.getPos(tp, pos);
         EXPECT_TRUE(rc == eNoError);
         rc = ephem.getPosVel(tp, pos, vel);
         EXPECT_TRUE(rc == eNoError);

@@ -40,7 +40,7 @@ public:
 
     using BaseOrbitDesigner::getOrbitState;
 
-    err_t getOrbitState(ModOrbElem& orbElem) const override;
+    errc_t getOrbitState(ModOrbElem& orbElem) const override;
 
     double getPerigeeAltitude() const { return perigeeAltitude_; }
 

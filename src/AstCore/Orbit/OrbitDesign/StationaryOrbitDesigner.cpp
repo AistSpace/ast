@@ -50,7 +50,7 @@ StationaryOrbitDesigner::StationaryOrbitDesigner(CelestialBody *body)
     }
 }
 
-err_t StationaryOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
+errc_t StationaryOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
 {
     const double gm = getGM();
     const double j2 = getJ2();

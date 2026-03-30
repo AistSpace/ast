@@ -43,15 +43,15 @@ AST_UTIL_API Unit* aUnitGet(StringView name);
 
 /// @brief 添加单位
 /// @param unit 要添加的单位
-/// @return err_t 错误码
-AST_UTIL_API err_t aUnitAdd(const Unit& unit);
+/// @return errc_t 错误码
+AST_UTIL_API errc_t aUnitAdd(const Unit& unit);
 
 
 /// @brief 添加单位
 /// @param name 单位名称
 /// @param unit 要添加的单位
-/// @return err_t 错误码
-AST_UTIL_API err_t aUnitAdd(StringView name, const Unit& unit);
+/// @return errc_t 错误码
+AST_UTIL_API errc_t aUnitAdd(StringView name, const Unit& unit);
 
 
 /// @brief 单位管理器
@@ -68,12 +68,12 @@ public:
 
     /// @brief 添加单位
     /// @param unit 要添加的单位
-    err_t addUnit(const Unit& unit);
+    errc_t addUnit(const Unit& unit);
 
     /// @brief 添加单位
     /// @param name 单位名称
     /// @param scale 单位缩放因子
-    err_t addUnit(StringView name, const Unit& unit);
+    errc_t addUnit(StringView name, const Unit& unit);
 
     /// @brief 获取单位
     /// @param name 单位名称
@@ -85,8 +85,8 @@ protected:
     /// @brief 添加单位
     /// @param name 单位名称
     /// @param unit 要添加的单位
-    /// @return err_t 错误码
-    err_t _addUnit(const std::string& name, const Unit& unit);
+    /// @return errc_t 错误码
+    errc_t _addUnit(const std::string& name, const Unit& unit);
 
 protected:
     std::unordered_map<std::string, Unit*> units_;       ///< 单位映射表

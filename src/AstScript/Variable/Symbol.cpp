@@ -47,13 +47,13 @@ Expr *Symbol::exec() const
     return expr->exec();  // @fixme: 这里是否需要递归执行？
 }
 
-err_t Symbol::setValue(Value *value)
+errc_t Symbol::setValue(Value *value)
 {
     SharedPtr<Expr> expr = exec();
     if(A_UNLIKELY(!expr))
     {
         aError("symbol %s is not found", name_.c_str());
-        return err_t();
+        return errc_t();
     }
     return expr->setValue(value);
 }

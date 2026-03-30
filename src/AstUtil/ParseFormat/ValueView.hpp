@@ -55,23 +55,23 @@ public:
 
     /// @brief 转换为整数
     int toInt() const { return aParseInt(value_); }
-    err_t toInt(int& value) const { return aParseInt(value_, value); }
+    errc_t toInt(int& value) const { return aParseInt(value_, value); }
 
     /// @brief 转换为浮点数，不支持 Fortran 格式浮点数
     double toDouble() const { return aParseDouble(value_); }
-    err_t toDouble(double& value) const { return aParseDouble(value_, value); }
+    errc_t toDouble(double& value) const { return aParseDouble(value_, value); }
     
     /// @brief 转换为浮点数，支持 Fortran 格式浮点数，例如 "1.23D2"，"-1.23d3"
     double toFortranDouble() const { return aParseFortranDouble(value_); }
-    err_t toFortranDouble(double& value) const { return aParseFortranDouble(value_, value); }
+    errc_t toFortranDouble(double& value) const { return aParseFortranDouble(value_, value); }
 
     /// @brief 转换为布尔值
     bool toBool() const { return aParseBool(value_); }
-    err_t toBool(bool& value) const { return aParseBool(value_, value); }
+    errc_t toBool(bool& value) const { return aParseBool(value_, value); }
     
     /// @brief 转换为颜色值
     Color toColor() const { return aParseColor(value_); }
-    err_t toColor(Color& value) const { return aParseColor(value_, value); }
+    errc_t toColor(Color& value) const { return aParseColor(value_, value); }
     
     /// @brief 转换为字符串
     std::string toString() const { return std::string(value_); }
@@ -83,15 +83,15 @@ public:
 
     /// @brief 转换为浮点数向量，支持 Fortran 格式浮点数，例如 "1.23D2"，"-1.23d3"
     std::vector<double> toFortranDoubleVector() const;
-    err_t toFortranDoubleVector(std::vector<double>& value) const;
+    errc_t toFortranDoubleVector(std::vector<double>& value) const;
 
     /// @brief 转换为浮点数向量
     std::vector<double> toDoubleVector() const;
-    err_t toDoubleVector(std::vector<double>& value) const;
+    errc_t toDoubleVector(std::vector<double>& value) const;
 
     /// @brief 转换为整数向量
     std::vector<int> toIntVector() const;
-    err_t toIntVector(std::vector<int>& value) const;
+    errc_t toIntVector(std::vector<int>& value) const;
     
     /// @brief 转换为字符串视图
     const StringView& toStringView() const { return value_; }
@@ -197,11 +197,11 @@ inline std::vector<double> ValueView::toFortranDoubleVector() const
     return value;
 }
 
-inline err_t ValueView::toFortranDoubleVector(std::vector<double> &value) const
+inline errc_t ValueView::toFortranDoubleVector(std::vector<double> &value) const
 {
     for (auto& v : split()) {
         double d;
-        if (err_t rc = ValueView(v).toFortranDouble(d)) {
+        if (errc_t rc = ValueView(v).toFortranDouble(d)) {
             return rc;
         }
         value.push_back(d);
@@ -216,11 +216,11 @@ inline std::vector<double> ValueView::toDoubleVector() const
     return value;
 }
 
-inline err_t ValueView::toDoubleVector(std::vector<double> &value) const
+inline errc_t ValueView::toDoubleVector(std::vector<double> &value) const
 {
     for (auto& v : split()) {
         double d;
-        if (err_t rc = ValueView(v).toDouble(d)) {
+        if (errc_t rc = ValueView(v).toDouble(d)) {
             return rc;
         }
         value.push_back(d);
@@ -235,11 +235,11 @@ inline std::vector<int> ValueView::toIntVector() const
     return value;
 }
 
-inline err_t ValueView::toIntVector(std::vector<int>& value) const
+inline errc_t ValueView::toIntVector(std::vector<int>& value) const
 {
     for (auto& v : split()) {
         int i;
-        if (err_t rc = ValueView(v).toInt(i)) {
+        if (errc_t rc = ValueView(v).toInt(i)) {
             return rc;
         }
         value.push_back(i);

@@ -51,10 +51,10 @@ public:
     ~GravityFieldLoader() = default;
 
     AST_CORE_API
-    err_t load(StringView filePath, GravityField& gravityField);
+    errc_t load(StringView filePath, GravityField& gravityField);
 
     AST_CORE_API
-    err_t load(StringView filePath, GravityFieldHead& head);
+    errc_t load(StringView filePath, GravityFieldHead& head);
 
     /// @brief 获取最大加载阶数
     int getMaxLoadDegree() const { return maxLoadDegree_; }

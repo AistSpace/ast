@@ -57,7 +57,7 @@ extern "C" {
 
 }
 
-err_t NLPProblem::evalNLENNZJacCOOSnJac(int ndim, const double* x_initguess, int m, std::vector<int>& iFunRow, std::vector<int>& jVarCol)
+errc_t NLPProblem::evalNLENNZJacCOOSnJac(int ndim, const double* x_initguess, int m, std::vector<int>& iFunRow, std::vector<int>& jVarCol)
 {
 	NLPBounds bounds;
 	// bounds.initialize(ndim, m);
@@ -201,7 +201,7 @@ err_t NLPProblem::evalNLENNZJacCOOSnJac(int ndim, const double* x_initguess, int
 }
 
 
-err_t CNLPSnoptSolver::Solve(INLPProblem& prob, VectorXd& xopt)
+errc_t CNLPSnoptSolver::Solve(INLPProblem& prob, VectorXd& xopt)
 {
 	NLPInfo probinfo;
 	prob.GetInfo(probinfo);
@@ -413,7 +413,7 @@ err_t CNLPSnoptSolver::Solve(INLPProblem& prob, VectorXd& xopt)
 
 	delete[]xnames; delete[]Fnames;
 
-    return err_t();
+    return errc_t();
 }
 
 AST_NAMESPACE_END

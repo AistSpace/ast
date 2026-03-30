@@ -36,10 +36,10 @@ class HPOP
 **Key Methods:**
 
 ```cpp
-err_t setForceModel(const HPOPForceModel& force_model);
-err_t setIntegrator(const std::string& integrator_type);
-err_t propagate(const TimePoint& start_time, const TimePoint& end_time, Vector3d& pos, Vector3d& vel);
-err_t initialize();
+errc_t setForceModel(const HPOPForceModel& force_model);
+errc_t setIntegrator(const std::string& integrator_type);
+errc_t propagate(const TimePoint& start_time, const TimePoint& end_time, Vector3d& pos, Vector3d& vel);
+errc_t initialize();
 ```
 
 **Parameter Description:**

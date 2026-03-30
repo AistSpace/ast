@@ -42,7 +42,7 @@ TEST(RotationalData, load)
     files.push_back(datadir + "/SolarSystem/Neptune/NeptuneAttitude2000.rot");
 
     for(const auto &file : files){
-        err_t rc = data.load(file);
+        errc_t rc = data.load(file);
         if(rc != eNoError){
             aError("failed to load file %s", file.c_str());
         }
@@ -57,7 +57,7 @@ TEST(RotationalData, MarsAttitude2000)
 
     RotationalData data;
     std::string datadir = aDataDirGet();
-    err_t rc = data.load(datadir + "/SolarSystem/Mars/MarsAttitude2000.rot");
+    errc_t rc = data.load(datadir + "/SolarSystem/Mars/MarsAttitude2000.rot");
     EXPECT_EQ(rc, eNoError);
     // test Fixed Frame
     {
@@ -123,7 +123,7 @@ TEST(RotationalData, NeptuneAttitude2000)
 
     RotationalData data;
     std::string datadir = aDataDirGet();
-    err_t rc = data.load(datadir + "/SolarSystem/Neptune/NeptuneAttitude2000.rot");
+    errc_t rc = data.load(datadir + "/SolarSystem/Neptune/NeptuneAttitude2000.rot");
     EXPECT_EQ(rc, eNoError);
     // test Fixed Frame
     {
@@ -191,7 +191,7 @@ TEST(RotationalData, JupiterAttitude2009)
 
     RotationalData data;
     std::string datadir = aDataDirGet();
-    err_t rc = data.load(datadir + "/SolarSystem/Jupiter/JupiterAttitude2009.rot");
+    errc_t rc = data.load(datadir + "/SolarSystem/Jupiter/JupiterAttitude2009.rot");
     EXPECT_EQ(rc, eNoError);
     // test Fixed Frame
     {
@@ -258,7 +258,7 @@ TEST(RotationalData, MoonAttitude2000)
 
     RotationalData data;
     std::string datadir = aDataDirGet();
-    err_t rc = data.load(datadir + "/SolarSystem/Moon/MoonAttitude2000.rot");
+    errc_t rc = data.load(datadir + "/SolarSystem/Moon/MoonAttitude2000.rot");
     EXPECT_EQ(rc, eNoError);
     // test Fixed Frame
     {

@@ -51,7 +51,7 @@ AST_CORE_CAPI void aTheoreticalXYS_IERS2010_TT(const JulianDate& jdTT, array3d& 
 
 
 /// @brief 获取给定时间点的IAU 理论XYS值（预计算数据）
-AST_CORE_CAPI err_t aTheoreticalXYS_IERS2010Precomputed(const TimePoint& tp, array3d& xys);
+AST_CORE_CAPI errc_t aTheoreticalXYS_IERS2010Precomputed(const TimePoint& tp, array3d& xys);
 
 
 

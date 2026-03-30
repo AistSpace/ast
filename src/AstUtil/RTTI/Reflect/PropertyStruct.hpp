@@ -40,7 +40,7 @@ protected:
     /// @param value 属性值指针
     /// @return 0 成功，其他值 失败
     A_ALWAYS_INLINE
-    err_t setValue(void* container, const InputType* value)
+    errc_t setValue(void* container, const InputType* value)
     {
         return setter_(container, value);
     }
@@ -49,10 +49,16 @@ protected:
     /// @param value 属性值指针
     /// @return 0 成功，其他值 失败
     A_ALWAYS_INLINE
-    err_t getValue(void* container, OutputType* value)
+    errc_t getValue(void* container, OutputType* value)
     {
         return getter_(container, value);
     }
+public:
+    /// @brief 接受访问者
+    /// @param visitor 访问者对象
+    /// @param container 容器对象指针
+    /// @return errc_t 错误码
+    errc_t accept(PropertyVisitor& visitor, const void* container) override;
 
 };
 

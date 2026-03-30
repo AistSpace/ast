@@ -39,7 +39,7 @@ public:
     ~MolniyaOrbitDesigner() = default;
     using BaseOrbitDesigner::getOrbitState;
 
-    err_t getOrbitState(ModOrbElem& orbElem) const override;
+    errc_t getOrbitState(ModOrbElem& orbElem) const override;
 
     double getApogeeLongitude() const { return apogeeLongitude_; }
     void setApogeeLongitude(double lon) { apogeeLongitude_ = lon; }

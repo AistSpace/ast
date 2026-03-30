@@ -55,7 +55,7 @@ public:
     /// @param min 搜索下限
     /// @param max 搜索上限
     /// @param result 输出解，长度需大于等于方程维度
-    virtual err_t solve(UnaryScalarFunc& func, double min, double max, double& result) = 0;
+    virtual errc_t solve(UnaryScalarFunc& func, double min, double max, double& result) = 0;
 };
 
 
@@ -104,7 +104,7 @@ public:
     /// @param max 搜索上限
     /// @param result 输出解
     template<typename Func>
-    typename std::enable_if<!std::is_base_of<UnaryScalarFunc, typename std::remove_pointer<Func>::type>::value, err_t>::type
+    typename std::enable_if<!std::is_base_of<UnaryScalarFunc, typename std::remove_pointer<Func>::type>::value, errc_t>::type
     solve(Func func, double min, double max, double& result) {
         UnaryScalarGenericFunc<Func> adapter(std::move(func));
         return this->solve(adapter, min, max, result);

@@ -43,7 +43,7 @@ public:
     /// @brief 初始化积分器
     /// @details 初始化积分器，设置ODE的维度和步长等参数
     /// @param ode 常微分方程对象
-    virtual err_t initialize(ODE& ode) = 0;
+    virtual errc_t initialize(ODE& ode) = 0;
 
 
     /// @brief 积分ODE
@@ -52,7 +52,7 @@ public:
     /// @param[in,out] y 状态向量
     /// @param[in,out] t 当前时间
     /// @param[in] tf 最终时间
-    virtual err_t integrate(ODE& ode, double* y,double& t, double tf) = 0;
+    virtual errc_t integrate(ODE& ode, double* y,double& t, double tf) = 0;
 
 
     /// @brief 积分ODE一步
@@ -63,14 +63,14 @@ public:
     /// @param[in,out] y 状态向量
     /// @param[in,out] t 当前时间
     /// @param[in] tf 最终时间
-    virtual err_t integrateStep(ODE& ode, double* y, double& t, double tf) = 0;
+    virtual errc_t integrateStep(ODE& ode, double* y, double& t, double tf) = 0;
 
     /// @brief 执行一步积分
     /// @param ode 常微分方程对象
     /// @param[in,out] y 状态向量
     /// @param t0 当前时间
     /// @param step 时间步长
-    virtual err_t singleStep(ODE& ode, double* y, double t0, double step) = 0;
+    virtual errc_t singleStep(ODE& ode, double* y, double t0, double step) = 0;
 };
 
 
@@ -85,7 +85,7 @@ public:
 
     using IODEIntegrator::integrate;
 
-    err_t initialize(ODE& ode) override;
+    errc_t initialize(ODE& ode) override;
 
 
     /// @brief 积分ODE
@@ -97,7 +97,7 @@ public:
     /// @param[in] tf 最终时间
     /// @param[out] xlist 时间点列表
     /// @param[out] ylist 状态向量列表
-    err_t integrate(
+    errc_t integrate(
         ODE& ode, double* y, double& t, double tf,
         std::vector<double>& xlist, std::vector<std::vector<double>>& ylist
     );
@@ -110,7 +110,7 @@ public:
     /// @param[in,out] t 当前时间
     /// @param[in] tf 最终时间
     template<typename Func>
-    err_t integrate(int ndim, Func func, double* y, double& t, double tf)
+    errc_t integrate(int ndim, Func func, double* y, double& t, double tf)
     {
         auto ode = make_ode(ndim, func);
         return integrate(ode, y, t, tf);

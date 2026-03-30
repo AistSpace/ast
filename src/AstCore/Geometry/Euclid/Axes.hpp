@@ -42,7 +42,7 @@ using HAxes = SharedPtr<Axes>;
 /// @param tp 时间点
 /// @param rotation 输出的旋转变换
 /// @return 错误码
-AST_CORE_API err_t aAxesTransform(Axes* source, Axes* target, const TimePoint& tp, Rotation& rotation);
+AST_CORE_API errc_t aAxesTransform(Axes* source, Axes* target, const TimePoint& tp, Rotation& rotation);
 
 
 /// @brief 计算轴系之间的转换矩阵。
@@ -51,7 +51,7 @@ AST_CORE_API err_t aAxesTransform(Axes* source, Axes* target, const TimePoint& t
 /// @param tp 时间点
 /// @param matrix 输出的转换矩阵
 /// @return 错误码
-AST_CORE_API err_t aAxesTransform(Axes* source, Axes* target, const TimePoint& tp, Matrix3d& matrix);
+AST_CORE_API errc_t aAxesTransform(Axes* source, Axes* target, const TimePoint& tp, Matrix3d& matrix);
 
 
 /// @brief 计算轴系之间的运动学旋转变换
@@ -60,7 +60,7 @@ AST_CORE_API err_t aAxesTransform(Axes* source, Axes* target, const TimePoint& t
 /// @param tp 时间点
 /// @param rotation 输出的运动学旋转变换
 /// @return 错误码
-AST_CORE_API err_t aAxesTransform(Axes* source, Axes* target, const TimePoint& tp, KinematicRotation& rotation);
+AST_CORE_API errc_t aAxesTransform(Axes* source, Axes* target, const TimePoint& tp, KinematicRotation& rotation);
 
 
 /// @brief 轴系类
@@ -78,13 +78,13 @@ public:
     /// @param tp 时间点
     /// @param rotation 输出的旋转信息
     /// @return 错误码
-    virtual err_t getTransform(const TimePoint& tp, Rotation& rotation) const = 0;
+    virtual errc_t getTransform(const TimePoint& tp, Rotation& rotation) const = 0;
     
     /// @brief 获取当前轴系相对于父轴系的运动学旋转信息
     /// @param tp 时间点
     /// @param rotation 输出的运动学旋转信息
     /// @return 错误码
-    virtual err_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const = 0;
+    virtual errc_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const = 0;
 public:
     /// @brief 获取当前轴系的深度
     /// @return 深度
@@ -102,7 +102,7 @@ public:
     /// @param rotation 输出的旋转变换
     /// @return 错误码
     A_ALWAYS_INLINE
-    err_t getTransformTo(Axes* target, const TimePoint& tp, Rotation& rotation) const
+    errc_t getTransformTo(Axes* target, const TimePoint& tp, Rotation& rotation) const
     {
         return aAxesTransform(const_cast<Axes*>(this), target, tp, rotation);
     }
@@ -112,7 +112,7 @@ public:
     /// @param rotation 输出的运动学旋转变换
     /// @return 错误码
     A_ALWAYS_INLINE
-    err_t getTransformTo(Axes* target, const TimePoint& tp, KinematicRotation& rotation) const
+    errc_t getTransformTo(Axes* target, const TimePoint& tp, KinematicRotation& rotation) const
     {
         return aAxesTransform(const_cast<Axes*>(this), target, tp, rotation);
     }
@@ -122,7 +122,7 @@ public:
     /// @param rotation 输出的旋转变换
     /// @return 错误码
     A_ALWAYS_INLINE
-    err_t getTransformFrom(Axes* source, const TimePoint& tp, Rotation& rotation) const
+    errc_t getTransformFrom(Axes* source, const TimePoint& tp, Rotation& rotation) const
     {
         return aAxesTransform(source, const_cast<Axes*>(this), tp, rotation);
     }
@@ -132,7 +132,7 @@ public:
     /// @param rotation 输出的运动学旋转变换
     /// @return 错误码
     A_ALWAYS_INLINE
-    err_t getTransformFrom(Axes* source, const TimePoint& tp, KinematicRotation& rotation) const
+    errc_t getTransformFrom(Axes* source, const TimePoint& tp, KinematicRotation& rotation) const
     {
         return aAxesTransform(source, const_cast<Axes*>(this), tp, rotation);
     }
@@ -141,7 +141,7 @@ public:
     /// @param rotation 输出的旋转信息
     /// @return 错误码
     A_ALWAYS_INLINE
-    err_t getTransformFromParent(const TimePoint& tp, Rotation& rotation) const
+    errc_t getTransformFromParent(const TimePoint& tp, Rotation& rotation) const
     {
         return getTransform(tp, rotation);
     }
@@ -150,7 +150,7 @@ public:
     /// @param rotation 输出的运动学旋转信息
     /// @return 错误码
     A_ALWAYS_INLINE
-    err_t getTransformFromParent(const TimePoint& tp, KinematicRotation& rotation) const
+    errc_t getTransformFromParent(const TimePoint& tp, KinematicRotation& rotation) const
     {
         return getTransform(tp, rotation);
     }

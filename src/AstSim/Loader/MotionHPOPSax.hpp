@@ -38,8 +38,8 @@ public:
     using MotionOrbitDynamicsSax::MotionOrbitDynamicsSax;
     ~MotionHPOPSax() override = default;
 public:
-    err_t keyValue(StringView key, const ValueView& value) override;
-    err_t getMotion(ScopedPtr<MotionProfile>& motion) override;public:
+    errc_t keyValue(StringView key, const ValueView& value) override;
+    errc_t getMotion(ScopedPtr<MotionProfile>& motion) override;public:
 public:
     
 protected:

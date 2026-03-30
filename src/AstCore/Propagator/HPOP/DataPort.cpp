@@ -22,7 +22,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t DataPort::connect(DataPort* src, DataPort* dst)
+errc_t DataPort::connect(DataPort* src, DataPort* dst)
 {
     if(!dst || !src)
         return eErrorNullInput;
@@ -32,7 +32,7 @@ err_t DataPort::connect(DataPort* src, DataPort* dst)
     return eNoError;
 }
 
-err_t DataPort::connect(DataPort *dst)
+errc_t DataPort::connect(DataPort *dst)
 {
     return connect(this, dst);
 }

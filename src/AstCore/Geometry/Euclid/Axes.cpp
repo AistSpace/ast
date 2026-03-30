@@ -65,7 +65,7 @@ Axes* Axes::getAncestor(int depth) const{
 
 
 template<typename GeometryType, typename RotationType>
-A_ALWAYS_INLINE err_t aGeometryTransform(GeometryType *source, GeometryType *target, const TimePoint& tp, RotationType &rotation)
+A_ALWAYS_INLINE errc_t aGeometryTransform(GeometryType *source, GeometryType *target, const TimePoint& tp, RotationType &rotation)
 {
     // if (A_UNLIKELY(source == nullptr || target == nullptr))
     // {
@@ -134,7 +134,7 @@ A_ALWAYS_INLINE err_t aGeometryTransform(GeometryType *source, GeometryType *tar
         for (int i = 0; i < sourceDepth; i++)
         {
             RotationType tempRot;
-            err_t rc = sourcePath[i]->getTransform(tp, tempRot);
+            errc_t rc = sourcePath[i]->getTransform(tp, tempRot);
             if(A_UNLIKELY(rc != eNoError))
                 return rc;
             commonToSource = tempRot * commonToSource;
@@ -143,7 +143,7 @@ A_ALWAYS_INLINE err_t aGeometryTransform(GeometryType *source, GeometryType *tar
         for (int i = 0; i < targetDepth; i++)
         {
             RotationType tempRot;
-            err_t rc = targetPath[i]->getTransform(tp, tempRot);
+            errc_t rc = targetPath[i]->getTransform(tp, tempRot);
             if(A_UNLIKELY(rc != eNoError))
                 return rc;
             commonToTarget = tempRot * commonToTarget;
@@ -154,7 +154,7 @@ A_ALWAYS_INLINE err_t aGeometryTransform(GeometryType *source, GeometryType *tar
     return eNoError;
 }
 
-err_t aFrameTransform(Frame* source, Frame* target, const TimePoint &tp, Transform& transform)
+errc_t aFrameTransform(Frame* source, Frame* target, const TimePoint &tp, Transform& transform)
 {
     if (A_UNLIKELY(source == nullptr || target == nullptr))
         return eErrorNullInput;
@@ -167,7 +167,7 @@ err_t aFrameTransform(Frame* source, Frame* target, const TimePoint &tp, Transfo
     return aGeometryTransform<Frame, Transform>(source, target, tp, transform);
 }
 
-err_t aFrameTransform(Frame *source, Frame *target, const TimePoint &tp, KinematicTransform &transform)
+errc_t aFrameTransform(Frame *source, Frame *target, const TimePoint &tp, KinematicTransform &transform)
 {
     if (A_UNLIKELY(source == nullptr || target == nullptr))
         return eErrorNullInput;
@@ -182,7 +182,7 @@ err_t aFrameTransform(Frame *source, Frame *target, const TimePoint &tp, Kinemat
 }
 
 
-err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, Rotation &rotation)
+errc_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, Rotation &rotation)
 {
     if (A_UNLIKELY(source == nullptr || target == nullptr))
         return eErrorNullInput;
@@ -190,14 +190,14 @@ err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, Rotation &
 }
 
 
-err_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, KinematicRotation &rotation)
+errc_t aAxesTransform(Axes *source, Axes *target, const TimePoint& tp, KinematicRotation &rotation)
 {
     if (A_UNLIKELY(source == nullptr || target == nullptr))
         return eErrorNullInput;
     return aGeometryTransform<Axes, KinematicRotation>(source, target, tp, rotation);
 }
 
-err_t aAxesTransform(Axes *source, Axes *target, const TimePoint &tp, Matrix3d &matrix)
+errc_t aAxesTransform(Axes *source, Axes *target, const TimePoint &tp, Matrix3d &matrix)
 {
     return aAxesTransform(source, target, tp, Rotation::CastFrom(matrix));
 }

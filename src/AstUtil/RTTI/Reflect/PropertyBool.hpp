@@ -36,21 +36,27 @@ public:
     using InputType = bool;
     using OutputType = bool;
     
-    err_t getValueBool(const void* container, bool& value) override;
-    err_t setValueBool(void* container, bool value) override;
-    err_t getValueInt(const void* container, int& value) override;
-    err_t setValueInt(void* container, int value) override;
-    err_t getValueString(const void* container, std::string& value) override;
-    err_t setValueString(void* container, StringView value) override;
-    err_t getValueDouble(const void* container, double& value) override;
-    err_t setValueDouble(void* container, double value) override;
+    errc_t getValueBool(const void* container, bool& value) override;
+    errc_t setValueBool(void* container, bool value) override;
+    errc_t getValueInt(const void* container, int& value) override;
+    errc_t setValueInt(void* container, int value) override;
+    errc_t getValueString(const void* container, std::string& value) override;
+    errc_t setValueString(void* container, StringView value) override;
+    errc_t getValueDouble(const void* container, double& value) override;
+    errc_t setValueDouble(void* container, double value) override;
+    
+    /// @brief 接受访问者
+    /// @param visitor 访问者对象
+    /// @param container 容器对象指针
+    /// @return errc_t 错误码
+    errc_t accept(PropertyVisitor& visitor, const void* container) override;
 protected:
     /// @brief 设置属性值（bool类型）
     /// @param container 容器指针
     /// @param value 属性值指针
     /// @return 0 成功，其他值 失败
     A_ALWAYS_INLINE
-    err_t setValue(void* container, const InputType* value)
+    errc_t setValue(void* container, const InputType* value)
     {
         return setter_(container, value);
     }
@@ -59,7 +65,7 @@ protected:
     /// @param value 属性值指针
     /// @return 0 成功，其他值 失败
     A_ALWAYS_INLINE
-    err_t getValue(const void* container, OutputType* value)
+    errc_t getValue(const void* container, OutputType* value)
     {
         return getter_(container, value);
     }

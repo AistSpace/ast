@@ -34,7 +34,7 @@ protected:
     void SetUp() override {
         aInitialize();
         auto earth = aGetEarth();
-        err_t rc = earth->setGravityModel("WGS84");
+        errc_t rc = earth->setGravityModel("WGS84");
         printf("rc: %d\n", rc);
     }
 
@@ -53,7 +53,7 @@ TEST_F(OrbitDesignTest, SimpleOrbitDesigner)  // OK
         designer.setRightAscensionOfAscendingNode(12_deg);
         designer.setArgumentOfPeriapsis(30_deg);
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
 
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
@@ -71,7 +71,7 @@ TEST_F(OrbitDesignTest, SimpleOrbitDesigner)  // OK
         designer.setRightAscensionOfAscendingNode(12.0_deg);
         designer.setArgumentOfPeriapsis(30.0_deg);
         OrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_EQ(orbElem.getA(), 3474.800000_km);
@@ -94,7 +94,7 @@ TEST_F(OrbitDesignTest, CriticallyInclinedOrbitDesigner) // OK
         designer.setRAAN(-100_deg);
 
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_DOUBLE_EQ(orbElem.getA(), 12578.137_km);
@@ -112,7 +112,7 @@ TEST_F(OrbitDesignTest, CriticallyInclinedOrbitDesigner) // OK
         designer.setRAAN(-100_deg);
 
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_DOUBLE_EQ(orbElem.getA(), 12578.137_km);
@@ -132,7 +132,7 @@ TEST_F(OrbitDesignTest, CriticallyInclinedSunSyncOrbitDesigner)  // OK
         designer.setRAAN(-100_deg);
 
         OrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 10640.1451595068047027_km, 2e-2_m);
@@ -144,7 +144,7 @@ TEST_F(OrbitDesignTest, CriticallyInclinedSunSyncOrbitDesigner)  // OK
         designer.setPerigeeAltitude(2462_km);
         designer.setRAAN(-100_deg);
         OrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 9877.3811004795061308_km, 2e-2_m);
@@ -162,7 +162,7 @@ TEST_F(OrbitDesignTest, SunSynchronousOrbitDesigner) // OK
         designer.setAltitude(400_km);
         
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_EQ(orbElem.getA(), designer.getBodyRadius() + 400_km);
@@ -175,7 +175,7 @@ TEST_F(OrbitDesignTest, SunSynchronousOrbitDesigner) // OK
         designer.setAltitude(500_km);
         
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getI(), 97.4064372289805931_deg, 1e-4_deg);
@@ -186,7 +186,7 @@ TEST_F(OrbitDesignTest, SunSynchronousOrbitDesigner) // OK
         designer.setAltitude(4027_km);
         
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getI(), 123.2679770859048318_deg, 1e-7_deg);
@@ -197,7 +197,7 @@ TEST_F(OrbitDesignTest, SunSynchronousOrbitDesigner) // OK
         designer.setAltitude(5974_km);
         
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getI(), 178.0565781247555606_deg, 1e-6_deg);
@@ -209,7 +209,7 @@ TEST_F(OrbitDesignTest, SunSynchronousOrbitDesigner) // OK
         designer.setInclination(95.6813_deg);
         
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 6378.1448599859231763_km, 1e-3_m);
@@ -220,7 +220,7 @@ TEST_F(OrbitDesignTest, SunSynchronousOrbitDesigner) // OK
         designer.setInclination(97.0346_deg);
         
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 6778.1370000012748278_km, 1_m);
@@ -231,7 +231,7 @@ TEST_F(OrbitDesignTest, SunSynchronousOrbitDesigner) // OK
         designer.setInclination(103_deg);
         
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 8064.7090264894568463_km, 1e-3_m);
@@ -242,7 +242,7 @@ TEST_F(OrbitDesignTest, SunSynchronousOrbitDesigner) // OK
         designer.setInclination(166_deg);
         
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 12248.0803516784781095_km, 1e-2_m);
@@ -267,7 +267,7 @@ TEST_F(OrbitDesignTest, StationaryOrbitDesigner) // OK
         designer.setInclination(0_deg);
         designer.setSubsatellitePoint(-100_deg);
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 42166.258669178736_km, 0.5_m);
@@ -277,7 +277,7 @@ TEST_F(OrbitDesignTest, StationaryOrbitDesigner) // OK
         designer.setInclination(45_deg);
         designer.setSubsatellitePoint(100_deg);
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 42166.258669178736_km, 0.5_m);
@@ -296,7 +296,7 @@ TEST_F(OrbitDesignTest, RepeatingOrbitDesigner) // OK
         designer.setNumberOfRevsRepeat(5);
         designer.setLongitudeOfAscendingNode(0);
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 14419.2516557074923185_km, 5e-3_m);
@@ -309,7 +309,7 @@ TEST_F(OrbitDesignTest, RepeatingOrbitDesigner) // OK
         designer.setNumberOfRevsRepeat(107);
         designer.setLongitudeOfAscendingNode(0);
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 9221.2842205231263506_km, 5e-3_m);
@@ -324,7 +324,7 @@ TEST_F(OrbitDesignTest, RepeatingOrbitDesigner) // OK
         double approxRevsPerDay = designer.getApproxRevsPerDay();
         printf("approxRevsPerDay: %.15g\n", approxRevsPerDay);
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 7125.5799774372935644_km, 5e-3_m);
@@ -341,7 +341,7 @@ TEST_F(OrbitDesignTest, RepeatingSunSyncOrbitDesigner) // OK
         designer.setNumberOfRevsRepeat(107);
         designer.setLongitudeOfAscendingNode(0);
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 6852.2029907422047472_km, 5e-3_m);
@@ -354,7 +354,7 @@ TEST_F(OrbitDesignTest, RepeatingSunSyncOrbitDesigner) // OK
         designer.setNumberOfRevsRepeat(100);
         designer.setLongitudeOfAscendingNode(0);
         ModOrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 7169.0453347685170229_km, 5e-3_m);
@@ -370,7 +370,7 @@ TEST_F(OrbitDesignTest, MolniyaOrbitDesigner) // OK
         designer.setPerigeeAltitude(500_km);
         designer.setApogeeLongitude(-100_deg);
         OrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 26553.3745462318947830_km, 5_m);
@@ -381,7 +381,7 @@ TEST_F(OrbitDesignTest, MolniyaOrbitDesigner) // OK
         designer.setPerigeeAltitude(700_km);
         designer.setApogeeLongitude(-100_deg);
         OrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 26553.7602141223542276_km, 5_m);
@@ -392,7 +392,7 @@ TEST_F(OrbitDesignTest, MolniyaOrbitDesigner) // OK
         designer.setPerigeeAltitude(13042_km);
         designer.setApogeeLongitude(-100_deg);
         OrbElem orbElem;
-        err_t rc = designer.getOrbitState(orbElem);
+        errc_t rc = designer.getOrbitState(orbElem);
         EXPECT_EQ(rc, eNoError);
         printf("orbElem: %s\n", orbElem.toString().c_str());
         EXPECT_NEAR(orbElem.getA(), 26559.6695341680606361_km, 1_m);

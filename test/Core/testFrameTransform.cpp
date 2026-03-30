@@ -43,7 +43,7 @@ TEST(FrameTransformTest, Transform_Case1)
     auto earthICRF = earth->makeFrameICRF();
     auto moonICRF = moon->makeFrameICRF();
     TimePoint tp = TimePoint::FromUTC(2026, 3, 5, 0, 0, 0);
-    err_t rc = aFrameTransform(earthICRF, moonICRF, tp, transform);
+    errc_t rc = aFrameTransform(earthICRF, moonICRF, tp, transform);
     EXPECT_FALSE(rc);
     Vector3d pos{1000.0, 2000.0, 3000.0}, vel{1000, 2000, 3000};
     Vector3d posMoon1, velMoon1, posMoon2, velMoon2;
@@ -92,7 +92,7 @@ TEST(FrameTransformTest, Transform_Case2)
         auto jupiterInertial = jupiter->makeFrameInertial();
         TimePoint tp = TimePoint::FromUTC(2026, 3, 5, 4, 0, 0);
         Transform transform;
-        err_t rc = aFrameTransform(marsInertial, jupiterInertial, tp, transform);
+        errc_t rc = aFrameTransform(marsInertial, jupiterInertial, tp, transform);
         EXPECT_FALSE(rc);
         Vector3d posMars{1000.0_km, 2000.0_km, 3000.0_km};
         Vector3d posJupiter{};
@@ -110,7 +110,7 @@ TEST(FrameTransformTest, Transform_Case2)
         auto jupiterICRF = jupiter->makeFrameICRF();
         TimePoint tp = TimePoint::FromUTC(2026, 3, 5, 4, 0, 0);
         Transform transform;
-        err_t rc = aFrameTransform(marsICRF, jupiterICRF, tp, transform);
+        errc_t rc = aFrameTransform(marsICRF, jupiterICRF, tp, transform);
         EXPECT_FALSE(rc);
         Vector3d posMars{1000.0_km, 2000.0_km, 3000.0_km};
         Vector3d posJupiter{};
@@ -134,7 +134,7 @@ TEST(FrameTransformTest, Transform_Case3)
     auto eci = earth->makeFrameICRF();
     auto ecf = earth->makeFrameFixed();
     TimePoint tp = TimePoint::FromUTC(2026, 3, 5, 0, 0, 0);
-    err_t rc = aFrameTransform(eci, ecf, tp, transform);
+    errc_t rc = aFrameTransform(eci, ecf, tp, transform);
     EXPECT_FALSE(rc);
 }
 

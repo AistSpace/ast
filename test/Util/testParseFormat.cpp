@@ -28,7 +28,7 @@ AST_USING_NAMESPACE
 // 测试 aParseBool 函数
 TEST(ParseFormat, aParseBool) {
     bool value;
-    err_t err;
+    errc_t err;
     
     // 测试 true 值
     err = aParseBool("true", value);
@@ -68,7 +68,7 @@ TEST(ParseFormat, aParseBool) {
 // 测试 _aParseInt_LibC_2 函数
 TEST(ParseFormat, _aParseInt_LibC_2) {
     int value;
-    err_t err;
+    errc_t err;
     
     err = _aParseInt_LibC_2("123", value);
     EXPECT_EQ(err, 0);
@@ -88,7 +88,7 @@ TEST(ParseFormat, _aParseInt_LibC_2) {
 // 测试 _aParseInt_FromChars 函数 (C++17)
 TEST(ParseFormat, _aParseInt_FromChars) {
     int value;
-    err_t err;
+    errc_t err;
     
     err = _aParseInt_FromChars("123", value);
     EXPECT_EQ(err, eNoError);
@@ -107,7 +107,7 @@ TEST(ParseFormat, _aParseInt_FromChars) {
 TEST(ParseFormat, aParseFortranDouble)
 {
     double value = -1;
-    err_t rc;
+    errc_t rc;
     rc = aParseFortranDouble("1.657D-3", value);
     EXPECT_EQ(rc, eNoError);
     EXPECT_DOUBLE_EQ(value, 1.657e-3);
@@ -120,7 +120,7 @@ TEST(ParseFormat, aParseFortranDouble)
 // 测试 _aParseDouble_LibC_2 函数
 TEST(ParseFormat, _aParseDouble_LibC_2) {
     double value;
-    err_t err;
+    errc_t err;
     
     err = _aParseDouble_LibC_2("123.456", value);
     EXPECT_EQ(err, 0);
@@ -140,7 +140,7 @@ TEST(ParseFormat, _aParseDouble_LibC_2) {
 // 测试 _aParseDouble_FromChars 函数 (C++17)
 TEST(ParseFormat, _aParseDouble_FromChars) {
     double value;
-    err_t err;
+    errc_t err;
     
     err = _aParseDouble_FromChars("123.456", value);
     EXPECT_EQ(err, eNoError);
@@ -160,7 +160,7 @@ TEST(ParseFormat, _aParseDouble_FromChars) {
 // 测试 _aParseDouble_FromChars_Abseil 函数 (需要 abseil 支持)
 TEST(ParseFormat, _aParseDouble_FromChars_Abseil) {
     double value;
-    err_t err;
+    errc_t err;
     
     err = _aParseDouble_FromChars_Abseil("123.456", value);
     EXPECT_EQ(err, eNoError);
@@ -179,7 +179,7 @@ TEST(ParseFormat, _aParseDouble_FromChars_Abseil) {
 // 测试 aParseColor 函数
 TEST(ParseFormat, aParseColor) {
     Color value;
-    err_t err;
+    errc_t err;
     
     // 测试 RGB 格式
     err = aParseColor("#FF0000", value);
@@ -216,7 +216,7 @@ TEST(ParseFormat, aFormatBool) {
 // 测试 aFormatInt 函数
 TEST(ParseFormat, aFormatInt) {
     std::string str;
-    err_t err;
+    errc_t err;
     
     err = aFormatInt(123, str);
     EXPECT_EQ(err, eNoError);
@@ -234,7 +234,7 @@ TEST(ParseFormat, aFormatInt) {
 // 测试 aFormatDouble 函数
 TEST(ParseFormat, aFormatDouble) {
     std::string str;
-    err_t err;
+    errc_t err;
     
     err = aFormatDouble(123.456, str);
     EXPECT_EQ(err, eNoError);
@@ -261,7 +261,7 @@ TEST(ParseFormat, aFormatDouble) {
 // 测试 aFormatColor 函数
 TEST(ParseFormat, aFormatColor) {
     std::string str;
-    err_t err;
+    errc_t err;
     
     // 测试 RGB 格式颜色（会被格式化为 RGBA）
     err = aFormatColor(0xFF000000, str); // 红色，透明度 0
@@ -321,7 +321,7 @@ TEST(ParseFormat, Consistency) {
 // 测试 _aParseInt_Simple 函数
 TEST(ParseFormat, _aParseInt_Simple) {
     int value;
-    err_t err;
+    errc_t err;
     
     // 基本功能测试
     err = _aParseInt_Simple("123", value);

@@ -36,8 +36,8 @@ public:
     using MotionOrbitDynamicsSax::MotionOrbitDynamicsSax;
     ~MotionTwoBodySax() override = default;
 public:
-    err_t keyValue(StringView key, const ValueView& value) override;
-    err_t getMotion(ScopedPtr<MotionProfile>& motion) override;
+    errc_t keyValue(StringView key, const ValueView& value) override;
+    errc_t getMotion(ScopedPtr<MotionProfile>& motion) override;
 protected:
     double radiusOfPerigee_ = 0.0;
     double inclination_ = 0.0;

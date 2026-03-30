@@ -30,7 +30,7 @@ using namespace _AST literals;
 // 简单的指数衰减ODE: dy/dt = -y
 class SimpleODE : public ODE {
 public:
-    err_t evaluate(const double* y, double* ydot, double t) override {
+    errc_t evaluate(const double* y, double* ydot, double t) override {
         ydot[0] = -y[0];
         return eNoError;
     }
@@ -43,7 +43,7 @@ public:
 // 简单的简谐振动ODE: d²x/dt² = -x
 class HarmonicOscillatorODE : public ODE {
 public:
-    err_t evaluate(const double* y, double* ydot, double t) override {
+    errc_t evaluate(const double* y, double* ydot, double t) override {
         // y[0] = x, y[1] = dx/dt
         ydot[0] = y[1];
         ydot[1] = -y[0];
@@ -173,7 +173,7 @@ TEST(ODEEventDetector, EventDetector) {
     integrator.addEventDetector(detector);
     
     // 执行积分
-    err_t result = integrator.integrate(ode, y, t, tf);
+    errc_t result = integrator.integrate(ode, y, t, tf);
     
     // 验证积分成功
     EXPECT_EQ(result, eNoError);
@@ -207,7 +207,7 @@ TEST(ODEEventDetector, MultipleEventDetector) {
     integrator.addEventDetector(detector2);
     
     // 执行积分
-    err_t result = integrator.integrate(ode, y, t, tf);
+    errc_t result = integrator.integrate(ode, y, t, tf);
     
     // 验证积分成功
     EXPECT_EQ(result, eNoError);
@@ -236,7 +236,7 @@ TEST(ODEEventDetector, EventDetectorRepeatCount) {
     integrator.addEventDetector(detector);
 
     // 执行积分
-    err_t result = integrator.integrate(ode, y, t, tf);
+    errc_t result = integrator.integrate(ode, y, t, tf);
     
     // 验证积分成功
     EXPECT_EQ(result, eNoError);
@@ -266,7 +266,7 @@ TEST(ODEEventDetector, EventDetectorDirection) {
     integrator.addEventDetector(detector);
 
     // 执行积分
-    err_t result = integrator.integrate(ode, y, t, tf);
+    errc_t result = integrator.integrate(ode, y, t, tf);
     
     // 验证积分成功
     EXPECT_EQ(result, eNoError);
@@ -298,7 +298,7 @@ TEST(ODEEventDetector, EventDetectorDirectionAndRepeat) {
     integrator.addEventDetector(detector);
 
     // 执行积分
-    err_t result = integrator.integrate(ode, y, t, tf);
+    errc_t result = integrator.integrate(ode, y, t, tf);
     
     // 验证积分成功
     EXPECT_EQ(result, eNoError);

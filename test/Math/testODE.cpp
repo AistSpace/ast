@@ -32,7 +32,7 @@ public:
         return 1;
     }
     
-    err_t evaluate(const double* y, double* dy, double t) override {
+    errc_t evaluate(const double* y, double* dy, double t) override {
         (void)t; // 未使用的参数
         dy[0] = -y[0];
         return eNoError;
@@ -59,7 +59,7 @@ void TestVarStepIntegrator(IntegratorType& integrator, double maxAbsErr, double 
     double y[1]{y0[0]};
     
     // 执行积分
-    err_t result = integrator.integrate(ode, y, t, tf);
+    errc_t result = integrator.integrate(ode, y, t, tf);
     
     // 检查是否成功
     EXPECT_EQ(result, eNoError);
@@ -97,7 +97,7 @@ void TestVarStepIntegratorVectorCollector(IntegratorType& integrator, double max
     // 执行积分
     std::vector<double> xlist;
     std::vector<std::vector<double>> ylist;
-    err_t result = integrator.integrate(ode, y, t, tf, xlist, ylist);
+    errc_t result = integrator.integrate(ode, y, t, tf, xlist, ylist);
     EXPECT_EQ(xlist.size(), ylist.size());
     ASSERT_EQ(xlist.size(), integrator.getNumSteps() + 1);
     EXPECT_EQ(ylist[0][0], y0[0]);
@@ -141,7 +141,7 @@ void TestFixedStepIntegrator(IntegratorType& integrator, double stepSize, double
     double y[1]{y0[0]};
     
     // 执行积分
-    err_t result = integrator.integrate(ode, y, t, tf);
+    errc_t result = integrator.integrate(ode, y, t, tf);
     
     // 检查是否成功
     EXPECT_EQ(result, eNoError);
@@ -173,7 +173,7 @@ void TestFixedStepIntegratorVectorCollector(IntegratorType& integrator, double s
     // 执行积分
     std::vector<double> xlist;
     std::vector<std::vector<double>> ylist;
-    err_t result = integrator.integrate(ode, y, t, tf, xlist, ylist);
+    errc_t result = integrator.integrate(ode, y, t, tf, xlist, ylist);
     EXPECT_EQ(xlist.size(), ylist.size());
     ASSERT_EQ(xlist.size(), integrator.getNumSteps() + 1);
     EXPECT_EQ(ylist[0][0], y0[0]);

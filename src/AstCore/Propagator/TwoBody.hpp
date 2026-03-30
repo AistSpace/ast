@@ -36,7 +36,7 @@ AST_NAMESPACE_BEGIN
 /// @param     r         位置向量
 /// @param     v         速度向量
 /// @return    错误码
-AST_CORE_CAPI err_t aTwoBodyProp(double duration, double gm, Vector3d& r, Vector3d& v);
+AST_CORE_CAPI errc_t aTwoBodyProp(double duration, double gm, Vector3d& r, Vector3d& v);
 
 
 /*! @} */

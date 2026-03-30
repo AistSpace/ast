@@ -24,7 +24,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t aFrameToVVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix)
+errc_t aFrameToVVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix)
 {
     Vector3d axis_y = velInFrame.cross(posInFrame);
 
@@ -47,14 +47,14 @@ err_t aFrameToVVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame,
 	}
 }
 
-err_t aVVLHToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix)
+errc_t aVVLHToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix)
 {
-    err_t rc = aFrameToVVLHMatrix(posInFrame, velInFrame, matrix);
+    errc_t rc = aFrameToVVLHMatrix(posInFrame, velInFrame, matrix);
     matrix.transposeInPlace();
     return rc;
 }
 
-err_t aFrameToLVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix)
+errc_t aFrameToLVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix)
 {
     Vector3d axis_z = posInFrame.cross(velInFrame);
     if(A_UNLIKELY(axis_z.normalize() == 0))
@@ -75,15 +75,15 @@ err_t aFrameToLVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame,
     }
 }
 
-err_t aLVLHToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix)
+errc_t aLVLHToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix)
 {
-    err_t rc = aFrameToLVLHMatrix(posInFrame, velInFrame, matrix);
+    errc_t rc = aFrameToLVLHMatrix(posInFrame, velInFrame, matrix);
     matrix.transposeInPlace();
     return rc;
 }
 
 
-err_t aFrameToVNCMatrix(const Vector3d &posInFrame, const Vector3d &velInFrame, Matrix3d &matrix)
+errc_t aFrameToVNCMatrix(const Vector3d &posInFrame, const Vector3d &velInFrame, Matrix3d &matrix)
 {
     Vector3d axis_y = posInFrame.cross(velInFrame);
     if(A_UNLIKELY(axis_y.normalize() == 0))
@@ -102,9 +102,9 @@ err_t aFrameToVNCMatrix(const Vector3d &posInFrame, const Vector3d &velInFrame, 
     }
 }
 
-err_t aVNCToFrameMatrix(const Vector3d &posInFrame, const Vector3d &velInFrame, Matrix3d &matrix)
+errc_t aVNCToFrameMatrix(const Vector3d &posInFrame, const Vector3d &velInFrame, Matrix3d &matrix)
 {
-    err_t rc = aFrameToVNCMatrix(posInFrame, velInFrame, matrix);
+    errc_t rc = aFrameToVNCMatrix(posInFrame, velInFrame, matrix);
     matrix.transposeInPlace();
     return rc;
 }

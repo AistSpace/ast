@@ -105,7 +105,8 @@
     static Class staticType;\
     static inline Class* getStaticType(){return &staticType;}\
     Class* getType() const override{return &staticType;} \
-
+    static void ClassInit(Class* cls);\
+    
 #define _AST_IMPL_OBJECT(TYPE) \
     Class TYPE::staticType;\
 
@@ -236,6 +237,14 @@
 #endif
 #define AST_TEST_CAPI A_DECL_EXTERN_C AST_TEST_API
 
+// ast项目序列化模块导出声明
+#ifdef AST_BUILD_LIB_SERDE
+#    define AST_SERDE_API A_DECL_EXPORT
+#else
+#    define AST_SERDE_API A_DECL_IMPORT
+#endif
+#define AST_SERDE_CAPI A_DECL_EXTERN_C AST_SERDE_API
+
 
 #ifndef AST_PROJECT_NAME
 #   define AST_PROJECT_NAME "ast"
@@ -284,7 +293,7 @@ typedef enum EError
 typedef double length_d, mass_d, time_d, area_d, speed_d, force_d, energy_d, power_d, angle_d, angvel_d; 
 
 
-typedef int err_t;           ///< 错误码类型
+typedef int errc_t;           ///< 错误码类型(error code type)
 typedef double ImpreciseJD;  ///< 儒略日(注意单个double的数值精度不够)
 typedef double ImpreciseMJD; ///< 简约儒略日(注意单个double的数值精度不够)
 typedef uint32_t color_t;    ///< 颜色值

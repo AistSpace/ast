@@ -35,7 +35,7 @@ void State::setFrame(Frame *frame)
     gm_ = frame_->getGM();
 }
 
-err_t State::changeFrame(Frame *frame)
+errc_t State::changeFrame(Frame *frame)
 {
     if(frame_ == frame)
         return eNoError;
@@ -43,7 +43,7 @@ err_t State::changeFrame(Frame *frame)
     this->getState(state);
     KinematicTransform transform;
     TimePoint epoch;
-    err_t rc = getStateEpoch(epoch);
+    errc_t rc = getStateEpoch(epoch);
     if(rc) return rc;
     rc = aFrameTransform(this->frame_, frame, epoch, transform);
     if(rc) return rc;
@@ -65,7 +65,7 @@ void State::setStateEpoch(const TimePoint &stateEpoch)
     stateEpoch_ = EventTimeExplicit::New(stateEpoch);
 }
 
-err_t State::getStateEpoch(TimePoint &stateEpoch) const
+errc_t State::getStateEpoch(TimePoint &stateEpoch) const
 {
     if(!stateEpoch_)
         return eErrorNullPtr;
@@ -75,7 +75,7 @@ err_t State::getStateEpoch(TimePoint &stateEpoch) const
 TimePoint State::getStateEpoch() const
 {
     TimePoint tp{};
-    err_t rc = getStateEpoch(tp);
+    errc_t rc = getStateEpoch(tp);
     A_UNUSED(rc);
     return tp;
 }
@@ -94,7 +94,7 @@ double State::getBodyRadius() const
     return 0.0;
 }
 
-err_t State::getStateInBodyInertial(Body * body, CartState & state) const
+errc_t State::getStateInBodyInertial(Body * body, CartState & state) const
 {
     if(!body)
         return eErrorNullInput;
@@ -102,9 +102,9 @@ err_t State::getStateInBodyInertial(Body * body, CartState & state) const
     return getStateIn(frameInertial, state);
 }
 
-err_t State::getStateIn(Frame *frame, CartState &state) const
+errc_t State::getStateIn(Frame *frame, CartState &state) const
 {
-    err_t rc = getState(state);
+    errc_t rc = getState(state);
     if(rc) return rc;
     if(!frame)
         return eErrorNullInput;
@@ -136,7 +136,7 @@ void State::setCoordEpoch(EventTime *coordEpoch)
     }
 }
 
-err_t State::getCoordEpoch(TimePoint &coordEpoch) const
+errc_t State::getCoordEpoch(TimePoint &coordEpoch) const
 {
     if(auto framewithepoch = dynamic_cast<FrameWithEpoch*>(frame_.get()))
     {
@@ -179,7 +179,7 @@ void State::setCoordAxes(Axes *axes)
     }
 }
 
-err_t State::changeCoordAxes(Axes *axes)
+errc_t State::changeCoordAxes(Axes *axes)
 {
     if(auto framewithepoch = dynamic_cast<FrameWithEpoch*>(frame_.get()))
     {

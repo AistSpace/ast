@@ -40,7 +40,7 @@ RepeatingSunSyncOrbitDesigner::RepeatingSunSyncOrbitDesigner(CelestialBody *body
 {
 }
 
-err_t RepeatingSunSyncOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
+errc_t RepeatingSunSyncOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
 {
     const double gm = getGM();
     const double rb = getBodyRadius();
@@ -88,7 +88,7 @@ err_t RepeatingSunSyncOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
     return eNoError;
 }
 
-err_t RepeatingSunSyncOrbitDesigner::setApproxAltitude(double alt)
+errc_t RepeatingSunSyncOrbitDesigner::setApproxAltitude(double alt)
 {
     /// @todo 这里的逻辑与 RepeatingOrbitDesigner::setApproxRevsPerDay(double revs)相同，需要避免重复
     if(alt < 0)
@@ -112,7 +112,7 @@ err_t RepeatingSunSyncOrbitDesigner::setApproxAltitude(double alt)
     return eNoError;
 }
 
-err_t RepeatingSunSyncOrbitDesigner::setApproxRevsPerDay(double revsPerDay)
+errc_t RepeatingSunSyncOrbitDesigner::setApproxRevsPerDay(double revsPerDay)
 {
     if(revsPerDay < 0)
     {

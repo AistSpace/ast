@@ -62,16 +62,16 @@ public:
 	/// @warning 该方法会覆盖已加载的天体数据
 	/// @param  dirpath     - 数据目录路径
 	/// @retval             - 错误码
-	err_t load(StringView dirpath);
+	errc_t load(StringView dirpath);
 
 	/// @brief 通过PCK文件加载太阳系天体数据
 	/// @warning 该方法会覆盖已加载的天体数据
 	/// @param  filepath    - PCK文件路径
 	/// @retval             - 错误码
-	err_t loadPCK(StringView filepath);
+	errc_t loadPCK(StringView filepath);
 
 	/// @brief 加载默认的太阳系数据
-	err_t loadDefault();
+	errc_t loadDefault();
 
 	/// @brief 获取默认的太阳系数据目录
 	static std::string defaultSolarSystemDir();

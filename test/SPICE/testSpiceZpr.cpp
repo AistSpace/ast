@@ -2628,7 +2628,7 @@ TEST(SpiceZpr, spkpos)
 
         double ptarg[3];
         double lt;
-        err_t rc = spkpos("Jupiter", et, "ICRF", abcorr, obs, ptarg, &lt);
+        errc_t rc = spkpos("Jupiter", et, "ICRF", abcorr, obs, ptarg, &lt);
         EXPECT_EQ(rc, 0);
 
         printf("ptarg_c: %.15g %.15g %.15g\n", ptarg_c[0], ptarg_c[1], ptarg_c[2]);
@@ -2985,7 +2985,7 @@ TEST(SpiceZpr, utc2et)
     double et_c;
     double et;
     const char * utcstr = "2023-01-01 00:00:00";
-    err_t rc = utc2et(utcstr, &et);
+    errc_t rc = utc2et(utcstr, &et);
     EXPECT_EQ(rc, 0);
     utc2et_c(utcstr, &et_c);
     EXPECT_NEAR(et, et_c, 1e-8);

@@ -20,22 +20,23 @@
 
 #include "PropertyBool.hpp"
 #include "AstUtil/ParseFormat.hpp"
+#include "AstUtil/PropertyVisitor.hpp"
 
 AST_NAMESPACE_BEGIN
 
 
-err_t PropertyBool::getValueBool(const void* container, bool& value) 
+errc_t PropertyBool::getValueBool(const void* container, bool& value) 
 {
     return getValue(container, &value);
 }
-err_t PropertyBool::setValueBool(void* container, bool value) 
+errc_t PropertyBool::setValueBool(void* container, bool value) 
 {
     return setValue(container, &value);
 }
-err_t PropertyBool::getValueInt(const void* container, int& value) 
+errc_t PropertyBool::getValueInt(const void* container, int& value) 
 {
     bool b;
-    err_t ret = getValue(container, &b);
+    errc_t ret = getValue(container, &b);
     if (ret != eNoError)
     {
         return ret;
@@ -43,15 +44,15 @@ err_t PropertyBool::getValueInt(const void* container, int& value)
     value = b ? 1 : 0;
     return 0;
 }
-err_t PropertyBool::setValueInt(void* container, int value) 
+errc_t PropertyBool::setValueInt(void* container, int value) 
 {
     bool b = value != 0;
     return setValue(container, &b);
 }
-err_t PropertyBool::getValueString(const void* container, std::string& value)
+errc_t PropertyBool::getValueString(const void* container, std::string& value)
 {
     bool b;
-    err_t ret = getValue(container, &b);
+    errc_t ret = getValue(container, &b);
     if (ret != eNoError)
     {
         return ret;
@@ -59,10 +60,10 @@ err_t PropertyBool::getValueString(const void* container, std::string& value)
     aFormatBool(b, value);
     return 0;
 }
-err_t PropertyBool::setValueString(void* container, StringView value)
+errc_t PropertyBool::setValueString(void* container, StringView value)
 {
     bool b;
-    err_t ret = aParseBool(value, b);
+    errc_t ret = aParseBool(value, b);
     if (ret != eNoError)
     {
         return ret;
@@ -70,10 +71,10 @@ err_t PropertyBool::setValueString(void* container, StringView value)
     return setValue(container, &b);
 }
 
-err_t PropertyBool::getValueDouble(const void* container, double& value)
+errc_t PropertyBool::getValueDouble(const void* container, double& value)
 {
     bool b;
-    err_t ret = getValue(container, &b);
+    errc_t ret = getValue(container, &b);
     if (ret != eNoError)
     {
         return ret;
@@ -82,10 +83,15 @@ err_t PropertyBool::getValueDouble(const void* container, double& value)
     return 0;
 }
 
-err_t PropertyBool::setValueDouble(void* container, double value)
+errc_t PropertyBool::setValueDouble(void* container, double value)
 {
     bool b = value != 0.0;
     return setValue(container, &b);
+}
+
+errc_t PropertyBool::accept(PropertyVisitor& visitor, const void* container)
+{
+    return visitor.visit(*this, container);
 }
 
 AST_NAMESPACE_END

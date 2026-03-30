@@ -97,8 +97,8 @@ public:
     ~StateKeplerian() override = default;
 public:
     EStateType getStateType() const override { return EStateType::eKeplerian; }
-    err_t getState(CartState& state) const override;
-    err_t setState(const CartState& state) override;
+    errc_t getState(CartState& state) const override;
+    errc_t setState(const CartState& state) override;
 public:
     void setState(OrbElem& orbElem);
     void getState(OrbElem& orbElem) const;
@@ -139,105 +139,122 @@ public:
     void setPositionParam(double positionParam, EPositionType positionType);
     void setPositionParam(double positionParam);
     void setPositionType(EPositionType positionType);
-PROPERTIES:
-    /// @brief 获取半长轴
-    double getSMA() const;
-    /// @brief 设置半长轴
-    void setSMA(double sma);
-
-    /// @brief 获取平均角速度
-    double getMeanMotion() const;
-    /// @brief 设置平均角速度
-    void setMeanMotion(double meanMotion);
-
-    /// @brief 获取周期
-    double getPeriod() const;
-    /// @brief 设置周期
-    void setPeriod(double period);
-
+public:
     /// @brief 获取远地点高度
     double getApoAlt() const;
-    /// @brief 设置远地点高度（描述轨道大小）
-    void setApoAltForSize(double apoAlt);
-    /// @brief 设置远地点高度（描述轨道形状）
-    void setApoAltForShape(double apoAlt);
 
     /// @brief 获取远地点半径
     double getApoRad() const;
-    /// @brief 设置远地点半径（描述轨道大小）
-    void setApoRadForSize(double apoRad);
-    /// @brief 设置远地点半径（描述轨道形状）
-    void setApoRadForShape(double apoRad);
 
     /// @brief 获取近地点高度
     double getPeriAlt() const;
-    /// @brief 设置近地点高度（描述轨道大小）
-    void setPeriAltForSize(double periAlt);
-    /// @brief 设置近地点高度（描述轨道形状）
-    void setPeriAltForShape(double periAlt);
 
     /// @brief 获取近地点半径
     double getPeriRad() const;
+PROPERTIES:
+    /// @brief 获取半长轴
+    length_d getSMA() const;
+    /// @brief 设置半长轴
+    void setSMA(length_d sma);
+
+    /// @brief 获取周期
+    time_d getPeriod() const;
+    /// @brief 设置周期
+    void setPeriod(time_d period);
+
+    /// @brief 获取平均角速度
+    angvel_d getMeanMotion() const;
+    /// @brief 设置平均角速度
+    void setMeanMotion(angvel_d meanMotion);
+
+    length_d getApoRadForSize() const{return getApoRad();}
+    /// @brief 设置远地点半径（描述轨道大小）
+    void setApoRadForSize(length_d apoRad);
+
+    length_d getApoAltForSize() const{return getApoAlt();}
+    /// @brief 设置远地点高度（描述轨道大小）
+    void setApoAltForSize(length_d apoAlt);
+
+    length_d getPeriRadForSize() const{return getPeriRad();}
     /// @brief 设置近地点半径（描述轨道大小）
-    void setPeriRadForSize(double periRad);
-    /// @brief 设置近地点半径（描述轨道形状）
-    void setPeriRadForShape(double periRad);
-    
+    void setPeriRadForSize(length_d periRad);
+
+    length_d getPeriAltForSize() const{return getPeriAlt();}
+    /// @brief 设置近地点高度（描述轨道大小）
+    void setPeriAltForSize(length_d periAlt);
+
     /// @brief 获取离心率
     double getEcc() const;
     /// @brief 设置离心率
     void setEcc(double ecc);
 
+    length_d getApoRadForShape() const{return getApoRad();}
+    /// @brief 设置远地点半径（描述轨道形状）
+    void setApoRadForShape(length_d apoRad);
+
+    length_d getApoAltForShape() const{return getApoAlt();}
+    /// @brief 设置远地点高度（描述轨道形状）
+    void setApoAltForShape(length_d apoAlt);
+
+    length_d getPeriRadForShape() const{return getPeriRad();}
+    /// @brief 设置近地点半径（描述轨道形状）
+    void setPeriRadForShape(length_d periRad);
+    
+    length_d getPeriAltForShape() const{return getPeriAlt();}
+    /// @brief 设置近地点高度（描述轨道形状）
+    void setPeriAltForShape(length_d periAlt);
+
     /// @brief 获取倾角
-    double getInc() const;
+    angle_d getInc() const;
     /// @brief 设置倾角
-    void setInc(double inc);
+    void setInc(angle_d inc);
 
     /// @brief 获取升交点赤经   
-    double getRAAN() const;
+    angle_d getRAAN() const;
     /// @brief 设置升交点赤经
-    void setRAAN(double raan);
+    void setRAAN(angle_d raan);
 
     /// @brief 获取升交点经度   
-    double getLAN() const;
+    angle_d getLAN() const;
     /// @brief 设置升交点经度
-    void setLAN(double lan);
+    void setLAN(angle_d lan);
 
     /// @brief 获取近地点幅角  
-    double getArgPeri() const;
+    angle_d getArgPeri() const;
     /// @brief 设置近地点幅角
     void setArgPeri(double argPeri);
 
     /// @brief 获取真近点角
-    double getTrueAnomaly() const;
+    angle_d getTrueAnomaly() const;
     /// @brief 设置真近点角
-    void setTrueAnomaly(double trueAnomaly);
+    void setTrueAnomaly(angle_d trueAnomaly);
 
     /// @brief 获取平近点角
-    double getMeanAnomaly() const;
+    angle_d getMeanAnomaly() const;
     /// @brief 设置平近点角
-    void setMeanAnomaly(double meanAnomaly);
+    void setMeanAnomaly(angle_d meanAnomaly);
 
     /// @brief 获取偏近点角
-    double getEccAnomaly() const;
+    angle_d getEccAnomaly() const;
     /// @brief 设置偏近点角
-    void setEccAnomaly(double eccAnomaly);
+    void setEccAnomaly(angle_d eccAnomaly);
 
     /// @brief 获取纬度幅角  
-    double getArgLat() const;
+    angle_d getArgLat() const;
     /// @brief 设置纬度幅角
-    void setArgLat(double argLat);
+    void setArgLat(angle_d argLat);
 
     /// @brief 获取过近地点后经过的时间
-    double getTimePastPeri() const;
+    time_d getTimePastPeri() const;
     /// @brief 设置过近地点后经过的时间
-    void setTimePastPeri(double timePastPeri);
+    void setTimePastPeri(time_d timePastPeri);
 
     /// @brief 获取过升交点后经过的时间
-    double getTimePastAscNode() const;
+    time_d getTimePastAscNode() const;
     /// @brief 设置过升交点后经过的时间
-    void setTimePastAscNode(double timePastAscNode);
+    void setTimePastAscNode(time_d timePastAscNode);
 
+public:
     /// @brief 获取过近地点时刻（输出时间点）
     void getTimeOfPeriPassage(TimePoint& tp) const;
     /// @brief 获取过近地点时刻（输出历元秒）

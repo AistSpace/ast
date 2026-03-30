@@ -81,20 +81,20 @@ void aTimePointToUTC(const TimePoint &time, DateTime &dttmUTC)
     dttmUTC.normalizeUTC();  // 在这里确保UTC时间是标准化的
 }
 
-err_t aTimePointFormat(const TimePoint &time, std::string &str, int precision)
+errc_t aTimePointFormat(const TimePoint &time, std::string &str, int precision)
 {
     DateTime utc;
     aTimePointToUTC(time, utc);
-    err_t err = aDateTimeFormatDefault(utc, str, precision);
+    errc_t err = aDateTimeFormatDefault(utc, str, precision);
     str += " UTC";
     return err;
 }
 
-err_t aTimePointParse(StringView str, TimePoint &time)
+errc_t aTimePointParse(StringView str, TimePoint &time)
 {
     // @todo: 支持解析不同的时间系统
     DateTime dttmUTC;
-    err_t rc = aDateTimeParseAny(str, dttmUTC);
+    errc_t rc = aDateTimeParseAny(str, dttmUTC);
     time = TimePoint::FromUTC(dttmUTC);
     return rc;
 }

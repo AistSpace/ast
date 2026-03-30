@@ -42,7 +42,7 @@ public:
     EventTimeFallback(EventTime* primary, EventTime* fallback);
     ~EventTimeFallback() override = default;
 
-    err_t getTime(TimePoint& tp) const override;
+    errc_t getTime(TimePoint& tp) const override;
     void setPrimary(EventTime* primary);
     void setFallback(EventTime* fallback);
 protected:

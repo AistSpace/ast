@@ -71,9 +71,9 @@ protected:
         Frame*       propagationFrame_;           ///< 预报坐标系指针
     };
 
-    err_t getPropagationParams(PropagationParams& params) const;
+    errc_t getPropagationParams(PropagationParams& params) const;
 
-    err_t discreteInterval(const TimePoint& epoch, double stepSize, std::vector<double>& times) const;
+    errc_t discreteInterval(const TimePoint& epoch, double stepSize, std::vector<double>& times) const;
 protected:
     SharedPtr<State>            initialState_;          ///< 初始状态
     SharedPtr<Frame>            propagationFrame_;      ///< 预报坐标系

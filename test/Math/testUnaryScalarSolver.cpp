@@ -69,7 +69,7 @@ TEST(BisectionSolverTest, LinearFunction) {
     BisectionSolver solver;
     LinearFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 5.0, result);
+    errc_t err = solver.solve(func, 0.0, 5.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, 2.0, 1e-10);
 }
@@ -78,7 +78,7 @@ TEST(BisectionSolverTest, QuadraticFunction) {
     BisectionSolver solver;
     QuadraticFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 5.0, result);
+    errc_t err = solver.solve(func, 0.0, 5.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, 2.0, 1e-10);
 }
@@ -87,7 +87,7 @@ TEST(BisectionSolverTest, SinFunction) {
     BisectionSolver solver;
     SinFunction func;
     double result;
-    err_t err = solver.solve(func, 0.5, 3.5, result);
+    errc_t err = solver.solve(func, 0.5, 3.5, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, PI, 1e-10);
 }
@@ -96,7 +96,7 @@ TEST(BisectionSolverTest, ExpFunction) {
     BisectionSolver solver;
     ExpFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 2.0, result);
+    errc_t err = solver.solve(func, 0.0, 2.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, std::log(2.0), 1e-10);
 }
@@ -106,7 +106,7 @@ TEST(BrentqSolverTest, LinearFunction) {
     BrentqSolver solver;
     LinearFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 5.0, result);
+    errc_t err = solver.solve(func, 0.0, 5.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, 2.0, 1e-10);
 }
@@ -115,7 +115,7 @@ TEST(BrentqSolverTest, QuadraticFunction) {
     BrentqSolver solver;
     QuadraticFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 5.0, result);
+    errc_t err = solver.solve(func, 0.0, 5.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, 2.0, 1e-10);
 }
@@ -124,7 +124,7 @@ TEST(BrentqSolverTest, SinFunction) {
     BrentqSolver solver;
     SinFunction func;
     double result;
-    err_t err = solver.solve(func, 0.5, 3.5, result);
+    errc_t err = solver.solve(func, 0.5, 3.5, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, PI, 1e-10);
 }
@@ -133,7 +133,7 @@ TEST(BrentqSolverTest, ExpFunction) {
     BrentqSolver solver;
     ExpFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 2.0, result);
+    errc_t err = solver.solve(func, 0.0, 2.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, std::log(2.0), 1e-10);
 }
@@ -144,7 +144,7 @@ TEST(BrenthSolverTest, LinearFunction) {
     BrenthSolver solver;
     LinearFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 5.0, result);
+    errc_t err = solver.solve(func, 0.0, 5.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, 2.0, 1e-10);
 }
@@ -153,7 +153,7 @@ TEST(BrenthSolverTest, QuadraticFunction) {
     BrenthSolver solver;
     QuadraticFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 5.0, result);
+    errc_t err = solver.solve(func, 0.0, 5.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, 2.0, 1e-10);
 }
@@ -162,7 +162,7 @@ TEST(BrenthSolverTest, SinFunction) {
     BrenthSolver solver;
     SinFunction func;
     double result;
-    err_t err = solver.solve(func, 0.5, 3.5, result);
+    errc_t err = solver.solve(func, 0.5, 3.5, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, PI, 1e-10);
 }
@@ -171,7 +171,7 @@ TEST(BrenthSolverTest, ExpFunction) {
     BrenthSolver solver;
     ExpFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 2.0, result);
+    errc_t err = solver.solve(func, 0.0, 2.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, std::log(2.0), 1e-10);
 }
@@ -183,7 +183,7 @@ TEST(SecantSolverTest, LinearFunction) {
     SecantSolver solver;
     LinearFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 5.0, result);
+    errc_t err = solver.solve(func, 0.0, 5.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, 2.0, 1e-10);
 }
@@ -192,7 +192,7 @@ TEST(SecantSolverTest, QuadraticFunction) {
     SecantSolver solver;
     QuadraticFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 5.0, result);
+    errc_t err = solver.solve(func, 0.0, 5.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, 2.0, 1e-10);
 }
@@ -201,7 +201,7 @@ TEST(SecantSolverTest, SinFunction) {
     SecantSolver solver;
     SinFunction func;
     double result;
-    err_t err = solver.solve(func, 0.5, 3.5, result);
+    errc_t err = solver.solve(func, 0.5, 3.5, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, PI, 1e-10);
 }
@@ -210,7 +210,7 @@ TEST(SecantSolverTest, ExpFunction) {
     SecantSolver solver;
     ExpFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 2.0, result);
+    errc_t err = solver.solve(func, 0.0, 2.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, std::log(2.0), 1e-10);
 }
@@ -220,7 +220,7 @@ TEST(RidderSolverTest, LinearFunction) {
     RidderSolver solver;
     LinearFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 5.0, result);
+    errc_t err = solver.solve(func, 0.0, 5.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, 2.0, 1e-10);
 }
@@ -229,7 +229,7 @@ TEST(RidderSolverTest, QuadraticFunction) {
     RidderSolver solver;
     QuadraticFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 5.0, result);
+    errc_t err = solver.solve(func, 0.0, 5.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, 2.0, 1e-10);
 }
@@ -238,7 +238,7 @@ TEST(RidderSolverTest, SinFunction) {
     RidderSolver solver;
     SinFunction func;
     double result;
-    err_t err = solver.solve(func, 0.5, 3.5, result);
+    errc_t err = solver.solve(func, 0.5, 3.5, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, PI, 1e-10);
 }
@@ -247,7 +247,7 @@ TEST(RidderSolverTest, ExpFunction) {
     RidderSolver solver;
     ExpFunction func;
     double result;
-    err_t err = solver.solve(func, 0.0, 2.0, result);
+    errc_t err = solver.solve(func, 0.0, 2.0, result);
     ASSERT_EQ(err, eNoError);
     EXPECT_NEAR(result, std::log(2.0), 1e-10);
 }
@@ -259,31 +259,31 @@ TEST(UnarySolverTest, LambdaFunction) {
     double result;
     {
         SecantSolver solver;
-        err_t err = solver.solve(func, 0.0, 5.0, result);
+        errc_t err = solver.solve(func, 0.0, 5.0, result);
         ASSERT_EQ(err, eNoError);
         EXPECT_NEAR(result, 2.0, 1e-10);
     }
     {
         BrentqSolver solver;
-        err_t err = solver.solve(func, 0.0, 5.0, result);
+        errc_t err = solver.solve(func, 0.0, 5.0, result);
         ASSERT_EQ(err, eNoError);
         EXPECT_NEAR(result, 2.0, 1e-10);
     }
     {
         BrenthSolver solver;
-        err_t err = solver.solve(func, 0.0, 5.0, result);
+        errc_t err = solver.solve(func, 0.0, 5.0, result);
         ASSERT_EQ(err, eNoError);
         EXPECT_NEAR(result, 2.0, 1e-10);
     }
     {
         RidderSolver solver;
-        err_t err = solver.solve(func, 0.0, 5.0, result);
+        errc_t err = solver.solve(func, 0.0, 5.0, result);
         ASSERT_EQ(err, eNoError);
         EXPECT_NEAR(result, 2.0, 1e-10);
     }
     {
         SecantSolver solver;
-        err_t err = solver.solve(func, 0.0, 5.0, result);
+        errc_t err = solver.solve(func, 0.0, 5.0, result);
         ASSERT_EQ(err, eNoError);
         EXPECT_NEAR(result, 2.0, 1e-10);
     }

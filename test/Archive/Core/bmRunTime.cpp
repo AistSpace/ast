@@ -40,7 +40,7 @@ void bmInitialize_LeapSecond(benchmark::State& state)
     LeapSecond leapSecond;
     for (auto _ : state)
     {
-        err_t rc = leapSecond.loadDefault();
+        errc_t rc = leapSecond.loadDefault();
         benchmark::DoNotOptimize(rc);
     }
 }
@@ -52,7 +52,7 @@ void bmInitialize_JplDe(benchmark::State& state)
     JplDe jplDe;
     for (auto _ : state)
     {
-        err_t rc = jplDe.openDefault();
+        errc_t rc = jplDe.openDefault();
         benchmark::DoNotOptimize(rc);
     }
 }
@@ -65,7 +65,7 @@ void bmInitialize_EOP(benchmark::State& state)
     EOP eop;
     for (auto _ : state)
     {
-        err_t rc = eop.loadDefault();
+        errc_t rc = eop.loadDefault();
         benchmark::DoNotOptimize(rc);
     }
 }
@@ -78,7 +78,7 @@ void bmInitialize_SpaceWeather(benchmark::State& state)
     SpaceWeather spaceWeather;
     for (auto _ : state)
     {
-        err_t rc = spaceWeather.loadDefault();
+        errc_t rc = spaceWeather.loadDefault();
         benchmark::DoNotOptimize(rc);
     }
 }
@@ -91,7 +91,7 @@ void bmInitialize_IAUXYSPrecomputed(benchmark::State& state)
     IAUXYSPrecomputed iauXYSData;
     for (auto _ : state)
     {
-        err_t rc = iauXYSData.loadDefault();
+        errc_t rc = iauXYSData.loadDefault();
         benchmark::DoNotOptimize(rc);
     }
 }
@@ -104,7 +104,7 @@ void bmInitialize_SolarSystem(benchmark::State& state)
     SolarSystem solarSystem;
     for (auto _ : state)
     {
-        err_t rc = solarSystem.loadDefault();
+        errc_t rc = solarSystem.loadDefault();
         benchmark::DoNotOptimize(rc);
     }
 }
@@ -118,7 +118,7 @@ void bmInitialize_Earth(benchmark::State& state)
     std::string filepath = aDataDirGet() + "/SolarSystem/Earth/Earth.cb";
     for (auto _ : state)
     {
-        err_t rc = earth.load(filepath);
+        errc_t rc = earth.load(filepath);
         benchmark::DoNotOptimize(rc);
     }
 }
@@ -132,7 +132,7 @@ void bmInitialize_Moon(benchmark::State& state)
     std::string filepath = aDataDirGet() + "/SolarSystem/Moon/Moon.cb";
     for (auto _ : state)
     {
-        err_t rc = moon.load(filepath);
+        errc_t rc = moon.load(filepath);
         benchmark::DoNotOptimize(rc);
     }
 }

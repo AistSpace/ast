@@ -65,35 +65,35 @@ public:
     /// @brief 获取属性，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @return Attribute 属性
-    Attribute attr(StringView path)
+    Attribute<Property> attr(StringView path)
     {
-        return Attribute(this, this->getProperty(path));
+        return Attribute<Property>(this, this->getProperty(path));
     }
 
 public:
     /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @param value 属性值引用
-    /// @return err_t 错误码
-    err_t getAttrBool(StringView path, bool& value) const;
+    /// @return errc_t 错误码
+    errc_t getAttrBool(StringView path, bool& value) const;
     
     /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @param value 属性值引用
-    /// @return err_t 错误码
-    err_t getAttrInt(StringView path, int& value) const;
+    /// @return errc_t 错误码
+    errc_t getAttrInt(StringView path, int& value) const;
 
     /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @param value 属性值引用
-    /// @return err_t 错误码
-    err_t getAttrDouble(StringView path, double& value) const;
+    /// @return errc_t 错误码
+    errc_t getAttrDouble(StringView path, double& value) const;
 
     /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @param value 属性值引用
-    /// @return err_t 错误码
-    err_t getAttrString(StringView path, std::string& value) const;
+    /// @return errc_t 错误码
+    errc_t getAttrString(StringView path, std::string& value) const;
 
 public:
     /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
@@ -119,26 +119,26 @@ public:
 public:
     /// @param path 属性路径
     /// @param value 属性值
-    /// @return err_t 错误码
-    err_t setAttrBool(StringView path, bool value);
+    /// @return errc_t 错误码
+    errc_t setAttrBool(StringView path, bool value);
 
     /// @brief 设置属性值，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @param value 属性值
-    /// @return err_t 错误码
-    err_t setAttrInt(StringView path, int value);
+    /// @return errc_t 错误码
+    errc_t setAttrInt(StringView path, int value);
 
     /// @brief 设置属性值，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @param value 属性值
-    /// @return err_t 错误码
-    err_t setAttrDouble(StringView path, double value);
+    /// @return errc_t 错误码
+    errc_t setAttrDouble(StringView path, double value);
 
     /// @brief 设置属性值，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @param value 属性值
-    /// @return err_t 错误码
-    err_t setAttrString(StringView path, StringView value);
+    /// @return errc_t 错误码
+    errc_t setAttrString(StringView path, StringView value);
 
     /// @brief 获取对象类型
     /// @return Class* 类型元信息

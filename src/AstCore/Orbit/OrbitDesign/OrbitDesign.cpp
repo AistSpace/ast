@@ -28,7 +28,7 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t aSunSynchronousInclination(double gm, double j2, double rb, double bodyMeanMotion, double a, double ecc, double& inc)
+errc_t aSunSynchronousInclination(double gm, double j2, double rb, double bodyMeanMotion, double a, double ecc, double& inc)
 {
     auto func = [gm, j2, rb, a, ecc, bodyMeanMotion](double inc) -> double 
     {
@@ -44,7 +44,7 @@ err_t aSunSynchronousInclination(double gm, double j2, double rb, double bodyMea
 }
 
 
-err_t aSunSynchronousSemiMajorAxis(double gm, double j2, double rb, double bodyMeanMotion, double inc, double ecc, double &semiMajorAxis)
+errc_t aSunSynchronousSemiMajorAxis(double gm, double j2, double rb, double bodyMeanMotion, double inc, double ecc, double &semiMajorAxis)
 {
     auto func = [gm, j2, rb, inc, ecc, bodyMeanMotion](double a) -> double 
     {

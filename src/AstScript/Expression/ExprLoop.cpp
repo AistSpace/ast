@@ -89,7 +89,7 @@ Value* ExprWhile::eval() const
 }
 
 /// @brief 设置表达式的值
-err_t ExprWhile::setValue(Value* val)
+errc_t ExprWhile::setValue(Value* val)
 {
     // 循环表达式是只读的，不能直接设置值
     (void)val;
@@ -170,7 +170,7 @@ Value* ExprForRange::eval() const
 }
 
 /// @brief 设置表达式的值
-err_t ExprForRange::setValue(Value* val)
+errc_t ExprForRange::setValue(Value* val)
 {
     // 循环表达式是只读的，不能直接设置值
     (void)val;

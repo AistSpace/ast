@@ -52,7 +52,7 @@ public:
     double rate() const { return rate_; }
     double rateDot() const { return rateDot_; }
     bool isSine() const { return isSine_; }
-    err_t load(BKVParser &parser);
+    errc_t load(BKVParser &parser);
 protected:
     friend class RotationalData;
 

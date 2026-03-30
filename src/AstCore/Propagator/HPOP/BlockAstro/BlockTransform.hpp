@@ -37,7 +37,7 @@ public:
     BlockTransform() = default;
     ~BlockTransform() = default;
 
-    err_t run(const SimTime& simTime) override;
+    errc_t run(const SimTime& simTime) override;
 protected:
     
 };

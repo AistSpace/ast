@@ -19,7 +19,7 @@ private:
 public:
     VanDerPolOscillator(double mu = 1.0) : mu_(mu) {}
     
-    err_t evaluate(const double* y, double* ydot, double t) override {
+    errc_t evaluate(const double* y, double* ydot, double t) override {
         // y[0] = x, y[1] = dx/dt
         ydot[0] = y[1];  // dx/dt = v
         ydot[1] = mu_ * (1.0 - y[0] * y[0]) * y[1] - y[0];  // dv/dt = μ(1-x²)v - x
@@ -65,7 +65,7 @@ int main() {
     
     double y_ref[2]{y0[0], y0[1]};
     double t = t0;
-    err_t err = reference_integrator.integrate(vdpODE, y_ref, t, tf);
+    errc_t err = reference_integrator.integrate(vdpODE, y_ref, t, tf);
     
     printf("err = %d\n", err);
     std::cout << "参考解: x(" << tf << ") = " << y_ref[0] << ", v(" << tf << ") = " << y_ref[1] << std::endl;
@@ -124,7 +124,7 @@ int main() {
         
         double yf[2]{y0[0], y0[1]};
         t = t0;
-        err_t result = integrator->integrate(vdpODE, yf, t, tf);
+        errc_t result = integrator->integrate(vdpODE, yf, t, tf);
         
         auto end_time = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time);

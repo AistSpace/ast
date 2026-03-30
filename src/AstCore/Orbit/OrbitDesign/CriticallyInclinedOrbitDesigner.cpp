@@ -43,7 +43,7 @@ CriticallyInclinedOrbitDesigner::CriticallyInclinedOrbitDesigner(CelestialBody* 
 }
 
 
-err_t CriticallyInclinedOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
+errc_t CriticallyInclinedOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
 {
     const double rb = getBodyRadius();
     orbElem.rp_ = perigeeAltitude_ + rb;

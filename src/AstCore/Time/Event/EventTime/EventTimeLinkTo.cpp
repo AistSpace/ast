@@ -34,7 +34,7 @@ EventTimeLinkTo::EventTimeLinkTo(StringView name, StringView absolutePath)
 {
 }
 
-err_t EventTimeLinkTo::getTime(TimePoint &tp) const
+errc_t EventTimeLinkTo::getTime(TimePoint &tp) const
 {
     // @todo 实现链接到其他时间点的逻辑
     return -1;

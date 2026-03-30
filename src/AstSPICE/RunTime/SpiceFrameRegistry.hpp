@@ -40,7 +40,7 @@ public:
 
     static SpiceFrameRegistry& Instance();
 
-    err_t init();
+    errc_t init();
 
     PFrame findFrame(StringView name) const;
 

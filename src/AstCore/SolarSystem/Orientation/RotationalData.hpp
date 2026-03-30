@@ -42,7 +42,7 @@ class AST_CORE_API RotationalData final: public BodyOrientation
 public:
     RotationalData() = default;
     ~RotationalData() = default;
-    err_t load(StringView filepath);
+    errc_t load(StringView filepath);
 
     
     /// @brief 获取ICRF到天体固连系的旋转

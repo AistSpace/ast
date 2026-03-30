@@ -109,7 +109,7 @@ DAFParser::DAFParser(StringView filepath)
     this->parse(filepath);
 }
 
-err_t DAFParser::parse()
+errc_t DAFParser::parse()
 {
     isValidFile_ = false;
     if(!file_)
@@ -152,7 +152,7 @@ err_t DAFParser::parse()
     return eNoError;
 }
 
-err_t DAFParser::parse(StringView filepath)
+errc_t DAFParser::parse(StringView filepath)
 {
     open(filepath);
     return parse();
@@ -175,7 +175,7 @@ size_t DAFParser::readFileRecord(void *buffer, size_t size) const
     return readRecord(0, buffer, size);
 }
 
-err_t DAFParser::getFileRecord(Record &fileRecord) const
+errc_t DAFParser::getFileRecord(Record &fileRecord) const
 {
     if(!isValidFile_)
         return eErrorInvalidFile;
@@ -184,7 +184,7 @@ err_t DAFParser::getFileRecord(Record &fileRecord) const
 }
 
 
-err_t DAFParser::getSummaryRecords(std::vector<Record> &summaryRecords) const
+errc_t DAFParser::getSummaryRecords(std::vector<Record> &summaryRecords) const
 {
     if(!isValidFile_)
         return eErrorInvalidFile;
@@ -194,7 +194,7 @@ err_t DAFParser::getSummaryRecords(std::vector<Record> &summaryRecords) const
     return readSummaryRecords(fward, bward, summaryRecords);
 }
 
-err_t DAFParser::getFileRecord(int &nd, int &ni, int &fward, int &bward, int &free) const
+errc_t DAFParser::getFileRecord(int &nd, int &ni, int &fward, int &bward, int &free) const
 {
     if(!isValidFile_)
         return eErrorInvalidFile;
@@ -207,7 +207,7 @@ err_t DAFParser::getFileRecord(int &nd, int &ni, int &fward, int &bward, int &fr
     return eNoError;
 }
 
-err_t DAFParser::getComment(std::string &comment) const
+errc_t DAFParser::getComment(std::string &comment) const
 {
     if(!isValidFile_)
         return eErrorInvalidFile;
@@ -222,10 +222,10 @@ err_t DAFParser::getComment(std::string &comment) const
     return eNoError;
 }
 
-err_t DAFParser::getComment(std::vector<std::string> &comments) const
+errc_t DAFParser::getComment(std::vector<std::string> &comments) const
 {
     std::string comment;
-    err_t rc = getComment(comment);
+    errc_t rc = getComment(comment);
     if(rc != eNoError)
         return rc;
     comments = aStrSplit(comment, '\0', SkipWhitespace()).operator std::vector<std::string>();
@@ -235,13 +235,13 @@ err_t DAFParser::getComment(std::vector<std::string> &comments) const
 void DAFParser::printComment(std::FILE *fp) const
 {
     std::string comment;
-    err_t rc = getComment(comment);
+    errc_t rc = getComment(comment);
     if(rc != eNoError)
         return;
     std::fwrite(comment.data(), 1, comment.size(), fp);
 }
 
-err_t DAFParser::runTest()
+errc_t DAFParser::runTest()
 {
     if(!file_)
         return -1;
@@ -277,7 +277,7 @@ err_t DAFParser::runTest()
 }
 
 
-err_t DAFParser::readSummaryRecords(int fward, int bward, std::vector<Record>& summaryRecords) const
+errc_t DAFParser::readSummaryRecords(int fward, int bward, std::vector<Record>& summaryRecords) const
 {
     int recordIndex = fward;
     constexpr size_t max_elem = 1024 * 1024 * 1024 / sizeof(Record);    //  1GB

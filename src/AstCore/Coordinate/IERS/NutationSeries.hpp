@@ -38,18 +38,18 @@ class AST_CORE_API NutationSeries{
 public:
     /// @brief 从文件加载nutation series
     /// @param filepath 文件路径
-    /// @return err_t
-    err_t load(StringView filepath);
+    /// @return errc_t
+    errc_t load(StringView filepath);
 
     /// @brief 从STK文件加载nutation series
     /// @param filepath STK文件路径
-    /// @return err_t
-    err_t loadSTK(StringView filepath);
+    /// @return errc_t
+    errc_t loadSTK(StringView filepath);
 
     /// @brief 从IERS文件加载nutation series
     /// @param filepath IERS文件路径
-    /// @return err_t
-    err_t loadIERS(StringView filepath);
+    /// @return errc_t
+    errc_t loadIERS(StringView filepath);
 
     /// @brief 根据系数表计算值
     /// @param t 时间
@@ -68,9 +68,9 @@ public:
     bool isLoaded() const {return !terms_.empty();}
 protected:
     
-    err_t loadSTK(BKVParser& parser);
+    errc_t loadSTK(BKVParser& parser);
 
-    err_t loadIERS(BKVParser& parser);
+    errc_t loadIERS(BKVParser& parser);
 
 protected:
     Polynomial polynomial_;             ///< nutation series多项式

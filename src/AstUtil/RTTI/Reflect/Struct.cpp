@@ -21,7 +21,7 @@
 #include "Struct.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/Property.hpp"
-
+#include "AstUtil/StringUtil.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -35,7 +35,7 @@ Struct::~Struct()
 
 Property *Struct::addProperty(StringView name, Property *property)
 {
-    m_propertyMap[std::string(name)] = property;
+    m_propertyMap[aAsciiStrToLower(name)] = property;
     m_properties.push_back(property);
     return property;
 }
@@ -47,7 +47,7 @@ Property *Struct::addProperty(Property *property)
 
 Property *Struct::getProperty(StringView name)
 {
-    auto it = m_propertyMap.find(std::string(name));
+    auto it = m_propertyMap.find(aAsciiStrToLower(name));
     if (it == m_propertyMap.end())
     {
         return nullptr;

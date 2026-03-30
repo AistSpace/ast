@@ -27,7 +27,7 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t aParsePolynomial(StringView content, StringView varname, std::vector<double> &coeffsOut)
+errc_t aParsePolynomial(StringView content, StringView varname, std::vector<double> &coeffsOut)
 {
     if (content.empty())
     {
@@ -171,7 +171,7 @@ err_t aParsePolynomial(StringView content, StringView varname, std::vector<doubl
     return eNoError;
 }
 
-err_t aParsePolynomial(StringView content, std::vector<double> &coeffs)
+errc_t aParsePolynomial(StringView content, std::vector<double> &coeffs)
 {
     // 动态识别变量名
     return aParsePolynomial(content, StringView(), coeffs);

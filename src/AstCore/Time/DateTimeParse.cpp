@@ -241,7 +241,7 @@ namespace
 } // 匿名命名空间
 
 // 主解析函数
-err_t aDateTimeParse(StringView str, StringView format, DateTime& dttm, bool strict)
+errc_t aDateTimeParse(StringView str, StringView format, DateTime& dttm, bool strict)
 {
     if (str.empty() || format.empty()) {
         return eErrorInvalidParam;
@@ -559,7 +559,7 @@ err_t aDateTimeParse(StringView str, StringView format, DateTime& dttm, bool str
 }
 
 
-err_t aDateTimeParse(StringView str, StringView format, DateTime& dttm)
+errc_t aDateTimeParse(StringView str, StringView format, DateTime& dttm)
 {
     return aDateTimeParse(str, format, dttm, false);
 }

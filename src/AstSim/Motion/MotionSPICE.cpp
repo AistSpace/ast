@@ -26,7 +26,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t MotionSPICE::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
+errc_t MotionSPICE::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
 {
     auto ephemSPK = new BodyEphemerisSPK();
     ephemSPK->setSpiceIndex(getSpiceIndex());
@@ -35,10 +35,10 @@ err_t MotionSPICE::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
     return eNoError;
 }
 
-err_t MotionSPICE::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
+errc_t MotionSPICE::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
 {
     TimeInterval interval;
-    err_t rc = this->getInterval(interval);
+    errc_t rc = this->getInterval(interval);
     if(rc)
     {
         aError("failed to get interval");
@@ -91,7 +91,7 @@ void MotionSPICE::accept(MotionProfileVisitor &visitor)
     visitor.visit(*this);
 }
 
-err_t MotionSPICE::setSpiceFile(StringView spiceFile)
+errc_t MotionSPICE::setSpiceFile(StringView spiceFile)
 {
     return this->spk_.open(spiceFile);
 }

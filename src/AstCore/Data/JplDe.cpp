@@ -201,7 +201,7 @@ JplDe::~JplDe()
     this->close();
 }
 
-err_t JplDe::getInterval(TimeInterval &interval) const
+errc_t JplDe::getInterval(TimeInterval &interval) const
 {
     TimePoint start = TimePoint::FromTDB(JulianDate::FromImpreciseDay(m_EphemStart));
     TimePoint stop  = TimePoint::FromTDB(JulianDate::FromImpreciseDay(m_EphemEnd));
@@ -235,14 +235,14 @@ int JplDe::readDataBlock(size_t idx)
     }
 }
 
-err_t JplDe::getState(const TimePoint& time, int dataid, double pos[], double vel[])
+errc_t JplDe::getState(const TimePoint& time, int dataid, double pos[], double vel[])
 {
     JulianDate jdTDB;
     aTimePointToTDB(time, jdTDB);
     return getStateTDB(jdTDB, dataid, pos, vel);
 }
 
-err_t JplDe::getState(const TimePoint& time, int datalist[11], double statelist[11][6])
+errc_t JplDe::getState(const TimePoint& time, int datalist[11], double statelist[11][6])
 {
     JulianDate jdTDB;
     aTimePointToTDB(time, jdTDB);
@@ -271,7 +271,7 @@ void JplDe::close()
     }
 }
 
-err_t JplDe::open(const char* fileName)
+errc_t JplDe::open(const char* fileName)
 {
     this->close();
     debin_header header{};
@@ -382,7 +382,7 @@ fail:
 }
 
 
-err_t JplDe::getPosVelICRF(
+errc_t JplDe::getPosVelICRF(
     const TimePoint& time,
     EDataCode ntarg,
     EDataCode ncent,
@@ -472,14 +472,14 @@ err_t JplDe::getPosVelICRF(
     return eNoError;
 }
 
-err_t JplDe::getPosVelICRF(const TimePoint& time, EDataCode target, EDataCode referenceBody, Vector3d& pos, Vector3d& vel)
+errc_t JplDe::getPosVelICRF(const TimePoint& time, EDataCode target, EDataCode referenceBody, Vector3d& pos, Vector3d& vel)
 {
     return getPosVelICRF(time, target, referenceBody, pos, &vel);
 }
 
 
 
-err_t JplDe::getStateTDB(const JulianDate& jdTDB, int cblist[11], double pv[11][6])
+errc_t JplDe::getStateTDB(const JulianDate& jdTDB, int cblist[11], double pv[11][6])
 {
     double jed  = jdTDB.impreciseDay();
 
@@ -587,7 +587,7 @@ err_t JplDe::getStateTDB(const JulianDate& jdTDB, int cblist[11], double pv[11][
 
 
 
-err_t JplDe::getStateTDB(const JulianDate& jdTDB, int ntarg, double pos[], double vel[])
+errc_t JplDe::getStateTDB(const JulianDate& jdTDB, int ntarg, double pos[], double vel[])
 {
     // const int ncm = 3; // number of component
     // enum { ncm = 3};
@@ -687,7 +687,7 @@ err_t JplDe::getStateTDB(const JulianDate& jdTDB, int ntarg, double pos[], doubl
     return 0;
 }
 
-err_t JplDe::getNutation(
+errc_t JplDe::getNutation(
     const TimePoint& time,
     double& nutLong,
     double& nutObl)
@@ -700,7 +700,7 @@ err_t JplDe::getNutation(
 }
 
 
-err_t JplDe::getLibration(
+errc_t JplDe::getLibration(
     const TimePoint& time,
     Vector3d& ang,
     Vector3d& angRate)
@@ -708,17 +708,17 @@ err_t JplDe::getLibration(
     return this->getState(time, eDeLibration, ang.data(), angRate.data());
 }
 
-err_t JplDe::getLibration(const TimePoint &time, Vector3d &ang)
+errc_t JplDe::getLibration(const TimePoint &time, Vector3d &ang)
 {
     return this->getState(time, eDeLibration, ang.data(), nullptr);
 }
 
-err_t JplDe::getLibration(const TimePoint &time, Euler &ang)
+errc_t JplDe::getLibration(const TimePoint &time, Euler &ang)
 {
     return this->getState(time, eDeLibration, ang.data(), nullptr);
 }
 
-err_t JplDe::getPosICRF(
+errc_t JplDe::getPosICRF(
     const TimePoint& time,
     EDataCode target,
     EDataCode referenceBody,

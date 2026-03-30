@@ -40,7 +40,7 @@ CircularOrbitDesigner::CircularOrbitDesigner(CelestialBody *body)
 
 }
 
-err_t CircularOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
+errc_t CircularOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
 {
     OrbElem orbElemOrigin{
         getBodyRadius() + altitude_,

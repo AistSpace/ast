@@ -40,7 +40,7 @@ TEST(MoverLoaderTest, LoadSatellite)
     {
         printf("loading %s\n", file.c_str());
         Mover mover;
-        err_t ret = aLoadMover(file, mover);
+        errc_t ret = aLoadMover(file, mover);
         EXPECT_EQ(ret, eNoError);
         printf("loaded %s\n", file.c_str());
     }

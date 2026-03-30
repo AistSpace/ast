@@ -65,7 +65,7 @@ Value* ExprIf::eval() const {
     return aValueNull();
 }
 
-err_t ExprIf::setValue(Value* val) {
+errc_t ExprIf::setValue(Value* val) {
     // if语句是不可赋值的
     return eError;
 }

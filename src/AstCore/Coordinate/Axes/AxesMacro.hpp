@@ -43,8 +43,8 @@ class Rotation;
         ~Axes##NAME() override = default; \
         static Axes##NAME* Instance(); \
         Axes* getParent() const override; \
-        err_t getTransform(const TimePoint& tp, Rotation& rotation) const override; \
-        err_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const override; \
+        errc_t getTransform(const TimePoint& tp, Rotation& rotation) const override; \
+        errc_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const override; \
     };\
     A_ALWAYS_INLINE Axes* aAxes##NAME()\
     {\
@@ -64,12 +64,12 @@ class Rotation;
 
 #define _AST_IMPL_AXES_DYNAMIC(NAME, PARENT) \
     _AST_IMPL_AXES_BASE(NAME, PARENT)\
-    err_t Axes##NAME::getTransform(const TimePoint &tp, Rotation &rotation) const\
+    errc_t Axes##NAME::getTransform(const TimePoint &tp, Rotation &rotation) const\
     {\
         a##PARENT##To##NAME##Transform(tp, rotation);\
         return eNoError;\
     }\
-    err_t Axes##NAME::getTransform(const TimePoint &tp, KinematicRotation &rotation) const\
+    errc_t Axes##NAME::getTransform(const TimePoint &tp, KinematicRotation &rotation) const\
     {\
         a##PARENT##To##NAME##Transform(tp, rotation);\
         return eNoError;\
@@ -77,12 +77,12 @@ class Rotation;
 
 #define _AST_IMPL_AXES_INERTIAL(NAME, PARENT) \
     _AST_IMPL_AXES_BASE(NAME, PARENT)\
-    err_t Axes##NAME::getTransform(const TimePoint &tp, Rotation &rotation) const\
+    errc_t Axes##NAME::getTransform(const TimePoint &tp, Rotation &rotation) const\
     {\
         a##PARENT##To##NAME##Transform(rotation);\
         return eNoError;\
     }\
-    err_t Axes##NAME::getTransform(const TimePoint &tp, KinematicRotation &rotation) const\
+    errc_t Axes##NAME::getTransform(const TimePoint &tp, KinematicRotation &rotation) const\
     {\
         a##PARENT##To##NAME##Transform(rotation.getRotation());\
         rotation.setRotationRate(Vector3d::Zero());\
@@ -91,12 +91,12 @@ class Rotation;
 
 #define _AST_IMPL_AXES_PSEUDO_INERTIAL(NAME, PARENT) \
     _AST_IMPL_AXES_BASE(NAME, PARENT)\
-    err_t Axes##NAME::getTransform(const TimePoint &tp, Rotation &rotation) const\
+    errc_t Axes##NAME::getTransform(const TimePoint &tp, Rotation &rotation) const\
     {\
         a##PARENT##To##NAME##Transform(tp, rotation);\
         return eNoError;\
     }\
-    err_t Axes##NAME::getTransform(const TimePoint &tp, KinematicRotation &rotation) const\
+    errc_t Axes##NAME::getTransform(const TimePoint &tp, KinematicRotation &rotation) const\
     {\
         a##PARENT##To##NAME##Transform(tp, rotation.getRotation());\
         rotation.setRotationRate(Vector3d::Zero());\

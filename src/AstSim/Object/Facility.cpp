@@ -27,12 +27,12 @@ Frame *Facility::getFrame() const
     return nullptr;
 }
 
-err_t Facility::getPos(const TimePoint &tp, Vector3d &pos) const
+errc_t Facility::getPos(const TimePoint &tp, Vector3d &pos) const
 {
     return -1;
 }
 
-err_t Facility::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+errc_t Facility::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     return -1;
 }

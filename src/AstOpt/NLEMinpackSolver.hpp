@@ -28,7 +28,7 @@ AST_NAMESPACE_BEGIN
 class CNLEMinpackSolver : INLPSolver
 {
 public:
-	err_t solve(NLPProblem& problem, std::vector<double>& xopt) override;
+	errc_t solve(NLPProblem& problem, std::vector<double>& xopt) override;
 };
 
 

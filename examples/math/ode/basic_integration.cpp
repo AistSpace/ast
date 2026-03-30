@@ -10,7 +10,7 @@ AST_USING_NAMESPACE
 /// @brief 简单的指数衰减ODE：dy/dt = -y
 class ExponentialDecayODE : public ODE {
 public:
-    err_t evaluate(const double* y, double* ydot, double t) override {
+    errc_t evaluate(const double* y, double* ydot, double t) override {
         ydot[0] = -y[0];  // dy/dt = -y
         return eNoError;
     }
@@ -28,7 +28,7 @@ private:
 public:
     HarmonicOscillatorODE(double omega = 1.0) : omega_(omega) {}
     
-    err_t evaluate(const double* y, double* ydot, double t) override {
+    errc_t evaluate(const double* y, double* ydot, double t) override {
         // y[0] = x, y[1] = dx/dt
         // dx/dt = v
         // dv/dt = -ω²x
@@ -61,7 +61,7 @@ int main() {
     double y0[1] = {1.0};  // y(0) = 1
     double yf_rk4[1]{y0[0]};
     double t = t0;
-    err_t result = rk4.integrate(expODE, yf_rk4, t, tf);
+    errc_t result = rk4.integrate(expODE, yf_rk4, t, tf);
     if (result == eNoError) {
         double exact = y0[0] * std::exp(-tf);
         double error = std::abs(yf_rk4[0] - exact);

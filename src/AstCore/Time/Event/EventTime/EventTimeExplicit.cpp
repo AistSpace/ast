@@ -40,7 +40,7 @@ EventTimeExplicit::EventTimeExplicit(const TimePoint &time)
 {
 }
 
-err_t EventTimeExplicit::getTime(TimePoint &time) const
+errc_t EventTimeExplicit::getTime(TimePoint &time) const
 {
     time = time_;
     return eNoError;

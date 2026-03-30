@@ -42,18 +42,18 @@ public:
     IOrbitDesigner() = default;
     ~IOrbitDesigner() = default;
 
-    virtual err_t getOrbitEpoch(TimePoint& orbitEpoch) const = 0;
+    virtual errc_t getOrbitEpoch(TimePoint& orbitEpoch) const = 0;
 
     /// @brief 获取轨道状态
     /// @param orbitEpoch 轨道历元（可选）
     /// @param orbElem 轨道根数
-    virtual err_t getOrbitState(ModOrbElem &orbElem) const = 0;
+    virtual errc_t getOrbitState(ModOrbElem &orbElem) const = 0;
 
     /// @brief 获取坐标系定义
     /// @param useCoordEpoch 是否使用坐标系历元
     /// @param coordEpoch 坐标系历元（可选）
     /// @param coordFrame 坐标系
-    virtual err_t getCoordFrame(bool& useCoordEpoch, TimePoint& coordEpoch, SharedPtr<Frame>& coordFrame) const = 0;
+    virtual errc_t getCoordFrame(bool& useCoordEpoch, TimePoint& coordEpoch, SharedPtr<Frame>& coordFrame) const = 0;
 };
 
 
@@ -82,17 +82,17 @@ public:
     double getBodyRadius() const { return celestialBody_?celestialBody_->getRadius():0; }
 
     /// @brief 获取轨道历元
-    err_t getOrbitEpoch(TimePoint& orbitEpoch) const final{ orbitEpoch = orbitEpoch_; return 0; };
+    errc_t getOrbitEpoch(TimePoint& orbitEpoch) const final{ orbitEpoch = orbitEpoch_; return 0; };
 
     /// @brief 获取轨道状态
     /// @param cartState 笛卡尔状态
-    err_t getOrbitState(CartState &cartState) const;
+    errc_t getOrbitState(CartState &cartState) const;
 
     /// @brief 获取轨道状态
     /// @param orbElem 轨道根数
-    err_t getOrbitState(OrbElem &orbElem) const;
+    errc_t getOrbitState(OrbElem &orbElem) const;
 
-    err_t getCoordFrame(bool& useCoordEpoch, TimePoint& coordEpoch, SharedPtr<Frame>& coordFrame) const override;
+    errc_t getCoordFrame(bool& useCoordEpoch, TimePoint& coordEpoch, SharedPtr<Frame>& coordFrame) const override;
 protected:
     SharedPtr<CelestialBody> celestialBody_;    ///< 天体
     TimePoint orbitEpoch_{};    ///< 轨道历元

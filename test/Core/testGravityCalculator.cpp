@@ -31,7 +31,7 @@ AST_USING_NAMESPACE
 TEST(GravityCalculator, WGS84)
 {
     GravityField gf;
-    err_t err = gf.load(aTestGetConfigValue("SOLARSYSTEM_DIR").toString() + "/Earth/WGS84.grv");
+    errc_t err = gf.load(aTestGetConfigValue("SOLARSYSTEM_DIR").toString() + "/Earth/WGS84.grv");
     EXPECT_FALSE(err);
     // test pert acceleration
     if(1)

@@ -31,14 +31,14 @@ PMotionHPOP MotionHPOP::New()
     return new MotionHPOP();
 }
 
-err_t MotionHPOP::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
+errc_t MotionHPOP::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
 {
     return makeEphemerisSimple(eph);
 }
 
-err_t MotionHPOP::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
+errc_t MotionHPOP::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
 {
-    err_t rc;
+    errc_t rc;
     PropagationParams params;
     rc = this->getPropagationParams(params);   AST_CHECK_ERRCODE(rc, "failed to get propagation params");
     auto propFrame = params.propagationFrame_;

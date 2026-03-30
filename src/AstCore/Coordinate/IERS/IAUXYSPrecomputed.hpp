@@ -36,20 +36,20 @@ public:
     /// @brief 获取预计算的XYS系数
     /// @param tp 时间点
     /// @param xys 输出XYS系数
-    err_t getValue(const TimePoint& tp, array3d& xys) const;
+    errc_t getValue(const TimePoint& tp, array3d& xys) const;
 
     /// @brief 获取预计算的XYS系数（TT时间）
     /// @param jed 儒略日
     /// @param xys 输出XYS系数
-    err_t getValueTT(const JulianDate& jdTT, array3d& xys) const;
+    errc_t getValueTT(const JulianDate& jdTT, array3d& xys) const;
 
     /// @brief 加载预计算的XYS系数文件
     /// @param filepath 文件路径
-    err_t load(StringView filepath);
+    errc_t load(StringView filepath);
 
 
     /// @brief 加载默认预计算的XYS系数文件
-    err_t loadDefault();
+    errc_t loadDefault();
 
     /// @brief 预计算XYS系数
     /// @param start_jed 开始时间（儒略日）

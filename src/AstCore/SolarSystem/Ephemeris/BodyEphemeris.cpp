@@ -28,12 +28,12 @@ Frame *BodyEphemeris::getFrame() const
     return aFrameICRF();
 }
 
-err_t BodyEphemeris::getPos(const TimePoint &tp, Vector3d &pos) const
+errc_t BodyEphemeris::getPos(const TimePoint &tp, Vector3d &pos) const
 {
     return getPosICRF(tp, pos);
 }
 
-err_t BodyEphemeris::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+errc_t BodyEphemeris::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     return getPosVelICRF(tp, pos, vel);
 }

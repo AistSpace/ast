@@ -39,13 +39,18 @@ TEST(JplSpkTest, open_twice)
 
     spk1.open(spkfile);
     spk2.open(spkfile);
-    err_t rc1 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
+    errc_t rc1 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
     spk2.close();
-    err_t rc2 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
+    EXPECT_EQ(rc1, eNoError);
+    
+    errc_t rc2 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
     spk1.close();
-    err_t rc0 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
+    EXPECT_EQ(rc2, eNoError);
+    
+    errc_t rc3 = spk1.getPosICRF(TimePoint{}, ESpiceId::eJupiter, ESpiceId::eSolarSystemBarycenter, pos);
+    EXPECT_NE(rc3, eNoError);
 
-    printf("rc0: %d, rc1: %d, rc2: %d\n", rc0, rc1, rc2);
+    printf("rc1: %d, rc2: %d, rc3: %d\n", rc1, rc2, rc3);
 }
 
 
@@ -59,7 +64,7 @@ TEST(JplSpkTest, open)
     int count = SpiceApi::Instance()->ktotal("ALL");
     EXPECT_EQ(count, 0);
     JplSpk spk(spkfile);
-    err_t rc = spk.getInterval(ESpiceId::eJupiter, interval);
+    errc_t rc = spk.getInterval(ESpiceId::eJupiter, interval);
     EXPECT_EQ(rc, eNoError);
     EXPECT_NE(spk.handle(), 0);
     printf("interval: %s\n", interval.toString().c_str());

@@ -62,13 +62,13 @@ public:
 
     /// @brief 获取状态
     /// @param state 状态
-    /// @return err_t 错误码
-    virtual err_t getState(CartState& state) const = 0;
+    /// @return errc_t 错误码
+    virtual errc_t getState(CartState& state) const = 0;
 
     /// @brief 设置状态
     /// @param state 状态
-    /// @return err_t 错误码
-    virtual err_t setState(const CartState& state) = 0;
+    /// @return errc_t 错误码
+    virtual errc_t setState(const CartState& state) = 0;
 public:
     /// @brief 获取参考坐标系
     Frame* getFrame() const{ return frame_.get(); }
@@ -78,8 +78,8 @@ public:
 
     /// @brief 改变参考坐标系
     /// @param frame 新的参考坐标系
-    /// @return err_t 错误码
-    err_t changeFrame(Frame* frame);
+    /// @return errc_t 错误码
+    errc_t changeFrame(Frame* frame);
 
     /// @brief 设置状态历元时间
     /// @param stateEpoch 状态历元时间
@@ -91,8 +91,8 @@ public:
 
     /// @brief 获取状态历元时间
     /// @param stateEpoch 状态历元时间
-    /// @return err_t 错误码
-    err_t getStateEpoch(TimePoint& stateEpoch) const;
+    /// @return errc_t 错误码
+    errc_t getStateEpoch(TimePoint& stateEpoch) const;
 
     /// @brief 获取状态历元时间
     /// @return TimePoint 状态历元时间
@@ -120,14 +120,14 @@ public:
     /// @brief 获取在给定天体惯性坐标系下的状态量
     /// @param body 天体
     /// @param state 状态
-    /// @return err_t 错误码
-    err_t getStateInBodyInertial(Body* body, CartState& state) const;
+    /// @return errc_t 错误码
+    errc_t getStateInBodyInertial(Body* body, CartState& state) const;
 
     /// @brief 获取在给定坐标系下的状态量
     /// @param frame 坐标系
     /// @param state 状态
-    /// @return err_t 错误码
-    err_t getStateIn(Frame* frame, CartState& state) const;
+    /// @return errc_t 错误码
+    errc_t getStateIn(Frame* frame, CartState& state) const;
 
 public:
 
@@ -140,7 +140,7 @@ public: // 与历元坐标系定义相关的接口：
 
     void  setCoordEpoch(const TimePoint& coordEpoch);
 
-    err_t getCoordEpoch(TimePoint& coordEpoch) const;
+    errc_t getCoordEpoch(TimePoint& coordEpoch) const;
 
     bool  getUseCoordEpoch() const;
 
@@ -148,7 +148,7 @@ public: // 与历元坐标系定义相关的接口：
 
     void  setCoordAxes(Axes* axes);
 
-    err_t  changeCoordAxes(Axes* axes);
+    errc_t  changeCoordAxes(Axes* axes);
 
     Axes* getCoordAxes() const;
 #endif

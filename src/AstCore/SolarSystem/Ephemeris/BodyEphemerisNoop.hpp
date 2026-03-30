@@ -36,8 +36,8 @@ class AST_CORE_API BodyEphemerisNoop : public BodyEphemeris
 public:
     BodyEphemerisNoop() = default;
     ~BodyEphemerisNoop() = default;
-    err_t getPosICRF(const TimePoint& time, Vector3d& pos) const override;
-    err_t getPosVelICRF(const TimePoint& time, Vector3d& pos, Vector3d& vel) const override;
+    errc_t getPosICRF(const TimePoint& time, Vector3d& pos) const override;
+    errc_t getPosVelICRF(const TimePoint& time, Vector3d& pos, Vector3d& vel) const override;
 };
 
 

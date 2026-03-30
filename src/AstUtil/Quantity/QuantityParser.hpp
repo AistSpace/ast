@@ -41,8 +41,8 @@ class Unit;
 /// @param[in] str 量字符串
 /// @param[out] magnitude 解析得到的数值
 /// @param[out] unit 解析得到的单位
-/// @return err_t 错误码
-AST_UTIL_API err_t aQuantityParse(StringView str, double& magnitude, Unit& unit);
+/// @return errc_t 错误码
+AST_UTIL_API errc_t aQuantityParse(StringView str, double& magnitude, Unit& unit);
 
 
 
@@ -50,8 +50,8 @@ AST_UTIL_API err_t aQuantityParse(StringView str, double& magnitude, Unit& unit)
 /// @details 例如 "123.456 m/s", "123.456m", "123.456[m/s]"。
 /// @param[in] str 量字符串
 /// @param[out] quantity 解析后的量
-/// @return err_t 错误码
-AST_UTIL_API err_t aQuantityParse(StringView str, Quantity& quantity);
+/// @return errc_t 错误码
+AST_UTIL_API errc_t aQuantityParse(StringView str, Quantity& quantity);
 
 
 /// @brief 解析量字符串

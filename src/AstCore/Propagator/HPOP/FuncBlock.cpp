@@ -140,7 +140,7 @@ int FuncBlock::getOutputPortWidth(size_t portIndex)
     return port->getWidth();
 }
 
-err_t FuncBlock::connect(FuncBlock* src, StringView srcPortName, FuncBlock* dst, StringView dstPortName)
+errc_t FuncBlock::connect(FuncBlock* src, StringView srcPortName, FuncBlock* dst, StringView dstPortName)
 {
     if(src == nullptr || dst == nullptr){
         return eErrorNullInput;
@@ -150,7 +150,7 @@ err_t FuncBlock::connect(FuncBlock* src, StringView srcPortName, FuncBlock* dst,
     return dstPort->connect(srcPort);
 }
 
-err_t FuncBlock::connect(FuncBlock* src, size_t srcPortIndex, FuncBlock* dst, size_t dstPortIndex)
+errc_t FuncBlock::connect(FuncBlock* src, size_t srcPortIndex, FuncBlock* dst, size_t dstPortIndex)
 {
     if(src == nullptr || dst == nullptr){
         return eErrorNullInput;

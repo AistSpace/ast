@@ -30,7 +30,7 @@ static void LoadSTK_S(benchmark::State& state)
     NutationSeries series;
     std::string stkFile = aDataDirGet() + "/Test/ICRF/IAU2006_S.dat";
     for (auto _ : state) {
-        err_t ret = series.loadSTK(stkFile);
+        errc_t ret = series.loadSTK(stkFile);
         benchmark::DoNotOptimize(ret);
     }
 }
@@ -43,7 +43,7 @@ static void LoadIERS_S(benchmark::State& state)
     NutationSeries series;
     std::string iersFile = aDataDirGet() + "/IERS-conventions/2010/tab5.2d.txt";
     for (auto _ : state) {
-        err_t ret = series.loadIERS(iersFile);
+        errc_t ret = series.loadIERS(iersFile);
         benchmark::DoNotOptimize(ret);
     }
 }
@@ -54,7 +54,7 @@ static void LoadSTK_X(benchmark::State& state)
     NutationSeries series;
     std::string stkFile = aDataDirGet() + "/Test/ICRF/IAU2006_X.dat";
     for (auto _ : state) {
-        err_t ret = series.loadSTK(stkFile);
+        errc_t ret = series.loadSTK(stkFile);
         benchmark::DoNotOptimize(ret);
     }
 }
@@ -67,7 +67,7 @@ static void LoadIERS_X(benchmark::State& state)
     NutationSeries series;
     std::string iersFile = aDataDirGet() + "/IERS-conventions/2010/tab5.2a.txt";
     for (auto _ : state) {
-        err_t ret = series.loadIERS(iersFile);
+        errc_t ret = series.loadIERS(iersFile);
         benchmark::DoNotOptimize(ret);
     }
 }

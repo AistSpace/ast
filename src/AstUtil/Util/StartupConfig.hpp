@@ -43,7 +43,7 @@ public:
     /// @brief  加载启动配置文件
     /// @param filepath 
     /// @return 
-    err_t load(StringView filepath);
+    errc_t load(StringView filepath);
 
     /// @brief  获取配置
     /// @param key 
@@ -64,7 +64,7 @@ public:
     /// @param key 
     /// @param value 
     /// @return 
-    err_t getConfig(StringView key, ValueView &value) const;
+    errc_t getConfig(StringView key, ValueView &value) const;
 
 public: // 修改配置
 

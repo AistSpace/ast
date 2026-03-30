@@ -25,6 +25,7 @@
 #include <vector>
 #include <string>
 #include <array>
+#include <cstdint>
 
 AST_NAMESPACE_BEGIN
 
@@ -70,17 +71,17 @@ public:
     /// @brief 
     /// @param libpath 库路径
     /// @return 错误码
-    err_t load(StringView libpath);
+    errc_t load(StringView libpath);
 
     /// @brief 尝试加载库
     /// @details 尝试加载库，指定多个可能的库路径，直到成功加载为止。
     /// @param libpaths 库路径列表
     /// @return 错误码
-    err_t tryload(const std::vector<std::string>& libpaths);
+    errc_t tryload(const std::vector<std::string>& libpaths);
 
     /// @brief 卸载库
     /// @return 错误码
-    err_t unload();
+    errc_t unload();
 
     /// @brief 检查是否加载了库
     /// @return 是否加载了库
@@ -90,7 +91,7 @@ public: // 包装函数
     /// @brief 加载spice内核文件
     /// @param libpath 内核文件路径
     /// @return 错误码
-    err_t furnsh(const char* libpath);
+    errc_t furnsh(const char* libpath);
 
     /// @brief 计算spice位置
     /// @param targ 目标体ID
@@ -100,7 +101,7 @@ public: // 包装函数
     /// @param state 状态向量
     /// @param lt 光行时
     /// @return 错误码
-    err_t spkgeo(
+    errc_t spkgeo(
         int            targ,
         double         et,
         const char    * ref,
@@ -110,21 +111,23 @@ public: // 包装函数
     );
 
     /// @brief 加载SPK内核文件
+    /// @details 在CSPICE的接口基础上增加了引用计数机制
     /// @param libpath 内核文件路径
     /// @param handle 内核句柄
     /// @return 错误码
-    err_t spklef(const char* libpath, int* handle);
+    errc_t spklef(const char* libpath, int* handle);
 
     /// @brief 鞋子SPK内核文件
+    /// @details 在CSPICE的接口基础上增加了引用计数机制
     /// @param handle 内核句柄
     /// @return 错误码
-    err_t spkuef(int handle);
+    errc_t spkuef(int handle);
 
         /// @brief 获取已加载的内核数量
     /// @param kind 内核类型
     /// @param count 内核数量
     /// @return 错误码
-    err_t ktotal(const char * kind, int* count);
+    errc_t ktotal(const char * kind, int* count);
     int ktotal(const char * kind){
         int count = 0;
         ktotal(kind, &count);
@@ -136,7 +139,7 @@ public: // 包装函数
                 int            namlen,
                 char           * name,
                 bool           * found);
-    err_t bodc2n(int            code, std::string&    name);
+    errc_t bodc2n(int            code, std::string&    name);
 
     /// @brief 检查是否发生错误
     /// @return 是否发生错误
@@ -152,10 +155,11 @@ public: // 包装函数
 
     
 protected:
-    err_t checkerror();
+    errc_t checkerror();
     A_DISABLE_COPY(SpiceApi);
 protected:
     void*  library_{nullptr};           ///< 库句柄
+    std::vector<uint32_t> spk_handles_; ///< 已加载的SPK内核句柄列表
     funcarray functions_{};             ///< 函数指针
     std::mutex mutex_;                  ///< 互斥锁(CSPICE库的函数不是线程安全的，这里用于保护函数调用的线程安全问题)
 };

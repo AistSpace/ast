@@ -30,7 +30,7 @@ class AST_CORE_API BlockDot : public FuncBlock
 public:
     BlockDot();
 
-    err_t run(const SimTime &simTime) override;
+    errc_t run(const SimTime &simTime) override;
 protected:
     double* vector1_{nullptr};  // 第一个向量
     double* vector2_{nullptr};  // 第二个向量

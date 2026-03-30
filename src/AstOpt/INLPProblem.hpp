@@ -143,35 +143,35 @@ public:
     virtual ~INLPProblem() = default;
 
     /// @brief 获取问题的维度信息等
-    virtual err_t getInfo(NLPInfo& info) const = 0;
+    virtual errc_t getInfo(NLPInfo& info) const = 0;
 
     /// @brief 获取问题的雅可比矩阵信息
-    virtual err_t getJacInfo(NLPJacInfo& info) const = 0;
+    virtual errc_t getJacInfo(NLPJacInfo& info) const = 0;
 
     /// @brief 获取问题的设计变量与约束的上下界
-    virtual err_t getBounds(NLPBounds& bounds) const = 0;
+    virtual errc_t getBounds(NLPBounds& bounds) const = 0;
 
 
     /// @brief 计算目标函数和约束
-    virtual err_t evalFitness(const NLPInput& input, NLPOutput& output) const = 0;
+    virtual errc_t evalFitness(const NLPInput& input, NLPOutput& output) const = 0;
 
 
     /// @brief 计算非线性方程的解析(数值)Jacobi矩阵
     /// @param ndim          维度   
     /// @param x_input       变量
     /// @param nzElemjacobi  jacobi矩阵非零元素
-    virtual err_t evalJacobi(int numVariable, const double* variable, int numConstraint, int nnzJacobi, double* nzElemjacobi) const = 0;
+    virtual errc_t evalJacobi(int numVariable, const double* variable, int numConstraint, int nnzJacobi, double* nzElemjacobi) const = 0;
 
 
     /// @brief 计算目标函数梯度
     /// @param numVariable 
     /// @param variable 
     /// @return 
-    virtual err_t evalGradient(int numVariable, const double* variable, double* grad) const = 0;
+    virtual errc_t evalGradient(int numVariable, const double* variable, double* grad) const = 0;
 
 
     /// @brief 获取初始猜测值(迭代初值/迭代起始点)
-    virtual err_t getInitialGuess(int numVariable, double* variable) const = 0;
+    virtual errc_t getInitialGuess(int numVariable, double* variable) const = 0;
 
 
 };

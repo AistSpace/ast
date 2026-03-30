@@ -32,7 +32,7 @@ static void skipWhitespace(const char*& position, const char* end)
     }
 }
 
-err_t aQuantityParse(StringView sv, double& magnitude, Unit& unit)
+errc_t aQuantityParse(StringView sv, double& magnitude, Unit& unit)
 {
     std::string str(sv);
     const char* end = str.c_str() + str.size();
@@ -69,7 +69,7 @@ err_t aQuantityParse(StringView sv, double& magnitude, Unit& unit)
     }
 }
 
-err_t aQuantityParse(StringView str, Quantity& quantity)
+errc_t aQuantityParse(StringView str, Quantity& quantity)
 {
     return aQuantityParse(str, quantity.magnitude(), quantity.unit());
 }

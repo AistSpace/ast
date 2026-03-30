@@ -49,7 +49,7 @@ TEST(PCKParser, readData)
 {
     PCKParser parser(aTestGetConfigValue("PCK_FILE").toString());
     KernelPool kernelPool;
-    err_t ret = parser.readData(kernelPool);
+    errc_t ret = parser.readData(kernelPool);
     EXPECT_EQ(ret, 0);
     size_t size = kernelPool.size();
     EXPECT_GT(size, 0);

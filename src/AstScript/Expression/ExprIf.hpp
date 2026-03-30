@@ -51,7 +51,7 @@ public:
     Value* eval() const override;
 
     /// @brief 设置表达式的值
-    err_t setValue(Value* val) override;
+    errc_t setValue(Value* val) override;
 
     /// @brief 获取表达式的字符串表示
     /// @param context 可选的上下文对象，用于解析变量等

@@ -23,13 +23,13 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t aFakeGet(const void *container, void *value)
+errc_t aFakeGet(const void *container, void *value)
 {
     aError("getter is null");
     return eErrorNullInput;
 }
 
-err_t aFakeSet(void* container, const void* value)
+errc_t aFakeSet(void* container, const void* value)
 {
     aError("setter is null");
     return eErrorNullInput;

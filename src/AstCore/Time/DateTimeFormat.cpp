@@ -114,7 +114,7 @@ namespace
 } // 匿名命名空间
 
 // 主格式化函数
-err_t aDateTimeFormat(const DateTime& dttm, StringView format, std::string& str)
+errc_t aDateTimeFormat(const DateTime& dttm, StringView format, std::string& str)
 {
     if (format.empty()) {
         str.clear();

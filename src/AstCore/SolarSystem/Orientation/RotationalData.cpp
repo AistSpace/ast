@@ -27,7 +27,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t RotationalData::load(StringView filepath)
+errc_t RotationalData::load(StringView filepath)
 {
     BKVParser parser(filepath);
     if(!parser.isOpen()){
@@ -47,7 +47,7 @@ err_t RotationalData::load(StringView filepath)
             if(aEqualsIgnoreCase(item.key(), "RotationEpoch"))
             {
                 double epoch = 0.0;
-                err_t rc = aParseDouble(item.value(), epoch);
+                errc_t rc = aParseDouble(item.value(), epoch);
                 if(rc){
                     aError("failed to parse RotationEpoch");
                     return rc;
@@ -76,7 +76,7 @@ err_t RotationalData::load(StringView filepath)
                     if(aEqualsIgnoreCase(item.value(), "SpinAxisRightAscension"))
                     {
                         foundRightAscension = true;
-                        err_t rc = data.rightAscension_.load(parser);
+                        errc_t rc = data.rightAscension_.load(parser);
                         if(rc){
                             aError("failed to load SpinAxisRightAscension");
                             return rc;
@@ -85,7 +85,7 @@ err_t RotationalData::load(StringView filepath)
                     else if(aEqualsIgnoreCase(item.value(), "SpinAxisDeclination"))
                     {
                         foundDeclination = true;
-                        err_t rc = data.declination_.load(parser);
+                        errc_t rc = data.declination_.load(parser);
                         if(rc){
                             aError("failed to load SpinAxisDeclination");
                             return rc;
@@ -94,7 +94,7 @@ err_t RotationalData::load(StringView filepath)
                     else if(aEqualsIgnoreCase(item.value(), "Rotation"))
                     {
                         foundRotation = true;
-                        err_t rc = data.rotation_.load(parser);
+                        errc_t rc = data.rotation_.load(parser);
                         if(rc){
                             aError("failed to load Rotation");
                             return rc;

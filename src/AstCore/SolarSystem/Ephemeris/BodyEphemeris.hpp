@@ -44,20 +44,20 @@ public:
     /// @brief 获取天体在ICRF坐标系下的位置
     /// @param tp 时间点
     /// @param pos 输出位置
-    /// @return err_t 错误码
-    virtual err_t getPosICRF(const TimePoint& tp, Vector3d& pos) const = 0;
+    /// @return errc_t 错误码
+    virtual errc_t getPosICRF(const TimePoint& tp, Vector3d& pos) const = 0;
 
     /// @brief 获取天体在ICRF坐标系下的位置和速度
     /// @param tp 时间点
     /// @param pos 输出位置
     /// @param vel 输出速度
-    /// @return err_t 错误码
-    virtual err_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const = 0;
+    /// @return errc_t 错误码
+    virtual errc_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const = 0;
 public:
     virtual Frame* getFrame() const override;
-    virtual err_t getPos(const TimePoint& tp, Vector3d& pos) const override;
-    virtual err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
-    virtual err_t getInterval(TimeInterval& interval) const override = 0;
+    virtual errc_t getPos(const TimePoint& tp, Vector3d& pos) const override;
+    virtual errc_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
+    virtual errc_t getInterval(TimeInterval& interval) const override = 0;
 };
 
 const int iii = sizeof(BodyEphemeris);

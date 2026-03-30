@@ -76,14 +76,14 @@ BlockThirdBody::BlockThirdBody(double thirdBodyGM)
     };
 }
 
-err_t BlockThirdBody::run(const SimTime &simTime)
+errc_t BlockThirdBody::run(const SimTime &simTime)
 {
     // @fixme
     // 现在只支持计算月球三体引力
     // 后续再支持其他天体
     auto& tp = simTime.timePoint();
     Vector3d thirdBodyPos;
-    err_t err = aJplDeGetPosICRF(tp, JplDe::eMoon, JplDe::eEarth, thirdBodyPos);
+    errc_t err = aJplDeGetPosICRF(tp, JplDe::eMoon, JplDe::eEarth, thirdBodyPos);
     if (A_UNLIKELY(err != eNoError))
     {
         aError("failed to get third body position");

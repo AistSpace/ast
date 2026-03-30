@@ -31,34 +31,34 @@
 AST_NAMESPACE_BEGIN
 using namespace _AST literals;
 
-err_t aEarthICRFToMoonICRF(const TimePoint &tp, const Vector3d &posInEarthICRF, Vector3d &posInMoonICRF)
+errc_t aEarthICRFToMoonICRF(const TimePoint &tp, const Vector3d &posInEarthICRF, Vector3d &posInMoonICRF)
 {
     Vector3d moonPos;
-    err_t rc = aJplDeGetPosICRF(tp, JplDe::eMoon, JplDe::eEarth, moonPos);
+    errc_t rc = aJplDeGetPosICRF(tp, JplDe::eMoon, JplDe::eEarth, moonPos);
     posInMoonICRF = posInEarthICRF - moonPos;
     return rc;
 }
 
-err_t aEarthICRFToMoonICRF(const TimePoint &tp, const Vector3d &posInEarthICRF, const Vector3d &velInEarthICRF, Vector3d &posInMoonICRF, Vector3d &velInMoonICRF)
+errc_t aEarthICRFToMoonICRF(const TimePoint &tp, const Vector3d &posInEarthICRF, const Vector3d &velInEarthICRF, Vector3d &posInMoonICRF, Vector3d &velInMoonICRF)
 {
     Vector3d moonPos, moonVel;
-    err_t rc = aJplDeGetPosVelICRF(tp, JplDe::eMoon, JplDe::eEarth, moonPos, moonVel);
+    errc_t rc = aJplDeGetPosVelICRF(tp, JplDe::eMoon, JplDe::eEarth, moonPos, moonVel);
     posInMoonICRF = posInEarthICRF - moonPos;
     velInMoonICRF = velInEarthICRF - moonVel;
     return rc;
 }
 
-err_t aICRFToMoonPrincipalAxesTransform(const TimePoint &tp, Rotation &rotation)
+errc_t aICRFToMoonPrincipalAxesTransform(const TimePoint &tp, Rotation &rotation)
 {
     Euler ang;
-    err_t rc = aJplDeGetLibration(tp, ang);
+    errc_t rc = aJplDeGetLibration(tp, ang);
     if(rc) return rc;
     // static_assert(sizeof(Euler) == sizeof(Vector3d), "Euler and Vector3d must have the same size");
     aEuler313ToMatrix(ang, rotation.getMatrix());
     return eNoError;
 }
 
-err_t aMoonPAToMeanEarthTransform(Rotation &rotation)
+errc_t aMoonPAToMeanEarthTransform(Rotation &rotation)
 {
     auto denum = aJplDeNum();
     switch (denum)
@@ -107,9 +107,9 @@ void aMoonPA403ToMeanEarthTransform(Rotation &rotation)
     aEuler321ToMatrix(angle, rotation.getMatrix());
 }
 
-err_t aICRFToMoonMeanEarthTransform_DE(const TimePoint &tp, Rotation &rotation)
+errc_t aICRFToMoonMeanEarthTransform_DE(const TimePoint &tp, Rotation &rotation)
 {
-    err_t rc = aICRFToMoonPrincipalAxesTransform(tp, rotation);
+    errc_t rc = aICRFToMoonPrincipalAxesTransform(tp, rotation);
     if (rc != eNoError) return rc;
     Rotation rotation2;
     rc = aMoonPAToMeanEarthTransform(rotation2);
@@ -119,7 +119,7 @@ err_t aICRFToMoonMeanEarthTransform_DE(const TimePoint &tp, Rotation &rotation)
 }
 
 
-err_t aICRFToMoonMeanEarthTransform(const TimePoint &tp, Rotation &rotation)
+errc_t aICRFToMoonMeanEarthTransform(const TimePoint &tp, Rotation &rotation)
 {
     return aICRFToMoonMeanEarthTransform_DE(tp, rotation);
 }

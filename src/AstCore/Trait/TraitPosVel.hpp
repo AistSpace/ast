@@ -35,8 +35,8 @@ public:
     virtual ~IPosVelPrv()
     {};
     virtual Type* type() const = 0;
-    virtual err_t getPosIn(System* system, const AbsTime& time, Vector3d& pos) const = 0;
-    virtual err_t getPosVelIn(System* system, const AbsTime& time, Vector3d& pos, Vector3d& vel) const = 0;
+    virtual errc_t getPosIn(System* system, const AbsTime& time, Vector3d& pos) const = 0;
+    virtual errc_t getPosVelIn(System* system, const AbsTime& time, Vector3d& pos, Vector3d& vel) const = 0;
 };
 
 
@@ -56,7 +56,7 @@ public:
     {
         return T::staticType(); 
     }
-    err_t getValue(const AbsTime& time, double& value) const override
+    errc_t getValue(const AbsTime& time, double& value) const override
     {
         return get()->getValue(time, value);
     }

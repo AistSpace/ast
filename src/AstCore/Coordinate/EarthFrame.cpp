@@ -191,7 +191,7 @@ void aMODToTODMatrix(const TimePoint &tp, Matrix3d &matrix)
     printf("IAU1980: dpsi = %.20f, deps = %.20f\n", dpsi, deps);
 
     dpsi = 0; deps = 0;
-    err_t err = aJplDeGetNutation(tp, dpsi, deps);
+    errc_t err = aJplDeGetNutation(tp, dpsi, deps);
     printf("JPL DE: dpsi = %.20f, deps = %.20f, err = %d\n", dpsi, deps, err);
     
     #endif

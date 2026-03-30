@@ -34,9 +34,9 @@ MotionTwoBody *MotionTwoBody::New()
 }
 
 
-err_t MotionTwoBody::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
+errc_t MotionTwoBody::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
 {
-    err_t rc;
+    errc_t rc;
     PropagationParams params;
     rc = this->getPropagationParams(params);   AST_CHECK_ERRCODE(rc, "failed to get propagation params");
     
@@ -45,9 +45,9 @@ err_t MotionTwoBody::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
     return eNoError;
 }
 
-err_t MotionTwoBody::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
+errc_t MotionTwoBody::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
 {
-    err_t rc;
+    errc_t rc;
     PropagationParams params;
     rc = this->getPropagationParams(params);   AST_CHECK_ERRCODE(rc, "failed to get propagation params");
     auto propFrame = params.propagationFrame_;

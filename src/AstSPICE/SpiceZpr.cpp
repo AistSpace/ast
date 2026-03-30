@@ -544,7 +544,7 @@ void eul2m(double angle3, double angle2, double angle1, int axis3, int axis2, in
 {
     int seq = axis1 * 100 + axis2 * 10 + axis3;
     Euler euler{angle1, angle2, angle3};
-    err_t rc = aEulerToMatrix(euler, seq, r);
+    errc_t rc = aEulerToMatrix(euler, seq, r);
     A_UNUSED(rc);
 }
 
@@ -830,7 +830,7 @@ void m2eul(const Matrix3d &r, int axis3, int axis2, int axis1, double &angle3, d
 {
     int seq = axis1 * 100 + axis2 * 10 + axis3;
     Euler euler;
-    err_t rc = aMatrixToEuler(r, seq, euler);
+    errc_t rc = aMatrixToEuler(r, seq, euler);
     A_UNUSED(rc);
     angle3 = euler.angle3();
     angle2 = euler.angle2();
@@ -1006,7 +1006,7 @@ void mxvg(const void *m1, const void *v2, int nr1, int nc1r2, void *vout)
 
 
 
-err_t pxform(StringView from, StringView to, const TimePoint &et, Matrix3d &rotate)
+errc_t pxform(StringView from, StringView to, const TimePoint &et, Matrix3d &rotate)
 {
     Axes *fromAxes = aSpiceFindAxes(from);
     if ( fromAxes == nullptr )
@@ -1019,7 +1019,7 @@ err_t pxform(StringView from, StringView to, const TimePoint &et, Matrix3d &rota
 }
 
 AST_SPICE_CAPI
-err_t pxform(
+errc_t pxform(
     const char   * from,
     const char   * to,
     double         et,
@@ -1194,7 +1194,7 @@ void rav2xf(const Matrix3d &rot, const Vector3d &av, Matrix6d &xform)
 
 // spkacs
 
-err_t spkapo(
+errc_t spkapo(
     CelestialBody      * targ,
     const TimePoint&     et,
     Axes               * ref,
@@ -1210,7 +1210,7 @@ err_t spkapo(
         lt = &temp;
 
     Vector3d posTarg;
-    err_t rc = targ->getPosICRF(et, posTarg);
+    errc_t rc = targ->getPosICRF(et, posTarg);
     if ( rc != 0 )
         return rc;
     ptarg = posTarg - sobs.pos();
@@ -1239,7 +1239,7 @@ err_t spkapo(
             /*!
             @note SPICE 中的时间系统按照 TDB 时间尺度进行推进
             */
-            err_t rc = targ->getPosICRF(et.shiftedBySecondInTDB(dt), posTarg);
+            errc_t rc = targ->getPosICRF(et.shiftedBySecondInTDB(dt), posTarg);
             if ( rc != 0 )
                 return rc;
             ptarg = posTarg - sobs.pos();
@@ -1311,7 +1311,7 @@ err_t spkapo(
 
 
 
-err_t spkpos(
+errc_t spkpos(
     CelestialBody *targ, 
     const TimePoint &et, 
     Axes *ref, 
@@ -1324,13 +1324,13 @@ err_t spkpos(
     if ( targ == nullptr || obs == nullptr )
         return eErrorNullInput;
     CartState staObs;
-    err_t rc  = obs->getPosVelICRF(et, staObs.pos(), staObs.vel());
+    errc_t rc  = obs->getPosVelICRF(et, staObs.pos(), staObs.vel());
     if ( rc != 0 )
         return rc;
     return spkapo(targ, et, ref, staObs, abcorr, ptarg, lt);
 }
 
-err_t spkpos(
+errc_t spkpos(
     StringView targ,     
     const TimePoint&   et,
     StringView ref, 
@@ -1353,7 +1353,7 @@ err_t spkpos(
 
 
 AST_SPICE_CAPI
-err_t spkpos(
+errc_t spkpos(
     const char   * targ,
     double         et,
     const char   * ref,
@@ -1372,11 +1372,11 @@ err_t spkpos(
 // spksfs
 
 
-err_t spkssb(CelestialBody *targ, const TimePoint &et, Axes *ref, CartState &starg)
+errc_t spkssb(CelestialBody *targ, const TimePoint &et, Axes *ref, CartState &starg)
 {
     if ( targ == nullptr || ref == nullptr )
         return -1;
-    err_t rc = targ->getPosVelICRF(et, starg.pos(), starg.vel());
+    errc_t rc = targ->getPosVelICRF(et, starg.pos(), starg.vel());
     if ( rc != 0 )
         return rc;
     auto icrf = aAxesICRF();
@@ -1391,7 +1391,7 @@ err_t spkssb(CelestialBody *targ, const TimePoint &et, Axes *ref, CartState &sta
 }
 
 AST_SPICE_CAPI
-err_t spkssb(
+errc_t spkssb(
     int            targ,
     double         et,
     const char   * ref,
@@ -1455,7 +1455,7 @@ err_t spkssb(
 
 // stelab
 
-err_t stelab(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj)
+errc_t stelab(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj)
 {
     // 计算目标方向的单位向量
     double normPobj = pobj.norm();
@@ -1494,7 +1494,7 @@ err_t stelab(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj)
 
 // stlabx
 
-err_t stlabx(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj)
+errc_t stlabx(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj)
 {
     // 发射情况的校正是接收情况的逆校正，只需将速度取反
     Vector3d negVel = -vobs;
@@ -1544,7 +1544,7 @@ err_t stlabx(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj)
 // timout
 
 
-err_t tipbod(Axes *ref, CelestialBody *body, const TimePoint &et, Matrix3d &tipm)
+errc_t tipbod(Axes *ref, CelestialBody *body, const TimePoint &et, Matrix3d &tipm)
 {
     if ( ref == nullptr || body == nullptr )
         return -1;
@@ -1555,7 +1555,7 @@ err_t tipbod(Axes *ref, CelestialBody *body, const TimePoint &et, Matrix3d &tipm
 }
 
 AST_SPICE_CAPI
-err_t tipbod(
+errc_t tipbod(
     const char      * ref,
     int               body,
     double            et,
@@ -1626,10 +1626,10 @@ err_t tipbod(
 
 
 
-err_t utc2et(StringView utcstr, double &et)
+errc_t utc2et(StringView utcstr, double &et)
 {
     DateTime dttm;
-    err_t rc = aDateTimeParseAny(utcstr, dttm);
+    errc_t rc = aDateTimeParseAny(utcstr, dttm);
     if ( rc != 0 )
         return rc;
     TimePoint tp = TimePoint::FromUTC(dttm);
@@ -1638,7 +1638,7 @@ err_t utc2et(StringView utcstr, double &et)
 }
 
 AST_SPICE_CAPI 
-err_t utc2et(
+errc_t utc2et(
     const char * utcstr,
     double &et
 )

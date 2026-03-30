@@ -31,7 +31,7 @@ TEST(SpaceWeather, Load)
     if(!aIsGithubCI()) GTEST_SKIP();
 
     SpaceWeather sw;
-    err_t rc = sw.loadDefault();
+    errc_t rc = sw.loadDefault();
     EXPECT_TRUE(rc == eNoError);
     {
         int mjd = aDateToMJD(2026, 2, 12);

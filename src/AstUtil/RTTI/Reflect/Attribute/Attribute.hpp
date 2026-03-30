@@ -34,49 +34,50 @@ AST_NAMESPACE_BEGIN
 class Property;
 
 /// @brief 对象的特定属性
+template<typename PropertyType=Property>
 class Attribute
 {
 public:
-    Attribute(void* object, Property* property)
+    Attribute(void* object, PropertyType* property)
         : object_(object), property_(property)
     {
     }
-    err_t getValueDouble(double& value) const
+    errc_t getValueDouble(double& value) const
     {
         if(!property_ || !object_) return eErrorInvalidParam;
         return property_->getValueDouble(object_, value);
     }
-    err_t setValueDouble(double value)
+    errc_t setValueDouble(double value)
     {
         if(!property_ || !object_) return eErrorInvalidParam;
         return property_->setValueDouble(object_, value);
     }
-    err_t getValueInt(int& value) const
+    errc_t getValueInt(int& value) const
     {
         if(!property_ || !object_) return eErrorInvalidParam;
         return property_->getValueInt(object_, value);
     }
-    err_t setValueInt(int value)
+    errc_t setValueInt(int value)
     {
         if(!property_ || !object_) return eErrorInvalidParam;
         return property_->setValueInt(object_, value);
     }
-    err_t getValueBool(bool& value) const
+    errc_t getValueBool(bool& value) const
     {
         if(!property_ || !object_) return eErrorInvalidParam;
         return property_->getValueBool(object_, value);
     }
-    err_t setValueBool(bool value)
+    errc_t setValueBool(bool value)
     {
         if(!property_ || !object_) return eErrorInvalidParam;
         return property_->setValueBool(object_, value);
     }
-    err_t getValueString(std::string& value) const
+    errc_t getValueString(std::string& value) const
     {
         if(!property_ || !object_) return eErrorInvalidParam;
         return property_->getValueString(object_, value);
     }
-    err_t setValueString(StringView value)
+    errc_t setValueString(StringView value)
     {
         if(!property_ || !object_) return eErrorInvalidParam;
         return property_->setValueString(object_, value);
@@ -148,7 +149,7 @@ public:
     }   
 protected:
     void*     object_{nullptr};
-    Property* property_{nullptr};
+    PropertyType* property_{nullptr};
 };
 
 /*! @} */

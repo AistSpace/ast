@@ -34,13 +34,13 @@ IAUXYSPrecomputed::IAUXYSPrecomputed()
     
 }
 
-err_t IAUXYSPrecomputed::getValue(const TimePoint &tp, array3d &xys) const
+errc_t IAUXYSPrecomputed::getValue(const TimePoint &tp, array3d &xys) const
 {
     JulianDate jdTT = tp.toTT();
     return getValueTT(jdTT, xys);
 }
 
-err_t IAUXYSPrecomputed::getValueTT(const JulianDate &jdTT, array3d &xys) const
+errc_t IAUXYSPrecomputed::getValueTT(const JulianDate &jdTT, array3d &xys) const
 {
     double deltaDay = (jdTT.day() - this->refepoch_jed_) + jdTT.second() / kSecondsPerDay;
     double indexMiddleDouble = deltaDay / this->step_size_;
@@ -74,7 +74,7 @@ err_t IAUXYSPrecomputed::getValueTT(const JulianDate &jdTT, array3d &xys) const
     return 0;
 }
 
-err_t IAUXYSPrecomputed::load(StringView filepath)
+errc_t IAUXYSPrecomputed::load(StringView filepath)
 {
     BKVParser parser(filepath);
     if (!parser.isOpen())

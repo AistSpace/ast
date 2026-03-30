@@ -38,7 +38,7 @@ static const double
         {-11./640. , 0.      ,11./256. ,-11./160. , 11./256., 0. , 0.},
         {93./640.  , -18./5. ,803./256.,-11./160. , 99./256., 0. , 1.}};
 
-err_t RKF56::initialize(ODE &ode)
+errc_t RKF56::initialize(ODE &ode)
 {
     this->ODEIntegrator::initialize(ode);
     // 重置工作空间
@@ -46,7 +46,7 @@ err_t RKF56::initialize(ODE &ode)
     return eNoError;
 }
 
-err_t RKF56::singleStep(ODE &ode, double* y, double t0, double h)
+errc_t RKF56::singleStep(ODE &ode, double* y, double t0, double h)
 {
     const double err_factor = -5.0 / 66.0;
 
@@ -68,7 +68,7 @@ err_t RKF56::singleStep(ODE &ode, double* y, double t0, double h)
         // kvec.SetBuffer(ndim, KArr + k * ndim);
         // func(t + alph56[k] * h, ymidvec, kvec);
         //rightFunc(ndim, t + alph78[k] * h, ymid, &KArr[k * ndim], rkfFuncParam);
-        if(err_t err = ode.evaluate(t0 + alph56[k] * h, ymid, KArr[k]))
+        if(errc_t err = ode.evaluate(t0 + alph56[k] * h, ymid, KArr[k]))
         {
             return err;
         }

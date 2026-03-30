@@ -25,16 +25,16 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t aGuiInit()
+errc_t aGuiInit()
 {
-    err_t err = 0;
+    errc_t err = 0;
 
 
     return err;
 }
 
 
-err_t aQAppInit(int argc, char *argv[])
+errc_t aQAppInit(int argc, char *argv[])
 {
     if (aCanDisplayGUI()) {
         QApplication* app = new QApplication(argc, argv);

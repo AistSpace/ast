@@ -44,7 +44,7 @@ public:
     /// @brief 计算函数块
     /// @param simTime 仿真时间
     /// @return 错误码
-    virtual err_t run(const SimTime& simTime) = 0;
+    virtual errc_t run(const SimTime& simTime) = 0;
 
 
     /// @brief 获取输入端口
@@ -138,7 +138,7 @@ public:
     /// @param dst 目标函数块
     /// @param dstPortName 目标端口名称
     /// @return 错误码
-    static err_t connect(FuncBlock* src, StringView srcPortName, FuncBlock* dst, StringView dstPortName);
+    static errc_t connect(FuncBlock* src, StringView srcPortName, FuncBlock* dst, StringView dstPortName);
 
     /// @brief 连接函数块的端口
     /// @param src 源函数块
@@ -146,7 +146,7 @@ public:
     /// @param dst 目标函数块
     /// @param dstPortIndex 目标端口索引
     /// @return 错误码
-    static err_t connect(FuncBlock* src, size_t srcPortIndex, FuncBlock* dst, size_t dstPortIndex);
+    static errc_t connect(FuncBlock* src, size_t srcPortIndex, FuncBlock* dst, size_t dstPortIndex);
 
 protected:
     std::vector<DataPort> inputPorts_;

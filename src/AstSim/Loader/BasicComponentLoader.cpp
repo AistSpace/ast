@@ -29,12 +29,12 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t _aLoadEventTimeImplicit(BKVParser& parser, SharedPtr<EventTime>& eventTime)
+errc_t _aLoadEventTimeImplicit(BKVParser& parser, SharedPtr<EventTime>& eventTime)
 {
     return -1;
 }
 
-err_t _aLoadEventTime(BKVParser& parser, SharedPtr<EventTime>& eventTime)
+errc_t _aLoadEventTime(BKVParser& parser, SharedPtr<EventTime>& eventTime)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -80,7 +80,7 @@ err_t _aLoadEventTime(BKVParser& parser, SharedPtr<EventTime>& eventTime)
     return eNoError;
 }
 
-err_t _aLoadEventIntervalImplicit(BKVParser& parser, SharedPtr<EventInterval>& eventInterval)
+errc_t _aLoadEventIntervalImplicit(BKVParser& parser, SharedPtr<EventInterval>& eventInterval)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -116,7 +116,7 @@ err_t _aLoadEventIntervalImplicit(BKVParser& parser, SharedPtr<EventInterval>& e
     return eNoError;
 }
 
-err_t _aLoadInterval(BKVParser& parser, TimeInterval& interval)
+errc_t _aLoadInterval(BKVParser& parser, TimeInterval& interval)
 {
     TimePoint start;
     TimePoint stop;
@@ -144,7 +144,7 @@ err_t _aLoadInterval(BKVParser& parser, TimeInterval& interval)
     return 0;
 }
 
-err_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInterval)
+errc_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInterval)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -174,7 +174,7 @@ err_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInte
             }
             else if(aEqualsIgnoreCase(item.value(), "Interval"))
             {
-                err_t rc = _aLoadInterval(parser, interval);
+                errc_t rc = _aLoadInterval(parser, interval);
                 if(rc != 0){
                     aError("Interval is invalid");
                     return rc;

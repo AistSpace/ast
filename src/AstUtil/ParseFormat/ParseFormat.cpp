@@ -47,7 +47,7 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t aParseBool(StringView str, bool& value)
+errc_t aParseBool(StringView str, bool& value)
 {
     if (str.empty())
     {
@@ -69,7 +69,7 @@ err_t aParseBool(StringView str, bool& value)
 }
 
 
-err_t aParseInt(StringView str, int& value)
+errc_t aParseInt(StringView str, int& value)
 {
     /*
     * @note
@@ -85,7 +85,7 @@ err_t aParseInt(StringView str, int& value)
     #endif
 }
 
-err_t _aParseInt_LibC_1(StringView sv, int& value)
+errc_t _aParseInt_LibC_1(StringView sv, int& value)
 {
     if (sv.empty())
     {
@@ -117,14 +117,14 @@ err_t _aParseInt_LibC_1(StringView sv, int& value)
     return eNoError;
 }
 
-err_t _aParseInt_LibC_2(StringView sv, int& value)
+errc_t _aParseInt_LibC_2(StringView sv, int& value)
 {
     // sv = aStripAsciiWhitespace(sv);
     value = std::atoi(sv.data());
     return 0;
 }
 
-err_t _aParseInt_LibC_3(StringView sv, int &value)
+errc_t _aParseInt_LibC_3(StringView sv, int &value)
 {
     if (sv.empty())
     {
@@ -168,7 +168,7 @@ err_t _aParseInt_LibC_3(StringView sv, int &value)
 }
 
 #ifdef A_CXX17
-err_t _aParseInt_FromChars(StringView str, int &value)
+errc_t _aParseInt_FromChars(StringView str, int &value)
 {
     str = aStripAsciiWhitespace(str);
     auto result = std::from_chars(str.data(), str.data() + str.size(), value);
@@ -176,7 +176,7 @@ err_t _aParseInt_FromChars(StringView str, int &value)
 }
 #endif
 
-err_t _aParseInt_Simple(StringView str, int& value)
+errc_t _aParseInt_Simple(StringView str, int& value)
 {
     if (str.empty()) {
         return eErrorParse;
@@ -230,14 +230,14 @@ err_t _aParseInt_Simple(StringView str, int& value)
     return eNoError;
 }
 
-err_t _aParseInt_StringStream(StringView str, int &value)
+errc_t _aParseInt_StringStream(StringView str, int &value)
 {
     std::istringstream iss(str.data());
     iss >> value;
     return eNoError;
 }
 
-err_t _aParseInt_Scanf(StringView str, int &value)
+errc_t _aParseInt_Scanf(StringView str, int &value)
 {
     int result = 0;
     // #pragma warning(suppress: 4996)
@@ -250,7 +250,7 @@ err_t _aParseInt_Scanf(StringView str, int &value)
     return eNoError;
 }
 
-err_t aParseDouble(StringView str, double& value)
+errc_t aParseDouble(StringView str, double& value)
 {
     /*
     * @note
@@ -265,12 +265,12 @@ err_t aParseDouble(StringView str, double& value)
     #endif
 }
 
-err_t aParseFortranDouble(StringView sv, double &value)
+errc_t aParseFortranDouble(StringView sv, double &value)
 {
     return _aParseFortranDouble_2(sv, value);
 }
 
-err_t _aParseFortranDouble_1(StringView sv, double& value)
+errc_t _aParseFortranDouble_1(StringView sv, double& value)
 {
     std::string s(sv);
     // 将 'D' 或 'd' 替换为 'e'（科学计数法标准标识符）
@@ -281,7 +281,7 @@ err_t _aParseFortranDouble_1(StringView sv, double& value)
     return aParseDouble(s, value);
 }
 
-err_t _aParseFortranDouble_2(StringView sv, double& value)
+errc_t _aParseFortranDouble_2(StringView sv, double& value)
 {
     char buf[32];
     char* p = buf;
@@ -298,7 +298,7 @@ err_t _aParseFortranDouble_2(StringView sv, double& value)
     return aParseDouble(StringView{p, sv.size()}, value);
 }
 
-err_t _aParseDouble_LibC_1(StringView sv, double& value)
+errc_t _aParseDouble_LibC_1(StringView sv, double& value)
 {
     if (sv.empty())
     {
@@ -325,7 +325,7 @@ err_t _aParseDouble_LibC_1(StringView sv, double& value)
 }
 
 
-err_t _aParseDouble_LibC_3(StringView sv, double& value)
+errc_t _aParseDouble_LibC_3(StringView sv, double& value)
 {
     if (sv.empty())
     {
@@ -360,7 +360,7 @@ err_t _aParseDouble_LibC_3(StringView sv, double& value)
 }
 
 
-err_t _aParseDouble_LibC_2(StringView sv, double& value)
+errc_t _aParseDouble_LibC_2(StringView sv, double& value)
 {
     // sv = aStripAsciiWhitespace(sv);
     value = std::atof(sv.data());
@@ -368,7 +368,7 @@ err_t _aParseDouble_LibC_2(StringView sv, double& value)
 }
 
 #ifdef A_CXX17
-err_t _aParseDouble_FromChars(StringView str, double &value)
+errc_t _aParseDouble_FromChars(StringView str, double &value)
 {
     str = aStripAsciiWhitespace(str);
     auto result = std::from_chars(str.data(), str.data() + str.size(), value);
@@ -378,7 +378,7 @@ err_t _aParseDouble_FromChars(StringView str, double &value)
 #endif
 
 #ifdef AST_WITH_ABSEIL
-err_t _aParseDouble_FromChars_Abseil(StringView str, double &value)
+errc_t _aParseDouble_FromChars_Abseil(StringView str, double &value)
 {
     str = aStripAsciiWhitespace(str);
     auto result = absl::from_chars(str.data(), str.data() + str.size(), value);
@@ -386,14 +386,14 @@ err_t _aParseDouble_FromChars_Abseil(StringView str, double &value)
 }
 #endif
 
-err_t _aParseDouble_StringStream(StringView str, double &value)
+errc_t _aParseDouble_StringStream(StringView str, double &value)
 {
     std::istringstream iss(str.data());
     iss >> value;
     return eNoError;
 }
 
-err_t _aParseDouble_Scanf(StringView str, double &value)
+errc_t _aParseDouble_Scanf(StringView str, double &value)
 {
     double result = 0.0;
     // #pragma warning(suppress: 4996)
@@ -406,7 +406,7 @@ err_t _aParseDouble_Scanf(StringView str, double &value)
     return eNoError;
 }
 
-err_t aParseColor(StringView str, Color& value)
+errc_t aParseColor(StringView str, Color& value)
 {
     if (str.empty() || !str.data())
     {
@@ -450,7 +450,7 @@ void aFormatBool(bool value, std::string &str)
     str = value ? "true" : "false";
 }
 
-err_t aFormatInt(int value, std::string& str)
+errc_t aFormatInt(int value, std::string& str)
 {
     char int_buffer[32];
     int len = std::snprintf(int_buffer, sizeof(int_buffer), "%d", value);
@@ -464,7 +464,7 @@ err_t aFormatInt(int value, std::string& str)
 }
 
 
-err_t aFormatDouble_Printf(double value, std::string& str, int precision)
+errc_t aFormatDouble_Printf(double value, std::string& str, int precision)
 {
     char double_buffer[32];
     int len;
@@ -485,7 +485,7 @@ err_t aFormatDouble_Printf(double value, std::string& str, int precision)
 }
 
 #ifdef AST_WITH_FMT
-err_t aFormatDouble_Fmt(double value, std::string& str, int precision)
+errc_t aFormatDouble_Fmt(double value, std::string& str, int precision)
 {
     if (precision < 0)
     {
@@ -497,7 +497,7 @@ err_t aFormatDouble_Fmt(double value, std::string& str, int precision)
 }
 #endif
 
-err_t aFormatDouble(double value, std::string& str, int precision)
+errc_t aFormatDouble(double value, std::string& str, int precision)
 {
     #ifdef AST_WITH_FMT
     return aFormatDouble_Fmt(value, str, precision);
@@ -508,7 +508,7 @@ err_t aFormatDouble(double value, std::string& str, int precision)
 
 
 
-err_t aFormatColor(Color value, std::string& str)
+errc_t aFormatColor(Color value, std::string& str)
 {
     char color_buffer[32];
     // 格式化为#RRGGBBAA

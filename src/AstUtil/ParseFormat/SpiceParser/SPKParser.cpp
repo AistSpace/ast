@@ -197,15 +197,15 @@ SPKParser::SPKParser(StringView filepath)
     parse(filepath);
 }
 
-err_t SPKParser::parse(StringView filepath)
+errc_t SPKParser::parse(StringView filepath)
 {
     open(filepath);
     return parse();
 }
 
-err_t SPKParser::parse()
+errc_t SPKParser::parse()
 {
-    err_t rc;
+    errc_t rc;
     rc = DAFParser::parse();
     if(rc) return rc;
     std::vector<DAF_SPKSummaryRecords> spkRecords;
@@ -232,12 +232,12 @@ err_t SPKParser::parse()
     return rc;
 }
 
-err_t SPKParser::getPosVelNative(double et, int target, Vector3d &pos, Vector3d &vel) const
+errc_t SPKParser::getPosVelNative(double et, int target, Vector3d &pos, Vector3d &vel) const
 {
     return getStateNative(et, target, pos, &vel);
 }
 
-err_t SPKParser::getPosNative(double et, int target, Vector3d &pos) const
+errc_t SPKParser::getPosNative(double et, int target, Vector3d &pos) const
 {
     return getStateNative(et, target, pos, nullptr);
 }
@@ -257,7 +257,7 @@ const SPK_Descriptor *SPKParser::findSpkDescriptor(int target, double et) const
     return nullptr;
 }
 
-err_t SPKParser::getStateNative(double et, int target, Vector3d &pos, Vector3d *vel) const
+errc_t SPKParser::getStateNative(double et, int target, Vector3d &pos, Vector3d *vel) const
 {
     const SPK_Descriptor* spkDescriptor = findSpkDescriptor(target, et);
     if(!spkDescriptor)
@@ -274,7 +274,7 @@ err_t SPKParser::getStateNative(double et, int target, Vector3d &pos, Vector3d *
     return -1;
 }
 
-err_t SPKParser::getStateType2(const SPK_Descriptor& spkDescriptor, double et, int target, Vector3d &pos, Vector3d *vel) const
+errc_t SPKParser::getStateType2(const SPK_Descriptor& spkDescriptor, double et, int target, Vector3d &pos, Vector3d *vel) const
 {
     int rsize;
     {

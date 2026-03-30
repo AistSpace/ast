@@ -51,7 +51,7 @@ TEST_F(EphemerisFileParserTest, STKEphemerisFileParser)
     {
         printf("parse file: %s\n", file.c_str());
         HEphemeris eph;
-        err_t rc = parser.parse(file, eph);
+        errc_t rc = parser.parse(file, eph);
         EXPECT_TRUE(eph != nullptr);
         EXPECT_FALSE(rc);
         EphemerisLagrangeVar* ephLagrange = dynamic_cast<EphemerisLagrangeVar*>(eph.get());

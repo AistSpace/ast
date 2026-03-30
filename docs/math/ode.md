@@ -16,16 +16,16 @@ public:
     virtual ~ODEIntegrator() {};
     
     // 初始化积分器
-    virtual err_t initialize(ODE& ode) = 0;
+    virtual errc_t initialize(ODE& ode) = 0;
     
     // 积分ODE
-    virtual err_t integrate(ODE& ode, double t0, double tf, const double* y0, double* yf) = 0;
+    virtual errc_t integrate(ODE& ode, double t0, double tf, const double* y0, double* yf) = 0;
     
     // 积分ODE一步
-    virtual err_t integrateStep(ODE& ode, double& t, double tf, const double* y0, double* y) = 0;
+    virtual errc_t integrateStep(ODE& ode, double& t, double tf, const double* y0, double* y) = 0;
     
     // 执行一步积分
-    virtual err_t singleStep(ODE& ode, double t0, double step, const double* y0, double* yf) = 0;
+    virtual errc_t singleStep(ODE& ode, double t0, double step, const double* y0, double* yf) = 0;
 };
 ```
 
@@ -50,7 +50,7 @@ public:
 
 ```cpp
 RK4 integrator;
-err_t result = integrator.initialize(ode);
+errc_t result = integrator.initialize(ode);
 result = integrator.integrate(ode, t0, tf, y0, yf);
 ```
 

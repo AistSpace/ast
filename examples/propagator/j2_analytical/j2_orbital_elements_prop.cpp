@@ -54,7 +54,7 @@ int main()
         ModOrbElem current_orb = orb_elem;
         
         // 执行J2解析传播
-        err_t result = aJ2AnalyticalProp(time, gm_earth, j2_earth, re_earth, current_orb);
+        errc_t result = aJ2AnalyticalProp(time, gm_earth, j2_earth, re_earth, current_orb);
         
         if (result == eNoError) {
             std::cout << std::setw(6) << time/(24*3600.0) << "\t"

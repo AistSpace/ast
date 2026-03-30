@@ -31,8 +31,8 @@ AST_NAMESPACE_BEGIN
 /// @param parser BKVParser实例，用于解析空间天气数据文件。
 /// @param numPoints 要加载的条目数。
 /// @param data 用于存储加载数据的Entry向量。
-/// @return err_t 加载成功返回eNoError，否则返回相应错误码。
-err_t loadSpaceWeather(BKVParser& parser, int numPoints, std::vector<SpaceWeather::Entry>& data)
+/// @return errc_t 加载成功返回eNoError，否则返回相应错误码。
+errc_t loadSpaceWeather(BKVParser& parser, int numPoints, std::vector<SpaceWeather::Entry>& data)
 {
     if(numPoints<=0){
         return eErrorInvalidParam;
@@ -79,7 +79,7 @@ err_t loadSpaceWeather(BKVParser& parser, int numPoints, std::vector<SpaceWeathe
         aParseInt(line.substr(87, 1), entry.C9);
         aParseInt(line.substr(89, 3), entry.ISN);
         entry.F10p7Adj      = aParseDouble(line.substr(93, 5));
-        err_t rc = aParseInt(line.substr(99, 1), entry.fluxQualifier);
+        errc_t rc = aParseInt(line.substr(99, 1), entry.fluxQualifier);
         if(rc)
         {
             entry.fluxQualifier = 3; // @fixme: 应该是3吗？
@@ -95,10 +95,10 @@ err_t loadSpaceWeather(BKVParser& parser, int numPoints, std::vector<SpaceWeathe
     return eNoError;
 }
 
-err_t SpaceWeather::load(StringView filepath)
+errc_t SpaceWeather::load(StringView filepath)
 {
     std::vector<Entry> data;
-    if(err_t rc = load(filepath, data))
+    if(errc_t rc = load(filepath, data))
     {
         return rc;
     }
@@ -126,7 +126,7 @@ const SpaceWeather::Entry *SpaceWeather::getEntry(int mjd) const
     return &data_[index];
 }
 
-err_t SpaceWeather::setEntry(int mjd, const Entry &entry)
+errc_t SpaceWeather::setEntry(int mjd, const Entry &entry)
 {
     int index;
     double frac;
@@ -139,7 +139,7 @@ err_t SpaceWeather::setEntry(int mjd, const Entry &entry)
     return eNoError;
 }
 
-err_t SpaceWeather::load(StringView filepath, std::vector<Entry> &data)
+errc_t SpaceWeather::load(StringView filepath, std::vector<Entry> &data)
 {
     BKVParser parser(filepath);
     if(!parser.isOpen()){
@@ -157,19 +157,19 @@ err_t SpaceWeather::load(StringView filepath, std::vector<Entry> &data)
         {
             if(aEqualsIgnoreCase(item.value(), "OBSERVED"))
             {
-                if(err_t rc = loadSpaceWeather(parser, numObservedPoints, data))
+                if(errc_t rc = loadSpaceWeather(parser, numObservedPoints, data))
                 {
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "DAILY_PREDICTED"))
             {
-                if(err_t rc = loadSpaceWeather(parser, numDailyPredictedPoints, data))
+                if(errc_t rc = loadSpaceWeather(parser, numDailyPredictedPoints, data))
                 {
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "MONTHLY_PREDICTED"))
             {
-                if(err_t rc = loadSpaceWeather(parser, numMonthlyPredictedPoints, data))
+                if(errc_t rc = loadSpaceWeather(parser, numMonthlyPredictedPoints, data))
                 {
                     return rc;
                 }

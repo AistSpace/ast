@@ -49,26 +49,26 @@ Axes *AxesFrozenAtEventTime::getParent() const
     return referenceAxes_;
 }
 
-err_t AxesFrozenAtEventTime::getTransform(const TimePoint &tp, Rotation &rotation) const
+errc_t AxesFrozenAtEventTime::getTransform(const TimePoint &tp, Rotation &rotation) const
 {
     A_UNUSED(tp);
     TimePoint epoch;
-    err_t rc = getEpoch(epoch);
+    errc_t rc = getEpoch(epoch);
     if(rc) return rc;
     return aAxesTransform(referenceAxes_, axes_, epoch, rotation);
 }
 
-err_t AxesFrozenAtEventTime::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
+errc_t AxesFrozenAtEventTime::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
 {
     A_UNUSED(tp);
     TimePoint epoch;
-    err_t rc = getEpoch(epoch);
+    errc_t rc = getEpoch(epoch);
     if(rc) return rc;
     rotation.setRotationRate(Vector3d::Zero());
     return aAxesTransform(referenceAxes_, axes_, epoch, rotation.getRotation());
 }
 
-err_t AxesFrozenAtEventTime::getEpoch(TimePoint& epoch) const
+errc_t AxesFrozenAtEventTime::getEpoch(TimePoint& epoch) const
 {
     if(!epoch_) return eErrorNullPtr;
     return epoch_->getTime(epoch);

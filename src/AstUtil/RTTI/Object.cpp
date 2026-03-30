@@ -33,7 +33,7 @@ Class *Object::getType() const
     return nullptr;
 }
 
-err_t Object::getAttrBool(StringView path, bool &value) const
+errc_t Object::getAttrBool(StringView path, bool &value) const
 {
     Property* prop = getProperty(path);
     if(!prop)
@@ -41,7 +41,7 @@ err_t Object::getAttrBool(StringView path, bool &value) const
     return prop->getValueBool(this, value);
 }
 
-err_t Object::getAttrInt(StringView path, int &value) const
+errc_t Object::getAttrInt(StringView path, int &value) const
 {
     Property* prop = getProperty(path);
     if(!prop)
@@ -49,7 +49,7 @@ err_t Object::getAttrInt(StringView path, int &value) const
     return prop->getValueInt(this, value);
 }
 
-err_t Object::getAttrDouble(StringView path, double &value) const
+errc_t Object::getAttrDouble(StringView path, double &value) const
 {
     Property* prop = getProperty(path);
     if(!prop)
@@ -57,7 +57,7 @@ err_t Object::getAttrDouble(StringView path, double &value) const
     return prop->getValueDouble(this, value);
 }
 
-err_t Object::getAttrString(StringView path, std::string &value) const
+errc_t Object::getAttrString(StringView path, std::string &value) const
 {
     Property* prop = getProperty(path);
     if(!prop)
@@ -93,7 +93,7 @@ std::string Object::getAttrString(StringView path) const
     return value;
 }
 
-err_t Object::setAttrBool(StringView path, bool value)
+errc_t Object::setAttrBool(StringView path, bool value)
 {
     Property* prop = getProperty(path);
     if(!prop)
@@ -101,7 +101,7 @@ err_t Object::setAttrBool(StringView path, bool value)
     return prop->setValueBool(this, value);
 }
 
-err_t Object::setAttrInt(StringView path, int value)
+errc_t Object::setAttrInt(StringView path, int value)
 {
     Property* prop = getProperty(path);
     if(!prop)
@@ -109,7 +109,7 @@ err_t Object::setAttrInt(StringView path, int value)
     return prop->setValueInt(this, value);
 }
 
-err_t Object::setAttrDouble(StringView path, double value)
+errc_t Object::setAttrDouble(StringView path, double value)
 {
     Property* prop = getProperty(path);
     if(!prop)
@@ -117,7 +117,7 @@ err_t Object::setAttrDouble(StringView path, double value)
     return prop->setValueDouble(this, value);
 }
 
-err_t Object::setAttrString(StringView path, StringView value)
+errc_t Object::setAttrString(StringView path, StringView value)
 {
     Property* prop = getProperty(path);
     if(!prop)
@@ -127,9 +127,13 @@ err_t Object::setAttrString(StringView path, StringView value)
 
 Property *Object::getProperty(StringView fieldName) const
 {
-    if(auto type = getType())
+    auto type = getType();
+    while(type)
     {
-        return type->getProperty(fieldName);
+        auto prop = type->getProperty(fieldName);
+        if(prop)
+            return prop;
+        type = type->getParent();
     }
     return nullptr;
 }

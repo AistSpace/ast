@@ -25,7 +25,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t BrentqSolver::solve(UnaryScalarFunc &func, double min, double max, double &result)
+errc_t BrentqSolver::solve(UnaryScalarFunc &func, double min, double max, double &result)
 {
     this->stats_ = {};
     result = brentq(unarycfunc, min, max, absTol_, relTol_, maxIter_, &func, &stats_);
@@ -34,7 +34,7 @@ err_t BrentqSolver::solve(UnaryScalarFunc &func, double min, double max, double 
     return stats_.error_num;
 }
 
-err_t BrenthSolver::solve(UnaryScalarFunc &func, double min, double max, double &result)
+errc_t BrenthSolver::solve(UnaryScalarFunc &func, double min, double max, double &result)
 {
     this->stats_ = {};
     result = brenth(unarycfunc, min, max, absTol_, relTol_, maxIter_, &func, &stats_);

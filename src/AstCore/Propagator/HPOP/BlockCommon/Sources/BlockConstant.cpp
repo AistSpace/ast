@@ -39,7 +39,7 @@ BlockConstant::BlockConstant(double value)
     };
 }
 
-err_t BlockConstant::run(const SimTime &simTime)
+errc_t BlockConstant::run(const SimTime &simTime)
 {
     // 常量块不需要计算，直接返回当前值
     return eNoError;

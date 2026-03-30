@@ -42,7 +42,7 @@ J2Analytical::J2Analytical(const Vector3d &pos, const Vector3d &vel, const TimeP
 {
 }
 
-err_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, Vector3d& r, Vector3d& v)
+errc_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, Vector3d& r, Vector3d& v)
 {
     TimePoint epoch{};      // @fixme 这里的epoch是个问题，应该根据实际情况传入，目前采用默认值
     J2Analytical j2Analytical(r, v, epoch, gm, j2, re);
@@ -50,7 +50,7 @@ err_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, Vector
 }
 
 
-err_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, ModOrbElem& modOrbElem)
+errc_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, ModOrbElem& modOrbElem)
 {
     TimePoint epoch{};      // @fixme 这里的epoch是个问题，应该根据实际情况传入，目前采用默认值
     J2Analytical j2Analytical(modOrbElem, epoch, gm, j2, re);

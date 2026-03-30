@@ -63,8 +63,8 @@ public:
     Point* getOrigin() const final { return origin_.get(); }
     Axes* getAxes() const final { return axes_.get(); }
     Frame* getParent() const final;
-    err_t getTransform(const TimePoint&tp, Transform& transform) const override;
-    err_t getTransform(const TimePoint&tp, KinematicTransform& transform) const override;
+    errc_t getTransform(const TimePoint&tp, Transform& transform) const override;
+    errc_t getTransform(const TimePoint&tp, KinematicTransform& transform) const override;
 protected:
     SharedPtr<Point> origin_;    ///< 原点
     SharedPtr<Axes>  axes_;      ///< 轴系统

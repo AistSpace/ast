@@ -41,16 +41,16 @@ class AST_CORE_API HPOP
 
 ```cpp
 // 设置力模型
-err_t setForceModel(const HPOPForceModel& forcemodel);
+errc_t setForceModel(const HPOPForceModel& forcemodel);
 
 // 设置积分器
 void setIntegrator(ODEIntegrator* integrator);
 
 // 轨道预报
-err_t propagate(const TimePoint& start, const TimePoint& end, Vector3d& position, Vector3d& velocity);
+errc_t propagate(const TimePoint& start, const TimePoint& end, Vector3d& position, Vector3d& velocity);
 
 // 初始化
-err_t initialize();
+errc_t initialize();
 ```
 
 ### 力模型配置结构

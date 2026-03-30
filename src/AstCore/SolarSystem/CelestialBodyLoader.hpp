@@ -34,7 +34,7 @@ AST_NAMESPACE_BEGIN
 /// @param  filepath    - 天体文件路径
 /// @param  body        - 天体指针
 /// @retval             - 错误码
-AST_CORE_CAPI err_t aLoadBody(StringView filepath, HCelestialBody& body);
+AST_CORE_CAPI errc_t aLoadBody(StringView filepath, HCelestialBody& body);
 
 
 /*! @} */

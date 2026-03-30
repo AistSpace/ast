@@ -137,13 +137,13 @@ int ODEFixedStepIntegrator::getNumSteps() const
     return this->getWorkspace().numSteps_;
 }
 
-err_t ODEFixedStepIntegrator::integrate(ODE& ode, double* y, double& t, double tf)
+errc_t ODEFixedStepIntegrator::integrate(ODE& ode, double* y, double& t, double tf)
 {
     // 初始化积分器
     this->initialize(ode);
     auto& wrk = this->getWorkspace();
     
-    err_t err = eNoError;
+    errc_t err = eNoError;
     double stepSize = this->stepSize_;
     if(stepSize <= 0)
     {
@@ -183,7 +183,7 @@ err_t ODEFixedStepIntegrator::integrate(ODE& ode, double* y, double& t, double t
     return eNoError;
 }
 
-err_t ODEFixedStepIntegrator::integrateStep(ODE &ode, double *y, double &t, double tf)
+errc_t ODEFixedStepIntegrator::integrateStep(ODE &ode, double *y, double &t, double tf)
 {
     // 初始化积分器
     // this->init(ode);
@@ -197,7 +197,7 @@ err_t ODEFixedStepIntegrator::integrateStep(ODE &ode, double *y, double &t, doub
         absh = stepabs;
     }
     double h = absh * tdir;
-    err_t err = this->singleStep(ode, y, t, h);
+    errc_t err = this->singleStep(ode, y, t, h);
     if(err != eNoError)
     {
         return err;

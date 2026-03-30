@@ -41,7 +41,7 @@ public:
 
     using BaseOrbitDesigner::getOrbitState;
     
-    err_t getOrbitState(ModOrbElem &orbElem) const override;
+    errc_t getOrbitState(ModOrbElem &orbElem) const override;
 
     /// @brief 获取星下点经度
     double getSubsatellitePoint() const { return subsatellitePoint_; }

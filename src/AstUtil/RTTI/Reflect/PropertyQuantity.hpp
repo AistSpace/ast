@@ -42,8 +42,8 @@ public:
     PropertyQuantity(FPropertyGet getter, FPropertySet setter, Dimension dimension);
     PropertyQuantity(StringView name, StringView desc, FPropertyGet getter, FPropertySet setter, Dimension dimension);
 
-    err_t getValueString(const void* container, std::string& value) override;
-    err_t setValueString(void* container, StringView value) override;
+    errc_t getValueString(const void* container, std::string& value) override;
+    errc_t setValueString(void* container, StringView value) override;
 protected:
     Dimension dimension_{Dimension::Unit()};   ///< 数量值属性的量纲
 };

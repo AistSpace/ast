@@ -35,7 +35,7 @@ public:
     BlockTwoBody();
     BlockTwoBody(double twoBodyGM);
 
-    err_t run(const SimTime& simTime) override;
+    errc_t run(const SimTime& simTime) override;
 private:
     void init();
 private:

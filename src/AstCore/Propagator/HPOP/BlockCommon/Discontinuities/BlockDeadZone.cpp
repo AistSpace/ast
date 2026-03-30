@@ -50,7 +50,7 @@ BlockDeadZone::BlockDeadZone()
     };
 }
 
-err_t BlockDeadZone::run(const SimTime &simTime)
+errc_t BlockDeadZone::run(const SimTime &simTime)
 {
     if (input_ == nullptr || output_ == nullptr)
     {

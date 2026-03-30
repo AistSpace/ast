@@ -45,14 +45,14 @@ HPOPEquation::~HPOPEquation()
 
 }
 
-err_t HPOPEquation::evaluate(const double* y, double* dy, const double t)
+errc_t HPOPEquation::evaluate(const double* y, double* dy, const double t)
 {
     SimTime time;                                   // 仿真时间
     time.setTimePoint(epoch_ + t);                  // 设置仿真时间点
     time.setElapsedTime(t);                         // 设置仿真的相对时间
     dynamicSystem_.fillDerivativeData(0.0);         // 填充导数数据为0
     dynamicSystem_.setStateData(y);                 // 设置状态数据
-    err_t err = dynamicSystem_.run(time);           // 执行动力学系统
+    errc_t err = dynamicSystem_.run(time);           // 执行动力学系统
     dynamicSystem_.getDerivativeData(dy);           // 获取导数数据
     return err;                                     // 返回错误码
 }
@@ -64,12 +64,12 @@ int HPOPEquation::getDimension() const
 }
 
 /// @brief 初始化仿真引擎
-err_t HPOPEquation::initialize()
+errc_t HPOPEquation::initialize()
 {
     return this->initializeFromForceModel(this->forceModel_);
 }
 
-err_t HPOPEquation::initBlocks(const HPOPForceModel &forceModel)
+errc_t HPOPEquation::initBlocks(const HPOPForceModel &forceModel)
 {
     if(!this->propFrame_)
     {
@@ -98,7 +98,7 @@ err_t HPOPEquation::initBlocks(const HPOPForceModel &forceModel)
         // 添加重力函数块
         if(0 == gravity.maxDegree_){
             GravityFieldHead gfHead;
-            err_t err = gfHead.load(gravity.model_, body->getDirpath());
+            errc_t err = gfHead.load(gravity.model_, body->getDirpath());
             if(err != eNoError){
                 aError("Failed to load gravity field head from file: '%s'", gravity.model_.c_str());
                 return err;
@@ -107,7 +107,7 @@ err_t HPOPEquation::initBlocks(const HPOPForceModel &forceModel)
             this->addBlock(derivativeBlock);
         }else{
             GravityField gravityField;
-            err_t err = gravityField.load(gravity.model_, gravity.maxDegree_, gravity.maxOrder_, body->getDirpath());
+            errc_t err = gravityField.load(gravity.model_, gravity.maxDegree_, gravity.maxOrder_, body->getDirpath());
             if(err != eNoError){
                 aError("Failed to load gravity field from file: '%s'", gravity.model_.c_str());
                 return err;
@@ -154,20 +154,20 @@ void HPOPEquation::reset()
 
 
 
-err_t HPOPEquation::initializeFromForceModel(const HPOPForceModel &forceModel)
+errc_t HPOPEquation::initializeFromForceModel(const HPOPForceModel &forceModel)
 {
-    err_t rc = this->initBlocks(forceModel);
+    errc_t rc = this->initBlocks(forceModel);
     if(rc) return rc;
     return dynamicSystem_.initialize();
 }
 
-err_t HPOPEquation::setForceModel(const HPOPForceModel& forceModel)
+errc_t HPOPEquation::setForceModel(const HPOPForceModel& forceModel)
 {
     this->forceModel_ = forceModel;
     return eNoError;
 }
 
-err_t HPOPEquation::setPropagationFrame(Frame *frame)
+errc_t HPOPEquation::setPropagationFrame(Frame *frame)
 {
     if(!frame) return -1;
     /// @todo 这里还需要检查frame是否是准惯性系

@@ -39,6 +39,7 @@ using HStateCartesian = SharedPtr<StateCartesian>;
 class AST_CORE_API StateCartesian final: public State
 {
 public:
+    AST_OBJECT(StateCartesian)
     static PStateCartesian New();
     static HStateCartesian MakeShared();
     static PStateCartesian New(const CartState& state);
@@ -50,8 +51,8 @@ public:
     ~StateCartesian() override = default;
 public:
     EStateType getStateType() const override { return EStateType::eCartesian; }
-    err_t getState(CartState& state) const override;
-    err_t setState(const CartState& state) override;
+    errc_t getState(CartState& state) const override;
+    errc_t setState(const CartState& state) override;
 PROPERTIES:
     double getX() const { return cartState_.x(); }
     double getY() const { return cartState_.y(); }

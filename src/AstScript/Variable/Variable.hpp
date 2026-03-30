@@ -49,17 +49,17 @@ public:
     /// @brief 设置变量的值
     /// @param val 要设置的值
     /// @return 错误码
-    err_t setValue(Value* val) final;
+    errc_t setValue(Value* val) final;
 
     /// @brief 设置变量的表达式
     /// @param expr 要设置的表达式
     /// @return 错误码
-    err_t setExpr(Expr* expr);
+    errc_t setExpr(Expr* expr);
 
     /// @brief 绑定变量到表达式
     /// @param expr 要绑定的表达式
     /// @return 错误码
-    err_t bind(Expr* expr);
+    errc_t bind(Expr* expr);
 
     
     /// @brief 获取变量的表达式

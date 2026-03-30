@@ -51,16 +51,16 @@ public:
 
     int getDimension() const final;
 
-    err_t evaluate(const double* y, double* dy, double t) final;
+    errc_t evaluate(const double* y, double* dy, double t) final;
     
     /// @brief 设置仿真的参考历元
     void setEpoch(const TimePoint& epoch){ epoch_ = epoch; }
 
     /// @brief 设置HPOP力模型
-    err_t setForceModel(const HPOPForceModel& forceModel);
+    errc_t setForceModel(const HPOPForceModel& forceModel);
 
     /// @brief 设置预报坐标系
-    err_t setPropagationFrame(Frame* frame);
+    errc_t setPropagationFrame(Frame* frame);
 
     /// @brief 获取预报坐标系
     Frame* getPropagationFrame() const{return propFrame_;}
@@ -73,10 +73,10 @@ protected:
     void reset();
 public:
     /// @brief 初始化仿真引擎
-    err_t initialize();
+    errc_t initialize();
 protected:
-    err_t initializeFromForceModel(const HPOPForceModel& forceModel);
-    err_t initBlocks(const HPOPForceModel& forceModel);
+    errc_t initializeFromForceModel(const HPOPForceModel& forceModel);
+    errc_t initBlocks(const HPOPForceModel& forceModel);
 protected:
     BlockDynamicSystem      dynamicSystem_; ///< 动力学系统
     TimePoint               epoch_;         ///< 仿真的参考历元

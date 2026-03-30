@@ -36,20 +36,20 @@ ODEIntegrator::~ODEIntegrator()
     }
 }
 
-err_t ODEIntegrator::initialize(ODE &ode)
+errc_t ODEIntegrator::initialize(ODE &ode)
 {
     this->ode_ = &ode;
     this->initWorkStateObserver();
     return eNoError;
 }
 
-err_t ODEIntegrator::integrate(
+errc_t ODEIntegrator::integrate(
     ODE &ode, double *y, double &t, double tf,
     std::vector<double> &xlist, std::vector<std::vector<double>> &ylist)
 {
     ODEStateVectorCollector* collector = new ODEStateVectorCollector(ode.getDimension());
     this->addStateObserver(collector);
-    err_t rc = this->integrate(ode, y, t, tf);
+    errc_t rc = this->integrate(ode, y, t, tf);
     xlist = std::move(collector->x());
     ylist = std::move(collector->y());
     this->removeStateObserver(collector);

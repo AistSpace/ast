@@ -47,7 +47,7 @@ SunSynchronousOrbitDesigner::SunSynchronousOrbitDesigner(CelestialBody *body)
     }
 }
 
-err_t SunSynchronousOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
+errc_t SunSynchronousOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
 {
     const double rb = getBodyRadius();
 
@@ -80,7 +80,7 @@ double SunSynchronousOrbitDesigner::calcInclination(double alt) const
     const double ecc = 0;
     const double bodyMeanMotion = kTwoPI / (kEarthSiderealYear * kSecondsPerDay);
     double inc;
-    err_t rc = aSunSynchronousInclination(gm, j2, rb, bodyMeanMotion, a, ecc, inc);
+    errc_t rc = aSunSynchronousInclination(gm, j2, rb, bodyMeanMotion, a, ecc, inc);
     if(rc != eNoError){
         return 0;
     }
@@ -102,7 +102,7 @@ double SunSynchronousOrbitDesigner::calcAltitude(double inc) const
     const double bodyMeanMotion = kTwoPI / (kEarthSiderealYear * kSecondsPerDay);
 
     double semiMajorAxis;
-    err_t rc = aSunSynchronousSemiMajorAxis(gm, j2, rb, bodyMeanMotion, inc, ecc, semiMajorAxis);
+    errc_t rc = aSunSynchronousSemiMajorAxis(gm, j2, rb, bodyMeanMotion, inc, ecc, semiMajorAxis);
     if(rc != eNoError){
         return 0;
     }

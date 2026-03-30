@@ -24,7 +24,7 @@
 AST_USING_NAMESPACE
 
 TEST(ODEGeneric, integrate) {
-    auto ode = make_ode(1, [](const double* y, double* dy, const double t) -> err_t {
+    auto ode = make_ode(1, [](const double* y, double* dy, const double t) -> errc_t {
         dy[0] = -y[0];
         return eNoError;
     });
@@ -41,8 +41,8 @@ TEST(ODEGeneric, integrate) {
     double y[1]{y0[0]};
     
     // 执行积分
-    err_t result = integrator.integrate(
-        1, [](const double* y, double* dy, const double t) -> err_t {
+    errc_t result = integrator.integrate(
+        1, [](const double* y, double* dy, const double t) -> errc_t {
             dy[0] = -y[0];
             return eNoError;
         }, 
@@ -79,13 +79,13 @@ TEST(ODEGeneric, EventDetector) {
         return y[0] - value;
     });
 
-    auto ode = make_ode(1, [](const double* y, double* dy, const double t) -> err_t {
+    auto ode = make_ode(1, [](const double* y, double* dy, const double t) -> errc_t {
         dy[0] = -y[0];
         return eNoError;
     });
 
     // 执行积分
-    err_t result = integrator.integrate(ode, y, t, tf);
+    errc_t result = integrator.integrate(ode, y, t, tf);
 
     // 检查是否成功
     EXPECT_EQ(result, eNoError);

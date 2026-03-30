@@ -24,7 +24,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t StartupConfig::load(StringView filepath)
+errc_t StartupConfig::load(StringView filepath)
 {
     KVParser parser;
     parser.open(filepath);
@@ -51,7 +51,7 @@ err_t StartupConfig::load(StringView filepath)
 ValueView StartupConfig::getConfig(StringView key) const
 {
     ValueView value;
-    err_t rc = this->getConfig(key, value);
+    errc_t rc = this->getConfig(key, value);
     A_UNUSED(rc);
     return value;
 }
@@ -66,7 +66,7 @@ std::vector<StringView> StartupConfig::getStringViewVector(StringView key) const
     return this->getConfig(key).split(',');
 }
 
-err_t StartupConfig::getConfig(StringView key, ValueView &value) const
+errc_t StartupConfig::getConfig(StringView key, ValueView &value) const
 {
     auto it = this->configMap_.find(std::string(key));
     if(it == this->configMap_.end())

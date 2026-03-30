@@ -23,50 +23,50 @@
 #include <cstdio>
 
 
-err_t FreeReturnProblem::getInfo(NLPInfo &info) const
+errc_t FreeReturnProblem::getInfo(NLPInfo &info) const
 {
     info.numConstraintEq() = 3;
     info.numConstraintIneq() = 0;
     info.numVariable() = 3;
-    return err_t();
+    return errc_t();
 }
 
-err_t FreeReturnProblem::getJacInfo(NLPJacInfo &info) const
+errc_t FreeReturnProblem::getJacInfo(NLPJacInfo &info) const
 {
-    return err_t();
+    return errc_t();
 }
 
-err_t FreeReturnProblem::getBounds(NLPBounds &bounds) const
+errc_t FreeReturnProblem::getBounds(NLPBounds &bounds) const
 {
-    return err_t();
+    return errc_t();
 }
 
-err_t FreeReturnProblem::evalFitness(const NLPInput &input, NLPOutput &output) const
+errc_t FreeReturnProblem::evalFitness(const NLPInput &input, NLPOutput &output) const
 {
     FreeRreturnTargetFunction freeRreturnTargetFunction = FreeRreturnTargetFunction::Case1();
     freeRreturnTargetFunction(input.variable().data(), output.constraintEq().data());
     printf("var: %lf, %lf, %lf\n", input.variable()[0], input.variable()[1], input.variable()[2]);
     printf("con: %lf, %lf, %lf\n", output.constraintEq()[0], output.constraintEq()[1], output.constraintEq()[2]);
 
-    return err_t();
+    return errc_t();
 }
 
-err_t FreeReturnProblem::evalJacobi(int numVariable, const double *variable, int numConstraint, int nnzJacobi, double *nzElemjacobi) const
+errc_t FreeReturnProblem::evalJacobi(int numVariable, const double *variable, int numConstraint, int nnzJacobi, double *nzElemjacobi) const
 {
-    return err_t();
+    return errc_t();
 }
 
-err_t FreeReturnProblem::evalGradient(int numVariable, const double *variable, double *grad) const
+errc_t FreeReturnProblem::evalGradient(int numVariable, const double *variable, double *grad) const
 {
-    return err_t();
+    return errc_t();
 }
 
-err_t FreeReturnProblem::getInitialGuess(int numVariable, double *variable) const
+errc_t FreeReturnProblem::getInitialGuess(int numVariable, double *variable) const
 {
     variable[0] = 0.0;
     variable[1] = 0.0;
     variable[2] = 0.0;
-    return err_t();
+    return errc_t();
 }
 
 

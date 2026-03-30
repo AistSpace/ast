@@ -216,7 +216,7 @@ int aCurrentLineNumber(std::FILE *file)
     return lineCount;
 }
 
-err_t aGetFilePath(std::FILE *file, std::string &filepath)
+errc_t aGetFilePath(std::FILE *file, std::string &filepath)
 {
     if (file == NULL) {
         return eErrorNullInput;

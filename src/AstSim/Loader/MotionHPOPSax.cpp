@@ -26,7 +26,7 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t _aLoadSolarPressureModel(BKVParser& parser, double massAtEpoch, HPOPForceModel::SRP& srp)
+errc_t _aLoadSolarPressureModel(BKVParser& parser, double massAtEpoch, HPOPForceModel::SRP& srp)
 {
     BKVParser::EToken token;
     BKVItemView item;
@@ -59,7 +59,7 @@ err_t _aLoadSolarPressureModel(BKVParser& parser, double massAtEpoch, HPOPForceM
 }
 
 
-err_t MotionHPOPSax::keyValue(StringView key, const ValueView &value)
+errc_t MotionHPOPSax::keyValue(StringView key, const ValueView &value)
 {
     if(aEqualsIgnoreCase(key, "X")){
         cartState_.x() = value.toDouble();
@@ -203,7 +203,7 @@ err_t MotionHPOPSax::keyValue(StringView key, const ValueView &value)
     }
     else if(aEqualsIgnoreCase(key, "SolarPressureModel")){
         if(massAtEpoch_ <= 0.0) massAtEpoch_ = 1;
-        err_t rc = _aLoadSolarPressureModel(parser_, massAtEpoch_, forceModel_.srp_);
+        errc_t rc = _aLoadSolarPressureModel(parser_, massAtEpoch_, forceModel_.srp_);
         A_UNUSED(rc);
     }
     else if(aEqualsIgnoreCase(key, "SunPosition")){
@@ -329,7 +329,7 @@ err_t MotionHPOPSax::keyValue(StringView key, const ValueView &value)
     return MotionOrbitDynamicsSax::keyValue(key, value);
 }
 
-err_t MotionHPOPSax::getMotion(ScopedPtr<MotionProfile> &motion)
+errc_t MotionHPOPSax::getMotion(ScopedPtr<MotionProfile> &motion)
 {
     PMotionHPOP motionHPOP = MotionHPOP::New();
     if(!motionHPOP){

@@ -44,12 +44,12 @@ public:
     MotionSPICE() = default;
     ~MotionSPICE() = default;
 public:
-    err_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const override;
-    err_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const override;
+    errc_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const override;
+    errc_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const override;
     void accept(MotionProfileVisitor& visitor) override;
 
     const std::string& getSpiceFile() const {return spk_.getFilePath();}
-    err_t setSpiceFile(StringView spiceFile);
+    errc_t setSpiceFile(StringView spiceFile);
 
     int getSpiceIndex() const {return spiceIndex_;}
     void setSpiceIndex(int spiceIndex){spiceIndex_ = spiceIndex;}

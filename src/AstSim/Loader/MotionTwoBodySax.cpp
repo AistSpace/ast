@@ -24,7 +24,7 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t MotionTwoBodySax::keyValue(StringView key, const ValueView &value)
+errc_t MotionTwoBodySax::keyValue(StringView key, const ValueView &value)
 {
     if(aEqualsIgnoreCase(key, "RadiusOfPerigee")){
         radiusOfPerigee_ = value.toDouble();
@@ -70,7 +70,7 @@ err_t MotionTwoBodySax::keyValue(StringView key, const ValueView &value)
     return MotionOrbitDynamicsSax::keyValue(key, value);
 }
 
-err_t MotionTwoBodySax::getMotion(ScopedPtr<MotionProfile>& motion)
+errc_t MotionTwoBodySax::getMotion(ScopedPtr<MotionProfile>& motion)
 {
     if(vehiclePathData_.centralBody_ == nullptr){
         aError("vehiclePathData's body is nullptr");

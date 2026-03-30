@@ -54,9 +54,9 @@ public:
     void getOrbitState(CartState& initstate) const{ initstate = initstate_; }
 public:
     Frame* getFrame() const override;
-    err_t getPos(const TimePoint& tp, Vector3d& pos) const override;
-    err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
-    err_t getInterval(TimeInterval& interval) const override;
+    errc_t getPos(const TimePoint& tp, Vector3d& pos) const override;
+    errc_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
+    errc_t getInterval(TimeInterval& interval) const override;
 protected:
     SharedPtr<Frame> frame_{aFrameECI()};
     double           gm_{0.0};

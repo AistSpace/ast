@@ -48,11 +48,11 @@ public:
     /// @param dy 输出导数向量。
     /// @param t 时间点。
     /// @return 错误码。
-    virtual err_t evaluate(const double* y, double* dy, double t) = 0;
+    virtual errc_t evaluate(const double* y, double* dy, double t) = 0;
 
     /// 兼容性处理
     A_ALWAYS_INLINE 
-    err_t evaluate(const double t,const double* y, double* dy){return evaluate(y, dy, t);}
+    errc_t evaluate(const double t,const double* y, double* dy){return evaluate(y, dy, t);}
 };
 
 using ODE = OrdinaryDifferentialEquation;       ///< 常微分方程别名
@@ -73,7 +73,7 @@ public:
         return dim_;
     }
     
-    err_t evaluate(const double* y, double* dy, double t) override {
+    errc_t evaluate(const double* y, double* dy, double t) override {
         return func_(y, dy, t);
     }
     

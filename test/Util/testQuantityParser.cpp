@@ -29,7 +29,7 @@ using namespace _AST units;
 TEST(QuantityParser, Basic)
 {
     Quantity quantity;
-    err_t err = aQuantityParse("123.456 m/s", quantity);
+    errc_t err = aQuantityParse("123.456 m/s", quantity);
     EXPECT_EQ(quantity, 123.456 * m / s);
     EXPECT_EQ(err, eNoError);
     EXPECT_TRUE(quantity.isValid());
@@ -71,7 +71,7 @@ TEST(QuantityParser, ParseToValueAndUnit)
     Unit unit;
     
     // 整数
-    err_t err = aQuantityParse("123", value, unit);
+    errc_t err = aQuantityParse("123", value, unit);
     EXPECT_EQ(err, eNoError);
     EXPECT_NEAR(value, 123.0, 1e-9);
     EXPECT_TRUE(unit.dimension() == EDimension::eUnit);
@@ -101,7 +101,7 @@ TEST(QuantityParser, ComplexUnits)
     Quantity quantity;
     
     // 速度单位
-    err_t err = aQuantityParse("10 m/s", quantity);
+    errc_t err = aQuantityParse("10 m/s", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 10 * m /s);
     EXPECT_TRUE(quantity.isValid());
@@ -135,7 +135,7 @@ TEST(QuantityParser, BracketedUnits)
     Quantity quantity;
     
     // 带括号的基本单位
-    err_t err = aQuantityParse("10 [m]", quantity);
+    errc_t err = aQuantityParse("10 [m]", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 10 * m);
     EXPECT_TRUE(quantity.isValid());
@@ -162,7 +162,7 @@ TEST(QuantityParser, ErrorCases)
     Quantity quantity;
     
     // 无效的数值格式
-    err_t err = aQuantityParse("abc m", quantity);
+    errc_t err = aQuantityParse("abc m", quantity);
     EXPECT_NE(err, eNoError);
     EXPECT_FALSE(quantity.isValid());
     
@@ -186,7 +186,7 @@ TEST(QuantityParser, NoWhitespaceHandling)
     Quantity quantity;
     
     // 数值和单位之间没有空格
-    err_t err = aQuantityParse("123m/s", quantity);
+    errc_t err = aQuantityParse("123m/s", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 123 * m / s);
     EXPECT_TRUE(quantity.isValid());
@@ -212,7 +212,7 @@ TEST(QuantityParser, WhitespaceHandling)
     Quantity quantity;
     
     // 数值和单位之间有多个空格
-    err_t err = aQuantityParse("123   m/s", quantity);
+    errc_t err = aQuantityParse("123   m/s", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 123 * m/s);
     EXPECT_TRUE(quantity.isValid());
@@ -232,7 +232,7 @@ TEST(QuantityParser, ScientificNotation)
     Quantity quantity;
     
     // 正指数
-    err_t err = aQuantityParse("1.23e3 m", quantity);
+    errc_t err = aQuantityParse("1.23e3 m", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 1.23e3 * m);
     EXPECT_TRUE(quantity.isValid());
@@ -257,7 +257,7 @@ TEST(QuantityParser, DegreeUnit)
 {
     Quantity quantity;
     
-    err_t err = aQuantityParse("123 deg", quantity);
+    errc_t err = aQuantityParse("123 deg", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 123 * deg);
     EXPECT_TRUE(quantity.isValid());

@@ -43,7 +43,7 @@ EventIntervalExplicit::EventIntervalExplicit(const TimeInterval& interval)
 }
 
 
-err_t EventIntervalExplicit::getInterval(TimeInterval &interval) const
+errc_t EventIntervalExplicit::getInterval(TimeInterval &interval) const
 {
     interval = interval_;
     return eNoError;

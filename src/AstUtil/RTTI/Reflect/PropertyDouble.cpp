@@ -20,13 +20,14 @@
 
 #include "PropertyDouble.hpp"
 #include "AstUtil/ParseFormat.hpp"
+#include "AstUtil/PropertyVisitor.hpp"
 
 AST_NAMESPACE_BEGIN
 
-err_t PropertyDouble::getValueBool(const void* container, bool& value)
+errc_t PropertyDouble::getValueBool(const void* container, bool& value)
 {
     double d;
-    err_t ret = this->getValue(container, &d);
+    errc_t ret = this->getValue(container, &d);
     if (ret != eNoError)
     {
         return ret;
@@ -34,15 +35,15 @@ err_t PropertyDouble::getValueBool(const void* container, bool& value)
     value = (d != 0.0);
     return eNoError;
 }
-err_t PropertyDouble::setValueBool(void* container, bool value) 
+errc_t PropertyDouble::setValueBool(void* container, bool value) 
 {
     double d = value ? 1.0 : 0.0;
     return this->setValue(container, &d);
 }
-err_t PropertyDouble::getValueInt(const void* container, int& value) 
+errc_t PropertyDouble::getValueInt(const void* container, int& value) 
 {
     double d;
-    err_t ret = this->getValue(container, &d);
+    errc_t ret = this->getValue(container, &d);
     if (ret != eNoError)
     {
         return ret;
@@ -51,16 +52,16 @@ err_t PropertyDouble::getValueInt(const void* container, int& value)
     return eNoError;
 }
 
-err_t PropertyDouble::setValueInt(void* container, int value) 
+errc_t PropertyDouble::setValueInt(void* container, int value) 
 {
     double d = (double)value;
     return this->setValue(container, &d);
 }
 
-err_t PropertyDouble::getValueString(const void* container, std::string& value)
+errc_t PropertyDouble::getValueString(const void* container, std::string& value)
 {
     double d;
-    err_t ret = this->getValue(container, &d);
+    errc_t ret = this->getValue(container, &d);
     if (ret != eNoError)
     {
         return ret;
@@ -68,10 +69,10 @@ err_t PropertyDouble::getValueString(const void* container, std::string& value)
     return aFormatDouble(d, value);
 }
 
-err_t PropertyDouble::setValueString(void* container, StringView value)
+errc_t PropertyDouble::setValueString(void* container, StringView value)
 {
     double d;
-    err_t ret = aParseDouble(value, d);
+    errc_t ret = aParseDouble(value, d);
     if (ret != eNoError)
     {
         return ret;
@@ -79,14 +80,19 @@ err_t PropertyDouble::setValueString(void* container, StringView value)
     return this->setValue(container, &d);
 }
 
-err_t PropertyDouble::getValueDouble(const void* container, double& value)
+errc_t PropertyDouble::getValueDouble(const void* container, double& value)
 {
     return this->getValue(container, &value);
 }
 
-err_t PropertyDouble::setValueDouble(void* container, double value)
+errc_t PropertyDouble::setValueDouble(void* container, double value)
 {
     return this->setValue(container, &value);
+}
+
+errc_t PropertyDouble::accept(PropertyVisitor& visitor, const void* container)
+{
+    return visitor.visit(*this, container);
 }
 
 AST_NAMESPACE_END

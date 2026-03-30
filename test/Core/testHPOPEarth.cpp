@@ -48,7 +48,7 @@ TEST_F(HPOPTest, HPOPEquation)
     HPOPForceModel forcemodel;
     forcemodel.gravity_.model_ = "WGS84";
     int ndim;
-    err_t err;
+    errc_t err;
     err = equation.setForceModel(forcemodel);
     equation.initialize();
     ndim = equation.getDimension();
@@ -71,7 +71,7 @@ TEST_F(HPOPTest, TwoBody)
     forcemodel.gravity_.maxDegree_ = 0;
     forcemodel.gravity_.maxOrder_ = 0;
     HPOP propagator;
-    err_t err = propagator.setForceModel(forcemodel);
+    errc_t err = propagator.setForceModel(forcemodel);
     EXPECT_EQ(err, 0);
     auto start = TimePoint::FromUTC(2026, 1, 20, 0, 0, 0);
     auto end = TimePoint::FromUTC(2026, 1, 21, 0, 0, 0);
@@ -98,7 +98,7 @@ TEST_F(HPOPTest, OnlyGravity_2_0)
     forcemodel.gravity_.maxOrder_ = 0;
 
     HPOP propagator;
-    err_t err = propagator.setForceModel(forcemodel);
+    errc_t err = propagator.setForceModel(forcemodel);
     EXPECT_EQ(err, 0);
     auto start = TimePoint::FromUTC(2026, 1, 20, 0, 0, 0);
     auto end = TimePoint::FromUTC(2026, 1, 21, 0, 0, 0);
@@ -124,7 +124,7 @@ TEST_F(HPOPTest, OnlyGravity_70_50)
     forcemodel.gravity_.maxDegree_ = 70;
     forcemodel.gravity_.maxOrder_ = 50;
     HPOP propagator;
-    err_t err = propagator.setForceModel(forcemodel);
+    errc_t err = propagator.setForceModel(forcemodel);
     EXPECT_EQ(err, 0);
     auto start = TimePoint::FromUTC(2026, 1, 20, 0, 0, 0);
     auto end = TimePoint::FromUTC(2026, 1, 21, 0, 0, 0);
@@ -153,7 +153,7 @@ TEST_F(HPOPTest, OnlyGravity_20_20)
     forcemodel.gravity_.maxDegree_ = 20;
     forcemodel.gravity_.maxOrder_ = 20;
     HPOP propagator;
-    err_t err = propagator.setForceModel(forcemodel);
+    errc_t err = propagator.setForceModel(forcemodel);
     EXPECT_EQ(err, 0);
     auto start = TimePoint::FromUTC(2026, 1, 20, 0, 0, 0);
     auto end = TimePoint::FromUTC(2026, 2, 19, 0, 0, 0);
@@ -186,7 +186,7 @@ TEST_F(HPOPTest, MoonThirdBody)
     forcemodel.gravity_.maxDegree_ = 0;
     forcemodel.gravity_.maxOrder_ = 0;
     HPOP propagator;
-    err_t err = propagator.setForceModel(forcemodel);
+    errc_t err = propagator.setForceModel(forcemodel);
     EXPECT_EQ(err, 0);
     auto start = TimePoint::FromUTC(2028, 6, 24, 17, 32, 54.47325613);
     auto end   = TimePoint::FromUTC(2028, 6, 27, 11, 7,  45.21180341);
@@ -215,7 +215,7 @@ TEST_F(HPOPTest, MoonFreeReturn)
     forcemodel.gravity_.maxDegree_ = 0;
     forcemodel.gravity_.maxOrder_ = 0;
     HPOP propagator;
-    err_t err = propagator.setForceModel(forcemodel);
+    errc_t err = propagator.setForceModel(forcemodel);
     EXPECT_EQ(err, 0);
     auto start = TimePoint::FromUTC(2028, 6, 24, 17, 36, 59.83014802);
     auto end   = TimePoint::FromUTC(2028, 6, 30,  2, 59, 52.66388130);
@@ -246,7 +246,7 @@ TEST_F(HPOPTest, MoonReturn)
     forceModel.gravity_.maxOrder_ = 0;
     forceModel.gravity_.model_ = "JGM3";
     HPOP propagator;
-    err_t err = propagator.setForceModel(forceModel);
+    errc_t err = propagator.setForceModel(forceModel);
     EXPECT_EQ(err, 0);
     auto start = TimePoint::FromUTC(2028, 6, 27, 10, 52, 43);
     auto end   = TimePoint::FromUTC(2028, 6, 30, 13, 20, 0);

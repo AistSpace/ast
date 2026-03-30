@@ -49,7 +49,7 @@ EODEAction ODEEventObserver::onStateUpdate(double *y, double &x, ODEIntegrator* 
     if(eventOccurred)
     {
         double eventTime = x;
-        err_t err = findEventTime(lastTime, x, eventTime, integrator);
+        errc_t err = findEventTime(lastTime, x, eventTime, integrator);
         if(err != eNoError)
         {
             // pass
@@ -97,7 +97,7 @@ bool ODEEventObserver::isEventOccurred(double *y, double &x)
     }
 }
 
-err_t ODEEventObserver::findEventTime(double x1, double x2, double& result, ODEIntegrator *integrator)
+errc_t ODEEventObserver::findEventTime(double x1, double x2, double& result, ODEIntegrator *integrator)
 {
     // aDebug("detected event by signbit change");
     auto detector = detector_;
@@ -108,7 +108,7 @@ err_t ODEEventObserver::findEventTime(double x1, double x2, double& result, ODEI
     int ndim = integrator->getODE()->getDimension();
     /// @fixme 
     /// 这里额外计算了两次端点的开关函数，这个计算量是可以减少的
-    err_t err =  solver.solve(
+    errc_t err =  solver.solve(
         [detector, integrator, ndim](double t) -> double 
         {
             double t0 = integrator->timeAtStepStart();

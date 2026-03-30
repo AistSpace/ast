@@ -55,7 +55,7 @@ TEST(OrbitElement, CartConversion)
         
         // 转换到直角坐标
         Vector3d pos1, vel1;
-        err_t err = aOrbElemToCart(coe1, GM, pos1, vel1);
+        errc_t err = aOrbElemToCart(coe1, GM, pos1, vel1);
         EXPECT_EQ(err, eNoError);
         
         // 转换回经典轨道根数
@@ -90,7 +90,7 @@ TEST(OrbitElement, CartConversion)
         
         // 转换到经典轨道根数
         OrbElem coe2;
-        err_t err = aCartToOrbElem(pos2, vel2, GM, coe2);
+        errc_t err = aCartToOrbElem(pos2, vel2, GM, coe2);
         EXPECT_EQ(err, eNoError);
         
         // 转换回直角坐标
@@ -132,7 +132,7 @@ TEST(OrbitElement, ModEquinElemCartConversion)
         
         // 转换回改进春分点轨道根数
         ModEquinElem mee1_back;
-        err_t err = aCartToModEquinElem(pos1, vel1, GM, mee1_back);
+        errc_t err = aCartToModEquinElem(pos1, vel1, GM, mee1_back);
         EXPECT_EQ(err, eNoError);
         
         // 验证转换精度
@@ -173,7 +173,7 @@ TEST(OrbitElement, ModOrbElemCartConversion)
         
         // 转换回修正轨道根数
         ModOrbElem moe1_back;
-        err_t err = aCartToModOrbElem(pos1, vel1, GM, moe1_back);
+        errc_t err = aCartToModOrbElem(pos1, vel1, GM, moe1_back);
         EXPECT_EQ(err, eNoError);
         
         // 验证转换精度
@@ -255,7 +255,7 @@ TEST(OrbitElement, ElementInterconversion)
     // 经典轨道根数 -> 改进春分点轨道根数 -> 经典轨道根数
     {
         ModEquinElem mee;
-        err_t err = aOrbElemToModEquinElem(coe_original, mee);
+        errc_t err = aOrbElemToModEquinElem(coe_original, mee);
         EXPECT_EQ(err, eNoError);
         
         OrbElem coe_back;
@@ -315,7 +315,7 @@ TEST(OrbitElement, SpecialOrbitalCases) {
         
         // 转换到直角坐标
         Vector3d pos, vel;
-        err_t err = aOrbElemToCart(coe_circular, GM, pos, vel);
+        errc_t err = aOrbElemToCart(coe_circular, GM, pos, vel);
         EXPECT_EQ(err, eNoError);
         
         // 转换回经典轨道根数
@@ -342,7 +342,7 @@ TEST(OrbitElement, SpecialOrbitalCases) {
         
         // 转换到直角坐标
         Vector3d pos, vel;
-        err_t err = aOrbElemToCart(coe_zero_inc, GM, pos, vel);
+        errc_t err = aOrbElemToCart(coe_zero_inc, GM, pos, vel);
         EXPECT_EQ(err, eNoError);
         
         // 转换回经典轨道根数
@@ -369,7 +369,7 @@ TEST(OrbitElement, SpecialOrbitalCases) {
         
         // 测试错误处理
         Vector3d pos, vel;
-        err_t err = aModOrbElemToCart(moe_parabolic, GM, pos, vel);
+        errc_t err = aModOrbElemToCart(moe_parabolic, GM, pos, vel);
         EXPECT_NE(err, eNoError); // 应该返回错误
     }
 }
@@ -392,7 +392,7 @@ TEST(OrbitElement, DirectConversionFunctions) {
         
         // 转换到修正轨道根数
         ModOrbElem moe;
-        err_t err = aEquinElemToModOrb(ee_original, moe);
+        errc_t err = aEquinElemToModOrb(ee_original, moe);
         EXPECT_EQ(err, eNoError);
         
         // 转换回春分点根数
@@ -497,7 +497,7 @@ TEST(OrbitElement, ErrorHandling) {
         
         // 测试moe2rv函数的错误处理
         Vector3d pos, vel;
-        err_t err = moe2rv(moe_parabolic.data(), GM, pos.data(), vel.data());
+        errc_t err = moe2rv(moe_parabolic.data(), GM, pos.data(), vel.data());
         EXPECT_EQ(err, eErrorInvalidParam);
         
         // 测试moe2coe函数的错误处理
@@ -525,7 +525,7 @@ TEST(OrbitElement, ErrorHandling) {
         };
         
         EquinElem ee;
-        err_t err = moe2ee(moe_data, ee.data());
+        errc_t err = moe2ee(moe_data, ee.data());
         EXPECT_EQ(err, eErrorInvalidParam);
     }
 }
@@ -546,7 +546,7 @@ TEST(OrbitElement, OrbitalConsistency) {
         EquinElem ee;
         ModEquinElem mee;
         
-        err_t err = aCartToOrbElem(pos_original, vel_original, GM, coe);
+        errc_t err = aCartToOrbElem(pos_original, vel_original, GM, coe);
         EXPECT_EQ(err, eNoError);
         
         err = aCartToModOrbElem(pos_original, vel_original, GM, moe);
@@ -611,7 +611,7 @@ TEST(OrbitElement, DelaunayConversion)
         
         // 转换到Delaunay轨道根数
         DelaunayElem dela;
-        err_t err = aOrbElemToDelaunay(coe_original, GM, dela);
+        errc_t err = aOrbElemToDelaunay(coe_original, GM, dela);
         EXPECT_EQ(err, eNoError);
         
         // 转换回经典轨道根数
@@ -652,7 +652,7 @@ TEST(OrbitElement, DelaunayConversion)
         
         // 转换到Delaunay轨道根数
         DelaunayElem dela;
-        err_t err = aOrbElemToDelaunay(coe_original, GM, dela);
+        errc_t err = aOrbElemToDelaunay(coe_original, GM, dela);
         EXPECT_EQ(err, eNoError);
         
         // 转换回经典轨道根数
@@ -680,7 +680,7 @@ TEST(OrbitElement, DelaunayConversion)
         
         // 转换到Delaunay轨道根数
         DelaunayElem dela;
-        err_t err = aOrbElemToDelaunay(coe_original, GM, dela);
+        errc_t err = aOrbElemToDelaunay(coe_original, GM, dela);
         EXPECT_EQ(err, eNoError);
         
         // 转换回经典轨道根数

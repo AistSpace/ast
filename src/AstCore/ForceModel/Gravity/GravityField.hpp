@@ -43,7 +43,7 @@ void aGravityFieldUnnormalize(GravityField& gf);
 class AST_CORE_API GravityFieldHead
 {
 public:
-    err_t load(StringView filepath, StringView dirpath=StringView());
+    errc_t load(StringView filepath, StringView dirpath=StringView());
     double getGM() const { return gm_; }
 protected:
     int maxDegree_{0};                      ///< 最大阶数
@@ -142,7 +142,7 @@ public:
     /// @param model 重力场模型文件路径，或者模型名称
     /// @param dirpath 可选参数，重力场模型文件所在目录路径，默认从当前程序执行目录和地球目录中查找
     /// @return 加载状态
-    err_t load(StringView model, StringView dirpath=StringView{});
+    errc_t load(StringView model, StringView dirpath=StringView{});
 
     /// @brief 从文件加载重力场
     /// @param model 重力场模型文件路径，或者模型名称
@@ -150,7 +150,7 @@ public:
     /// @param maxLoadOrder 最大加载次数
     /// @param dirpath 可选参数，重力场模型文件所在目录路径，默认从当前程序执行目录和地球目录中查找
     /// @return 加载状态
-    err_t load(StringView model, int maxLoadDegree, int maxLoadOrder, StringView dirpath=StringView{});
+    errc_t load(StringView model, int maxLoadDegree, int maxLoadOrder, StringView dirpath=StringView{});
     
     /// @brief 归一化重力场
     void normalize();

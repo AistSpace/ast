@@ -80,7 +80,7 @@ int EphemerisLagrangeVar::findIndex(double delta) const
     }
 }
 
-err_t EphemerisLagrangeVar::getPos(const TimePoint &tp, Vector3d &pos) const
+errc_t EphemerisLagrangeVar::getPos(const TimePoint &tp, Vector3d &pos) const
 {
     const int num_points = static_cast<int>(times_.size());
     if(num_points == 0){
@@ -115,7 +115,7 @@ err_t EphemerisLagrangeVar::getPos(const TimePoint &tp, Vector3d &pos) const
     return eNoError;
 }
 
-err_t EphemerisLagrangeVar::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+errc_t EphemerisLagrangeVar::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     const int num_points = static_cast<int>(times_.size());
     if(num_points == 0){
@@ -152,7 +152,7 @@ err_t EphemerisLagrangeVar::getPosVel(const TimePoint &tp, Vector3d &pos, Vector
     return eNoError;
 }
 
-err_t EphemerisLagrangeVar::getInterval(TimeInterval &interval) const
+errc_t EphemerisLagrangeVar::getInterval(TimeInterval &interval) const
 {
     double start = 0;
     double stop = 0;

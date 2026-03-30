@@ -49,7 +49,7 @@ TEST_F(MoonFrameTest, ICRFToMoonPrincipalAxesTransform)
     {
         TimePoint tp = TimePoint::FromUTC(2026, 2, 22, 0, 0, 0);
         Rotation rotation;
-        err_t rc = aICRFToMoonPrincipalAxesTransform(tp, rotation);
+        errc_t rc = aICRFToMoonPrincipalAxesTransform(tp, rotation);
         EXPECT_EQ(rc, eNoError);
         Vector3d posICRF{2000_km, 3000_km, 4000_km};
         Vector3d posMoonPA;
@@ -63,7 +63,7 @@ TEST_F(MoonFrameTest, ICRFToMoonPrincipalAxesTransform)
     {
         TimePoint tp = TimePoint::FromUTC(2026, 3, 22, 0, 0, 0);
         Rotation rotation;
-        err_t rc = aICRFToMoonPrincipalAxesTransform(tp, rotation);
+        errc_t rc = aICRFToMoonPrincipalAxesTransform(tp, rotation);
         EXPECT_EQ(rc, eNoError);
         Vector3d posICRF{2000_km, 3000_km, 4000_km};
         Vector3d posMoonPA;
@@ -98,7 +98,7 @@ TEST_F(MoonFrameTest, ICRFToMoonMeanEarthTransform)
     {
         TimePoint tp = TimePoint::FromUTC(2026, 3, 22, 0, 0, 0);
         Rotation rotation;
-        err_t rc = aICRFToMoonMeanEarthTransform(tp, rotation);
+        errc_t rc = aICRFToMoonMeanEarthTransform(tp, rotation);
         EXPECT_EQ(rc, eNoError);
         Vector3d posICRF{2000_km, 3000_km, 4000_km};
         Vector3d posMeanEarth;

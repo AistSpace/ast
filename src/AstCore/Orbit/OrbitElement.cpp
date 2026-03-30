@@ -58,7 +58,7 @@ std::string OrbElem::toString() const
 }
 
 
-err_t coe2rv(const double* coe, double gm, double* pos, double* vel)
+errc_t coe2rv(const double* coe, double gm, double* pos, double* vel)
 {
     double sma = coe[0], ecc = coe[1], inc = coe[2], raan = coe[3], argper = coe[4], tanom = coe[5];
     double slr = sma * (1 - ecc * ecc);         // p  semi-latus rectum
@@ -93,7 +93,7 @@ err_t coe2rv(const double* coe, double gm, double* pos, double* vel)
     return eNoError;
 }
 
-err_t coe2mee(const double* coe, double* mee)
+errc_t coe2mee(const double* coe, double* mee)
 {
     double a = coe[0], e = coe[1], i = coe[2], raan = coe[3], argper = coe[4], trueAnom = coe[5];
     double& p = mee[0], & f = mee[1], & g = mee[2], & h = mee[3], & k = mee[4], & L = mee[5];
@@ -193,7 +193,7 @@ void mee2rv(const double* mee, double gm, double* pos, double* vel)
     vel[2] = 2.0 * smovrp / s2 * (h * cosL + k * sinL + f * h + g * k);
 }
 
-err_t rv2mee(const double* pos_, const double* vel_, double gm, double* mee)
+errc_t rv2mee(const double* pos_, const double* vel_, double gm, double* mee)
 {
     const array3d& vel = *reinterpret_cast<const array3d*>(vel_);
     const array3d& pos = *reinterpret_cast<const array3d*>(pos_);
@@ -256,7 +256,7 @@ err_t rv2mee(const double* pos_, const double* vel_, double gm, double* mee)
     return eNoError;
 }
 
-err_t mee2coe(const double* mee, double* coe)
+errc_t mee2coe(const double* mee, double* coe)
 {
     double& a = coe[0], & e = coe[1], & i = coe[2], & raan = coe[3], & argper = coe[4], & trueAnom = coe[5];
     double p = mee[0], f = mee[1], g = mee[2], h = mee[3], k = mee[4], L = mee[5];
@@ -386,7 +386,7 @@ void rv2ee(const double* pos, const double* vel, double gm, double* ee)
     meanlon = mod(manom + argper + raan, PI2);
 }
 
-err_t rv2moe(const double* pos, const double* vel, double gm, double* moe)
+errc_t rv2moe(const double* pos, const double* vel, double gm, double* moe)
 {
     double& perirad = moe[0], & eccm = moe[1], & inc = moe[2], & raan = moe[3], & argper = moe[4], & tanom = moe[5];
     const array3d& r = *reinterpret_cast<const array3d*>(pos);
@@ -450,7 +450,7 @@ err_t rv2moe(const double* pos, const double* vel, double gm, double* moe)
     return eNoError;
 }
 
-err_t rv2coe(const double* pos, const double* vel, double gm, double* coe)
+errc_t rv2coe(const double* pos, const double* vel, double gm, double* coe)
 {
 
     /*
@@ -534,7 +534,7 @@ err_t rv2coe(const double* pos, const double* vel, double gm, double* coe)
     return eNoError;
 }
 
-err_t ee2moe(const double* ee, double* moe)
+errc_t ee2moe(const double* ee, double* moe)
 {
     double& perirad = moe[0], & ecc = moe[1], & inc = moe[2], & raan = moe[3], & argper = moe[4], & tanom = moe[5];
     double sma = ee[0], h = ee[1], k = ee[2], p = ee[3], q = ee[4], meanlon = ee[5];
@@ -611,7 +611,7 @@ err_t ee2moe(const double* ee, double* moe)
     return eNoError;
 }
 
-err_t moe2ee(const double* moe, double* ee)
+errc_t moe2ee(const double* moe, double* ee)
 {
     /*
      double	SMajAx;	    ///< semimajor axis length
@@ -645,7 +645,7 @@ err_t moe2ee(const double* moe, double* ee)
     meanlon = mod(raan + argper + manom, PI2);
     return eNoError;
 }
-err_t moe2coe(const double* moe_, double* coe_)
+errc_t moe2coe(const double* moe_, double* coe_)
 {
     const array6d& moe = (const array6d&) *moe_;
     array6d& coe = (array6d&)*coe_;
@@ -669,7 +669,7 @@ void coe2moe(const double* coe_, double* moe_)
     perirad = a * (1 - e);
 }
 
-err_t moe2rv(const double* moe, double gm, double* pos, double* vel)
+errc_t moe2rv(const double* moe, double gm, double* pos, double* vel)
 {
     double perirad = moe[0], ecc = moe[1], inc = moe[2], raan = moe[3], argper = moe[4], tanom = moe[5];
 
@@ -920,7 +920,7 @@ void mee2moe(const double* mee, double* moe)
     }
 }
 
-err_t coe2dela(const double *coeIn, double gm, double *delaOut)
+errc_t coe2dela(const double *coeIn, double gm, double *delaOut)
 {
     const OrbElem* keplerian = (const OrbElem*)coeIn;
     DelaunayElem* dela = (DelaunayElem*)delaOut;
@@ -974,7 +974,7 @@ err_t coe2dela(const double *coeIn, double gm, double *delaOut)
     return eNoError;
 }
 
-err_t dela2coe(const double *delaIn, double gm, double *coeOut)
+errc_t dela2coe(const double *delaIn, double gm, double *coeOut)
 {
     const DelaunayElem* dela = (const DelaunayElem*)delaIn;
     OrbElem* coe = (OrbElem*) coeOut;
@@ -1025,7 +1025,7 @@ void aModEquinElemToCart(
 
 
 
-err_t aCartToModEquinElem(
+errc_t aCartToModEquinElem(
     const Vector3d& pos,
     const Vector3d& vel,
     double gm,
@@ -1037,7 +1037,7 @@ err_t aCartToModEquinElem(
 
 
 
-err_t aOrbElemToModEquinElem(
+errc_t aOrbElemToModEquinElem(
     const OrbElem& elem,
     ModEquinElem& mee
 )
@@ -1046,7 +1046,7 @@ err_t aOrbElemToModEquinElem(
 }
 
 
-err_t aModEquinElemToOrbElem(
+errc_t aModEquinElemToOrbElem(
     const ModEquinElem& mee,
     OrbElem& elem
 )
@@ -1055,7 +1055,7 @@ err_t aModEquinElemToOrbElem(
 }
 
 
-err_t	aCartToModOrbElem(
+errc_t	aCartToModOrbElem(
     const Vector3d& pos,
     const Vector3d& vel,
     double gm,
@@ -1066,7 +1066,7 @@ err_t	aCartToModOrbElem(
 
 
 
-err_t aCartToOrbElem     (
+errc_t aCartToOrbElem     (
     const Vector3d& pos,
     const Vector3d& vel,
     double gm,
@@ -1078,7 +1078,7 @@ err_t aCartToOrbElem     (
 
 
 
-err_t aEquinElemToModOrb (
+errc_t aEquinElemToModOrb (
     const EquinElem& equinElem,
     ModOrbElem& modOrb)
 {
@@ -1087,7 +1087,7 @@ err_t aEquinElemToModOrb (
 
 
 
-err_t aModOrbToEquinElem (
+errc_t aModOrbToEquinElem (
     const ModOrbElem& modOrb,
     EquinElem& equinElem)
 {
@@ -1096,7 +1096,7 @@ err_t aModOrbToEquinElem (
 
 
 
-err_t aModOrbElemToCart  (
+errc_t aModOrbElemToCart  (
     const ModOrbElem& modOrb,
     double gm,
     Vector3d& pos,
@@ -1107,7 +1107,7 @@ err_t aModOrbElemToCart  (
 
 
 
-err_t aOrbElemToCart     (
+errc_t aOrbElemToCart     (
     const OrbElem& elem,
     double gm,
     Vector3d& pos,
@@ -1137,12 +1137,12 @@ void aEquinElemToCart(
     return ee2rv(equinElem.data(), gm, pos.data(), vel.data());
 }
 
-err_t aOrbElemToDelaunay(const OrbElem &elem, double gm, DelaunayElem &delaunay)
+errc_t aOrbElemToDelaunay(const OrbElem &elem, double gm, DelaunayElem &delaunay)
 {
     return coe2dela(elem.data(), gm, delaunay.data());
 }
 
-err_t aDelaunayToOrbElem(const DelaunayElem &delaunay, double gm, OrbElem &elem)
+errc_t aDelaunayToOrbElem(const DelaunayElem &delaunay, double gm, OrbElem &elem)
 {
     return dela2coe(delaunay.data(), gm, elem.data());
 }

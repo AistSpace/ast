@@ -33,14 +33,14 @@ Frame* PointBodyCenter::getFrame() const
 {
     return aFrameICRF();
 }
-err_t PointBodyCenter::getPos(const TimePoint& tp, Vector3d& pos) const
+errc_t PointBodyCenter::getPos(const TimePoint& tp, Vector3d& pos) const
 {
     if(!body_){
         return eErrorInvalidParam;
     }
     return body_->getPosICRF(tp, pos);
 }
-err_t PointBodyCenter::getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const
+errc_t PointBodyCenter::getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const
 {
     if(!body_){
         return eErrorInvalidParam;

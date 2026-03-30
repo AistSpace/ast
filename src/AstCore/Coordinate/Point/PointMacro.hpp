@@ -38,8 +38,8 @@ AST_NAMESPACE_BEGIN
         ~Point##NAME() override= default; \
         static Point##NAME* Instance();\
         Frame* getFrame() const override;\
-        err_t getPos(const TimePoint &tp, Vector3d &pos) const override;\
-        err_t getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const override;\
+        errc_t getPos(const TimePoint &tp, Vector3d &pos) const override;\
+        errc_t getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const override;\
     };\
     A_ALWAYS_INLINE Point* aPoint##NAME()\
     {\
@@ -57,11 +57,11 @@ AST_NAMESPACE_BEGIN
     {\
         return Frame##FRAME::Instance();\
     }\
-    err_t Point##NAME::getPos(const TimePoint &tp, Vector3d &pos) const\
+    errc_t Point##NAME::getPos(const TimePoint &tp, Vector3d &pos) const\
     {\
         return a##NAME##PosIn##FRAME(tp, pos);\
     }\
-    err_t Point##NAME::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const\
+    errc_t Point##NAME::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const\
     {\
         return a##NAME##PosVelIn##FRAME(tp, pos, vel);\
     }\

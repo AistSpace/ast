@@ -33,7 +33,7 @@ TEST(LeapSecond, LoadDefault)
 {
     aInitialize();
     LeapSecond leapSecond;
-    err_t err = leapSecond.loadDefault();
+    errc_t err = leapSecond.loadDefault();
     EXPECT_EQ(err, eNoError);
 }
 
@@ -47,7 +47,7 @@ TEST(LeapSecond, load) {
     {
         LeapSecond leapSecond;
         leapSecond.data().clear();
-        err_t rc = leapSecond.load(atkfile.string());
+        errc_t rc = leapSecond.load(atkfile.string());
         EXPECT_EQ(rc, eNoError);
         size_t size = leapSecond.data().size();
         EXPECT_GT(size, 0);
@@ -55,7 +55,7 @@ TEST(LeapSecond, load) {
     {
         LeapSecond leapSecond;
         leapSecond.data().clear();
-        err_t rc = leapSecond.load(stkfile.string());
+        errc_t rc = leapSecond.load(stkfile.string());
         EXPECT_EQ(rc, eNoError);
         size_t size = leapSecond.data().size();
         EXPECT_GT(size, 0);
@@ -63,7 +63,7 @@ TEST(LeapSecond, load) {
     {
         LeapSecond leapSecond;
         leapSecond.data().clear();
-        err_t rc = leapSecond.load(hiersfile.string());
+        errc_t rc = leapSecond.load(hiersfile.string());
         EXPECT_EQ(rc, eNoError);
         size_t size = leapSecond.data().size();
         EXPECT_GT(size, 0);
@@ -71,7 +71,7 @@ TEST(LeapSecond, load) {
     {
         LeapSecond leapSecond;
         leapSecond.data().clear();
-        err_t rc = leapSecond.load(spicefile.string());
+        errc_t rc = leapSecond.load(spicefile.string());
         EXPECT_EQ(rc, eNoError);
         size_t size = leapSecond.data().size();
         EXPECT_GT(size, 0);
@@ -94,7 +94,7 @@ TEST(LeapSecond, loadHPIERS) {
     }
     
     // 测试loadHPIERS
-    err_t err = leapSecond.loadHPIERS(tempFilePath.c_str());
+    errc_t err = leapSecond.loadHPIERS(tempFilePath.c_str());
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(leapSecond.data().size(), 2);
     EXPECT_EQ(leapSecond.data()[0].mjd, 57023);
@@ -132,7 +132,7 @@ TEST(LeapSecond, loadATK) {
         }
         
         // 测试loadATK
-        err_t err = leapSecond.loadATK(tempFilePath.c_str());
+        errc_t err = leapSecond.loadATK(tempFilePath.c_str());
         EXPECT_EQ(err, eNoError);
         EXPECT_EQ(leapSecond.data().size(), 2);
         EXPECT_EQ(leapSecond.data()[0].mjd, 57000);
@@ -149,7 +149,7 @@ TEST(LeapSecond, loadATK) {
     {
         LeapSecond leapSecond;
         auto filepath = fs::path(aDataDirGet()) / "Test/LeapSecond.dat";
-        err_t err = leapSecond.loadATK(filepath.c_str());
+        errc_t err = leapSecond.loadATK(filepath.c_str());
         EXPECT_EQ(err, 0);
         EXPECT_EQ(leapSecond.loadATK((const char*)nullptr), eErrorNullInput);
         EXPECT_NE(leapSecond.loadATK("non_existent_file.dat"), 0);
@@ -157,7 +157,7 @@ TEST(LeapSecond, loadATK) {
     {
         LeapSecond leapSecond;
         auto filepath = fs::path(aDataDirGet()) / "Test/LeapSecond.dat";
-        err_t err = leapSecond.load(filepath.c_str());
+        errc_t err = leapSecond.load(filepath.c_str());
         EXPECT_EQ(err, 0);
         EXPECT_EQ(leapSecond.load((const char*)nullptr), eErrorNullInput);
         EXPECT_NE(leapSecond.load("non_existent_file.dat"), 0);
@@ -181,7 +181,7 @@ TEST(LeapSecond, invalidFileFormat) {
     }
     
     // 测试加载格式错误的文件
-    err_t err = leapSecond.loadHPIERS(tempFilePath.c_str());
+    errc_t err = leapSecond.loadHPIERS(tempFilePath.c_str());
     EXPECT_EQ(err, eErrorInvalidFile);
     
     // 创建空文件

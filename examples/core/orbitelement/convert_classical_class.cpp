@@ -15,7 +15,7 @@ int main() {
     
     // 转换为经典轨道根数
     OrbElem elem;
-    err_t err = aCartToOrbElem(pos, vel, gmEarth, elem);
+    errc_t err = aCartToOrbElem(pos, vel, gmEarth, elem);
     
     if (err == eNoError) {
         std::cout << "长半轴: " << elem.a() << " m\n";

@@ -127,7 +127,7 @@ Set nutation angle calculation function pointer.
 #### `aNutationMethodSet`
 
 ```cpp
-err_t aNutationMethodSet(ENutationMethod method);
+errc_t aNutationMethodSet(ENutationMethod method);
 ```
 
 Set nutation angle calculation method according to enum value.

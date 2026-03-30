@@ -42,7 +42,7 @@ public:
     Value* eval() const final{return const_cast<Value*>(this);}
     
     /// @brief 设置值
-    err_t setValue(Value*) final{return eErrorReadonly;}
+    errc_t setValue(Value*) final{return eErrorReadonly;}
     
 };
 

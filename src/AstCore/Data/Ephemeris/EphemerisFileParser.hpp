@@ -37,7 +37,7 @@ class AST_CORE_API EphemerisFileParser
 {
 public:
     virtual ~EphemerisFileParser() = default;
-    virtual err_t parse(StringView filepath, HEphemeris& ephemeris) = 0;
+    virtual errc_t parse(StringView filepath, HEphemeris& ephemeris) = 0;
 
     inline HEphemeris parse(StringView filepath)
     {

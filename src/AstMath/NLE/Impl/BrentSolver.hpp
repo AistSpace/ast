@@ -35,7 +35,7 @@ public:
     BrentqSolver() = default;
     ~BrentqSolver() = default;
     using UnarySolver::solve;
-    err_t solve(UnaryScalarFunc& func, double min, double max, double& result) override;
+    errc_t solve(UnaryScalarFunc& func, double min, double max, double& result) override;
 };
 
 /// @brief Brenth法求解器
@@ -47,7 +47,7 @@ public:
     BrenthSolver() = default;
     ~BrenthSolver() = default;
     using UnarySolver::solve;
-    err_t solve(UnaryScalarFunc& func, double min, double max, double& result) override;
+    errc_t solve(UnaryScalarFunc& func, double min, double max, double& result) override;
 };
 
 using BrentSolver = BrentqSolver;

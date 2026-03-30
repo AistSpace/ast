@@ -37,8 +37,8 @@ class Unit;
 /// @brief 解析单位字符串
 /// @param[in] str 单位字符串
 /// @param[out] unit 解析后的单位
-/// @return err_t 错误码
-AST_UTIL_API err_t aUnitParse(StringView str, Unit& unit);
+/// @return errc_t 错误码
+AST_UTIL_API errc_t aUnitParse(StringView str, Unit& unit);
 
 
 /// @brief 解析单位字符串

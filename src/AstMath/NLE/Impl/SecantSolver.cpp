@@ -23,7 +23,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t SecantSolver::solve(UnaryScalarFunc &func, double min, double max, double &result)
+errc_t SecantSolver::solve(UnaryScalarFunc &func, double min, double max, double &result)
 {
     this->stats_ = {};
     result = secant(unarycfunc, min, max, absTol_, relTol_, maxIter_, &func, &stats_);

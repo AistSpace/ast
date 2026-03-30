@@ -57,7 +57,7 @@ BlockProduct::BlockProduct()
     };
 }
 
-err_t BlockProduct::run(const SimTime &simTime)
+errc_t BlockProduct::run(const SimTime &simTime)
 {
     if (input1_ == nullptr || input2_ == nullptr || output_ == nullptr)
     {

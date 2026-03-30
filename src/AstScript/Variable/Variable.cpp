@@ -40,7 +40,7 @@ Value *Variable::eval() const
     return expr_->eval();
 }
 
-err_t Variable::setValue(Value *val)
+errc_t Variable::setValue(Value *val)
 {
     if(!val){
         return eErrorNullInput;
@@ -55,14 +55,14 @@ err_t Variable::setValue(Value *val)
     }
 }
 
-err_t Variable::setExpr(Expr *expr)
+errc_t Variable::setExpr(Expr *expr)
 {
     expr_ = expr;
     bind_ = false;
     return eNoError;
 }
 
-err_t Variable::bind(Expr *expr)
+errc_t Variable::bind(Expr *expr)
 {
     expr_ = expr;
     bind_ = true;

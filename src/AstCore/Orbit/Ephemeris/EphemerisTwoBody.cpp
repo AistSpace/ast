@@ -57,7 +57,7 @@ Frame *EphemerisTwoBody::getFrame() const
     return frame_.get();
 }
 
-err_t EphemerisTwoBody::getPos(const TimePoint &tp, Vector3d &pos) const
+errc_t EphemerisTwoBody::getPos(const TimePoint &tp, Vector3d &pos) const
 {
     double duration = tp.durationFrom(epoch_);
     pos = initstate_.pos();
@@ -65,7 +65,7 @@ err_t EphemerisTwoBody::getPos(const TimePoint &tp, Vector3d &pos) const
     return aTwoBodyProp(duration, gm_, pos, vel);
 }
 
-err_t EphemerisTwoBody::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+errc_t EphemerisTwoBody::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     double duration = tp.durationFrom(epoch_);
     pos = initstate_.pos();
@@ -73,7 +73,7 @@ err_t EphemerisTwoBody::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &
     return aTwoBodyProp(duration, gm_, pos, vel);
 }
 
-err_t EphemerisTwoBody::getInterval(TimeInterval &interval) const
+errc_t EphemerisTwoBody::getInterval(TimeInterval &interval) const
 {
     interval.setInfinite();
     return eNoError;

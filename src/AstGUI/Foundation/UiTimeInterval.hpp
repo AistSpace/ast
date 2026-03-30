@@ -28,7 +28,7 @@
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup AstGUI
+    @addtogroup GUI
     @{
 */
 

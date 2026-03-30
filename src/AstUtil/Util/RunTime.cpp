@@ -27,7 +27,7 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t aDataDirGetDefault(std::string &dataDirOut)
+errc_t aDataDirGetDefault(std::string &dataDirOut)
 {
     // 1. 检查AST_DATA_DIR环境变量
     try {
@@ -121,16 +121,16 @@ err_t aDataDirGetDefault(std::string &dataDirOut)
 std::string aDataDirGetDefault()
 {
     std::string dataDirOut;
-    err_t rc = aDataDirGetDefault(dataDirOut);
+    errc_t rc = aDataDirGetDefault(dataDirOut);
     A_UNUSED(rc);
     return dataDirOut;
 }
 
-typedef err_t (*DataDirFunc)(std::string&);
+typedef errc_t (*DataDirFunc)(std::string&);
 
 DataDirFunc fDataDir{nullptr};
 
-err_t aDataDir(std::string& datadir)
+errc_t aDataDir(std::string& datadir)
 {
     if(A_UNLIKELY(!fDataDir))
     {
@@ -146,7 +146,7 @@ err_t aDataDir(std::string& datadir)
 std::string aDataDir()
 {
     std::string dataDirOut;
-    err_t rc = aDataDir(dataDirOut);
+    errc_t rc = aDataDir(dataDirOut);
     A_UNUSED(rc);
     return dataDirOut;
 }

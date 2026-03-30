@@ -35,7 +35,7 @@ public:
     BisectionSolver() = default;
     ~BisectionSolver() = default;
     using UnarySolver::solve;
-    err_t solve(UnaryScalarFunc& func, double min, double max, double& result) override;
+    errc_t solve(UnaryScalarFunc& func, double min, double max, double& result) override;
 };
 
 

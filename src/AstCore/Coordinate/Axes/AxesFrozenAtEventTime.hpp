@@ -47,8 +47,8 @@ public:
     ~AxesFrozenAtEventTime() = default;
 public:
     Axes* getParent() const override;
-    err_t getTransform(const TimePoint& tp, Rotation& rotation) const override;
-    err_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const override;
+    errc_t getTransform(const TimePoint& tp, Rotation& rotation) const override;
+    errc_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const override;
 PROPERTIES:
     /// @brief 获取冻结时间
     EventTime* getEpoch() const { return epoch_.get(); }
@@ -72,7 +72,7 @@ PROPERTIES:
     void setAxes(Axes* axes) { axes_ = axes; }
 public:
     /// @brief 获取冻结时间点
-    err_t getEpoch(TimePoint& epoch) const;
+    errc_t getEpoch(TimePoint& epoch) const;
 
     /// @brief 设置冻结时间点
     void setEpoch(const TimePoint& epoch);

@@ -103,7 +103,7 @@ int aGetOutputPortWidth(FuncBlock* block, size_t portIndex)
 // -----------------
 
 
-err_t aSetInputPortRealSignal(FuncBlock* block, size_t portIndex, double* signal)
+errc_t aSetInputPortRealSignal(FuncBlock* block, size_t portIndex, double* signal)
 {
     if(!block)
         return -1;
@@ -114,7 +114,7 @@ err_t aSetInputPortRealSignal(FuncBlock* block, size_t portIndex, double* signal
     return 0;
 }
 
-err_t aSetOutputPortRealSignal(FuncBlock* block, size_t portIndex, double* signal)
+errc_t aSetOutputPortRealSignal(FuncBlock* block, size_t portIndex, double* signal)
 {
     if(!block)
         return -1;

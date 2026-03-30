@@ -34,7 +34,7 @@ EventIntervalLinkTo::EventIntervalLinkTo(StringView name, StringView absolutePat
 {
 }
 
-err_t EventIntervalLinkTo::getInterval(TimeInterval &interval) const
+errc_t EventIntervalLinkTo::getInterval(TimeInterval &interval) const
 {
     // @todo 实现链接到其他时间区间的逻辑
     return -1;

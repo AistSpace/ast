@@ -43,7 +43,7 @@ public:
     static BuiltinAxesRegistry& Instance();
 
     PAxes getAxes(StringView name) const;
-    err_t init();
+    errc_t init();
 protected:
     using AxesMap = std::unordered_map<std::string, HAxes>;
     AxesMap axesMap_;

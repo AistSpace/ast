@@ -45,7 +45,7 @@ public:
     EventIntervalExplicit() = default;
     EventIntervalExplicit(const TimeInterval& interval);
     ~EventIntervalExplicit() = default;
-    err_t getInterval(TimeInterval& interval) const override;
+    errc_t getInterval(TimeInterval& interval) const override;
 protected:
     TimeInterval interval_;     ///< 事件时间段
 };

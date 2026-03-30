@@ -40,7 +40,7 @@ public:
     /// @brief 获取运动时间间隔
     /// @param interval 时间间隔引用
     /// @return 错误码
-    err_t getInterval(TimeInterval& interval) const;
+    errc_t getInterval(TimeInterval& interval) const;
 
     /// @brief 获取运动时间间隔句柄
     SharedPtr<EventInterval>& getIntervalHandle() { return interval_; }

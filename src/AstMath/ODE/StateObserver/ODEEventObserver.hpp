@@ -37,7 +37,7 @@ public:
     EODEAction onStateUpdate(double* y, double& x, ODEIntegrator* integrator) final;
     ODEEventDetector* getEventDetector() const { return detector_; }
     bool isEventOccurred(double* y, double& x);
-    err_t findEventTime(double x1, double x2, double& result, ODEIntegrator* integrator);
+    errc_t findEventTime(double x1, double x2, double& result, ODEIntegrator* integrator);
 protected:
     friend class ODEEventDetectorList;
     ODEEventDetector* detector_ {nullptr};

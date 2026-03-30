@@ -63,9 +63,9 @@ public:
     SPKParser(StringView filepath);
     ~SPKParser() = default;
 
-    err_t parse(StringView filepath);
+    errc_t parse(StringView filepath);
 
-    err_t parse();
+    errc_t parse();
     
 public:
     /// @brief 获取目标在指定时刻的原始位置和速度（相对于其星历参考系）
@@ -76,7 +76,7 @@ public:
     /// @param[out] pos  位置向量 (x, y, z)，单位米(m)
     /// @param[out] vel  速度向量 (vx, vy, vz)，单位米/秒(m/s)
     /// @return 错误码，成功返回0，失败返回非0值（如时间超出时间区间、目标不存在等）
-    err_t getPosVelNative(double et, int target, Vector3d& pos, Vector3d& vel) const;
+    errc_t getPosVelNative(double et, int target, Vector3d& pos, Vector3d& vel) const;
     
     /// @brief 获取目标在指定时刻的原始位置（相对于其星历参考系）
     /// @details 直接从SPK内核文件中读取数据，返回目标在给定时刻相对于该段定义的参考系的位置。
@@ -85,7 +85,7 @@ public:
     /// @param target  目标的NAIF ID代码
     /// @param[out] pos  位置向量 (x, y, z)，单位米(m)
     /// @return 错误码，成功返回0，失败返回非0值（如时间超出时间区间、目标不存在等）
-    err_t getPosNative(double et, int target, Vector3d& pos) const;
+    errc_t getPosNative(double et, int target, Vector3d& pos) const;
 
     /// @brief 查找目标在指定时间的SPK段描述符
     /// @details 从SPK文件中查找给定目标在给定时间的SPK段描述符。
@@ -103,13 +103,13 @@ public:
     /// @param[out] pos  位置向量 (x, y, z)，单位米(m)
     /// @param[out] vel  速度向量 (vx, vy, vz)，单位米/秒(m/s)
     /// @return 错误码，成功返回0，失败返回非0值（如时间超出时间区间、目标不存在等）
-    err_t getStateNative(double et, int target, Vector3d& pos, Vector3d* vel) const;
+    errc_t getStateNative(double et, int target, Vector3d& pos, Vector3d* vel) const;
 
     /// @brief 获取SPK段描述符数组
     const std::vector<SPK_Descriptor>& getDescriptors() const{return spkDescriptors_;}
 protected:
 
-    err_t getStateType2(const SPK_Descriptor& desc, double et, int target, Vector3d& pos, Vector3d* vel) const;
+    errc_t getStateType2(const SPK_Descriptor& desc, double et, int target, Vector3d& pos, Vector3d* vel) const;
 protected:
     std::vector<SPK_Descriptor> spkDescriptors_;     ///< SPK 段描述符数组
     mutable std::vector<double> buffer_;             ///< 数据读取缓冲区

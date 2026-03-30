@@ -919,7 +919,7 @@ void mxvg(
 // putcml
 
 // pxform
-err_t pxform(
+errc_t pxform(
     const char   * from,
     const char   * to,
     double         et,
@@ -1112,7 +1112,7 @@ void rav2xf(
 
 // spkpds
 
-err_t spkpos(
+errc_t spkpos(
     const char   * targ,
     double         et,
     const char   * ref,
@@ -1126,7 +1126,7 @@ err_t spkpos(
 
 // spksfs
 
-err_t spkssb(
+errc_t spkssb(
     int           targ,
     double        et,
     const char   * ref,
@@ -1225,7 +1225,7 @@ err_t spkssb(
 
 // timout
 
-err_t tipbod(
+errc_t tipbod(
     const char      * ref,
     int               body,
     double            et,
@@ -1284,7 +1284,7 @@ err_t tipbod(
 
 // unorm
 
-err_t utc2et(
+errc_t utc2et(
     const char * utcstr,
     double     * et
 );

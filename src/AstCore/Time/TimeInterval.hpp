@@ -42,15 +42,15 @@ class TimeInterval;
 /// @brief 将时间区间格式化为字符串
 /// @param interval 时间区间
 /// @param str 输出字符串
-/// @return err_t 错误码
-AST_CORE_CAPI err_t aTimeIntervalFormat(const TimeInterval& interval, std::string& strStart, std::string& strEnd);
+/// @return errc_t 错误码
+AST_CORE_CAPI errc_t aTimeIntervalFormat(const TimeInterval& interval, std::string& strStart, std::string& strEnd);
 
 
 /// @brief 从字符串解析时间区间
 /// @param str 输入字符串
 /// @param interval 输出时间区间
-/// @return err_t 错误码
-AST_CORE_CAPI err_t aTimeIntervalParse(StringView strStart, StringView strEnd, TimeInterval& interval);
+/// @return errc_t 错误码
+AST_CORE_CAPI errc_t aTimeIntervalParse(StringView strStart, StringView strEnd, TimeInterval& interval);
 
 
 /// @brief 时间区间
@@ -132,16 +132,16 @@ public:
     /// @param epoch 时间区间的基准时间点
     /// @param step 离散化步长（秒）
     /// @param times 输出离散化时间点
-    /// @return err_t 错误码
+    /// @return errc_t 错误码
     AST_CORE_API
-    err_t discrete(const TimePoint& epoch, double step, std::vector<double>& times) const;
+    errc_t discrete(const TimePoint& epoch, double step, std::vector<double>& times) const;
 
     /// @brief 将时间区间离散化
     /// @param step 离散化步长（秒）
     /// @param times 输出离散化时间点
-    /// @return err_t 错误码
+    /// @return errc_t 错误码
     AST_CORE_API
-    err_t discrete(double step, std::vector<TimePoint>& times) const;
+    errc_t discrete(double step, std::vector<TimePoint>& times) const;
 
     class DiscreteTimePointRange;
     class DiscreteEpochSecondRange;

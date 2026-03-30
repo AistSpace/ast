@@ -29,23 +29,23 @@ AST_NAMESPACE_BEGIN
 
 
 
-err_t _aLoadTwoBody(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+errc_t _aLoadTwoBody(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
 {
     MotionTwoBodySax sax(parser, vehiclePathData);
-    err_t rc = parser.parse(sax);
+    errc_t rc = parser.parse(sax);
     A_UNUSED(rc);
     return sax.getMotion(motionProfile);
 }
 
-err_t _aLoadHPOP(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+errc_t _aLoadHPOP(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
 {
     MotionHPOPSax sax(parser, vehiclePathData);
-    err_t rc = parser.parse(sax);
+    errc_t rc = parser.parse(sax);
     A_UNUSED(rc);
     return sax.getMotion(motionProfile);
 }
 
-err_t _aLoadSPICE(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+errc_t _aLoadSPICE(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
 {
     struct {
         std::string filename_;
@@ -87,7 +87,7 @@ err_t _aLoadSPICE(BKVParser& parser, const VehiclePathData& vehiclePathData, Sco
             }else if(aEqualsIgnoreCase(item.key(), "StopTime")){
                 data.stopTime_ = TimePoint::Parse(item.value());
             }else if(aEqualsIgnoreCase(item.key(), "EphemSmartInterval")){
-                err_t rc = _aLoadEventInterval(parser, data.ephemSmartInterval_);
+                errc_t rc = _aLoadEventInterval(parser, data.ephemSmartInterval_);
                 if(rc)
                     aError("failed to load EphemSmartInterval");
             }
@@ -136,7 +136,7 @@ err_t _aLoadSPICE(BKVParser& parser, const VehiclePathData& vehiclePathData, Sco
     return eNoError;
 }
 
-err_t _aLoadPassDefn(BKVParser& parser, Mover& mover)
+errc_t _aLoadPassDefn(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -182,7 +182,7 @@ err_t _aLoadPassDefn(BKVParser& parser, Mover& mover)
     return eNoError;
 }
 
-err_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
+errc_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -201,23 +201,23 @@ err_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
             }
         }else if(token == BKVParser::eBlockBegin){
             if(aEqualsIgnoreCase(item.value(), "TwoBody")){
-                if(err_t rc = _aLoadTwoBody(parser, data, mover.getMotionProfileHandle())){
+                if(errc_t rc = _aLoadTwoBody(parser, data, mover.getMotionProfileHandle())){
                     return rc;
                 }
             }
             else if(aEqualsIgnoreCase(item.value(), "HPOP"))
             {
-                if(err_t rc = _aLoadHPOP(parser, data, mover.getMotionProfileHandle())){
+                if(errc_t rc = _aLoadHPOP(parser, data, mover.getMotionProfileHandle())){
                     return rc;
                 }
             }
             else if(aEqualsIgnoreCase(item.value(), "SPICE")){
-                if(err_t rc = _aLoadSPICE(parser, data, mover.getMotionProfileHandle())){
+                if(errc_t rc = _aLoadSPICE(parser, data, mover.getMotionProfileHandle())){
                     return rc;
                 }
             }
             else if(aEqualsIgnoreCase(item.value(), "PassDefn")){
-                if(err_t rc = _aLoadPassDefn(parser, mover)){
+                if(errc_t rc = _aLoadPassDefn(parser, mover)){
                     return rc;
                 }
             }
@@ -231,13 +231,13 @@ err_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
 }
 
 
-err_t _aLoadEphemeris(BKVParser& parser, Mover& mover)
+errc_t _aLoadEphemeris(BKVParser& parser, Mover& mover)
 {
-    err_t rc = aParserSTKEphemeris(parser, mover.getEphemerisHandle());
+    errc_t rc = aParserSTKEphemeris(parser, mover.getEphemerisHandle());
     return rc;
 }
 
-err_t _aLoadMassProperties(BKVParser& parser, Mover& mover)
+errc_t _aLoadMassProperties(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -269,7 +269,7 @@ err_t _aLoadMassProperties(BKVParser& parser, Mover& mover)
     return eNoError;
 }
 
-err_t _aLoadAttitude(BKVParser& parser, Mover& mover)
+errc_t _aLoadAttitude(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -293,7 +293,7 @@ err_t _aLoadAttitude(BKVParser& parser, Mover& mover)
     return eNoError;
 }
 
-err_t _aLoadSwath(BKVParser& parser, Mover& mover)
+errc_t _aLoadSwath(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -321,7 +321,7 @@ err_t _aLoadSwath(BKVParser& parser, Mover& mover)
     return eNoError;
 }
 
-err_t _aLoadEclipse(BKVParser& parser, Mover& mover)
+errc_t _aLoadEclipse(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -375,7 +375,7 @@ err_t _aLoadEclipse(BKVParser& parser, Mover& mover)
     return eNoError;
 }
 
-err_t _aLoadRealTimeDef(BKVParser& parser, Mover& mover)
+errc_t _aLoadRealTimeDef(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -397,7 +397,7 @@ err_t _aLoadRealTimeDef(BKVParser& parser, Mover& mover)
     return eNoError;
 }
 
-err_t _aLoadExtensions(BKVParser& parser, Mover& mover)
+errc_t _aLoadExtensions(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -414,7 +414,7 @@ err_t _aLoadExtensions(BKVParser& parser, Mover& mover)
     return eNoError;
 }
 
-err_t _aLoadSubObjects(BKVParser& parser, Mover& mover)
+errc_t _aLoadSubObjects(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -429,7 +429,7 @@ err_t _aLoadSubObjects(BKVParser& parser, Mover& mover)
     return eNoError;
 }
 
-err_t _aLoadSatellite(BKVParser& parser, Mover& mover)
+errc_t _aLoadSatellite(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -442,40 +442,40 @@ err_t _aLoadSatellite(BKVParser& parser, Mover& mover)
             }
         }else if(token == BKVParser::eBlockBegin){
             if(aEqualsIgnoreCase(item.value(), "VehiclePath")){
-                if(err_t rc = _aLoadVehiclePath(parser, mover)){
+                if(errc_t rc = _aLoadVehiclePath(parser, mover)){
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Ephemeris")){
-                if(err_t rc = _aLoadEphemeris(parser, mover)){
+                if(errc_t rc = _aLoadEphemeris(parser, mover)){
                     return rc;
                 }
             }
             else if(aEqualsIgnoreCase(item.value(), "MassProperties")){
-                if(err_t rc = _aLoadMassProperties(parser, mover)){
+                if(errc_t rc = _aLoadMassProperties(parser, mover)){
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Attitude")){
-                if(err_t rc = _aLoadAttitude(parser, mover)){
+                if(errc_t rc = _aLoadAttitude(parser, mover)){
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Swath")){
-                if(err_t rc = _aLoadSwath(parser, mover)){
+                if(errc_t rc = _aLoadSwath(parser, mover)){
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Eclipse")){
-                if(err_t rc = _aLoadEclipse(parser, mover)){
+                if(errc_t rc = _aLoadEclipse(parser, mover)){
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "RealTimeDef")){
-                if(err_t rc = _aLoadRealTimeDef(parser, mover)){
+                if(errc_t rc = _aLoadRealTimeDef(parser, mover)){
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Extensions")){
-                if(err_t rc = _aLoadExtensions(parser, mover)){
+                if(errc_t rc = _aLoadExtensions(parser, mover)){
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "SubObjects")){
-                if(err_t rc = _aLoadSubObjects(parser, mover)){
+                if(errc_t rc = _aLoadSubObjects(parser, mover)){
                     return rc;
                 }
             }
@@ -488,7 +488,7 @@ err_t _aLoadSatellite(BKVParser& parser, Mover& mover)
     return eNoError;
 }
 
-err_t aLoadMover(StringView filepath, Mover &mover)
+errc_t aLoadMover(StringView filepath, Mover &mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -506,7 +506,7 @@ err_t aLoadMover(StringView filepath, Mover &mover)
         }
         else if(token == BKVParser::eBlockBegin){
             if(aEqualsIgnoreCase(item.value(), "Satellite")){
-                if(err_t rc = _aLoadSatellite(parser, mover)){
+                if(errc_t rc = _aLoadSatellite(parser, mover)){
                     return rc;
                 }
             }

@@ -51,7 +51,7 @@ PAxes BuiltinAxesRegistry::getAxes(StringView name) const
     return it->second;
 }
 
-err_t BuiltinAxesRegistry::init()
+errc_t BuiltinAxesRegistry::init()
 {
     axesMap_["ICRF"] = aAxesICRF();
     axesMap_["ECF"] = aAxesECF();

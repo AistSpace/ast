@@ -59,16 +59,16 @@ public:
     ~NLPProblem();
 
     /// @brief 获取问题的维度信息等
-    err_t getInfo(NLPInfo& info) const;
+    errc_t getInfo(NLPInfo& info) const;
 
     /// @brief 获取问题的雅可比矩阵信息
-    err_t getJacInfo(NLPJacInfo& info) const;
+    errc_t getJacInfo(NLPJacInfo& info) const;
     
     /// @brief 获取问题的设计变量与约束的上下界
-    err_t getBounds(NLPBounds& bounds) const;
+    errc_t getBounds(NLPBounds& bounds) const;
 
     /// @brief 计算目标函数和约束
-    err_t evalFitness(const NLPInput& input, NLPOutput& output) const;
+    errc_t evalFitness(const NLPInput& input, NLPOutput& output) const;
 
     /// @brief 计算目标函数与约束
     /// @param x 设计变量
@@ -80,7 +80,7 @@ public:
     /// @param x 设计变量
     /// @param f 目标函数 + 等式约束 + 不等式约束
     /// @return 错误码
-    err_t evalFitness(const std::vector<double>& x, std::vector<double>& f) const;
+    errc_t evalFitness(const std::vector<double>& x, std::vector<double>& f) const;
     
 
     /// @brief 计算目标函数与约束
@@ -93,7 +93,7 @@ public:
     /// @param numConstrIneq 
     /// @param constrIneq 
     /// @return 
-    err_t evalFitness(
+    errc_t evalFitness(
         int numVariable, double* variable,
         int numObjective, double* objective,
         int numConstrEq, double* constrEq,
@@ -104,18 +104,18 @@ public:
     /// @param ndim          维度   
     /// @param x_input       变量
     /// @param nzElemjacobi  jacobi矩阵非零元素
-    err_t evalJacobi(int numVariable, const double* variable, int numConstraint, int nnzJacobi, double* nzElemjacobi) const;
+    errc_t evalJacobi(int numVariable, const double* variable, int numConstraint, int nnzJacobi, double* nzElemjacobi) const;
 
 
     /// @brief 计算目标函数的梯度向量
     /// @param numVariable 
     /// @param variable 
     /// @return 
-    err_t evalGradient(int numVariable, const double* variable, double* grad) const;
+    errc_t evalGradient(int numVariable, const double* variable, double* grad) const;
 
 
     /// @brief 获取初始猜测值(初值/起始点)
-    err_t getInitialGuess(int numVariable, double* variable) const;
+    errc_t getInitialGuess(int numVariable, double* variable) const;
 
 
 public:
@@ -128,16 +128,16 @@ public:
     /// @param variable 设计变量
     /// @param constraint 不等式约束 + 等式约束
     /// @return 
-    err_t evalConstraint(const std::vector<double>& variable, std::vector<double>& constraint) const;
+    errc_t evalConstraint(const std::vector<double>& variable, std::vector<double>& constraint) const;
 
     /// @brief 计算约束
-    err_t evalConstraint(int numVariable, const double* variable, int numConstraint, double* contraint) const;
+    errc_t evalConstraint(int numVariable, const double* variable, int numConstraint, double* contraint) const;
     
     /// @brief 计算目标函数
-    err_t evalObjective(int numVariable, const double* variable, int numObjective, double* objective) const;
+    errc_t evalObjective(int numVariable, const double* variable, int numObjective, double* objective) const;
 
     /// @brief 计算目标函数
-    err_t evalObjective(int numVariable, const double* variable, double& objective) const;
+    errc_t evalObjective(int numVariable, const double* variable, double& objective) const;
 
 
 
@@ -146,22 +146,22 @@ public:
 
 
     /// @brief 中心差分求解梯度.
-    err_t evalGradientCD(double ustep, int ndim, const double* x, double* grad) const;
+    errc_t evalGradientCD(double ustep, int ndim, const double* x, double* grad) const;
 
     /// @brief 前向差分求解梯度.
-    err_t evalGradientFD(double ustep, int ndim, const double* x, double* grad) const;
+    errc_t evalGradientFD(double ustep, int ndim, const double* x, double* grad) const;
 
     /// @brief 后向差分求解梯度.
-    err_t evalGradientBD(double ustep, int ndim, const double* x, double* grad) const;
+    errc_t evalGradientBD(double ustep, int ndim, const double* x, double* grad) const;
 
     /// @brief 中心差分求解jacobi矩阵
-    err_t evalNLEJacobiCD(double ustep, int ndim, const double* x_input, int nConstraint, double* colmaj_jacobi) const;
+    errc_t evalNLEJacobiCD(double ustep, int ndim, const double* x_input, int nConstraint, double* colmaj_jacobi) const;
     
     /// @brief 前向差分求解jacobi矩阵
-    err_t evalNLEJacobiFD(double ustep, int ndim, const double* x_input, int nConstraint, double* colmaj_jacobi) const;
+    errc_t evalNLEJacobiFD(double ustep, int ndim, const double* x_input, int nConstraint, double* colmaj_jacobi) const;
 
     /// @brief 后向差分求解jacobi矩阵
-    err_t evalNLEJacobiBD(double ustep, int ndim, const double* x_input, int nConstraint, double* colmaj_jacobi) const;
+    errc_t evalNLEJacobiBD(double ustep, int ndim, const double* x_input, int nConstraint, double* colmaj_jacobi) const;
 
     /// @brief 根据输入的CCS稀疏模式计算Jacobi计算
     /// @param ndim 
@@ -171,7 +171,7 @@ public:
     /// @param idxNNZElem 
     /// @param jacobi_sparse_value 大小至少为nnz，即不小于idxNNZElem[ndim]
     /// @return 
-    err_t evalNLEJacobiCCSFD(double ustep, int ndim, const double* xinput, int m, const int* iFuncRow, const int* idxNNZElem, double* jacobi_sparse_value) const;
+    errc_t evalNLEJacobiCCSFD(double ustep, int ndim, const double* xinput, int m, const int* iFuncRow, const int* idxNNZElem, double* jacobi_sparse_value) const;
 
     /// @brief 输出CCS格式描述的稀疏模式
     /// @param ndim 
@@ -179,7 +179,7 @@ public:
     /// @param iFunRow 每个非零元素的行索引，元素按照列主排序
     /// @param idxNNZElem 每一列第一个元素的索引
     /// @return 
-    err_t evalNLENNZJacCCSNan(int ndim, const double* x_initguess, int m, std::vector<int>& iFunRow, std::vector<int>& idxNNZElem) const;
+    errc_t evalNLENNZJacCCSNan(int ndim, const double* x_initguess, int m, std::vector<int>& iFunRow, std::vector<int>& idxNNZElem) const;
     
     /// @brief 计算jacobi矩阵中的非零元素数量
     /// @param ndim 
@@ -187,7 +187,7 @@ public:
     /// @param m 
     /// @param nnz_jac 
     /// @return 
-    err_t evalNLENNZJacNan(int ndim, const double* x_initguess, int m, int& nnz_jac) const;
+    errc_t evalNLENNZJacNan(int ndim, const double* x_initguess, int m, int& nnz_jac) const;
     
     /// @brief 利用IEEE-754标准的NaN传播规则计算jacobi矩阵的稀疏模式(编译时浮点模式不能为fast)
     ///        需要x的init guess值作为输入，已获得合法解/防止非法输入产生意外的NaN
@@ -195,7 +195,7 @@ public:
     /// @param iFunRow 行索引
     /// @param jVarCol 列索引
     /// @return false: 用户要求停止
-    err_t evalNLENNZJacCOONan(int ndim, const double* x_initguess, int m, std::vector<int>& iFunRow, std::vector<int>& jVarCol) const;
+    errc_t evalNLENNZJacCOONan(int ndim, const double* x_initguess, int m, std::vector<int>& iFunRow, std::vector<int>& jVarCol) const;
 
 
     /// @brief 使用snopt的snjac函数计算Jacobi矩阵的稀疏模式
@@ -206,7 +206,7 @@ public:
     /// @param iFunRow 
     /// @param jVarCol 
     /// @return 
-    err_t evalNLENNZJacCOOSnJac(int ndim, const double* x_initguess, int m, std::vector<int>& iFunRow, std::vector<int>& jVarCol);
+    errc_t evalNLENNZJacCOOSnJac(int ndim, const double* x_initguess, int m, std::vector<int>& iFunRow, std::vector<int>& jVarCol);
 protected:
     A_DISABLE_COPY(NLPProblem);
 protected:
