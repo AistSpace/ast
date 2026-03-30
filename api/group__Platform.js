@@ -15,6 +15,7 @@ var group__Platform =
     [ "ast::aGetFilePath", "group__Platform.html#ga696e5be3337a541eac1e81388379802f", null ],
     [ "ast::aGetFilePath", "group__Platform.html#ga37ceb5060ff95143bf4fe04cd905d7bf", null ],
     [ "ast::aGetLoadError", "group__Platform.html#ga792d6e546f624b93c64487c04deac344", null ],
+    [ "ast::aGetModulePathFromAddress", "group__Platform.html#ga274d27fb277c936ba605eb68469bbd28", null ],
     [ "ast::aGetProcAddress", "group__Platform.html#ga0f4600dceeffcc4993b66d33a3b8e680", null ],
     [ "ast::aIsCI", "group__Platform.html#ga1b536eb0b193fd88914dd12e6895c229", null ],
     [ "ast::aIsFile", "group__Platform.html#gaaf498fb8090810fb31ae8e36c9bf3942", null ],

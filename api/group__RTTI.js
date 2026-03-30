@@ -49,6 +49,8 @@ var group__RTTI =
     [ "ast::Field", "classast_1_1Field.html", [
       [ "desc", "classast_1_1Field.html#a99a9de48178cb0482411ef21739363ac", null ],
       [ "name", "classast_1_1Field.html#accc7daac76fbaa390e3e008497812de2", null ],
+      [ "setDesc", "classast_1_1Field.html#a859c6776b0df38d55343e9e938137d86", null ],
+      [ "setName", "classast_1_1Field.html#a04f2f4ca6bbc59e37bf7fade92c9f57f", null ],
       [ "desc_", "classast_1_1Field.html#ac9892e80ad6ea95308f2ebf4783ecf4e", null ],
       [ "name_", "classast_1_1Field.html#af63b2a5e4dd425a4d3ccc1a3fa18c56c", null ]
     ] ],
@@ -116,6 +118,7 @@ var group__RTTI =
       [ "accept", "classast_1_1PropertyPOD.html#a8a9fa99e6b07d5b2a1b194e997f8ee8e", null ]
     ] ],
     [ "ast::PropertyQuantity", "classast_1_1PropertyQuantity.html", [
+      [ "accept", "classast_1_1PropertyQuantity.html#ab56a0c7875b4592d0671f88605f8853a", null ],
       [ "getValueString", "classast_1_1PropertyQuantity.html#a400a4dc225836b6280adcf4533d754d9", null ],
       [ "setValueString", "classast_1_1PropertyQuantity.html#a72ec535b73c719d085c19a4c5abe240f", null ],
       [ "dimension_", "classast_1_1PropertyQuantity.html#a2a08668fd3fdc96e9940bbad1f6a8730", null ]
@@ -143,6 +146,8 @@ var group__RTTI =
     [ "ast::property_trait< TimePoint >", "structast_1_1property__trait_3_01TimePoint_01_4.html", null ],
     [ "ast::Struct", "classast_1_1Struct.html", [
       [ "addProperty", "classast_1_1Struct.html#a572384310c4a51b0ac7cb9534b159694", null ],
+      [ "getModuleName", "classast_1_1Struct.html#a43ffc65ca28c19e09758f6e7d1560a62", null ],
+      [ "getProperties", "classast_1_1Struct.html#a704028bbbf138179fa28b4abd78ec385", null ],
       [ "getProperty", "classast_1_1Struct.html#a7bbe79a1e47872f1e674bfd0ff53ddbf", null ]
     ] ],
     [ "ast::SharedPtr< _Object >", "classast_1_1SharedPtr.html", null ],

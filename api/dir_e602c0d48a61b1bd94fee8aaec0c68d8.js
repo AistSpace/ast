@@ -2,7 +2,7 @@ var dir_e602c0d48a61b1bd94fee8aaec0c68d8 =
 [
     [ "AstSerde.hpp", "AstSerde_8hpp.html", null ],
     [ "CppSerializer.cpp", "CppSerializer_8cpp.html", null ],
-    [ "CppSerializer.hpp", "CppSerializer_8hpp.html", "CppSerializer_8hpp" ],
+    [ "CppSerializer.hpp", "CppSerializer_8hpp.html", null ],
     [ "JavaSerializer.cpp", "JavaSerializer_8cpp.html", null ],
     [ "JavaSerializer.hpp", "JavaSerializer_8hpp.html", "JavaSerializer_8hpp" ],
     [ "JsonSerializer.cpp", "JsonSerializer_8cpp.html", null ],

@@ -7,5 +7,5 @@ var topics =
     [ "工具模块", "group__Util.html", "group__Util" ],
     [ "空间天气模型", "group__Weather.html", "group__Weather" ],
     [ "GUI", "group__GUI.html", "group__GUI" ],
-    [ "AstSerde", "group__AstSerde.html", "group__AstSerde" ]
+    [ "Serde", "group__Serde.html", "group__Serde" ]
 ];

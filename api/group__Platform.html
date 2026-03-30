@@ -157,6 +157,8 @@ typedef <a class="el" href="classast_1_1UiWidget.html">UiWidget</a> *(*&#160;</t
 <tr class="separator:ga7c187e91aa0366fdba00f57b685d20bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa4fb579361721abb83e54183b0521c32" id="r_gaa4fb579361721abb83e54183b0521c32"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa4fb579361721abb83e54183b0521c32">ast::aStdErrIsFile</a> ()</td></tr>
 <tr class="separator:gaa4fb579361721abb83e54183b0521c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga274d27fb277c936ba605eb68469bbd28" id="r_ga274d27fb277c936ba605eb68469bbd28"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga274d27fb277c936ba605eb68469bbd28">ast::aGetModulePathFromAddress</a> (void *addr)</td></tr>
+<tr class="separator:ga274d27fb277c936ba605eb68469bbd28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga90c2f3a224c23802475e9ef9e63e763e" id="r_ga90c2f3a224c23802475e9ef9e63e763e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga90c2f3a224c23802475e9ef9e63e763e">ast::aLibDir</a> ()</td></tr>
 <tr class="separator:ga90c2f3a224c23802475e9ef9e63e763e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga524821ccab59a9b4bc923f26dd3d3660" id="r_ga524821ccab59a9b4bc923f26dd3d3660"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga524821ccab59a9b4bc923f26dd3d3660">ast::aExeDir</a> ()</td></tr>
@@ -434,6 +436,32 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>ast::ast_printf</b> (c
 
 <p>获取最后的错误信息 </p>
 <dl class="section return"><dt>返回</dt><dd>错误信息字符串 </dd></dl>
+
+</div>
+</div>
+<a id="ga274d27fb277c936ba605eb68469bbd28" name="ga274d27fb277c936ba605eb68469bbd28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga274d27fb277c936ba605eb68469bbd28">&#9670;&#160;</a></span>aGetModulePathFromAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_UTIL_API std::string ast::aGetModulePathFromAddress </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>addr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取函数、变量所在模块的路径 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>函数地址/变量地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>std::string 模块路径 </dd></dl>
 
 </div>
 </div>

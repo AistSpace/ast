@@ -148,25 +148,28 @@ $(function(){initNavTree('FileSystem_8hpp_source.html',''); initResizable(true);
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">namespace </span>fs = filesystem;</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>AST_UTIL_API std::string <a class="code hl_function" href="group__Platform.html#ga90c2f3a224c23802475e9ef9e63e763e">aLibDir</a>();</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>AST_UTIL_API std::string <a class="code hl_function" href="group__Platform.html#ga274d27fb277c936ba605eb68469bbd28">aGetModulePathFromAddress</a>(<span class="keywordtype">void</span>* addr);</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>AST_UTIL_API std::string <a class="code hl_function" href="group__Platform.html#ga524821ccab59a9b4bc923f26dd3d3660">aExeDir</a>();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>AST_UTIL_API std::string <a class="code hl_function" href="group__Platform.html#ga90c2f3a224c23802475e9ef9e63e763e">aLibDir</a>();</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>AST_UTIL_API std::string <a class="code hl_function" href="group__Platform.html#gafae8f3929af4a33ec55ca41b58bf52f2">aLibPath</a>();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>AST_UTIL_API std::string <a class="code hl_function" href="group__Platform.html#ga524821ccab59a9b4bc923f26dd3d3660">aExeDir</a>();</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>AST_UTIL_API std::string <a class="code hl_function" href="group__Platform.html#ga39dda408be669b8f5c88e097b0c73ca3">aExePath</a>();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>AST_UTIL_API std::string <a class="code hl_function" href="group__Platform.html#gafae8f3929af4a33ec55ca41b58bf52f2">aLibPath</a>();</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>AST_NAMESPACE_END</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>AST_UTIL_API std::string <a class="code hl_function" href="group__Platform.html#ga39dda408be669b8f5c88e097b0c73ca3">aExePath</a>();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="ttc" id="agroup__Platform_html_ga39dda408be669b8f5c88e097b0c73ca3"><div class="ttname"><a href="group__Platform.html#ga39dda408be669b8f5c88e097b0c73ca3">ast::aExePath</a></div><div class="ttdeci">std::string aExePath()</div><div class="ttdoc">获取当前的可执行文件路径</div><div class="ttdef"><b>定义</b> FileSystem.cpp:120</div></div>
-<div class="ttc" id="agroup__Platform_html_ga524821ccab59a9b4bc923f26dd3d3660"><div class="ttname"><a href="group__Platform.html#ga524821ccab59a9b4bc923f26dd3d3660">ast::aExeDir</a></div><div class="ttdeci">std::string aExeDir()</div><div class="ttdoc">获取当前的可执行文件所在目录</div><div class="ttdef"><b>定义</b> FileSystem.cpp:67</div></div>
-<div class="ttc" id="agroup__Platform_html_ga90c2f3a224c23802475e9ef9e63e763e"><div class="ttname"><a href="group__Platform.html#ga90c2f3a224c23802475e9ef9e63e763e">ast::aLibDir</a></div><div class="ttdeci">std::string aLibDir()</div><div class="ttdoc">获取当前的AstUtil动态库所在目录</div><div class="ttdef"><b>定义</b> FileSystem.cpp:62</div></div>
-<div class="ttc" id="agroup__Platform_html_gafae8f3929af4a33ec55ca41b58bf52f2"><div class="ttname"><a href="group__Platform.html#gafae8f3929af4a33ec55ca41b58bf52f2">ast::aLibPath</a></div><div class="ttdeci">std::string aLibPath()</div><div class="ttdoc">获取当前的AstUtil动态库的名称</div><div class="ttdef"><b>定义</b> FileSystem.cpp:72</div></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>AST_NAMESPACE_END</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="ttc" id="agroup__Platform_html_ga274d27fb277c936ba605eb68469bbd28"><div class="ttname"><a href="group__Platform.html#ga274d27fb277c936ba605eb68469bbd28">ast::aGetModulePathFromAddress</a></div><div class="ttdeci">std::string aGetModulePathFromAddress(void *addr)</div><div class="ttdoc">获取函数、变量所在模块的路径</div><div class="ttdef"><b>定义</b> FileSystem.cpp:62</div></div>
+<div class="ttc" id="agroup__Platform_html_ga39dda408be669b8f5c88e097b0c73ca3"><div class="ttname"><a href="group__Platform.html#ga39dda408be669b8f5c88e097b0c73ca3">ast::aExePath</a></div><div class="ttdeci">std::string aExePath()</div><div class="ttdoc">获取当前的可执行文件路径</div><div class="ttdef"><b>定义</b> FileSystem.cpp:125</div></div>
+<div class="ttc" id="agroup__Platform_html_ga524821ccab59a9b4bc923f26dd3d3660"><div class="ttname"><a href="group__Platform.html#ga524821ccab59a9b4bc923f26dd3d3660">ast::aExeDir</a></div><div class="ttdeci">std::string aExeDir()</div><div class="ttdoc">获取当前的可执行文件所在目录</div><div class="ttdef"><b>定义</b> FileSystem.cpp:115</div></div>
+<div class="ttc" id="agroup__Platform_html_ga90c2f3a224c23802475e9ef9e63e763e"><div class="ttname"><a href="group__Platform.html#ga90c2f3a224c23802475e9ef9e63e763e">ast::aLibDir</a></div><div class="ttdeci">std::string aLibDir()</div><div class="ttdoc">获取当前的AstUtil动态库所在目录</div><div class="ttdef"><b>定义</b> FileSystem.cpp:110</div></div>
+<div class="ttc" id="agroup__Platform_html_gafae8f3929af4a33ec55ca41b58bf52f2"><div class="ttname"><a href="group__Platform.html#gafae8f3929af4a33ec55ca41b58bf52f2">ast::aLibPath</a></div><div class="ttdeci">std::string aLibPath()</div><div class="ttdoc">获取当前的AstUtil动态库的名称</div><div class="ttdef"><b>定义</b> FileSystem.cpp:120</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
