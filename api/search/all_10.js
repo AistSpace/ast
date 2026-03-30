@@ -142,9 +142,15 @@ var searchData=
   ['propertytimepoint_139',['PropertyTimePoint',['../classast_1_1PropertyTimePoint.html',1,'ast']]],
   ['propertytimepoint_2ecpp_140',['PropertyTimePoint.cpp',['../PropertyTimePoint_8cpp.html',1,'']]],
   ['propertytimepoint_2ehpp_141',['PropertyTimePoint.hpp',['../PropertyTimePoint_8hpp.html',1,'']]],
-  ['propframe_5f_142',['propFrame_',['../classast_1_1HPOPEquation.html#a765b6c98f7fe701226715b4e6550e220',1,'ast::HPOPEquation']]],
-  ['propnonormalize_143',['propNoNormalize',['../classast_1_1J2J4Analytical.html#a2f6ef9d3c240981fd32b96a7a3a9b3cb',1,'ast::J2J4Analytical']]],
-  ['pstnul_144',['pstnul',['../structast_1_1DAF__FileRecord.html#ad311bd512ed672bee5193b0e30fef442',1,'ast::DAF_FileRecord']]],
-  ['push_5fback_145',['push_back',['../classast_1_1ExprContainer.html#a7693c4461fff8bd2095cbb0e54cbaad0',1,'ast::ExprContainer']]],
-  ['pxform_146',['pxform',['../group__Spice.html#ga5751be1205b7faa7f89fdda7fd242ea8',1,'ast']]]
+  ['propertyvisitor_142',['PropertyVisitor',['../classast_1_1PropertyVisitor.html',1,'ast']]],
+  ['propertyvisitor_2ecpp_143',['PropertyVisitor.cpp',['../PropertyVisitor_8cpp.html',1,'']]],
+  ['propertyvisitor_2ehpp_144',['PropertyVisitor.hpp',['../PropertyVisitor_8hpp.html',1,'']]],
+  ['propframe_5f_145',['propFrame_',['../classast_1_1HPOPEquation.html#a765b6c98f7fe701226715b4e6550e220',1,'ast::HPOPEquation']]],
+  ['propnonormalize_146',['propNoNormalize',['../classast_1_1J2J4Analytical.html#a2f6ef9d3c240981fd32b96a7a3a9b3cb',1,'ast::J2J4Analytical']]],
+  ['pstnul_147',['pstnul',['../structast_1_1DAF__FileRecord.html#ad311bd512ed672bee5193b0e30fef442',1,'ast::DAF_FileRecord']]],
+  ['push_5fback_148',['push_back',['../classast_1_1ExprContainer.html#a7693c4461fff8bd2095cbb0e54cbaad0',1,'ast::ExprContainer']]],
+  ['pxform_149',['pxform',['../group__Spice.html#ga5751be1205b7faa7f89fdda7fd242ea8',1,'ast']]],
+  ['pythonserializer_150',['PythonSerializer',['../classast_1_1PythonSerializer.html',1,'ast']]],
+  ['pythonserializer_2ecpp_151',['PythonSerializer.cpp',['../PythonSerializer_8cpp.html',1,'']]],
+  ['pythonserializer_2ehpp_152',['PythonSerializer.hpp',['../PythonSerializer_8hpp.html',1,'']]]
 ];

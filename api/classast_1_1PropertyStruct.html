@@ -137,6 +137,8 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>InputType</b> = void
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
+<tr class="memitem:acc00e6651923bf485d19b0adbd78182c" id="r_acc00e6651923bf485d19b0adbd78182c"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc00e6651923bf485d19b0adbd78182c">accept</a> (<a class="el" href="classast_1_1PropertyVisitor.html">PropertyVisitor</a> &amp;visitor, const void *container) override</td></tr>
+<tr class="separator:acc00e6651923bf485d19b0adbd78182c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcb831d12979a0c8faa8eac5858442c3" id="r_adcb831d12979a0c8faa8eac5858442c3"><td class="memItemLeft" align="right" valign="top"><a id="adcb831d12979a0c8faa8eac5858442c3" name="adcb831d12979a0c8faa8eac5858442c3"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Property</b> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> <a class="el" href="classast_1_1Field.html#accc7daac76fbaa390e3e008497812de2">name</a>, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> <a class="el" href="classast_1_1Field.html#a99a9de48178cb0482411ef21739363ac">desc</a>, <a class="el" href="group__RTTI.html#gae5e5616987acd034b10e01cd6edbbb48">FPropertyGet</a> getter, <a class="el" href="group__RTTI.html#ga2e0deea40e71f5b7c0ecebaceaaf296d">FPropertySet</a> setter)</td></tr>
 <tr class="separator:adcb831d12979a0c8faa8eac5858442c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,6 +215,47 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 <div class="textblock"><p>结构体属性 </p>
 <p>结构体属性，包含属性的名称、描述等信息 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
+<a id="acc00e6651923bf485d19b0adbd78182c" name="acc00e6651923bf485d19b0adbd78182c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc00e6651923bf485d19b0adbd78182c">&#9670;&#160;</a></span>accept()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::PropertyStruct::accept </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1PropertyVisitor.html">PropertyVisitor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>visitor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *</td>          <td class="paramname"><span class="paramname"><em>container</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>接受访问者 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">visitor</td><td>访问者对象 </td></tr>
+    <tr><td class="paramname">container</td><td>容器对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>err_t 错误码 </dd></dl>
+
+<p>实现了 <a class="el" href="classast_1_1Property.html#a0625ba3e8fb247f399e7f7e99a0dc788">ast::Property</a>.</p>
+
+</div>
+</div>
 <a id="ae4a5f99e13d21a04b53ef1d2f748f64c" name="ae4a5f99e13d21a04b53ef1d2f748f64c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae4a5f99e13d21a04b53ef1d2f748f64c">&#9670;&#160;</a></span>getValue()</h2>
 
@@ -293,6 +336,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
 <li>src/AstUtil/RTTI/Reflect/<a class="el" href="PropertyStruct_8hpp_source.html">PropertyStruct.hpp</a></li>
+<li>src/AstUtil/RTTI/Reflect/<a class="el" href="PropertyStruct_8cpp.html">PropertyStruct.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

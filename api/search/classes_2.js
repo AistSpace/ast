@@ -17,6 +17,7 @@ var searchData=
   ['complex_14',['complex',['../structcomplex.html',1,'']]],
   ['corvector_15',['CorVector',['../classast_1_1CorVector.html',1,'ast']]],
   ['corvectorallocator_16',['CorVectorAllocator',['../structast_1_1CorVector_1_1CorVectorAllocator.html',1,'ast::CorVector']]],
-  ['criticallyinclinedorbitdesigner_17',['CriticallyInclinedOrbitDesigner',['../classast_1_1CriticallyInclinedOrbitDesigner.html',1,'ast']]],
-  ['criticallyinclinedsunsyncorbitdesigner_18',['CriticallyInclinedSunSyncOrbitDesigner',['../classast_1_1CriticallyInclinedSunSyncOrbitDesigner.html',1,'ast']]]
+  ['cppserializer_17',['CppSerializer',['../classast_1_1CppSerializer.html',1,'ast']]],
+  ['criticallyinclinedorbitdesigner_18',['CriticallyInclinedOrbitDesigner',['../classast_1_1CriticallyInclinedOrbitDesigner.html',1,'ast']]],
+  ['criticallyinclinedsunsyncorbitdesigner_19',['CriticallyInclinedSunSyncOrbitDesigner',['../classast_1_1CriticallyInclinedSunSyncOrbitDesigner.html',1,'ast']]]
 ];

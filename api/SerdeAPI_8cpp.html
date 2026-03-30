@@ -99,27 +99,33 @@ $(function(){initNavTree('SerdeAPI_8cpp.html',''); initResizable(true); });
 
 <div class="header">
   <div class="summary">
-<a href="#namespaces">命名空间</a>  </div>
+<a href="#namespaces">命名空间</a> &#124;
+<a href="#func-members">函数</a>  </div>
   <div class="headertitle"><div class="title">SerdeAPI.cpp 文件参考</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="SerdeAPI_8hpp_source.html">SerdeAPI.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="AstSerde_8hpp_source.html">AstSerde.hpp</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 命名空间</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html">ast</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:gab97c37d959dab4c18aad044b010b6fa9" id="r_gab97c37d959dab4c18aad044b010b6fa9"><td class="memItemLeft" align="right" valign="top">AST_SERDE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AstSerde.html#gab97c37d959dab4c18aad044b010b6fa9">ast::aObjectToCppCode</a> (<a class="el" href="classast_1_1Object.html">Object</a> *object, std::string &amp;cppcode)</td></tr>
+<tr class="separator:gab97c37d959dab4c18aad044b010b6fa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b7709d825d4e822213273f8c21d8f1e" id="r_ga9b7709d825d4e822213273f8c21d8f1e"><td class="memItemLeft" align="right" valign="top">AST_SERDE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AstSerde.html#ga9b7709d825d4e822213273f8c21d8f1e">ast::aObjectSerialize</a> (<a class="el" href="classast_1_1Object.html">Object</a> *object, <a class="el" href="namespaceast.html#ad3df7d208f12b9eacec0be8f0c0ef9a6">ESerializationFormat</a> format, std::string &amp;output)</td></tr>
+<tr class="separator:ga9b7709d825d4e822213273f8c21d8f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga73bd3440c2cc20b93faebffc840a6338" id="r_ga73bd3440c2cc20b93faebffc840a6338"><td class="memItemLeft" align="right" valign="top">AST_SERDE_CAPI err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AstSerde.html#ga73bd3440c2cc20b93faebffc840a6338">ast::aObjectDeserialize</a> (const std::string &amp;input, <a class="el" href="namespaceast.html#ad3df7d208f12b9eacec0be8f0c0ef9a6">ESerializationFormat</a> format, <a class="el" href="classast_1_1Object.html">Object</a> *object)</td></tr>
+<tr class="separator:ga73bd3440c2cc20b93faebffc840a6338"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p><br  />
- </p>
-<p><br  />
- </p><dl class="section author"><dt>作者</dt><dd>axel </dd></dl>
+<div class="textblock"><p>序列化模块的API实现 </p>
+<dl class="section author"><dt>作者</dt><dd>axel </dd></dl>
 <dl class="section date"><dt>日期</dt><dd>2026-03-30 </dd></dl>
-<dl class="section copyright"><dt>版权所有</dt><dd>版权所有 (C) 2026-present, SpaceAST项目.</dd></dl>
-<p>SpaceAST项目（https://github.com/space-ast/ast） 本软件基于 Apache 2.0 开源许可证分发。 您可在遵守许可证条款的前提下使用、修改和分发本软件。 许可证全文请见：</p>
-<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>重要须知： 软件按"现有状态"提供，无任何明示或暗示的担保条件。 除非法律要求或书面同意，作者与贡献者不承担任何责任。 使用本软件所产生的风险，需由您自行承担。 </p>
+<dl class="section copyright"><dt>版权所有</dt><dd>版权所有 (C) 2026-present, SpaceAST项目. </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

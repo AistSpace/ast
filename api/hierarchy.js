@@ -14,7 +14,7 @@ var hierarchy =
     [ "ast::args_t", "structast_1_1args__t.html", null ],
     [ "ast::AstGfxAPI", "classast_1_1AstGfxAPI.html", null ],
     [ "ast::AttitudeProfile", "classast_1_1AttitudeProfile.html", null ],
-    [ "ast::Attribute", "classast_1_1Attribute.html", null ],
+    [ "ast::Attribute< PropertyType >", "classast_1_1Attribute.html", null ],
     [ "AVector3d", "structAVector3d.html", null ],
     [ "ast::BackTrace", "classast_1_1BackTrace.html", null ],
     [ "ast::BaseParser", "classast_1_1BaseParser.html", [
@@ -454,6 +454,7 @@ var hierarchy =
     [ "ast::property_trait< T >", "structast_1_1property__trait.html", null ],
     [ "ast::property_trait< std::string >", "structast_1_1property__trait_3_01std_1_1string_01_4.html", null ],
     [ "ast::property_trait< TimePoint >", "structast_1_1property__trait_3_01TimePoint_01_4.html", null ],
+    [ "ast::PropertyVisitor", "classast_1_1PropertyVisitor.html", null ],
     [ "QLineEdit", null, [
       [ "ast::UiQuantity", "classast_1_1UiQuantity.html", null ],
       [ "ast::UiTimePoint", "classast_1_1UiTimePoint.html", null ]
@@ -498,6 +499,15 @@ var hierarchy =
     [ "ast::strings_internal::SelectDelimiter< const char * >", "structast_1_1strings__internal_1_1SelectDelimiter_3_01const_01char_01_5_01_4.html", null ],
     [ "ast::strings_internal::SelectDelimiter< std::string >", "structast_1_1strings__internal_1_1SelectDelimiter_3_01std_1_1string_01_4.html", null ],
     [ "ast::strings_internal::SelectDelimiter< StringView >", "structast_1_1strings__internal_1_1SelectDelimiter_3_01StringView_01_4.html", null ],
+    [ "ast::SerializationUtils", "classast_1_1SerializationUtils.html", null ],
+    [ "ast::Serializer", "classast_1_1Serializer.html", [
+      [ "ast::CppSerializer", "classast_1_1CppSerializer.html", null ],
+      [ "ast::JavaSerializer", "classast_1_1JavaSerializer.html", null ],
+      [ "ast::JsonSerializer", "classast_1_1JsonSerializer.html", null ],
+      [ "ast::PythonSerializer", "classast_1_1PythonSerializer.html", null ],
+      [ "ast::XmlSerializer", "classast_1_1XmlSerializer.html", null ]
+    ] ],
+    [ "ast::SerializerFactory", "classast_1_1SerializerFactory.html", null ],
     [ "ast::SharedPtr< _Object >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::Axes >", "classast_1_1SharedPtr.html", null ],
     [ "ast::SharedPtr< ast::AxesBodyFixed >", "classast_1_1SharedPtr.html", null ],

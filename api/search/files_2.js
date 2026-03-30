@@ -22,10 +22,12 @@ var searchData=
   ['coordtransform_2ehpp_19',['CoordTransform.hpp',['../CoordTransform_8hpp.html',1,'']]],
   ['corvector_2ecpp_20',['CorVector.cpp',['../CorVector_8cpp.html',1,'']]],
   ['corvector_2ehpp_21',['CorVector.hpp',['../CorVector_8hpp.html',1,'']]],
-  ['criticallyinclinedorbitdesigner_2ecpp_22',['CriticallyInclinedOrbitDesigner.cpp',['../CriticallyInclinedOrbitDesigner_8cpp.html',1,'']]],
-  ['criticallyinclinedorbitdesigner_2ehpp_23',['CriticallyInclinedOrbitDesigner.hpp',['../CriticallyInclinedOrbitDesigner_8hpp.html',1,'']]],
-  ['criticallyinclinedsunsyncorbitdesigner_2ecpp_24',['CriticallyInclinedSunSyncOrbitDesigner.cpp',['../CriticallyInclinedSunSyncOrbitDesigner_8cpp.html',1,'']]],
-  ['criticallyinclinedsunsyncorbitdesigner_2ehpp_25',['CriticallyInclinedSunSyncOrbitDesigner.hpp',['../CriticallyInclinedSunSyncOrbitDesigner_8hpp.html',1,'']]],
-  ['crt_2ecpp_26',['CRT.cpp',['../CRT_8cpp.html',1,'']]],
-  ['crt_2ehpp_27',['CRT.hpp',['../CRT_8hpp.html',1,'']]]
+  ['cppserializer_2ecpp_22',['CppSerializer.cpp',['../CppSerializer_8cpp.html',1,'']]],
+  ['cppserializer_2ehpp_23',['CppSerializer.hpp',['../CppSerializer_8hpp.html',1,'']]],
+  ['criticallyinclinedorbitdesigner_2ecpp_24',['CriticallyInclinedOrbitDesigner.cpp',['../CriticallyInclinedOrbitDesigner_8cpp.html',1,'']]],
+  ['criticallyinclinedorbitdesigner_2ehpp_25',['CriticallyInclinedOrbitDesigner.hpp',['../CriticallyInclinedOrbitDesigner_8hpp.html',1,'']]],
+  ['criticallyinclinedsunsyncorbitdesigner_2ecpp_26',['CriticallyInclinedSunSyncOrbitDesigner.cpp',['../CriticallyInclinedSunSyncOrbitDesigner_8cpp.html',1,'']]],
+  ['criticallyinclinedsunsyncorbitdesigner_2ehpp_27',['CriticallyInclinedSunSyncOrbitDesigner.hpp',['../CriticallyInclinedSunSyncOrbitDesigner_8hpp.html',1,'']]],
+  ['crt_2ecpp_28',['CRT.cpp',['../CRT_8cpp.html',1,'']]],
+  ['crt_2ehpp_29',['CRT.hpp',['../CRT_8hpp.html',1,'']]]
 ];

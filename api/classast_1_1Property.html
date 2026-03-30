@@ -144,6 +144,8 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:adb59388bd64abbd063b818d839881f89" id="r_adb59388bd64abbd063b818d839881f89"><td class="memItemLeft" align="right" valign="top"><a id="adb59388bd64abbd063b818d839881f89" name="adb59388bd64abbd063b818d839881f89"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Property</b> (<a class="el" href="group__RTTI.html#gae5e5616987acd034b10e01cd6edbbb48">FPropertyGet</a> getter, <a class="el" href="group__RTTI.html#ga2e0deea40e71f5b7c0ecebaceaaf296d">FPropertySet</a> setter)</td></tr>
 <tr class="separator:adb59388bd64abbd063b818d839881f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0625ba3e8fb247f399e7f7e99a0dc788" id="r_a0625ba3e8fb247f399e7f7e99a0dc788"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0625ba3e8fb247f399e7f7e99a0dc788">accept</a> (<a class="el" href="classast_1_1PropertyVisitor.html">PropertyVisitor</a> &amp;visitor, const void *container)=0</td></tr>
+<tr class="separator:a0625ba3e8fb247f399e7f7e99a0dc788"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f9a36038b7da4c56d9948f036b6fd0a" id="r_a4f9a36038b7da4c56d9948f036b6fd0a"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f9a36038b7da4c56d9948f036b6fd0a">getValueDouble</a> (const void *container, double &amp;value)=0</td></tr>
 <tr class="separator:a4f9a36038b7da4c56d9948f036b6fd0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1ede58d30f536af50c7087f827b76ab" id="r_ab1ede58d30f536af50c7087f827b76ab"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1ede58d30f536af50c7087f827b76ab">setValueDouble</a> (void *container, double value)=0</td></tr>
@@ -220,6 +222,47 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 </div>
 </div>
 <h2 class="groupheader">成员函数说明</h2>
+<a id="a0625ba3e8fb247f399e7f7e99a0dc788" name="a0625ba3e8fb247f399e7f7e99a0dc788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0625ba3e8fb247f399e7f7e99a0dc788">&#9670;&#160;</a></span>accept()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual err_t ast::Property::accept </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1PropertyVisitor.html">PropertyVisitor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>visitor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *</td>          <td class="paramname"><span class="paramname"><em>container</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>接受访问者 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">visitor</td><td>访问者对象 </td></tr>
+    <tr><td class="paramname">container</td><td>容器对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>err_t 错误码 </dd></dl>
+
+<p>在 <a class="el" href="classast_1_1PropertyBool.html#aec9ca0ebafc2cf85b118bce77c4967c7">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a8d427b9b1f990aa3edb7acc1531fc5ce">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#aad2fc2e7191aed5e2f304b7d68c2ef02">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyObject.html#a027ffd0db8356c180c36de913e8d635f">ast::PropertyObject</a>, <a class="el" href="classast_1_1PropertyPOD.html#a716ba1feb36021a9c3acab274e34b0f7">ast::PropertyPOD</a>, <a class="el" href="classast_1_1PropertyString.html#af2604fc9bf9ba64b03b708c6124a29a4">ast::PropertyString</a>, <a class="el" href="classast_1_1PropertyStruct.html#acc00e6651923bf485d19b0adbd78182c">ast::PropertyStruct</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#a025ab95594c9bd22503277a16dc0e562">ast::PropertyTimePoint</a> 内被实现.</p>
+
+</div>
+</div>
 <a id="a7a820e09d14636ba8fcedd0b76547689" name="a7a820e09d14636ba8fcedd0b76547689"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7a820e09d14636ba8fcedd0b76547689">&#9670;&#160;</a></span>getValue()</h2>
 

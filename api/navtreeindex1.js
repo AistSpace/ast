@@ -138,6 +138,9 @@ var NAVTREEINDEX1 =
 "CorVector_8cpp.html":[4,0,0,14,0,1],
 "CorVector_8hpp.html":[4,0,0,14,0,2],
 "CorVector_8hpp_source.html":[4,0,0,14,0,2],
+"CppSerializer_8cpp.html":[4,0,0,10,1],
+"CppSerializer_8hpp.html":[4,0,0,10,2],
+"CppSerializer_8hpp_source.html":[4,0,0,10,2],
 "CriticallyInclinedOrbitDesigner_8cpp.html":[4,0,0,1,6,1,4],
 "CriticallyInclinedOrbitDesigner_8hpp.html":[4,0,0,1,6,1,5],
 "CriticallyInclinedOrbitDesigner_8hpp_source.html":[4,0,0,1,6,1,5],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "EphemerisLagrangeVar_8cpp.html":[4,0,0,1,6,0,4],
 "EphemerisLagrangeVar_8hpp.html":[4,0,0,1,6,0,5],
 "EphemerisLagrangeVar_8hpp_source.html":[4,0,0,1,6,0,5],
-"EphemerisSPK_8cpp.html":[4,0,0,1,6,0,6],
-"EphemerisSPK_8hpp.html":[4,0,0,1,6,0,7],
-"EphemerisSPK_8hpp_source.html":[4,0,0,1,6,0,7],
-"EphemerisTwoBody_8cpp.html":[4,0,0,1,6,0,8]
+"EphemerisSPK_8cpp.html":[4,0,0,1,6,0,6]
 };

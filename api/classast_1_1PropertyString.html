@@ -152,6 +152,8 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a620e95180367d9ccc871b4107569169b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab54e1c6143c81ba8c952b3cbf48d8b19" id="r_ab54e1c6143c81ba8c952b3cbf48d8b19"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab54e1c6143c81ba8c952b3cbf48d8b19">setValueString</a> (void *container, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> value) override</td></tr>
 <tr class="separator:ab54e1c6143c81ba8c952b3cbf48d8b19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2604fc9bf9ba64b03b708c6124a29a4" id="r_af2604fc9bf9ba64b03b708c6124a29a4"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2604fc9bf9ba64b03b708c6124a29a4">accept</a> (<a class="el" href="classast_1_1PropertyVisitor.html">PropertyVisitor</a> &amp;visitor, const void *container) override</td></tr>
+<tr class="separator:af2604fc9bf9ba64b03b708c6124a29a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a0f03da118b66ab54e066f64aa3360e" id="r_a2a0f03da118b66ab54e066f64aa3360e"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a0f03da118b66ab54e066f64aa3360e">setValue</a> (void *container, const InputType *value)</td></tr>
 <tr class="separator:a2a0f03da118b66ab54e066f64aa3360e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49a3aefc79cc89156a0f10af8e924194" id="r_a49a3aefc79cc89156a0f10af8e924194"><td class="memItemLeft" align="right" valign="top">err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49a3aefc79cc89156a0f10af8e924194">getValue</a> (const void *container, OutputType *value)</td></tr>
@@ -209,6 +211,47 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 <div class="textblock"><p>字符串属性 </p>
 <p>字符串属性，包含属性的名称、描述等信息 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
+<a id="af2604fc9bf9ba64b03b708c6124a29a4" name="af2604fc9bf9ba64b03b708c6124a29a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2604fc9bf9ba64b03b708c6124a29a4">&#9670;&#160;</a></span>accept()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">err_t ast::PropertyString::accept </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1PropertyVisitor.html">PropertyVisitor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>visitor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *</td>          <td class="paramname"><span class="paramname"><em>container</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>接受访问者 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">visitor</td><td>访问者对象 </td></tr>
+    <tr><td class="paramname">container</td><td>容器对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>err_t 错误码 </dd></dl>
+
+<p>实现了 <a class="el" href="classast_1_1Property.html#a0625ba3e8fb247f399e7f7e99a0dc788">ast::Property</a>.</p>
+
+</div>
+</div>
 <a id="a49a3aefc79cc89156a0f10af8e924194" name="a49a3aefc79cc89156a0f10af8e924194"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a49a3aefc79cc89156a0f10af8e924194">&#9670;&#160;</a></span>getValue()</h2>
 
