@@ -1,7 +1,6 @@
 ///
 /// @file      AstSerde.hpp
-/// @brief     
-/// @details   
+/// @brief     序列化模块的核心头文件
 /// @author    axel
 /// @date      2026-02-10
 /// @copyright 版权所有 (C) 2026-present, ast项目.
@@ -20,16 +19,23 @@
 
 #pragma once
 
-#include "AstGlobal.h"
+#include "Serializer.hpp"
+#include "JsonSerializer.hpp"
+#include "XmlSerializer.hpp"
+#include "CppSerializer.hpp"
+#include "JavaSerializer.hpp"
+#include "PythonSerializer.hpp"
+#include "SerializerFactory.hpp"
+#include "SerializationUtils.hpp"
 
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup 
+    @addtogroup AstSerde
     @{
 */
 
-
+// 导出所有序列化相关的类和函数
 
 /*! @} */
 
