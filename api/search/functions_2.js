@@ -9,5 +9,6 @@ var searchData=
   ['bodc2n_6',['bodc2n',['../classast_1_1SpiceApi.html#a09a9cab2cbcb31dfc31a0ae956a8ae49',1,'ast::SpiceApi']]],
   ['borrow_5ffrom_7',['borrow_from',['../classast_1_1CorVector.html#ad189ee7ec64af1def41a8ec9ecce1c77',1,'ast::CorVector']]],
   ['brenth_8',['brenth',['../group__NLE.html#ga3fd74c177eb5fe393af345e07f6e8eaa',1,'ast']]],
-  ['brentq_9',['brentq',['../group__NLE.html#ga6d46ca1d998cb4c839bdf7e81086ce05',1,'ast']]]
+  ['brentq_9',['brentq',['../group__NLE.html#ga6d46ca1d998cb4c839bdf7e81086ce05',1,'ast']]],
+  ['build_10',['build',['../classast_1_1Target.html#ac20189bd45c53fedee3200b55726d40c',1,'ast::Target']]]
 ];

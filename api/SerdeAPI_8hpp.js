@@ -1,6 +1,7 @@
 var SerdeAPI_8hpp =
 [
-    [ "aObjectDeserialize", "SerdeAPI_8hpp.html#gabff6511ed95801772fc8d469a8aa13b4", null ],
-    [ "aObjectSerialize", "SerdeAPI_8hpp.html#ga07c22df899e93bff58c0f94ffba523c4", null ],
-    [ "aObjectToCppCode", "SerdeAPI_8hpp.html#ga40d1b8f921c86c1bb31b812439e9ac8d", null ]
+    [ "aObjectDeserialize", "SerdeAPI_8hpp.html#gab0bd3533256d09536a498771f83dec1e", null ],
+    [ "aObjectSerialize", "SerdeAPI_8hpp.html#gaacd9b657347c9d644ef83fb7ac13b0b8", null ],
+    [ "aObjectToCppCode", "SerdeAPI_8hpp.html#ga33ea3abafb0ca9c8d971e0bb68131c7b", null ],
+    [ "aObjectToCppFile", "SerdeAPI_8hpp.html#gaef43b9b3776f4a31b51199070120c94e", null ]
 ];

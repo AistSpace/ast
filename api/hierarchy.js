@@ -573,6 +573,7 @@ var hierarchy =
       [ "ast::fs_simple::filesystem_error", "classast_1_1fs__simple_1_1filesystem__error.html", null ]
     ] ],
     [ "ast::TAIScale", "classast_1_1TAIScale.html", null ],
+    [ "ast::Target", "classast_1_1Target.html", null ],
     [ "ast::TDBScale", "classast_1_1TDBScale.html", null ],
     [ "ast::HPOPForceModel::ThirdBody", "structast_1_1HPOPForceModel_1_1ThirdBody.html", null ],
     [ "ast::Time", "classast_1_1Time.html", null ],

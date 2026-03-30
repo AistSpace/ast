@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>🛰️航天仿真算法库 SpaceAST: src/AstSerde/SerdeAPI.hpp 源文件</title>
+<title>🛰️航天仿真算法库 SpaceAST: src/AstUtil/Serde/SerdeAPI.hpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -106,28 +106,32 @@ $(function(){initNavTree('SerdeAPI_8hpp_source.html',''); initResizable(true); }
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;AstGlobal.h&quot;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="AstSerde_8hpp.html">AstSerde.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;Serde.hpp&quot;</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>AST_NAMESPACE_BEGIN</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>AST_SERDE_CAPI errc_t <a class="code hl_function" href="group__Serde.html#ga40d1b8f921c86c1bb31b812439e9ac8d">aObjectToCppCode</a>(Object* <span class="keywordtype">object</span>, std::string&amp; cppcode);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>AST_UTIL_CAPI errc_t <a class="code hl_function" href="group__Serde.html#ga33ea3abafb0ca9c8d971e0bb68131c7b">aObjectToCppCode</a>(Object* <span class="keywordtype">object</span>, std::string&amp; cppcode);</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>AST_SERDE_CAPI errc_t <a class="code hl_function" href="group__Serde.html#ga07c22df899e93bff58c0f94ffba523c4">aObjectSerialize</a>(Object* <span class="keywordtype">object</span>, ESerializationFormat format, std::string&amp; output);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>AST_UTIL_CAPI errc_t <a class="code hl_function" href="group__Serde.html#gaef43b9b3776f4a31b51199070120c94e">aObjectToCppFile</a>(Object* <span class="keywordtype">object</span>, StringView cppfilepath);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>AST_SERDE_CAPI errc_t <a class="code hl_function" href="group__Serde.html#gabff6511ed95801772fc8d469a8aa13b4">aObjectDeserialize</a>(<span class="keyword">const</span> std::string&amp; input, ESerializationFormat format, Object* <span class="keywordtype">object</span>);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>AST_NAMESPACE_END</div>
-<div class="ttc" id="aAstSerde_8hpp_html"><div class="ttname"><a href="AstSerde_8hpp.html">AstSerde.hpp</a></div><div class="ttdoc">序列化模块的核心头文件</div></div>
-<div class="ttc" id="agroup__Serde_html_ga07c22df899e93bff58c0f94ffba523c4"><div class="ttname"><a href="group__Serde.html#ga07c22df899e93bff58c0f94ffba523c4">ast::aObjectSerialize</a></div><div class="ttdeci">AST_SERDE_CAPI errc_t aObjectSerialize(Object *object, ESerializationFormat format, std::string &amp;output)</div><div class="ttdoc">将对象序列化为指定格式</div><div class="ttdef"><b>定义</b> SerdeAPI.cpp:18</div></div>
-<div class="ttc" id="agroup__Serde_html_ga40d1b8f921c86c1bb31b812439e9ac8d"><div class="ttname"><a href="group__Serde.html#ga40d1b8f921c86c1bb31b812439e9ac8d">ast::aObjectToCppCode</a></div><div class="ttdeci">AST_SERDE_CAPI errc_t aObjectToCppCode(Object *object, std::string &amp;cppcode)</div><div class="ttdoc">将对象配置转换为 C++ 代码</div><div class="ttdef"><b>定义</b> SerdeAPI.cpp:14</div></div>
-<div class="ttc" id="agroup__Serde_html_gabff6511ed95801772fc8d469a8aa13b4"><div class="ttname"><a href="group__Serde.html#gabff6511ed95801772fc8d469a8aa13b4">ast::aObjectDeserialize</a></div><div class="ttdeci">AST_SERDE_CAPI errc_t aObjectDeserialize(const std::string &amp;input, ESerializationFormat format, Object *object)</div><div class="ttdoc">从指定格式反序列化对象</div><div class="ttdef"><b>定义</b> SerdeAPI.cpp:22</div></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>AST_UTIL_CAPI errc_t <a class="code hl_function" href="group__Serde.html#gaacd9b657347c9d644ef83fb7ac13b0b8">aObjectSerialize</a>(Object* <span class="keywordtype">object</span>, ESerializationFormat format, std::string&amp; output);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>AST_UTIL_CAPI errc_t <a class="code hl_function" href="group__Serde.html#gab0bd3533256d09536a498771f83dec1e">aObjectDeserialize</a>(<span class="keyword">const</span> std::string&amp; input, ESerializationFormat format, Object* <span class="keywordtype">object</span>);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>AST_NAMESPACE_END</div>
+<div class="ttc" id="agroup__Serde_html_ga33ea3abafb0ca9c8d971e0bb68131c7b"><div class="ttname"><a href="group__Serde.html#ga33ea3abafb0ca9c8d971e0bb68131c7b">ast::aObjectToCppCode</a></div><div class="ttdeci">errc_t aObjectToCppCode(Object *object, std::string &amp;cppcode)</div><div class="ttdoc">将对象配置转换为 C++ 代码</div><div class="ttdef"><b>定义</b> SerdeAPI.cpp:15</div></div>
+<div class="ttc" id="agroup__Serde_html_gaacd9b657347c9d644ef83fb7ac13b0b8"><div class="ttname"><a href="group__Serde.html#gaacd9b657347c9d644ef83fb7ac13b0b8">ast::aObjectSerialize</a></div><div class="ttdeci">errc_t aObjectSerialize(Object *object, ESerializationFormat format, std::string &amp;output)</div><div class="ttdoc">将对象序列化为指定格式</div><div class="ttdef"><b>定义</b> SerdeAPI.cpp:33</div></div>
+<div class="ttc" id="agroup__Serde_html_gab0bd3533256d09536a498771f83dec1e"><div class="ttname"><a href="group__Serde.html#gab0bd3533256d09536a498771f83dec1e">ast::aObjectDeserialize</a></div><div class="ttdeci">errc_t aObjectDeserialize(const std::string &amp;input, ESerializationFormat format, Object *object)</div><div class="ttdoc">从指定格式反序列化对象</div><div class="ttdef"><b>定义</b> SerdeAPI.cpp:37</div></div>
+<div class="ttc" id="agroup__Serde_html_gaef43b9b3776f4a31b51199070120c94e"><div class="ttname"><a href="group__Serde.html#gaef43b9b3776f4a31b51199070120c94e">ast::aObjectToCppFile</a></div><div class="ttdeci">errc_t aObjectToCppFile(Object *object, StringView cppfilepath)</div><div class="ttdoc">将对象配置转换为 C++ 代码文件</div><div class="ttdef"><b>定义</b> SerdeAPI.cpp:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_e602c0d48a61b1bd94fee8aaec0c68d8.html">AstSerde</a></li><li class="navelem"><a class="el" href="SerdeAPI_8hpp.html">SerdeAPI.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_720108c7244deada8dab13596962e93b.html">AstUtil</a></li><li class="navelem"><a class="el" href="dir_7050b1ff41cd5be055b62375943f1843.html">Serde</a></li><li class="navelem"><a class="el" href="SerdeAPI_8hpp.html">SerdeAPI.hpp</a></li>
     <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
