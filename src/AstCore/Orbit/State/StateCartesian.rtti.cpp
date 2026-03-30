@@ -12,12 +12,13 @@ static bool StateCartesian_ClassInited = (StateCartesian::ClassInit(&StateCartes
 void StateCartesian::ClassInit(Class* cls)
 {
 
-    cls->addProperty("X", aNewPropertyDouble<StateCartesian, &StateCartesian::getX, &StateCartesian::setX>());
-    cls->addProperty("Y", aNewPropertyDouble<StateCartesian, &StateCartesian::getY, &StateCartesian::setY>());
-    cls->addProperty("Z", aNewPropertyDouble<StateCartesian, &StateCartesian::getZ, &StateCartesian::setZ>());
-    cls->addProperty("Vx", aNewPropertyDouble<StateCartesian, &StateCartesian::getVx, &StateCartesian::setVx>());
-    cls->addProperty("Vy", aNewPropertyDouble<StateCartesian, &StateCartesian::getVy, &StateCartesian::setVy>());
-    cls->addProperty("Vz", aNewPropertyDouble<StateCartesian, &StateCartesian::getVz, &StateCartesian::setVz>());
+    cls->setName("StateCartesian");
+    cls->addProperty("x", aNewPropertyDouble<StateCartesian, &StateCartesian::x, &StateCartesian::setX>());
+    cls->addProperty("y", aNewPropertyDouble<StateCartesian, &StateCartesian::y, &StateCartesian::setY>());
+    cls->addProperty("z", aNewPropertyDouble<StateCartesian, &StateCartesian::z, &StateCartesian::setZ>());
+    cls->addProperty("vx", aNewPropertyDouble<StateCartesian, &StateCartesian::vx, &StateCartesian::setVx>());
+    cls->addProperty("vy", aNewPropertyDouble<StateCartesian, &StateCartesian::vy, &StateCartesian::setVy>());
+    cls->addProperty("vz", aNewPropertyDouble<StateCartesian, &StateCartesian::vz, &StateCartesian::setVz>());
 }
 
 AST_NAMESPACE_END

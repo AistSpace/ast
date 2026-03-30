@@ -29,7 +29,7 @@ AST_NAMESPACE_BEGIN
 /// @brief 反射属性类（bool类型）
 /// @details 反射属性类（bool类型），包含属性的名称、描述等信息
 /// @ingroup RTTI
-class PropertyBool final: public Property
+class AST_UTIL_API PropertyBool final: public Property
 {
 public:
     using Property::Property;

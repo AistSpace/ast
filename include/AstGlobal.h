@@ -30,7 +30,7 @@
  * 前缀 _           ：内部宏
  * 
  * 前缀 AST_WITH_   ：是否带有某个第三方库，例如eigen、boost、fmt、ipopt等
- * 前缀 AST_ENABLE_ ：是否启用某个特定功能，通常是性能、调试、特性的开关，例如调试信息、缓存、日志、AVX2指令集等
+ * 前缀 AST_ENABLE_ ：是否启用某个特定特性，通常是性能、调试、功能的开关，例如调试信息、缓存、日志、后缀名称等
  * 前缀 AST_USE_    ：是否使用某个实现方法，通常是可选、可替换的实现方式，例如不同的算法、不同的数据结构
  * 前缀 AST_HAS_    ：是否具有某个特定功能，通常是指示标准库是否有某功能，例如是否有某个函数、是否有某个类型
  * 前缀 AST_NO_     ：是否不支持某个特定功能、第三方库
@@ -90,9 +90,12 @@
 
 // 定义调试库后缀
 #if defined(_WIN32) && defined(_DEBUG)
-#   define AST_DEBUG_SUFFIX(NAME) NAME "D"
+#   define _AST_DEBUG_SUFFIX "D"
+#   define _AST_ENABLE_DEBUG_SUFFIX  // 内部宏，标识是否启用了调试库后缀
+#   define AST_APPEND_DEBUG(NAME) NAME _AST_DEBUG_SUFFIX
 #else
-#   define AST_DEBUG_SUFFIX(NAME) NAME
+#   undef  _AST_ENABLE_DEBUG_SUFFIX
+#   define AST_APPEND_DEBUG(NAME) NAME
 #endif
 
 

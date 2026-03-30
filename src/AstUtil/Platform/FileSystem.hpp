@@ -69,6 +69,11 @@ namespace filesystem = fs_simple;
 namespace fs = filesystem;
 
 
+/// @brief 获取函数、变量所在模块的路径
+/// @param addr 函数地址/变量地址
+/// @return std::string 模块路径
+AST_UTIL_API std::string aGetModulePathFromAddress(void* addr);
+
 /// @brief 获取当前的AstUtil动态库所在目录
 /// @return 
 AST_UTIL_API std::string aLibDir();

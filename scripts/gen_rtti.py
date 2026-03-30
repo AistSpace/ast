@@ -180,6 +180,7 @@ class BaseHeaderAnalyzer:
         lines.append("{")
         
         lines.append("")  # 空行
+        lines.append(f"    cls->setName(\"{class_info.name}\");")
         
         # 生成addProperty调用
         for _, prop_info in class_info.properties.items():

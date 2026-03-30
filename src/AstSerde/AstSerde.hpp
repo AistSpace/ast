@@ -31,7 +31,7 @@
 AST_NAMESPACE_BEGIN
 
 /*!
-    @addtogroup AstSerde
+    @addtogroup Serde
     @{
 */
 

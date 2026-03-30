@@ -54,12 +54,12 @@ public:
     errc_t getState(CartState& state) const override;
     errc_t setState(const CartState& state) override;
 PROPERTIES:
-    double getX() const { return cartState_.x(); }
-    double getY() const { return cartState_.y(); }
-    double getZ() const { return cartState_.z(); }
-    double getVx() const { return cartState_.vx(); }
-    double getVy() const { return cartState_.vy(); }
-    double getVz() const { return cartState_.vz(); }
+    double x() const { return cartState_.x(); }
+    double y() const { return cartState_.y(); }
+    double z() const { return cartState_.z(); }
+    double vx() const { return cartState_.vx(); }
+    double vy() const { return cartState_.vy(); }
+    double vz() const { return cartState_.vz(); }
     void setX(double x){ cartState_.x() = x; }
     void setY(double y){ cartState_.y() = y; }
     void setZ(double z){ cartState_.z() = z; }

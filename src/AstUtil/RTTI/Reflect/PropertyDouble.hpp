@@ -28,7 +28,7 @@ AST_NAMESPACE_BEGIN
 /// @brief 双精度浮点数属性
 /// @details 双精度浮点数属性，包含属性的名称、描述等信息
 /// @ingroup RTTI
-class PropertyDouble: public Property
+class AST_UTIL_API PropertyDouble: public Property
 {
 public:
     using Property::Property;

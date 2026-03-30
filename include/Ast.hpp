@@ -1,5 +1,5 @@
 ///
-/// @file      CppSerializer.hpp
+/// @file      Ast.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -20,24 +20,10 @@
 
 #pragma once
 
-#include "Serializer.hpp"
-
-AST_NAMESPACE_BEGIN
-
-/*!
-    @addtogroup Serde
-    @{
-*/
-
-
-/// @brief C++代码生成器
-class AST_SERDE_API CppSerializer : public Serializer {
-public:
-    errc_t serialize(Object* object, std::string& output) override;
-    errc_t deserialize(const std::string& input, Object* object) override;
-};
-
-/*! @} */
-
-AST_NAMESPACE_END
-
+#include "AstGlobal.h"
+#include "AstCalc/AstCalc.hpp"
+#include "AstCore/AstCore.hpp"
+#include "AstMath/AstMath.hpp"
+#include "AstUtil/AstUtil.hpp"
+#include "AstScript/AstScript.hpp"
+#include "AstSim/AstSim.hpp"

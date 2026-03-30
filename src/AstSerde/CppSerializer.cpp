@@ -1,24 +1,182 @@
 ///
 /// @file      CppSerializer.cpp
 /// @brief     C++代码生成器实现
+/// @details   
 /// @author    axel
 /// @date      2026-03-30
-/// @copyright 版权所有 (C) 2026-present, ast项目.
+/// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
+/// SpaceAST项目（https://github.com/space-ast/ast）
+/// 本软件基于 Apache 2.0 开源许可证分发。
+/// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
+/// 许可证全文请见：
+/// 
+///    http://www.apache.org/licenses/LICENSE-2.0
+/// 
+/// 重要须知：
+/// 软件按"现有状态"提供，无任何明示或暗示的担保条件。
+/// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
+/// 使用本软件所产生的风险，需由您自行承担。
 
 #include "CppSerializer.hpp"
 #include "SerializationUtils.hpp"
 #include "AstUtil/Class.hpp"
 #include "AstUtil/Property.hpp"
+#include "AstUtil/PropertyBool.hpp"
+#include "AstUtil/PropertyInt.hpp"
+#include "AstUtil/PropertyDouble.hpp"
+#include "AstUtil/PropertyString.hpp"
+#include "AstUtil/PropertyQuantity.hpp"
+#include "AstUtil/PropertyVisitor.hpp"
 #include <sstream>
 
 AST_NAMESPACE_BEGIN
 
+namespace {
+    class CppPropertyVisitor : public PropertyVisitor {
+    public:
+        CppPropertyVisitor(std::ostringstream& oss, int indent)
+            : oss_(oss), indent_(indent) {}
+        
+        errc_t visit(Property& property, const void* container) override {
+            return 0;
+        }
+        
+        errc_t visit(PropertyBool& property, const void* container) override {
+            std::string indentStr(indent_, ' ');
+            std::string propertyName = property.name();
+            
+            // 尝试获取属性值
+            bool value;
+            if (property.getValueBool(container, value) == 0) {
+                oss_ << indentStr << "obj->setAttrBool(\"" << propertyName << "\", " << (value ? "true" : "false") << ");\n";
+            }
+            return 0;
+        }
+        
+        errc_t visit(PropertyInt& property, const void* container) override {
+            std::string indentStr(indent_, ' ');
+            std::string propertyName = property.name();
+            
+            // 尝试获取属性值
+            int value;
+            if (property.getValueInt(container, value) == 0) {
+                oss_ << indentStr << "obj->setAttrInt(\"" << propertyName << "\", " << value << ");\n";
+            }
+            return 0;
+        }
+        
+        errc_t visit(PropertyDouble& property, const void* container) override {
+            std::string indentStr(indent_, ' ');
+            std::string propertyName = property.name();
+            
+            // 尝试获取属性值
+            double value;
+            if (property.getValueDouble(container, value) == 0) {
+                oss_ << indentStr << "obj->setAttrDouble(\"" << propertyName << "\", " << value << ");\n";
+            }
+            return 0;
+        }
+        
+        errc_t visit(PropertyString& property, const void* container) override {
+            std::string indentStr(indent_, ' ');
+            std::string propertyName = property.name();
+            
+            // 尝试获取属性值
+            std::string value;
+            if (reinterpret_cast<const Object*>(container)->getAttrString(propertyName, value) == 0) {
+                oss_ << indentStr << "obj->setAttrString(\"" << propertyName << "\", \"" << value << "\");\n";
+            }
+            return 0;
+        }
+        
+        errc_t visit(PropertyObject& property, const void* container) override {
+            return 0;
+        }
+        
+        errc_t visit(PropertyStruct& property, const void* container) override {
+            return 0;
+        }
+        
+        errc_t visit(PropertyQuantity& property, const void* container) override {
+            return visit(static_cast<PropertyDouble&>(property), container);
+        }
+        
+        errc_t visit(PropertyPOD& property, const void* container) override {
+            return 0;
+        }
+        
+        errc_t visit(PropertyTimePoint& property, const void* container) override {
+            return 0;
+        }
+    
+    private:
+        std::ostringstream& oss_;
+        int indent_;
+    };
+    
+    void serializeProperties(Object* object, Class* clazz, std::ostringstream& oss, int indent) {
+        if (!clazz) return;
+        
+        // 处理父类属性
+        if (clazz->getParent()) {
+            serializeProperties(object, clazz->getParent(), oss, indent);
+        }
+        
+        // 处理当前类属性
+        auto& properties = clazz->getProperties();
+        CppPropertyVisitor visitor(oss, indent);
+        
+        for (auto property : properties) {
+            if (!property) continue;
+            property->accept(visitor, object);
+        }
+    }
+}
+
 errc_t CppSerializer::serialize(Object* object, std::string& output) {
-    return -1;
+    if (!object) {
+        return -1;
+    }
+    
+    std::ostringstream oss;
+    Class* clazz = object->getType();
+    if (!clazz) {
+        return -1;
+    }
+    
+    std::string className = clazz->name();
+    std::string moduleName = clazz->getModuleName();
+    
+    // 生成C++代码
+    oss << "// C++ code generated by SpaceAST's CppSerializer\n";
+    oss << "#include \"" << moduleName << "/" << className << ".hpp\"\n";
+    oss << "\n";
+    oss << "int main() {\n";
+    oss << "    // Create object\n";
+    oss << "    " << className << "* obj = new " << className << "();\n";
+    oss << "    \n";
+    oss << "    // Set properties\n";
+    
+    // 序列化属性
+    serializeProperties(object, clazz, oss, 4);
+    
+    oss << "    \n";
+    oss << "    // Use the object\n";
+    oss << "    // ...\n";
+    oss << "    \n";
+    oss << "    // Clean up\n";
+    oss << "    delete obj;\n";
+    oss << "    return 0;\n";
+    oss << "}\n";
+    
+    output = oss.str();
+    return 0;
 }
 
 errc_t CppSerializer::deserialize(const std::string& input, Object* object) {
+    // 反序列化功能暂不实现
+    // 实际项目中，需要解析C++代码并设置对象属性
     return -1;
 }
 

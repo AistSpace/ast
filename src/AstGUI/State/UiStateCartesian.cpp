@@ -134,12 +134,12 @@ void UiStateCartesian::setStateCartesian(StateCartesian* state)
         stateCartesian_ = state;
         
         // 设置位置和速度值
-        posXEdit_->setQuantity(Quantity(state->getX(), m));
-        posYEdit_->setQuantity(Quantity(state->getY(), m));
-        posZEdit_->setQuantity(Quantity(state->getZ(), m));
-        velXEdit_->setQuantity(Quantity(state->getVx(), m / s));
-        velYEdit_->setQuantity(Quantity(state->getVy(), m / s));
-        velZEdit_->setQuantity(Quantity(state->getVz(), m / s));
+        posXEdit_->setQuantity(Quantity(state->x(), m));
+        posYEdit_->setQuantity(Quantity(state->y(), m));
+        posZEdit_->setQuantity(Quantity(state->z(), m));
+        velXEdit_->setQuantity(Quantity(state->vx(), m / s));
+        velYEdit_->setQuantity(Quantity(state->vy(), m / s));
+        velZEdit_->setQuantity(Quantity(state->vz(), m / s));
         
         // 这里可以添加代码，设置轨道历元、坐标系等其他属性
     }
