@@ -1,5 +1,5 @@
 var classast_1_1SecantSolver =
 [
-    [ "solve", "classast_1_1SecantSolver.html#a097e8c7201ce12695046788db7019b17", null ],
-    [ "solve", "classast_1_1SecantSolver.html#aed7fb6ed88ae1c1459144c4c509c714f", null ]
+    [ "solve", "classast_1_1SecantSolver.html#a85ed3aeddc5f0eb1a5851a1e5b3dce1c", null ],
+    [ "solve", "classast_1_1SecantSolver.html#ae3e8ad3d1ed39e2f429de1d4395f92fb", null ]
 ];

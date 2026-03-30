@@ -124,16 +124,16 @@ $(function(){initNavTree('classast_1_1Serializer.html',''); initResizable(true);
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a55ce3e46620e2871f815c4eec0bd7df9" id="r_a55ce3e46620e2871f815c4eec0bd7df9"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55ce3e46620e2871f815c4eec0bd7df9">serialize</a> (<a class="el" href="classast_1_1Object.html">Object</a> *object, std::string &amp;output)=0</td></tr>
-<tr class="separator:a55ce3e46620e2871f815c4eec0bd7df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e4ad2b6c8db952d75267da87d4c306b" id="r_a9e4ad2b6c8db952d75267da87d4c306b"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e4ad2b6c8db952d75267da87d4c306b">deserialize</a> (const std::string &amp;input, <a class="el" href="classast_1_1Object.html">Object</a> *object)=0</td></tr>
-<tr class="separator:a9e4ad2b6c8db952d75267da87d4c306b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea3c7763876583dedddbdf494927921c" id="r_aea3c7763876583dedddbdf494927921c"><td class="memItemLeft" align="right" valign="top">virtual errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea3c7763876583dedddbdf494927921c">serialize</a> (<a class="el" href="classast_1_1Object.html">Object</a> *object, std::string &amp;output)=0</td></tr>
+<tr class="separator:aea3c7763876583dedddbdf494927921c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbab2673a6026a7298ee96ba0d151305" id="r_abbab2673a6026a7298ee96ba0d151305"><td class="memItemLeft" align="right" valign="top">virtual errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbab2673a6026a7298ee96ba0d151305">deserialize</a> (const std::string &amp;input, <a class="el" href="classast_1_1Object.html">Object</a> *object)=0</td></tr>
+<tr class="separator:abbab2673a6026a7298ee96ba0d151305"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>序列化器基类 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="a9e4ad2b6c8db952d75267da87d4c306b" name="a9e4ad2b6c8db952d75267da87d4c306b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e4ad2b6c8db952d75267da87d4c306b">&#9670;&#160;</a></span>deserialize()</h2>
+<a id="abbab2673a6026a7298ee96ba0d151305" name="abbab2673a6026a7298ee96ba0d151305"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbab2673a6026a7298ee96ba0d151305">&#9670;&#160;</a></span>deserialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -142,7 +142,7 @@ Public 成员函数</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual err_t ast::Serializer::deserialize </td>
+          <td class="memname">virtual errc_t ast::Serializer::deserialize </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>input</em></span>, </td>
         </tr>
@@ -169,12 +169,12 @@ Public 成员函数</h2></td></tr>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1CppSerializer.html#a8e59e31abd09e93cfabb56ca0a630d46">ast::CppSerializer</a>, <a class="el" href="classast_1_1JavaSerializer.html#ae98698df7cee7e02371c42fa7d526742">ast::JavaSerializer</a>, <a class="el" href="classast_1_1JsonSerializer.html#a60568bf3185d3b407276f59c763ff507">ast::JsonSerializer</a>, <a class="el" href="classast_1_1PythonSerializer.html#a5a7caf0b9380f5aca367a1897170e50b">ast::PythonSerializer</a> , 以及 <a class="el" href="classast_1_1XmlSerializer.html#afa2cec847b42f600806a15aae3e0a0dd">ast::XmlSerializer</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1CppSerializer.html#a241bd580ca132157de2265f05f530e26">ast::CppSerializer</a>, <a class="el" href="classast_1_1JavaSerializer.html#a5080dafbd3117b90c61214864e71effc">ast::JavaSerializer</a>, <a class="el" href="classast_1_1JsonSerializer.html#a5cd749d76a982e47e8f850cc9f9be5d8">ast::JsonSerializer</a>, <a class="el" href="classast_1_1PythonSerializer.html#a5e89852c8a7538b15859815e9024f200">ast::PythonSerializer</a> , 以及 <a class="el" href="classast_1_1XmlSerializer.html#ad8b51c24715d06644403a6e874693dde">ast::XmlSerializer</a> 内被实现.</p>
 
 </div>
 </div>
-<a id="a55ce3e46620e2871f815c4eec0bd7df9" name="a55ce3e46620e2871f815c4eec0bd7df9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55ce3e46620e2871f815c4eec0bd7df9">&#9670;&#160;</a></span>serialize()</h2>
+<a id="aea3c7763876583dedddbdf494927921c" name="aea3c7763876583dedddbdf494927921c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea3c7763876583dedddbdf494927921c">&#9670;&#160;</a></span>serialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +183,7 @@ Public 成员函数</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual err_t ast::Serializer::serialize </td>
+          <td class="memname">virtual errc_t ast::Serializer::serialize </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classast_1_1Object.html">Object</a> *</td>          <td class="paramname"><span class="paramname"><em>object</em></span>, </td>
         </tr>
@@ -210,7 +210,7 @@ Public 成员函数</h2></td></tr>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1CppSerializer.html#a31cea2adc34dbd8d14bcbc4abffb08c0">ast::CppSerializer</a>, <a class="el" href="classast_1_1JavaSerializer.html#acdf1c0f5088fc29ab2d517eb7a757540">ast::JavaSerializer</a>, <a class="el" href="classast_1_1JsonSerializer.html#a92a3fec7c4008deb11bf990821a64ce6">ast::JsonSerializer</a>, <a class="el" href="classast_1_1PythonSerializer.html#ac2919fb883a57ef23749679538ea1183">ast::PythonSerializer</a> , 以及 <a class="el" href="classast_1_1XmlSerializer.html#afc91bd7d798463b9307e5162981c292d">ast::XmlSerializer</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1CppSerializer.html#a82ce8c62f7c562722543bf2105132de3">ast::CppSerializer</a>, <a class="el" href="classast_1_1JavaSerializer.html#a51374307ae6915035c3cb1a6570262fc">ast::JavaSerializer</a>, <a class="el" href="classast_1_1JsonSerializer.html#a7d7a7b351f485ef5e7a2fb0b9d36f86a">ast::JsonSerializer</a>, <a class="el" href="classast_1_1PythonSerializer.html#adf3f23d9e58d4330831a06b272b30412">ast::PythonSerializer</a> , 以及 <a class="el" href="classast_1_1XmlSerializer.html#a902eef50e4758b0f2c31f93b3f3aa0f9">ast::XmlSerializer</a> 内被实现.</p>
 
 </div>
 </div>

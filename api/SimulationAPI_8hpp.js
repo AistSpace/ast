@@ -10,6 +10,6 @@ var SimulationAPI_8hpp =
     [ "aGetOutputPortRealSignal", "SimulationAPI_8hpp.html#a30843f3a4f566f1d18f40a96041bde54", null ],
     [ "aGetOutputPortSignal", "SimulationAPI_8hpp.html#a33d0f2fd3f50f38098e542fe9ff44189", null ],
     [ "aGetOutputPortWidth", "SimulationAPI_8hpp.html#ae692331576d0a2db7402b684d8c3dd1b", null ],
-    [ "aSetInputPortRealSignal", "SimulationAPI_8hpp.html#a75b5207aadbc00436983fda53b54638a", null ],
-    [ "aSetOutputPortRealSignal", "SimulationAPI_8hpp.html#a8ece34d6473e3d17dba3a888d3287375", null ]
+    [ "aSetInputPortRealSignal", "SimulationAPI_8hpp.html#a3287f1604c2b8863930e77e7465d861d", null ],
+    [ "aSetOutputPortRealSignal", "SimulationAPI_8hpp.html#a535095762f75138397446877ff73879f", null ]
 ];

@@ -18,14 +18,14 @@ var classast_1_1JplDe =
     ] ],
     [ "close", "classast_1_1JplDe.html#a3195e2f276145ea57d57672b7b62d082", null ],
     [ "getEphemVersion", "classast_1_1JplDe.html#ab9160925a27f8e35768b5dc441f3bf94", null ],
-    [ "getInterval", "classast_1_1JplDe.html#a50d4cc4bd6aa002e0da827ebf685c804", null ],
-    [ "getLibration", "classast_1_1JplDe.html#a1f9d4ae572b00df5f6ce9504f5289d8b", null ],
-    [ "getLibration", "classast_1_1JplDe.html#a774445d2213085dbe0cf6762b0b5c67b", null ],
-    [ "getLibration", "classast_1_1JplDe.html#ac92aeeb67ec540daa23f2372cda198d8", null ],
-    [ "getNutation", "classast_1_1JplDe.html#a8b465f6eaffab64f90d28bb1ded102aa", null ],
-    [ "getPosICRF", "classast_1_1JplDe.html#a1357868f01604bcb18bc9d9997b6bb78", null ],
-    [ "getPosICRF_TT", "classast_1_1JplDe.html#aa661732c4473bcd5033a26c96272b90d", null ],
-    [ "getPosVelICRF", "classast_1_1JplDe.html#acc9aeda56b8fb657949330a691e12d0f", null ],
+    [ "getInterval", "classast_1_1JplDe.html#a14a512b0c746d82b6c457c66b200ec27", null ],
+    [ "getLibration", "classast_1_1JplDe.html#af5060c7620bc5f1b39919697be4e496c", null ],
+    [ "getLibration", "classast_1_1JplDe.html#a6c1cae554adcc0c612d1d303b17ba212", null ],
+    [ "getLibration", "classast_1_1JplDe.html#af96bc1f933442d1850412439135d0e51", null ],
+    [ "getNutation", "classast_1_1JplDe.html#a6de1a789341b98d20c2aca8e7c8fef79", null ],
+    [ "getPosICRF", "classast_1_1JplDe.html#a52c8ad80c39239da62e88402b5e021c6", null ],
+    [ "getPosICRF_TT", "classast_1_1JplDe.html#aa2307f8772164888dde55d3334c0e3fb", null ],
+    [ "getPosVelICRF", "classast_1_1JplDe.html#a5f24a3f16d883a2784fdb2ddfe0409a1", null ],
     [ "isOpen", "classast_1_1JplDe.html#a5091d44c89924335deb184e72715723d", null ],
-    [ "open", "classast_1_1JplDe.html#aa45e7778ca7853a1fbb406b2448c38a3", null ]
+    [ "open", "classast_1_1JplDe.html#a727b248bd76d1b029b7bf9041cb8fc14", null ]
 ];

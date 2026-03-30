@@ -120,7 +120,7 @@ $(function(){initNavTree('StartupConfig_8hpp_source.html',''); initResizable(tru
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_class" href="classast_1_1StartupConfig.html">StartupConfig</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_class" href="classast_1_1StartupConfig.html">~StartupConfig</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    err_t load(<a class="code hl_class" href="classast_1_1StringViewBasic.html">StringView</a> filepath);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    errc_t load(<a class="code hl_class" href="classast_1_1StringViewBasic.html">StringView</a> filepath);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_class" href="classast_1_1ValueView.html">ValueView</a> getConfig(<a class="code hl_class" href="classast_1_1StringViewBasic.html">StringView</a> key) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
@@ -130,7 +130,7 @@ $(function(){initNavTree('StartupConfig_8hpp_source.html',''); initResizable(tru
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    std::vector&lt;StringView&gt; getStringViewVector(<a class="code hl_class" href="classast_1_1StringViewBasic.html">StringView</a> key) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    err_t getConfig(<a class="code hl_class" href="classast_1_1StringViewBasic.html">StringView</a> key, <a class="code hl_class" href="classast_1_1ValueView.html">ValueView</a> &amp;value) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    errc_t getConfig(<a class="code hl_class" href="classast_1_1StringViewBasic.html">StringView</a> key, <a class="code hl_class" href="classast_1_1ValueView.html">ValueView</a> &amp;value) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">public</span>: <span class="comment">// 修改配置</span></div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>

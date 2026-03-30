@@ -16,9 +16,9 @@ var classast_1_1EOP =
     [ "getXYCorrection", "classast_1_1EOP.html#ae0b49db795fff8bc73112a97252e0405", null ],
     [ "getXYCorrectionUTC", "classast_1_1EOP.html#a3de94b39447a424e8e28ae16c781eb00", null ],
     [ "getXYCorrectionUTCMJD", "classast_1_1EOP.html#a4a11646ef0c5dfcafcda72aa6ea5f123", null ],
-    [ "load", "classast_1_1EOP.html#ab2c076d1800f14d8830177fed57f36a1", null ],
-    [ "loadDefault", "classast_1_1EOP.html#adf23dd8875fee92af98e99573db2bd9a", null ],
-    [ "setEntry", "classast_1_1EOP.html#a76a56437b9340a5521d2756f023a6c63", null ],
+    [ "load", "classast_1_1EOP.html#ab291ad95a98769018ed1bb6c3e2f3c42", null ],
+    [ "loadDefault", "classast_1_1EOP.html#a967153d16bf7c9ae58258f1c89c3aa05", null ],
+    [ "setEntry", "classast_1_1EOP.html#a064dcb52fa9d4712c844145fa8f07ddd", null ],
     [ "size", "classast_1_1EOP.html#a1d81ece0da0f48b501c1004e184b2f4a", null ],
     [ "unload", "classast_1_1EOP.html#ad22f08d4b6dd5af598de1f9986225d85", null ]
 ];

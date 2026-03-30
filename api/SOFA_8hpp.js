@@ -12,7 +12,7 @@ var SOFA_8hpp =
     [ "aNutation_IERS1996", "SOFA_8hpp.html#af01f70ad0322291b74d4cbfc99cccd2a", null ],
     [ "aNutationFuncSet", "SOFA_8hpp.html#a02d9806e4f3e5bd79a3faba8a44d2ad4", null ],
     [ "aNutationMethodGet", "SOFA_8hpp.html#a964414a5f16ed2a874e02aa19af1129e", null ],
-    [ "aNutationMethodSet", "SOFA_8hpp.html#ace797c75c8b047ff468d01432be425fa", null ],
+    [ "aNutationMethodSet", "SOFA_8hpp.html#a914b7293a4d365eac439568ee4b12a46", null ],
     [ "aPrecession_IAU1976", "SOFA_8hpp.html#a3225043e53c75ba439d6530732c65b78", null ],
     [ "aPrecession_IAU1976", "SOFA_8hpp.html#af57cd650f14fa0b1587bf66c47bf65db", null ]
 ];

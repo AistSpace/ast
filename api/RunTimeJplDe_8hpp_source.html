@@ -109,7 +109,7 @@ $(function(){initNavTree('RunTimeJplDe_8hpp_source.html',''); initResizable(true
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>AST_NAMESPACE_BEGIN</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>AST_CORE_CAPI err_t <a class="code hl_function" href="group__Data.html#ga79a618c1dd5bc55893f49dcb00007b9e">aJplDeGetPosVelICRF</a>(</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>AST_CORE_CAPI errc_t <a class="code hl_function" href="group__Data.html#ga661ae47f751ba36a708531f5ee98c87f">aJplDeGetPosVelICRF</a>(</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">const</span> TimePoint&amp; time, </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">int</span> target, </div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">int</span> referenceBody, </div>
@@ -117,7 +117,7 @@ $(function(){initNavTree('RunTimeJplDe_8hpp_source.html',''); initResizable(true
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    Vector3d&amp; vel</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>AST_CORE_CAPI err_t <a class="code hl_function" href="group__Data.html#gacdd9c100a086d822affd42b958c7ab94">aJplDeGetPosICRF</a>(</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>AST_CORE_CAPI errc_t <a class="code hl_function" href="group__Data.html#gad530216cfe97223b2814407f6d2fa8fb">aJplDeGetPosICRF</a>(</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">const</span> TimePoint&amp; time,</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">int</span> target,</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">int</span> referenceBody,</div>
@@ -125,25 +125,25 @@ $(function(){initNavTree('RunTimeJplDe_8hpp_source.html',''); initResizable(true
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>);</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>AST_CORE_CAPI err_t <a class="code hl_function" href="group__Data.html#gab4fe9a815aac36c9f076f99c27ee5a69">aJplDeGetNutation</a>(</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>AST_CORE_CAPI errc_t <a class="code hl_function" href="group__Data.html#ga6e42534eca512b4717d3cc68f2e47bcc">aJplDeGetNutation</a>(</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">const</span> TimePoint&amp; time,</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">double</span>&amp; dpsi,</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">double</span>&amp; deps</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>AST_CORE_API err_t <a class="code hl_function" href="group__Data.html#gaca8df8b06f1508da070156e818d0644a">aJplDeGetLibration</a>(</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>AST_CORE_API errc_t <a class="code hl_function" href="group__Data.html#gac62e0c9b88e684ccae7162dfd53a97b7">aJplDeGetLibration</a>(</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">const</span> TimePoint&amp; time,</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    Vector3d&amp; ang</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>);</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>AST_CORE_API err_t <a class="code hl_function" href="group__Data.html#gaca8df8b06f1508da070156e818d0644a">aJplDeGetLibration</a>(</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>AST_CORE_API errc_t <a class="code hl_function" href="group__Data.html#gac62e0c9b88e684ccae7162dfd53a97b7">aJplDeGetLibration</a>(</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">const</span> TimePoint&amp; time,</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    Euler&amp; ang</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>);</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>AST_CORE_CAPI err_t <a class="code hl_function" href="group__Data.html#ga14f9e9da003f9ee3a7f3dd22e9973e6b">aJplDeGetInterval</a>(</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>AST_CORE_CAPI errc_t <a class="code hl_function" href="group__Data.html#ga5de66a30a52c73c428ccde6cbe571538">aJplDeGetInterval</a>(</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    TimeInterval&amp; interval</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>);</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
@@ -151,7 +151,7 @@ $(function(){initNavTree('RunTimeJplDe_8hpp_source.html',''); initResizable(true
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>AST_CORE_CAPI <span class="keywordtype">int</span> <a class="code hl_function" href="group__Data.html#gadaaaff473ede71f83781bc5623a395e7">aJplDeNum</a>();</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>AST_CORE_CAPI err_t <a class="code hl_function" href="group__Data.html#ga886ee9d50d1b42b6924045ba73f515b0">aJplDeOpen</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* filepath);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>AST_CORE_CAPI errc_t <a class="code hl_function" href="group__Data.html#gac717390015f4a2e29c2ac0e1beeadb34">aJplDeOpen</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* filepath);</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
@@ -159,13 +159,13 @@ $(function(){initNavTree('RunTimeJplDe_8hpp_source.html',''); initResizable(true
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>AST_NAMESPACE_END</div>
-<div class="ttc" id="agroup__Data_html_ga14f9e9da003f9ee3a7f3dd22e9973e6b"><div class="ttname"><a href="group__Data.html#ga14f9e9da003f9ee3a7f3dd22e9973e6b">ast::aJplDeGetInterval</a></div><div class="ttdeci">err_t aJplDeGetInterval(TimeInterval &amp;interval)</div><div class="ttdoc">获取JPL DE星历数据的时间间隔</div><div class="ttdef"><b>定义</b> RunTime.cpp:514</div></div>
-<div class="ttc" id="agroup__Data_html_ga79a618c1dd5bc55893f49dcb00007b9e"><div class="ttname"><a href="group__Data.html#ga79a618c1dd5bc55893f49dcb00007b9e">ast::aJplDeGetPosVelICRF</a></div><div class="ttdeci">err_t aJplDeGetPosVelICRF(const TimePoint &amp;time, int target, int referenceBody, Vector3d &amp;pos, Vector3d &amp;vel)</div><div class="ttdoc">获取JPL DE星历数据的位置和速度（ICRF）</div><div class="ttdef"><b>定义</b> RunTime.cpp:467</div></div>
+<div class="ttc" id="agroup__Data_html_ga5de66a30a52c73c428ccde6cbe571538"><div class="ttname"><a href="group__Data.html#ga5de66a30a52c73c428ccde6cbe571538">ast::aJplDeGetInterval</a></div><div class="ttdeci">errc_t aJplDeGetInterval(TimeInterval &amp;interval)</div><div class="ttdoc">获取JPL DE星历数据的时间间隔</div><div class="ttdef"><b>定义</b> RunTime.cpp:514</div></div>
+<div class="ttc" id="agroup__Data_html_ga661ae47f751ba36a708531f5ee98c87f"><div class="ttname"><a href="group__Data.html#ga661ae47f751ba36a708531f5ee98c87f">ast::aJplDeGetPosVelICRF</a></div><div class="ttdeci">errc_t aJplDeGetPosVelICRF(const TimePoint &amp;time, int target, int referenceBody, Vector3d &amp;pos, Vector3d &amp;vel)</div><div class="ttdoc">获取JPL DE星历数据的位置和速度（ICRF）</div><div class="ttdef"><b>定义</b> RunTime.cpp:467</div></div>
+<div class="ttc" id="agroup__Data_html_ga6e42534eca512b4717d3cc68f2e47bcc"><div class="ttname"><a href="group__Data.html#ga6e42534eca512b4717d3cc68f2e47bcc">ast::aJplDeGetNutation</a></div><div class="ttdeci">errc_t aJplDeGetNutation(const TimePoint &amp;time, double &amp;dpsi, double &amp;deps)</div><div class="ttdoc">获取JPL DE星历数据的中章动角数据</div><div class="ttdef"><b>定义</b> RunTime.cpp:490</div></div>
 <div class="ttc" id="agroup__Data_html_ga86326fcd6c451bdbaff8e7d5cecd9215"><div class="ttname"><a href="group__Data.html#ga86326fcd6c451bdbaff8e7d5cecd9215">ast::aJplDeClose</a></div><div class="ttdeci">void aJplDeClose()</div><div class="ttdoc">关闭JPL DE星历数据文件</div><div class="ttdef"><b>定义</b> RunTime.cpp:526</div></div>
-<div class="ttc" id="agroup__Data_html_ga886ee9d50d1b42b6924045ba73f515b0"><div class="ttname"><a href="group__Data.html#ga886ee9d50d1b42b6924045ba73f515b0">ast::aJplDeOpen</a></div><div class="ttdeci">err_t aJplDeOpen(const char *filepath)</div><div class="ttdoc">打开JPL DE星历数据文件</div><div class="ttdef"><b>定义</b> RunTime.cpp:520</div></div>
-<div class="ttc" id="agroup__Data_html_gab4fe9a815aac36c9f076f99c27ee5a69"><div class="ttname"><a href="group__Data.html#gab4fe9a815aac36c9f076f99c27ee5a69">ast::aJplDeGetNutation</a></div><div class="ttdeci">err_t aJplDeGetNutation(const TimePoint &amp;time, double &amp;dpsi, double &amp;deps)</div><div class="ttdoc">获取JPL DE星历数据的中章动角数据</div><div class="ttdef"><b>定义</b> RunTime.cpp:490</div></div>
-<div class="ttc" id="agroup__Data_html_gaca8df8b06f1508da070156e818d0644a"><div class="ttname"><a href="group__Data.html#gaca8df8b06f1508da070156e818d0644a">ast::aJplDeGetLibration</a></div><div class="ttdeci">err_t aJplDeGetLibration(const TimePoint &amp;time, Vector3d &amp;ang)</div><div class="ttdoc">获取JPL DE星历数据的月面天平动相关角度</div><div class="ttdef"><b>定义</b> RunTime.cpp:496</div></div>
-<div class="ttc" id="agroup__Data_html_gacdd9c100a086d822affd42b958c7ab94"><div class="ttname"><a href="group__Data.html#gacdd9c100a086d822affd42b958c7ab94">ast::aJplDeGetPosICRF</a></div><div class="ttdeci">err_t aJplDeGetPosICRF(const TimePoint &amp;time, int target, int referenceBody, Vector3d &amp;pos)</div><div class="ttdoc">获取JPL DE星历数据的位置（ICRF）</div><div class="ttdef"><b>定义</b> RunTime.cpp:479</div></div>
+<div class="ttc" id="agroup__Data_html_gac62e0c9b88e684ccae7162dfd53a97b7"><div class="ttname"><a href="group__Data.html#gac62e0c9b88e684ccae7162dfd53a97b7">ast::aJplDeGetLibration</a></div><div class="ttdeci">errc_t aJplDeGetLibration(const TimePoint &amp;time, Vector3d &amp;ang)</div><div class="ttdoc">获取JPL DE星历数据的月面天平动相关角度</div><div class="ttdef"><b>定义</b> RunTime.cpp:496</div></div>
+<div class="ttc" id="agroup__Data_html_gac717390015f4a2e29c2ac0e1beeadb34"><div class="ttname"><a href="group__Data.html#gac717390015f4a2e29c2ac0e1beeadb34">ast::aJplDeOpen</a></div><div class="ttdeci">errc_t aJplDeOpen(const char *filepath)</div><div class="ttdoc">打开JPL DE星历数据文件</div><div class="ttdef"><b>定义</b> RunTime.cpp:520</div></div>
+<div class="ttc" id="agroup__Data_html_gad530216cfe97223b2814407f6d2fa8fb"><div class="ttname"><a href="group__Data.html#gad530216cfe97223b2814407f6d2fa8fb">ast::aJplDeGetPosICRF</a></div><div class="ttdeci">errc_t aJplDeGetPosICRF(const TimePoint &amp;time, int target, int referenceBody, Vector3d &amp;pos)</div><div class="ttdoc">获取JPL DE星历数据的位置（ICRF）</div><div class="ttdef"><b>定义</b> RunTime.cpp:479</div></div>
 <div class="ttc" id="agroup__Data_html_gadaaaff473ede71f83781bc5623a395e7"><div class="ttname"><a href="group__Data.html#gadaaaff473ede71f83781bc5623a395e7">ast::aJplDeNum</a></div><div class="ttdeci">int aJplDeNum()</div><div class="ttdoc">获取JPL DE星历数据的版本号</div><div class="ttdef"><b>定义</b> RunTime.cpp:508</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

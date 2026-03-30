@@ -1,32 +1,32 @@
 var group__NLE =
 [
     [ "ast::BisectionSolver", "classast_1_1BisectionSolver.html", [
-      [ "solve", "classast_1_1BisectionSolver.html#a097e8c7201ce12695046788db7019b17", null ],
-      [ "solve", "classast_1_1BisectionSolver.html#ab0beb85cc18bf602e44ad4fcd2485d65", null ]
+      [ "solve", "classast_1_1BisectionSolver.html#a85ed3aeddc5f0eb1a5851a1e5b3dce1c", null ],
+      [ "solve", "classast_1_1BisectionSolver.html#a29f815d4ba5860c6f5a0f557d83cf4bf", null ]
     ] ],
     [ "ast::BrentqSolver", "classast_1_1BrentqSolver.html", [
-      [ "solve", "classast_1_1BrentqSolver.html#a097e8c7201ce12695046788db7019b17", null ],
-      [ "solve", "classast_1_1BrentqSolver.html#a4e3fe47f49ce425f87913c8a4d6f21a4", null ],
+      [ "solve", "classast_1_1BrentqSolver.html#a85ed3aeddc5f0eb1a5851a1e5b3dce1c", null ],
+      [ "solve", "classast_1_1BrentqSolver.html#a0b2c399a057a12d30e61768e5304390d", null ],
       [ "UnarySolver", "classast_1_1BrentqSolver.html#a10e51810834979c771e146426d6e86f3", null ],
       [ "UnarySolver", "classast_1_1BrentqSolver.html#a9ce01f876fde324f992b2b1ac1d9caeb", null ]
     ] ],
     [ "ast::BrenthSolver", "classast_1_1BrenthSolver.html", [
-      [ "solve", "classast_1_1BrenthSolver.html#a097e8c7201ce12695046788db7019b17", null ],
-      [ "solve", "classast_1_1BrenthSolver.html#aa81235a8ab04ef3cec6fdeba3d7c3773", null ],
+      [ "solve", "classast_1_1BrenthSolver.html#a85ed3aeddc5f0eb1a5851a1e5b3dce1c", null ],
+      [ "solve", "classast_1_1BrenthSolver.html#a5daaf70ab12d4f452892bb4dd66e2539", null ],
       [ "UnarySolver", "classast_1_1BrenthSolver.html#a10e51810834979c771e146426d6e86f3", null ],
       [ "UnarySolver", "classast_1_1BrenthSolver.html#a9ce01f876fde324f992b2b1ac1d9caeb", null ]
     ] ],
     [ "ast::RidderSolver", "classast_1_1RidderSolver.html", [
-      [ "solve", "classast_1_1RidderSolver.html#a097e8c7201ce12695046788db7019b17", null ],
-      [ "solve", "classast_1_1RidderSolver.html#a1c2c5891960b50ab15ed661a4c889b4e", null ]
+      [ "solve", "classast_1_1RidderSolver.html#a85ed3aeddc5f0eb1a5851a1e5b3dce1c", null ],
+      [ "solve", "classast_1_1RidderSolver.html#adce16c903462b526ebefc6a7456ab4ce", null ]
     ] ],
     [ "ast::SecantSolver", "classast_1_1SecantSolver.html", [
-      [ "solve", "classast_1_1SecantSolver.html#a097e8c7201ce12695046788db7019b17", null ],
-      [ "solve", "classast_1_1SecantSolver.html#aed7fb6ed88ae1c1459144c4c509c714f", null ]
+      [ "solve", "classast_1_1SecantSolver.html#a85ed3aeddc5f0eb1a5851a1e5b3dce1c", null ],
+      [ "solve", "classast_1_1SecantSolver.html#ae3e8ad3d1ed39e2f429de1d4395f92fb", null ]
     ] ],
     [ "ast::SolverStats", "structast_1_1SolverStats.html", null ],
     [ "ast::IUnarySolver", "classast_1_1IUnarySolver.html", [
-      [ "solve", "classast_1_1IUnarySolver.html#a99602bbf6ea0d132f0aad5259b35bfa2", null ]
+      [ "solve", "classast_1_1IUnarySolver.html#a5da948a9f71ec5303b8769450fefd631", null ]
     ] ],
     [ "ast::UnarySolver", "classast_1_1UnarySolver.html", [
       [ "UnarySolver", "classast_1_1UnarySolver.html#a9ce01f876fde324f992b2b1ac1d9caeb", null ],
@@ -38,8 +38,8 @@ var group__NLE =
       [ "setAbsTol", "classast_1_1UnarySolver.html#aff655ba2415cd81bde896134a6de1ba0", null ],
       [ "setMaxIter", "classast_1_1UnarySolver.html#a3d5f3ef6be352367c53a7076183cf246", null ],
       [ "setRelTol", "classast_1_1UnarySolver.html#a1474da0302ac85d7817072179a042b2c", null ],
-      [ "solve", "classast_1_1UnarySolver.html#a097e8c7201ce12695046788db7019b17", null ],
-      [ "solve", "classast_1_1UnarySolver.html#a99602bbf6ea0d132f0aad5259b35bfa2", null ],
+      [ "solve", "classast_1_1UnarySolver.html#a85ed3aeddc5f0eb1a5851a1e5b3dce1c", null ],
+      [ "solve", "classast_1_1UnarySolver.html#a5da948a9f71ec5303b8769450fefd631", null ],
       [ "absTol_", "classast_1_1UnarySolver.html#a278e223855671c9d6a1b31ab23f73adf", null ],
       [ "maxIter_", "classast_1_1UnarySolver.html#a096edae7eb3d3fc0269c420398377de1", null ],
       [ "relTol_", "classast_1_1UnarySolver.html#ae4ead6da0360421cd483d10cf2fd95cd", null ],

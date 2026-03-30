@@ -2,9 +2,9 @@ var classast_1_1CircularOrbitDesigner =
 [
     [ "getAltitude", "classast_1_1CircularOrbitDesigner.html#a80c6d0f9db893f193cc87dba2586e380", null ],
     [ "getInclination", "classast_1_1CircularOrbitDesigner.html#ae3fd781aa58475aecccc194f7858d7af", null ],
-    [ "getOrbitState", "classast_1_1CircularOrbitDesigner.html#ab3cb096abf0c2bb9b007f62555c2365c", null ],
-    [ "getOrbitState", "classast_1_1CircularOrbitDesigner.html#a52a3d1ef9cf63a41b643729ffdb177ae", null ],
-    [ "getOrbitState", "classast_1_1CircularOrbitDesigner.html#a55c737b189f52bac72e246636527604a", null ],
+    [ "getOrbitState", "classast_1_1CircularOrbitDesigner.html#ae04a7e2e04e444075df14bf98bc37db6", null ],
+    [ "getOrbitState", "classast_1_1CircularOrbitDesigner.html#a331a2dddc77b2628b77f9f89342bfc3a", null ],
+    [ "getOrbitState", "classast_1_1CircularOrbitDesigner.html#a8bf96b52df781fc6598d96fafe9b3b49", null ],
     [ "getRAAN", "classast_1_1CircularOrbitDesigner.html#a1017c352e5f8b88d7068ee6feba608f2", null ],
     [ "setAltitude", "classast_1_1CircularOrbitDesigner.html#a2a0c0687c187d965d04d91e1368cac06", null ],
     [ "setInclination", "classast_1_1CircularOrbitDesigner.html#af72ad5616a35967f28eb463cc984e218", null ],

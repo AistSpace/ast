@@ -24,8 +24,8 @@ var group__Util =
     [ "ast::SinCos", "classast_1_1SinCos.html", null ],
     [ "ast::Polynomial", "classast_1_1Polynomial.html", [
       [ "eval", "group__Util.html#gaad67fee67dde91d39aea8e0b9ebacbee", null ],
-      [ "parse", "classast_1_1Polynomial.html#a09f281d55ea1c0e57cbc026cdbfe3451", null ],
-      [ "parse", "classast_1_1Polynomial.html#a7c6b2814b7b8fc3f956720c4433a9ac1", null ],
+      [ "parse", "classast_1_1Polynomial.html#ad7d714ad2fc6ec23c384e1034d1bb4dd", null ],
+      [ "parse", "classast_1_1Polynomial.html#a7d65d2fabeed2a6cf14451c265387731", null ],
       [ "toString", "classast_1_1Polynomial.html#a15d601a475b507decfe5f784509dd1b4", null ]
     ] ],
     [ "ast::WorkingDirectory", "classast_1_1WorkingDirectory.html", [
@@ -197,9 +197,9 @@ var group__Util =
     [ "ast::aColorToRGBA", "group__Util.html#ga924b82626c144275a12826e154af64c4", null ],
     [ "ast::acosd", "group__Util.html#gac806bd7b674d45101bed2b074eec2f36", null ],
     [ "ast::aDataDir", "group__Util.html#gad98bdd67f1f6fb3c6f78889f92a20369", null ],
-    [ "ast::aDataDir", "group__Util.html#ga6efc3c3bcb1d1c859a7e1a31d9b051ef", null ],
+    [ "ast::aDataDir", "group__Util.html#ga602bf5d595d538f0a1a1d690e8b4a5e5", null ],
     [ "ast::aDataDirGetDefault", "group__Util.html#gaafc868fd728b48229902860ae16a0f0b", null ],
-    [ "ast::aDataDirGetDefault", "group__Util.html#ga6954d408c7337a888f6c8c8869ed607c", null ],
+    [ "ast::aDataDirGetDefault", "group__Util.html#gacd7295b95b999fc4c152788a9a40a6ca", null ],
     [ "ast::aDebugBreak", "group__Util.html#ga34a9659895a0a3e8e4d41e257d884145", null ],
     [ "ast::aFormatPolynomial", "group__Util.html#ga24462254330f46f79ee9866f1a04d85f", null ],
     [ "ast::aLightSpeed", "group__Util.html#gac54935ab9eb916aacfb54ccb56d74a6f", null ],
@@ -210,8 +210,8 @@ var group__Util =
     [ "ast::aNormalizeAngleNeg2PiTo0", "group__Util.html#gae34aefa61d4998de18c705a340bf3d9c", null ],
     [ "ast::aNormalizeAngleNegPiToPi", "group__Util.html#ga70afc34acbd6e94be6c10c32ea03acbd", null ],
     [ "ast::aNormalizeAngleStart", "group__Util.html#gae628da25178a68de57bdf3fdfd9e8dcb", null ],
-    [ "ast::aParsePolynomial", "group__Util.html#ga063244ad55f294e65da67be4f25c5d0d", null ],
-    [ "ast::aParsePolynomial", "group__Util.html#gaf5af162900868105143c862ef10787b5", null ],
+    [ "ast::aParsePolynomial", "group__Util.html#ga144fa7a415b4847287109c29a8883c19", null ],
+    [ "ast::aParsePolynomial", "group__Util.html#ga43d96ba6097d229a1cb3e91d171dc492", null ],
     [ "ast::asind", "group__Util.html#gafe0085135ce500f9b288a50ff63d5e8c", null ],
     [ "ast::atan2d", "group__Util.html#gaddc9ca4ebc4ce64ac86c0411f920a092", null ],
     [ "ast::atand", "group__Util.html#ga438e82b6bc2e1b76563bf6e6caec0df9", null ],

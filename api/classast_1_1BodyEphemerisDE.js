@@ -1,5 +1,5 @@
 var classast_1_1BodyEphemerisDE =
 [
-    [ "getPosICRF", "classast_1_1BodyEphemerisDE.html#a236a5d8193b0577a7a434e6cf33a2a19", null ],
-    [ "getPosVelICRF", "classast_1_1BodyEphemerisDE.html#a5126cd6a132d7e6645f6f20dbc7ac3ce", null ]
+    [ "getPosICRF", "classast_1_1BodyEphemerisDE.html#abc3fdf1759501af613db1d20bb571215", null ],
+    [ "getPosVelICRF", "classast_1_1BodyEphemerisDE.html#a258a1cac057918775a0ab6141d403d4a", null ]
 ];

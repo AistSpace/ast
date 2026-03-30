@@ -141,18 +141,18 @@ $(function(){initNavTree('SpiceApi_8hpp_source.html',''); initResizable(true); }
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    </div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_class" href="classast_1_1SpiceApi.html">~SpiceApi</a>();</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    err_t load(<a class="code hl_class" href="classast_1_1StringViewBasic.html">StringView</a> libpath);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    errc_t load(<a class="code hl_class" href="classast_1_1StringViewBasic.html">StringView</a> libpath);</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    err_t tryload(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; libpaths);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    errc_t tryload(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; libpaths);</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    err_t unload();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    errc_t unload();</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classast_1_1SpiceApi.html#ad3d3cd5f52594b6dc3fef9502b43ab20">   88</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classast_1_1SpiceApi.html#ad3d3cd5f52594b6dc3fef9502b43ab20">isLoaded</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> library_ != <span class="keyword">nullptr</span>; }</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">public</span>: <span class="comment">// 包装函数</span></div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    err_t furnsh(<span class="keyword">const</span> <span class="keywordtype">char</span>* libpath);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    errc_t furnsh(<span class="keyword">const</span> <span class="keywordtype">char</span>* libpath);</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    err_t spkgeo(</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    errc_t spkgeo(</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordtype">int</span>            targ,</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordtype">double</span>         et,</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keyword">const</span> <span class="keywordtype">char</span>    * ref,</div>
@@ -161,11 +161,11 @@ $(function(){initNavTree('SpiceApi_8hpp_source.html',''); initResizable(true); }
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordtype">double</span>       * lt      </div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    );</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    err_t spklef(<span class="keyword">const</span> <span class="keywordtype">char</span>* libpath, <span class="keywordtype">int</span>* handle);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    errc_t spklef(<span class="keyword">const</span> <span class="keywordtype">char</span>* libpath, <span class="keywordtype">int</span>* handle);</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    err_t spkuef(<span class="keywordtype">int</span> handle);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    errc_t spkuef(<span class="keywordtype">int</span> handle);</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    err_t ktotal(<span class="keyword">const</span> <span class="keywordtype">char</span> * kind, <span class="keywordtype">int</span>* count);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    errc_t ktotal(<span class="keyword">const</span> <span class="keywordtype">char</span> * kind, <span class="keywordtype">int</span>* count);</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">int</span> ktotal(<span class="keyword">const</span> <span class="keywordtype">char</span> * kind){</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordtype">int</span> count = 0;</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        ktotal(kind, &amp;count);</div>
@@ -176,7 +176,7 @@ $(function(){initNavTree('SpiceApi_8hpp_source.html',''); initResizable(true); }
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                <span class="keywordtype">int</span>            namlen,</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                <span class="keywordtype">char</span>           * name,</div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                <span class="keywordtype">bool</span>           * found);</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    err_t bodc2n(<span class="keywordtype">int</span>            code, std::string&amp;    name);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    errc_t bodc2n(<span class="keywordtype">int</span>            code, std::string&amp;    name);</div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">bool</span> failed();</div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
@@ -187,7 +187,7 @@ $(function(){initNavTree('SpiceApi_8hpp_source.html',''); initResizable(true); }
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    </div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    err_t checkerror();</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    errc_t checkerror();</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    A_DISABLE_COPY(SpiceApi);</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classast_1_1SpiceApi.html#aa2164d4212e7d542c98b5384813fb665">  161</a></span>    <span class="keywordtype">void</span>*  library_{<span class="keyword">nullptr</span>};           </div>

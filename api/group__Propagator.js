@@ -2,11 +2,11 @@ var group__Propagator =
 [
     [ "ast::HPOP", "classast_1_1HPOP.html", [
       [ "getIntegrator", "classast_1_1HPOP.html#a6b39183be54694b152d01ee57170fa16", null ],
-      [ "initialize", "classast_1_1HPOP.html#aa743fd9f3313baa7ce47d4de6c9e6901", null ],
-      [ "propagate", "classast_1_1HPOP.html#ad359222c1e81033d1bb984987ed44c0f", null ],
-      [ "setForceModel", "classast_1_1HPOP.html#a07326436dca147ced7160576116b1091", null ],
+      [ "initialize", "classast_1_1HPOP.html#a97b91190d3858e3ad750e33992031180", null ],
+      [ "propagate", "classast_1_1HPOP.html#ae7730a7e7ca7125c8780c5118f1e6ff5", null ],
+      [ "setForceModel", "classast_1_1HPOP.html#a77b42cc42e3d083fe819164b05b40f64", null ],
       [ "setIntegrator", "classast_1_1HPOP.html#a441808f323a236e9916f7f0e7f774750", null ],
-      [ "setPropagationFrame", "classast_1_1HPOP.html#a03f174c88b3d32478664a6782e73ab98", null ],
+      [ "setPropagationFrame", "classast_1_1HPOP.html#ad659ca9be93bd82dd6aff814089b6a6e", null ],
       [ "equation_", "classast_1_1HPOP.html#a35fca2be2f3d9005b6dc517d71a27611", null ],
       [ "integrator_", "classast_1_1HPOP.html#a976ebf7b57933ac1e476ee098d95e467", null ]
     ] ],
@@ -17,11 +17,11 @@ var group__Propagator =
       [ "re_", "classast_1_1J2Analytical.html#a2f4448d30d0ed4c8e7a17ac67a0bbaa8", null ]
     ] ],
     [ "ast::J2J4Analytical", "classast_1_1J2J4Analytical.html", [
-      [ "prop", "classast_1_1J2J4Analytical.html#a81e6ca532809e2ad00f10b7d16a1a2c9", null ],
-      [ "prop", "classast_1_1J2J4Analytical.html#a6dbb7c6e13c2c9fcaf76e193df6afa76", null ],
-      [ "prop", "classast_1_1J2J4Analytical.html#a547ada350d2c04d4e359f79f031783f9", null ],
-      [ "prop", "classast_1_1J2J4Analytical.html#ab2d54a5f8b1d1278e59f9045ff60d0cd", null ],
-      [ "propNoNormalize", "classast_1_1J2J4Analytical.html#a2f6ef9d3c240981fd32b96a7a3a9b3cb", null ],
+      [ "prop", "classast_1_1J2J4Analytical.html#aaeea89b23dc87fbac5d0a1c7e351fb67", null ],
+      [ "prop", "classast_1_1J2J4Analytical.html#a1489e580a1710c3c41fc4dc90142ea32", null ],
+      [ "prop", "classast_1_1J2J4Analytical.html#a4e8313d3d0d7ae34b013bf3cb6f8b08b", null ],
+      [ "prop", "classast_1_1J2J4Analytical.html#a2a1a78443501a31fb6c0b2b6252ee499", null ],
+      [ "propNoNormalize", "classast_1_1J2J4Analytical.html#a1719c88a91c33eb4f7ed22b376c0d9f7", null ],
       [ "setArgPeriDot", "classast_1_1J2J4Analytical.html#ae912a66519280df7e3ec4ffb44a3943a", null ],
       [ "setMeanAnomalyDot", "classast_1_1J2J4Analytical.html#acc7b0f95b2d9ab3d93816342de4ef8f5", null ],
       [ "setRaanDot", "classast_1_1J2J4Analytical.html#a7b0fbd3170a83c2a6d4489151c059b41", null ],
@@ -36,9 +36,9 @@ var group__Propagator =
       [ "J4Analytical", "classast_1_1J4Analytical.html#a042679fdceaa3b2cd19b643785c3fc4e", null ],
       [ "J4Analytical", "classast_1_1J4Analytical.html#ac9d01e913c23ac18ac57b408de967988", null ]
     ] ],
-    [ "ast::aJ2AnalyticalProp", "group__Propagator.html#ga867c7ec2919a90a2046cee5fce30183e", null ],
-    [ "ast::aJ2AnalyticalProp", "group__Propagator.html#gae76bc66856c1384cdba3d594146a46b5", null ],
-    [ "ast::aJ4AnalyticalProp", "group__Propagator.html#gaa3c744175335e2929db90d25ab7a96ae", null ],
-    [ "ast::aJ4AnalyticalProp", "group__Propagator.html#gad26d8c95b3dbccfed67bdf3a56c3a9a6", null ],
-    [ "ast::aTwoBodyProp", "group__Propagator.html#gadf777d101a8b60116f7b28aec4248b78", null ]
+    [ "ast::aJ2AnalyticalProp", "group__Propagator.html#gae186e6087eb05109ff1946a444863306", null ],
+    [ "ast::aJ2AnalyticalProp", "group__Propagator.html#ga5f9d71688f465199e1a8a02f8251a407", null ],
+    [ "ast::aJ4AnalyticalProp", "group__Propagator.html#ga16d10b2160991f648da7a9ab8c3219b3", null ],
+    [ "ast::aJ4AnalyticalProp", "group__Propagator.html#gaed79bad16236c17b5a9497a47aecdce7", null ],
+    [ "ast::aTwoBodyProp", "group__Propagator.html#ga5c9a7b57722b1f6e4d698506f2849a71", null ]
 ];

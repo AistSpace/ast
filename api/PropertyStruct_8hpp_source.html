@@ -120,20 +120,20 @@ $(function(){initNavTree('PropertyStruct_8hpp_source.html',''); initResizable(tr
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    A_ALWAYS_INLINE</div>
 <div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classast_1_1PropertyStruct.html#a6bbdd83ecd988ca4aa4967c757c3b691">   43</a></span>    err_t <a class="code hl_function" href="classast_1_1PropertyStruct.html#a6bbdd83ecd988ca4aa4967c757c3b691">setValue</a>(<span class="keywordtype">void</span>* container, <span class="keyword">const</span> InputType* value)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classast_1_1PropertyStruct.html#a60a7cb344a043ad48b9318caa48a1187">   43</a></span>    errc_t <a class="code hl_function" href="classast_1_1PropertyStruct.html#a60a7cb344a043ad48b9318caa48a1187">setValue</a>(<span class="keywordtype">void</span>* container, <span class="keyword">const</span> InputType* value)</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    {</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">return</span> setter_(container, value);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
 </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    A_ALWAYS_INLINE</div>
 <div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classast_1_1PropertyStruct.html#ae4a5f99e13d21a04b53ef1d2f748f64c">   52</a></span>    err_t <a class="code hl_function" href="classast_1_1PropertyStruct.html#ae4a5f99e13d21a04b53ef1d2f748f64c">getValue</a>(<span class="keywordtype">void</span>* container, OutputType* value)</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classast_1_1PropertyStruct.html#a1dfb6accf3248fdb35178c2572e48a6b">   52</a></span>    errc_t <a class="code hl_function" href="classast_1_1PropertyStruct.html#a1dfb6accf3248fdb35178c2572e48a6b">getValue</a>(<span class="keywordtype">void</span>* container, OutputType* value)</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    {</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> getter_(container, value);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
 </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    err_t accept(<a class="code hl_class" href="classast_1_1PropertyVisitor.html">PropertyVisitor</a>&amp; visitor, <span class="keyword">const</span> <span class="keywordtype">void</span>* container) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    errc_t accept(<a class="code hl_class" href="classast_1_1PropertyVisitor.html">PropertyVisitor</a>&amp; visitor, <span class="keyword">const</span> <span class="keywordtype">void</span>* container) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>};</div>
 </div>
@@ -142,8 +142,8 @@ $(function(){initNavTree('PropertyStruct_8hpp_source.html',''); initResizable(tr
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>AST_NAMESPACE_END</div>
 <div class="ttc" id="aProperty_8hpp_html"><div class="ttname"><a href="Property_8hpp.html">Property.hpp</a></div><div class="ttdoc">~</div></div>
 <div class="ttc" id="aclassast_1_1PropertyStruct_html"><div class="ttname"><a href="classast_1_1PropertyStruct.html">ast::PropertyStruct</a></div><div class="ttdoc">结构体属性</div><div class="ttdef"><b>定义</b> PropertyStruct.hpp:32</div></div>
-<div class="ttc" id="aclassast_1_1PropertyStruct_html_a6bbdd83ecd988ca4aa4967c757c3b691"><div class="ttname"><a href="classast_1_1PropertyStruct.html#a6bbdd83ecd988ca4aa4967c757c3b691">ast::PropertyStruct::setValue</a></div><div class="ttdeci">A_ALWAYS_INLINE err_t setValue(void *container, const InputType *value)</div><div class="ttdoc">设置属性值（结构体类型）</div><div class="ttdef"><b>定义</b> PropertyStruct.hpp:43</div></div>
-<div class="ttc" id="aclassast_1_1PropertyStruct_html_ae4a5f99e13d21a04b53ef1d2f748f64c"><div class="ttname"><a href="classast_1_1PropertyStruct.html#ae4a5f99e13d21a04b53ef1d2f748f64c">ast::PropertyStruct::getValue</a></div><div class="ttdeci">A_ALWAYS_INLINE err_t getValue(void *container, OutputType *value)</div><div class="ttdoc">获取属性值（结构体类型）</div><div class="ttdef"><b>定义</b> PropertyStruct.hpp:52</div></div>
+<div class="ttc" id="aclassast_1_1PropertyStruct_html_a1dfb6accf3248fdb35178c2572e48a6b"><div class="ttname"><a href="classast_1_1PropertyStruct.html#a1dfb6accf3248fdb35178c2572e48a6b">ast::PropertyStruct::getValue</a></div><div class="ttdeci">A_ALWAYS_INLINE errc_t getValue(void *container, OutputType *value)</div><div class="ttdoc">获取属性值（结构体类型）</div><div class="ttdef"><b>定义</b> PropertyStruct.hpp:52</div></div>
+<div class="ttc" id="aclassast_1_1PropertyStruct_html_a60a7cb344a043ad48b9318caa48a1187"><div class="ttname"><a href="classast_1_1PropertyStruct.html#a60a7cb344a043ad48b9318caa48a1187">ast::PropertyStruct::setValue</a></div><div class="ttdeci">A_ALWAYS_INLINE errc_t setValue(void *container, const InputType *value)</div><div class="ttdoc">设置属性值（结构体类型）</div><div class="ttdef"><b>定义</b> PropertyStruct.hpp:43</div></div>
 <div class="ttc" id="aclassast_1_1PropertyVisitor_html"><div class="ttname"><a href="classast_1_1PropertyVisitor.html">ast::PropertyVisitor</a></div><div class="ttdef"><b>定义</b> PropertyVisitor.hpp:44</div></div>
 <div class="ttc" id="aclassast_1_1Property_html"><div class="ttname"><a href="classast_1_1Property.html">ast::Property</a></div><div class="ttdoc">反射属性类</div><div class="ttdef"><b>定义</b> Property.hpp:58</div></div>
 </div><!-- fragment --></div><!-- contents -->

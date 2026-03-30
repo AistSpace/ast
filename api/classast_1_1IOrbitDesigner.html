@@ -129,18 +129,18 @@ $(function(){initNavTree('classast_1_1IOrbitDesigner.html',''); initResizable(tr
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:aac36076c1b221f64aa292ab55214062c" id="r_aac36076c1b221f64aa292ab55214062c"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac36076c1b221f64aa292ab55214062c">getOrbitEpoch</a> (<a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;orbitEpoch) const =0</td></tr>
-<tr class="separator:aac36076c1b221f64aa292ab55214062c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bdabce3dabe41884b44f2f3ba937420" id="r_a5bdabce3dabe41884b44f2f3ba937420"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bdabce3dabe41884b44f2f3ba937420">getOrbitState</a> (<a class="el" href="classast_1_1ModOrbElem.html">ModOrbElem</a> &amp;orbElem) const =0</td></tr>
-<tr class="separator:a5bdabce3dabe41884b44f2f3ba937420"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac39331c5bfdc885e7b4d1db1ffacdfe" id="r_aac39331c5bfdc885e7b4d1db1ffacdfe"><td class="memItemLeft" align="right" valign="top">virtual err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac39331c5bfdc885e7b4d1db1ffacdfe">getCoordFrame</a> (bool &amp;useCoordEpoch, <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;coordEpoch, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Frame.html">Frame</a> &gt; &amp;coordFrame) const =0</td></tr>
-<tr class="separator:aac39331c5bfdc885e7b4d1db1ffacdfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6039205423b7284d0607cd002235400" id="r_ad6039205423b7284d0607cd002235400"><td class="memItemLeft" align="right" valign="top">virtual errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6039205423b7284d0607cd002235400">getOrbitEpoch</a> (<a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;orbitEpoch) const =0</td></tr>
+<tr class="separator:ad6039205423b7284d0607cd002235400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14aaf365555f99e7d80fcbb44f049cc9" id="r_a14aaf365555f99e7d80fcbb44f049cc9"><td class="memItemLeft" align="right" valign="top">virtual errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14aaf365555f99e7d80fcbb44f049cc9">getOrbitState</a> (<a class="el" href="classast_1_1ModOrbElem.html">ModOrbElem</a> &amp;orbElem) const =0</td></tr>
+<tr class="separator:a14aaf365555f99e7d80fcbb44f049cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a13b5968446fc457a22d5d1b3219297" id="r_a9a13b5968446fc457a22d5d1b3219297"><td class="memItemLeft" align="right" valign="top">virtual errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a13b5968446fc457a22d5d1b3219297">getCoordFrame</a> (bool &amp;useCoordEpoch, <a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;coordEpoch, <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Frame.html">Frame</a> &gt; &amp;coordFrame) const =0</td></tr>
+<tr class="separator:a9a13b5968446fc457a22d5d1b3219297"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>轨道设计器接口 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="aac39331c5bfdc885e7b4d1db1ffacdfe" name="aac39331c5bfdc885e7b4d1db1ffacdfe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac39331c5bfdc885e7b4d1db1ffacdfe">&#9670;&#160;</a></span>getCoordFrame()</h2>
+<a id="a9a13b5968446fc457a22d5d1b3219297" name="a9a13b5968446fc457a22d5d1b3219297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a13b5968446fc457a22d5d1b3219297">&#9670;&#160;</a></span>getCoordFrame()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,7 +149,7 @@ Public 成员函数</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual err_t ast::IOrbitDesigner::getCoordFrame </td>
+          <td class="memname">virtual errc_t ast::IOrbitDesigner::getCoordFrame </td>
           <td>(</td>
           <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>useCoordEpoch</em></span>, </td>
         </tr>
@@ -181,12 +181,12 @@ Public 成员函数</h2></td></tr>
   </dd>
 </dl>
 
-<p>在 <a class="el" href="classast_1_1BaseOrbitDesigner.html#a4a294a76d0db7dc6404e4e54d6e7815b">ast::BaseOrbitDesigner</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1BaseOrbitDesigner.html#a12873c1bbc41bbbc56bf664c57a66146">ast::BaseOrbitDesigner</a> 内被实现.</p>
 
 </div>
 </div>
-<a id="aac36076c1b221f64aa292ab55214062c" name="aac36076c1b221f64aa292ab55214062c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac36076c1b221f64aa292ab55214062c">&#9670;&#160;</a></span>getOrbitEpoch()</h2>
+<a id="ad6039205423b7284d0607cd002235400" name="ad6039205423b7284d0607cd002235400"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6039205423b7284d0607cd002235400">&#9670;&#160;</a></span>getOrbitEpoch()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,7 +195,7 @@ Public 成员函数</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual err_t ast::IOrbitDesigner::getOrbitEpoch </td>
+          <td class="memname">virtual errc_t ast::IOrbitDesigner::getOrbitEpoch </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classast_1_1TimePoint.html">TimePoint</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>orbitEpoch</em></span></td><td>)</td>
           <td> const</td>
@@ -208,12 +208,12 @@ Public 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>在 <a class="el" href="classast_1_1BaseOrbitDesigner.html#a5ea3d93df28d60f292ab9f0e8663a932">ast::BaseOrbitDesigner</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1BaseOrbitDesigner.html#aa6eb23d52e485bc09b913d5aae1a59dc">ast::BaseOrbitDesigner</a> 内被实现.</p>
 
 </div>
 </div>
-<a id="a5bdabce3dabe41884b44f2f3ba937420" name="a5bdabce3dabe41884b44f2f3ba937420"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5bdabce3dabe41884b44f2f3ba937420">&#9670;&#160;</a></span>getOrbitState()</h2>
+<a id="a14aaf365555f99e7d80fcbb44f049cc9" name="a14aaf365555f99e7d80fcbb44f049cc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14aaf365555f99e7d80fcbb44f049cc9">&#9670;&#160;</a></span>getOrbitState()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,7 +222,7 @@ Public 成员函数</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual err_t ast::IOrbitDesigner::getOrbitState </td>
+          <td class="memname">virtual errc_t ast::IOrbitDesigner::getOrbitState </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classast_1_1ModOrbElem.html">ModOrbElem</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>orbElem</em></span></td><td>)</td>
           <td> const</td>
@@ -244,7 +244,7 @@ Public 成员函数</h2></td></tr>
   </dd>
 </dl>
 
-<p>在 <a class="el" href="classast_1_1BaseOrbitDesigner.html#ac4981945f5e88a9163072584165a392f">ast::BaseOrbitDesigner</a>, <a class="el" href="classast_1_1CircularOrbitDesigner.html#a52a3d1ef9cf63a41b643729ffdb177ae">ast::CircularOrbitDesigner</a>, <a class="el" href="classast_1_1CriticallyInclinedOrbitDesigner.html#adb378cc1f42d3a96020fb449f253d595">ast::CriticallyInclinedOrbitDesigner</a>, <a class="el" href="classast_1_1CriticallyInclinedSunSyncOrbitDesigner.html#af91aad9095ac0b08a99eee7d5a4eb412">ast::CriticallyInclinedSunSyncOrbitDesigner</a>, <a class="el" href="classast_1_1MolniyaOrbitDesigner.html#a130041e259459631c74a6df8e5aa80bd">ast::MolniyaOrbitDesigner</a>, <a class="el" href="classast_1_1RepeatingOrbitDesigner.html#a9f9b08e947063f43e5beadf33b44ab3f">ast::RepeatingOrbitDesigner</a>, <a class="el" href="classast_1_1RepeatingSunSyncOrbitDesigner.html#a613dc1c13c86db48a4572d78d0fab73b">ast::RepeatingSunSyncOrbitDesigner</a>, <a class="el" href="classast_1_1SimpleOrbitDesigner.html#aa1b9d4daf7740a2cbd316f43785412f0">ast::SimpleOrbitDesigner</a>, <a class="el" href="classast_1_1StationaryOrbitDesigner.html#a886e381c4baf80b2c34cd6cf614ba1e2">ast::StationaryOrbitDesigner</a> , 以及 <a class="el" href="classast_1_1SunSynchronousOrbitDesigner.html#a16c3a655093e3ae8673ba6cfb4695dbc">ast::SunSynchronousOrbitDesigner</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1BaseOrbitDesigner.html#ad2b6be4ce44a90fc430fa82f2f184895">ast::BaseOrbitDesigner</a>, <a class="el" href="classast_1_1CircularOrbitDesigner.html#a331a2dddc77b2628b77f9f89342bfc3a">ast::CircularOrbitDesigner</a>, <a class="el" href="classast_1_1CriticallyInclinedOrbitDesigner.html#ac30518fe8ebeaf8f9190426e0f5ed075">ast::CriticallyInclinedOrbitDesigner</a>, <a class="el" href="classast_1_1CriticallyInclinedSunSyncOrbitDesigner.html#a882a374d7108f1e059078d7f7232a968">ast::CriticallyInclinedSunSyncOrbitDesigner</a>, <a class="el" href="classast_1_1MolniyaOrbitDesigner.html#a1d21556907ff557bf972b608967c22e7">ast::MolniyaOrbitDesigner</a>, <a class="el" href="classast_1_1RepeatingOrbitDesigner.html#abfa31813ade19c0886ae28428258b2a8">ast::RepeatingOrbitDesigner</a>, <a class="el" href="classast_1_1RepeatingSunSyncOrbitDesigner.html#a6d19228276fee3bd624788d5abf6ce01">ast::RepeatingSunSyncOrbitDesigner</a>, <a class="el" href="classast_1_1SimpleOrbitDesigner.html#ab7a52a8f2f4c8b1140c8ebcf979f9318">ast::SimpleOrbitDesigner</a>, <a class="el" href="classast_1_1StationaryOrbitDesigner.html#ad38941e3fcc8fa58cd1c475d4cf23527">ast::StationaryOrbitDesigner</a> , 以及 <a class="el" href="classast_1_1SunSynchronousOrbitDesigner.html#a6659c7b384f2fdf1a3a0e8efe9a8d578">ast::SunSynchronousOrbitDesigner</a> 内被实现.</p>
 
 </div>
 </div>

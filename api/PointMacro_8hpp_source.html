@@ -118,8 +118,8 @@ $(function(){initNavTree('PointMacro_8hpp_source.html',''); initResizable(true);
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">        ~Point##NAME() override= default; \</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">        static Point##NAME* Instance();\</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">        Frame* getFrame() const override;\</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">        err_t getPos(const TimePoint &amp;tp, Vector3d &amp;pos) const override;\</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">        err_t getPosVel(const TimePoint &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) const override;\</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">        errc_t getPos(const TimePoint &amp;tp, Vector3d &amp;pos) const override;\</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">        errc_t getPosVel(const TimePoint &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) const override;\</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">    };\</span></div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">    A_ALWAYS_INLINE Point* aPoint##NAME()\</span></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">    {\</span></div>
@@ -137,11 +137,11 @@ $(function(){initNavTree('PointMacro_8hpp_source.html',''); initResizable(true);
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">    {\</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">        return Frame##FRAME::Instance();\</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">    }\</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">    err_t Point##NAME::getPos(const TimePoint &amp;tp, Vector3d &amp;pos) const\</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">    errc_t Point##NAME::getPos(const TimePoint &amp;tp, Vector3d &amp;pos) const\</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">    {\</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">        return a##NAME##PosIn##FRAME(tp, pos);\</span></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">    }\</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">    err_t Point##NAME::getPosVel(const TimePoint &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) const\</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">    errc_t Point##NAME::getPosVel(const TimePoint &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) const\</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">    {\</span></div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">        return a##NAME##PosVelIn##FRAME(tp, pos, vel);\</span></div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">    }\</span></div>

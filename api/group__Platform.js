@@ -10,10 +10,10 @@ var group__Platform =
     [ "ast::aCurrentLineNumber", "group__Platform.html#ga19bcda407eb5e7e67ab74ccc0f8f5a23", null ],
     [ "ast::aExeDir", "group__Platform.html#ga524821ccab59a9b4bc923f26dd3d3660", null ],
     [ "ast::aExePath", "group__Platform.html#ga39dda408be669b8f5c88e097b0c73ca3", null ],
-    [ "ast::aFreeLibrary", "group__Platform.html#gabd86d9dd3fbee4adba535098848a1790", null ],
+    [ "ast::aFreeLibrary", "group__Platform.html#ga52c02b09388ac56566408d15c1e1ce7e", null ],
     [ "ast::aGetEndian", "group__Platform.html#ga12c79e8e850e12d6ae0b9277d83ec0cb", null ],
     [ "ast::aGetFilePath", "group__Platform.html#ga696e5be3337a541eac1e81388379802f", null ],
-    [ "ast::aGetFilePath", "group__Platform.html#ga94be012c6354bd2451f5d3bd19cbdc96", null ],
+    [ "ast::aGetFilePath", "group__Platform.html#ga37ceb5060ff95143bf4fe04cd905d7bf", null ],
     [ "ast::aGetLoadError", "group__Platform.html#ga792d6e546f624b93c64487c04deac344", null ],
     [ "ast::aGetProcAddress", "group__Platform.html#ga0f4600dceeffcc4993b66d33a3b8e680", null ],
     [ "ast::aIsCI", "group__Platform.html#ga1b536eb0b193fd88914dd12e6895c229", null ],
@@ -32,8 +32,8 @@ var group__Platform =
     [ "ast::aStdInIsTerminal", "group__Platform.html#ga402c35c20112c81a16c5410823e030ca", null ],
     [ "ast::aStdOutIsFile", "group__Platform.html#ga038a62d786234b02f668f9460bbd86f6", null ],
     [ "ast::aStdOutIsTerminal", "group__Platform.html#gaef5625c409a6ef4a8ddf3e4b2aff79b5", null ],
-    [ "ast::aUiEditObject", "group__Platform.html#ga53d51d8e92cee0b781409b32e03e656f", null ],
+    [ "ast::aUiEditObject", "group__Platform.html#ga0e988e64c58fbe5bfa847b6ae04d8dba", null ],
     [ "ast::aUiNewEditWidget", "group__Platform.html#ga70d3f705f380134646f9608765a75950", null ],
-    [ "ast::aUiRegEditWidget", "group__Platform.html#gac188577901a589f90a763b5fbc5db732", null ],
+    [ "ast::aUiRegEditWidget", "group__Platform.html#gaa2c0fb5bfaa44732ba907dfd96396f3a", null ],
     [ "ast::aUiSelectObject", "group__Platform.html#ga9d38a8540eaa686e730caab9e588e35f", null ]
 ];

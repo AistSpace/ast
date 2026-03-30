@@ -11,12 +11,12 @@ var AstCore_2Data_2Context_2RunTime_8hpp =
     [ "aDataContext_New", "AstCore_2Data_2Context_2RunTime_8hpp.html#gaba56bd6c13a2672901309a0c4c695caf", null ],
     [ "aDataContext_SetCurrent", "AstCore_2Data_2Context_2RunTime_8hpp.html#gaa090c6fa94e31ea974a5fd4604191397", null ],
     [ "aDataDirGet", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga29c564259f5de9210b7e4e39eb4dd878", null ],
-    [ "aDataDirGet", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga554406609d8c3a1b8dd7020142cd04e7", null ],
-    [ "aDataDirSet", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga178274c33d5da80112cf792bdbae6d9f", null ],
+    [ "aDataDirGet", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga4346d80fcb84036f0c1168d5abc14519", null ],
+    [ "aDataDirSet", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga9b4e17ce85add0e4eea8e29d80e4385c", null ],
     [ "aGetDefaultSPKDir", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga6421fe800633fc257cea57b0d0eea01c", null ],
     [ "aGlobalContext_Get", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga4ccfea60ec40a0b914aee9714febd94e", null ],
     [ "aGlobalContext_GetIAUXYS", "AstCore_2Data_2Context_2RunTime_8hpp.html#gab6179a360a2bb2fa49e90ed13801fb7f", null ],
-    [ "aInitialize", "AstCore_2Data_2Context_2RunTime_8hpp.html#gab6fd6e3387d57432da53d7bf5efd47a9", null ],
-    [ "aInitializeByConfig", "AstCore_2Data_2Context_2RunTime_8hpp.html#gaabcb6d72bbf7efcce989334376fb071f", null ],
-    [ "aUninitialize", "AstCore_2Data_2Context_2RunTime_8hpp.html#gae8b19885fd9876fa4ad93b63bc2c6d11", null ]
+    [ "aInitialize", "AstCore_2Data_2Context_2RunTime_8hpp.html#gab8a08c106d3feb750fdda376651fe6bc", null ],
+    [ "aInitializeByConfig", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga6e69b33e4e4f1493b29ea7f4492b2f12", null ],
+    [ "aUninitialize", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga864b7bad4c069e934f76e71daf8d4b11", null ]
 ];

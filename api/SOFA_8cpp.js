@@ -11,7 +11,7 @@ var SOFA_8cpp =
     [ "aMeanObliquity_IAU1980", "SOFA_8cpp.html#a7d564ce583d0c3862921ecceecf6935c", null ],
     [ "aNutation_IERS1996", "SOFA_8cpp.html#af01f70ad0322291b74d4cbfc99cccd2a", null ],
     [ "aNutationMethodGet", "SOFA_8cpp.html#a964414a5f16ed2a874e02aa19af1129e", null ],
-    [ "aNutationMethodSet", "SOFA_8cpp.html#ace797c75c8b047ff468d01432be425fa", null ],
+    [ "aNutationMethodSet", "SOFA_8cpp.html#a914b7293a4d365eac439568ee4b12a46", null ],
     [ "aPrecession_IAU1976", "SOFA_8cpp.html#af57cd650f14fa0b1587bf66c47bf65db", null ],
     [ "aNutation", "SOFA_8cpp.html#ac67e70e7a0b4e22fbf6b82741c20e724", null ]
 ];

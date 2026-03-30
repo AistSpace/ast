@@ -144,7 +144,7 @@ $(function(){initNavTree('PlanetPoint_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
-<b>值:</b><div class="fragment"><div class="line">err_t a##NAME##PosInICRF(<span class="keyword">const</span> TimePoint &amp;tp, Vector3d &amp;pos) \</div>
+<b>值:</b><div class="fragment"><div class="line">errc_t a##NAME##PosInICRF(<span class="keyword">const</span> TimePoint &amp;tp, Vector3d &amp;pos) \</div>
 <div class="line">{ \</div>
 <div class="line">    <span class="keyword">auto</span> body = aGet##NAME(); \</div>
 <div class="line">    if(!body){ \</div>
@@ -153,7 +153,7 @@ $(function(){initNavTree('PlanetPoint_8cpp.html',''); initResizable(true); });
 <div class="line">    } \</div>
 <div class="line">    <span class="keywordflow">return</span> body-&gt;getPosICRF(tp, pos); \</div>
 <div class="line">}\</div>
-<div class="line">err_t a##NAME##PosVelInICRF(<span class="keyword">const</span> TimePoint &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) \</div>
+<div class="line">errc_t a##NAME##PosVelInICRF(<span class="keyword">const</span> TimePoint &amp;tp, Vector3d &amp;pos, Vector3d &amp;vel) \</div>
 <div class="line">{ \</div>
 <div class="line">    <span class="keyword">auto</span> body = aGet##NAME(); \</div>
 <div class="line">    if(!body){ \</div>

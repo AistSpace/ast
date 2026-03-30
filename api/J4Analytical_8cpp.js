@@ -1,6 +1,6 @@
 var J4Analytical_8cpp =
 [
     [ "aGetJ2AnalyticalParams", "J4Analytical_8cpp.html#a1070a6486b7531bf23e580154394bfb4", null ],
-    [ "aJ4AnalyticalProp", "J4Analytical_8cpp.html#gaa3c744175335e2929db90d25ab7a96ae", null ],
-    [ "aJ4AnalyticalProp", "J4Analytical_8cpp.html#gad26d8c95b3dbccfed67bdf3a56c3a9a6", null ]
+    [ "aJ4AnalyticalProp", "J4Analytical_8cpp.html#ga16d10b2160991f648da7a9ab8c3219b3", null ],
+    [ "aJ4AnalyticalProp", "J4Analytical_8cpp.html#gaed79bad16236c17b5a9497a47aecdce7", null ]
 ];

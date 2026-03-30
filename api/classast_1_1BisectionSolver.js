@@ -1,5 +1,5 @@
 var classast_1_1BisectionSolver =
 [
-    [ "solve", "classast_1_1BisectionSolver.html#a097e8c7201ce12695046788db7019b17", null ],
-    [ "solve", "classast_1_1BisectionSolver.html#ab0beb85cc18bf602e44ad4fcd2485d65", null ]
+    [ "solve", "classast_1_1BisectionSolver.html#a85ed3aeddc5f0eb1a5851a1e5b3dce1c", null ],
+    [ "solve", "classast_1_1BisectionSolver.html#a29f815d4ba5860c6f5a0f557d83cf4bf", null ]
 ];

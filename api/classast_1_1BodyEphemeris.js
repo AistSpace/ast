@@ -1,8 +1,8 @@
 var classast_1_1BodyEphemeris =
 [
     [ "getFrame", "classast_1_1BodyEphemeris.html#aa09c59ec72c50e271aa5a56e6d594912", null ],
-    [ "getPos", "classast_1_1BodyEphemeris.html#a71f348521b0b6869b16ea615fceb46ad", null ],
-    [ "getPosICRF", "classast_1_1BodyEphemeris.html#ad5f246b6d9ed53136bb585b2318c34ce", null ],
-    [ "getPosVel", "classast_1_1BodyEphemeris.html#aa17504de98966541048e915eed0788c9", null ],
-    [ "getPosVelICRF", "classast_1_1BodyEphemeris.html#a49d6c99d843a8a8906af1ce5eb1015ba", null ]
+    [ "getPos", "classast_1_1BodyEphemeris.html#ad3a62ffd699511e16a2c09dee7e8a6c5", null ],
+    [ "getPosICRF", "classast_1_1BodyEphemeris.html#a7bc37bb40921dc485a458130051f7e0e", null ],
+    [ "getPosVel", "classast_1_1BodyEphemeris.html#ae278ba0998cba33886e253fb25e59db2", null ],
+    [ "getPosVelICRF", "classast_1_1BodyEphemeris.html#a1f5651a840f20ee9ede887d151f234a2", null ]
 ];
