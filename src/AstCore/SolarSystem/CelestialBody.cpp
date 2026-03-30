@@ -93,7 +93,7 @@ SolarSystem *CelestialBody::getSolarSystem() const
     return solarSystem_.get();
 }
 
-err_t CelestialBody::load(StringView filepath)
+errc_t CelestialBody::load(StringView filepath)
 {
     fs::path path = std::string(filepath);
     if(!fs::is_regular_file(path))
@@ -124,22 +124,22 @@ err_t CelestialBody::load(StringView filepath)
             }
         }else if(token == BKVParser::eBlockBegin){
             if(aEqualsIgnoreCase(item.value(), "AstroDefinition")){
-                err_t rc = loadAstroDefinition(parser);
+                errc_t rc = loadAstroDefinition(parser);
                 if(rc) return rc;
             }else if(aEqualsIgnoreCase(item.value(), "SpinData")){
-                err_t rc = loadSpinData(parser);
+                errc_t rc = loadSpinData(parser);
                 if(rc) return rc;
             }else if(aEqualsIgnoreCase(item.value(), "EphemerisData")){
-                err_t rc = loadEphemerisData(parser);
+                errc_t rc = loadEphemerisData(parser);
                 if(rc) return rc;
             }else if(aEqualsIgnoreCase(item.value(), "Earth")){
-                err_t rc = loadEarth(parser);
+                errc_t rc = loadEarth(parser);
                 if(rc) return rc;
             }else if(aEqualsIgnoreCase(item.value(), "Moon")){
-                err_t rc = loadMoon(parser);
+                errc_t rc = loadMoon(parser);
                 if(rc) return rc;
             }else if(aEqualsIgnoreCase(item.value(), "MeanEarthDefinition")){
-                err_t rc = loadMeanEarthDefinition(parser);
+                errc_t rc = loadMeanEarthDefinition(parser);
                 if(rc) return rc;
             }
         }else if(token == BKVParser::eBlockEnd){
@@ -150,9 +150,9 @@ err_t CelestialBody::load(StringView filepath)
     return eNoError;
 }
 
-err_t CelestialBody::setGravityModel(StringView model)
+errc_t CelestialBody::setGravityModel(StringView model)
 {
-    err_t rc = this->loadGravityModel(model);
+    errc_t rc = this->loadGravityModel(model);
     if(rc){
         auto ss = getSolarSystem();
         fs::path filepath;
@@ -169,12 +169,12 @@ err_t CelestialBody::setGravityModel(StringView model)
     return rc;
 }
 
-err_t CelestialBody::getPosICRF(const TimePoint& tp, Vector3d &pos) const
+errc_t CelestialBody::getPosICRF(const TimePoint& tp, Vector3d &pos) const
 {
     return ephemeris_->getPosICRF(tp, pos);
 }
 
-err_t CelestialBody::getPosVelICRF(const TimePoint& tp, Vector3d &pos, Vector3d &vel) const
+errc_t CelestialBody::getPosVelICRF(const TimePoint& tp, Vector3d &pos, Vector3d &vel) const
 {
     return ephemeris_->getPosVelICRF(tp, pos, vel);
 }
@@ -184,12 +184,12 @@ Frame *CelestialBody::getFrame() const
     return aFrameICRF();
 }
 
-err_t CelestialBody::getPos(const TimePoint &tp, Vector3d &pos) const
+errc_t CelestialBody::getPos(const TimePoint &tp, Vector3d &pos) const
 {
     return getPosICRF(tp, pos);
 }
 
-err_t CelestialBody::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+errc_t CelestialBody::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     return getPosVelICRF(tp, pos, vel);
 }
@@ -312,12 +312,12 @@ Axes *CelestialBody::getEpochAxesReference() const
     }
 }
 
-err_t CelestialBody::loadGravityModel(StringView model)
+errc_t CelestialBody::loadGravityModel(StringView model)
 {
     return gravityField_.load(model, 6, 6, getDirpath());
 }
 
-err_t CelestialBody::loadAstroDefinition(BKVParser &parser)
+errc_t CelestialBody::loadAstroDefinition(BKVParser &parser)
 {
     BKVParser::EToken token;
     BKVItemView item;
@@ -334,7 +334,7 @@ err_t CelestialBody::loadAstroDefinition(BKVParser &parser)
                 经过路径解析后可能指向 /etc/passwd，从而读取系统关键文件。
                 */
                 filepath = filepath.parent_path() / model;
-                err_t rc = this->loadGravityModel(filepath.string());
+                errc_t rc = this->loadGravityModel(filepath.string());
                 if(rc) return rc;
             }
             else if(aEqualsIgnoreCase(item.key(), "Gm")){
@@ -380,7 +380,7 @@ err_t CelestialBody::loadAstroDefinition(BKVParser &parser)
     return eNoError;
 }
 
-err_t CelestialBody::loadSpinData(BKVParser &parser)
+errc_t CelestialBody::loadSpinData(BKVParser &parser)
 {
     BKVParser::EToken token;
     BKVItemView item;
@@ -392,7 +392,7 @@ err_t CelestialBody::loadSpinData(BKVParser &parser)
                 std::string model = item.value().toString();
                 fs::path filepath = parser.getFilePath();
                 filepath = filepath.parent_path() / model;
-                err_t rc = rotData->load(filepath.string());
+                errc_t rc = rotData->load(filepath.string());
                 this->orientation_ = rotData;
                 if(rc) return rc;
             }
@@ -407,7 +407,7 @@ err_t CelestialBody::loadSpinData(BKVParser &parser)
     return eNoError;
 }
 
-err_t CelestialBody::loadEphemerisData(BKVParser & parser)
+errc_t CelestialBody::loadEphemerisData(BKVParser & parser)
 {
     BKVParser::EToken token;
     BKVItemView item;
@@ -424,7 +424,7 @@ err_t CelestialBody::loadEphemerisData(BKVParser & parser)
                         spkDir = aGetDefaultSPKDir();
                     std::string spkFile = spkDir + "/" + aAsciiStrToLower(name_) + ".bsp";
                     if(fs::is_regular_file(spkFile)){
-                        err_t rc = ephemerisSPK->openSPKFile(spkFile);
+                        errc_t rc = ephemerisSPK->openSPKFile(spkFile);
                         if(rc){
                             aWarning("failed to open SPK file '%s'", spkFile.c_str());
                         }
@@ -447,7 +447,7 @@ err_t CelestialBody::loadEphemerisData(BKVParser & parser)
     return eNoError;
 }
 
-err_t CelestialBody::loadEarth(BKVParser &parser)
+errc_t CelestialBody::loadEarth(BKVParser &parser)
 {
     this->orientation_ = new EarthOrientation();
 
@@ -486,7 +486,7 @@ err_t CelestialBody::loadEarth(BKVParser &parser)
     return eNoError;
 }
 
-err_t CelestialBody::loadMoon(BKVParser &parser)
+errc_t CelestialBody::loadMoon(BKVParser &parser)
 {
     this->orientation_ = new MoonOrientation();
 
@@ -511,7 +511,7 @@ err_t CelestialBody::loadMoon(BKVParser &parser)
     return eNoError;
 }
 
-err_t CelestialBody::loadMeanEarthDefinition(BKVParser &parser)
+errc_t CelestialBody::loadMeanEarthDefinition(BKVParser &parser)
 {
     BKVParser::EToken token;
     BKVItemView item;

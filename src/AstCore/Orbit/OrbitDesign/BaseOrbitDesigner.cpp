@@ -40,20 +40,20 @@ CelestialBody *BaseOrbitDesigner::getDefaultCelestialBody()
     return aGetEarth();
 }
 
-err_t BaseOrbitDesigner::getOrbitState(CartState &cartState) const
+errc_t BaseOrbitDesigner::getOrbitState(CartState &cartState) const
 {
     ModOrbElem orbElem;
-    err_t rc = getOrbitState(orbElem);
+    errc_t rc = getOrbitState(orbElem);
     if(rc != eNoError){
         return rc;
     }
     return aModOrbElemToCart(orbElem, getGM(), cartState.pos(), cartState.vel());
 }
 
-err_t BaseOrbitDesigner::getOrbitState(OrbElem &orbElem) const
+errc_t BaseOrbitDesigner::getOrbitState(OrbElem &orbElem) const
 {
     ModOrbElem modOrbElem;
-    err_t rc = getOrbitState(modOrbElem);
+    errc_t rc = getOrbitState(modOrbElem);
     if(rc != eNoError){
         return rc;
     }
@@ -61,7 +61,7 @@ err_t BaseOrbitDesigner::getOrbitState(OrbElem &orbElem) const
     return eNoError;
 }
 
-err_t BaseOrbitDesigner::getCoordFrame(bool &useCoordEpoch, TimePoint &coordEpoch, SharedPtr<Frame> &coordFrame) const
+errc_t BaseOrbitDesigner::getCoordFrame(bool &useCoordEpoch, TimePoint &coordEpoch, SharedPtr<Frame> &coordFrame) const
 {
     auto body = getCelestialBody();
     if(!body)

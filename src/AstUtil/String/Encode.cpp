@@ -29,7 +29,7 @@ AST_NAMESPACE_BEGIN
 
 
 #ifdef _WIN32   
-err_t aAnsiToWide(const char* ansi, std::wstring& wide)
+errc_t aAnsiToWide(const char* ansi, std::wstring& wide)
 {
     int len = MultiByteToWideChar(CP_ACP, 0, ansi, -1, nullptr, 0);
     if (len > 0)
@@ -42,7 +42,7 @@ err_t aAnsiToWide(const char* ansi, std::wstring& wide)
     return eErrorInvalidParam;
 }
 
-err_t aUtf8ToWide(const char* utf8, std::wstring& wide)
+errc_t aUtf8ToWide(const char* utf8, std::wstring& wide)
 {
     int len = MultiByteToWideChar(CP_UTF8, 0, utf8, -1, nullptr, 0);
     if (len > 0)
@@ -55,7 +55,7 @@ err_t aUtf8ToWide(const char* utf8, std::wstring& wide)
     return eErrorInvalidParam;
 }
 
-err_t aWideToAnsi(const wchar_t* wide, std::string& ansi)
+errc_t aWideToAnsi(const wchar_t* wide, std::string& ansi)
 {
     int len = WideCharToMultiByte(CP_ACP, 0, wide, -1, nullptr, 0, nullptr, nullptr);
     if (len > 0)
@@ -68,7 +68,7 @@ err_t aWideToAnsi(const wchar_t* wide, std::string& ansi)
     return eErrorInvalidParam;
 }
 
-err_t aWideToUtf8(const wchar_t* wide, std::string& utf8)
+errc_t aWideToUtf8(const wchar_t* wide, std::string& utf8)
 {
     int len = WideCharToMultiByte(CP_UTF8, 0, wide, -1, nullptr, 0, nullptr, nullptr);
     if (len > 0)

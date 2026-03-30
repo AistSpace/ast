@@ -108,14 +108,14 @@ BKVParser::EToken BKVParser::getNext(BKVItemView &item)
 }
 
 
-err_t BKVParser::parseFile(StringView filepath, BKVSax &sax)
+errc_t BKVParser::parseFile(StringView filepath, BKVSax &sax)
 {
     open(filepath);
     return parse(sax);
 }
 
 
-err_t BKVParser::parse(BKVSax &sax)
+errc_t BKVParser::parse(BKVSax &sax)
 {
     if(!isOpen())
     {
@@ -128,17 +128,17 @@ err_t BKVParser::parse(BKVSax &sax)
         token = getNext(item);
         if(token == eKeyValue)
         {
-            if(err_t rc = sax.keyValue(item.key(), item.value()))
+            if(errc_t rc = sax.keyValue(item.key(), item.value()))
                 return rc;
         }
         else if(token == eBlockBegin)
         {
-            if(err_t rc = sax.begin(item.value().toStringView()))
+            if(errc_t rc = sax.begin(item.value().toStringView()))
                 return rc;
         }
         else if(token == eBlockEnd)
         {
-            if(err_t rc = sax.end(item.value().toStringView()))
+            if(errc_t rc = sax.end(item.value().toStringView()))
                 return rc;
         }
     }while(token != eEOF);

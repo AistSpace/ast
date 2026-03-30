@@ -40,16 +40,16 @@ PropertyQuantity::PropertyQuantity(StringView name, StringView desc, FPropertyGe
 {
 }
 
-err_t PropertyQuantity::getValueString(const void *container, std::string &value)
+errc_t PropertyQuantity::getValueString(const void *container, std::string &value)
 {
     /// @todo 这里需要一个通过量纲获取国际制单位的函数
     return PropertyDouble::getValueString(container, value);
 }
 
-err_t PropertyQuantity::setValueString(void *container, StringView value)
+errc_t PropertyQuantity::setValueString(void *container, StringView value)
 {
     Quantity quant;
-    err_t rc = aQuantityParse(value, quant);
+    errc_t rc = aQuantityParse(value, quant);
     if(rc){
         aError("failed to parse quantity string: %.*s", (int)value.size(), value.data());
         return rc;

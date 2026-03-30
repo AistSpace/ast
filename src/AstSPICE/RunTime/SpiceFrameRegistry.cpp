@@ -37,7 +37,7 @@ SpiceFrameRegistry &SpiceFrameRegistry::Instance()
     return instance;
 }
 
-err_t SpiceFrameRegistry::init()
+errc_t SpiceFrameRegistry::init()
 {
     return eNoError;
 }

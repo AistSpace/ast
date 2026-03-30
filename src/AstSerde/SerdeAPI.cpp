@@ -11,15 +11,15 @@
 
 AST_NAMESPACE_BEGIN
 
-AST_SERDE_CAPI err_t aObjectToCppCode(Object* object, std::string& cppcode) {
+AST_SERDE_CAPI errc_t aObjectToCppCode(Object* object, std::string& cppcode) {
     return SerializationUtils::serialize(object, ESerializationFormat::eCpp, cppcode);
 }
 
-AST_SERDE_CAPI err_t aObjectSerialize(Object* object, ESerializationFormat format, std::string& output) {
+AST_SERDE_CAPI errc_t aObjectSerialize(Object* object, ESerializationFormat format, std::string& output) {
     return SerializationUtils::serialize(object, format, output);
 }
 
-AST_SERDE_CAPI err_t aObjectDeserialize(const std::string& input, ESerializationFormat format, Object* object) {
+AST_SERDE_CAPI errc_t aObjectDeserialize(const std::string& input, ESerializationFormat format, Object* object) {
     return SerializationUtils::deserialize(input, format, object);
 }
 

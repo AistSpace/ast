@@ -46,10 +46,10 @@ public:
     ~HPOP();
 public:
     /// @brief 设置力模型
-    err_t setForceModel(const HPOPForceModel& forcemodel);
+    errc_t setForceModel(const HPOPForceModel& forcemodel);
 
     /// @brief 设置预报坐标系
-    err_t setPropagationFrame(Frame* frame);
+    errc_t setPropagationFrame(Frame* frame);
 
     /// @brief 设置积分器
     void setIntegrator(ODEIntegrator* integrator);
@@ -63,11 +63,11 @@ public:
     /// @param[in,out]  targetTime  预报结束时间
     /// @param[in,out]  position    输出位置向量
     /// @param[in,out]  velocity    输出速度向量
-    /// @return err_t  错误码
-    err_t propagate(const TimePoint& startTime, TimePoint& targetTime, Vector3d& position, Vector3d& velocity);
+    /// @return errc_t  错误码
+    errc_t propagate(const TimePoint& startTime, TimePoint& targetTime, Vector3d& position, Vector3d& velocity);
 
     /// @brief 初始化
-    err_t initialize();
+    errc_t initialize();
 protected:
     HPOPEquation* equation_{nullptr};               ///< 高精度轨道预报方程
     mutable ODEIntegrator* integrator_{nullptr};    ///< 高精度轨道预报积分器

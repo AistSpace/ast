@@ -43,10 +43,10 @@ public:
     ~DataPort() = default;
 
     AST_CORE_API
-    static err_t connect(DataPort* src, DataPort* dst);
+    static errc_t connect(DataPort* src, DataPort* dst);
 
     AST_CORE_API
-    err_t connect(DataPort* dst);
+    errc_t connect(DataPort* dst);
 
     /// @brief 设置数据端口的宽度
     /// @param width 数据宽度

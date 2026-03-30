@@ -25,9 +25,9 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t MotionOrbitDynamics::getPropagationParams(PropagationParams &params) const
+errc_t MotionOrbitDynamics::getPropagationParams(PropagationParams &params) const
 {
-    err_t rc;
+    errc_t rc;
     // rc = this->getInterval(params.interval_);   AST_CHECK_ERRCODE(rc, "failed to get interval");
     params.propagationFrame_ = this->getPropagationFrame();   AST_CHECK_NULLPTR(params.propagationFrame_);
     auto initialState = this->getInitialState();   AST_CHECK_NULLPTR(initialState);
@@ -36,9 +36,9 @@ err_t MotionOrbitDynamics::getPropagationParams(PropagationParams &params) const
     return eNoError;
 }
 
-err_t MotionOrbitDynamics::discreteInterval(const TimePoint &epoch, double stepSize, std::vector<double> &times) const
+errc_t MotionOrbitDynamics::discreteInterval(const TimePoint &epoch, double stepSize, std::vector<double> &times) const
 {
-    err_t rc;
+    errc_t rc;
     TimeInterval interval;
     rc = this->getInterval(interval);   AST_CHECK_ERRCODE(rc, "failed to get interval");
     rc = interval.discrete(epoch, stepSize, times);   AST_CHECK_ERRCODE(rc, "failed to discrete interval");

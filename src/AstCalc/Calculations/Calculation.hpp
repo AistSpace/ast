@@ -36,7 +36,7 @@ class AST_CALC_API Calculation
 public:
     Calculation() = default;
     virtual ~Calculation() = default;
-    virtual err_t evaluate(const TimePoint& tp, double& result) const = 0;
+    virtual errc_t evaluate(const TimePoint& tp, double& result) const = 0;
 };
 
 

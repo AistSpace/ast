@@ -40,7 +40,7 @@ public:
     EventIntervalLinkTo() = default;
     ~EventIntervalLinkTo() = default;
 public:
-    err_t getInterval(TimeInterval& interval) const override;
+    errc_t getInterval(TimeInterval& interval) const override;
 protected:
     std::string name_;
     std::string absolutePath_;

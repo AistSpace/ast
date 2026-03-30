@@ -40,7 +40,7 @@ public:
 public:
     using BaseOrbitDesigner::getOrbitState;
     
-    err_t getOrbitState(ModOrbElem &orbElem) const override;
+    errc_t getOrbitState(ModOrbElem &orbElem) const override;
     
     /// @brief 获取半长轴
     double getSemimajorAxis() const { return semimajorAxis_; }

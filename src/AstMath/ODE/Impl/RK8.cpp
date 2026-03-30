@@ -26,7 +26,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t RK8::initialize(ODE &ode)
+errc_t RK8::initialize(ODE &ode)
 {
     this->ODEIntegrator::initialize(ode);
     // 重置工作空间
@@ -34,7 +34,7 @@ err_t RK8::initialize(ODE &ode)
     return eNoError;
 }
 
-err_t RK8::singleStep(ODE &ode, double* y, double t0, double h)
+errc_t RK8::singleStep(ODE &ode, double* y, double t0, double h)
 {
     const double c2 = 4.0 / 27.0;
     const double c3 = 2.0 / 9.0;
@@ -131,7 +131,7 @@ err_t RK8::singleStep(ODE &ode, double* y, double t0, double h)
         *k10  = wrk.KArr_[9],
         *ymid = wrk.ymid_;
 
-    err_t err;    
+    errc_t err;    
 
     // 计算k1
     err = ode.evaluate(t0, y0, k1);

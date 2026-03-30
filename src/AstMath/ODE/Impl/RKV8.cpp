@@ -24,7 +24,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t RKV8::initialize(ODE &ode)
+errc_t RKV8::initialize(ODE &ode)
 {
     this->ODEIntegrator::initialize(ode);
     // 重置工作空间
@@ -33,7 +33,7 @@ err_t RKV8::initialize(ODE &ode)
 }
 
 
-err_t RKV8::singleStep(ODE &ode, double* y, double t0, double h)
+errc_t RKV8::singleStep(ODE &ode, double* y, double t0, double h)
 {
     const double sqrt21 = sqrt(21.0);
 
@@ -121,7 +121,7 @@ err_t RKV8::singleStep(ODE &ode, double* y, double t0, double h)
     const double* y0 = y;
     double* yf = y;
 
-    err_t err;
+    errc_t err;
     // 计算k1
     err = ode.evaluate(t0, y0, k1);
     // 计算k2

@@ -31,7 +31,7 @@ class AST_MATH_API RidderSolver: public UnarySolver
 {
 public:
     using UnarySolver::solve;
-    err_t solve(UnaryScalarFunc& func, double min, double max, double& result) override;
+    errc_t solve(UnaryScalarFunc& func, double min, double max, double& result) override;
 };
 
 AST_NAMESPACE_END

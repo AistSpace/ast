@@ -84,7 +84,7 @@ public:
     /// @brief 从文件加载天体数据
     /// @param  filepath    - 天体数据文件路径
     /// @retval             - 错误码
-    err_t load(StringView filepath);
+    errc_t load(StringView filepath);
 
     /// @brief 获取天体半径
     double getRadius() const { return radius_; }
@@ -96,7 +96,7 @@ public:
     double getSystemGM() const { return systemGM_; }
 
     /// @brief 设置重力模型
-    err_t setGravityModel(StringView model);
+    errc_t setGravityModel(StringView model);
     
     /// @brief 获取J2项
     double getJ2() const { return getJn(2); }
@@ -120,7 +120,7 @@ public:
     /// @param  tp          - 时间点
     /// @param  pos         - 输出位置（ICRF）
     /// @retval             - 错误码
-    err_t getPosICRF(const TimePoint& tp, Vector3d& pos) const;
+    errc_t getPosICRF(const TimePoint& tp, Vector3d& pos) const;
 
 
     /// @brief 获取天体位置和速度（ICRF）
@@ -128,13 +128,13 @@ public:
     /// @param  pos         - 输出位置（ICRF）
     /// @param  vel         - 输出速度（ICRF）
     /// @retval             - 错误码
-    err_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const;
+    errc_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const;
 
 public: // 从Point继承重写的函数
 
     Frame* getFrame() const final;
-    err_t getPos(const TimePoint& tp, Vector3d& pos) const final;
-    err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
+    errc_t getPos(const TimePoint& tp, Vector3d& pos) const final;
+    errc_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
 
 public: // 天体的星历和指向/姿态
 
@@ -251,27 +251,27 @@ protected:
     double getJn(int n) const { return gravityField_.getJn(n); }
 
     /// @brief 加载重力模型
-    err_t loadGravityModel(StringView model);
+    errc_t loadGravityModel(StringView model);
 protected:
     friend class SolarSystem;
 
     /// @brief 加载相关的天文参数
-    err_t loadAstroDefinition(BKVParser& parser);
+    errc_t loadAstroDefinition(BKVParser& parser);
 
     /// @brief 加载旋转数据
-    err_t loadSpinData(BKVParser& parser);
+    errc_t loadSpinData(BKVParser& parser);
 
     /// @brief 加载星历相关参数
-    err_t loadEphemerisData(BKVParser& parser);
+    errc_t loadEphemerisData(BKVParser& parser);
 
     /// @brief 加载地球相关参数
-    err_t loadEarth(BKVParser& parser);   
+    errc_t loadEarth(BKVParser& parser);   
     
     /// @brief 加载月球相关参数
-    err_t loadMoon(BKVParser& parser);   
+    errc_t loadMoon(BKVParser& parser);   
 
     /// @brief 加载MeanEarth定义
-    err_t loadMeanEarthDefinition(BKVParser& parser);
+    errc_t loadMeanEarthDefinition(BKVParser& parser);
 
     A_DISABLE_COPY(CelestialBody)
 PROPERTIES:

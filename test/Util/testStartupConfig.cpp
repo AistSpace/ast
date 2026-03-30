@@ -29,7 +29,7 @@ TEST(StartupConfig, gmat_startup_file)
     if(!aIsGithubCI()) GTEST_SKIP();
     const char filepath[] = "data/Test/GMAT/gmat_startup_file.txt";
     StartupConfig config;
-    err_t rc = config.load(filepath);
+    errc_t rc = config.load(filepath);
     EXPECT_EQ(rc, eNoError);
     config.printConfig();
     {
@@ -46,7 +46,7 @@ TEST(StartupConfig, gmat_startup_file)
 TEST(StartupConfig, ast_startup_file)
 {
     const char filepath[] = "data/Test/ast_startup_file.txt";
-    err_t rc = aInitializeByConfig(filepath);
+    errc_t rc = aInitializeByConfig(filepath);
     // EXPECT_EQ(rc, eNoError);
 }
 

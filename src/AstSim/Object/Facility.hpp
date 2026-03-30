@@ -40,8 +40,8 @@ public:
     ~Facility() override = default;
 public: // 从Point继承重写的函数
     Frame* getFrame() const final;
-    err_t getPos(const TimePoint& tp, Vector3d& pos) const final;
-    err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
+    errc_t getPos(const TimePoint& tp, Vector3d& pos) const final;
+    errc_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
 protected:
     SharedPtr<CelestialBody> body_;                 ///< 设施所在的天体
     GeodeticPoint            position_{};           ///< 设施位置

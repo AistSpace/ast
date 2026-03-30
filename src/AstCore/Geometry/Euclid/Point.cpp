@@ -33,7 +33,7 @@ CelestialBody *Point::toBody() const
     return dynamic_cast<CelestialBody*>(const_cast<Point*>(this));
 }
 
-err_t Point::getPosIn(Frame *frame, const TimePoint &tp, Vector3d &pos) const
+errc_t Point::getPosIn(Frame *frame, const TimePoint &tp, Vector3d &pos) const
 {
     auto parent = this->getFrame();
     if(parent == frame)
@@ -43,7 +43,7 @@ err_t Point::getPosIn(Frame *frame, const TimePoint &tp, Vector3d &pos) const
     else
     {
         Vector3d posInParent;
-        err_t rc = getPos(tp, posInParent);
+        errc_t rc = getPos(tp, posInParent);
         if(rc) return rc;
         Transform transform;
         rc = aFrameTransform(parent, frame, tp, transform);
@@ -53,7 +53,7 @@ err_t Point::getPosIn(Frame *frame, const TimePoint &tp, Vector3d &pos) const
     }
 }
 
-err_t Point::getPosVelIn(Frame *frame, const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+errc_t Point::getPosVelIn(Frame *frame, const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     auto parent = this->getFrame();
     if(parent == frame)
@@ -63,7 +63,7 @@ err_t Point::getPosVelIn(Frame *frame, const TimePoint &tp, Vector3d &pos, Vecto
     else
     {
         Vector3d posInParent, velInParent;
-        err_t rc = getPosVel(tp, posInParent, velInParent);
+        errc_t rc = getPosVel(tp, posInParent, velInParent);
         if(rc) return rc;
         KinematicTransform transform;
         rc = aFrameTransform(parent, frame, tp, transform);

@@ -35,7 +35,7 @@ public:
     BlockThirdBody();
     BlockThirdBody(double thirdBodyGM);
 
-    err_t run(const SimTime& simTime) override;
+    errc_t run(const SimTime& simTime) override;
 protected:
     Vector3d* posCBI{};                             ///< 位置
     Vector3d* accThirdBody{&vectorBuffer};          ///< 三体加速度

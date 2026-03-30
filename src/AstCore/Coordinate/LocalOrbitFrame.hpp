@@ -44,56 +44,56 @@ AST_NAMESPACE_BEGIN
 /// @param     posInFrame 位置向量
 /// @param     velInFrame 速度向量
 /// @param     matrix 转换矩阵
-AST_CORE_CAPI err_t aFrameToVVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
+AST_CORE_CAPI errc_t aFrameToVVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
 
 
 /// @brief     计算VVLH坐标系到位置和速度向量所在坐标系的转换矩阵
 /// @param     posInFrame 位置向量
 /// @param     velInFrame 速度向量
 /// @param     matrix 转换矩阵
-AST_CORE_CAPI err_t aVVLHToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
+AST_CORE_CAPI errc_t aVVLHToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
 
 
 /// @brief     计算位置和速度向量所在坐标系到LVLH坐标系的转换矩阵
 /// @param     posInFrame 位置向量
 /// @param     velInFrame 速度向量
 /// @param     matrix 转换矩阵
-AST_CORE_CAPI err_t aFrameToLVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
+AST_CORE_CAPI errc_t aFrameToLVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
 
 
 /// @brief     计算LVLH坐标系到位置和速度向量所在坐标系的转换矩阵
 /// @param     posInFrame 位置向量
 /// @param     velInFrame 速度向量
 /// @param     matrix 转换矩阵
-AST_CORE_CAPI err_t aLVLHToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
+AST_CORE_CAPI errc_t aLVLHToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
 
 
 /// @brief     计算位置向量所在坐标系到ENU坐标系的转换矩阵
 /// @param     posInFrame 位置向量
 /// @param     velInFrame 速度向量
 /// @param     matrix 转换矩阵
-AST_CORE_CAPI err_t aFrameToENUMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
+AST_CORE_CAPI errc_t aFrameToENUMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
 
 
 /// @brief     计算ENU坐标系到位置和速度向量所在坐标系的转换矩阵
 /// @param     posInFrame 位置向量
 /// @param     velInFrame 速度向量
 /// @param     matrix 转换矩阵
-AST_CORE_CAPI err_t aENUToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
+AST_CORE_CAPI errc_t aENUToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
 
 
 /// @brief     计算位置和速度向量所在坐标系到VNC坐标系的转换矩阵
 /// @param     posInFrame 位置向量
 /// @param     velInFrame 速度向量
 /// @param     matrix 转换矩阵
-AST_CORE_CAPI err_t aFrameToVNCMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
+AST_CORE_CAPI errc_t aFrameToVNCMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
 
 
 /// @brief     计算VNC坐标系到位置和速度向量所在坐标系的转换矩阵
 /// @param     posInFrame 位置向量
 /// @param     velInFrame 速度向量
 /// @param     matrix 转换矩阵
-AST_CORE_CAPI err_t aVNCToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
+AST_CORE_CAPI errc_t aVNCToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix);
 
 
 /*! @} */

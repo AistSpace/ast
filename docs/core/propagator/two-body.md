@@ -19,7 +19,7 @@
 ### 函数接口
 
 ```cpp
-AST_CORE_CAPI err_t aTwoBodyProp(double duration, double gm, Vector3d& r, Vector3d& v);
+AST_CORE_CAPI errc_t aTwoBodyProp(double duration, double gm, Vector3d& r, Vector3d& v);
 ```
 
 **参数说明：**

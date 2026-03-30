@@ -38,11 +38,11 @@ public:
     /// @param xSeriesPath X系数文件路径
     /// @param ySeriesPath Y系数文件路径
     /// @param spxy2SeriesPath S系数文件路径
-    err_t load(StringView xSeriesPath, StringView ySeriesPath, StringView spxy2SeriesPath);
+    errc_t load(StringView xSeriesPath, StringView ySeriesPath, StringView spxy2SeriesPath);
 
 
     /// @brief 加载默认岁差章动模型XYS系数文件
-    err_t loadDefault();
+    errc_t loadDefault();
 
     /// @brief 计算岁差章动模型XYS系数
     /// @param t 儒略日

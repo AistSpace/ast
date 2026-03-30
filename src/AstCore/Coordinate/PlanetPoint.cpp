@@ -26,7 +26,7 @@
 AST_NAMESPACE_BEGIN
 
 #define _AST_IMPL_PLANET_POINT(NAME) \
-err_t a##NAME##PosInICRF(const TimePoint &tp, Vector3d &pos) \
+errc_t a##NAME##PosInICRF(const TimePoint &tp, Vector3d &pos) \
 { \
     auto body = aGet##NAME(); \
     if(!body){ \
@@ -35,7 +35,7 @@ err_t a##NAME##PosInICRF(const TimePoint &tp, Vector3d &pos) \
     } \
     return body->getPosICRF(tp, pos); \
 }\
-err_t a##NAME##PosVelInICRF(const TimePoint &tp, Vector3d &pos, Vector3d &vel) \
+errc_t a##NAME##PosVelInICRF(const TimePoint &tp, Vector3d &pos, Vector3d &vel) \
 { \
     auto body = aGet##NAME(); \
     if(!body){ \

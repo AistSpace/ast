@@ -22,12 +22,12 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t BodyEphemerisNoop::getPosICRF(const TimePoint &time, Vector3d &pos) const
+errc_t BodyEphemerisNoop::getPosICRF(const TimePoint &time, Vector3d &pos) const
 {
     return -1;
 }
 
-err_t BodyEphemerisNoop::getPosVelICRF(const TimePoint &time, Vector3d &pos, Vector3d &vel) const
+errc_t BodyEphemerisNoop::getPosVelICRF(const TimePoint &time, Vector3d &pos, Vector3d &vel) const
 {
     return -1;
 }

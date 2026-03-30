@@ -34,7 +34,7 @@ HPOP::~HPOP()
         delete integrator_;
 }
 
-err_t HPOP::setForceModel(const HPOPForceModel& forcemodel)
+errc_t HPOP::setForceModel(const HPOPForceModel& forcemodel)
 {
     if(!equation_){
         equation_ = new HPOPEquation();
@@ -42,7 +42,7 @@ err_t HPOP::setForceModel(const HPOPForceModel& forcemodel)
     return equation_->setForceModel(forcemodel);
 }
 
-err_t HPOP::setPropagationFrame(Frame *frame)
+errc_t HPOP::setPropagationFrame(Frame *frame)
 {
     return equation_->setPropagationFrame(frame);
 }
@@ -56,7 +56,7 @@ ODEIntegrator *HPOP::getIntegrator() const
     return integrator_;
 }
 
-err_t HPOP::initialize()
+errc_t HPOP::initialize()
 {
     if (!equation_){
         equation_ = new HPOPEquation();
@@ -72,9 +72,9 @@ err_t HPOP::initialize()
 
 
 
-err_t HPOP::propagate(const TimePoint &startTime, TimePoint &targetTime, Vector3d &position, Vector3d &velocity)
+errc_t HPOP::propagate(const TimePoint &startTime, TimePoint &targetTime, Vector3d &position, Vector3d &velocity)
 {
-    err_t err = this->initialize();
+    errc_t err = this->initialize();
     if (err)
         return err;
     int dim = equation_->getDimension();

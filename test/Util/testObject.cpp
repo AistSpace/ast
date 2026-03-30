@@ -54,10 +54,10 @@ public:
     double propDouble() const { return propDouble_; }
     const std::string& propString() const { return propString_; }
     
-    err_t setPropBool(bool value) { propBool_ = value; return eNoError; }
-    err_t setPropInt(int value) { propInt_ = value; return eNoError; }
-    err_t setPropDouble(double value) { propDouble_ = value; return eNoError; }
-    err_t setPropString(StringView value) { propString_ = std::string(value); return eNoError; }
+    errc_t setPropBool(bool value) { propBool_ = value; return eNoError; }
+    errc_t setPropInt(int value) { propInt_ = value; return eNoError; }
+    errc_t setPropDouble(double value) { propDouble_ = value; return eNoError; }
+    errc_t setPropString(StringView value) { propString_ = std::string(value); return eNoError; }
 };
 
 
@@ -87,7 +87,7 @@ TEST(Object, PropertyAccess)
     
     // 测试getAttrBool
     bool boolValue;
-    err_t err = obj.getAttrBool("propBool", boolValue);
+    errc_t err = obj.getAttrBool("propBool", boolValue);
     EXPECT_FALSE(err);
     EXPECT_EQ(boolValue, true);
     

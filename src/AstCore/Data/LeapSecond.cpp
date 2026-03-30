@@ -47,7 +47,7 @@ LeapSecond::LeapSecond()
 constexpr int MAX_EXPECTED_LINES = 10000000;  
 
 
-err_t LeapSecond::loadATK(FILE* file)
+errc_t LeapSecond::loadATK(FILE* file)
 {
     if (file == NULL) {
         return eErrorNullInput;
@@ -100,7 +100,7 @@ err_t LeapSecond::loadATK(FILE* file)
     return eNoError;
 }
 
-err_t LeapSecond::loadSTK(FILE *file)
+errc_t LeapSecond::loadSTK(FILE *file)
 {
     if (file == NULL) {
         return eErrorNullInput;
@@ -156,7 +156,7 @@ err_t LeapSecond::loadSTK(FILE *file)
     return eNoError;
 }
 
-err_t LeapSecond::loadHPIERS(FILE* file)
+errc_t LeapSecond::loadHPIERS(FILE* file)
 {
     if (file == NULL) {
         return eErrorNullInput;
@@ -212,12 +212,12 @@ err_t LeapSecond::loadHPIERS(FILE* file)
     return eNoError;
 }
 
-err_t LeapSecond::loadSpice(FILE* file)
+errc_t LeapSecond::loadSpice(FILE* file)
 {
     PCKParser parser;
     parser.setBorrowedFile(file);
     BKVItemView item;
-    err_t rc;
+    errc_t rc;
     while(1){
         rc = parser.getNext(item);
         if(rc == EOF) { // 文件结束但未找到
@@ -235,7 +235,7 @@ err_t LeapSecond::loadSpice(FILE* file)
                 DateTime dttm;
                 StringView datesv = values[i * 2 + 1].value();
                 ValueView leapsec = values[i * 2];
-                err_t rc = aDateTimeParse(datesv, "@%Y-%h-%d", dttm);
+                errc_t rc = aDateTimeParse(datesv, "@%Y-%h-%d", dttm);
                 if(rc){
                     aError("failed to parse date string = %.*s", datesv.size(), datesv.data());
                     return rc;
@@ -252,7 +252,7 @@ err_t LeapSecond::loadSpice(FILE* file)
     return eErrorInvalidFile;
 }
 
-err_t LeapSecond::load(StringView filepath)
+errc_t LeapSecond::load(StringView filepath)
 {
     // 1. 打开文件
     ScopedPtr<std::FILE> file(ast_fopen(std::string(filepath).c_str(), "r"));
@@ -290,7 +290,7 @@ err_t LeapSecond::load(StringView filepath)
 }
 
 
-err_t LeapSecond::loadHPIERS(StringView filepath)
+errc_t LeapSecond::loadHPIERS(StringView filepath)
 {
     ScopedPtr<std::FILE> file(ast_fopen(std::string(filepath).c_str(), "r"));
     if (file == NULL) {
@@ -299,7 +299,7 @@ err_t LeapSecond::loadHPIERS(StringView filepath)
     return loadHPIERS(file);
 }
 
-err_t LeapSecond::loadATK(StringView filepath)
+errc_t LeapSecond::loadATK(StringView filepath)
 {
     ScopedPtr<std::FILE> file(ast_fopen(std::string(filepath).c_str(), "r"));
     if (file == NULL) {

@@ -27,7 +27,7 @@ TEST(SpiceApi, LoadUnload)
 {
     SpiceApi api;
     const auto libpaths = aTestGetConfigStringVector("CSPICE_LIBS");
-    err_t rc = api.tryload(libpaths);
+    errc_t rc = api.tryload(libpaths);
     EXPECT_FALSE(api.failed());
     EXPECT_EQ(rc, eNoError);
     {

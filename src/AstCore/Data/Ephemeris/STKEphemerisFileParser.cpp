@@ -32,7 +32,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t aParserSTKEphemeris(StringView filepath, HEphemeris &ephemeris)
+errc_t aParserSTKEphemeris(StringView filepath, HEphemeris &ephemeris)
 {
     BKVParser parser(filepath);
     return aParserSTKEphemeris(parser, ephemeris);
@@ -46,7 +46,7 @@ enum EInterpolationMethod
 };
 
 
-static err_t parsePosVel(
+static errc_t parsePosVel(
     BKVParser &parser,
     int numpoints, 
     std::vector<double>& times, 
@@ -83,7 +83,7 @@ static err_t parsePosVel(
 }
 
 
-err_t aParserSTKEphemeris(BKVParser &parser, ScopedPtr<Ephemeris> &ephemeris)
+errc_t aParserSTKEphemeris(BKVParser &parser, ScopedPtr<Ephemeris> &ephemeris)
 {
     if(!parser.isOpen())
         return eErrorInvalidParam;
@@ -203,7 +203,7 @@ err_t aParserSTKEphemeris(BKVParser &parser, ScopedPtr<Ephemeris> &ephemeris)
             }
             else if(aEqualsIgnoreCase(key, "EphemerisTimePosVel"))
             {
-                err_t rc = parsePosVel(
+                errc_t rc = parsePosVel(
                     parser, 
                     data.numberOfEphemerisPoints_,
                     data.times_,
@@ -219,7 +219,7 @@ err_t aParserSTKEphemeris(BKVParser &parser, ScopedPtr<Ephemeris> &ephemeris)
             {
                 data.body_ = aGetEarth();
                 data.frame_ = data.body_->makeFrameInertial();
-                err_t rc = parsePosVel(
+                errc_t rc = parsePosVel(
                     parser, 
                     data.numberOfEphemerisPoints_,
                     data.times_,
@@ -270,17 +270,17 @@ err_t aParserSTKEphemeris(BKVParser &parser, ScopedPtr<Ephemeris> &ephemeris)
     return eNoError;
 }
 
-err_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
+errc_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
 {
     ScopedPtr<Ephemeris> ephem;
-    err_t rc = aParserSTKEphemeris(parser, ephem);
+    errc_t rc = aParserSTKEphemeris(parser, ephem);
     if(rc)
         return rc;
     ephemeris = ephem.release();
     return eNoError;
 }
 
-err_t STKEphemerisFileParser::parse(StringView filepath, HEphemeris& ephemeris)
+errc_t STKEphemerisFileParser::parse(StringView filepath, HEphemeris& ephemeris)
 {
     return aParserSTKEphemeris(filepath, ephemeris);
 }

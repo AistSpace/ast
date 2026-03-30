@@ -31,7 +31,7 @@ AST_NAMESPACE_BEGIN
 std::shared_ptr<StartupConfig> aTestLoadConfig()
 {
     auto config = std::make_shared<StartupConfig>();
-    err_t rc = config->load(AST_DEFAULT_TEST_CONFIG_PATH);
+    errc_t rc = config->load(AST_DEFAULT_TEST_CONFIG_PATH);
     if(rc){
         std::string configfile = aDataDir() + "/Config/" + AST_DEFAULT_TEST_CONFIG_PATH;
         aInfo("using test config file: %s", configfile.c_str());

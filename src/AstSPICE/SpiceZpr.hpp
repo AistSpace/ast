@@ -1002,7 +1002,7 @@ AST_SPICE_CAPI void mxvg(
 /// @param et 时间点
 /// @param rotate 输出旋转矩阵
 /// @return 
-AST_SPICE_API err_t pxform(
+AST_SPICE_API errc_t pxform(
     StringView          from,
     StringView          to,
     const TimePoint&    et,
@@ -1176,7 +1176,7 @@ AST_SPICE_CAPI void rav2xf(
 /// @param ptarg 输出位置（直角坐标）
 /// @param lt 光行时
 /// @return 
-AST_SPICE_API err_t spkapo(
+AST_SPICE_API errc_t spkapo(
     CelestialBody      * targ,
     const TimePoint&     et,
     Axes               * ref,
@@ -1250,7 +1250,7 @@ AST_SPICE_API void spkgps(
 /// @param[out] ptarg 输出位置（直角坐标）
 /// @param[out] lt 光行时
 /// @return 
-AST_SPICE_API err_t spkpos(
+AST_SPICE_API errc_t spkpos(
     CelestialBody    * targ,
     const TimePoint&   et,
     Axes             * ref,
@@ -1261,7 +1261,7 @@ AST_SPICE_API err_t spkpos(
 );
 
 AST_SPICE_API
-err_t spkpos(
+errc_t spkpos(
     StringView         targ,
     const TimePoint&   et,
     StringView         ref,
@@ -1281,7 +1281,7 @@ err_t spkpos(
 /// @param ref 参考轴系
 /// @param starg 输出位置速度（直角坐标）
 /// @return 
-AST_SPICE_API err_t spkssb(
+AST_SPICE_API errc_t spkssb(
     CelestialBody*     targ,
     const TimePoint&   et,
     Axes             * ref,
@@ -1335,10 +1335,10 @@ AST_SPICE_API err_t spkssb(
 // ssize
 
 // stelab
-err_t stelab(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj);
+errc_t stelab(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj);
 
 // stlabx
-err_t stlabx(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj);
+errc_t stlabx(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj);
 
 // stpool
 
@@ -1383,7 +1383,7 @@ err_t stlabx(const Vector3d& pobj, const Vector3d& vobs, Vector3d& appobj);
 // timout
 
 // tipbod
-AST_SPICE_API err_t tipbod(
+AST_SPICE_API errc_t tipbod(
     Axes            * ref,
     CelestialBody   * body,
     const TimePoint & et,
@@ -1447,7 +1447,7 @@ AST_SPICE_API err_t tipbod(
 /// @param utcstr 
 /// @param et 
 /// @return 
-AST_SPICE_API err_t utc2et(StringView utcstr, double &et);
+AST_SPICE_API errc_t utc2et(StringView utcstr, double &et);
 
 // vaddg
 

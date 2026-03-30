@@ -110,12 +110,12 @@ NLPProblem::~NLPProblem()
 		delete m_problem;
 }
 
-err_t NLPProblem::getInfo(NLPInfo& info) const
+errc_t NLPProblem::getInfo(NLPInfo& info) const
 {
 	return m_problem->getInfo(info);
 }
 
-err_t NLPProblem::getJacInfo(NLPJacInfo& info) const
+errc_t NLPProblem::getJacInfo(NLPJacInfo& info) const
 {
 	// 这里的默认实现简单认为雅可比矩阵为稠密矩阵
 
@@ -140,7 +140,7 @@ err_t NLPProblem::getJacInfo(NLPJacInfo& info) const
 	return 0;
 }
 
-err_t NLPProblem::getBounds(NLPBounds& bounds) const
+errc_t NLPProblem::getBounds(NLPBounds& bounds) const
 {
 	// 1. 先设置默认值
 
@@ -171,7 +171,7 @@ err_t NLPProblem::getBounds(NLPBounds& bounds) const
 	return m_problem->getBounds(bounds);
 }
 
-err_t NLPProblem::evalFitness(const NLPInput& input, NLPOutput& output) const
+errc_t NLPProblem::evalFitness(const NLPInput& input, NLPOutput& output) const
 {
 	return m_problem->evalFitness(input, output);
 }
@@ -179,12 +179,12 @@ err_t NLPProblem::evalFitness(const NLPInput& input, NLPOutput& output) const
 std::vector<double> NLPProblem::evalFitness(const std::vector<double>& x) const
 {
 	std::vector<double> f;
-	err_t err = this->evalFitness(x, f);
+	errc_t err = this->evalFitness(x, f);
 	A_UNUSED(err);
 	return f;
 }
 
-err_t NLPProblem::evalFitness(const std::vector<double>& x, std::vector<double>& f) const
+errc_t NLPProblem::evalFitness(const std::vector<double>& x, std::vector<double>& f) const
 {
 	// @todo: check input
 
@@ -213,21 +213,21 @@ err_t NLPProblem::evalFitness(const std::vector<double>& x, std::vector<double>&
 std::vector<double> NLPProblem::evalConstraint(const std::vector<double>& variable) const
 {
 	std::vector<double> c;
-	err_t err = this->evalConstraint(variable, c);
+	errc_t err = this->evalConstraint(variable, c);
 	A_UNUSED(err);
 	return c;
 	// moving a local object in a return statement prevents copy elision [-Werror=pessimizing-move]
 	// return std::move(c);
 }
 
-err_t NLPProblem::evalConstraint(const std::vector<double>& variable, std::vector<double>& constraint) const
+errc_t NLPProblem::evalConstraint(const std::vector<double>& variable, std::vector<double>& constraint) const
 {
 	int numConstraint = m_probInfo.getNumConstraint();
 	constraint.resize(numConstraint);
 	return this->evalConstraint((int)variable.size(), variable.data(), (int)numConstraint, constraint.data());
 }
 
-err_t NLPProblem::evalConstraint(int numVariable, const double* variable, int numConstraint, double* constraint) const
+errc_t NLPProblem::evalConstraint(int numVariable, const double* variable, int numConstraint, double* constraint) const
 {
 	// @todo check input and output
 
@@ -245,7 +245,7 @@ err_t NLPProblem::evalConstraint(int numVariable, const double* variable, int nu
 	return evalFitness(input, output);
 }
 
-err_t NLPProblem::evalObjective(int numVariable, const double* variable, int numObjective, double* objective) const
+errc_t NLPProblem::evalObjective(int numVariable, const double* variable, int numObjective, double* objective) const
 {
 	// @todo check input and output
 
@@ -261,13 +261,13 @@ err_t NLPProblem::evalObjective(int numVariable, const double* variable, int num
 }
 
 
-err_t NLPProblem::evalObjective(int numVariable, const double* variable, double& objective) const
+errc_t NLPProblem::evalObjective(int numVariable, const double* variable, double& objective) const
 {
 	return evalObjective(numVariable, variable, 1, &objective);
 }
 
 
-err_t NLPProblem::evalFitness(int numVariable, double* variable, int numObjective, double* objective, int numConstrEq, double* constrEq, int numConstrIneq, double* constrIneq) const
+errc_t NLPProblem::evalFitness(int numVariable, double* variable, int numObjective, double* objective, int numConstrEq, double* constrEq, int numConstrIneq, double* constrIneq) const
 {
 	NLPInput input{};
 	NLPOutput output{};
@@ -284,21 +284,21 @@ err_t NLPProblem::evalFitness(int numVariable, double* variable, int numObjectiv
 	return evalFitness(input, output);
 }
 
-err_t NLPProblem::evalJacobi(int ndim, const double* x_input, int numConstraint, int numJacobiElem, double* nzElemjacobi) const
+errc_t NLPProblem::evalJacobi(int ndim, const double* x_input, int numConstraint, int numJacobiElem, double* nzElemjacobi) const
 {
 	// printf("EvalJacobi(...) method is not overridden\n");
 	return evalNLEJacobiCD(0.1, ndim, x_input, numConstraint, nzElemjacobi);
 }
 
-err_t NLPProblem::evalGradient(int numVariable, const double* variable, double* grad) const
+errc_t NLPProblem::evalGradient(int numVariable, const double* variable, double* grad) const
 {
 	return evalGradientCD(0.1, numVariable, variable, grad);
 }
 
-err_t NLPProblem::getInitialGuess(int numVariable, double *variable) const
+errc_t NLPProblem::getInitialGuess(int numVariable, double *variable) const
 {
 	// 这里的实现：简单取变量初值为变量上下界的平均值
-	err_t err;
+	errc_t err;
 	
 	// NLPInfo info;
 	// err = this->getInfo(info);
@@ -320,7 +320,7 @@ err_t NLPProblem::getInitialGuess(int numVariable, double *variable) const
     return err;
 }
 
-err_t NLPProblem::evalNLEJacobiCCSFD(double ustep, int ndim, const double* x_input, int m, const int* iFuncRow, const int* idxNNZElem, double* jacobi_sparse_value) const
+errc_t NLPProblem::evalNLEJacobiCCSFD(double ustep, int ndim, const double* x_input, int m, const int* iFuncRow, const int* idxNNZElem, double* jacobi_sparse_value) const
 {
 	A_LOCAL_BUFFER(double, fvec, 3 * ndim);
 	double* x = fvec + ndim;
@@ -332,7 +332,7 @@ err_t NLPProblem::evalNLEJacobiCCSFD(double ustep, int ndim, const double* x_inp
 	// 考虑数值舍入误差，最小的步长理论上是eps(x)约等于x*eps(1) > eps(x)
 	// 在minpack，默认的步长为x*sqrt(eps(1)) > x*eps(1) > eps(x)
 	double temp, h;
-	err_t err;
+	errc_t err;
 	err = evalConstraint(ndim, x_input, m, fvec);
 	if (err) {
 		return err;
@@ -358,7 +358,7 @@ err_t NLPProblem::evalNLEJacobiCCSFD(double ustep, int ndim, const double* x_inp
 
 
 
-err_t NLPProblem::evalGradientCD(double ustep, int n, const double* x_input, double* grad) const
+errc_t NLPProblem::evalGradientCD(double ustep, int n, const double* x_input, double* grad) const
 {
 	A_LOCAL_BUFFER(double, x1, 3 * n);
 	double* x2 = x1 + n;
@@ -371,7 +371,7 @@ err_t NLPProblem::evalGradientCD(double ustep, int n, const double* x_input, dou
 	// 考虑数值舍入误差，最小的步长理论上是eps(x)约等于x*eps(1) > eps(x)
 	// 在minpack，默认的步长为x*sqrt(eps(1)) > x*eps(1) > eps(x)
 	double temp, h;
-	err_t err;
+	errc_t err;
 	double f_new1;
 	double f_new2;
 	for (int j = 0; j < n; ++j) {
@@ -395,7 +395,7 @@ err_t NLPProblem::evalGradientCD(double ustep, int n, const double* x_input, dou
 }
 
 
-err_t NLPProblem::evalGradientFD(double ustep, int n, const double* x_input, double* grad) const
+errc_t NLPProblem::evalGradientFD(double ustep, int n, const double* x_input, double* grad) const
 {
 	A_LOCAL_BUFFER(double, x, n);
 	std::copy_n(x_input, n, x);
@@ -405,7 +405,7 @@ err_t NLPProblem::evalGradientFD(double ustep, int n, const double* x_input, dou
 	double f;
 	double f_new;
 	double temp, h;
-	err_t err;
+	errc_t err;
 	err = evalObjective(n, x_input, f);
 	if (err) {
 		return err;
@@ -426,7 +426,7 @@ err_t NLPProblem::evalGradientFD(double ustep, int n, const double* x_input, dou
 }
 
 
-err_t NLPProblem::evalGradientBD(double ustep, int n, const double* x_input, double* grad) const
+errc_t NLPProblem::evalGradientBD(double ustep, int n, const double* x_input, double* grad) const
 {
 	A_LOCAL_BUFFER(double, x, n);
 	std::copy_n(x_input, n, x);
@@ -436,7 +436,7 @@ err_t NLPProblem::evalGradientBD(double ustep, int n, const double* x_input, dou
 	double f;
 	double f_new;
 	double temp, h;
-	err_t err;
+	errc_t err;
 	err = evalObjective(n, x_input, f);
 	if (err) {
 		return err;
@@ -456,7 +456,7 @@ err_t NLPProblem::evalGradientBD(double ustep, int n, const double* x_input, dou
 	return 0;
 }
 
-err_t NLPProblem::evalNLEJacobiFD( double ustep, int n, const double* x_input, int m, double* colmaj_jacobi) const
+errc_t NLPProblem::evalNLEJacobiFD( double ustep, int n, const double* x_input, int m, double* colmaj_jacobi) const
 {
 	A_LOCAL_BUFFER(double, fvec, 3*n);
 	double* x       = fvec + n;
@@ -468,7 +468,7 @@ err_t NLPProblem::evalNLEJacobiFD( double ustep, int n, const double* x_input, i
 	// 考虑数值舍入误差，最小的步长理论上是eps(x)约等于x*eps(1) > eps(x)
 	// 在minpack，默认的步长为x*sqrt(eps(1)) > x*eps(1) > eps(x)
 	double temp, h;
-	err_t err;
+	errc_t err;
 	err = evalConstraint(n, x_input, m, fvec);
 	if (err) {
 		return err;
@@ -490,7 +490,7 @@ err_t NLPProblem::evalNLEJacobiFD( double ustep, int n, const double* x_input, i
 	return 0;
 }
 
-err_t NLPProblem::evalNLEJacobiBD(double ustep, int n, const double* x_input, int m, double* colmaj_jacobi) const
+errc_t NLPProblem::evalNLEJacobiBD(double ustep, int n, const double* x_input, int m, double* colmaj_jacobi) const
 {
 	A_LOCAL_BUFFER(double, fvec, 3 * n);
 	double* x = fvec + n;
@@ -502,7 +502,7 @@ err_t NLPProblem::evalNLEJacobiBD(double ustep, int n, const double* x_input, in
 	// 考虑数值舍入误差，最小的步长理论上是eps(x)约等于x*eps(1) > eps(x)
 	// 在minpack，默认的步长为x*sqrt(eps(1)) > x*eps(1) > eps(x)
 	double temp, h;
-	err_t err;
+	errc_t err;
 	err = evalConstraint(n, x_input, m, fvec);
 	if (err) {
 		return err;
@@ -524,7 +524,7 @@ err_t NLPProblem::evalNLEJacobiBD(double ustep, int n, const double* x_input, in
 }
 
 
-err_t NLPProblem::evalNLEJacobiCD(double ustep, int n, const double* x_input, int m, double* colmaj_jacobi) const
+errc_t NLPProblem::evalNLEJacobiCD(double ustep, int n, const double* x_input, int m, double* colmaj_jacobi) const
 {
 	A_LOCAL_BUFFER(double, x1, 5 * n);
 	double* x2 = x1 + n;
@@ -538,7 +538,7 @@ err_t NLPProblem::evalNLEJacobiCD(double ustep, int n, const double* x_input, in
 	// 考虑数值舍入误差，最小的步长理论上是eps(x)约等于x*eps(1) > eps(x)
 	// 在minpack，默认的步长为x*sqrt(eps(1)) > x*eps(1) > eps(x)
 	double temp, h;
-	err_t err;
+	errc_t err;
 	for (int j = 0; j < n; ++j) {
 		temp = x1[j];
 		h = ustep * (1 + fabs(temp));
@@ -561,7 +561,7 @@ err_t NLPProblem::evalNLEJacobiCD(double ustep, int n, const double* x_input, in
 	return 0;
 }
 
-err_t NLPProblem::evalNLENNZJacCCSNan(int ndim, const double* x_initguess, int m, std::vector<int>& iFunRow, std::vector<int>& idxNNZElem) const
+errc_t NLPProblem::evalNLENNZJacCCSNan(int ndim, const double* x_initguess, int m, std::vector<int>& iFunRow, std::vector<int>& idxNNZElem) const
 {
 	bool iflag;
 	iflag = aCheckFloatingBehaviorIEEE754();
@@ -580,7 +580,7 @@ err_t NLPProblem::evalNLENNZJacCCSNan(int ndim, const double* x_initguess, int m
 	{
 		temp = x[j];
 		x[j] = NAN;
-		err_t err = evalConstraint(ndim, x, m, fvec);
+		errc_t err = evalConstraint(ndim, x, m, fvec);
 		if (err) {
 			return err;
 		}
@@ -596,21 +596,21 @@ err_t NLPProblem::evalNLENNZJacCCSNan(int ndim, const double* x_initguess, int m
 	return 0;
 }
 
-err_t NLPProblem::evalNLENNZJacNan(int ndim, const double* x_initguess, int m, int& nnz_jac) const
+errc_t NLPProblem::evalNLENNZJacNan(int ndim, const double* x_initguess, int m, int& nnz_jac) const
 {
 	std::vector<int> t1, t2;
-	err_t rc =  evalNLENNZJacCOONan(ndim, x_initguess, m, t1, t2);
+	errc_t rc =  evalNLENNZJacCOONan(ndim, x_initguess, m, t1, t2);
 	nnz_jac = (int)t1.size();
 	return rc;
 }
 
-err_t NLPProblem::evalNLENNZJacCOONan(int ndim, const double* x_initguess, int m, std::vector<int>& iFunRow, std::vector<int>& jVarCol) const
+errc_t NLPProblem::evalNLENNZJacCOONan(int ndim, const double* x_initguess, int m, std::vector<int>& iFunRow, std::vector<int>& jVarCol) const
 {
 	A_LOCAL_BUFFER(double, x, 2 * ndim);
 	double* fvec = x + ndim;
 	std::copy_n(x_initguess, ndim, x);
 	double temp;
-	err_t err;
+	errc_t err;
 	iFunRow.clear();
 	jVarCol.clear();
 	for (int j = 0; j < ndim; j++)

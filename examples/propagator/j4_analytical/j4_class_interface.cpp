@@ -90,7 +90,7 @@ int main()
               << vel[2]/1000.0 << ") km/s" << std::endl;
     
     // 使用函数接口进行传播
-    err_t result = aJ4AnalyticalProp(24 * 3600.0, gm_earth, j2_earth, j4_earth, re_earth, pos, vel);
+    errc_t result = aJ4AnalyticalProp(24 * 3600.0, gm_earth, j2_earth, j4_earth, re_earth, pos, vel);
     
     if (result == eNoError) {
         std::cout << std::endl;

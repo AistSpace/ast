@@ -45,7 +45,7 @@ public:
     }
     Value* eval() const final;
     Expr* exec() const final;
-    err_t setValue(Value* value) final;
+    errc_t setValue(Value* value) final;
 private:
     std::string name_;
 };

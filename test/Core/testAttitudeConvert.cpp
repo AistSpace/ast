@@ -347,7 +347,7 @@ TEST(AttitudeConvertTest, EulerAndQuat)
     // 测试用例1: 零角度欧拉角
     Euler euler1{ 0.0, 0.0, 0.0 };
     Quaternion quat1;
-    err_t rc = aEulerToQuat(euler1, Euler::eXYZ, quat1);
+    errc_t rc = aEulerToQuat(euler1, Euler::eXYZ, quat1);
     EXPECT_EQ(rc, 0);
     EXPECT_NEAR(quat1.qs(), 1.0, 1e-14);
     EXPECT_NEAR(quat1.qx(), 0.0, 1e-14);
@@ -362,7 +362,7 @@ TEST(AttitudeConvertTest, EulerAndQuat)
     for (int seq : sequences)
     {
         Quaternion quat;
-        err_t rc = aEulerToQuat(euler2, seq, quat);
+        errc_t rc = aEulerToQuat(euler2, seq, quat);
         EXPECT_EQ(rc, 0);
         
         Euler euler_check;

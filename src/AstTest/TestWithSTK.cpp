@@ -29,7 +29,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t aTestWithEmptyEphemeris(Mover& mover)
+errc_t aTestWithEmptyEphemeris(Mover& mover)
 {
     ast_printf("test with empty ephemeris\n");
     int rc;
@@ -87,11 +87,11 @@ err_t aTestWithEmptyEphemeris(Mover& mover)
     return 0;
 }
 
-err_t aTestFromSTKFile(StringView filepath)
+errc_t aTestFromSTKFile(StringView filepath)
 {
     ast_printf("loading %.*s\n", (int)filepath.size(), filepath.data());
     Mover mover;
-    err_t rc = aLoadMover(filepath, mover);
+    errc_t rc = aLoadMover(filepath, mover);
     if(rc != eNoError)
     {
         ast_printf("failed to load %.*s\n", (int)filepath.size(), filepath.data());

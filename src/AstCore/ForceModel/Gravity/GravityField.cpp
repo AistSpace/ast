@@ -37,7 +37,7 @@ void aGravityFieldUnnormalize(GravityField &gf)
 }
 
 
-err_t GravityFieldHead::load(StringView filepath, StringView dirpath)
+errc_t GravityFieldHead::load(StringView filepath, StringView dirpath)
 {
     GravityFieldLoader loader(dirpath);
     return loader.load(filepath, *this);
@@ -99,14 +99,14 @@ GravityField::GravityField()
 
 }
 
-err_t GravityField::load(StringView model, StringView dirpath)
+errc_t GravityField::load(StringView model, StringView dirpath)
 {
     GravityFieldLoader loader(dirpath);
     return loader.load(model, *this);
 }
 
 
-err_t GravityField::load(StringView model, int maxLoadDegree, int maxLoadOrder, StringView dirpath)
+errc_t GravityField::load(StringView model, int maxLoadDegree, int maxLoadOrder, StringView dirpath)
 {
     GravityFieldLoader loader(maxLoadDegree, maxLoadOrder, dirpath);
     return loader.load(model, *this);

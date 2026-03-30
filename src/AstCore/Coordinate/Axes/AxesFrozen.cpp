@@ -45,14 +45,14 @@ Axes *AxesFrozen::getParent() const
     return referenceAxes_;
 }
 
-err_t AxesFrozen::getTransform(const TimePoint &tp, Rotation &rotation) const
+errc_t AxesFrozen::getTransform(const TimePoint &tp, Rotation &rotation) const
 {
     A_UNUSED(tp);
     auto epoch = getEpoch();
     return aAxesTransform(referenceAxes_, axes_, epoch, rotation);
 }
 
-err_t AxesFrozen::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
+errc_t AxesFrozen::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
 {
     A_UNUSED(tp);
     auto epoch = getEpoch();

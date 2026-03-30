@@ -39,13 +39,13 @@ Axes* AxesBodyFixed::getParent() const
 {
     return AxesICRF::Instance();
 }
-err_t AxesBodyFixed::getTransform(const TimePoint& tp, Rotation& rotation) const
+errc_t AxesBodyFixed::getTransform(const TimePoint& tp, Rotation& rotation) const
 {
     getBodyOrientation()->getICRFToFixedTransform(tp, rotation);
     return eNoError;
 }
 
-err_t AxesBodyFixed::getTransform(const TimePoint& tp, KinematicRotation& rotation) const
+errc_t AxesBodyFixed::getTransform(const TimePoint& tp, KinematicRotation& rotation) const
 {
     getBodyOrientation()->getICRFToFixedTransform(tp, rotation);
     return eNoError;

@@ -16,11 +16,11 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t JsonSerializer::serialize(Object* object, std::string& output) {
+errc_t JsonSerializer::serialize(Object* object, std::string& output) {
     return -1;
 }
 
-err_t JsonSerializer::deserialize(const std::string& input, Object* object) {
+errc_t JsonSerializer::deserialize(const std::string& input, Object* object) {
     return -1;
 }
 

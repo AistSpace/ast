@@ -25,27 +25,27 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t PropertyString::getValueBool(const void* container, bool& value)
+errc_t PropertyString::getValueBool(const void* container, bool& value)
 {
     std::string str;
-    err_t ret = this->getValue(container, &str);
+    errc_t ret = this->getValue(container, &str);
     if (ret != eNoError)
     {
         return ret;
     }
     return aParseBool(str, value);
 }
-err_t PropertyString::setValueBool(void* container, bool value) 
+errc_t PropertyString::setValueBool(void* container, bool value) 
 {
     std::string str = aFormatBool(value);
     StringView strview = str;
     return this->setValue(container, &strview);
 }
 
-err_t PropertyString::getValueInt(const void* container, int& value) 
+errc_t PropertyString::getValueInt(const void* container, int& value) 
 {
     std::string str;
-    err_t ret = this->getValue(container, &str);
+    errc_t ret = this->getValue(container, &str);
     if (ret != eNoError)
     {
         return ret;
@@ -53,10 +53,10 @@ err_t PropertyString::getValueInt(const void* container, int& value)
     return aParseInt(str, value);
 }
 
-err_t PropertyString::setValueInt(void* container, int value) 
+errc_t PropertyString::setValueInt(void* container, int value) 
 {
     std::string str;
-    err_t err = aFormatInt(value, str);
+    errc_t err = aFormatInt(value, str);
     if (err != eNoError)
     {
         return err;
@@ -65,20 +65,20 @@ err_t PropertyString::setValueInt(void* container, int value)
     return this->setValue(container, &strview);
 }
 
-err_t PropertyString::getValueString(const void* container, std::string& value)
+errc_t PropertyString::getValueString(const void* container, std::string& value)
 {
     return this->getValue(container, &value);
 }
 
-err_t PropertyString::setValueString(void* container, StringView value)
+errc_t PropertyString::setValueString(void* container, StringView value)
 {
     return this->setValue(container, &value);
 }
 
-err_t PropertyString::getValueDouble(const void* container, double& value)
+errc_t PropertyString::getValueDouble(const void* container, double& value)
 {
     std::string str;
-    err_t ret = this->getValue(container, &str);
+    errc_t ret = this->getValue(container, &str);
     if (ret != eNoError)
     {
         return ret;
@@ -86,10 +86,10 @@ err_t PropertyString::getValueDouble(const void* container, double& value)
     return aParseDouble(str, value);
 }
 
-err_t PropertyString::setValueDouble(void* container, double value)
+errc_t PropertyString::setValueDouble(void* container, double value)
 {
     std::string str;
-    err_t err = aFormatDouble(value, str);
+    errc_t err = aFormatDouble(value, str);
     if (err != eNoError)
     {
         return err;
@@ -98,7 +98,7 @@ err_t PropertyString::setValueDouble(void* container, double value)
     return this->setValue(container, &strview);
 }
 
-err_t PropertyString::accept(PropertyVisitor& visitor, const void* container)
+errc_t PropertyString::accept(PropertyVisitor& visitor, const void* container)
 {
     return visitor.visit(*this, container);
 }

@@ -76,10 +76,10 @@ void BlockDynamicSystem::addBlock(BlockDerivative* block)
     return addDerivativeBlock(block);
 }
 
-err_t BlockDynamicSystem::initialize()
+errc_t BlockDynamicSystem::initialize()
 {
     // 1. 函数块排序
-    err_t err = sortBlocks();
+    errc_t err = sortBlocks();
     if(err!=0)
         return err;
 
@@ -93,7 +93,7 @@ err_t BlockDynamicSystem::initialize()
 }
 
 
-err_t BlockDynamicSystem::sortBlocks()
+errc_t BlockDynamicSystem::sortBlocks()
 {
     size_t size = blocks_.size();
     for(size_t index=0;index<size;index++)
@@ -112,7 +112,7 @@ err_t BlockDynamicSystem::sortBlocks()
 }
 
 /// @brief 创建状态量映射表
-err_t BlockDynamicSystem::createStateMap()
+errc_t BlockDynamicSystem::createStateMap()
 {
     // size_t size = derivativeBlocks_.size();
     int totalStateDimension = 0;
@@ -179,7 +179,7 @@ err_t BlockDynamicSystem::createStateMap()
 
 
 
-err_t BlockDynamicSystem::connectSignalsByNames()
+errc_t BlockDynamicSystem::connectSignalsByNames()
 {
     for(auto block: blocks_)
     {

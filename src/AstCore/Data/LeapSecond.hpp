@@ -55,22 +55,22 @@ public:
 	/// @brief  从文件加载闰秒数据，按照默认格式进行加载
 	/// @param  filepath - 文件路径
 	/// @retval          - 错误码
-    err_t load(StringView filepath);
+    errc_t load(StringView filepath);
 
 	/// @brief  从HPIERS格式文件加载闰秒数据
 	/// @details 见 <https://hpiers.obspm.fr/iers/bul/bulc/Leap_Second.dat>
 	/// @param  filepath - 文件路径
 	/// @retval          - 错误码
-	err_t loadHPIERS(StringView filepath);
+	errc_t loadHPIERS(StringView filepath);
 
 	/// @brief  从ATK格式文件加载闰秒数据
 	/// @param  filepath - 文件路径
 	/// @retval          - 错误码
-	err_t loadATK(StringView filepath);
+	errc_t loadATK(StringView filepath);
 
     /// @brief 从默认文件加载闰秒数据
     /// @return 错误码
-    err_t loadDefault();
+    errc_t loadDefault();
 
 	/// @brief  设置默认数据
 	void setDefaultData();
@@ -81,24 +81,24 @@ protected:
 	/// @brief  从ATK格式文件加载闰秒数据
 	/// @param  file - ATK格式文件指针
 	/// @retval          - 错误码
-    err_t loadATK(FILE* file);
+    errc_t loadATK(FILE* file);
 
 	/// @brief  从STK格式文件加载闰秒数据
 	/// @param  file - STK格式文件指针
 	/// @retval          - 错误码
-	err_t loadSTK(FILE* file);
+	errc_t loadSTK(FILE* file);
 
 	/// @brief  从HPIERS格式文件加载闰秒数据
 	/// @details 见 <https://hpiers.obspm.fr/iers/bul/bulc/Leap_Second.dat>
 	/// @param  file - HPIERS格式文件指针
 	/// @retval          - 错误码
-    err_t loadHPIERS(FILE* file);
+    errc_t loadHPIERS(FILE* file);
 
 	/// @brief  从SPICE内核文件加载闰秒数据
 	/// @details 见 <https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/kernel.html>
 	/// @param  file - SPICE内核文件指针
 	/// @retval          - 错误码
-	err_t loadSpice(FILE* file);
+	errc_t loadSpice(FILE* file);
 public:
 	/// @brief  获取UTC秒数
 	/// @param  jdUTC -  儒略日Julian Date (UTC)

@@ -36,7 +36,7 @@ class Mover;
 /// @param filepath 文件路径
 /// @param mover 移动对象引用
 /// @return 错误码
-AST_SIM_CAPI err_t aLoadMover(StringView filepath, Mover& mover);
+AST_SIM_CAPI errc_t aLoadMover(StringView filepath, Mover& mover);
 
 /*! @} */
 

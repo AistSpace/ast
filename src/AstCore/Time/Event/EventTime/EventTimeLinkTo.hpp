@@ -40,7 +40,7 @@ public:
     EventTimeLinkTo() = default;
     ~EventTimeLinkTo() = default;
 public:
-    err_t getTime(TimePoint& tp) const override;
+    errc_t getTime(TimePoint& tp) const override;
 protected:
     std::string name_;
     std::string absolutePath_;

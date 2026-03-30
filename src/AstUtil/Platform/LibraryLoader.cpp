@@ -129,7 +129,7 @@ void* aResolveProcAddress(const char* filepath, const char* funcName)
 }
 
 
-err_t aFreeLibrary(void* lib)
+errc_t aFreeLibrary(void* lib)
 {
     if (!lib) {
         return eErrorNullInput;

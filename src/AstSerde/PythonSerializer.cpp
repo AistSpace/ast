@@ -14,11 +14,11 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t PythonSerializer::serialize(Object* object, std::string& output) {
+errc_t PythonSerializer::serialize(Object* object, std::string& output) {
     return -1;
 }
 
-err_t PythonSerializer::deserialize(const std::string& input, Object* object) {
+errc_t PythonSerializer::deserialize(const std::string& input, Object* object) {
     return -1;
 }
 

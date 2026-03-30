@@ -40,10 +40,10 @@ public:
     const std::string& propString() const{return propString_;}
     
     // 不同类型的setter函数
-    err_t setPropBool(bool b){ propBool_ = b; return 0;}
-    err_t setPropInt(int i){ propInt_ = i; return 0;}
-    err_t setPropDouble(double d){ propDouble_ = d; return 0;}
-    err_t setPropString(StringView s){ propString_ = std::string(s); return 0;}
+    errc_t setPropBool(bool b){ propBool_ = b; return 0;}
+    errc_t setPropInt(int i){ propInt_ = i; return 0;}
+    errc_t setPropDouble(double d){ propDouble_ = d; return 0;}
+    errc_t setPropString(StringView s){ propString_ = std::string(s); return 0;}
     
     void setPropBool2(bool b){ propBool_ = b;}
     void setPropInt2(int i){ propInt_ = i;}
@@ -59,7 +59,7 @@ TEST(Reflect, PropertyBool)
     TestClass test{};
     test.propBool_ = true;
     bool value;
-    err_t err;
+    errc_t err;
     err = prop->getValueBool(&test, value);
     EXPECT_FALSE(err);
     EXPECT_EQ(value, true);
@@ -74,7 +74,7 @@ TEST(Reflect, PropertyBoolGetterSetter)
     TestClass test{};
     test.propBool_ = true;
     bool value;
-    err_t err;
+    errc_t err;
     err = prop->getValueBool(&test, value);
     EXPECT_FALSE(err);
     EXPECT_EQ(value, true);
@@ -89,7 +89,7 @@ TEST(Reflect, PropertyBoolGetterSetter2)
     TestClass test{};
     test.propBool_ = true;
     bool value;
-    err_t err;
+    errc_t err;
     err = prop->getValueBool(&test, value);
     EXPECT_FALSE(err);
     EXPECT_EQ(value, true);
@@ -107,7 +107,7 @@ TEST(Reflect, PropertyBoolConvert)
     // 测试 bool -> int
     test.propBool_ = true;
     int intValue;
-    err_t err = prop->getValueInt(&test, intValue);
+    errc_t err = prop->getValueInt(&test, intValue);
     EXPECT_FALSE(err);
     EXPECT_EQ(intValue, 1);
     
@@ -153,7 +153,7 @@ TEST(Reflect, PropertyInt)
     TestClass test{};
     test.propInt_ = 42;
     int value;
-    err_t err;
+    errc_t err;
     err = prop->getValueInt(&test, value);
     EXPECT_FALSE(err);
     EXPECT_EQ(value, 42);
@@ -168,7 +168,7 @@ TEST(Reflect, PropertyIntGetterSetter)
     TestClass test{};
     test.propInt_ = 42;
     int value;
-    err_t err;
+    errc_t err;
     err = prop->getValueInt(&test, value);
     EXPECT_FALSE(err);
     EXPECT_EQ(value, 42);
@@ -183,7 +183,7 @@ TEST(Reflect, PropertyIntGetterSetter2)
     TestClass test{};
     test.propInt_ = 42;
     int value;
-    err_t err;
+    errc_t err;
     err = prop->getValueInt(&test, value);
     EXPECT_FALSE(err);
     EXPECT_EQ(value, 42);
@@ -201,7 +201,7 @@ TEST(Reflect, PropertyIntConvert)
     // 测试 int -> bool
     test.propInt_ = 42;
     bool boolValue;
-    err_t err = prop->getValueBool(&test, boolValue);
+    errc_t err = prop->getValueBool(&test, boolValue);
     EXPECT_FALSE(err);
     EXPECT_EQ(boolValue, true);
     
@@ -242,7 +242,7 @@ TEST(Reflect, PropertyDouble)
     TestClass test{};
     test.propDouble_ = 1.0204;
     double value;
-    err_t err;
+    errc_t err;
     err = prop->getValueDouble(&test, value);
     EXPECT_FALSE(err);
     EXPECT_EQ(value, 1.0204);
@@ -257,7 +257,7 @@ TEST(Reflect, PropertyDoubleGetterSetter)
     TestClass test{};
     test.propDouble_ = 1.0204;
     double value;
-    err_t err;
+    errc_t err;
     err = prop->getValueDouble(&test, value);
     EXPECT_FALSE(err);
     EXPECT_EQ(value, 1.0204);
@@ -272,7 +272,7 @@ TEST(Reflect, PropertyDoubleGetterSetter2)
     TestClass test{};
     test.propDouble_ = 1.0204;
     double value;
-    err_t err;
+    errc_t err;
     err = prop->getValueDouble(&test, value);
     EXPECT_FALSE(err);
     EXPECT_EQ(value, 1.0204);
@@ -290,7 +290,7 @@ TEST(Reflect, PropertyDoubleConvert)
     // 测试 double -> bool
     test.propDouble_ = 42.5;
     bool boolValue;
-    err_t err = prop->getValueBool(&test, boolValue);
+    errc_t err = prop->getValueBool(&test, boolValue);
     EXPECT_FALSE(err);
     EXPECT_EQ(boolValue, true);
     
@@ -331,7 +331,7 @@ TEST(Reflect, PropertyString)
     TestClass test{};
     test.propString_ = "test";
     std::string value;
-    err_t err;
+    errc_t err;
     err = prop->getValueString(&test, value);
     EXPECT_FALSE(err);
     EXPECT_EQ(value, "test");
@@ -346,7 +346,7 @@ TEST(Reflect, PropertyStringGetterSetter)
     TestClass test{};
     test.propString_ = "test";
     std::string value;
-    err_t err;
+    errc_t err;
     err = prop->getValueString(&test, value);
     EXPECT_FALSE(err);
     EXPECT_EQ(value, "test");
@@ -361,7 +361,7 @@ TEST(Reflect, PropertyStringGetterSetter2)
     TestClass test{};
     test.propString_ = "test";
     std::string value;
-    err_t err;
+    errc_t err;
     err = prop->getValueString(&test, value);
     EXPECT_FALSE(err);
     EXPECT_EQ(value, "test");
@@ -379,7 +379,7 @@ TEST(Reflect, PropertyStringConvert)
     // 测试 string -> bool
     test.propString_ = "true";
     bool boolValue;
-    err_t err = prop->getValueBool(&test, boolValue);
+    errc_t err = prop->getValueBool(&test, boolValue);
     EXPECT_FALSE(err);
     EXPECT_EQ(boolValue, true);
     
@@ -456,7 +456,7 @@ TEST(Reflect, Struct)
     testObj.propString_ = "test";
     
     bool boolValue;
-    err_t err = testStruct.getProperty("boolProp")->getValueBool(&testObj, boolValue);
+    errc_t err = testStruct.getProperty("boolProp")->getValueBool(&testObj, boolValue);
     EXPECT_FALSE(err);
     EXPECT_EQ(boolValue, true);
     

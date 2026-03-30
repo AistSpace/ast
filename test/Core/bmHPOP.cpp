@@ -32,7 +32,7 @@ void bmSetForceModel(benchmark::State& state)
     forcemodel.useMoonGravity_ = true;
     for(auto _ : state)
     {
-        err_t err = equation.setForceModel(forcemodel);
+        errc_t err = equation.setForceModel(forcemodel);
         benchmark::DoNotOptimize(err);
     }
 }

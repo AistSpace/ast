@@ -42,13 +42,13 @@ Axes *AxesBodyInertial::getParent() const
     return AxesICRF::Instance();
 }
 
-err_t AxesBodyInertial::getTransform(const TimePoint& tp, Rotation& rotation) const
+errc_t AxesBodyInertial::getTransform(const TimePoint& tp, Rotation& rotation) const
 {
     getBodyOrientation()->getICRFToInertialTransform(tp, rotation);
     return eNoError;
 }
 
-err_t AxesBodyInertial::getTransform(const TimePoint& tp, KinematicRotation& rotation) const
+errc_t AxesBodyInertial::getTransform(const TimePoint& tp, KinematicRotation& rotation) const
 {
     getBodyOrientation()->getICRFToInertialTransform(tp, rotation.getRotation());
     rotation.setRotationRate(Vector3d::Zero());

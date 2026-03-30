@@ -43,7 +43,7 @@ public:
     EventTimeExplicit(const TimePoint& time);
     ~EventTimeExplicit() override = default;
 
-    err_t getTime(TimePoint& time) const override;
+    errc_t getTime(TimePoint& time) const override;
     void setTime(const TimePoint& time);
 protected:
     TimePoint time_{};

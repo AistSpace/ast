@@ -72,7 +72,7 @@ double RotationElement::evaluatePolyZero() const
     return this->constant_;
 }
 
-err_t RotationElement::load(BKVParser &parser)
+errc_t RotationElement::load(BKVParser &parser)
 {
     BKVItemView item;
     BKVParser::EToken token;

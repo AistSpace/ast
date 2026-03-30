@@ -39,8 +39,8 @@ J4Analytical(const Vector3d& pos, const Vector3d& vel, const TimePoint& epoch, d
 ### 函数接口
 
 ```cpp
-AST_CORE_API err_t aJ4AnalyticalProp(double duration, double gm, double j2, double j4, double re, Vector3d& r, Vector3d& v);
-AST_CORE_API err_t aJ4AnalyticalProp(double duration, double gm, double j2, double j4, double re, ModOrbElem& modOrbElem);
+AST_CORE_API errc_t aJ4AnalyticalProp(double duration, double gm, double j2, double j4, double re, Vector3d& r, Vector3d& v);
+AST_CORE_API errc_t aJ4AnalyticalProp(double duration, double gm, double j2, double j4, double re, ModOrbElem& modOrbElem);
 ```
 
 **参数说明：**

@@ -76,12 +76,12 @@ public:
 public:
     /// @brief 生成星历
     /// @return 错误码
-    err_t generateEphemeris();
+    errc_t generateEphemeris();
 
 public: // 从Point继承重写的函数
     Frame* getFrame() const final;
-    err_t getPos(const TimePoint& tp, Vector3d& pos) const final;
-    err_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
+    errc_t getPos(const TimePoint& tp, Vector3d& pos) const final;
+    errc_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
 protected:
     std::string                 name_;                  ///< 名称
     ScopedPtr<MotionProfile>    motionProfile_;         ///< 运动定义

@@ -39,11 +39,11 @@ EventTimeFallback::EventTimeFallback(EventTime* primary, EventTime* fallback)
 {
 }
 
-err_t EventTimeFallback::getTime(TimePoint &tp) const
+errc_t EventTimeFallback::getTime(TimePoint &tp) const
 {
     if (primary_)
     {
-        err_t err = primary_->getTime(tp);
+        errc_t err = primary_->getTime(tp);
         if (err == 0)
         {
             return err;

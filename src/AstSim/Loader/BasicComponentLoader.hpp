@@ -41,8 +41,8 @@ struct VehiclePathData
     bool smoothInterp_ = false;
 };
 
-err_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInterval);
-err_t _aLoadEventTime(BKVParser& parser, SharedPtr<EventTime>& eventTime);
+errc_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInterval);
+errc_t _aLoadEventTime(BKVParser& parser, SharedPtr<EventTime>& eventTime);
 
 
 /*! @} */

@@ -41,7 +41,7 @@ public:
     
     using BaseOrbitDesigner::getOrbitState;
 
-    err_t getOrbitState(ModOrbElem &orbElem) const override;
+    errc_t getOrbitState(ModOrbElem &orbElem) const override;
 
     /// @brief 获取轨道倾角
     double getInclination() const { return inclination_; }

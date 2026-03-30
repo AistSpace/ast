@@ -52,7 +52,7 @@ AST_UTIL_API std::string aDataDirGetDefault();
 /// @see aDataDirGetDefault()
 /// @param[out] datadir 默认数据文件夹路径
 /// @return 错误码
-AST_UTIL_CAPI err_t aDataDirGetDefault(std::string& datadir);
+AST_UTIL_CAPI errc_t aDataDirGetDefault(std::string& datadir);
 
 /// @brief 获取数据文件夹
 /// @note 与 aDataDirGet 一样
@@ -61,7 +61,7 @@ AST_UTIL_API std::string aDataDir();
 
 /// @brief 获取数据文件夹
 /// @note 与 aDataDirGet 一样
-AST_UTIL_CAPI err_t aDataDir(std::string& datadir);
+AST_UTIL_CAPI errc_t aDataDir(std::string& datadir);
 
 
 /*! @} */

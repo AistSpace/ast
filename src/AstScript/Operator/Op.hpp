@@ -31,7 +31,7 @@ AST_NAMESPACE_BEGIN
 class Op: public Expr
 {
 public:
-    err_t setValue(Value* val) override{return eErrorReadonly;}
+    errc_t setValue(Value* val) override{return eErrorReadonly;}
     
 };
 

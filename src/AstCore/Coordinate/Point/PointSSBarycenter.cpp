@@ -38,13 +38,13 @@ Frame *PointSSBarycenter::getFrame() const
     return aFrameRoot();
 }
 
-err_t PointSSBarycenter::getPos(const TimePoint &tp, Vector3d &pos) const
+errc_t PointSSBarycenter::getPos(const TimePoint &tp, Vector3d &pos) const
 {
     pos.setZero();
     return eNoError;
 }
 
-err_t PointSSBarycenter::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+errc_t PointSSBarycenter::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     pos.setZero();
     vel.setZero();

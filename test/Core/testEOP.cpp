@@ -31,7 +31,7 @@ AST_USING_NAMESPACE
 TEST(EOP, Load)
 {
     EOP eop;
-    err_t err = eop.load(aTestGetConfigValue("EOP_FILE"));
+    errc_t err = eop.load(aTestGetConfigValue("EOP_FILE"));
     EXPECT_EQ(err, 0);
     EXPECT_TRUE(eop.size() > 0);
     printf("eop size: %zu\n", eop.size());
@@ -41,7 +41,7 @@ TEST(EOP, Load)
 TEST(EOP, UT1MinusUTC_UTC)
 {
     EOP eop;
-    err_t err = eop.load(aTestGetConfigValue("EOP_FILE"));
+    errc_t err = eop.load(aTestGetConfigValue("EOP_FILE"));
     EXPECT_EQ(err, 0);
     EXPECT_TRUE(eop.size() > 0);
 

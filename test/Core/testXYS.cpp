@@ -34,7 +34,7 @@ TEST(IAUXYSPrecomputed, load)
 {
     IAUXYSPrecomputed xys;
     std::string datadir = aDataDirGet();
-    err_t ret = xys.load(aTestGetConfigValue("IAUXYS_PRECOMPUTED_FILE").toString());
+    errc_t ret = xys.load(aTestGetConfigValue("IAUXYS_PRECOMPUTED_FILE").toString());
     EXPECT_EQ(ret, 0);
 }
 
@@ -42,7 +42,7 @@ TEST(IAUXYSPrecomputed, load)
 
 TEST(IAUXYSPrecomputed, getValue)
 {
-    err_t ret = 0;
+    errc_t ret = 0;
     aInitialize();
     IAUXYSPrecomputed xysData;
     std::string datadir = aDataDirGet();
@@ -121,7 +121,7 @@ void testEps()
         for(int i = 0; i < 1000; i++){
             tp = tp + 10_day;
             aTheoreticalXYS_IERS2010(tp, xys_iers2010);
-            err_t ret = aTheoreticalXYS_IERS2010Precomputed(tp, xys_precomputed);
+            errc_t ret = aTheoreticalXYS_IERS2010Precomputed(tp, xys_precomputed);
             EXPECT_EQ(ret, 0);
             auto delta = xys_precomputed - xys_iers2010;
             // printf("xys_precompu: %.15lf %.15lf %.15lf\n", xys_precomputed[0], xys_precomputed[1], xys_precomputed[2]);

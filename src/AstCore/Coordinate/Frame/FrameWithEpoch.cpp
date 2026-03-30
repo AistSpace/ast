@@ -85,7 +85,7 @@ EventTime *FrameWithEpoch::getEpoch() const
     return frozenAxes_->getEpoch();
 }
 
-err_t FrameWithEpoch::getEpoch(TimePoint &epoch) const
+errc_t FrameWithEpoch::getEpoch(TimePoint &epoch) const
 {
     return frozenAxes_->getEpoch(epoch);
 }

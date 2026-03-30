@@ -83,10 +83,10 @@ IAUXYS* aGlobalContext_GetIAUXYS()
 }
 
 
-err_t LeapSecond::loadDefault()
+errc_t LeapSecond::loadDefault()
 {
     fs::path datafile = fs::path(aDataDirGet()) / AST_DEFAULT_FILE_LEAPSECOND;
-    err_t err = this->load(datafile.string().c_str());
+    errc_t err = this->load(datafile.string().c_str());
     if (err)
     {
         if(err)
@@ -103,11 +103,11 @@ err_t LeapSecond::loadDefault()
     return err;
 }
 
-err_t JplDe::openDefault()
+errc_t JplDe::openDefault()
 {
     fs::path datafile = fs::path(aDataDirGet()) / AST_DEFAULT_FILE_JPLDE;
 
-    err_t err = this->open(datafile.string().c_str());
+    errc_t err = this->open(datafile.string().c_str());
     if(err)
     {
         datafile = fs::path(aGetConfigValue("JPLDE_FILE").toString());
@@ -121,10 +121,10 @@ err_t JplDe::openDefault()
     return err;
 }
 
-err_t EOP::loadDefault()
+errc_t EOP::loadDefault()
 {
     fs::path filepath = fs::path(aDataDirGet()) / AST_DEFAULT_FILE_EOP;
-    err_t err = load(filepath.string());
+    errc_t err = load(filepath.string());
     if (err)
     {
         aWarning("failed to load eop from default data file:\n%s", filepath.string().c_str());
@@ -132,10 +132,10 @@ err_t EOP::loadDefault()
     return err;
 }
 
-err_t SpaceWeather::loadDefault()
+errc_t SpaceWeather::loadDefault()
 {
     fs::path filepath = fs::path(aDataDirGet()) / AST_DEFAULT_FILE_SPACEWEATHER;
-    err_t err = load(filepath.string());
+    errc_t err = load(filepath.string());
     if (err)
     {
         aWarning("failed to load space weather from default data file:\n%s", filepath.string().c_str());
@@ -143,12 +143,12 @@ err_t SpaceWeather::loadDefault()
     return err;
 }
 
-err_t IAUXYS::loadDefault()
+errc_t IAUXYS::loadDefault()
 {
     fs::path filepathX = fs::path(aDataDirGet()) / AST_DEFAULT_FILE_IAUX;
     fs::path filepathY = fs::path(aDataDirGet()) / AST_DEFAULT_FILE_IAUY;
     fs::path filepathS = fs::path(aDataDirGet()) / AST_DEFAULT_FILE_IAUS;
-    err_t err = load(filepathX.string(), filepathY.string(), filepathS.string());
+    errc_t err = load(filepathX.string(), filepathY.string(), filepathS.string());
     if (err)
     {
         aWarning("failed to load iaux from default data file:\n%s", filepathX.string().c_str());
@@ -157,10 +157,10 @@ err_t IAUXYS::loadDefault()
 }
 
 
-err_t IAUXYSPrecomputed::loadDefault()
+errc_t IAUXYSPrecomputed::loadDefault()
 {
     fs::path filepath = fs::path(aDataDirGet()) / AST_DEFAULT_FILE_IAUXYS_PRECOMPUTED;
-    err_t err = load(filepath.string());
+    errc_t err = load(filepath.string());
     if (err)
     {
         aWarning("failed to load iauxys precomputed from default data file:\n%s", filepath.string().c_str());
@@ -169,10 +169,10 @@ err_t IAUXYSPrecomputed::loadDefault()
 }
 
 
-err_t SolarSystem::loadDefault()
+errc_t SolarSystem::loadDefault()
 {
     std::string dirpath = SolarSystem::defaultSolarSystemDir();
-    err_t err = load(dirpath);
+    errc_t err = load(dirpath);
     if (err)
     {
         aWarning("failed to load solar system from default data dir:\n%s", dirpath.c_str());
@@ -186,9 +186,9 @@ std::string SolarSystem::defaultSolarSystemDir()
 }
 
 
-static err_t loadSPK(const std::vector<std::string>& spkFiles)
+static errc_t loadSPK(const std::vector<std::string>& spkFiles)
 {
-    err_t rc = 0;
+    errc_t rc = 0;
     for(const auto& filepath : spkFiles)
     {
         rc |= SpiceApi::Instance()->furnsh(filepath.c_str());
@@ -201,9 +201,9 @@ std::string aGetDefaultSPKDir()
     return aDataDirGet() + "/Test/kernels/spk/";
 }
 
-err_t aInitializeByDefault(DataContext* context)
+errc_t aInitializeByDefault(DataContext* context)
 {
-    err_t err = 0;
+    errc_t err = 0;
     
     // init global context
     auto globalCxt = aGlobalContext_Get();
@@ -239,9 +239,9 @@ err_t aInitializeByDefault(DataContext* context)
 }
 
 
-err_t aInitializeByConfig(DataContext* context, const InitalizeConfig& config)
+errc_t aInitializeByConfig(DataContext* context, const InitalizeConfig& config)
 {
-    err_t err = 0;
+    errc_t err = 0;
 
     // init global context
     context->setDataDir(config.dataDir_.string());
@@ -279,10 +279,10 @@ fs::path aRelPathToAbs(const fs::path& relpath, const fs::path& basedir)
     return relpath;
 }
 
-err_t aInitializeByConfig(DataContext* context, StringView configfile)
+errc_t aInitializeByConfig(DataContext* context, StringView configfile)
 {
     auto config = context->config();
-    err_t rc = config->load(configfile);
+    errc_t rc = config->load(configfile);
     if(rc) return rc;
     InitalizeConfig initalizeConfig;
     fs::path libdir = aLibDir();
@@ -300,13 +300,13 @@ err_t aInitializeByConfig(DataContext* context, StringView configfile)
     return aInitializeByConfig(context, initalizeConfig);
 }
 
-err_t aInitializeByConfig(StringView configfile)
+errc_t aInitializeByConfig(StringView configfile)
 {
     auto context = aDataContext_EnsureCurrent();
     return aInitializeByConfig(context, configfile);
 }
 
-err_t aInitialize(DataContext* context)
+errc_t aInitialize(DataContext* context)
 {
     // check for startup config file
     fs::path libdir = aLibDir();
@@ -326,14 +326,14 @@ err_t aInitialize(DataContext* context)
 }
 
 
-err_t aInitialize()
+errc_t aInitialize()
 {
     auto context = aDataContext_EnsureCurrent();
     return aInitialize(context);
 }
 
 
-err_t aUninitialize()
+errc_t aUninitialize()
 {
     if (g_defaultDataContext) {
         if (t_currentDataContext == g_defaultDataContext.get()) {
@@ -349,17 +349,17 @@ err_t aUninitialize()
 std::string aDataDirGet()
 {
     std::string datadir;
-    err_t rc = aDataDirGet(datadir);
+    errc_t rc = aDataDirGet(datadir);
     A_UNUSED(rc);
     return datadir;
 }
 
-err_t aDataDirGet(std::string &datadir)
+errc_t aDataDirGet(std::string &datadir)
 {
     auto context = aDataContext_EnsureCurrent();
     if (A_UNLIKELY(context->dataDir().empty())) 
     {
-        err_t rc = aDataDirGetDefault(datadir);
+        errc_t rc = aDataDirGetDefault(datadir);
         aDataDirSet(datadir);
         return rc;
     }
@@ -367,7 +367,7 @@ err_t aDataDirGet(std::string &datadir)
     return eNoError;
 }
 
-err_t aDataDirSet(StringView dirpath)
+errc_t aDataDirSet(StringView dirpath)
 {
     if (!fs::is_directory(std::string(dirpath))) {
         aError("dirpath is not a directory.");
@@ -464,7 +464,7 @@ double aLeapSecondUTCMJD(double mjdUTC)
 // ----------
 
 
-err_t aJplDeGetPosVelICRF(
+errc_t aJplDeGetPosVelICRF(
     const TimePoint& time,
     int target,
     int referenceBody,
@@ -476,7 +476,7 @@ err_t aJplDeGetPosVelICRF(
     return context->jplDe()->getPosVelICRF(time, (JplDe::EDataCode)target, (JplDe::EDataCode)referenceBody, pos, vel);
 }
 
-err_t aJplDeGetPosICRF(
+errc_t aJplDeGetPosICRF(
     const TimePoint& time,
     int target,
     int referenceBody,
@@ -487,19 +487,19 @@ err_t aJplDeGetPosICRF(
     return context->jplDe()->getPosICRF(time, (JplDe::EDataCode)target, (JplDe::EDataCode)referenceBody, pos);
 }
 
-err_t aJplDeGetNutation(const TimePoint &time, double &dpsi, double &deps)
+errc_t aJplDeGetNutation(const TimePoint &time, double &dpsi, double &deps)
 {
     auto context = aDataContext_EnsureCurrent();
     return context->jplDe()->getNutation(time, dpsi, deps);
 }
 
-err_t aJplDeGetLibration(const TimePoint& time, Vector3d& ang)
+errc_t aJplDeGetLibration(const TimePoint& time, Vector3d& ang)
 {
     auto context = aDataContext_EnsureCurrent();
     return context->jplDe()->getLibration(time, ang);
 }
 
-err_t aJplDeGetLibration(const TimePoint &time, Euler &ang)
+errc_t aJplDeGetLibration(const TimePoint &time, Euler &ang)
 {
     auto context = aDataContext_EnsureCurrent();
     return context->jplDe()->getLibration(time, ang);
@@ -511,13 +511,13 @@ int aJplDeNum()
     return context->jplDe()->getEphemVersion();
 }
 
-err_t aJplDeGetInterval(TimeInterval& interval)
+errc_t aJplDeGetInterval(TimeInterval& interval)
 {
     auto context = aDataContext_EnsureCurrent();
     return context->jplDe()->getInterval(interval);
 }
 
-err_t aJplDeOpen(const char *filepath)
+errc_t aJplDeOpen(const char *filepath)
 {
     auto context = aDataContext_EnsureCurrent();
     return context->jplDe()->open(filepath);
@@ -604,7 +604,7 @@ void aTheoreticalXYS_IERS2010_TT(const JulianDate& jdTT, array3d& xys)
     aTheoreticalXYS_IERS2010_Cache(t, xys);
 }
 
-err_t aTheoreticalXYS_IERS2010Precomputed(const TimePoint& tp, array3d& xys)
+errc_t aTheoreticalXYS_IERS2010Precomputed(const TimePoint& tp, array3d& xys)
 {
     auto context = aDataContext_EnsureCurrent();
     return context->iauXYSPrecomputed()->getValue(tp, xys);
@@ -761,7 +761,7 @@ CelestialBody *aGetEMBarycenter()
 
 
 
-err_t aSpiceGetPosICRF(
+errc_t aSpiceGetPosICRF(
     const TimePoint& time,
     int target,
     int referenceBody,
@@ -770,7 +770,7 @@ err_t aSpiceGetPosICRF(
     return JplSpk::getPosICRF(time, target, referenceBody, pos);
 }
 
-err_t aSpiceGetPosVelICRF(
+errc_t aSpiceGetPosVelICRF(
     const TimePoint& time,
     int target,
     int referenceBody,

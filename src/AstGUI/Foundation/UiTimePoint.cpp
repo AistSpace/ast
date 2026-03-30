@@ -53,7 +53,7 @@ void UiTimePoint::onEditingFinished()
     
     // 解析时间字符串并更新时间点
     TimePoint tp;
-    err_t rc = aTimePointParse(timeStr, tp);
+    errc_t rc = aTimePointParse(timeStr, tp);
     if(rc){
         aError("failed to parse time point '%s'", timeStr.c_str());
         // 显示错误提示

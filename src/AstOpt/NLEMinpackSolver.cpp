@@ -27,9 +27,9 @@ AST_NAMESPACE_BEGIN
  
 
 
-err_t CNLEMinpackSolver::solve(NLPProblem& problem, std::vector<double>& xopt)
+errc_t CNLEMinpackSolver::solve(NLPProblem& problem, std::vector<double>& xopt)
 {
-    return err_t();
+    return errc_t();
 }
 
 AST_NAMESPACE_END

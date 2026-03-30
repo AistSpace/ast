@@ -27,7 +27,7 @@ int main()
     double duration = 3600.0; // 秒
     
     // 执行二体传播
-    err_t result = aTwoBodyProp(duration, gm_earth, position, velocity);
+    errc_t result = aTwoBodyProp(duration, gm_earth, position, velocity);
     
     if (result == eNoError) {
         std::cout << "传播后轨道状态 (" << duration << " 秒后):" << std::endl;

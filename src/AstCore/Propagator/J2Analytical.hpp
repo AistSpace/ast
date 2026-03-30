@@ -85,7 +85,7 @@ protected:
 /// @param     r        位置向量
 /// @param     v        速度向量
 /// @return    错误码
-AST_CORE_API err_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, Vector3d& r, Vector3d& v);
+AST_CORE_API errc_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, Vector3d& r, Vector3d& v);
 
 
 /// @brief     J2轨道预报
@@ -96,7 +96,7 @@ AST_CORE_API err_t aJ2AnalyticalProp(double duration, double gm, double j2, doub
 /// @param     re       天体半径
 /// @param     modOrbElem 改进轨道根数
 /// @return    错误码
-AST_CORE_API err_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, ModOrbElem& modOrbElem);
+AST_CORE_API errc_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, ModOrbElem& modOrbElem);
 
 
 /*! @} */

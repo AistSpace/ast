@@ -49,13 +49,13 @@ Point *FrameICRF::getOrigin() const
     return aPointSSBarycenter();
 }
 
-err_t FrameICRF::getTransform(const TimePoint &tp, Transform &transform) const
+errc_t FrameICRF::getTransform(const TimePoint &tp, Transform &transform) const
 {
     transform.setIdentity();
     return eNoError;
 }
 
-err_t FrameICRF::getTransform(const TimePoint &tp, KinematicTransform &transform) const
+errc_t FrameICRF::getTransform(const TimePoint &tp, KinematicTransform &transform) const
 {
     transform.setIdentity();
     return eNoError;

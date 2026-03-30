@@ -148,7 +148,7 @@ int FreeRreturnTargetFunction::operator()(const double* variable, double* constr
         });
         stopMoonPeriapsis->setDirection(ODEEventDetector::eIncrease);
         TimePoint endTime = startTime + 1000000000.0_s;
-        err_t rc = propagator.propagate(startTime, endTime, currentPos, currentVel);
+        errc_t rc = propagator.propagate(startTime, endTime, currentPos, currentVel);
         currentTime = endTime;
         if(rc){
             aError("Propagation failed: %d", rc);
@@ -178,7 +178,7 @@ int FreeRreturnTargetFunction::operator()(const double* variable, double* constr
         });
         stopEarthPeriapsis->setDirection(ODEEventDetector::eIncrease);
         TimePoint endTime = startTime + 1000000000.0_s;
-        err_t rc = propagator.propagate(startTime, endTime, currentPos, currentVel);
+        errc_t rc = propagator.propagate(startTime, endTime, currentPos, currentVel);
         currentTime = endTime;
         if(rc){
             aError("Propagation failed: %d", rc);

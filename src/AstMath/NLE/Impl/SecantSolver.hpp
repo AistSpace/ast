@@ -34,7 +34,7 @@ public:
     SecantSolver() = default;
     ~SecantSolver() = default;
     using UnarySolver::solve;
-    err_t solve(UnaryScalarFunc& func, double min, double max, double& result) override;
+    errc_t solve(UnaryScalarFunc& func, double min, double max, double& result) override;
 };
 
 AST_NAMESPACE_END

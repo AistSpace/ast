@@ -36,10 +36,10 @@ public:
     BKVSaxPrint();
     BKVSaxPrint(StringView filepath);
     ~BKVSaxPrint();
-    err_t begin(StringView name) override;
-    err_t end(StringView name) override;
+    errc_t begin(StringView name) override;
+    errc_t end(StringView name) override;
     using BKVSax::keyValue;
-    err_t keyValue(StringView key, const ValueView& value) override;
+    errc_t keyValue(StringView key, const ValueView& value) override;
 protected:
     FILE* file_;
     int indent_;

@@ -20,14 +20,14 @@ public:
     /// @param format 序列化格式
     /// @param output 输出字符串
     /// @return 错误码
-    static err_t serialize(Object* object, ESerializationFormat format, std::string& output);
+    static errc_t serialize(Object* object, ESerializationFormat format, std::string& output);
     
     /// @brief 从指定格式反序列化对象
     /// @param input 输入字符串
     /// @param format 序列化格式
     /// @param object 要反序列化到的对象
     /// @return 错误码
-    static err_t deserialize(const std::string& input, ESerializationFormat format, Object* object);
+    static errc_t deserialize(const std::string& input, ESerializationFormat format, Object* object);
 };
 
 AST_NAMESPACE_END

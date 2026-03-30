@@ -11,7 +11,7 @@ int main() {
     
     // 转换为直角坐标
     double pos[3], vel[3];
-    err_t err = coe2rv(coe, gmEarth, pos, vel);
+    errc_t err = coe2rv(coe, gmEarth, pos, vel);
     
     if (err == eNoError) {
         std::cout << "位置向量: [" << pos[0] << ", " << pos[1] << ", " << pos[2] << "]\n";

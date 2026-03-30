@@ -42,7 +42,7 @@ public:
     EventIntervalFallback(EventInterval* primary, EventInterval* fallback);
     ~EventIntervalFallback() override = default;
 
-    err_t getInterval(TimeInterval& interval) const override;
+    errc_t getInterval(TimeInterval& interval) const override;
     void setPrimary(EventInterval* primary);
     void setFallback(EventInterval* fallback);
 protected:

@@ -25,7 +25,7 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t MotionWithIntervalStep::getInterval(TimeInterval &interval) const
+errc_t MotionWithIntervalStep::getInterval(TimeInterval &interval) const
 {
     if(!interval_)
         return eErrorNullInput;

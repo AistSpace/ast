@@ -47,8 +47,8 @@ public:
     ~AxesFrozen() = default;
 public:
     Axes* getParent() const override;
-    err_t getTransform(const TimePoint& tp, Rotation& rotation) const override;
-    err_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const override;
+    errc_t getTransform(const TimePoint& tp, Rotation& rotation) const override;
+    errc_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const override;
 PROPERTIES:
     const TimePoint& getEpoch() const { return epoch_; }
     void setEpoch(const TimePoint& epoch) { epoch_ = epoch; }

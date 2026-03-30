@@ -37,7 +37,7 @@ int main()
     double duration = 3 * 24 * 3600.0; // 秒
     
     // 执行J4解析传播
-    err_t result = aJ4AnalyticalProp(duration, gm_earth, j2_earth, j4_earth, re_earth, position, velocity);
+    errc_t result = aJ4AnalyticalProp(duration, gm_earth, j2_earth, j4_earth, re_earth, position, velocity);
     
     if (result == eNoError) {
         std::cout << "传播后轨道状态 (" << duration/(24*3600.0) << " 天后):" << std::endl;

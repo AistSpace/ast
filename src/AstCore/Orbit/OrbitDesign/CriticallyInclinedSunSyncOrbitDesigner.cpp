@@ -47,7 +47,7 @@ CriticallyInclinedSunSyncOrbitDesigner::CriticallyInclinedSunSyncOrbitDesigner(C
     }
 }
 
-err_t CriticallyInclinedSunSyncOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
+errc_t CriticallyInclinedSunSyncOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
 {
     const double j2 = getJ2();
     const double gm = getGM();

@@ -39,7 +39,7 @@ BlockIn::BlockIn()
     };
 }
 
-err_t BlockIn::run(const SimTime &simTime)
+errc_t BlockIn::run(const SimTime &simTime)
 {
     // 输入块不需要计算，直接返回当前值
     return eNoError;

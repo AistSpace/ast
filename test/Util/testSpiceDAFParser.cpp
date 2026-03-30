@@ -75,7 +75,7 @@ TEST(SpiceSPKParser, getPosNative)
         printf("et = %f, bodid = %d\n", et, bodid);
         
         Vector3d pos, vel;
-        err_t err = parser.getPosVelNative(et, bodid, pos, vel);
+        errc_t err = parser.getPosVelNative(et, bodid, pos, vel);
         EXPECT_EQ(err, eNoError);
     #ifndef AST_NO_CSPICE
         furnsh_c(kernel.c_str());
@@ -111,7 +111,7 @@ TEST(SpiceSPKParser, loadPlanetSatellitesSPK)
     double et = 0;
     int bodid = (int)ESpiceId::ePhobos;
     Vector3d pos, vel;
-    err_t err = parser.getPosVelNative(et, bodid, pos, vel);
+    errc_t err = parser.getPosVelNative(et, bodid, pos, vel);
     A_UNUSED(err);
     // EXPECT_EQ(err, eNoError);
 }

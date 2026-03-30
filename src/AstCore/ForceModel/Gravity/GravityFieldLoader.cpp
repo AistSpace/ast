@@ -36,29 +36,29 @@ using GravityFieldLoaderContext = GravityFieldLoader;
 
 /// @brief 从GMAT格式文件(.cof文件)加载重力场
 /// @return 错误码
-static err_t loadGravityFieldGMAT(GravityFieldLoaderContext& ctx);
+static errc_t loadGravityFieldGMAT(GravityFieldLoaderContext& ctx);
 
 /// @brief 从STK格式文件(.grv文件)加载重力场
 /// @param parser 解析器
 /// @return 错误码
-static err_t loadGravityFieldSTK(GravityFieldLoaderContext& ctx);
+static errc_t loadGravityFieldSTK(GravityFieldLoaderContext& ctx);
 
 
 /// @brief 从ATK格式文件(.grv文件)加载重力场
 /// @param ctx 上下文
 /// @return 错误码
-static err_t loadGravityFieldATK(GravityFieldLoaderContext& ctx);
+static errc_t loadGravityFieldATK(GravityFieldLoaderContext& ctx);
 
 
 /// @brief 从GFC格式文件(.gfc文件)加载重力场
 /// @param parser 解析器
 /// @return 错误码
-static err_t loadGravityFieldGFC(GravityFieldLoaderContext& ctx);
+static errc_t loadGravityFieldGFC(GravityFieldLoaderContext& ctx);
 
 /// @brief 从文件加载重力场
 /// @param filepath 文件路径
 /// @return 错误码
-static err_t loadGravityField(StringView model, GravityFieldLoaderContext& ctx);
+static errc_t loadGravityField(StringView model, GravityFieldLoaderContext& ctx);
 
 
 /// @brief 打开重力场文件
@@ -66,7 +66,7 @@ static err_t loadGravityField(StringView model, GravityFieldLoaderContext& ctx);
 /// @param model 模型名称或文件路径
 /// @param filepath 输出文件路径
 /// @return 错误码
-static err_t openGravityFile(GravityFieldLoaderContext &ctx, StringView model, std::string& filepath)
+static errc_t openGravityFile(GravityFieldLoaderContext &ctx, StringView model, std::string& filepath)
 {
     auto& parser = ctx.parser_;
     parser.open(model);
@@ -136,10 +136,10 @@ static err_t openGravityFile(GravityFieldLoaderContext &ctx, StringView model, s
 }
 
 
-err_t loadGravityField(StringView model, GravityFieldLoaderContext& ctx)
+errc_t loadGravityField(StringView model, GravityFieldLoaderContext& ctx)
 {
     std::string filepath;
-    if(err_t err = openGravityFile(ctx, model, filepath))
+    if(errc_t err = openGravityFile(ctx, model, filepath))
     {
         aError("failed to find gravity model '%.*s'", (int)model.size(), model.data());
         return err;
@@ -199,7 +199,7 @@ static bool gfCoeffIsLoaded(const GravityField& gf)
     return false;
 }
 
-err_t _loadGravityCoeffsXTK(GravityFieldLoaderContext& ctx, GravityField& gf, bool& skipRest)
+errc_t _loadGravityCoeffsXTK(GravityFieldLoaderContext& ctx, GravityField& gf, bool& skipRest)
 {
     while(1)
     {
@@ -243,7 +243,7 @@ err_t _loadGravityCoeffsXTK(GravityFieldLoaderContext& ctx, GravityField& gf, bo
     return 0;
 }
 
-err_t loadGravityFieldATK(GravityFieldLoaderContext& ctx)
+errc_t loadGravityFieldATK(GravityFieldLoaderContext& ctx)
 {
     ctx.parser_.seek(0, std::ios_base::beg);
     FILE* file = ctx.parser_.getFile();
@@ -281,7 +281,7 @@ err_t loadGravityFieldATK(GravityFieldLoaderContext& ctx)
     gfInitCoeffMatrices(gf, ctx);
     // 读取系数
     bool skipRest = false;
-    err_t rc = _loadGravityCoeffsXTK(ctx, gf, skipRest);
+    errc_t rc = _loadGravityCoeffsXTK(ctx, gf, skipRest);
     if(rc != 0){
         aError("failed to load gravity field coefficients");
         return rc;
@@ -293,7 +293,7 @@ err_t loadGravityFieldATK(GravityFieldLoaderContext& ctx)
     return eNoError;
 }
 
-err_t loadGravityFieldSTK(GravityFieldLoaderContext& ctx)
+errc_t loadGravityFieldSTK(GravityFieldLoaderContext& ctx)
 {
     BKVParser::EToken token;
     BKVItemView item;
@@ -307,7 +307,7 @@ err_t loadGravityFieldSTK(GravityFieldLoaderContext& ctx)
             {
                 gfInitCoeffMatrices(gf, ctx);
                 bool skipRest = false;
-                err_t rc = _loadGravityCoeffsXTK(ctx, gf, skipRest);
+                errc_t rc = _loadGravityCoeffsXTK(ctx, gf, skipRest);
                 if(rc != 0){
                     aError("failed to load gravity field coefficients");
                     return rc;
@@ -358,7 +358,7 @@ endparse:
     return eNoError;
 }
 
-err_t loadGravityFieldGFC(GravityFieldLoaderContext& ctx)
+errc_t loadGravityFieldGFC(GravityFieldLoaderContext& ctx)
 {
     // 1. 查找关键词'product_type'
     while (true)
@@ -499,7 +499,7 @@ err_t loadGravityFieldGFC(GravityFieldLoaderContext& ctx)
 }
 
 
-err_t loadGravityFieldGMAT(GravityFieldLoaderContext& ctx)
+errc_t loadGravityFieldGMAT(GravityFieldLoaderContext& ctx)
 {
     GravityField gf;
     bool loadCoeff = ctx.coeff_ != nullptr;
@@ -578,14 +578,14 @@ err_t loadGravityFieldGMAT(GravityFieldLoaderContext& ctx)
 
 
 
-err_t GravityFieldLoader::load(StringView filePath, GravityField & gravityField)
+errc_t GravityFieldLoader::load(StringView filePath, GravityField & gravityField)
 {
     head_ = nullptr;
     coeff_ = &gravityField;
     return loadGravityField(filePath, *this);
 }
 
-err_t GravityFieldLoader::load(StringView filePath, GravityFieldHead& head)
+errc_t GravityFieldLoader::load(StringView filePath, GravityFieldHead& head)
 {
     head_ = &head;
     coeff_ = nullptr;

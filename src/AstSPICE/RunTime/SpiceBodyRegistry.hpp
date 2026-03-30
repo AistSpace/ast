@@ -42,7 +42,7 @@ public:
 
     PBody findBody(StringView name) const;
     PBody findBody(int id) const;
-    err_t init();
+    errc_t init();
 protected:
     SolarSystem solarSystem_;
 };

@@ -51,7 +51,7 @@ PBody SpiceBodyRegistry::findBody(int id) const
 }
 
 
-err_t SpiceBodyRegistry::init()
+errc_t SpiceBodyRegistry::init()
 {
     return solarSystem_.loadDefault();
 }

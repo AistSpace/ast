@@ -44,7 +44,7 @@ MolniyaOrbitDesigner::MolniyaOrbitDesigner(CelestialBody *body)
     
 }
 
-err_t MolniyaOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
+errc_t MolniyaOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
 {
     const double gm = getGM();
     const double rb = getBodyRadius();

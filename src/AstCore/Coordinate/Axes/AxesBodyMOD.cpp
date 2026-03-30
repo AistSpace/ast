@@ -41,13 +41,13 @@ Axes *AxesBodyMOD::getParent() const
     return getBodyOrientation()->getMODParent();
 }
 
-err_t AxesBodyMOD::getTransform(const TimePoint &tp, Rotation &rotation) const
+errc_t AxesBodyMOD::getTransform(const TimePoint &tp, Rotation &rotation) const
 {
     getBodyOrientation()->getMODTransform(tp, rotation);
     return eNoError;
 }
 
-err_t AxesBodyMOD::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
+errc_t AxesBodyMOD::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
 {
     getBodyOrientation()->getMODTransform(tp, rotation.getRotation());
     rotation.setRotationRate(Vector3d::Zero());

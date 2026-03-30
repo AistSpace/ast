@@ -35,13 +35,13 @@ Axes *AxesRoot::getParent() const
     return nullptr;
 }
 
-err_t AxesRoot::getTransform(const TimePoint &tp, Rotation &rotation) const
+errc_t AxesRoot::getTransform(const TimePoint &tp, Rotation &rotation) const
 {
     rotation = Rotation::Identity();
     return eNoError;
 }
 
-err_t AxesRoot::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
+errc_t AxesRoot::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
 {
     rotation = KinematicRotation::Identity();
     return eNoError;

@@ -37,8 +37,8 @@ class KinematicRotation;
 /// @param tp 时间点
 /// @param posInEarthICRF 地球ICRF坐标系下的位置向量
 /// @param posInMoonICRF 月球ICRF坐标系下的位置向量
-/// @return err_t 错误码
-AST_CORE_API err_t aEarthICRFToMoonICRF(
+/// @return errc_t 错误码
+AST_CORE_API errc_t aEarthICRFToMoonICRF(
     const TimePoint& tp, 
     const Vector3d&  posInEarthICRF, 
     Vector3d&        posInMoonICRF
@@ -52,8 +52,8 @@ AST_CORE_API err_t aEarthICRFToMoonICRF(
 /// @param velInEarthICRF 地球ICRF坐标系下的速度向量
 /// @param posInMoonICRF 月球ICRF坐标系下的位置向量
 /// @param velInMoonICRF 月球ICRF坐标系下的速度向量
-/// @return err_t 错误码
-AST_CORE_API err_t aEarthICRFToMoonICRF(
+/// @return errc_t 错误码
+AST_CORE_API errc_t aEarthICRFToMoonICRF(
     const TimePoint& tp, 
     const Vector3d&  posInEarthICRF, 
     const Vector3d&  velInEarthICRF,
@@ -66,8 +66,8 @@ AST_CORE_API err_t aEarthICRFToMoonICRF(
 /// @note 该函数依赖DE星历数据里的月球平动角
 /// @param tp 时间点
 /// @param rotation 旋转矩阵
-/// @return err_t 错误码
-AST_CORE_API err_t aICRFToMoonPrincipalAxesTransform(
+/// @return errc_t 错误码
+AST_CORE_API errc_t aICRFToMoonPrincipalAxesTransform(
     const TimePoint& tp, 
     Rotation&        rotation
 );
@@ -78,8 +78,8 @@ AST_CORE_API err_t aICRFToMoonPrincipalAxesTransform(
 /// @todo 还未实现该函数，需要实现旋转角速度的计算
 /// @param tp 时间点
 /// @param rotation 旋转矩阵
-/// @return err_t 错误码
-AST_CORE_API err_t aICRFToMoonPrincipalAxesTransform(
+/// @return errc_t 错误码
+AST_CORE_API errc_t aICRFToMoonPrincipalAxesTransform(
     const TimePoint& tp, 
     KinematicRotation& rotation
 );
@@ -88,15 +88,15 @@ AST_CORE_API err_t aICRFToMoonPrincipalAxesTransform(
 /// @brief 计算月球主轴系(PA)到月球MeanEarth系的转换
 /// @note 该函数依赖DE星历数据
 /// @param rotation 旋转
-/// @return err_t 错误码
-AST_CORE_CAPI err_t aMoonPAToMeanEarthTransform(
+/// @return errc_t 错误码
+AST_CORE_CAPI errc_t aMoonPAToMeanEarthTransform(
     Rotation&        rotation
 );
 
 
 /// @brief 计算月球主轴系(PA430)到月球MeanEarth系的转换
 /// @param rotation 旋转
-/// @return err_t 错误码
+/// @return errc_t 错误码
 AST_CORE_CAPI void aMoonPA430ToMeanEarthTransform(
     Rotation&        rotation
 );
@@ -104,7 +104,7 @@ AST_CORE_CAPI void aMoonPA430ToMeanEarthTransform(
 
 /// @brief 计算月球主轴系(PA421)到月球MeanEarth系的转换
 /// @param rotation 旋转
-/// @return err_t 错误码
+/// @return errc_t 错误码
 AST_CORE_CAPI void aMoonPA421ToMeanEarthTransform(
     Rotation& rotation
 );
@@ -112,7 +112,7 @@ AST_CORE_CAPI void aMoonPA421ToMeanEarthTransform(
 
 /// @brief 计算月球主轴系(PA418)到月球MeanEarth系的转换
 /// @param rotation 旋转
-/// @return err_t 错误码
+/// @return errc_t 错误码
 AST_CORE_CAPI void aMoonPA418ToMeanEarthTransform(
     Rotation&        rotation
 );
@@ -120,7 +120,7 @@ AST_CORE_CAPI void aMoonPA418ToMeanEarthTransform(
 
 /// @brief 计算月球主轴系(PA403)到月球MeanEarth系的转换
 /// @param rotation 旋转
-/// @return err_t 错误码
+/// @return errc_t 错误码
 AST_CORE_CAPI void aMoonPA403ToMeanEarthTransform(
     Rotation& rotation
 );
@@ -129,8 +129,8 @@ AST_CORE_CAPI void aMoonPA403ToMeanEarthTransform(
 /// @note 该函数依赖DE星历数据
 /// @param tp 时间点
 /// @param rotation 旋转
-/// @return err_t 错误码
-AST_CORE_CAPI err_t aICRFToMoonMeanEarthTransform_DE(
+/// @return errc_t 错误码
+AST_CORE_CAPI errc_t aICRFToMoonMeanEarthTransform_DE(
     const TimePoint& tp, 
     Rotation&        rotation
 );
@@ -141,7 +141,7 @@ AST_CORE_CAPI err_t aICRFToMoonMeanEarthTransform_DE(
 /// @param tp 
 /// @param rotation 
 /// @return 
-AST_CORE_CAPI err_t aICRFToMoonMeanEarthTransform_IAU(
+AST_CORE_CAPI errc_t aICRFToMoonMeanEarthTransform_IAU(
     const TimePoint& tp, 
     Rotation&        rotation
 );
@@ -149,8 +149,8 @@ AST_CORE_CAPI err_t aICRFToMoonMeanEarthTransform_IAU(
 /// @brief 计算月球ICRF坐标系到月球MeanEarth系的转换(默认为DE实现)
 /// @param tp 时间点
 /// @param rotation 旋转
-/// @return err_t 错误码
-AST_CORE_CAPI err_t aICRFToMoonMeanEarthTransform(
+/// @return errc_t 错误码
+AST_CORE_CAPI errc_t aICRFToMoonMeanEarthTransform(
     const TimePoint& tp, 
     Rotation&        rotation
 );

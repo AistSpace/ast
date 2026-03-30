@@ -15,8 +15,8 @@ AST_NAMESPACE_BEGIN
 /// @brief XML序列化器
 class AST_SERDE_API XmlSerializer : public Serializer {
 public:
-    err_t serialize(Object* object, std::string& output) override;
-    err_t deserialize(const std::string& input, Object* object) override;
+    errc_t serialize(Object* object, std::string& output) override;
+    errc_t deserialize(const std::string& input, Object* object) override;
 };
 
 AST_NAMESPACE_END

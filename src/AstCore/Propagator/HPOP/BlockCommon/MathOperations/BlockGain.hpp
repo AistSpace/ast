@@ -34,7 +34,7 @@ public:
     BlockGain();
     ~BlockGain() = default;
 
-    err_t run(const SimTime& simTime) override;
+    errc_t run(const SimTime& simTime) override;
 
     void setGain(double gain){ gain_ = gain; }
 PROPERTIES:

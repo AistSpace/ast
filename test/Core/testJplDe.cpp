@@ -40,7 +40,7 @@ TEST(JplDe, Load)
 TEST(JplDe, PosVel)
 {
     JplDe jplDe;
-    err_t err = jplDe.openDefault();
+    errc_t err = jplDe.openDefault();
     EXPECT_FALSE(err);
     int denum = jplDe.getEphemVersion();
     EXPECT_EQ(denum, 430);
@@ -64,7 +64,7 @@ TEST(JplDe, IsOpenAndClose)
     EXPECT_FALSE(jplDe.isOpen());
     
     // 打开默认文件后应该是打开的
-    err_t err = jplDe.openDefault();
+    errc_t err = jplDe.openDefault();
     EXPECT_FALSE(err);
     EXPECT_TRUE(jplDe.isOpen());
     
@@ -76,7 +76,7 @@ TEST(JplDe, IsOpenAndClose)
 TEST(JplDe, GetPosICRF)
 {
     JplDe jplDe;
-    err_t err = jplDe.openDefault();
+    errc_t err = jplDe.openDefault();
     EXPECT_FALSE(err);
     
     auto time = TimePoint::FromUTC({2025, 12, 6, 4, 0, 0});
@@ -98,7 +98,7 @@ TEST(JplDe, GetPosICRF)
 TEST(JplDe, GetNutation)
 {
     JplDe jplDe;
-    err_t err = jplDe.openDefault();
+    errc_t err = jplDe.openDefault();
     EXPECT_FALSE(err);
     
     auto time = TimePoint::FromUTC({2025, 12, 6, 4, 0, 0});
@@ -116,7 +116,7 @@ TEST(JplDe, GetNutation)
 TEST(JplDe, GetLibration)
 {
     JplDe jplDe;
-    err_t err = jplDe.openDefault();
+    errc_t err = jplDe.openDefault();
     EXPECT_FALSE(err);
     
     auto time = TimePoint::FromUTC({2025, 12, 6, 4, 0, 0});

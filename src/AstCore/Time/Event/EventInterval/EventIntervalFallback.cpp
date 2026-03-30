@@ -39,11 +39,11 @@ EventIntervalFallback::EventIntervalFallback(EventInterval* primary, EventInterv
 {
 }
 
-err_t EventIntervalFallback::getInterval(TimeInterval &interval) const
+errc_t EventIntervalFallback::getInterval(TimeInterval &interval) const
 {
     if (primary_)
     {
-        err_t err = primary_->getInterval(interval);
+        errc_t err = primary_->getInterval(interval);
         if (err == 0)
         {
             return err;

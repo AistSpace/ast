@@ -120,7 +120,7 @@ AST_CORE_CAPI int aGetOutputPortWidth(FuncBlock* block, size_t portIndex);
 /// @param portIndex 输入端口索引
 /// @param signal 信号(指向数据的指针)
 /// @return 错误码
-AST_CORE_CAPI err_t aSetInputPortRealSignal(FuncBlock* block, size_t portIndex, double* signal);
+AST_CORE_CAPI errc_t aSetInputPortRealSignal(FuncBlock* block, size_t portIndex, double* signal);
 
 
 /// @brief 设置函数块输出端口的实数值信号
@@ -128,7 +128,7 @@ AST_CORE_CAPI err_t aSetInputPortRealSignal(FuncBlock* block, size_t portIndex, 
 /// @param portIndex 输出端口索引
 /// @param signal 信号(指向数据的指针)
 /// @return 错误码
-AST_CORE_CAPI err_t aSetOutputPortRealSignal(FuncBlock* block, size_t portIndex, double* signal);
+AST_CORE_CAPI errc_t aSetOutputPortRealSignal(FuncBlock* block, size_t portIndex, double* signal);
 
 
 AST_NAMESPACE_END

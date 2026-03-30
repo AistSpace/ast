@@ -29,7 +29,7 @@ using namespace _AST units;
 // 测试基本单位解析
 TEST(UnitParserTest, BasicUnitParse) {
     Unit unit;
-    err_t err;
+    errc_t err;
     
     // 测试基本长度单位
     err = aUnitParse("m", unit);
@@ -64,7 +64,7 @@ TEST(UnitParserTest, BasicUnitParse) {
 // 测试复合单位解析（乘法）
 TEST(UnitParserTest, CompoundUnitMultiply) {
     Unit unit;
-    err_t err;
+    errc_t err;
     
     // 测试使用 * 分隔的复合单位
     err = aUnitParse("m*s", unit);
@@ -88,7 +88,7 @@ TEST(UnitParserTest, CompoundUnitMultiply) {
 // 测试复合单位解析（除法）
 TEST(UnitParserTest, CompoundUnitDivide) {
     Unit unit;
-    err_t err;
+    errc_t err;
     
     // 测试简单除法
     err = aUnitParse("m/s", unit);
@@ -117,7 +117,7 @@ TEST(UnitParserTest, CompoundUnitDivide) {
 // 测试带指数的单位解析
 TEST(UnitParserTest, UnitWithExponent) {
     Unit unit;
-    err_t err;
+    errc_t err;
     
     // 测试正指数
     err = aUnitParse("m^2", unit);
@@ -176,7 +176,7 @@ TEST(UnitParserTest, UnitParseSingleReturn) {
 // 测试括号表达式处理
 TEST(UnitParserTest, ParenthesesHandling) {
     Unit unit;
-    err_t err;
+    errc_t err;
     
     // 测试简单括号
     err = aUnitParse("(m/s)", unit);
@@ -222,7 +222,7 @@ TEST(UnitParserTest, ParenthesesHandling) {
 // 测试空格处理
 TEST(UnitParserTest, WhitespaceHandling) {
     Unit unit;
-    err_t err;
+    errc_t err;
     
     // 测试前导空格
     err = aUnitParse("  m", unit);
@@ -270,7 +270,7 @@ TEST(UnitParserTest, WhitespaceHandling) {
 // 测试上标符号处理
 TEST(UnitParserTest, SuperscriptHandling) {
     Unit unit;
-    err_t err;
+    errc_t err;
     
     // 测试简单上标
     err = aUnitParse(aText("m²"), unit);
@@ -300,7 +300,7 @@ TEST(UnitParserTest, SuperscriptHandling) {
 // 测试复杂嵌套表达式
 TEST(UnitParserTest, ComplexNestedExpressions) {
     Unit unit;
-    err_t err;
+    errc_t err;
     
     // 测试复杂混合表达式
     err = aUnitParse(aText("(kg·m^2)/(s^2·A)"), unit);
@@ -348,7 +348,7 @@ TEST(UnitParserTest, ComplexNestedExpressions) {
 // 测试错误情况
 TEST(UnitParserTest, ErrorCases) {
     Unit unit;
-    err_t err;
+    errc_t err;
     
     // 测试空字符串
     err = aUnitParse("", unit);

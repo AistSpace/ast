@@ -39,7 +39,7 @@ TEST(DateTimeFormat, FormatSpecifiers)
     dttm.second() = 45.123456;
     
     std::string str;
-    err_t err;
+    errc_t err;
     
     // 测试年份格式说明符
     err = aDateTimeFormat(dttm, "%Y", str);
@@ -193,7 +193,7 @@ TEST(DateTimeFormat, ComplexFormats)
     dttm.second() = 45.123;
     
     std::string str;
-    err_t err;
+    errc_t err;
     
     // ISO 8601格式
     err = aDateTimeFormat(dttm, "%Y-%m-%dT%H:%M:%S.%L%z", str);
@@ -230,7 +230,7 @@ TEST(DateTimeFormat, ErrorHandling)
     dttm.day() = 25;
     
     std::string str;
-    err_t err;
+    errc_t err;
     
     // 空格式
     err = aDateTimeFormat(dttm, "", str);
@@ -261,11 +261,11 @@ TEST(DateTimeParseFormat, Consistency)
     for (auto& iter : format_tests) {
         std::tie(date_str, format) = iter;
         DateTime dttm;
-        err_t parse_err = aDateTimeParse(date_str, format, dttm);
+        errc_t parse_err = aDateTimeParse(date_str, format, dttm);
         EXPECT_EQ(parse_err, eNoError) << "Failed to parse: " << date_str;
         
         std::string formatted;
-        err_t format_err = aDateTimeFormat(dttm, format, formatted);
+        errc_t format_err = aDateTimeFormat(dttm, format, formatted);
         EXPECT_EQ(format_err, eNoError) << "Failed to format with: " << format;
         
         // 注意：由于时间组件的精度问题，这里可能需要更宽松的比较
@@ -288,7 +288,7 @@ TEST(DateTimeParseFormat, EdgeCases)
     
     DateTime dttm;
     std::string str;
-    err_t err;
+    errc_t err;
     
     // 闰年
     err = aDateTimeParse("2024-02-29", "%Y-%m-%d", dttm);
@@ -346,7 +346,7 @@ TEST(DateTimeFormat, UncoveredFormatSpecifiers) {
     dttm.second() = 45.123456;
     
     std::string str;
-    err_t err;
+    errc_t err;
     
     // 测试Unix时间戳格式说明符 '%s'
     err = aDateTimeFormat(dttm, "%s", str);
@@ -398,7 +398,7 @@ TEST(DateTimeFormat, DayOfYearValidation) {
     dttm.second() = 0.0;
     
     std::string str;
-    err_t err = aDateTimeFormat(dttm, "%j", str);
+    errc_t err = aDateTimeFormat(dttm, "%j", str);
     EXPECT_EQ(err, eNoError);
     // 2023年2月28日应该是一年中的第59天
     EXPECT_TRUE(str == "059" || str == "59");
@@ -424,7 +424,7 @@ TEST(DateTimeFormat, InternalHelpers) {
     dttm.day() = 29; // 闰年2月29日
     
     std::string str;
-    err_t err = aDateTimeFormat(dttm, "%Y-%m-%d", str);
+    errc_t err = aDateTimeFormat(dttm, "%Y-%m-%d", str);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(str, "2024-02-29");
     

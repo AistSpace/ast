@@ -42,7 +42,7 @@ Value* ExprBlock::eval() const
 
 
 /// @brief 设置表达式的值
-err_t ExprBlock::setValue(Value* val)
+errc_t ExprBlock::setValue(Value* val)
 {
     // 代码块不能直接设置值
     return eErrorReadonly;

@@ -161,7 +161,7 @@ AST_UTIL_CAPI int aCurrentLineNumber(std::FILE* file);
 /// @param file 文件指针
 /// @param filepath 输出文件路径，utf-8编码
 /// @return 错误码
-AST_UTIL_CAPI err_t aGetFilePath(std::FILE* file, std::string& filepath);
+AST_UTIL_CAPI errc_t aGetFilePath(std::FILE* file, std::string& filepath);
 
 
 /// @brief 获取文件路径
@@ -170,7 +170,7 @@ AST_UTIL_CAPI err_t aGetFilePath(std::FILE* file, std::string& filepath);
 A_ALWAYS_INLINE std::string aGetFilePath(std::FILE* file)
 {
     std::string filepath;
-    err_t rc = aGetFilePath(file, filepath);
+    errc_t rc = aGetFilePath(file, filepath);
     A_UNUSED(rc);
     return filepath;
 }

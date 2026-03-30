@@ -45,7 +45,7 @@ PCKParser::PCKParser(StringView filepath)
 
 }
 
-err_t PCKParser::getNext(BKVItemView &item)
+errc_t PCKParser::getNext(BKVItemView &item)
 {
     if(!file_)
         return eErrorInvalidFile;
@@ -105,7 +105,7 @@ err_t PCKParser::getNext(BKVItemView &item)
     return EOF;
 }
 
-err_t PCKParser::readData(KernelPool &kernelPool)
+errc_t PCKParser::readData(KernelPool &kernelPool)
 {
     if(!isOpen())
     {
@@ -114,7 +114,7 @@ err_t PCKParser::readData(KernelPool &kernelPool)
     }
     BKVItemView item;
     while(1){
-        err_t rc = getNext(item);
+        errc_t rc = getNext(item);
         if(rc == EOF)
             break;
         if(rc != eNoError)

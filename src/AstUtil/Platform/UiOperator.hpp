@@ -42,15 +42,15 @@ typedef UiWidget* (*UiWidgetFactory)(Object* object);
 /// @details   ~
 /// @param     type    对象类型
 /// @param     factory UI组件工厂函数指针
-/// @return    err_t  错误码
-AST_UTIL_CAPI err_t aUiRegEditWidget(Class* type, UiWidgetFactory factory);
+/// @return    errc_t  错误码
+AST_UTIL_CAPI errc_t aUiRegEditWidget(Class* type, UiWidgetFactory factory);
 
 
 /// @brief     编辑对象
 /// @details   ~
 /// @param     object 要编辑的对象
-/// @return    err_t  错误码
-AST_UTIL_CAPI err_t aUiEditObject(Object *object);
+/// @return    errc_t  错误码
+AST_UTIL_CAPI errc_t aUiEditObject(Object *object);
 
 
 /// @brief     创建编辑对象的UI组件

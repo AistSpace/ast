@@ -44,7 +44,7 @@ public:
     };
 
     using BaseOrbitDesigner::getOrbitState;
-    err_t getOrbitState(ModOrbElem& orbElem) const override;
+    errc_t getOrbitState(ModOrbElem& orbElem) const override;
 
     /// @brief 获取轨道方向
     /// @return 轨道方向

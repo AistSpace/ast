@@ -119,7 +119,7 @@ A_ALWAYS_INLINE double aMeanObliquity_IAU1980(const TimePoint& tp){
 }
 
 
-typedef err_t (*NutationFunc)(const TimePoint& tp, double &dpsi, double &deps);
+typedef errc_t (*NutationFunc)(const TimePoint& tp, double &dpsi, double &deps);
 
 A_ALWAYS_INLINE void aNutation_IAU1980(const TimePoint& tp, double& dpsi, double& deps)
 {
@@ -152,8 +152,8 @@ enum class ENutationMethod
 /// @brief 设置章动角计算函数
 /// @details 根据输入的枚举值，切换内部实现的章动角计算函数指针
 /// @param[in] func 枚举值，指定要切换的章动角计算函数
-/// @return err_t 错误码，0表示成功，其他值表示失败
-AST_CORE_CAPI err_t aNutationMethodSet(ENutationMethod method);
+/// @return errc_t 错误码，0表示成功，其他值表示失败
+AST_CORE_CAPI errc_t aNutationMethodSet(ENutationMethod method);
 
 
 /// @brief 获取当前章动角计算函数

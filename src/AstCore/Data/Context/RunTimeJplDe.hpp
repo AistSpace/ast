@@ -37,7 +37,7 @@ AST_NAMESPACE_BEGIN
 /// @param pos 
 /// @param vel 
 /// @return 
-AST_CORE_CAPI err_t aJplDeGetPosVelICRF(
+AST_CORE_CAPI errc_t aJplDeGetPosVelICRF(
     const TimePoint& time, 
     int target, 
     int referenceBody, 
@@ -51,7 +51,7 @@ AST_CORE_CAPI err_t aJplDeGetPosVelICRF(
 /// @param referenceBody 
 /// @param pos 
 /// @return 
-AST_CORE_CAPI err_t aJplDeGetPosICRF(
+AST_CORE_CAPI errc_t aJplDeGetPosICRF(
     const TimePoint& time,
     int target,
     int referenceBody,
@@ -64,7 +64,7 @@ AST_CORE_CAPI err_t aJplDeGetPosICRF(
 /// @param dpsi 
 /// @param deps 
 /// @return 
-AST_CORE_CAPI err_t aJplDeGetNutation(
+AST_CORE_CAPI errc_t aJplDeGetNutation(
     const TimePoint& time,
     double& dpsi,
     double& deps
@@ -75,7 +75,7 @@ AST_CORE_CAPI err_t aJplDeGetNutation(
 /// @param ang  - 从ICRF到月球惯性主轴坐标系的转角(rad)
 ///             - [omega,i,u],[进动角,章动角,自转角],按照313顺序旋转
 /// @return 
-AST_CORE_API err_t aJplDeGetLibration(
+AST_CORE_API errc_t aJplDeGetLibration(
     const TimePoint& time,
     Vector3d& ang
 );
@@ -86,7 +86,7 @@ AST_CORE_API err_t aJplDeGetLibration(
 /// @param ang  - 从ICRF到月球惯性主轴坐标系的转角(rad)
 ///             - [omega,i,u],[进动角,章动角,自转角],按照313顺序旋转
 /// @return 
-AST_CORE_API err_t aJplDeGetLibration(
+AST_CORE_API errc_t aJplDeGetLibration(
     const TimePoint& time,
     Euler& ang
 );
@@ -95,7 +95,7 @@ AST_CORE_API err_t aJplDeGetLibration(
 /// @brief 获取JPL DE星历数据的时间间隔
 /// @param interval 
 /// @return 
-AST_CORE_CAPI err_t aJplDeGetInterval(
+AST_CORE_CAPI errc_t aJplDeGetInterval(
     TimeInterval& interval
 );
 
@@ -108,7 +108,7 @@ AST_CORE_CAPI int aJplDeNum();
 /// @brief 打开JPL DE星历数据文件
 /// @param filepath 
 /// @return 
-AST_CORE_CAPI err_t aJplDeOpen(const char* filepath);
+AST_CORE_CAPI errc_t aJplDeOpen(const char* filepath);
 
 
 

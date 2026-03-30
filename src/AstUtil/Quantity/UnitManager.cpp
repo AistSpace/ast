@@ -77,12 +77,12 @@ UnitManager::~UnitManager()
     }
 }
 
-err_t UnitManager::addUnit(const Unit& unit)
+errc_t UnitManager::addUnit(const Unit& unit)
 {
     return _addUnit(unit.name(), unit);
 }
 
-err_t UnitManager::addUnit(StringView name, const Unit& unit)
+errc_t UnitManager::addUnit(StringView name, const Unit& unit)
 {
     return _addUnit(std::string(name), unit);
 }
@@ -97,7 +97,7 @@ Unit* UnitManager::getUnit(StringView name)
     return it->second;
 }
 
-err_t UnitManager::_addUnit(const std::string &name, const Unit &unit)
+errc_t UnitManager::_addUnit(const std::string &name, const Unit &unit)
 {
     if (units_.find(name) != units_.end())
     {
@@ -112,12 +112,12 @@ Unit* aUnitGet(StringView name)
     return UnitManager::Instance().getUnit(name);
 }
 
-err_t aUnitAdd(const Unit& unit)
+errc_t aUnitAdd(const Unit& unit)
 {
     return UnitManager::Instance().addUnit(unit);
 }
 
-err_t aUnitAdd(StringView name, const Unit &unit)
+errc_t aUnitAdd(StringView name, const Unit &unit)
 {
     return UnitManager::Instance().addUnit(name, unit);
 }

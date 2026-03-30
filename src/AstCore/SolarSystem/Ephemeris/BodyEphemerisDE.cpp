@@ -34,17 +34,17 @@ int BodyEphemerisDE::getJplIndex() const
     return jplIndex_;
 }
 
-err_t BodyEphemerisDE::getPosICRF(const TimePoint &tp, Vector3d &pos) const
+errc_t BodyEphemerisDE::getPosICRF(const TimePoint &tp, Vector3d &pos) const
 {
     return aJplDeGetPosICRF(tp, getJplIndex(), JplDe::eSSBarycenter, pos);
 }
 
-err_t BodyEphemerisDE::getPosVelICRF(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+errc_t BodyEphemerisDE::getPosVelICRF(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     return aJplDeGetPosVelICRF(tp, getJplIndex(), JplDe::eSSBarycenter, pos, vel);
 }
 
-err_t BodyEphemerisDE::getInterval(TimeInterval &interval) const
+errc_t BodyEphemerisDE::getInterval(TimeInterval &interval) const
 {
     return aJplDeGetInterval(interval);
 }

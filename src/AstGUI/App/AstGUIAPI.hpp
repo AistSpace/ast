@@ -28,13 +28,13 @@ AST_NAMESPACE_BEGIN
 
 
 /// @brief 初始化Gui
-/// @return err_t
-AST_GUI_CAPI err_t aGuiInit();
+/// @return errc_t
+AST_GUI_CAPI errc_t aGuiInit();
 
 
 /// @brief 初始化Qt应用程序
-/// @return err_t
-AST_GUI_CAPI err_t aQAppInit(int argc, char *argv[]);
+/// @return errc_t
+AST_GUI_CAPI errc_t aQAppInit(int argc, char *argv[]);
 
 /// @brief 创建主窗口
 /// @return QMainWindow*

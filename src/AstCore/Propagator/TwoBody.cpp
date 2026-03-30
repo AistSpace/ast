@@ -55,7 +55,7 @@ enum ER
 };
 
 
-err_t aTwoBodyProp(double t, double mu, Vector3d& r0, Vector3d& v0)
+errc_t aTwoBodyProp(double t, double mu, Vector3d& r0, Vector3d& v0)
 {
     const double tol = 1e-10;              
     double r0mag = norm(r0);

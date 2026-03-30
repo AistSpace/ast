@@ -43,8 +43,8 @@ public:
     Frame* getParent() const override;
     Axes* getAxes() const override;
     Point* getOrigin() const override;
-    err_t getTransform(const TimePoint& tp, Transform& transform) const override;
-    err_t getTransform(const TimePoint& tp, KinematicTransform& transform) const override;
+    errc_t getTransform(const TimePoint& tp, Transform& transform) const override;
+    errc_t getTransform(const TimePoint& tp, KinematicTransform& transform) const override;
 };
 
 A_ALWAYS_INLINE Frame* aFrameICRF()

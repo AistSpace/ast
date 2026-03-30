@@ -43,15 +43,15 @@ enum EValueType{
 /// @brief 模拟获取属性值的函数
 /// @param container 对象指针
 /// @param value 指向属性值的指针
-/// @return err_t 错误码
-AST_UTIL_CAPI err_t aFakeGet(const void* container, void* value);
+/// @return errc_t 错误码
+AST_UTIL_CAPI errc_t aFakeGet(const void* container, void* value);
 
 
 /// @brief 模拟设置属性值的函数
 /// @param container 对象指针
 /// @param value 指向属性值的指针
-/// @return err_t 错误码
-AST_UTIL_CAPI err_t aFakeSet(void* container, const void* value);
+/// @return errc_t 错误码
+AST_UTIL_CAPI errc_t aFakeSet(void* container, const void* value);
 
 /// @brief 反射属性类
 class Property: public Field
@@ -79,63 +79,63 @@ public:
     /// @brief 接受访问者
     /// @param visitor 访问者对象
     /// @param container 容器对象指针
-    /// @return err_t 错误码
-    virtual err_t accept(PropertyVisitor& visitor, const void* container) = 0;
+    /// @return errc_t 错误码
+    virtual errc_t accept(PropertyVisitor& visitor, const void* container) = 0;
 
     /// @param container 容器对象指针
     /// @param value 指向double类型变量的引用，用于存储属性值
-    /// @return err_t 错误码
-    virtual err_t getValueDouble(const void* container, double& value) = 0;
+    /// @return errc_t 错误码
+    virtual errc_t getValueDouble(const void* container, double& value) = 0;
 
     /// @brief 设置属性值（double类型）
     /// @param container 容器对象指针
     /// @param value double类型变量，用于设置属性值
-    /// @return err_t 错误码
-    virtual err_t setValueDouble(void* container, double value) = 0;
+    /// @return errc_t 错误码
+    virtual errc_t setValueDouble(void* container, double value) = 0;
 
     /// @brief 获取属性值（int类型）
     /// @param container 容器对象指针
     /// @param value 指向int类型变量的引用，用于存储属性值
-    /// @return err_t 错误码
-    virtual err_t getValueInt(const void* container, int& value) = 0;
+    /// @return errc_t 错误码
+    virtual errc_t getValueInt(const void* container, int& value) = 0;
 
     /// @brief 设置属性值（int类型）
     /// @param container 容器对象指针
     /// @param value int类型变量，用于设置属性值
-    /// @return err_t 错误码
-    virtual err_t setValueInt(void* container, int value) = 0;
+    /// @return errc_t 错误码
+    virtual errc_t setValueInt(void* container, int value) = 0;
 
     /// @brief 获取属性值（bool类型）
     /// @param container 容器对象指针
     /// @param value 指向bool类型变量的引用，用于存储属性值
-    /// @return err_t 错误码
-    virtual err_t getValueBool(const void* container, bool& value) = 0;
+    /// @return errc_t 错误码
+    virtual errc_t getValueBool(const void* container, bool& value) = 0;
 
     /// @brief 设置属性值（bool类型）
     /// @param container 容器对象指针
     /// @param value bool类型变量，用于设置属性值
-    /// @return err_t 错误码
-    virtual err_t setValueBool(void* container, bool value) = 0;
+    /// @return errc_t 错误码
+    virtual errc_t setValueBool(void* container, bool value) = 0;
 
     /// @brief 获取属性值（String类型）
     /// @param container 容器对象指针
     /// @param value 指向std::string类型变量的引用，用于存储属性值
-    /// @return err_t 错误码
-    virtual err_t getValueString(const void* container, std::string& value) = 0;
+    /// @return errc_t 错误码
+    virtual errc_t getValueString(const void* container, std::string& value) = 0;
 
     /// @brief 设置属性值（String类型）
     /// @param container 容器对象指针
     /// @param value StringView类型变量，用于设置属性值
-    /// @return err_t 错误码
-    virtual err_t setValueString(void* container, StringView value) = 0;
+    /// @return errc_t 错误码
+    virtual errc_t setValueString(void* container, StringView value) = 0;
 
 protected:
     /// @brief 获取属性值
     /// @param container 容器对象指针
     /// @param value 指向void类型变量的指针，用于存储属性值
-    /// @return err_t 错误码
+    /// @return errc_t 错误码
     A_ALWAYS_INLINE
-    err_t getValue(void* container, void* value)
+    errc_t getValue(void* container, void* value)
     {
         return getter_(container, value);
     }
@@ -143,9 +143,9 @@ protected:
     /// @brief 设置属性值
     /// @param container 容器对象指针
     /// @param value 指向void类型变量的指针，用于设置属性值
-    /// @return err_t 错误码
+    /// @return errc_t 错误码
     A_ALWAYS_INLINE
-    err_t setValue(void* container, const void* value)
+    errc_t setValue(void* container, const void* value)
     {
         return setter_(container, value);
     }

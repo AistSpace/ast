@@ -23,7 +23,7 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t BlockTransform::run(const SimTime& simTime)
+errc_t BlockTransform::run(const SimTime& simTime)
 {
     return -1;
 }

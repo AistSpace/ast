@@ -97,8 +97,8 @@ public:
     ~StateKeplerian() override = default;
 public:
     EStateType getStateType() const override { return EStateType::eKeplerian; }
-    err_t getState(CartState& state) const override;
-    err_t setState(const CartState& state) override;
+    errc_t getState(CartState& state) const override;
+    errc_t setState(const CartState& state) override;
 public:
     void setState(OrbElem& orbElem);
     void getState(OrbElem& orbElem) const;

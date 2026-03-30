@@ -52,7 +52,7 @@ TEST_F(StateTest, ChangeFrameBasic)
 {
     // 测试从ICRF到TOD的转换
     {
-        err_t rc;
+        errc_t rc;
         auto cartState = StateCartesian::MakeShared();
         SharedPtr<CelestialBody> earth = aGetEarth();
         
@@ -84,7 +84,7 @@ TEST_F(StateTest, ChangeFrameWithEpoch)
 {
     // 测试从TOE到MOE的转换
     {
-        err_t rc;
+        errc_t rc;
         auto cartState = StateCartesian::MakeShared();
         SharedPtr<CelestialBody> earth = aGetEarth();
         auto coordEpoch = TimePoint::FromUTC(1980, 12, 27, 0, 0, 0);
@@ -124,7 +124,7 @@ TEST_F(StateTest, ChangeFrameWithEpoch)
     }
     // 测试从TOE到MOD的转换
     {
-        err_t rc;
+        errc_t rc;
         auto cartState = StateCartesian::MakeShared();
         SharedPtr<CelestialBody> earth = aGetEarth();
         auto coordEpoch = TimePoint::FromUTC(1980, 12, 27, 0, 0, 0);
@@ -161,7 +161,7 @@ TEST_F(StateTest, GetKeplerianStateParams)
 {
     auto earth = aGetEarth();
     {
-        err_t rc;
+        errc_t rc;
         auto keplerianState = StateKeplerian::MakeShared();
         OrbElem orbElem{
             8678137_m, 0.03, 28.5_deg, 12_deg, 21_deg, 23_deg
@@ -618,7 +618,7 @@ TEST_F(StateTest, Attr)
 
     {
         double sma;
-        err_t rc = stateKeplerian->getAttrDouble("SMA", sma);
+        errc_t rc = stateKeplerian->getAttrDouble("SMA", sma);
         EXPECT_EQ(rc, eNoError);
         EXPECT_EQ(sma, stateKeplerian->getSMA());
     }

@@ -15,11 +15,11 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t XmlSerializer::serialize(Object* object, std::string& output) {
+errc_t XmlSerializer::serialize(Object* object, std::string& output) {
     return -1;
 }
 
-err_t XmlSerializer::deserialize(const std::string& input, Object* object) {
+errc_t XmlSerializer::deserialize(const std::string& input, Object* object) {
     return -1;
 }
 

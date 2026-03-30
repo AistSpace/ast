@@ -65,7 +65,7 @@ TEST_F(AxesTransformTest, getTransform)
         {
             HAxes icrf = aAxesICRF();
             HAxes ecf = aAxesECF();
-            err_t rc = ecf->getTransformFrom(icrf, tp, rotation1);
+            errc_t rc = ecf->getTransformFrom(icrf, tp, rotation1);
             EXPECT_FALSE(rc);
         }
         aICRFToECFTransform(tp, rotation2);
@@ -89,7 +89,7 @@ TEST_F(AxesTransformTest, getTransform)
         {
             HAxes j2000 = aAxesJ2000();
             HAxes ecf = aAxesECF();
-            err_t rc = ecf->getTransformFrom(j2000, tp, rotation1);
+            errc_t rc = ecf->getTransformFrom(j2000, tp, rotation1);
             EXPECT_FALSE(rc);
         }
         aJ2000ToECFTransform(tp, rotation2);
@@ -113,7 +113,7 @@ TEST_F(AxesTransformTest, getTransform)
         {
             HAxes tod = aAxesTOD();
             HAxes gtod = aAxesGTOD();
-            err_t rc = gtod->getTransformFrom(tod, tp, rotation1);
+            errc_t rc = gtod->getTransformFrom(tod, tp, rotation1);
             EXPECT_FALSE(rc);
         }
         aTODToGTODTransform(tp, rotation2);
@@ -137,7 +137,7 @@ TEST_F(AxesTransformTest, getTransform)
         {
             HAxes j2000 = aAxesJ2000();
             HAxes gtod = aAxesGTOD();
-            err_t rc = j2000->getTransformTo(gtod, tp, rotation1);
+            errc_t rc = j2000->getTransformTo(gtod, tp, rotation1);
             EXPECT_FALSE(rc);
         }
         {
@@ -164,7 +164,7 @@ TEST_F(AxesTransformTest, getTransform)
         Rotation rotation1;
         Rotation rotation2;
 
-        err_t rc;
+        errc_t rc;
         rc = aAxesTransform(mod, icrf, tp, rotation1);
         EXPECT_FALSE(rc);
         rc = aAxesTransform(icrf, mod, tp, rotation2);
@@ -184,7 +184,7 @@ TEST_F(AxesTransformTest, getTransform)
         Rotation rotation;
         HAxes icrf = aAxesICRF();
         HAxes j2000 = aAxesJ2000();
-        err_t rc = aAxesTransform(icrf, j2000, tp, rotation);
+        errc_t rc = aAxesTransform(icrf, j2000, tp, rotation);
         EXPECT_FALSE(rc);
         Matrix3d mat = rotation.getMatrix();
         for (int i = 0; i < 3; i++)

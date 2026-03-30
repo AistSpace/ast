@@ -15,11 +15,11 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t JavaSerializer::serialize(Object* object, std::string& output) {
+errc_t JavaSerializer::serialize(Object* object, std::string& output) {
     return -1;
 }
 
-err_t JavaSerializer::deserialize(const std::string& input, Object* object) {
+errc_t JavaSerializer::deserialize(const std::string& input, Object* object) {
     return -1;
 }
 

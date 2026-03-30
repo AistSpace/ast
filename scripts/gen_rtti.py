@@ -82,7 +82,7 @@ class TypeMapper:
         
         # int类型
         'int': PropertyType.INT,
-        'err_t': PropertyType.INT,
+        'errc_t': PropertyType.INT,
         'int32_t': PropertyType.INT,
         'int64_t': PropertyType.INT,
         'uint32_t': PropertyType.INT,

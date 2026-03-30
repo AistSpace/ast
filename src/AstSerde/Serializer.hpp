@@ -32,13 +32,13 @@ public:
     /// @param object 要序列化的对象
     /// @param output 输出字符串
     /// @return 错误码
-    virtual err_t serialize(Object* object, std::string& output) = 0;
+    virtual errc_t serialize(Object* object, std::string& output) = 0;
     
     /// @brief 反序列化对象
     /// @param input 输入字符串
     /// @param object 要反序列化到的对象
     /// @return 错误码
-    virtual err_t deserialize(const std::string& input, Object* object) = 0;
+    virtual errc_t deserialize(const std::string& input, Object* object) = 0;
 };
 
 AST_NAMESPACE_END

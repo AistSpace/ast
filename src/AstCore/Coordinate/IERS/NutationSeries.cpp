@@ -33,7 +33,7 @@ AST_NAMESPACE_BEGIN
 /// @param     line  nutation 项的字符串表示
 /// @param     term  解析后的 nutation 项
 /// @return    错误码   
-static err_t parseTerm(StringView line, int& index, NutationTerm &term)
+static errc_t parseTerm(StringView line, int& index, NutationTerm &term)
 {
     // #pragma warning(suppress: 4996)
     int status = sscanf(
@@ -57,7 +57,7 @@ static err_t parseTerm(StringView line, int& index, NutationTerm &term)
 /// @param     line  nutation 项的索引 j 的字符串表示
 /// @param     j     解析后的 nutation 项的索引 j
 /// @return    错误码   
-static err_t parseJList(StringView line, int &j, int& numTerms)
+static errc_t parseJList(StringView line, int &j, int& numTerms)
 {
     // #pragma warning(suppress: 4996)
     int status = sscanf(
@@ -91,7 +91,7 @@ static bool checkValid(const std::vector<NutationTerm>& terms, const std::vector
     return true;
 }
 
-err_t NutationSeries::load(StringView filepath)
+errc_t NutationSeries::load(StringView filepath)
 {
     BKVParser parser(filepath);
     if(!parser.isOpen()){
@@ -107,7 +107,7 @@ err_t NutationSeries::load(StringView filepath)
     }
 }
 
-err_t NutationSeries::loadSTK(StringView filepath)
+errc_t NutationSeries::loadSTK(StringView filepath)
 {
     BKVParser parser(filepath);
     if(!parser.isOpen()){
@@ -117,7 +117,7 @@ err_t NutationSeries::loadSTK(StringView filepath)
     return loadSTK(parser);
 }
 
-err_t NutationSeries::loadIERS(StringView filepath)
+errc_t NutationSeries::loadIERS(StringView filepath)
 {
     BKVParser parser(filepath);
     if(!parser.isOpen()){
@@ -178,7 +178,7 @@ double NutationSeries::eval(const TimePoint &tp, const FundamentalArguments &fun
     return eval(tp.julianCenturyFromJ2000TT(), fundargs);
 }
 
-err_t NutationSeries::loadSTK(BKVParser &parser)
+errc_t NutationSeries::loadSTK(BKVParser &parser)
 {
     BKVParser::EToken token;
     BKVItemView item;
@@ -197,7 +197,7 @@ err_t NutationSeries::loadSTK(BKVParser &parser)
                 for(int i=0; i<=max_polyindex; i++){
                     StringView line = parser.getLine();
                     double val;
-                    err_t err = aParseDouble(line, val);
+                    errc_t err = aParseDouble(line, val);
                     if(err != eNoError){
                         aError("expect double, error %d, line %d, %s\n", err, parser.getLineNumber(), line.data());
                         return err;
@@ -211,7 +211,7 @@ err_t NutationSeries::loadSTK(BKVParser &parser)
                 for(int i=0; i<=max_jindex; i++){
                     StringView line = parser.getLine();
                     int val;
-                    err_t err = aParseInt(line, val);
+                    errc_t err = aParseInt(line, val);
                     if(err != eNoError){
                         aError("expect integer, error %d, line %d, %s\n", err, parser.getLineNumber(), line.data());
                         return err;
@@ -224,7 +224,7 @@ err_t NutationSeries::loadSTK(BKVParser &parser)
                     StringView line = parser.getLineSkipComment();
                     NutationTerm term;
                     int index;
-                    err_t err = parseTerm(line, index, term);
+                    errc_t err = parseTerm(line, index, term);
                     if(err != eNoError){
                         aError("expect 17 terms, error %d, line %d, %s\n", err, parser.getLineNumber(), line.data());
                         return err;
@@ -258,7 +258,7 @@ err_t NutationSeries::loadSTK(BKVParser &parser)
     return eNoError;
 }
 
-err_t NutationSeries::loadIERS(BKVParser &parser)
+errc_t NutationSeries::loadIERS(BKVParser &parser)
 {
     std::vector<NutationTerm> terms;
     Polynomial polynomial;
@@ -270,7 +270,7 @@ err_t NutationSeries::loadIERS(BKVParser &parser)
         }
         int index;
         NutationTerm term;
-        err_t err = parseTerm(line, index, term);
+        errc_t err = parseTerm(line, index, term);
         if(err == eNoError){
             terms.push_back(term);
         }else{

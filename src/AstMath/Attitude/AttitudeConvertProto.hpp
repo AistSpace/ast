@@ -36,7 +36,7 @@ class Euler;
 /// @param angle 旋转角度（弧度）
 /// @param axis 旋转轴（1:X轴, 2:Y轴, 3:Z轴）
 /// @param mtx 输出矩阵
-AST_MATH_CAPI err_t aRotationMatrix(double angle, int axis, Matrix3d& mtx);
+AST_MATH_CAPI errc_t aRotationMatrix(double angle, int axis, Matrix3d& mtx);
 
 
 /// @brief 绕X轴坐标旋转矩阵
@@ -76,15 +76,15 @@ AST_MATH_CAPI void aMatrixToQuat(const Matrix3d& mtx, Quaternion& quat);
 /// 如果旋转顺序为ABC，angle2在区间[-PI/2, PI/2]，其他两个角在区间[-PI,PI]
 ///	如果旋转顺序为ABA，angle2在区间[0, PI]，其他两个角在区间[-PI,PI]
 /// @return
-AST_MATH_CAPI err_t aMatrixToEuler(const Matrix3d&mtx, int seq, Euler& euler);
+AST_MATH_CAPI errc_t aMatrixToEuler(const Matrix3d&mtx, int seq, Euler& euler);
 
 /// @brief 欧拉角转矩阵
 /// @param euler 
 /// @param seq 
 /// @param mtx 
 /// @return 
-AST_MATH_CAPI err_t aEulerToMatrix(const Euler&euler, int seq, Matrix3d& mtx);
-AST_MATH_CAPI err_t _aEulerToMatrix(const Euler& euler, int seq, Matrix3d& mtx);
+AST_MATH_CAPI errc_t aEulerToMatrix(const Euler&euler, int seq, Matrix3d& mtx);
+AST_MATH_CAPI errc_t _aEulerToMatrix(const Euler& euler, int seq, Matrix3d& mtx);
 
 
 AST_MATH_CAPI void aMatrixToEuler123(const Matrix3d& mtx, Euler& euler);
@@ -118,14 +118,14 @@ AST_MATH_CAPI void aEuler323ToMatrix(const Euler& euler, Matrix3d& mtx);
 /// @param seq 转序
 /// @param quat 四元数
 /// @return 
-AST_MATH_CAPI err_t aEulerToQuat(const Euler& euler, int seq, Quaternion& quat);
+AST_MATH_CAPI errc_t aEulerToQuat(const Euler& euler, int seq, Quaternion& quat);
 
 /// @brief 四元数转欧拉角
 /// @param quat 四元数
 /// @param seq 转序
 /// @param euler 欧拉角
 /// @return 
-AST_MATH_CAPI err_t aQuatToEuler(const Quaternion& quat, int seq, Euler& euler);
+AST_MATH_CAPI errc_t aQuatToEuler(const Quaternion& quat, int seq, Euler& euler);
 
 /// @brief 四元数转轴角
 /// @param quat 四元数

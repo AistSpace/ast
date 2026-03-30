@@ -22,7 +22,7 @@
 
 AST_NAMESPACE_BEGIN
 
-// err_t aIntegrateConst(ODEIntegrator &integrator, ODE &ode, double *y, double t0, double tf)
+// errc_t aIntegrateConst(ODEIntegrator &integrator, ODE &ode, double *y, double t0, double tf)
 // {
 //     return integrator.integrate(ode, y, t0, tf);
 // }

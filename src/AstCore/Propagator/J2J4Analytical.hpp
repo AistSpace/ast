@@ -62,7 +62,7 @@ public:
     /// @param     r        位置向量
     /// @param     v        速度向量
     /// @return    错误码
-    err_t prop(double duration, Vector3d& r, Vector3d& v);
+    errc_t prop(double duration, Vector3d& r, Vector3d& v);
 
     /// @brief     轨道预报函数
     /// @details   ~
@@ -71,7 +71,7 @@ public:
     /// @param     j2       J2项
     /// @param     modOrbElem 改进轨道根数
     /// @return    错误码
-    err_t prop(double duration, ModOrbElem& modOrbElem);
+    errc_t prop(double duration, ModOrbElem& modOrbElem);
 
 
     /// @brief     轨道预报函数
@@ -82,7 +82,7 @@ public:
     /// @param     r        位置向量
     /// @param     v        速度向量
     /// @return    错误码
-    err_t prop(const TimePoint& epoch, Vector3d& r, Vector3d& v);
+    errc_t prop(const TimePoint& epoch, Vector3d& r, Vector3d& v);
 
     /// @brief     轨道预报函数
     /// @details   ~
@@ -91,14 +91,14 @@ public:
     /// @param     j2       J2项
     /// @param     modOrbElem 改进轨道根数
     /// @return    错误码
-    err_t prop(const TimePoint& epoch, ModOrbElem& modOrbElem);
+    errc_t prop(const TimePoint& epoch, ModOrbElem& modOrbElem);
 protected:
     /// @brief     轨道预报函数（不规范化角度）
     /// @details   ~
     /// @param     duration 时间间隔
     /// @param     modOrbElem 改进轨道根数
     /// @return    错误码
-    err_t propNoNormalize(double duration, ModOrbElem& modOrbElem);
+    errc_t propNoNormalize(double duration, ModOrbElem& modOrbElem);
 protected:
     /// @brief     设置升交点角速度
     /// @details   ~

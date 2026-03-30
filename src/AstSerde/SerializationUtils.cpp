@@ -14,7 +14,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t SerializationUtils::serialize(Object* object, ESerializationFormat format, std::string& output) {
+errc_t SerializationUtils::serialize(Object* object, ESerializationFormat format, std::string& output) {
     if (!object) {
         return eErrorNullInput;
     }
@@ -27,7 +27,7 @@ err_t SerializationUtils::serialize(Object* object, ESerializationFormat format,
     return serializer->serialize(object, output);
 }
 
-err_t SerializationUtils::deserialize(const std::string& input, ESerializationFormat format, Object* object) {
+errc_t SerializationUtils::deserialize(const std::string& input, ESerializationFormat format, Object* object) {
     if (!object) {
         return eErrorNullInput;
     }

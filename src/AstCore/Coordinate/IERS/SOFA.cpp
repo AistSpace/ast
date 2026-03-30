@@ -400,8 +400,8 @@ void aNutation_IERS1996_Cache(double t, double &dpsi, double &deps, double* eqec
 /// @param tp 时间点
 /// @param dpsi 输出的章动角（经度）
 /// @param deps 输出的章动角（纬度）
-/// @return err_t 错误码，0表示成功，其他值表示失败
-static err_t aNutation_IAU1980_Impl(const TimePoint& tp, double &dpsi, double &deps)
+/// @return errc_t 错误码，0表示成功，其他值表示失败
+static errc_t aNutation_IAU1980_Impl(const TimePoint& tp, double &dpsi, double &deps)
 {
     aNutation_IAU1980_Cache(tp.julianCenturyFromJ2000TT(), dpsi, deps);
     return 0;
@@ -412,10 +412,10 @@ static err_t aNutation_IAU1980_Impl(const TimePoint& tp, double &dpsi, double &d
 /// @param tp 时间点
 /// @param dpsi 输出的章动角（经度）
 /// @param deps 输出的章动角（纬度）
-/// @return err_t 错误码，0表示成功，其他值表示失败
-static err_t aNutation_JplDe_Impl(const TimePoint& tp, double &dpsi, double &deps)
+/// @return errc_t 错误码，0表示成功，其他值表示失败
+static errc_t aNutation_JplDe_Impl(const TimePoint& tp, double &dpsi, double &deps)
 {
-    err_t err = aJplDeGetNutation(tp, dpsi, deps);
+    errc_t err = aJplDeGetNutation(tp, dpsi, deps);
     if(err){
         // 失败时，尝试使用IAU1980模型
         aInfo("Failed to get nutation from JPL DE, fallback to IAU1980 model.");
@@ -429,7 +429,7 @@ static err_t aNutation_JplDe_Impl(const TimePoint& tp, double &dpsi, double &dep
 NutationFunc aNutation = &aNutation_IAU1980_Impl;  
 // NutationFunc aNutation = &aNutation_JplDe_Impl;
 
-err_t aNutationMethodSet(ENutationMethod method)
+errc_t aNutationMethodSet(ENutationMethod method)
 {
     switch (method)
     {

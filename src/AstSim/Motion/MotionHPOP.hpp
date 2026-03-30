@@ -42,8 +42,8 @@ public:
     MotionHPOP() = default;
     ~MotionHPOP() override = default;
 public:
-    err_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const override;
-    err_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const override;
+    errc_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const override;
+    errc_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const override;
     void accept(MotionProfileVisitor& visitor) override;
 public:
     /// @brief 设置力模型

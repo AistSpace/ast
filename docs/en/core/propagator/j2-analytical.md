@@ -43,8 +43,8 @@ J2Analytical(const Vector3d& pos, const Vector3d& vel, const TimePoint& epoch, d
 ### Function Interface
 
 ```cpp
-AST_CORE_API err_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, Vector3d& r, Vector3d& v);
-AST_CORE_API err_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, ModOrbElem& modOrbElem);
+AST_CORE_API errc_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, Vector3d& r, Vector3d& v);
+AST_CORE_API errc_t aJ2AnalyticalProp(double duration, double gm, double j2, double re, ModOrbElem& modOrbElem);
 ```
 
 **Parameter Description:**

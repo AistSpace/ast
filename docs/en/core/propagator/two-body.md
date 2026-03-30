@@ -25,7 +25,7 @@ The two-body propagator uses Kepler's equation to calculate orbital state after 
 ### Function Interface
 
 ```cpp
-AST_CORE_CAPI err_t aTwoBodyProp(double duration, double gm, Vector3d& r, Vector3d& v);
+AST_CORE_CAPI errc_t aTwoBodyProp(double duration, double gm, Vector3d& r, Vector3d& v);
 ```
 
 **Parameter Description:**

@@ -88,14 +88,14 @@ public:
     /// @details 解析指定路径的文件，将解析结果传递给指定的 sax 解析器。
     /// @param filepath 文件路径视图，指定要解析的文件路径。
     /// @param sax sax 解析器，用于处理解析结果。
-    /// @return 解析错误码（err_t）。
-    err_t parseFile(StringView filepath, BKVSax& sax);
+    /// @return 解析错误码（errc_t）。
+    errc_t parseFile(StringView filepath, BKVSax& sax);
 
     /// @brief 解析当前打开的文件
     /// @details 解析当前打开的文件，将解析结果传递给指定的 sax 解析器。
     /// @param sax sax 解析器，用于处理解析结果。
-    /// @return 解析错误码（err_t）。
-    err_t parse(BKVSax& sax);
+    /// @return 解析错误码（errc_t）。
+    errc_t parse(BKVSax& sax);
  
 protected:
     bool              allowComment_;            ///< 是否允许注释行

@@ -35,7 +35,7 @@ AST_USING_NAMESPACE
 TEST(SolarSystem, load)
 {
     SolarSystem system;
-    err_t rc = system.load(aDataDirGet() + "/SolarSystem");
+    errc_t rc = system.load(aDataDirGet() + "/SolarSystem");
     EXPECT_EQ(rc, 0);
 }
 
@@ -45,7 +45,7 @@ TEST(SolarSystem, loadPCK)
 
     
     SolarSystem system;
-    err_t rc = system.loadPCK(aDataDirGet() + "/Test/kernels/pck/pck00011.tpc");
+    errc_t rc = system.loadPCK(aDataDirGet() + "/Test/kernels/pck/pck00011.tpc");
     // EXPECT_EQ(rc, 0);
     A_UNUSED(rc);
 }
@@ -55,7 +55,7 @@ TEST(SolarSystem, getBody)
     if(!aIsGithubCI()) GTEST_SKIP();
 
     SolarSystem system;
-    err_t rc = system.load(aDataDirGet() + "/SolarSystem");
+    errc_t rc = system.load(aDataDirGet() + "/SolarSystem");
     EXPECT_EQ(rc, 0);
     auto ariel = system.getBody("Ariel");
     EXPECT_NE(ariel, nullptr);
@@ -70,7 +70,7 @@ TEST(CelestialBody, loadEarth)
     if(!aIsGithubCI()) GTEST_SKIP();
 
     CelestialBody earth;
-    err_t rc = earth.load(aDataDirGet() + "/SolarSystem/Earth/Earth.cb");
+    errc_t rc = earth.load(aDataDirGet() + "/SolarSystem/Earth/Earth.cb");
     EXPECT_EQ(rc, 0);
     EXPECT_EQ(earth.getName(), "Earth");
 }
@@ -82,7 +82,7 @@ TEST(CelestialBody, getPosVel)
     Vector3d pos1, vel1;
     Vector3d pos2, vel2;
     auto tp = TimePoint::FromUTC(2022, 3, 8, 3, 11, 3);
-    err_t rc = earth->getPosVelICRF(tp, pos2, vel2);
+    errc_t rc = earth->getPosVelICRF(tp, pos2, vel2);
     EXPECT_EQ(rc, 0);
     rc = aJplDeGetPosVelICRF(tp, JplDe::eEarth, JplDe::eSSBarycenter, pos1, vel1);
     EXPECT_EQ(rc, 0);
@@ -166,7 +166,7 @@ TEST(CelestialBody, getJn)
     if(!aIsGithubCI()) GTEST_SKIP();
 
     CelestialBody earth;
-    err_t rc = earth.load(aDataDirGet() + "/SolarSystem/Earth/Earth.cb");
+    errc_t rc = earth.load(aDataDirGet() + "/SolarSystem/Earth/Earth.cb");
     EXPECT_EQ(rc, 0);
     // EXPECT_EQ(earth.getJn(0), 0.0);
     double j2 = earth.getJ2();

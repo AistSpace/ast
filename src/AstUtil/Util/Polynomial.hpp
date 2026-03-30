@@ -40,14 +40,14 @@ class Polynomial;
 /// @param varname 变量名，例如 "x"
 /// @param coeffs 输出参数，用于存储解析后的系数
 /// @return 错误码
-AST_UTIL_API err_t aParsePolynomial(StringView content, StringView varname, std::vector<double>& coeffs);
+AST_UTIL_API errc_t aParsePolynomial(StringView content, StringView varname, std::vector<double>& coeffs);
 
 
 /// @brief 解析多项式表达式
 /// @param content 多项式表达式字符串，例如 "2x^2 + 3x - 1"
 /// @param coeffs 输出参数，用于存储解析后的系数
 /// @return 错误码
-AST_UTIL_API err_t aParsePolynomial(StringView content, std::vector<double>& coeffs);
+AST_UTIL_API errc_t aParsePolynomial(StringView content, std::vector<double>& coeffs);
 
 
 /// @brief 将系数向量格式化为多项式表达式字符串
@@ -74,14 +74,14 @@ public:
     /// @param content 多项式表达式字符串，例如 "2x^2 + 3x - 1"
     /// @param varname 变量名，例如 "x"
     /// @return 错误码
-    err_t parse(StringView content, StringView varname){
+    errc_t parse(StringView content, StringView varname){
         return aParsePolynomial(content, varname, coeffs_);
     }
     
     /// @brief 解析多项式表达式（默认变量名 "x"）
     /// @param content 多项式表达式字符串，例如 "2x^2 + 3x - 1"
     /// @return 错误码
-    err_t parse(StringView content){
+    errc_t parse(StringView content){
         return aParsePolynomial(content, coeffs_);
     }
 
@@ -128,12 +128,12 @@ inline double Polynomial::eval(double x) const
     }
 }
 
-A_ALWAYS_INLINE err_t aParsePolynomial(StringView content, Polynomial& poly)
+A_ALWAYS_INLINE errc_t aParsePolynomial(StringView content, Polynomial& poly)
 {
     return poly.parse(content);
 }
 
-A_ALWAYS_INLINE err_t aParsePolynomial(StringView content, StringView varname, Polynomial& poly)
+A_ALWAYS_INLINE errc_t aParsePolynomial(StringView content, StringView varname, Polynomial& poly)
 {
     return poly.parse(content, varname);
 }

@@ -62,7 +62,7 @@ Value* ExprCondition::eval() const {
 }
 
 
-err_t ExprCondition::setValue(Value* val) {
+errc_t ExprCondition::setValue(Value* val) {
     // 条件表达式是只读的，无法直接设置值
     (void)val; // 避免未使用参数警告
     return eErrorReadonly;

@@ -45,7 +45,7 @@ static const double
 const double err_factor = -41.0 / 840.0;
 const int num_stage_rkf78 = 13;
 
-err_t RKF78::initialize(ODE &ode)
+errc_t RKF78::initialize(ODE &ode)
 {
     this->ODEIntegrator::initialize(ode);
     // 重置工作空间
@@ -53,7 +53,7 @@ err_t RKF78::initialize(ODE &ode)
     return eNoError;
 }
 
-err_t RKF78::singleStep(ODE &ode, double* y, double t0, double h)
+errc_t RKF78::singleStep(ODE &ode, double* y, double t0, double h)
 {
     auto& wrk = getWorkspace();
     auto KArr = wrk.KArr_;
@@ -73,7 +73,7 @@ err_t RKF78::singleStep(ODE &ode, double* y, double t0, double h)
         }
         //func(, ymidvec, kvec);
         //rightFunc(ndim, t + alph78[k] * h, ymid, &KArr[k * ndim], rkfFuncParam);
-        if (err_t err = ode.evaluate(t0 + alph78[k] * h, ymid, KArr[k])) {
+        if (errc_t err = ode.evaluate(t0 + alph78[k] * h, ymid, KArr[k])) {
             return err;
         }
     }

@@ -94,18 +94,18 @@ StateKeplerian::StateKeplerian(const State &state)
         static_cast<const StateKeplerian&>(state).getState(modOrbElem_);
     }else{
         CartState cartState;
-        err_t rc = state.getState(cartState);
+        errc_t rc = state.getState(cartState);
         if(rc) return;
         this->setState(cartState);
     }
 }
 
-err_t StateKeplerian::getState(CartState &state) const
+errc_t StateKeplerian::getState(CartState &state) const
 {
     return aModOrbElemToCart(modOrbElem_, getGM(), state.pos(), state.vel());
 }
 
-err_t StateKeplerian::setState(const CartState &state)
+errc_t StateKeplerian::setState(const CartState &state)
 {
     return aCartToModOrbElem(state.pos(), state.vel(), getGM(), modOrbElem_);
 }
@@ -117,7 +117,7 @@ void StateKeplerian::setState(OrbElem &orbElem)
 
 void StateKeplerian::getState(OrbElem &orbElem) const
 {
-    err_t rc = moe2coe(modOrbElem_.data(), orbElem.data());
+    errc_t rc = moe2coe(modOrbElem_.data(), orbElem.data());
     A_UNUSED(rc);
 }
 
@@ -925,7 +925,7 @@ void StateKeplerian::setTimePastAscNode(double timePastAscNode)
 void StateKeplerian::getTimeOfPeriPassage(TimePoint &tp) const
 {
     TimePoint stateEpoch;
-    err_t rc = this->getStateEpoch(stateEpoch);
+    errc_t rc = this->getStateEpoch(stateEpoch);
     A_UNUSED(rc);
     tp = stateEpoch - this->getTimePastPeri();
 }
@@ -940,7 +940,7 @@ TimePoint StateKeplerian::getTimeOfPeriPassage() const
 void StateKeplerian::setTimeOfPeriPassage(const TimePoint &tp)
 {
     TimePoint stateEpoch;
-    err_t rc = this->getStateEpoch(stateEpoch);
+    errc_t rc = this->getStateEpoch(stateEpoch);
     if(rc) return;
     double timePastPeri = stateEpoch - tp;
     return setTimePastPeri(timePastPeri);
@@ -954,7 +954,7 @@ void StateKeplerian::setTimeOfPeriPassage(double epochsecond)
 void StateKeplerian::getTimeOfAscNodePassage(TimePoint &tp) const
 {
     TimePoint stateEpoch;
-    err_t rc = this->getStateEpoch(stateEpoch);
+    errc_t rc = this->getStateEpoch(stateEpoch);
     A_UNUSED(rc);
     tp = stateEpoch - this->getTimePastAscNode();
 }
@@ -969,7 +969,7 @@ TimePoint StateKeplerian::getTimeOfAscNodePassage() const
 void StateKeplerian::setTimeOfAscNodePassage(const TimePoint &tp)
 {
     TimePoint stateEpoch;
-    err_t rc = this->getStateEpoch(stateEpoch);
+    errc_t rc = this->getStateEpoch(stateEpoch);
     if(rc) return;
     double timePastAscNode = stateEpoch - tp;
     return setTimePastAscNode(timePastAscNode);

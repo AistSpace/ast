@@ -53,17 +53,17 @@ StateCartesian::StateCartesian(const CartState &state)
 StateCartesian::StateCartesian(const State &state)
     : State{state}
 {
-    err_t rc = state.getState(cartState_);
+    errc_t rc = state.getState(cartState_);
     A_UNUSED(rc);
 }
 
-err_t StateCartesian::getState(CartState& state) const
+errc_t StateCartesian::getState(CartState& state) const
 {
     state = cartState_;
     return eNoError;
 }
 
-err_t StateCartesian::setState(const CartState &state)
+errc_t StateCartesian::setState(const CartState &state)
 {
     cartState_ = state;
     return eNoError;

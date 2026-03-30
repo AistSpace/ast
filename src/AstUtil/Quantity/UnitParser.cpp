@@ -124,7 +124,7 @@ static bool isAlphanumeric(char c)
 
 
 /// @brief 解析基本单位字符串
-static err_t parseBasicUnit(StringView unitName, Unit& unit)
+static errc_t parseBasicUnit(StringView unitName, Unit& unit)
 {
     // 检查是否已经存在单位
     auto unit_found = aUnitGet(unitName);
@@ -138,13 +138,13 @@ static err_t parseBasicUnit(StringView unitName, Unit& unit)
 }
 
 // 前向声明
-static err_t parseTerm(ParserContext& ctx, Unit& unit);
+static errc_t parseTerm(ParserContext& ctx, Unit& unit);
 
 /// @brief 解析基本单位或括号表达式
 /// @param[in] ctx 解析器上下文
 /// @param[out] unit 解析出的单位
 /// @return 错误码
-static err_t parsePrimary(ParserContext& ctx, Unit& unit)
+static errc_t parsePrimary(ParserContext& ctx, Unit& unit)
 {
     ctx.skipWhitespace();
     
@@ -157,7 +157,7 @@ static err_t parsePrimary(ParserContext& ctx, Unit& unit)
     if (ctx.match('('))
     {
         // 递归解析括号内的表达式
-        err_t err = parseTerm(ctx, unit);
+        errc_t err = parseTerm(ctx, unit);
         if (err != eNoError)
         {
             return err;
@@ -193,12 +193,12 @@ static err_t parsePrimary(ParserContext& ctx, Unit& unit)
 /// @param[in] ctx 解析器上下文
 /// @param[out] value 解析出的整数
 /// @return 错误码
-static err_t parseExpression(ParserContext& ctx, int &value)
+static errc_t parseExpression(ParserContext& ctx, int &value)
 {
     if (ctx.match('('))
     {
         // 递归解析括号内的表达式
-        err_t err = parseExpression(ctx, value);
+        errc_t err = parseExpression(ctx, value);
         if (err != eNoError)
         {
             return err;
@@ -225,7 +225,7 @@ static err_t parseExpression(ParserContext& ctx, int &value)
         }
         
         StringView expStr(start, ctx.position() - start);
-        err_t err = aParseInt(expStr, value);
+        errc_t err = aParseInt(expStr, value);
         if(err != eNoError)
         {
             return err;
@@ -235,7 +235,7 @@ static err_t parseExpression(ParserContext& ctx, int &value)
     if (ctx.match('^'))
     {
         int exponent = 0;
-        err_t err = parseExpression(ctx, exponent);
+        errc_t err = parseExpression(ctx, exponent);
         if (err != eNoError)
         {
             return err;
@@ -251,10 +251,10 @@ static err_t parseExpression(ParserContext& ctx, int &value)
 /// @brief 解析因子（包括指数运算，右结合）
 /// 文法：Factor → Primary ^ Factor | Primary
 /// 注意：指数是右结合的，a^b^c 解析为 a^(b^c)
-static err_t parseFactor(ParserContext& ctx, Unit& unit)
+static errc_t parseFactor(ParserContext& ctx, Unit& unit)
 {
     // 解析基本单位或括号表达式
-    err_t err = parsePrimary(ctx, unit);
+    errc_t err = parsePrimary(ctx, unit);
     if (err != eNoError)
     {
         return err;
@@ -309,10 +309,10 @@ static err_t parseFactor(ParserContext& ctx, Unit& unit)
 /// @brief 解析项（乘除法，左结合）
 /// @details 文法：Term → Factor (('*' | '/') Factor)*
 /// 注意：乘除法是左结合的，a*b/c*d 解析为 (((a*b)/c)*d)
-static err_t parseTerm(ParserContext& ctx, Unit& unit)
+static errc_t parseTerm(ParserContext& ctx, Unit& unit)
 {
     // 解析第一个因子
-    err_t err = parseFactor(ctx, unit);
+    errc_t err = parseFactor(ctx, unit);
     if (err != eNoError)
     {
         return err;
@@ -386,7 +386,7 @@ static err_t parseTerm(ParserContext& ctx, Unit& unit)
 /// @param[in] ctx 解析器上下文
 /// @param[out] unit 解析出的单位
 /// @return 错误码
-static err_t parseExpression(ParserContext& ctx, Unit& unit)
+static errc_t parseExpression(ParserContext& ctx, Unit& unit)
 {
     return parseTerm(ctx, unit);
 }
@@ -394,13 +394,13 @@ static err_t parseExpression(ParserContext& ctx, Unit& unit)
 /// @brief 解析复合单位字符串（使用递归下降方法）
 /// @param[in] unitName 复合单位字符串
 /// @param[out] unit 解析后的单位
-/// @return err_t 错误码
-static err_t parseCompoundUnit(StringView unitName, Unit& unit)
+/// @return errc_t 错误码
+static errc_t parseCompoundUnit(StringView unitName, Unit& unit)
 {
     ParserContext ctx(unitName.data(), unitName.data() + unitName.size());
     
     // 解析表达式
-    err_t err = parseExpression(ctx, unit);
+    errc_t err = parseExpression(ctx, unit);
     if (err != eNoError)
     {
         return err;
@@ -417,7 +417,7 @@ static err_t parseCompoundUnit(StringView unitName, Unit& unit)
 }
 
 /// @brief 解析单位字符串
-err_t aUnitParse(StringView str, Unit& unit)
+errc_t aUnitParse(StringView str, Unit& unit)
 {
     str = aStripAsciiWhitespace(str);
     // 检查输入是否为空
@@ -428,7 +428,7 @@ err_t aUnitParse(StringView str, Unit& unit)
     }
     
     // 尝试直接解析为基本单位
-    err_t err = parseBasicUnit(str, unit);
+    errc_t err = parseBasicUnit(str, unit);
     if (err == eNoError)
     {
         return err;
@@ -447,7 +447,7 @@ err_t aUnitParse(StringView str, Unit& unit)
 Unit aUnitParse(StringView str)
 {
     Unit unit;
-    err_t err = aUnitParse(str, unit);
+    errc_t err = aUnitParse(str, unit);
     if (err != eNoError)
     {
         return Unit::NaN();

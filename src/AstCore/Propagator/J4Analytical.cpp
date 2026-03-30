@@ -85,13 +85,13 @@ J4Analytical::J4Analytical(const Vector3d &pos, const Vector3d &vel, const TimeP
 {
 }
 
-err_t aJ4AnalyticalProp(double duration, double gm, double j2, double j4, double re, Vector3d& r, Vector3d& v)
+errc_t aJ4AnalyticalProp(double duration, double gm, double j2, double j4, double re, Vector3d& r, Vector3d& v)
 {
     TimePoint epoch{};      // @fixme 这里的epoch是个问题，应该根据实际情况传入，目前采用默认值
     J4Analytical j4Analytical(r, v, epoch, gm, j2, j4, re);
     return j4Analytical.prop(duration, r, v);}
 
-err_t aJ4AnalyticalProp(double duration, double gm, double j2, double j4, double re, ModOrbElem &modOrbElem)
+errc_t aJ4AnalyticalProp(double duration, double gm, double j2, double j4, double re, ModOrbElem &modOrbElem)
 {
     TimePoint epoch{};      // @fixme 这里的epoch是个问题，应该根据实际情况传入，目前采用默认值
     J4Analytical j4Analytical(modOrbElem, epoch, gm, j2, j4, re);

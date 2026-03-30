@@ -968,7 +968,7 @@ Expr* Parser::parsePrimaryExpr()
             
             // 组合成完整的数量字符串并解析
             Unit unit;
-            err_t err = aUnitParse(unitStr, unit);
+            errc_t err = aUnitParse(unitStr, unit);
             if (err != eNoError) {
                 aError("Invalid unit: %s", unitStr.c_str());
                 return nullptr;

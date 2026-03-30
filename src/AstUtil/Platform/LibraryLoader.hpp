@@ -52,7 +52,7 @@ AST_UTIL_CAPI void* aResolveProcAddress(const char* filepath, const char* funcNa
 /// @brief 卸载动态库
 /// @param lib 动态库句柄
 /// @return 0: 成功
-AST_UTIL_CAPI err_t aFreeLibrary(void* lib);
+AST_UTIL_CAPI errc_t aFreeLibrary(void* lib);
 
 
 /// @brief 获取最后的错误信息

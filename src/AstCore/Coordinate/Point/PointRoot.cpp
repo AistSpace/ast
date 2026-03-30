@@ -34,13 +34,13 @@ Frame *PointRoot::getFrame() const
     return nullptr;
 }
 
-err_t PointRoot::getPos(const TimePoint &tp, Vector3d &pos) const
+errc_t PointRoot::getPos(const TimePoint &tp, Vector3d &pos) const
 {
     pos.setZero();
     return eNoError;
 }
 
-err_t PointRoot::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+errc_t PointRoot::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     pos.setZero();
     vel.setZero();

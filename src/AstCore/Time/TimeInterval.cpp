@@ -23,20 +23,20 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t aTimeIntervalFormat(const TimeInterval &interval, std::string &strStart, std::string &strStop)
+errc_t aTimeIntervalFormat(const TimeInterval &interval, std::string &strStart, std::string &strStop)
 {
     TimePoint start, stop;
     start = interval.getStart();
     stop = interval.getStop();
-    err_t rc = aTimePointFormat(start, strStart);
+    errc_t rc = aTimePointFormat(start, strStart);
     rc |= aTimePointFormat(stop, strStop);
     return rc;
 }
 
-err_t aTimeIntervalParse(StringView strStart, StringView strStop, TimeInterval &interval)
+errc_t aTimeIntervalParse(StringView strStart, StringView strStop, TimeInterval &interval)
 {
     TimePoint start, stop;
-    err_t rc = aTimePointParse(strStart, start);
+    errc_t rc = aTimePointParse(strStart, start);
     if(rc != 0){
         return rc;
     }
@@ -48,7 +48,7 @@ err_t aTimeIntervalParse(StringView strStart, StringView strStop, TimeInterval &
     return 0;
 }
 
-err_t TimeInterval::discrete(const TimePoint &epoch, double step, std::vector<double> &times) const
+errc_t TimeInterval::discrete(const TimePoint &epoch, double step, std::vector<double> &times) const
 {
     ptrdiff_t nnodes = static_cast<ptrdiff_t>(std::ceil(duration() / step));
     if(nnodes <= 0){
@@ -65,7 +65,7 @@ err_t TimeInterval::discrete(const TimePoint &epoch, double step, std::vector<do
     return eNoError;
 }
 
-err_t TimeInterval::discrete(double step, std::vector<TimePoint> &times) const
+errc_t TimeInterval::discrete(double step, std::vector<TimePoint> &times) const
 {
     ptrdiff_t nnodes = static_cast<ptrdiff_t>(std::ceil(duration() / step));
     if(nnodes <= 0){

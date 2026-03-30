@@ -43,13 +43,13 @@ class SolarSystem;
 class StartupConfig;
 
 /// @brief 初始化
-AST_CORE_CAPI err_t aInitialize();
+AST_CORE_CAPI errc_t aInitialize();
 
 /// @brief 通过配置文件初始化
-AST_CORE_CAPI err_t aInitializeByConfig(StringView configfile);
+AST_CORE_CAPI errc_t aInitializeByConfig(StringView configfile);
 
 /// @brief 反初始化
-AST_CORE_CAPI err_t aUninitialize();
+AST_CORE_CAPI errc_t aUninitialize();
 
 
 /// @brief 获取默认SPK目录
@@ -63,12 +63,12 @@ AST_CORE_API std::string aDataDirGet();
 /// @brief 获取数据文件夹
 /// @param[out] datadir 数据文件夹路径
 /// @return 错误码
-AST_CORE_CAPI err_t aDataDirGet(std::string& datadir);
+AST_CORE_CAPI errc_t aDataDirGet(std::string& datadir);
 
 
 /// @brief 设置数据文件夹
 /// @param dirpath 
-AST_CORE_CAPI err_t aDataDirSet(StringView dirpath);
+AST_CORE_CAPI errc_t aDataDirSet(StringView dirpath);
 
 
 // global context

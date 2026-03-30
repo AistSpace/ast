@@ -33,9 +33,9 @@ BlockSystem::~BlockSystem()
 }
 
 
-err_t BlockSystem::run(const SimTime& simTime)
+errc_t BlockSystem::run(const SimTime& simTime)
 {
-    err_t err = 0;
+    errc_t err = 0;
     for (auto block : blocks_)
     {
         err |= block->run(simTime);

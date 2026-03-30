@@ -23,7 +23,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t PropertyObject::accept(PropertyVisitor& visitor, const void* container)
+errc_t PropertyObject::accept(PropertyVisitor& visitor, const void* container)
 {
     return visitor.visit(*this, container);
 }

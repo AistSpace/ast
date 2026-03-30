@@ -30,7 +30,7 @@ class AST_CORE_API BlockDivide : public FuncBlock
 public:
     BlockDivide();
 
-    err_t run(const SimTime &simTime) override;
+    errc_t run(const SimTime &simTime) override;
 protected:
     double* numerator_{nullptr};  // 分子
     double* denominator_{nullptr};  // 分母

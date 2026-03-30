@@ -36,13 +36,13 @@ Axes *AxesICRF::getParent() const
     return AxesRoot::Instance();
 }
 
-err_t AxesICRF::getTransform(const TimePoint &tp, Rotation &rotation) const
+errc_t AxesICRF::getTransform(const TimePoint &tp, Rotation &rotation) const
 {
     rotation = Rotation::Identity();
     return eNoError;
 }
 
-err_t AxesICRF::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
+errc_t AxesICRF::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
 {
     rotation = KinematicRotation::Identity();
     return eNoError;

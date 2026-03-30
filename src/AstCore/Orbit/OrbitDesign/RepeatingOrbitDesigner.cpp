@@ -47,7 +47,7 @@ RepeatingOrbitDesigner::RepeatingOrbitDesigner(CelestialBody *body)
     
 }
 
-err_t RepeatingOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
+errc_t RepeatingOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
 {
     const double gm = getGM();
     const double rb = getBodyRadius();
@@ -94,7 +94,7 @@ err_t RepeatingOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
     }
 }
 
-err_t RepeatingOrbitDesigner::setApproxAltitude(double alt)
+errc_t RepeatingOrbitDesigner::setApproxAltitude(double alt)
 {
     if(alt < 0)
     {
@@ -117,7 +117,7 @@ err_t RepeatingOrbitDesigner::setApproxAltitude(double alt)
     return eNoError;
 }
 
-err_t RepeatingOrbitDesigner::setApproxRevsPerDay(double revsPerDay)
+errc_t RepeatingOrbitDesigner::setApproxRevsPerDay(double revsPerDay)
 {
     if(revsPerDay < 0)
     {

@@ -67,12 +67,12 @@ public:
     /// @brief 加载默认EOP数据
     /// @details 加载默认EOP数据，路径为 $(AST_DATA_DIR)/SolarSystem/Earth/EOP-All.txt。
     /// @return 错误码
-    err_t loadDefault();
+    errc_t loadDefault();
 
     /// @brief 加载EOP数据
     /// @param filepath 文件路径
     /// @return 错误码
-    err_t load(StringView filepath);
+    errc_t load(StringView filepath);
 
     /// @brief 卸载EOP数据
     void unload();
@@ -81,7 +81,7 @@ public:
     /// @param filepath 文件路径
     /// @param data 数据容器
     /// @return 错误码
-    static err_t load(StringView filepath, std::vector<Entry>& data);
+    static errc_t load(StringView filepath, std::vector<Entry>& data);
 
     /// @brief 获取数据大小
     size_t size() const { return m_data.size(); }
@@ -96,7 +96,7 @@ public:
     /// @param mjd 简约儒略日
     /// @param entry EOP条目
     /// @return 错误码
-    err_t setEntry(int mjd, const Entry& entry);
+    errc_t setEntry(int mjd, const Entry& entry);
 
     //----------------
     // ut1 - utc

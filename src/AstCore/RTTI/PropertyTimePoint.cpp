@@ -25,10 +25,10 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t PropertyTimePoint::getValueBool(const void* container, bool& value)
+errc_t PropertyTimePoint::getValueBool(const void* container, bool& value)
 {
     TimePoint time;
-    err_t ret = this->getValue(container, &time);
+    errc_t ret = this->getValue(container, &time);
     if (ret != eNoError)
     {
         return ret;
@@ -38,17 +38,17 @@ err_t PropertyTimePoint::getValueBool(const void* container, bool& value)
     return eNoError;
 }
 
-err_t PropertyTimePoint::setValueBool(void* container, bool value) 
+errc_t PropertyTimePoint::setValueBool(void* container, bool value) 
 {
     A_UNUSED(container);
     A_UNUSED(value);
     return eErrorInvalidParam;
 }
 
-err_t PropertyTimePoint::getValueInt(const void* container, int& value) 
+errc_t PropertyTimePoint::getValueInt(const void* container, int& value) 
 {
     double d;
-    err_t ret = getValueDouble(container, d);
+    errc_t ret = getValueDouble(container, d);
     if (ret != eNoError)
     {
         return ret;
@@ -57,15 +57,15 @@ err_t PropertyTimePoint::getValueInt(const void* container, int& value)
     return eNoError;
 }
 
-err_t PropertyTimePoint::setValueInt(void* container, int value) 
+errc_t PropertyTimePoint::setValueInt(void* container, int value) 
 {
     return setValueDouble(container, static_cast<double>(value));
 }
 
-err_t PropertyTimePoint::getValueString(const void* container, std::string& value)
+errc_t PropertyTimePoint::getValueString(const void* container, std::string& value)
 {
     TimePoint time;
-    err_t ret = this->getValue(container, &time);
+    errc_t ret = this->getValue(container, &time);
     if (ret != eNoError)
     {
         return ret;
@@ -73,10 +73,10 @@ err_t PropertyTimePoint::getValueString(const void* container, std::string& valu
     return aTimePointFormat(time, value);
 }
 
-err_t PropertyTimePoint::setValueString(void* container, StringView value)
+errc_t PropertyTimePoint::setValueString(void* container, StringView value)
 {
     TimePoint time;
-    err_t ret = aTimePointParse(value, time);
+    errc_t ret = aTimePointParse(value, time);
     if (ret != eNoError)
     {
         return ret;
@@ -84,10 +84,10 @@ err_t PropertyTimePoint::setValueString(void* container, StringView value)
     return this->setValue(container, &time);
 }
 
-err_t PropertyTimePoint::getValueDouble(const void* container, double& value)
+errc_t PropertyTimePoint::getValueDouble(const void* container, double& value)
 {
     TimePoint time;
-    err_t ret = this->getValue(container, &time);
+    errc_t ret = this->getValue(container, &time);
     if (ret != eNoError)
     {
         return ret;
@@ -96,14 +96,14 @@ err_t PropertyTimePoint::getValueDouble(const void* container, double& value)
     return eNoError;
 }
 
-err_t PropertyTimePoint::setValueDouble(void* container, double value)
+errc_t PropertyTimePoint::setValueDouble(void* container, double value)
 {
     TimePoint time;
     aEpochSecondToTimePoint(value, time);
     return this->setValue(container, &time);
 }
 
-err_t PropertyTimePoint::accept(PropertyVisitor& visitor, const void* container)
+errc_t PropertyTimePoint::accept(PropertyVisitor& visitor, const void* container)
 {
     return visitor.visit(*this, container);
 }

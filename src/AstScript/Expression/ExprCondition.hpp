@@ -42,7 +42,7 @@ public:
     
     // accept函数由AST_EXPR宏自动生成，无需手动声明
     Value* eval() const override;
-    err_t setValue(Value* val) override;
+    errc_t setValue(Value* val) override;
     std::string getExpression(Object* context=nullptr) const override;
 
 private:

@@ -24,7 +24,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t MotionOrbitDynamicsSax::begin(StringView name)
+errc_t MotionOrbitDynamicsSax::begin(StringView name)
 {
     if(aEqualsIgnoreCase(name, "DisplayFlags"))
     {
@@ -38,21 +38,21 @@ err_t MotionOrbitDynamicsSax::begin(StringView name)
     return eNoError;
 }
 
-err_t MotionOrbitDynamicsSax::end(StringView name)
+errc_t MotionOrbitDynamicsSax::end(StringView name)
 {
     return endParse;
 }
 
-err_t MotionOrbitDynamicsSax::keyValue(StringView key, const ValueView &value)
+errc_t MotionOrbitDynamicsSax::keyValue(StringView key, const ValueView &value)
 {
     if(aEqualsIgnoreCase(key, "EphemSmartEpoch")){
-        if(err_t rc = _aLoadEventTime(parser_, ephemSmartEpoch_))
+        if(errc_t rc = _aLoadEventTime(parser_, ephemSmartEpoch_))
         {
             aError("EphemSmartEpoch is invalid");
             return rc;
         }
     }else if(aEqualsIgnoreCase(key, "EphemSmartInterval")){
-        if(err_t rc = _aLoadEventInterval(parser_, ephemSmartInterval_))
+        if(errc_t rc = _aLoadEventInterval(parser_, ephemSmartInterval_))
         {
             aError("EphemSmartInterval is invalid");
             return rc;

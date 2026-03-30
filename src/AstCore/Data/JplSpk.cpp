@@ -51,14 +51,14 @@ JplSpk::~JplSpk()
     close();
 }
 
-err_t JplSpk::open(StringView filepath)
+errc_t JplSpk::open(StringView filepath)
 {
     close();
     spkfile_ = std::string(filepath);
     return SpiceApi::Instance()->spklef(spkfile_.c_str(), &handle_);
 }
 
-err_t JplSpk::close()
+errc_t JplSpk::close()
 {
     if (handle_ > 0)
     {
@@ -71,7 +71,7 @@ err_t JplSpk::close()
     return eNoError;
 }
 
-err_t JplSpk::getPosICRF(
+errc_t JplSpk::getPosICRF(
     const TimePoint &tp,
     int target,
     int referenceBody,
@@ -80,12 +80,12 @@ err_t JplSpk::getPosICRF(
     double et = aTimePointToSpiceEt(tp);
     CartState state;
     double lt;
-    err_t rc = SpiceApi::Instance()->spkgeo(target, et, "J2000", referenceBody, state.data(), &lt);
+    errc_t rc = SpiceApi::Instance()->spkgeo(target, et, "J2000", referenceBody, state.data(), &lt);
     pos = state.pos() * 1e3;
     return rc;
 }
 
-err_t JplSpk::getPosVelICRF(
+errc_t JplSpk::getPosVelICRF(
     const TimePoint& tp, 
     int target,
     int referenceBody,
@@ -95,14 +95,14 @@ err_t JplSpk::getPosVelICRF(
     double et = aTimePointToSpiceEt(tp);
     CartState state;
     double lt;
-    err_t rc = SpiceApi::Instance()->spkgeo(target, et, "J2000", referenceBody, state.data(), &lt);
+    errc_t rc = SpiceApi::Instance()->spkgeo(target, et, "J2000", referenceBody, state.data(), &lt);
     pos = state.pos() * 1e3;
     vel = state.vel() * 1e3;
     return rc;
 }
 
 
-err_t aSpiceGetInterval(StringView filepath, int target, TimeInterval &interval)
+errc_t aSpiceGetInterval(StringView filepath, int target, TimeInterval &interval)
 {
     /*!
     @note
@@ -112,7 +112,7 @@ err_t aSpiceGetInterval(StringView filepath, int target, TimeInterval &interval)
     */
 
     SPKParser parser;
-    err_t rc = parser.parse(filepath);
+    errc_t rc = parser.parse(filepath);
     if(rc != eNoError)
     {
         aError("failed to parse spk file '%.*s'", (int)filepath.size(), filepath.data());
@@ -137,10 +137,10 @@ err_t aSpiceGetInterval(StringView filepath, int target, TimeInterval &interval)
 }
 
 
-err_t aSpiceGetBodyIds(StringView filepath, std::vector<int>& ids)
+errc_t aSpiceGetBodyIds(StringView filepath, std::vector<int>& ids)
 {
     SPKParser parser;
-    err_t rc = parser.parse(filepath);
+    errc_t rc = parser.parse(filepath);
     if(rc != eNoError)
     {
         aError("failed to parse spk file '%.*s'", (int)filepath.size(), filepath.data());
@@ -155,7 +155,7 @@ err_t aSpiceGetBodyIds(StringView filepath, std::vector<int>& ids)
 }
 
 
-err_t aSpiceGetBodyNames(StringView filepath, std::vector<std::string>& names)
+errc_t aSpiceGetBodyNames(StringView filepath, std::vector<std::string>& names)
 {
     std::vector<int> ids;
     aSpiceGetBodyIds(filepath, ids);
@@ -171,21 +171,21 @@ err_t aSpiceGetBodyNames(StringView filepath, std::vector<std::string>& names)
 std::string JplSpk::getBodyName(int id)
 {
     std::string name;
-    err_t rc = SpiceApi::Instance()->bodc2n(id, name);
+    errc_t rc = SpiceApi::Instance()->bodc2n(id, name);
     if(rc == eNoError){
         return name;
     }
     return "NAIF ID " + aFormatInt(id);
 }
 
-err_t JplSpk::getInterval(int target, TimeInterval &interval) const
+errc_t JplSpk::getInterval(int target, TimeInterval &interval) const
 {
     if(isIntervalCached_)
     {
         interval = intervalCache_;
         return eNoError;
     }else{
-        err_t rc = aSpiceGetInterval(spkfile_, target, interval);
+        errc_t rc = aSpiceGetInterval(spkfile_, target, interval);
         if(rc == eNoError){
             isIntervalCached_ = true;
             intervalCache_ = interval;
@@ -194,12 +194,12 @@ err_t JplSpk::getInterval(int target, TimeInterval &interval) const
     }
 }
 
-err_t JplSpk::getBodyNames(std::vector<std::string> &names) const
+errc_t JplSpk::getBodyNames(std::vector<std::string> &names) const
 {
     return aSpiceGetBodyNames(spkfile_, names);
 }
 
-err_t JplSpk::getBodyIds(std::vector<int> &ids) const
+errc_t JplSpk::getBodyIds(std::vector<int> &ids) const
 {
     return aSpiceGetBodyIds(spkfile_, ids);
 }

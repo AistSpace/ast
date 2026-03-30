@@ -36,7 +36,7 @@ int main()
     double duration = 24 * 3600.0; // 秒
     
     // 执行J2解析传播
-    err_t result = aJ2AnalyticalProp(duration, gm_earth, j2_earth, re_earth, position, velocity);
+    errc_t result = aJ2AnalyticalProp(duration, gm_earth, j2_earth, re_earth, position, velocity);
     
     if (result == eNoError) {
         std::cout << "传播后轨道状态 (" << duration/3600.0 << " 小时后):" << std::endl;

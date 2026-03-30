@@ -24,7 +24,7 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t RK4::initialize(ODE &ode)
+errc_t RK4::initialize(ODE &ode)
 {
     this->ODEIntegrator::initialize(ode);
     // 重置工作空间
@@ -32,7 +32,7 @@ err_t RK4::initialize(ODE &ode)
     return eNoError;
 }
 
-err_t RK4::singleStep(ODE &ode, double* y, double t0, double step)
+errc_t RK4::singleStep(ODE &ode, double* y, double t0, double step)
 {
     int err;
     auto& wrk = this->getWorkspace();

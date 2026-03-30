@@ -52,10 +52,10 @@ public:
     Workspace& getWorkspace(){ return workspace_; }
 
     /// @see ODEIntegrator
-    err_t integrate(ODE& ode, double* y, double& t, double tf) override;
+    errc_t integrate(ODE& ode, double* y, double& t, double tf) override;
 
     /// @see ODEIntegrator
-    err_t integrateStep(ODE& ode, double* y, double& t, double tf) override;
+    errc_t integrateStep(ODE& ode, double* y, double& t, double tf) override;
 
 protected:
     void resetWorkspace(int dimension, int stage);

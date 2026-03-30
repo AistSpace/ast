@@ -49,7 +49,7 @@ int main()
         Vector3d current_vel = velocity;
         
         // 执行二体传播
-        err_t result = aTwoBodyProp(time, gm_earth, current_pos, current_vel);
+        errc_t result = aTwoBodyProp(time, gm_earth, current_pos, current_vel);
         
         if (result == eNoError) {
             double speed = current_vel.norm();

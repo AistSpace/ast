@@ -37,8 +37,8 @@ AST_NAMESPACE_BEGIN
 /// @param[in] a 轨道半长轴
 /// @param[in] ecc 轨道偏心率
 /// @param[out] inc 轨道倾角，如果计算失败，则为NaN
-/// @return err_t 错误码
-err_t aSunSynchronousInclination(double gm, double j2, double rb, double bodyMeanMotion, double a, double ecc, double& inc);
+/// @return errc_t 错误码
+errc_t aSunSynchronousInclination(double gm, double j2, double rb, double bodyMeanMotion, double a, double ecc, double& inc);
 
 /// @brief 计算太阳同步轨道的半长轴
 /// @param[in] gm 天体引力系数
@@ -48,8 +48,8 @@ err_t aSunSynchronousInclination(double gm, double j2, double rb, double bodyMea
 /// @param[in] inc 轨道倾角
 /// @param[in] ecc 轨道偏心率
 /// @param[out] semiMajorAxis 轨道半长轴，如果计算失败，则为NaN
-/// @return err_t 错误码
-err_t aSunSynchronousSemiMajorAxis(double gm, double j2, double rb, double bodyMeanMotion, double inc, double ecc, double& semiMajorAxis);
+/// @return errc_t 错误码
+errc_t aSunSynchronousSemiMajorAxis(double gm, double j2, double rb, double bodyMeanMotion, double inc, double ecc, double& semiMajorAxis);
 
 
 /// @brief 计算太阳同步轨道的倾角

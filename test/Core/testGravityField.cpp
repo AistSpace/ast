@@ -30,7 +30,7 @@ AST_USING_NAMESPACE
 TEST(GravityField, loadWGS84)
 {
     GravityField gf;
-    err_t err = gf.load(aTestGetConfigValue("SOLARSYSTEM_DIR").toString() + "/Earth/WGS84.grv");
+    errc_t err = gf.load(aTestGetConfigValue("SOLARSYSTEM_DIR").toString() + "/Earth/WGS84.grv");
     EXPECT_EQ(err, eNoError);
 
     EXPECT_EQ(gf.getModelName(), "WGS84");
@@ -63,7 +63,7 @@ TEST(GravityField, loadJGM3)
     
     for(auto &file : files){
         GravityField gf;
-        err_t err = gf.load(file);
+        errc_t err = gf.load(file);
         EXPECT_EQ(err, eNoError);
 
         EXPECT_EQ(gf.getMaxDegree(), 70);
@@ -85,7 +85,7 @@ TEST(GravityField, loadJGM3)
     {
         std::string file = aDataDirGet() + "/Test/satkit/JGM3.gfc";
         GravityField gf;
-        err_t err = gf.load(file);
+        errc_t err = gf.load(file);
         EXPECT_EQ(err, eNoError);
 
         EXPECT_EQ(gf.getMaxDegree(), 70);
@@ -111,7 +111,7 @@ TEST(GravityField, load_gfc)
 
     std::string file = aDataDirGet() + "/Test/satkit/JGM2.gfc";
     GravityField gf;
-    err_t err = gf.load(file);
+    errc_t err = gf.load(file);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(gf.getMaxDegree(), 70);
     EXPECT_EQ(gf.getMaxOrder(), 70);
@@ -133,8 +133,8 @@ TEST(GravityField, loadATK)
     std::string file2 = aDataDirGet() + "/Test/ATK/v1/GEMT1.grv";
 
     GravityField gf1, gf2;
-    err_t err1 = gf1.load(file1);
-    err_t err2 = gf2.load(file2);
+    errc_t err1 = gf1.load(file1);
+    errc_t err2 = gf2.load(file2);
     EXPECT_EQ(err1, eNoError);
     EXPECT_EQ(err2, eNoError);
     
@@ -161,7 +161,7 @@ TEST(GravityField, loadATK)
 TEST(GravityField, normalize)
 {
     GravityField gf_WGS84, gf_WGS84_old;
-    err_t err;
+    errc_t err;
     err = gf_WGS84.load(aTestGetConfigValue("SOLARSYSTEM_DIR").toString() + "/Earth/WGS84.grv");
     EXPECT_EQ(err, eNoError);
     if(!aIsGithubCI()) 

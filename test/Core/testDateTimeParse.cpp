@@ -31,7 +31,7 @@ TEST(DateTimeParse, FormatSpecifiers)
     AST_USING_NAMESPACE
     
     DateTime dttm;
-    err_t err;
+    errc_t err;
     
     // 测试年份格式说明符
     // %Y - 四位年份
@@ -171,7 +171,7 @@ TEST(DateTimeParse, ComplexFormats)
     AST_USING_NAMESPACE
     
     DateTime dttm;
-    err_t err;
+    errc_t err;
     
     // 标准日期时间格式
     err = aDateTimeParse("2023-12-25 10:30:45", "%Y-%m-%d %H:%M:%S", dttm);
@@ -213,7 +213,7 @@ TEST(DateTimeParse, ErrorHandling)
     AST_USING_NAMESPACE
     
     DateTime dttm;
-    err_t err;
+    errc_t err;
     
     // 空字符串
     err = aDateTimeParse("", "%Y-%m-%d", dttm);
@@ -257,7 +257,7 @@ TEST(DateTimeParse, AdditionalEdgeCases) {
     AST_USING_NAMESPACE
     
     DateTime dttm;
-    err_t err;
+    errc_t err;
     
     // 测试parseNumber函数的边界情况（对应行43）
     err = aDateTimeParse("2023-00-25", "%Y-%m-%d", dttm);
@@ -355,7 +355,7 @@ TEST(DateTimeParse, PartialDateTime) {
     AST_USING_NAMESPACE
     
     DateTime dttm;
-    err_t err;
+    errc_t err;
     
     // 只包含时间部分
     err = aDateTimeParse("14:30:45", "%H:%M:%S", dttm);
@@ -384,7 +384,7 @@ TEST(DateTimeParse, ComplexErrorScenarios) {
     AST_USING_NAMESPACE
     
     DateTime dttm;
-    err_t err;
+    errc_t err;
     
     // 格式匹配但数值超出范围
     err = aDateTimeParse("2023-12-31 25:00:00", "%Y-%m-%d %H:%M:%S", dttm);
@@ -425,11 +425,11 @@ TEST(DateTimeParseFormat, Consistency)
     for (auto& iter : format_tests) {
         std::tie(date_str, format) = iter;
         DateTime dttm;
-        err_t parse_err = aDateTimeParse(date_str, format, dttm);
+        errc_t parse_err = aDateTimeParse(date_str, format, dttm);
         EXPECT_EQ(parse_err, eNoError) << "Failed to parse: " << date_str;
         
         std::string formatted;
-        err_t format_err = aDateTimeFormat(dttm, format, formatted);
+        errc_t format_err = aDateTimeFormat(dttm, format, formatted);
         EXPECT_EQ(format_err, eNoError) << "Failed to format with: " << format;
         
         // 注意：由于时间组件的精度问题，这里可能需要更宽松的比较
@@ -452,7 +452,7 @@ TEST(DateTimeParseFormat, EdgeCases)
     
     DateTime dttm;
     std::string str;
-    err_t err;
+    errc_t err;
     
     // 闰年
     err = aDateTimeParse("2024-02-29", "%Y-%m-%d", dttm);

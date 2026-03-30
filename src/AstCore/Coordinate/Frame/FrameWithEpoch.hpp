@@ -60,7 +60,7 @@ public:
     void setUseEpoch(bool useEpoch){ useEpoch_ = useEpoch; }
     SharedPtr<EventTime>& getEpochHandle();
     EventTime* getEpoch() const;
-    err_t getEpoch(TimePoint& epoch) const;
+    errc_t getEpoch(TimePoint& epoch) const;
     void setEpoch(EventTime* epoch);
     void setSourceAxes(Axes* axes);
     Axes* getSourceAxes() const;

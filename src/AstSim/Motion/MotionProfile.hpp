@@ -54,12 +54,12 @@ public:
     /// @brief 生成特定星历
     /// @param eph 星历指针
     /// @return 错误码
-    virtual err_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const = 0;
+    virtual errc_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const = 0;
 
     /// @brief 生成简单星历
     /// @param eph 星历指针
     /// @return 错误码
-    virtual err_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const = 0;
+    virtual errc_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const = 0;
 
     /// @brief 接受访问者
     /// @param visitor 访问者

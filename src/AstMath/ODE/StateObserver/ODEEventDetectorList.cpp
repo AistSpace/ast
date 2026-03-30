@@ -49,7 +49,7 @@ EODEAction ODEEventDetectorList::onStateUpdate(double* y, double& x, ODEIntegrat
             // printf("size = %d\n", eventObservers_.size());
             // printf("detected event by signbit change, x = %f\n", x);
             // printf("goal = %lf\n", observer->detector_->getGoal());
-            err_t err = observer->findEventTime(lastTime, x, observer->eventTime_, integrator);
+            errc_t err = observer->findEventTime(lastTime, x, observer->eventTime_, integrator);
             if(err == eNoError && observer->eventTime_ < firstEventTime)
             {
                 firstEventTime = observer->eventTime_;

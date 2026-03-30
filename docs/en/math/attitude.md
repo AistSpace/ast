@@ -78,7 +78,7 @@ The valid ranges of Euler angles differ depending on the rotation sequence type:
 
 ## Error Handling
 
-Conversion functions return `err_t` type to indicate operation status, and callers should check the return value to ensure successful conversion.
+Conversion functions return `errc_t` type to indicate operation status, and callers should check the return value to ensure successful conversion.
 
 ## Dependencies
 

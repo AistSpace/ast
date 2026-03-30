@@ -42,7 +42,7 @@ public:
     /// @brief 获取时间段
     /// @param interval 
     /// @return 
-    virtual err_t getInterval(TimeInterval& interval) const = 0;
+    virtual errc_t getInterval(TimeInterval& interval) const = 0;
 };
 
 /*! @} */

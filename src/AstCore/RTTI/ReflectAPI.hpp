@@ -56,12 +56,12 @@ template<typename T, TimePoint T::* Member>
 A_ALWAYS_INLINE Property* aNewPropertyTimePointMem()
 {
     return _aNewPropertyTimePoint(
-        [](const void* obj, void* value) -> err_t
+        [](const void* obj, void* value) -> errc_t
         {
             *((TimePoint*)value) = ((T*)obj)->*Member;
             return 0;
         },
-        [](void* obj, const void* value) -> err_t
+        [](void* obj, const void* value) -> errc_t
         {
             ((T*)obj)->*Member = *((TimePoint*)value);
             return 0;
@@ -87,7 +87,7 @@ template<typename T, TimePoint(T::*Getter)() const>
 A_ALWAYS_INLINE Property* aNewPropertyTimePoint()
 {
     return _aNewPropertyTimePoint(
-        [](const void* obj, void* value) -> err_t
+        [](const void* obj, void* value) -> errc_t
         {
             *((TimePoint*)value) = (((T*)obj)->*Getter)();
             return 0;
@@ -101,13 +101,13 @@ template<typename T, const TimePoint& (T::* Getter) () const, void (T::* Setter)
 A_ALWAYS_INLINE Property* aNewPropertyTimePoint()
 {
     return _aNewPropertyTimePoint(
-        [](const void* obj, void* value) -> err_t
+        [](const void* obj, void* value) -> errc_t
     {
         static_assert(Getter!=nullptr, "invalid getter");
         *((TimePoint*)value) = (((T*)obj)->*Getter)();
         return 0;
     },
-        [](void* obj, const void* value) -> err_t
+        [](void* obj, const void* value) -> errc_t
     {
         static_assert(Setter!=nullptr, "invalid setter");
         (((T*)obj)->*Setter)(*((TimePoint*)value));
@@ -118,17 +118,17 @@ A_ALWAYS_INLINE Property* aNewPropertyTimePoint()
 
 
 
-template<typename T, const TimePoint& (T::* Getter) () const, err_t (T::* Setter)(const TimePoint& value)>
+template<typename T, const TimePoint& (T::* Getter) () const, errc_t (T::* Setter)(const TimePoint& value)>
 A_ALWAYS_INLINE Property* aNewPropertyTimePoint()
 {
     return _aNewPropertyTimePoint(
-        [](const void* obj, void* value) -> err_t
+        [](const void* obj, void* value) -> errc_t
     {
         static_assert(Getter!=nullptr, "invalid getter");
         *((TimePoint*)value) = (((T*)obj)->*Getter)();
         return 0;
     },
-        [](void* obj, const void* value) -> err_t
+        [](void* obj, const void* value) -> errc_t
     {
         static_assert(Setter!=nullptr, "invalid setter");
         return (((T*)obj)->*Setter)(*((TimePoint*)value));

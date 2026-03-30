@@ -30,7 +30,7 @@ class INLPSolver
 {
 public:
     virtual ~INLPSolver() {}
-    virtual err_t solve(NLPProblem& prob, std::vector<double>& xopt) = 0;
+    virtual errc_t solve(NLPProblem& prob, std::vector<double>& xopt) = 0;
 };
 
  

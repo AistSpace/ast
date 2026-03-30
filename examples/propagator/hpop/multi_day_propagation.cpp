@@ -40,7 +40,7 @@ int main()
     force_model.useMoonGravity_ = true;       // 启用月球引力
     
     // 设置力模型
-    err_t result = hpop.setForceModel(force_model);
+    errc_t result = hpop.setForceModel(force_model);
     if (result != eNoError) {
         std::cout << "设置力模型失败，错误码: " << result << std::endl;
         return -1;

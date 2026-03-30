@@ -63,12 +63,12 @@ public:
 
     /// @brief 加载默认空间天气数据文件
     /// @return 错误码
-    err_t loadDefault();
+    errc_t loadDefault();
 
     /// @brief 加载空间天气数据文件
     /// @param filepath 文件路径
     /// @return 错误码
-    err_t load(StringView filepath);
+    errc_t load(StringView filepath);
 
     /// @brief 获取指定MJD的空间天气数据条目
     /// @param mjd 简约儒略日
@@ -80,9 +80,9 @@ public:
     /// @param mjd 简约儒略日
     /// @param entry 空间天气数据条目
     /// @return 错误码
-    err_t setEntry(int mjd, const Entry& entry);
+    errc_t setEntry(int mjd, const Entry& entry);
 protected:
-    static err_t load(StringView filepath, std::vector<Entry>& data);
+    static errc_t load(StringView filepath, std::vector<Entry>& data);
 
     void findEntryIndex(double mjdUTC, int& index, double& frac) const;
 

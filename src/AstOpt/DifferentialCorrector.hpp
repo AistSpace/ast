@@ -33,7 +33,7 @@ public:
     using vector_t = std::vector<double>;
 
     ~DifferentialCorrector()  override;
-    err_t solve(NLPProblem& prob, std::vector<double>& xopt) override;
+    errc_t solve(NLPProblem& prob, std::vector<double>& xopt) override;
 protected:
     
 };

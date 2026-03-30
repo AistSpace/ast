@@ -25,35 +25,35 @@
 AST_NAMESPACE_BEGIN
 
 
-err_t J2J4Analytical::prop(double duration, Vector3d &r, Vector3d &v)
+errc_t J2J4Analytical::prop(double duration, Vector3d &r, Vector3d &v)
 {
-    err_t err = this->propNoNormalize(duration, modOrbElem_);
+    errc_t err = this->propNoNormalize(duration, modOrbElem_);
     aModOrbElemToCart(modOrbElem_, gm_, r, v);
     return err;
 }
 
-err_t J2J4Analytical::prop(double duration, ModOrbElem &modOrbElem)
+errc_t J2J4Analytical::prop(double duration, ModOrbElem &modOrbElem)
 {
-    err_t err = this->propNoNormalize(duration, modOrbElem);
+    errc_t err = this->propNoNormalize(duration, modOrbElem);
     modOrbElem.trueA() = aNormalizeAngle0To2Pi(modOrbElem.trueA());
     modOrbElem.raan() = aNormalizeAngle0To2Pi(modOrbElem.raan());
     modOrbElem.argper() = aNormalizeAngle0To2Pi(modOrbElem.argper());
     return err;
 }
 
-err_t J2J4Analytical::prop(const TimePoint &epoch, Vector3d &r, Vector3d &v)
+errc_t J2J4Analytical::prop(const TimePoint &epoch, Vector3d &r, Vector3d &v)
 {
     double duration = (epoch - epoch_);
     return this->prop(duration, r, v);
 }
 
-err_t J2J4Analytical::prop(const TimePoint &epoch, ModOrbElem &modOrbElem)
+errc_t J2J4Analytical::prop(const TimePoint &epoch, ModOrbElem &modOrbElem)
 {
     double duration = (epoch - epoch_);
     return this->prop(duration, modOrbElem);
 }
 
-err_t J2J4Analytical::propNoNormalize(double duration, ModOrbElem &modOrbElem)
+errc_t J2J4Analytical::propNoNormalize(double duration, ModOrbElem &modOrbElem)
 {
     modOrbElem = this->modOrbElem_;
     modOrbElem.trueA() += meanAnomalyDot_ * duration;

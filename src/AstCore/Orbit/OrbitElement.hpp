@@ -302,13 +302,13 @@ public:
 /// @param pos 输出位置矢量 [m]
 /// @param vel 输出速度矢量 [m/s]
 /// @return 错误码，成功返回eNoError
-AST_CORE_CAPI err_t coe2rv(const double* coe, double gm, double* pos, double* vel);
+AST_CORE_CAPI errc_t coe2rv(const double* coe, double gm, double* pos, double* vel);
 
 /// @brief 经典轨道根数转换为改进春分点轨道根数
 /// @param coe 经典轨道根数 [长半轴, 偏心率, 轨道倾角, 升交点赤经, 近拱点角, 真近点角]
 /// @param mee 输出改进春分点轨道根数 [半通径, f, g, h, k, L]
 /// @return 错误码，成功返回eNoError
-AST_CORE_CAPI err_t coe2mee(const double* coe, double* mee);
+AST_CORE_CAPI errc_t coe2mee(const double* coe, double* mee);
 
 /// @brief 春分点根数转换为直角坐标
 /// @param ee 春分点根数 [长半轴, h, k, p, q, 平经度]
@@ -330,13 +330,13 @@ AST_CORE_CAPI void mee2rv(const double* mee, double gm, double* pos, double* vel
 /// @param gm 引力参数 [m^3/s^2]
 /// @param mee 输出改进春分点轨道根数 [半通径, f, g, h, k, L]
 /// @return 错误码，成功返回eNoError
-AST_CORE_CAPI err_t rv2mee(const double* pos, const double* vel, double gm, double* mee);
+AST_CORE_CAPI errc_t rv2mee(const double* pos, const double* vel, double gm, double* mee);
 
 /// @brief 改进春分点轨道根数转换为经典轨道根数
 /// @param mee 改进春分点轨道根数 [半通径, f, g, h, k, L]
 /// @param coe 输出经典轨道根数 [长半轴, 偏心率, 轨道倾角, 升交点赤经, 近拱点角, 真近点角]
 /// @return 错误码，成功返回eNoError
-AST_CORE_CAPI err_t mee2coe(const double* mee, double* coe);
+AST_CORE_CAPI errc_t mee2coe(const double* mee, double* coe);
 
 /// @brief 直角坐标转换为春分点根数
 /// @param pos 位置矢量 [m]
@@ -351,7 +351,7 @@ AST_CORE_CAPI void rv2ee(const double* pos, const double* vel, double gm, double
 /// @param gm 引力参数 [m^3/s^2]
 /// @param moe 输出修正轨道根数 [近拱点半径, 偏心率, 轨道倾角, 升交点赤经, 近拱点角, 真近点角]
 /// @return 错误码，成功返回eNoError
-AST_CORE_CAPI err_t rv2moe(const double* pos, const double* vel, double gm, double* moe);
+AST_CORE_CAPI errc_t rv2moe(const double* pos, const double* vel, double gm, double* moe);
 
 /// @brief 直角坐标转换为经典轨道根数
 /// @param pos 位置矢量 [m]
@@ -359,24 +359,24 @@ AST_CORE_CAPI err_t rv2moe(const double* pos, const double* vel, double gm, doub
 /// @param gm 引力参数 [m^3/s^2]
 /// @param coe 输出经典轨道根数 [长半轴, 偏心率, 轨道倾角, 升交点赤经, 近拱点角, 真近点角]
 /// @return 错误码，成功返回eNoError
-AST_CORE_CAPI err_t rv2coe(const double* pos, const double* vel, double gm, double* coe);
+AST_CORE_CAPI errc_t rv2coe(const double* pos, const double* vel, double gm, double* coe);
 
 /// @brief 春分点根数转换为修正轨道根数
 /// @param ee 春分点根数 [长半轴, h, k, p, q, 平经度]
 /// @param moe 输出修正轨道根数 [近拱点半径, 偏心率, 轨道倾角, 升交点赤经, 近拱点角, 真近点角]
 /// @return 错误码，成功返回eNoError
-AST_CORE_CAPI err_t ee2moe(const double* ee, double* moe);
+AST_CORE_CAPI errc_t ee2moe(const double* ee, double* moe);
 
 /// @brief 修正轨道根数转换为春分点根数
 /// @param moe 修正轨道根数 [近拱点半径, 偏心率, 轨道倾角, 升交点赤经, 近拱点角, 真近点角]
 /// @param ee 输出春分点根数 [长半轴, h, k, p, q, 平经度]
 /// @return 错误码，成功返回eNoError
-AST_CORE_CAPI err_t moe2ee(const double* moe, double* ee);
+AST_CORE_CAPI errc_t moe2ee(const double* moe, double* ee);
 
 /// @brief 修正轨道根数转换为经典轨道根数
 /// @param moe 修正轨道根数 [近拱点半径, 偏心率, 轨道倾角, 升交点赤经, 近拱点角, 真近点角]
 /// @param coe 输出经典轨道根数 [长半轴, 偏心率, 轨道倾角, 升交点赤经, 近拱点角, 真近点角]
-AST_CORE_CAPI err_t moe2coe(const double* moe, double* coe);
+AST_CORE_CAPI errc_t moe2coe(const double* moe, double* coe);
 
 /// @brief 经典轨道根数转换为修正轨道根数
 /// @param coe 经典轨道根数 [长半轴, 偏心率, 轨道倾角, 升交点赤经, 近拱点角, 真近点角]
@@ -388,7 +388,7 @@ AST_CORE_CAPI void coe2moe(const double* coe, double* moe);
 /// @param gm 引力参数 [m^3/s^2]
 /// @param pos 输出位置矢量 [m]
 /// @param vel 输出速度矢量 [m/s]
-AST_CORE_CAPI err_t moe2rv(const double* moe, double gm, double* pos, double* vel);
+AST_CORE_CAPI errc_t moe2rv(const double* moe, double gm, double* pos, double* vel);
 
 /// @brief 修正轨道根数转换为改进春分点轨道根数
 /// @param moe 修正轨道根数 [近拱点半径, 偏心率, 轨道倾角, 升交点赤经, 近拱点角, 真近点角]
@@ -425,13 +425,13 @@ AST_CORE_CAPI void mee2moe(const double* mee, double* moe);
 /// @param coe 经典轨道根数 [长半轴, 偏心率, 轨道倾角, 升交点赤经, 近拱点角, 真近点角]
 /// @param gm 引力参数 [m^3/s^2]
 /// @param del 输出德洛奈根数, see DelaunayElem
-AST_CORE_CAPI err_t coe2dela(const double* coe, double gm, double* dela);
+AST_CORE_CAPI errc_t coe2dela(const double* coe, double gm, double* dela);
 
 
 /// @brief 德洛奈根数转换为经典轨道根数
 /// @param del 德洛奈根数, see DelaunayElem
 /// @param coe 输出经典轨道根数 [长半轴, 偏心率, 轨道倾角, 升交点赤经, 近拱点角, 真近点角]
-AST_CORE_CAPI err_t dela2coe(const double* dela, double gm, double* coe);
+AST_CORE_CAPI errc_t dela2coe(const double* dela, double gm, double* coe);
 
 
 /// @brief 改进春分点轨道根数转换为直角坐标（类引用版本）
@@ -452,7 +452,7 @@ AST_CORE_CAPI void aModEquinElemToCart(
 /// @param gm 引力参数 [m^3/s^2]
 /// @param mee 输出改进春分点轨道根数
 /// @return 错误码，成功返回eNoError
-AST_CORE_CAPI err_t aCartToModEquinElem(
+AST_CORE_CAPI errc_t aCartToModEquinElem(
     const Vector3d& pos,
     const Vector3d& vel,
     double gm,
@@ -463,7 +463,7 @@ AST_CORE_CAPI err_t aCartToModEquinElem(
 /// @param elem 经典轨道根数
 /// @param mee 输出改进春分点轨道根数
 /// @return 错误码，成功返回eNoError
-AST_CORE_CAPI err_t aOrbElemToModEquinElem(
+AST_CORE_CAPI errc_t aOrbElemToModEquinElem(
     const OrbElem& elem,
     ModEquinElem& mee
 );
@@ -472,7 +472,7 @@ AST_CORE_CAPI err_t aOrbElemToModEquinElem(
 /// @param mee 改进春分点轨道根数
 /// @param elem 输出经典轨道根数
 /// @return 错误码，成功返回eNoError
-AST_CORE_CAPI err_t aModEquinElemToOrbElem(
+AST_CORE_CAPI errc_t aModEquinElemToOrbElem(
     const ModEquinElem& mee,
     OrbElem& elem
 );
@@ -483,7 +483,7 @@ AST_CORE_CAPI err_t aModEquinElemToOrbElem(
 /// @param gm 引力参数 [m^3/s^2]
 /// @param modOrb 输出修正轨道根数
 /// @return 错误码，成功返回eNoError
-AST_CORE_CAPI err_t	aCartToModOrbElem(
+AST_CORE_CAPI errc_t	aCartToModOrbElem(
     const Vector3d& pos,
     const Vector3d& vel,
     double gm,
@@ -496,7 +496,7 @@ AST_CORE_CAPI err_t	aCartToModOrbElem(
 /// @param elem 输出经典轨道根数
 /// @return 错误码，成功返回eNoError
 AST_CORE_CAPI
-err_t aCartToOrbElem     (
+errc_t aCartToOrbElem     (
     const Vector3d& pos,
     const Vector3d& vel,
     double gm,
@@ -507,7 +507,7 @@ err_t aCartToOrbElem     (
 /// @param modOrb 输出修正轨道根数
 /// @return 错误码，成功返回eNoError
 AST_CORE_CAPI
-err_t aEquinElemToModOrb (
+errc_t aEquinElemToModOrb (
     const EquinElem& equinElem,
     ModOrbElem& modOrb);
 
@@ -516,7 +516,7 @@ err_t aEquinElemToModOrb (
 /// @param equinElem 输出春分点根数
 /// @return 错误码，成功返回eNoError
 AST_CORE_CAPI
-err_t aModOrbToEquinElem (
+errc_t aModOrbToEquinElem (
     const ModOrbElem& modOrb,
     EquinElem& equinElem);
 
@@ -526,7 +526,7 @@ err_t aModOrbToEquinElem (
 /// @param pos 输出位置矢量 [m]
 /// @param vel 输出速度矢量 [m/s]
 AST_CORE_CAPI
-err_t aModOrbElemToCart  (
+errc_t aModOrbElemToCart  (
     const ModOrbElem& modOrb,
     double gm,
     Vector3d& pos,
@@ -539,7 +539,7 @@ err_t aModOrbElemToCart  (
 /// @param vel 输出速度矢量 [m/s]
 /// @return 错误码，成功返回eNoError
 AST_CORE_CAPI
-err_t aOrbElemToCart     (
+errc_t aOrbElemToCart     (
     const OrbElem& elem,
     double gm,
     Vector3d& pos,
@@ -575,7 +575,7 @@ void aEquinElemToCart(
 /// @param gm 引力参数 [m^3/s^2]
 /// @param delaunay 输出修正轨道根数
 AST_CORE_CAPI 
-err_t aOrbElemToDelaunay(
+errc_t aOrbElemToDelaunay(
     const OrbElem& elem,
     double gm,
     DelaunayElem& delaunay);
@@ -586,7 +586,7 @@ err_t aOrbElemToDelaunay(
 /// @param gm 引力参数 [m^3/s^2]
 /// @param elem 输出经典轨道根数
 AST_CORE_CAPI 
-err_t aDelaunayToOrbElem(
+errc_t aDelaunayToOrbElem(
     const DelaunayElem& delaunay,
     double gm,
     OrbElem& elem);

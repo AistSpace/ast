@@ -37,7 +37,7 @@ AST_NAMESPACE_BEGIN
 
 
 
-err_t aRotationMatrix(double angle, int axis, Matrix3d &mtx)
+errc_t aRotationMatrix(double angle, int axis, Matrix3d &mtx)
 {
 	assert(Euler::eX <= axis && axis <= Euler::eZ);
 
@@ -154,7 +154,7 @@ void aMatrixToQuat(const Matrix3d& mtx, Quaternion& quat)
     }
 }
 
-err_t aMatrixToEuler(const Matrix3d& mtx, int seq, Euler& euler)
+errc_t aMatrixToEuler(const Matrix3d& mtx, int seq, Euler& euler)
 {
 	switch (seq)
 	{
@@ -201,7 +201,7 @@ err_t aMatrixToEuler(const Matrix3d& mtx, int seq, Euler& euler)
 	return eErrorInvalidParam;
 }
 
-err_t aEulerToMatrix(const Euler& euler, int seq, Matrix3d& mtx)
+errc_t aEulerToMatrix(const Euler& euler, int seq, Matrix3d& mtx)
 {
 	switch (seq)
 	{
@@ -248,9 +248,9 @@ err_t aEulerToMatrix(const Euler& euler, int seq, Matrix3d& mtx)
 	return eErrorInvalidParam;
 }
 
-err_t _aEulerToMatrix(const Euler& euler, int seq, Matrix3d& mtx)
+errc_t _aEulerToMatrix(const Euler& euler, int seq, Matrix3d& mtx)
 {
-	err_t rc;
+	errc_t rc;
 	int axis;
 	Matrix3d mat;
 
@@ -665,15 +665,15 @@ void aEuler323ToMatrix(const Euler& euler, Matrix3d& mtx)
 	};
 }
 
-err_t aEulerToQuat(const Euler& euler, int seq, Quaternion& quat)
+errc_t aEulerToQuat(const Euler& euler, int seq, Quaternion& quat)
 {
 	Matrix3d mtx;
-	err_t rc = aEulerToMatrix(euler, seq, mtx);
+	errc_t rc = aEulerToMatrix(euler, seq, mtx);
 	aMatrixToQuat(mtx, quat);
 	return rc;
 }
 
-err_t aQuatToEuler(const Quaternion& quat, int seq, Euler& euler)
+errc_t aQuatToEuler(const Quaternion& quat, int seq, Euler& euler)
 {
 	Matrix3d mtx;
 	aQuatToMatrix(quat, mtx);

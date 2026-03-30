@@ -34,32 +34,32 @@ TEST(NutationSeries, loadSTK)
 
     {    
         NutationSeries series;
-        err_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2000A_S.dat");
+        errc_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2000A_S.dat");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2000A_X.dat");
+        errc_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2000A_X.dat");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2000A_Y.dat");
+        errc_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2000A_Y.dat");
         EXPECT_EQ(ret, eNoError);
     }
     {    
         NutationSeries series;
-        err_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2006_S.dat");
+        errc_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2006_S.dat");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2006_X.dat");
+        errc_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2006_X.dat");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2006_Y.dat");
+        errc_t ret = series.loadSTK(aDataDirGet() + "/Test/ICRF/IAU2006_Y.dat");
         EXPECT_EQ(ret, eNoError);
     }
 }
@@ -71,17 +71,17 @@ TEST(NutationSeries, loadIERS)
 
     {
         NutationSeries series;
-        err_t ret = series.loadIERS(aDataDirGet() + "/IERS-conventions/2010/tab5.2a.txt");
+        errc_t ret = series.loadIERS(aDataDirGet() + "/IERS-conventions/2010/tab5.2a.txt");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.loadIERS(aDataDirGet() + "/IERS-conventions/2010/tab5.2b.txt");
+        errc_t ret = series.loadIERS(aDataDirGet() + "/IERS-conventions/2010/tab5.2b.txt");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.loadIERS(aDataDirGet() + "/IERS-conventions/2010/tab5.2d.txt");
+        errc_t ret = series.loadIERS(aDataDirGet() + "/IERS-conventions/2010/tab5.2d.txt");
         EXPECT_EQ(ret, eNoError);
     }
 
@@ -94,48 +94,48 @@ TEST(NutationSeries, load)
 
     {
         NutationSeries series;
-        err_t ret = series.load(aDataDirGet() + "/IERS-conventions/2010/tab5.2a.txt");
+        errc_t ret = series.load(aDataDirGet() + "/IERS-conventions/2010/tab5.2a.txt");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.load(aDataDirGet() + "/IERS-conventions/2010/tab5.2b.txt");
+        errc_t ret = series.load(aDataDirGet() + "/IERS-conventions/2010/tab5.2b.txt");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.load(aDataDirGet() + "/IERS-conventions/2010/tab5.2d.txt");
+        errc_t ret = series.load(aDataDirGet() + "/IERS-conventions/2010/tab5.2d.txt");
         EXPECT_EQ(ret, eNoError);
     }
 
     {
         NutationSeries series;
-        err_t ret = series.load(aDataDirGet() + "/Test/ICRF/IAU2000A_S.dat");
+        errc_t ret = series.load(aDataDirGet() + "/Test/ICRF/IAU2000A_S.dat");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.load(aDataDirGet() + "/Test/ICRF/IAU2000A_X.dat");
+        errc_t ret = series.load(aDataDirGet() + "/Test/ICRF/IAU2000A_X.dat");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.load(aDataDirGet() + "/Test/ICRF/IAU2000A_Y.dat");
+        errc_t ret = series.load(aDataDirGet() + "/Test/ICRF/IAU2000A_Y.dat");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.load(aDataDirGet() + "/Test/ICRF/IAU2006_S.dat");
+        errc_t ret = series.load(aDataDirGet() + "/Test/ICRF/IAU2006_S.dat");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.load(aDataDirGet() + "/Test/ICRF/IAU2006_X.dat");
+        errc_t ret = series.load(aDataDirGet() + "/Test/ICRF/IAU2006_X.dat");
         EXPECT_EQ(ret, eNoError);
     }
     {
         NutationSeries series;
-        err_t ret = series.load(aDataDirGet() + "/Test/ICRF/IAU2006_Y.dat");
+        errc_t ret = series.load(aDataDirGet() + "/Test/ICRF/IAU2006_Y.dat");
         EXPECT_EQ(ret, eNoError);
     }
 }
@@ -149,7 +149,7 @@ TEST(NutationSeries, evaluate)
     {
         NutationSeries XSeries;
         NutationSeries YSeries;
-        err_t retX, retY;
+        errc_t retX, retY;
         double x, y, x2, y2;
         
         retX = XSeries.load(aDataDirGet() + "/Test/ICRF/IAU2006_X.dat");

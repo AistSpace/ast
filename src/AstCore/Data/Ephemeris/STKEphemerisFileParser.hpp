@@ -37,20 +37,20 @@ class BKVParser;
 /// @param filepath 星历文件路径
 /// @param ephemeris 星历对象
 /// @return 错误码
-AST_CORE_API err_t aParserSTKEphemeris(StringView filepath, HEphemeris& ephemeris);
+AST_CORE_API errc_t aParserSTKEphemeris(StringView filepath, HEphemeris& ephemeris);
 
 /// @brief 解析STK星历文件
 /// @param parser BKV解析器
 /// @param ephemeris 星历句柄
 /// @return 错误码
-AST_CORE_API err_t aParserSTKEphemeris(BKVParser& parser, HEphemeris &ephemeris);
+AST_CORE_API errc_t aParserSTKEphemeris(BKVParser& parser, HEphemeris &ephemeris);
 
 
 /// @brief 解析STK星历文件
 /// @param parser BKV解析器
 /// @param ephemeris 星历句柄
 /// @return 错误码
-AST_CORE_API err_t aParserSTKEphemeris(BKVParser& parser, ScopedPtr<Ephemeris>& ephemeris);
+AST_CORE_API errc_t aParserSTKEphemeris(BKVParser& parser, ScopedPtr<Ephemeris>& ephemeris);
 
 
 /// @brief STK星历文件解析器
@@ -62,7 +62,7 @@ public:
     ~STKEphemerisFileParser() override = default;
 public:
     using EphemerisFileParser::parse;
-    err_t parse(StringView filepath, HEphemeris& ephemeris) override;
+    errc_t parse(StringView filepath, HEphemeris& ephemeris) override;
 protected:
 
 };

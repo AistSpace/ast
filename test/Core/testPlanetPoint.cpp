@@ -37,7 +37,7 @@ TEST(PlanetPointTest, getPosICRF)
     #define _AST_TEST_PLANET_POS_DE(NAME) \
     { \
         Vector3d pos1, pos2; \
-        err_t rc = aJplDeGetPosICRF(tp, JplDe::e##NAME, JplDe::eSSBarycenter, pos1); \
+        errc_t rc = aJplDeGetPosICRF(tp, JplDe::e##NAME, JplDe::eSSBarycenter, pos1); \
         EXPECT_EQ(rc, eNoError); \
         rc = a##NAME##PosInICRF(tp, pos2); \
         EXPECT_EQ(rc, eNoError); \
@@ -50,7 +50,7 @@ TEST(PlanetPointTest, getPosICRF)
     #define _AST_TEST_PLANET_POS_SPK(NAME) \
     { \
         Vector3d pos1, pos2; \
-        err_t rc = aSpiceGetPosICRF(tp, ESpiceId::e##NAME, ESpiceId::eSolarSystemBarycenter, pos1); \
+        errc_t rc = aSpiceGetPosICRF(tp, ESpiceId::e##NAME, ESpiceId::eSolarSystemBarycenter, pos1); \
         EXPECT_EQ(rc, eNoError); \
         rc = a##NAME##PosInICRF(tp, pos2); \
         EXPECT_EQ(rc, eNoError); \
@@ -84,7 +84,7 @@ TEST(PlanetPointTest, getPosVelICRF)
     { \
         Vector3d pos1, pos2; \
         Vector3d vel1, vel2; \
-        err_t rc = aJplDeGetPosVelICRF(tp, JplDe::e##NAME, JplDe::eSSBarycenter, pos1, vel1); \
+        errc_t rc = aJplDeGetPosVelICRF(tp, JplDe::e##NAME, JplDe::eSSBarycenter, pos1, vel1); \
         EXPECT_EQ(rc, eNoError); \
         rc = a##NAME##PosVelInICRF(tp, pos2, vel2); \
         EXPECT_EQ(rc, eNoError); \
@@ -99,7 +99,7 @@ TEST(PlanetPointTest, getPosVelICRF)
     { \
         Vector3d pos1, pos2; \
         Vector3d vel1, vel2; \
-        err_t rc = aSpiceGetPosVelICRF(tp, ESpiceId::e##NAME, ESpiceId::eSolarSystemBarycenter, pos1, vel1); \
+        errc_t rc = aSpiceGetPosVelICRF(tp, ESpiceId::e##NAME, ESpiceId::eSolarSystemBarycenter, pos1, vel1); \
         EXPECT_EQ(rc, eNoError); \
         rc = a##NAME##PosVelInICRF(tp, pos2, vel2); \
         EXPECT_EQ(rc, eNoError); \

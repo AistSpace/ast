@@ -95,10 +95,10 @@ AST_CORE_API void aTimePointToUT1(const TimePoint& time, DateTime& dttmUT1);
 
 
 /// @brief 将时间点格式化为字符串
-AST_CORE_CAPI err_t aTimePointFormat(const TimePoint& time, std::string& str, int precision = kTimePointDefaultFormatPrecision);
+AST_CORE_CAPI errc_t aTimePointFormat(const TimePoint& time, std::string& str, int precision = kTimePointDefaultFormatPrecision);
 
 /// @brief 从字符串解析时间点
-AST_CORE_CAPI err_t aTimePointParse(StringView str, TimePoint& time);
+AST_CORE_CAPI errc_t aTimePointParse(StringView str, TimePoint& time);
 
 
 /// @brief 绝对时间点

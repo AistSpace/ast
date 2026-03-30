@@ -64,10 +64,10 @@ public:
     /// @brief  打开JPL DE文件
     /// @param  filepath - JPL DE文件路径
     /// @retval          - 错误码
-    err_t open(const char* filepath);
+    errc_t open(const char* filepath);
 
 
-    err_t openDefault();
+    errc_t openDefault();
 
     /// @brief  检查JPL DE文件是否已打开
     /// @retval             - 是否已打开
@@ -86,7 +86,7 @@ public:
     /// @param  pos         - 位置向量
     /// @param  vel         - 速度向量
     /// @retval             - 错误码
-    err_t getPosVelICRF(
+    errc_t getPosVelICRF(
         const TimePoint& time,
         EDataCode target,
         EDataCode referenceBody,
@@ -94,7 +94,7 @@ public:
         Vector3d& vel
     );
 
-    err_t getPosVelICRF(
+    errc_t getPosVelICRF(
         const TimePoint& time,
         EDataCode target,
         EDataCode referenceBody,
@@ -110,7 +110,7 @@ public:
     /// @param  referenceBody- 参考天体
     /// @param  pos         - 位置向量
     /// @retval             - 错误码
-    err_t getPosICRF(
+    errc_t getPosICRF(
         const TimePoint& time,
         EDataCode target,
         EDataCode referenceBody,
@@ -124,7 +124,7 @@ public:
     /// @param  referenceBody- 参考天体
     /// @param  pos         - 位置向量
     /// @retval             - 错误码
-    err_t getPosICRF_TT(
+    errc_t getPosICRF_TT(
         const JulianDate jdTT,
         EDataCode target,
         EDataCode referenceBody,
@@ -136,7 +136,7 @@ public:
     /// @param  nutLong     - 章动经度(rad)
     /// @param  nutObl      - 章动倾角(rad)
     /// @retval             - 错误码
-    err_t	getNutation(
+    errc_t	getNutation(
         const TimePoint& time,
         double& nutLong,
         double& nutObl
@@ -149,7 +149,7 @@ public:
     ///                     - [omega,i,u],[进动角,章动角,自转角],按照313顺序旋转
     /// @param  angRate     - 转动角速率(rad/s)
     /// @retval             - 错误码
-    err_t		getLibration(
+    errc_t		getLibration(
         const TimePoint& time,
         Vector3d& ang,
         Vector3d& angRate
@@ -160,7 +160,7 @@ public:
     /// @param  ang         - 从ICRF到月球惯性主轴坐标系的转角(rad)
     ///                     - [omega,i,u],[进动角,章动角,自转角],按照313顺序旋转
     /// @retval             - 错误码
-    err_t       getLibration(
+    errc_t       getLibration(
         const TimePoint& time,
         Vector3d& ang
     );
@@ -170,7 +170,7 @@ public:
     /// @param  ang         - 从ICRF到月球惯性主轴坐标系的转角(rad)
     ///                     - [omega,i,u],[进动角,章动角,自转角],按照313顺序旋转
     /// @retval             - 错误码
-    err_t       getLibration(
+    errc_t       getLibration(
         const TimePoint& time,
         Euler& ang
     );
@@ -183,15 +183,15 @@ public:
     /// @brief  获取JPL DE星历数据的时间间隔
     /// @param  interval   - 时间间隔
     /// @retval             - 错误码
-    err_t getInterval(TimeInterval& interval) const;
+    errc_t getInterval(TimeInterval& interval) const;
 
 private:
-    err_t         readDataBlock(size_t idx);
-    err_t         getStateTDB(const JulianDate& jdTDB, int dataid, double pos[], double vel[]);
-    err_t         getStateTDB(const JulianDate& jdTDB, int datalist[11], double statelist[11][6]);
+    errc_t         readDataBlock(size_t idx);
+    errc_t         getStateTDB(const JulianDate& jdTDB, int dataid, double pos[], double vel[]);
+    errc_t         getStateTDB(const JulianDate& jdTDB, int datalist[11], double statelist[11][6]);
 
-    err_t         getState(const TimePoint& time, int dataid, double pos[], double vel[]);
-    err_t         getState(const TimePoint& time, int datalist[11], double statelist[11][6]);
+    errc_t         getState(const TimePoint& time, int dataid, double pos[], double vel[]);
+    errc_t         getState(const TimePoint& time, int datalist[11], double statelist[11][6]);
 protected:
     bool        m_IsSameEndian;        // 二进制文件与系统大小端是否一致
     uint32_t    m_EphemVerion{ 0 };    // De星历版本

@@ -51,7 +51,7 @@ BlockGain::BlockGain()
     };
 }
 
-err_t BlockGain::run(const SimTime &simTime)
+errc_t BlockGain::run(const SimTime &simTime)
 {
     if (input_ == nullptr || output_ == nullptr)
     {

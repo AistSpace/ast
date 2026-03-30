@@ -38,7 +38,7 @@ public:
     BlockGravity(const GravityField &gravityField, int degree, int order, Axes* gravityAxes=nullptr, Axes* propagationAxes=nullptr);
     BlockGravity(GravityField &&gravityField, int degree, int order, Axes* gravityAxes=nullptr, Axes* propagationAxes=nullptr);
 
-    err_t run(const SimTime& simTime) final;
+    errc_t run(const SimTime& simTime) final;
 private:
     void init();
 protected:

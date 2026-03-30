@@ -46,7 +46,7 @@ SimpleOrbitDesigner::SimpleOrbitDesigner(CelestialBody *body)
 }
 
 
-err_t SimpleOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
+errc_t SimpleOrbitDesigner::getOrbitState(ModOrbElem &orbElem) const
 {
     OrbElem orbElemOrigin{
         semimajorAxis_,

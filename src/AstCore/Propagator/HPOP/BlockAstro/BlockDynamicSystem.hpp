@@ -74,16 +74,16 @@ public:
     void fillDerivativeData(double value) { std::fill(derivative_.begin(), derivative_.end(), value); }
 
     /// @brief 初始化
-    err_t initialize();
+    errc_t initialize();
 
     /// @brief 根据函数块的依赖关系，对子系统块中的函数块进行排序
-    err_t sortBlocks();
+    errc_t sortBlocks();
 
     /// @brief 创建状态量映射表
-    err_t createStateMap();
+    errc_t createStateMap();
 
     /// @brief 根据函数块的信号名称，自动连接子系统块中的信号
-    err_t connectSignalsByNames();
+    errc_t connectSignalsByNames();
 
     /// @brief 添加状态量函数块
     /// @param block 状态量函数块指针

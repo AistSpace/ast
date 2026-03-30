@@ -52,7 +52,7 @@ BKVSaxPrint::~BKVSaxPrint()
     }
 }
 
-err_t BKVSaxPrint::begin(StringView name)
+errc_t BKVSaxPrint::begin(StringView name)
 {
     posix::fprintf(file_, "%*s", depth_ * indent_, "");
     depth_++;
@@ -65,7 +65,7 @@ err_t BKVSaxPrint::begin(StringView name)
     return eNoError;
 }
 
-err_t BKVSaxPrint::end(StringView name)
+errc_t BKVSaxPrint::end(StringView name)
 {
     depth_--;
     
@@ -78,7 +78,7 @@ err_t BKVSaxPrint::end(StringView name)
     return eNoError;
 }
 
-err_t BKVSaxPrint::keyValue(StringView key, const ValueView &value)
+errc_t BKVSaxPrint::keyValue(StringView key, const ValueView &value)
 {
     posix::fprintf(file_, "%*s", depth_ * indent_, "");
     posix::fprintf(file_, "%.*s %.*s\n", static_cast<int>(key.size()), key.data(), (int)value.size(), value.data());

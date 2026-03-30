@@ -47,8 +47,8 @@ public:
 
     using AxesBodyRelated::AxesBodyRelated;
     Axes* getParent() const override;
-    err_t getTransform(const TimePoint& tp, Rotation& rotation) const override;
-    err_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const override;
+    errc_t getTransform(const TimePoint& tp, Rotation& rotation) const override;
+    errc_t getTransform(const TimePoint& tp, KinematicRotation& rotation) const override;
 };
 
 

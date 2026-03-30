@@ -54,25 +54,25 @@ public:
     /// @param seq 欧拉角旋转序
     /// @param mtx 输出旋转矩阵
     /// @return 错误码
-	err_t toMatrix(int seq, Matrix3d& mtx) const{return aEulerToMatrix(*this, seq,mtx); }
+	errc_t toMatrix(int seq, Matrix3d& mtx) const{return aEulerToMatrix(*this, seq,mtx); }
     
     /// @brief 转换为四元数
     /// @param seq 欧拉角旋转序
     /// @param quat 输出四元数
     /// @return 错误码
-    err_t toQuat(int seq, Quaternion& quat) const{return aEulerToQuat(*this, seq, quat); }
+    errc_t toQuat(int seq, Quaternion& quat) const{return aEulerToQuat(*this, seq, quat); }
     
     /// @brief 从旋转矩阵转换
     /// @param mtx 输入旋转矩阵
     /// @param seq 欧拉角旋转序
     /// @return 错误码
-    err_t fromMatrix(const Matrix3d& mtx, int seq){return aMatrixToEuler(mtx, seq, *this); }
+    errc_t fromMatrix(const Matrix3d& mtx, int seq){return aMatrixToEuler(mtx, seq, *this); }
 
     /// @brief 从四元数转换
     /// @param quat 输入四元数
     /// @param seq 欧拉角旋转序
     /// @return 错误码
-    err_t fromQuat(const Quaternion& quat, int seq){return aQuatToEuler(quat, seq, *this); }
+    errc_t fromQuat(const Quaternion& quat, int seq){return aQuatToEuler(quat, seq, *this); }
 
     double angle1() const{return angle1_;}
     double angle2() const{return angle2_;}

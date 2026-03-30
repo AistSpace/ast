@@ -35,7 +35,7 @@ static const double
         {-8./27.    ,2.           ,-3544./2565, 1859./4104., -11/40.}};
 
         
-err_t RKF45::initialize(ODE &ode)
+errc_t RKF45::initialize(ODE &ode)
 {
     this->ODEIntegrator::initialize(ode);
     // 重置工作空间
@@ -43,7 +43,7 @@ err_t RKF45::initialize(ODE &ode)
     return eNoError;
 }
 
-err_t RKF45::singleStep(ODE &ode, double* y, double t0, double h)
+errc_t RKF45::singleStep(ODE &ode, double* y, double t0, double h)
 {
     auto& wrk = this->getWorkspace();
     int ndim = wrk.dimension_;
@@ -62,7 +62,7 @@ err_t RKF45::singleStep(ODE &ode, double* y, double t0, double h)
         }
         // rightFunc(ndim, t + alph78[k] * h, ymid, &KArr[k * ndim], rkfFuncParam);
         // func(t + alph45[k] * h, ymidvec, kvec);
-        if(err_t err = ode.evaluate(t0 + alph45[k] * h, ymid, KArr[k]))
+        if(errc_t err = ode.evaluate(t0 + alph45[k] * h, ymid, KArr[k]))
         {
             return err;
         }

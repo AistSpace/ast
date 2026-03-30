@@ -107,13 +107,13 @@ void BlockGravity::init()
 
 
 
-err_t BlockGravity::run(const SimTime &simTime)
+errc_t BlockGravity::run(const SimTime &simTime)
 {
     Vector3d posInGravityAxes;  // 位置(重力坐标系下)
     Vector3d accInGravityAxes;  // 重力加速度(重力坐标系下)
     auto& tp = simTime.timePoint();
     Rotation rotation;
-    err_t rc = aAxesTransform(propagationAxes_, gravityAxes_, tp, rotation);
+    errc_t rc = aAxesTransform(propagationAxes_, gravityAxes_, tp, rotation);
     A_UNUSED(rc);
 
     posInGravityAxes = rotation.transformVector(*posPtr_);

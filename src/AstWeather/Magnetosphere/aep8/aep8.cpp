@@ -50,7 +50,7 @@ AST_NAMESPACE_BEGIN
 class AEP8Data{
 public:
     ~AEP8Data();
-    err_t load(StringView filepath);
+    errc_t load(StringView filepath);
 public:
     std::array<long, 8> header_;
     long* data_{nullptr};
@@ -60,8 +60,8 @@ public:
 class AEPDataCollection{
 public:
     AEPDataCollection();
-    err_t loadDefault();
-    err_t load(StringView dirpath);
+    errc_t loadDefault();
+    errc_t load(StringView dirpath);
 public:
     AEP8Data ae8max_;
     AEP8Data ae8min_;
@@ -78,7 +78,7 @@ AEP8Data::~AEP8Data()
     data_ = nullptr;
 }
 
-err_t AEP8Data::load(StringView filepath)
+errc_t AEP8Data::load(StringView filepath)
 {
     if(data_)
         delete[] data_;
@@ -116,7 +116,7 @@ err_t AEP8Data::load(StringView filepath)
         for(int j=0;j<12;j++){
             int value = 0;
             StringView sub = sv.substr(j*6 + 1, 6);
-            err_t rc = aParseInt(sub, value);
+            errc_t rc = aParseInt(sub, value);
             data[i*12+j] = value;
             if(A_UNLIKELY(rc != eNoError)){
                 aError("failed to parse int value from %.*s", sub.size(), sub.data());
@@ -132,7 +132,7 @@ err_t AEP8Data::load(StringView filepath)
         StringView sv(linebuf);
         for(int j=0;j<remain;j++){
             int value = 0;
-            err_t rc = aParseInt(sv.substr(j*6 + 1, 6), value);
+            errc_t rc = aParseInt(sv.substr(j*6 + 1, 6), value);
             data[nline*12+j] = value;
             if(A_UNLIKELY(rc != eNoError)){
                 aError("failed to parse int value at line %d, column %d", nline, j);
@@ -146,23 +146,23 @@ err_t AEP8Data::load(StringView filepath)
 
 AEPDataCollection::AEPDataCollection()
 {
-    err_t rc = loadDefault();
+    errc_t rc = loadDefault();
     if(rc)
     {
         aError("failed to load default AEP8 data collection");   
     }
 }
 
-err_t AEPDataCollection::loadDefault()
+errc_t AEPDataCollection::loadDefault()
 {
     fs::path datadir = aDataDir();
     datadir /= AST_DEFAULT_DIR_AEP8;
     return load(datadir.string());
 }
 
-err_t AEPDataCollection::load(StringView dirpath)
+errc_t AEPDataCollection::load(StringView dirpath)
 {
-    err_t rc;
+    errc_t rc;
     fs::path path = std::string(dirpath);
     rc = ae8max_.load((path / "ae8min.asc").string());
     if(rc != eNoError)

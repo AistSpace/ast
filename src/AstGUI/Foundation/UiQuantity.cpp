@@ -101,7 +101,7 @@ void UiQuantity::setValueUnit(double value, const Unit& unit)
 void UiQuantity::onEditingFinished()
 {
     QString text = this->text();
-    err_t rc = aQuantityParse(text.toUtf8().data(), currentQuantity_);
+    errc_t rc = aQuantityParse(text.toUtf8().data(), currentQuantity_);
     if(rc){
         // 显示错误提示
         aError("failed to parse quantity: %s", text.toUtf8().data());

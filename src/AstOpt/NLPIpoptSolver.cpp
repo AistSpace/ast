@@ -255,7 +255,7 @@ void CIpoptNLP::finalize_solution(SolverReturn status, Index n, const Number* x,
 }
 
 
-err_t CNLPIpoptSolver::Solve(INLPProblem& prob, VectorXd& xopt)
+errc_t CNLPIpoptSolver::Solve(INLPProblem& prob, VectorXd& xopt)
 {
     Ipopt::SmartPtr<CIpoptNLP> nlp = new CIpoptNLP{ this ,&prob };
 

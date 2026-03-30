@@ -134,7 +134,7 @@ SpiceApi::~SpiceApi()
     unload();
 }
 
-err_t SpiceApi::load(StringView dirpath)
+errc_t SpiceApi::load(StringView dirpath)
 {
     void* lib = aLoadLibrary(std::string(dirpath).c_str());
     if(!lib)
@@ -166,7 +166,7 @@ err_t SpiceApi::load(StringView dirpath)
     return eNoError;
 }
 
-err_t SpiceApi::tryload(const std::vector<std::string>& libpaths)
+errc_t SpiceApi::tryload(const std::vector<std::string>& libpaths)
 {
     for(auto& libpath : libpaths)
         if(load(libpath) == eNoError)
@@ -174,7 +174,7 @@ err_t SpiceApi::tryload(const std::vector<std::string>& libpaths)
     return eErrorInvalidFile;
 }
 
-err_t SpiceApi::unload()
+errc_t SpiceApi::unload()
 {
     if(library_)
         return aFreeLibrary(library_);
@@ -184,7 +184,7 @@ err_t SpiceApi::unload()
 
 const char* kSpiceUnloadError = "spice library not loaded, call SpiceApi::load first";
 
-err_t SpiceApi::furnsh(const char* libpath)
+errc_t SpiceApi::furnsh(const char* libpath)
 {
     using functype = decltype(&spiceproto::furnsh_c);
     functype furnsh_c = reinterpret_cast<functype>(functions_[ifurnsh]);
@@ -198,7 +198,7 @@ err_t SpiceApi::furnsh(const char* libpath)
     return checkerror();
 }
 
-err_t SpiceApi::spkgeo(int targ, double et, const char * ref, int obs, double state[6], double * lt)
+errc_t SpiceApi::spkgeo(int targ, double et, const char * ref, int obs, double state[6], double * lt)
 {
     using functype = decltype(&spiceproto::spkgeo_c);
     functype spkgeo_c = reinterpret_cast<functype>(functions_[ispkgeo]);
@@ -212,7 +212,7 @@ err_t SpiceApi::spkgeo(int targ, double et, const char * ref, int obs, double st
     return checkerror();
 }
 
-err_t SpiceApi::spklef(const char *libpath, int *handle)
+errc_t SpiceApi::spklef(const char *libpath, int *handle)
 {
     using functype = decltype(&spiceproto::spklef_c);
     functype spklef_c = reinterpret_cast<functype>(functions_[ispklef]);
@@ -236,7 +236,7 @@ err_t SpiceApi::spklef(const char *libpath, int *handle)
     return checkerror();
 }
 
-err_t SpiceApi::spkuef(int handle)
+errc_t SpiceApi::spkuef(int handle)
 {
     using functype = decltype(&spiceproto::spkuef_c);
     functype spkuef_c = reinterpret_cast<functype>(functions_[ispkuef]);
@@ -268,7 +268,7 @@ void SpiceApi::bodc2n(int code, int namlen, char *name, bool *found)
     checkerror();
 }
 
-err_t SpiceApi::bodc2n(int code, std::string &name)
+errc_t SpiceApi::bodc2n(int code, std::string &name)
 {
     char n[128];
     bool found = false;
@@ -307,7 +307,7 @@ void SpiceApi::erract(const char * operation, int lenout, char * action)
     erract_c(operation, lenout, action);
 }
 
-err_t SpiceApi::ktotal(const char *kind, int *count)
+errc_t SpiceApi::ktotal(const char *kind, int *count)
 {
     using functype = decltype(&spiceproto::ktotal_c);
     functype ktotal_c = reinterpret_cast<functype>(functions_[iktotal]);
@@ -324,7 +324,7 @@ err_t SpiceApi::ktotal(const char *kind, int *count)
     return checkerror();
 }
 
-err_t SpiceApi::checkerror()
+errc_t SpiceApi::checkerror()
 {
     if(failed())
     {

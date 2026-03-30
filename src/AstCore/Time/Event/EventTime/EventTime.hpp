@@ -45,7 +45,7 @@ public:
     /// @brief 获取时间点
     /// @param tp 时间点
     /// @return 
-    virtual err_t getTime(TimePoint& tp) const = 0;
+    virtual errc_t getTime(TimePoint& tp) const = 0;
 
 };
 

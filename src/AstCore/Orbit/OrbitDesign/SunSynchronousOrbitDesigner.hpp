@@ -48,7 +48,7 @@ public:
     SunSynchronousOrbitDesigner();
     SunSynchronousOrbitDesigner(CelestialBody *body);
     ~SunSynchronousOrbitDesigner() = default;
-    err_t getOrbitState(ModOrbElem &orbElem) const override;
+    errc_t getOrbitState(ModOrbElem &orbElem) const override;
 
     /// @brief 获取几何定义方式
     EGeometryDefinition getGeometryDefinition() const { return geometryDefinition_; }

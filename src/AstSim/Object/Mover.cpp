@@ -24,9 +24,9 @@
 
 AST_NAMESPACE_BEGIN
 
-err_t Mover::generateEphemeris()
+errc_t Mover::generateEphemeris()
 {
-    err_t rc = motionProfile_->makeEphemerisSimple(ephemeris_);
+    errc_t rc = motionProfile_->makeEphemerisSimple(ephemeris_);
     if(rc)
         motionProfile_->makeEphemerisSpec(ephemeris_);
     return rc;
@@ -44,12 +44,12 @@ Frame *Mover::getFrame() const
     return ephemeris_->getFrame();
 }
 
-err_t Mover::getPos(const TimePoint &tp, Vector3d &pos) const
+errc_t Mover::getPos(const TimePoint &tp, Vector3d &pos) const
 {
     return ephemeris_->getPos(tp, pos);
 }
 
-err_t Mover::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
+errc_t Mover::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 {
     return ephemeris_->getPosVel(tp, pos, vel);
 }
