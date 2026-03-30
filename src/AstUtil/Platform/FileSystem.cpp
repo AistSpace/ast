@@ -119,7 +119,7 @@ std::string aExeDir()
 
 std::string aLibPath()
 {
-    return aGetModulePathFromAddress(&aLibPath);
+    return aGetModulePathFromAddress(reinterpret_cast<void*>(&aLibPath));
 }
 
 std::string aExePath()

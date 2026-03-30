@@ -24,7 +24,7 @@ enum class ESerializationFormat {
 };
 
 /// @brief 序列化器基类
-class AST_SERDE_API Serializer {
+class AST_UTIL_API Serializer {
 public:
     virtual ~Serializer() = default;
     

@@ -13,7 +13,7 @@
 AST_NAMESPACE_BEGIN
 
 /// @brief 序列化工厂类
-class AST_SERDE_API SerializerFactory {
+class AST_UTIL_API SerializerFactory {
 public:
     /// @brief 创建序列化器
     /// @param format 序列化格式

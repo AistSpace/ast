@@ -20,7 +20,10 @@
 
 #pragma once
 
-#include "AstSerde/SerdeAPI.hpp"
+#include "AstUtil/SerdeAPI.hpp"
+#include "AstUtil/CppSerializer.hpp"
+#include "AstUtil/IO.hpp"
+#include "AstUtil/BuilderAPI.hpp"
 #include "AstTest/Test.h"
 #include "AstCore/StateCartesian.hpp"
 #include "AstCore/TimePoint.hpp"
@@ -29,6 +32,9 @@
 AST_USING_NAMESPACE
 
 TEST(SerializeCppTest, StateCartesian) {
+    if(aIsCI())
+        GTEST_SKIP();
+
     aInitialize();
     auto earth = aGetBody("Earth");
     StateCartesian* state = new StateCartesian();
@@ -41,9 +47,48 @@ TEST(SerializeCppTest, StateCartesian) {
     state->setVy(2000);
     state->setVz(3000);
 
-    std::string cppcode;
-    aObjectSerialize(state, ESerializationFormat::eCpp, cppcode);
-    printf("%s\n", cppcode.c_str());
+    std::string cppcode1;
+    std::string cppcode2;
+    errc_t rc = aObjectSerialize(state, ESerializationFormat::eCpp, cppcode1);
+    EXPECT_EQ(rc, eNoError);
+    printf("%s\n", cppcode1.c_str());
+
+    const std::string filepath1 = "./serializeStateCartesian1.cpp";
+    const std::string filepath2 = "./serializeStateCartesian2.cpp";
+    rc = aObjectToCppFile(state, filepath1);
+    EXPECT_EQ(rc, eNoError);
+    FILE* file = ast_fopen(filepath1.c_str(), "a");
+
+    std::string str = 
+    "#include \"AstUtil/SerdeAPI.hpp\"\n"
+    "int main() {\n"
+    "    auto obj = " + CppSerializer::getFuncName(state) + "();\n"
+    "    aObjectToCppFile(obj, \"" + filepath2 + "\");\n"
+    "    return 0;\n"
+    "}";
+    fwrite(str.c_str(), 1, str.size(), file);
+    fclose(file);
+    // 编译执行
+    Target target("test-serialize");
+    rc = target
+        .setKind("binary")
+        .addFiles({filepath1})
+        .addLinkDirs({"."})
+        .addLinks({"AstCore", "AstUtil"})
+        .addIncludeDirs({"../../../../include"})
+        .build();
+    EXPECT_EQ(rc, 0);
+    rc = target.run();
+    EXPECT_EQ(rc, 0);
+    
+    // 读取filepath2文件内容
+    file = ast_fopen(filepath2.c_str(), "r");
+    std::vector<char> buffer(10241);
+    size_t bytesRead = fread(buffer.data(), 1, 10240, file);
+    fclose(file);
+    cppcode2 = std::string(buffer.begin(), buffer.begin() + bytesRead);
+    printf("%s\n", cppcode2.c_str());
+    EXPECT_EQ(cppcode1, cppcode2);
 }
 
 

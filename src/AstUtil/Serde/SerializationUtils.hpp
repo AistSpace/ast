@@ -13,7 +13,7 @@
 AST_NAMESPACE_BEGIN
 
 /// @brief 序列化工具类
-class AST_SERDE_API SerializationUtils {
+class AST_UTIL_API SerializationUtils {
 public:
     /// @brief 序列化对象到指定格式
     /// @param object 要序列化的对象

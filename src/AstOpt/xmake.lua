@@ -1,7 +1,7 @@
 ﻿target("AstOpt")
     set_kind("shared")
     add_files("**.cpp")
-    add_files("**.c")
+    -- add_files("**.c")
     add_headerfiles("**.hpp")
     add_headerfiles("**.h")
     add_headerfiles("../../(include/AstGlobal.h)")

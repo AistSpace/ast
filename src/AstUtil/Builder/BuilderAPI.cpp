@@ -1,5 +1,5 @@
 ///
-/// @file      CppSerializer.hpp
+/// @file      BuilderAPI.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,26 +18,10 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#pragma once
-
-#include "Serializer.hpp"
+#include "BuilderAPI.hpp"
 
 AST_NAMESPACE_BEGIN
 
-/*!
-    @addtogroup Serde
-    @{
-*/
 
-
-/// @brief C++代码生成器
-class AST_SERDE_API CppSerializer : public Serializer {
-public:
-    errc_t serialize(Object* object, std::string& output) override;
-    errc_t deserialize(const std::string& input, Object* object) override;
-};
-
-/*! @} */
 
 AST_NAMESPACE_END
-

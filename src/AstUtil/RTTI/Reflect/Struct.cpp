@@ -64,10 +64,20 @@ std::string Struct::getModuleName() const
 {
     fs::path modulePath = aGetModulePathFromAddress(const_cast<Struct*>(this));
     std::string moduleName = modulePath.stem().string();
+#ifndef _MSC_VER
+    {
+        auto it = moduleName.rfind("lib");
+        if(it != std::string::npos){
+            moduleName = moduleName.substr(it + 3);
+        }
+    }
+#endif
 #ifdef _AST_ENABLE_DEBUG_SUFFIX
-    auto it = moduleName.rfind(_AST_DEBUG_SUFFIX);
-    if(it != std::string::npos){
-        return moduleName.substr(0, it);
+    {
+        auto it = moduleName.rfind(_AST_DEBUG_SUFFIX);
+        if(it != std::string::npos){
+            return moduleName.substr(0, it);
+        }
     }
 #endif
     return moduleName;

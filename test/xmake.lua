@@ -9,7 +9,7 @@ add_deps(
     "AstWeather", 
     "AstSPICE", 
     "AstSim",
-    "AstSerde",
+    -- "AstSerde",
     "AstTest"
 )
 add_packages("gtest")
