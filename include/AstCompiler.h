@@ -293,7 +293,7 @@
 #   define A_DEBUG_BREAK() ::raise(SIGTRAP)
 #endif
 
-/// 为支持随机访问的类型定义迭代器标准函数
+/// 为支持随机访问的数值类型容器类型定义迭代器标准函数
 #define A_DEF_ITERABLE(Scalar, Data, Size)                                      \
     size_t size() const noexcept{ return (Size) ;}                              \
     Scalar* data() noexcept{return (Data);}                                     \
@@ -308,7 +308,7 @@
     Scalar& operator[](size_t idx) noexcept{return data()[idx];}                \
 
 
-/// 为POD类型定义迭代器标准函数
+/// 为包含数值类型的POD类型定义迭代器标准函数
 #define A_DEF_POD_ITERABLE(Scalar)                                      \
     A_DEF_ITERABLE(Scalar, (Scalar*)this, sizeof(*this)/sizeof(Scalar))
 

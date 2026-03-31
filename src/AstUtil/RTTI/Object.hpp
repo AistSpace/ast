@@ -48,7 +48,27 @@ AST_NAMESPACE_BEGIN
 class Class;        // 类元信息
 class Property;     // 属性元信息
 
-/// @brief 对象基类，实现运行时元信息、强弱引用计数
+
+// AST 对象运行时元信息
+#define AST_OBJECT(TYPE) \
+    static Class staticType;\
+    static inline Class* getStaticType(){return &staticType;}\
+    Class* getType() const override{return &staticType;} \
+    static void ClassInit(Class* cls);\
+
+// 定义属性
+#define AST_PROPERT(NAME)   static constexpr const char* _prop_##NAME = #NAME;
+
+// 获取属性名称
+#define AST_PROPERT_NAME(CLASS, NAME) CLASS::_prop_##NAME
+#define aPropertyName(CLASS, NAME) AST_PROPERT_NAME(CLASS, NAME)
+
+#define _AST_IMPL_OBJECT(TYPE) \
+    Class TYPE::staticType;\
+
+
+
+/// @brief 对象基类，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能
 class AST_UTIL_API Object
 {
 public:
@@ -65,9 +85,9 @@ public:
     /// @brief 获取属性，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @return Attribute 属性
-    Attribute<Property> attr(StringView path)
+    Attribute<> attr(StringView path)
     {
-        return Attribute<Property>(this, this->getProperty(path));
+        return Attribute<>(this, this->getProperty(path));
     }
 
 public:

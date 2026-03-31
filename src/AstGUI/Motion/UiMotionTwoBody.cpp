@@ -129,6 +129,7 @@ void UiMotionTwoBody::refreshUi()
     {
         // 这里可以添加代码，根据MotionTwoBody的状态更新UI
         // 例如，更新时间、位置、速度等参数
+        A_UNUSED(motionTwoBody);
     }
 }
 

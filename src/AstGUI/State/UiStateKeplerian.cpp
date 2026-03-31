@@ -18,7 +18,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "UiStateKeplerian.hpp"
-#include "AstCore/Orbit/State/StateKeplerian.hpp"
+#include "AstCore/StateKeplerian.hpp"
 #include "AstUtil/Unit.hpp"
 #include "AstUtil/Quantity.hpp"
 #include <QVBoxLayout>

@@ -86,6 +86,28 @@ class AST_CORE_API StateKeplerian final: public State
 {
 public:
     AST_OBJECT(StateKeplerian)
+    AST_PROPERT(SMA)
+    AST_PROPERT(Period)
+    AST_PROPERT(MeanMotion)
+    AST_PROPERT(ApoRadForSize)
+    AST_PROPERT(ApoAltForSize)
+    AST_PROPERT(PeriRadForSize)
+    AST_PROPERT(PeriAltForSize)
+    AST_PROPERT(Ecc)
+    AST_PROPERT(ApoRadForShape)
+    AST_PROPERT(ApoAltForShape)
+    AST_PROPERT(PeriRadForShape)
+    AST_PROPERT(PeriAltForShape)
+    AST_PROPERT(Inc)
+    AST_PROPERT(RAAN)
+    AST_PROPERT(LAN)
+    AST_PROPERT(ArgPeri)
+    AST_PROPERT(TrueAnomaly)
+    AST_PROPERT(MeanAnomaly)
+    AST_PROPERT(EccAnomaly)
+    AST_PROPERT(ArgLat)
+    AST_PROPERT(TimePastPeri)
+    AST_PROPERT(TimePastAscNode)
     static PStateKeplerian New();
     static HStateKeplerian MakeShared();
     static PStateKeplerian New(const ModOrbElem& modOrbElem);

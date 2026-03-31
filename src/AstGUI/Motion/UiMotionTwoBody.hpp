@@ -22,10 +22,10 @@
 
 #include "AstGlobal.h"
 #include "AstGUI/UiMotionProfile.hpp"
-#include "AstGUI/Foundation/UiTimeInterval.hpp"
+#include "AstGUI/UiTimeInterval.hpp"
 #include "AstGUI/UiTimePoint.hpp"
 #include "AstGUI/UiQuantity.hpp"
-#include "AstGUI/State/UiStateCartesian.hpp"
+#include "AstGUI/UiStateCartesian.hpp"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QGridLayout>

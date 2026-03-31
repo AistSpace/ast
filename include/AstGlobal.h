@@ -102,17 +102,6 @@
 // 定义访问函数
 #define AST_DEF_ACCESS_METHOD(TYPE, NAME) TYPE NAME() const{return NAME##_;} TYPE& NAME(){return NAME##_;}
 
-
-// AST 对象运行时元信息
-#define AST_OBJECT(TYPE) \
-    static Class staticType;\
-    static inline Class* getStaticType(){return &staticType;}\
-    Class* getType() const override{return &staticType;} \
-    static void ClassInit(Class* cls);\
-    
-#define _AST_IMPL_OBJECT(TYPE) \
-    Class TYPE::staticType;\
-
 #ifdef AST_PROPERTIES_MARK
 #   define AST_PROPERTIES AST_PROPERTIES_MARK public
 #else
@@ -284,13 +273,13 @@ typedef enum EError
  * 下面这些别名用于类型元信息标注，例如：
  * ```
  * class Demo{
- * properties:
+ * PROPERTIES:
  *   time_d   timestamp;        // 时间量纲
  *   angle_d  heading;          // 角度量纲
  *   length_d distance;         // 长度量纲
  * };
  * ```
- * 通过这些标注，反射工具可以识别这些类型，提取其属性元信息，然后生成相应代码，例如动态反射、序列化
+ * 通过这些标注，反射工具(例如libclang)可以识别这些类型，提取其属性元信息，然后生成相应代码，例如动态反射、序列化
  * 使用 `_d` 后缀，表示 dimension 和 double，避免了使用 `_t` 后缀与标准库 `time_t` 的冲突
  */ 
 typedef double length_d, mass_d, time_d, area_d, speed_d, force_d, energy_d, power_d, angle_d, angvel_d; 

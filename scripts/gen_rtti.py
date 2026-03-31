@@ -167,6 +167,57 @@ class BaseHeaderAnalyzer:
         
         return "\n\n".join(code)
     
+    def add_ast_properties_macros(self):
+        """自动为每个类添加AST_PROPERT宏（先删除所有现有的，再重新添加）"""
+        for header_file in self.header_files:
+            content = header_file.read_text(encoding='utf-8')
+            
+            for class_name, class_info in self.classes.items():
+                if self.target_classes and class_name not in self.target_classes:
+                    continue
+                
+                # 查找AST_OBJECT宏
+                object_pattern = rf'AST_OBJECT\({class_name}\)'
+                object_match = re.search(object_pattern, content, re.MULTILINE)
+                if not object_match:
+                    continue
+                
+                # 收集当前属性名
+                current_props = []
+                for prop in class_info.properties.values():
+                    current_props.append(prop.name)
+                
+                if not current_props:
+                    continue
+                
+                # 生成新的AST_PROPERT宏
+                prop_macros = []
+                for prop_name in current_props:
+                    prop_macros.append(f'    AST_PROPERT({prop_name})')
+                
+                # 找到AST_OBJECT宏的位置
+                object_end = object_match.end()
+                
+                # 找到第一个非AST_PROPERT宏的位置
+                lines = content[object_end:].split('\n')
+                non_prop_line = 0
+                for i, line in enumerate(lines):
+                    if line.strip() and not line.strip().startswith('AST_PROPERT('):
+                        non_prop_line = i
+                        break
+                
+                # 计算非AST_PROPERT宏的位置
+                non_prop_pos = object_end
+                for i in range(non_prop_line):
+                    non_prop_pos += len(lines[i]) + 1
+                
+                # 构建新内容
+                new_content = content[:object_end] + '\n' + '\n'.join(prop_macros) + '\n' + content[non_prop_pos:]
+                
+                # 写回文件
+                header_file.write_text(new_content, encoding='utf-8')
+                print(f"已为类 {class_name} 重新生成AST_PROPERT宏")
+    
     def _generate_class_init(self, class_info: ClassInfo) -> str:
         """生成单个类的初始化代码"""
         lines = []
@@ -671,6 +722,9 @@ def run(input_paths, classes=None, output=None, recursive=False, add_typedefs=Fa
     
     # 执行分析
     analyzer = run_analysis(header_files, target_classes)
+    
+    # 为类添加AST_PROPERT宏
+    analyzer.add_ast_properties_macros()
     
     # 生成代码
     code = generate_code(analyzer, add_typedefs)
