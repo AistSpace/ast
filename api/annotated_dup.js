@@ -421,6 +421,7 @@ var annotated_dup =
       [ "UiQuantity", "classast_1_1UiQuantity.html", "classast_1_1UiQuantity" ],
       [ "UiState", "classast_1_1UiState.html", null ],
       [ "UiStateCartesian", "classast_1_1UiStateCartesian.html", null ],
+      [ "UiStateKeplerian", "classast_1_1UiStateKeplerian.html", null ],
       [ "UiTimeInterval", "classast_1_1UiTimeInterval.html", "classast_1_1UiTimeInterval" ],
       [ "UiTimePoint", "classast_1_1UiTimePoint.html", null ],
       [ "UiWidget", "classast_1_1UiWidget.html", null ],

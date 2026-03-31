@@ -2,6 +2,8 @@ var dir_3d510ba8b0868dc0f4c18bbd5b6af976 =
 [
     [ "TestConfig.cpp", "TestConfig_8cpp.html", "TestConfig_8cpp" ],
     [ "TestConfig.hpp", "TestConfig_8hpp.html", "TestConfig_8hpp" ],
+    [ "TestSerialize.cpp", "TestSerialize_8cpp.html", null ],
+    [ "TestSerialize.hpp", "TestSerialize_8hpp.html", null ],
     [ "TestWithATK.hpp", "TestWithATK_8hpp_source.html", null ],
     [ "TestWithCopernicus.hpp", "TestWithCopernicus_8hpp_source.html", null ],
     [ "TestWithFreeFlyer.hpp", "TestWithFreeFlyer_8hpp_source.html", null ],

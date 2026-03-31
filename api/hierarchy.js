@@ -473,7 +473,8 @@ var hierarchy =
           [ "ast::UiMotionTwoBody", "classast_1_1UiMotionTwoBody.html", null ]
         ] ],
         [ "ast::UiState", "classast_1_1UiState.html", [
-          [ "ast::UiStateCartesian", "classast_1_1UiStateCartesian.html", null ]
+          [ "ast::UiStateCartesian", "classast_1_1UiStateCartesian.html", null ],
+          [ "ast::UiStateKeplerian", "classast_1_1UiStateKeplerian.html", null ]
         ] ]
       ] ],
       [ "ast::UiTimeInterval", "classast_1_1UiTimeInterval.html", null ],
