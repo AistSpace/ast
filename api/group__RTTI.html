@@ -100,6 +100,7 @@ $(function(){initNavTree('group__RTTI.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">类</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
 <a href="#typedef-members">类型定义</a> &#124;
 <a href="#enum-members">枚举</a> &#124;
 <a href="#func-members">函数</a>  </div>
@@ -149,6 +150,19 @@ $(function(){initNavTree('group__RTTI.html',''); initResizable(true); });
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1WeakPtr.html">ast::WeakPtr&lt; _Object &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ga178f0fc57b31c8c581e48d918f9752c3" id="r_ga178f0fc57b31c8c581e48d918f9752c3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga178f0fc57b31c8c581e48d918f9752c3">AST_OBJECT</a>(TYPE)</td></tr>
+<tr class="separator:ga178f0fc57b31c8c581e48d918f9752c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga681cf9f5a8aae2449df1a52ac61b9e26" id="r_ga681cf9f5a8aae2449df1a52ac61b9e26"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga681cf9f5a8aae2449df1a52ac61b9e26">AST_PROPERT</a>(NAME)</td></tr>
+<tr class="separator:ga681cf9f5a8aae2449df1a52ac61b9e26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae4d5c5a2edfae2d761c94c6da282b41c" id="r_gae4d5c5a2edfae2d761c94c6da282b41c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gae4d5c5a2edfae2d761c94c6da282b41c">AST_PROPERT_NAME</a>(CLASS,  NAME)</td></tr>
+<tr class="separator:gae4d5c5a2edfae2d761c94c6da282b41c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga949af95fa9fee459f4038b82457bbc55" id="r_ga949af95fa9fee459f4038b82457bbc55"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga949af95fa9fee459f4038b82457bbc55">aPropertyName</a>(CLASS,  NAME)</td></tr>
+<tr class="separator:ga949af95fa9fee459f4038b82457bbc55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaee87285b5b93d27bb93d178bb84edf19" id="r_gaee87285b5b93d27bb93d178bb84edf19"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaee87285b5b93d27bb93d178bb84edf19">_AST_IMPL_OBJECT</a>(TYPE)</td></tr>
+<tr class="separator:gaee87285b5b93d27bb93d178bb84edf19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 类型定义</h2></td></tr>
@@ -251,6 +265,108 @@ template&lt;typename T , std::string T::* Member&gt; </td></tr>
 <tr class="memitem:gab1f1da4e88219f2a7797a180f28a869f"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#gab1f1da4e88219f2a7797a180f28a869f">ast::aNewPropertyString</a> ()</td></tr>
 <tr class="separator:gab1f1da4e88219f2a7797a180f28a869f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="gaee87285b5b93d27bb93d178bb84edf19" name="gaee87285b5b93d27bb93d178bb84edf19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaee87285b5b93d27bb93d178bb84edf19">&#9670;&#160;</a></span>_AST_IMPL_OBJECT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _AST_IMPL_OBJECT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>TYPE</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">    Class TYPE::staticType;\</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga949af95fa9fee459f4038b82457bbc55" name="ga949af95fa9fee459f4038b82457bbc55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga949af95fa9fee459f4038b82457bbc55">&#9670;&#160;</a></span>aPropertyName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define aPropertyName</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>CLASS</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>NAME</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">AST_PROPERT_NAME(CLASS, NAME)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga178f0fc57b31c8c581e48d918f9752c3" name="ga178f0fc57b31c8c581e48d918f9752c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga178f0fc57b31c8c581e48d918f9752c3">&#9670;&#160;</a></span>AST_OBJECT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AST_OBJECT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>TYPE</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">    <span class="keyword">static</span> Class staticType;\</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">inline</span> Class* getStaticType(){<span class="keywordflow">return</span> &amp;staticType;}\</div>
+<div class="line">    Class* getType()<span class="keyword"> const override</span>{<span class="keywordflow">return</span> &amp;staticType;} \</div>
+<div class="line">    <span class="keyword">static</span> <span class="keywordtype">void</span> ClassInit(Class* cls);\</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga681cf9f5a8aae2449df1a52ac61b9e26" name="ga681cf9f5a8aae2449df1a52ac61b9e26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga681cf9f5a8aae2449df1a52ac61b9e26">&#9670;&#160;</a></span>AST_PROPERT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AST_PROPERT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>NAME</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* _prop_##NAME = #NAME;</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gae4d5c5a2edfae2d761c94c6da282b41c" name="gae4d5c5a2edfae2d761c94c6da282b41c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae4d5c5a2edfae2d761c94c6da282b41c">&#9670;&#160;</a></span>AST_PROPERT_NAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AST_PROPERT_NAME</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>CLASS</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>NAME</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">CLASS::_prop_##NAME</div>
+</div><!-- fragment -->
+</div>
+</div>
 <h2 class="groupheader">枚举类型说明</h2>
 <a id="gab1de86ab568b3c12ac0a28cb2d5dda9a" name="gab1de86ab568b3c12ac0a28cb2d5dda9a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gab1de86ab568b3c12ac0a28cb2d5dda9a">&#9670;&#160;</a></span>EValueType</h2>

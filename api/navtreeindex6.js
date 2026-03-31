@@ -1,5 +1,16 @@
 var NAVTREEINDEX6 =
 {
+"StateKeplerian_8hpp.html#aebc46f63d4ca7b01bd3e9718282bc9b3":[4,0,0,1,6,3,5,1],
+"StateKeplerian_8hpp.html#aebc46f63d4ca7b01bd3e9718282bc9b3a05ce665c049e975f4102e98ba3b29ba3":[4,0,0,1,6,3,5,1,1],
+"StateKeplerian_8hpp.html#aebc46f63d4ca7b01bd3e9718282bc9b3a3776991e2d9ed4127ed93a2522ad9fe7":[4,0,0,1,6,3,5,1,0],
+"StateKeplerian_8hpp_source.html":[4,0,0,1,6,3,5],
+"StateVector_8cpp.html":[4,0,0,0,0,16],
+"StateVector_8hpp.html":[4,0,0,0,0,17],
+"StateVector_8hpp_source.html":[4,0,0,0,0,17],
+"State_8cpp.html":[4,0,0,1,6,3,0],
+"State_8hpp.html":[4,0,0,1,6,3,1],
+"State_8hpp.html#ab96fec81957cc2c158036b02a89198f0":[4,0,0,1,6,3,1,1],
+"State_8hpp.html#ab96fec81957cc2c158036b02a89198f0ab2857087f6ac735b490837f6ea566707":[4,0,0,1,6,3,1,1,0],
 "State_8hpp.html#ab96fec81957cc2c158036b02a89198f0ac29f4242fedd02baf87fbc607461696c":[4,0,0,1,6,3,1,1,1],
 "State_8hpp_source.html":[4,0,0,1,6,3,1],
 "StationaryOrbitDesigner_8cpp.html":[4,0,0,1,6,1,19],
@@ -238,16 +249,5 @@ var NAVTREEINDEX6 =
 "ValInt_8hpp.html":[4,0,0,9,8,7],
 "ValInt_8hpp_source.html":[4,0,0,9,8,7],
 "ValNull_8cpp.html":[4,0,0,9,8,8],
-"ValNull_8hpp.html":[4,0,0,9,8,9],
-"ValNull_8hpp_source.html":[4,0,0,9,8,9],
-"ValQuantity_8cpp.html":[4,0,0,9,8,10],
-"ValQuantity_8hpp.html":[4,0,0,9,8,11],
-"ValQuantity_8hpp_source.html":[4,0,0,9,8,11],
-"ValRange_8cpp.html":[4,0,0,9,8,12],
-"ValRange_8hpp.html":[4,0,0,9,8,13],
-"ValRange_8hpp_source.html":[4,0,0,9,8,13],
-"ValScalar_8hpp.html":[4,0,0,9,8,14],
-"ValScalar_8hpp_source.html":[4,0,0,9,8,14],
-"ValString_8cpp.html":[4,0,0,9,8,15],
-"ValString_8hpp.html":[4,0,0,9,8,16]
+"ValNull_8hpp.html":[4,0,0,9,8,9]
 };

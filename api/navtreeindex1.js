@@ -1,5 +1,9 @@
 var NAVTREEINDEX1 =
 {
+"BlockIn_8cpp.html":[4,0,0,1,7,1,1,5,2],
+"BlockIn_8hpp.html":[4,0,0,1,7,1,1,5,3],
+"BlockIn_8hpp_source.html":[4,0,0,1,7,1,1,5,3],
+"BlockLogicalOperator_8cpp.html":[4,0,0,1,7,1,1,1,0],
 "BlockLogicalOperator_8hpp.html":[4,0,0,1,7,1,1,1,1],
 "BlockLogicalOperator_8hpp.html#a65999e43b74f73ebbbf95a9eea2e4269":[4,0,0,1,7,1,1,1,1,1],
 "BlockLogicalOperator_8hpp.html#a65999e43b74f73ebbbf95a9eea2e4269a1b78ed0f5edadf25f61a3304a4c5807e":[4,0,0,1,7,1,1,1,1,1,3],
@@ -141,9 +145,9 @@ var NAVTREEINDEX1 =
 "CorVector_8cpp.html":[4,0,0,13,1,1],
 "CorVector_8hpp.html":[4,0,0,13,1,2],
 "CorVector_8hpp_source.html":[4,0,0,13,1,2],
-"CppSerializer_8cpp.html":[4,0,0,13,8,0],
-"CppSerializer_8hpp.html":[4,0,0,13,8,1],
-"CppSerializer_8hpp_source.html":[4,0,0,13,8,1],
+"CppSerializer_8cpp.html":[4,0,0,13,8,1],
+"CppSerializer_8hpp.html":[4,0,0,13,8,2],
+"CppSerializer_8hpp_source.html":[4,0,0,13,8,2],
 "CriticallyInclinedOrbitDesigner_8cpp.html":[4,0,0,1,6,1,4],
 "CriticallyInclinedOrbitDesigner_8hpp.html":[4,0,0,1,6,1,5],
 "CriticallyInclinedOrbitDesigner_8hpp_source.html":[4,0,0,1,6,1,5],
@@ -245,9 +249,5 @@ var NAVTREEINDEX1 =
 "Environment_8hpp_source.html":[4,0,0,13,5,5],
 "EphemerisFileParser_8cpp.html":[4,0,0,1,3,1,0],
 "EphemerisFileParser_8hpp.html":[4,0,0,1,3,1,1],
-"EphemerisFileParser_8hpp_source.html":[4,0,0,1,3,1,1],
-"EphemerisLagrangeFixed_8cpp.html":[4,0,0,1,6,0,2],
-"EphemerisLagrangeFixed_8hpp.html":[4,0,0,1,6,0,3],
-"EphemerisLagrangeFixed_8hpp_source.html":[4,0,0,1,6,0,3],
-"EphemerisLagrangeVar_8cpp.html":[4,0,0,1,6,0,4]
+"EphemerisFileParser_8hpp_source.html":[4,0,0,1,3,1,1]
 };

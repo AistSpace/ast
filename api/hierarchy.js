@@ -11,6 +11,10 @@ var hierarchy =
     [ "ast::AngleAxis", "classast_1_1AngleAxis.html", null ],
     [ "ast::AngularSize", "classast_1_1AngularSize.html", null ],
     [ "ap_array", "structap__array.html", null ],
+    [ "ast::Archive", "classast_1_1Archive.html", [
+      [ "ast::IArchive", "classast_1_1IArchive.html", null ],
+      [ "ast::OArchive", "classast_1_1OArchive.html", null ]
+    ] ],
     [ "ast::args_t", "structast_1_1args__t.html", null ],
     [ "ast::AstGfxAPI", "classast_1_1AstGfxAPI.html", null ],
     [ "ast::AttitudeProfile", "classast_1_1AttitudeProfile.html", null ],
@@ -283,6 +287,7 @@ var hierarchy =
     [ "ast::MotionProfileVisitor", "classast_1_1MotionProfileVisitor.html", null ],
     [ "Multitype", "unionMultitype.html", null ],
     [ "Namelist", "structNamelist.html", null ],
+    [ "ast::NameValuePair< T >", "classast_1_1NameValuePair.html", null ],
     [ "ast::NLPBounds", "structast_1_1NLPBounds.html", null ],
     [ "ast::NLPInfo", "structast_1_1NLPInfo.html", null ],
     [ "ast::NLPInput", "structast_1_1NLPInput.html", null ],
