@@ -36,7 +36,7 @@ AST_NAMESPACE_BEGIN
 class MotionTwoBody;
 using PMotionTwoBody = MotionTwoBody*;
 
-class MotionTwoBody final: public MotionBasic
+class AST_SIM_API MotionTwoBody final: public MotionOrbitDynamics
 {
 public:
     static MotionTwoBody* New();

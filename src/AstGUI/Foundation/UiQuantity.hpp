@@ -102,9 +102,10 @@ public:
     /// @param value 数值大小
     /// @param unit 单位
     void setValueUnit(double value, const Unit& unit);
-
+signals:
+    void quantityChanged(const Quantity& quantity);
 private:
-    void onEditingFinished();
+    void updateQuantity();
 private:
     Quantity currentQuantity_;
 };

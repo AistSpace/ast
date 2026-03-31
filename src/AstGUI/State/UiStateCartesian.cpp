@@ -38,101 +38,91 @@ UiStateCartesian::UiStateCartesian(QWidget *parent) : UiState(parent)
     // 创建主布局
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     
-    // 创建左侧布局（轨道历元、坐标系）
-    QVBoxLayout* leftLayout = new QVBoxLayout();
-    
     // 轨道历元
     QHBoxLayout* epochLayout = new QHBoxLayout();
-    QLabel* epochLabel = new QLabel("轨道历元", this);
-    epochEdit_ = new QLineEdit("2026-03-28 00:00:00.000", this);
-    epochUnitCombo_ = new QComboBox(this);
-    epochUnitCombo_->addItem("UTCG_MM");
+    QLabel* epochLabel = new QLabel(tr("轨道历元"), this);
+    epochEdit_ = new UiTimePoint(this);
     epochLayout->addWidget(epochLabel);
     epochLayout->addWidget(epochEdit_);
-    epochLayout->addWidget(epochUnitCombo_);
-    leftLayout->addLayout(epochLayout);
+    mainLayout->addLayout(epochLayout);
     
     // 坐标系
     QHBoxLayout* frameLayout = new QHBoxLayout();
-    QLabel* frameLabel = new QLabel("坐标系", this);
+    QLabel* frameLabel = new QLabel(tr("坐标系"), this);
     frameCombo_ = new QComboBox(this);
-    frameCombo_->addItem("ICRF");
+    frameCombo_->addItem(tr("ICRF"));
     frameLayout->addWidget(frameLabel);
     frameLayout->addWidget(frameCombo_);
-    leftLayout->addLayout(frameLayout);
-    
-    // 创建右侧布局（位置和速度）
-    QVBoxLayout* rightLayout = new QVBoxLayout();
+    mainLayout->addLayout(frameLayout);
     
     // 位置X
     QHBoxLayout* posXLayout = new QHBoxLayout();
-    QLabel* posXLabel = new QLabel("位置X", this);
+    QLabel* posXLabel = new QLabel(tr("位置X"), this);
     posXEdit_ = new UiQuantity(this);
     posXEdit_->setQuantity(Quantity(6678137, m));
     posXLayout->addWidget(posXLabel);
     posXLayout->addWidget(posXEdit_);
-    rightLayout->addLayout(posXLayout);
+    mainLayout->addLayout(posXLayout);
     
     // 位置Y
     QHBoxLayout* posYLayout = new QHBoxLayout();
-    QLabel* posYLabel = new QLabel("位置Y", this);
+    QLabel* posYLabel = new QLabel(tr("位置Y"), this);
     posYEdit_ = new UiQuantity(this);
     posYEdit_->setQuantity(Quantity(0, m));
     posYLayout->addWidget(posYLabel);
     posYLayout->addWidget(posYEdit_);
-    rightLayout->addLayout(posYLayout);
+    mainLayout->addLayout(posYLayout);
     
     // 位置Z
     QHBoxLayout* posZLayout = new QHBoxLayout();
-    QLabel* posZLabel = new QLabel("位置Z", this);
+    QLabel* posZLabel = new QLabel(tr("位置Z"), this);
     posZEdit_ = new UiQuantity(this);
     posZEdit_->setQuantity(Quantity(0, m));
     posZLayout->addWidget(posZLabel);
     posZLayout->addWidget(posZEdit_);
-    rightLayout->addLayout(posZLayout);
+    mainLayout->addLayout(posZLayout);
     
     // 速度X
     QHBoxLayout* velXLayout = new QHBoxLayout();
-    QLabel* velXLabel = new QLabel("速度X", this);
+    QLabel* velXLabel = new QLabel(tr("速度X"), this);
     velXEdit_ = new UiQuantity(this);
     velXEdit_->setQuantity(Quantity(0, m / s));
     velXLayout->addWidget(velXLabel);
     velXLayout->addWidget(velXEdit_);
-    rightLayout->addLayout(velXLayout);
+    mainLayout->addLayout(velXLayout);
     
     // 速度Y
     QHBoxLayout* velYLayout = new QHBoxLayout();
-    QLabel* velYLabel = new QLabel("速度Y", this);
+    QLabel* velYLabel = new QLabel(tr("速度Y"), this);
     velYEdit_ = new UiQuantity(this);
     velYEdit_->setQuantity(Quantity(6789.530297717651592, m / s));
     velYLayout->addWidget(velYLabel);
     velYLayout->addWidget(velYEdit_);
-    rightLayout->addLayout(velYLayout);
+    mainLayout->addLayout(velYLayout);
     
     // 速度Z
     QHBoxLayout* velZLayout = new QHBoxLayout();
-    QLabel* velZLabel = new QLabel("速度Z", this);
+    QLabel* velZLabel = new QLabel(tr("速度Z"), this);
     velZEdit_ = new UiQuantity(this);
     velZEdit_->setQuantity(Quantity(3686.414173013651634, m / s));
     velZLayout->addWidget(velZLabel);
     velZLayout->addWidget(velZEdit_);
-    rightLayout->addLayout(velZLayout);
+    mainLayout->addLayout(velZLayout);
     
-    // 创建网格布局，将左侧和右侧布局放在一起
-    QGridLayout* gridLayout = new QGridLayout();
-    gridLayout->addLayout(leftLayout, 0, 0);
-    gridLayout->addLayout(rightLayout, 0, 1);
-    
-    mainLayout->addLayout(gridLayout);
     setLayout(mainLayout);
+
+    connect(posXEdit_, &UiQuantity::quantityChanged, this, &UiStateCartesian::apply);
+    connect(posYEdit_, &UiQuantity::quantityChanged, this, &UiStateCartesian::apply);
+    connect(posZEdit_, &UiQuantity::quantityChanged, this, &UiStateCartesian::apply);
+    connect(velXEdit_, &UiQuantity::quantityChanged, this, &UiStateCartesian::apply);
+    connect(velYEdit_, &UiQuantity::quantityChanged, this, &UiStateCartesian::apply);
+    connect(velZEdit_, &UiQuantity::quantityChanged, this, &UiStateCartesian::apply);
+    connect(epochEdit_, &UiTimePoint::timePointChanged, this, &UiStateCartesian::apply);
 }
 
-void UiStateCartesian::setStateCartesian(StateCartesian* state)
+void UiStateCartesian::refreshUi()
 {
-    if (state)
-    {
-        stateCartesian_ = state;
-        
+    if(auto state = getStateCartesian()){
         // 设置位置和速度值
         posXEdit_->setQuantity(Quantity(state->x(), m));
         posYEdit_->setQuantity(Quantity(state->y(), m));
@@ -141,26 +131,51 @@ void UiStateCartesian::setStateCartesian(StateCartesian* state)
         velYEdit_->setQuantity(Quantity(state->vy(), m / s));
         velZEdit_->setQuantity(Quantity(state->vz(), m / s));
         
-        // 这里可以添加代码，设置轨道历元、坐标系等其他属性
+        // 设置轨道历元
+        TimePoint timePoint = state->getStateEpoch();
+        epochEdit_->setTimePoint(timePoint);
+
+        // 这里可以添加代码，设置坐标系等其他属性
+    }
+}
+
+void UiStateCartesian::apply()
+{
+    if (auto state = getStateCartesian())
+    {
+        applyTo(state);
+        emit stateCartesianChanged(state);
+    }
+}
+
+void UiStateCartesian::applyTo(StateCartesian *state)
+{
+    // 从界面上获取位置和速度值
+    state->setX(posXEdit_->getValueSI());
+    state->setY(posYEdit_->getValueSI());
+    state->setZ(posZEdit_->getValueSI());
+    state->setVx(velXEdit_->getValueSI());
+    state->setVy(velYEdit_->getValueSI());
+    state->setVz(velZEdit_->getValueSI());
+    
+    // 获取轨道历元
+    TimePoint timePoint = epochEdit_->getTimePoint();
+    state->setStateEpoch(timePoint);
+    // 这里可以添加代码，获取坐标系等其他属性
+}
+
+void UiStateCartesian::setStateCartesian(StateCartesian* state)
+{
+    if (state)
+    {
+        setObject(state);
+        refreshUi();
     }
 }
 
 StateCartesian* UiStateCartesian::getStateCartesian() const
 {
-    if (stateCartesian_)
-    {
-        // 从界面上获取位置和速度值
-        stateCartesian_->setX(posXEdit_->getMagnitude());
-        stateCartesian_->setY(posYEdit_->getMagnitude());
-        stateCartesian_->setZ(posZEdit_->getMagnitude());
-        stateCartesian_->setVx(velXEdit_->getMagnitude());
-        stateCartesian_->setVy(velYEdit_->getMagnitude());
-        stateCartesian_->setVz(velZEdit_->getMagnitude());
-        
-        // 这里可以添加代码，获取轨道历元、坐标系等其他属性
-    }
-    
-    return stateCartesian_;
+    return dynamic_cast<StateCartesian*>(getObject());
 }
 
 AST_NAMESPACE_END

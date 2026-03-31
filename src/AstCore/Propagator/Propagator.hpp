@@ -1,13 +1,13 @@
 ///
-/// @file      UiTimePoint.hpp
+/// @file      Propagator.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-28
-/// @copyright 版权所有 (C) 2026-present, ast项目.
+/// @date      2026-03-31
+/// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
-/// 本项目基于 Apache 2.0 开源许可证分发。
+/// 本软件基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
 /// 许可证全文请见：
 /// 
@@ -21,8 +21,6 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstCore/TimePoint.hpp"
-#include <QLineEdit>
 
 AST_NAMESPACE_BEGIN
 
@@ -31,21 +29,14 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class AST_GUI_API UiTimePoint : public QLineEdit
+
+/// @brief 轨道预报器基类
+class Propagator
 {
-    Q_OBJECT
 public:
-    UiTimePoint(QWidget* parent = nullptr);
-    ~UiTimePoint() = default;
-    const TimePoint& getTimePoint() const { return timePoint_; }
-    void setTimePoint(const TimePoint& timePoint);
-signals:
-    void timePointChanged(const TimePoint& timePoint);
-private:
-    void updateTimePoint();
-private:
-    TimePoint timePoint_;
+    virtual ~Propagator() = default;
 };
+
 
 /*! @} */
 

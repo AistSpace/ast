@@ -21,6 +21,7 @@
 #pragma once
  
 #include "AstGlobal.h"
+#include "Propagator.hpp"
  
 AST_NAMESPACE_BEGIN
 
@@ -38,6 +39,13 @@ AST_NAMESPACE_BEGIN
 /// @return    错误码
 AST_CORE_CAPI errc_t aTwoBodyProp(double duration, double gm, Vector3d& r, Vector3d& v);
 
+
+
+class TwoBody : public Propagator
+{
+public:
+
+};
 
 /*! @} */
 

@@ -34,7 +34,7 @@ UiTimePoint::UiTimePoint(QWidget* parent) : QLineEdit(parent)
     setToolTipDuration(0);
     
     // 连接信号和槽
-    connect(this, &QLineEdit::editingFinished, this, &UiTimePoint::onEditingFinished);
+    connect(this, &QLineEdit::editingFinished, this, &UiTimePoint::updateTimePoint);
 }
 
 void UiTimePoint::setTimePoint(const TimePoint& timePoint)
@@ -45,7 +45,7 @@ void UiTimePoint::setTimePoint(const TimePoint& timePoint)
     setText(QString::fromStdString(timeStr));
 }
 
-void UiTimePoint::onEditingFinished()
+void UiTimePoint::updateTimePoint()
 {
     // 从文本框获取时间字符串
     QString text = this->text();
@@ -64,6 +64,7 @@ void UiTimePoint::onEditingFinished()
         setStyleSheet("");
         setToolTip("");
         setTimePoint(tp);
+        emit timePointChanged(tp);
     }
 }
 
