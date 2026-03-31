@@ -280,15 +280,6 @@ var hierarchy =
     [ "metsel_1_", "structmetsel__1__.html", null ],
     [ "ast::ModEquinElem", "classast_1_1ModEquinElem.html", null ],
     [ "ast::ModOrbElem", "classast_1_1ModOrbElem.html", null ],
-    [ "ast::MotionProfile", "classast_1_1MotionProfile.html", [
-      [ "ast::MotionWithIntervalStep", "classast_1_1MotionWithIntervalStep.html", [
-        [ "ast::MotionOrbitDynamics", "classast_1_1MotionOrbitDynamics.html", [
-          [ "ast::MotionHPOP", "classast_1_1MotionHPOP.html", null ],
-          [ "ast::MotionTwoBody", "classast_1_1MotionTwoBody.html", null ]
-        ] ],
-        [ "ast::MotionSPICE", "classast_1_1MotionSPICE.html", null ]
-      ] ]
-    ] ],
     [ "ast::MotionProfileVisitor", "classast_1_1MotionProfileVisitor.html", null ],
     [ "Multitype", "unionMultitype.html", null ],
     [ "Namelist", "structNamelist.html", null ],
@@ -390,6 +381,15 @@ var hierarchy =
         [ "ast::FrameWithEpoch", "classast_1_1FrameWithEpoch.html", null ]
       ] ],
       [ "ast::MockObject", "classast_1_1MockObject.html", null ],
+      [ "ast::MotionProfile", "classast_1_1MotionProfile.html", [
+        [ "ast::MotionWithIntervalStep", "classast_1_1MotionWithIntervalStep.html", [
+          [ "ast::MotionOrbitDynamics", "classast_1_1MotionOrbitDynamics.html", [
+            [ "ast::MotionHPOP", "classast_1_1MotionHPOP.html", null ],
+            [ "ast::MotionTwoBody", "classast_1_1MotionTwoBody.html", null ]
+          ] ],
+          [ "ast::MotionSPICE", "classast_1_1MotionSPICE.html", null ]
+        ] ]
+      ] ],
       [ "ast::Point", "classast_1_1Point.html", [
         [ "ast::CelestialBody", "classast_1_1CelestialBody.html", null ],
         [ "ast::Ephemeris", "classast_1_1Ephemeris.html", [
@@ -451,6 +451,9 @@ var hierarchy =
     [ "ast::PoleMotionSXY", "structast_1_1PoleMotionSXY.html", null ],
     [ "ast::Polynomial", "classast_1_1Polynomial.html", null ],
     [ "ast::MotionOrbitDynamics::PropagationParams", "structast_1_1MotionOrbitDynamics_1_1PropagationParams.html", null ],
+    [ "ast::Propagator", "classast_1_1Propagator.html", [
+      [ "ast::TwoBody", "classast_1_1TwoBody.html", null ]
+    ] ],
     [ "ast::property_trait< T >", "structast_1_1property__trait.html", null ],
     [ "ast::property_trait< std::string >", "structast_1_1property__trait_3_01std_1_1string_01_4.html", null ],
     [ "ast::property_trait< TimePoint >", "structast_1_1property__trait_3_01TimePoint_01_4.html", null ],

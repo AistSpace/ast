@@ -1,5 +1,8 @@
 var NAVTREEINDEX5 =
 {
+"RidderSolver_8cpp.html":[4,0,0,4,4,0,5],
+"RidderSolver_8hpp.html":[4,0,0,4,4,0,6],
+"RidderSolver_8hpp_source.html":[4,0,0,4,4,0,6],
 "RotationElement_8cpp.html":[4,0,0,1,9,1,9],
 "RotationElement_8hpp.html":[4,0,0,1,9,1,10],
 "RotationElement_8hpp_source.html":[4,0,0,1,9,1,10],
@@ -246,8 +249,5 @@ var NAVTREEINDEX5 =
 "State_8cpp.html":[4,0,0,1,6,3,0],
 "State_8hpp.html":[4,0,0,1,6,3,1],
 "State_8hpp.html#ab96fec81957cc2c158036b02a89198f0":[4,0,0,1,6,3,1,1],
-"State_8hpp.html#ab96fec81957cc2c158036b02a89198f0ab2857087f6ac735b490837f6ea566707":[4,0,0,1,6,3,1,1,0],
-"State_8hpp.html#ab96fec81957cc2c158036b02a89198f0ac29f4242fedd02baf87fbc607461696c":[4,0,0,1,6,3,1,1,1],
-"State_8hpp_source.html":[4,0,0,1,6,3,1],
-"StationaryOrbitDesigner_8cpp.html":[4,0,0,1,6,1,19]
+"State_8hpp.html#ab96fec81957cc2c158036b02a89198f0ab2857087f6ac735b490837f6ea566707":[4,0,0,1,6,3,1,1,0]
 };

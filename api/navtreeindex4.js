@@ -177,6 +177,9 @@ var NAVTREEINDEX4 =
 "PosixExt_8hpp_source.html":[4,0,0,13,5,20],
 "Posix_8cpp.html":[4,0,0,13,5,17],
 "Posix_8hpp_source.html":[4,0,0,13,5,18],
+"Propagator_8cpp.html":[4,0,0,1,7,8],
+"Propagator_8hpp.html":[4,0,0,1,7,9],
+"Propagator_8hpp_source.html":[4,0,0,1,7,9],
 "PropertyBool_8cpp.html":[4,0,0,13,7,0,8],
 "PropertyBool_8hpp.html":[4,0,0,13,7,0,9],
 "PropertyBool_8hpp_source.html":[4,0,0,13,7,0,9],
@@ -246,8 +249,5 @@ var NAVTREEINDEX4 =
 "RepeatingOrbitDesigner_8hpp_source.html":[4,0,0,1,6,1,14],
 "RepeatingSunSyncOrbitDesigner_8cpp.html":[4,0,0,1,6,1,15],
 "RepeatingSunSyncOrbitDesigner_8hpp.html":[4,0,0,1,6,1,16],
-"RepeatingSunSyncOrbitDesigner_8hpp_source.html":[4,0,0,1,6,1,16],
-"RidderSolver_8cpp.html":[4,0,0,4,4,0,5],
-"RidderSolver_8hpp.html":[4,0,0,4,4,0,6],
-"RidderSolver_8hpp_source.html":[4,0,0,4,4,0,6]
+"RepeatingSunSyncOrbitDesigner_8hpp_source.html":[4,0,0,1,6,1,16]
 };

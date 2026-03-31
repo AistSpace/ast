@@ -1,5 +1,8 @@
 var NAVTREEINDEX14 =
 {
+"classast_1_1KinematicRotation.html#a7f7b4d0505a9ed34e081b9ea256d5663":[3,0,0,200,7],
+"classast_1_1KinematicRotation.html#a82779c2bb75c29307caf234dd954649d":[2,0,0,201,8],
+"classast_1_1KinematicRotation.html#a82779c2bb75c29307caf234dd954649d":[3,0,0,200,8],
 "classast_1_1KinematicRotation.html#a950848ca0984c4b5cfacf3614999a584":[2,0,0,201,18],
 "classast_1_1KinematicRotation.html#a950848ca0984c4b5cfacf3614999a584":[3,0,0,200,18],
 "classast_1_1KinematicRotation.html#a9f3ea8dc3c8c8d0f164ccce35f1d65d5":[2,0,0,201,12],
@@ -246,8 +249,5 @@ var NAVTREEINDEX14 =
 "classast_1_1MoonOrientation.html#afb1e92d6587c2ff2f73320fdc092e3d8":[0,0,5,7,3],
 "classast_1_1MotionHPOP.html":[2,0,0,222],
 "classast_1_1MotionHPOP.html":[3,0,0,221],
-"classast_1_1MotionHPOP.html#a276cb7369c6806ba6790d4092aba7bfc":[2,0,0,222,1],
-"classast_1_1MotionHPOP.html#a276cb7369c6806ba6790d4092aba7bfc":[3,0,0,221,1],
-"classast_1_1MotionHPOP.html#a3b9e9342e2baec055ae48152e237a446":[2,0,0,222,3],
-"classast_1_1MotionHPOP.html#a3b9e9342e2baec055ae48152e237a446":[3,0,0,221,3]
+"classast_1_1MotionHPOP.html#a276cb7369c6806ba6790d4092aba7bfc":[2,0,0,222,1]
 };

@@ -36,6 +36,7 @@ var group__Propagator =
       [ "J4Analytical", "classast_1_1J4Analytical.html#a042679fdceaa3b2cd19b643785c3fc4e", null ],
       [ "J4Analytical", "classast_1_1J4Analytical.html#ac9d01e913c23ac18ac57b408de967988", null ]
     ] ],
+    [ "ast::TwoBody", "classast_1_1TwoBody.html", null ],
     [ "ast::aJ2AnalyticalProp", "group__Propagator.html#gae186e6087eb05109ff1946a444863306", null ],
     [ "ast::aJ2AnalyticalProp", "group__Propagator.html#ga5f9d71688f465199e1a8a02f8251a407", null ],
     [ "ast::aJ4AnalyticalProp", "group__Propagator.html#ga16d10b2160991f648da7a9ab8c3219b3", null ],
