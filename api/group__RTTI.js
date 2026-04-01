@@ -13,6 +13,7 @@ var group__RTTI =
       [ "setValueInt", "classast_1_1PropertyTimePoint.html#a51343cb6e7a320dd762dad0f0c365567", null ],
       [ "setValueString", "classast_1_1PropertyTimePoint.html#afd2bbf7316a49375d97e0ca7e0a4aa3b", null ]
     ] ],
+    [ "ast::AttributeBasic< ObjectPtrType, PropertyType >", "classast_1_1AttributeBasic.html", null ],
     [ "ast::Object", "classast_1_1Object.html", [
       [ "attr", "classast_1_1Object.html#a0192227e3d8184f7a6d75dec82993170", null ],
       [ "decRef", "classast_1_1Object.html#aa4697ffa258dc386c82f6e496ee6f513", null ],

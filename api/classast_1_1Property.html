@@ -121,11 +121,12 @@ $(function(){initNavTree('classast_1_1Property.html',''); initResizable(true); }
 <area href="classast_1_1PropertyBool.html" title="反射属性类（bool类型）" alt="ast::PropertyBool" shape="rect" coords="147,112,284,136"/>
 <area href="classast_1_1PropertyDouble.html" title="双精度浮点数属性" alt="ast::PropertyDouble" shape="rect" coords="147,168,284,192"/>
 <area href="classast_1_1PropertyInt.html" title="反射属性类（int类型）" alt="ast::PropertyInt" shape="rect" coords="147,224,284,248"/>
-<area href="classast_1_1PropertyObject.html" title="反射属性类（对象类型）" alt="ast::PropertyObject" shape="rect" coords="147,280,284,304"/>
-<area href="classast_1_1PropertyPOD.html" title="反射属性类（POD类型: plain old data）" alt="ast::PropertyPOD" shape="rect" coords="147,336,284,360"/>
-<area href="classast_1_1PropertyString.html" title="字符串属性" alt="ast::PropertyString" shape="rect" coords="147,392,284,416"/>
-<area href="classast_1_1PropertyStruct.html" title="结构体属性" alt="ast::PropertyStruct" shape="rect" coords="147,448,284,472"/>
-<area href="classast_1_1PropertyTimePoint.html" title="时间点属性" alt="ast::PropertyTimePoint" shape="rect" coords="147,504,284,528"/>
+<area href="classast_1_1PropertyNoop.html" title="无操作属性类" alt="ast::PropertyNoop" shape="rect" coords="147,280,284,304"/>
+<area href="classast_1_1PropertyObject.html" title="反射属性类（对象类型）" alt="ast::PropertyObject" shape="rect" coords="147,336,284,360"/>
+<area href="classast_1_1PropertyPOD.html" title="反射属性类（POD类型: plain old data）" alt="ast::PropertyPOD" shape="rect" coords="147,392,284,416"/>
+<area href="classast_1_1PropertyString.html" title="字符串属性" alt="ast::PropertyString" shape="rect" coords="147,448,284,472"/>
+<area href="classast_1_1PropertyStruct.html" title="结构体属性" alt="ast::PropertyStruct" shape="rect" coords="147,504,284,528"/>
+<area href="classast_1_1PropertyTimePoint.html" title="时间点属性" alt="ast::PropertyTimePoint" shape="rect" coords="147,560,284,584"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -263,7 +264,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>errc_t 错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1PropertyBool.html#a828130490e5597310016eeb474136e1f">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#aa4d2fed2e022d4ccf00453f1c3dd99af">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#acafb53cc1c4fc8791e3616e9f8753d3e">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyObject.html#a443d4d434eec5e1506dd63a1f996c260">ast::PropertyObject</a>, <a class="el" href="classast_1_1PropertyPOD.html#a8a9fa99e6b07d5b2a1b194e997f8ee8e">ast::PropertyPOD</a>, <a class="el" href="classast_1_1PropertyQuantity.html#ab56a0c7875b4592d0671f88605f8853a">ast::PropertyQuantity</a>, <a class="el" href="classast_1_1PropertyString.html#ab7f2c8c5716363f8d03446617e680fb2">ast::PropertyString</a>, <a class="el" href="classast_1_1PropertyStruct.html#af5db65a2fa782372f103981a19641039">ast::PropertyStruct</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#a928da52652b2808fb274070a000f2c56">ast::PropertyTimePoint</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1PropertyBool.html#a828130490e5597310016eeb474136e1f">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#aa4d2fed2e022d4ccf00453f1c3dd99af">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#acafb53cc1c4fc8791e3616e9f8753d3e">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyNoop.html#a8e7a5840ae45476e6112f50cf2139f95">ast::PropertyNoop</a>, <a class="el" href="classast_1_1PropertyObject.html#a443d4d434eec5e1506dd63a1f996c260">ast::PropertyObject</a>, <a class="el" href="classast_1_1PropertyPOD.html#a8a9fa99e6b07d5b2a1b194e997f8ee8e">ast::PropertyPOD</a>, <a class="el" href="classast_1_1PropertyQuantity.html#ab56a0c7875b4592d0671f88605f8853a">ast::PropertyQuantity</a>, <a class="el" href="classast_1_1PropertyString.html#ab7f2c8c5716363f8d03446617e680fb2">ast::PropertyString</a>, <a class="el" href="classast_1_1PropertyStruct.html#af5db65a2fa782372f103981a19641039">ast::PropertyStruct</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#a928da52652b2808fb274070a000f2c56">ast::PropertyTimePoint</a> 内被实现.</p>
 
 </div>
 </div>
@@ -343,7 +344,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>errc_t 错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1PropertyBool.html#a1b2754d9bbf2f108e56b9cc55ddf5789">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a46c7b14aaca4169e82a870b5b03056ed">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#a99e811653513f73c6fa4fc6ddefa11cb">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyString.html#a9c43e932d937fb69c47279f4e35eb211">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#ac4bf35d8d498a19401dcb6517e93e16e">ast::PropertyTimePoint</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1PropertyBool.html#a1b2754d9bbf2f108e56b9cc55ddf5789">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a46c7b14aaca4169e82a870b5b03056ed">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#a99e811653513f73c6fa4fc6ddefa11cb">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyNoop.html#a471fb3018a45699eed4938b0169f9afd">ast::PropertyNoop</a>, <a class="el" href="classast_1_1PropertyString.html#a9c43e932d937fb69c47279f4e35eb211">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#ac4bf35d8d498a19401dcb6517e93e16e">ast::PropertyTimePoint</a> 内被实现.</p>
 
 </div>
 </div>
@@ -382,7 +383,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>errc_t 错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1PropertyBool.html#a2ba9b546a2d114df4bfba2332765680d">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a41d7f405855bfa70e040833b1e039a32">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#a2f6d6c66f67cf538b1da469b72da57c8">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyString.html#a6d1b3c3a4f796fd0538f7998a28dc374">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#aba6dcfbc25c5608cf45b6288c5397c78">ast::PropertyTimePoint</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1PropertyBool.html#a2ba9b546a2d114df4bfba2332765680d">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a41d7f405855bfa70e040833b1e039a32">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#a2f6d6c66f67cf538b1da469b72da57c8">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyNoop.html#a0123bda79ebca95638fc12e20a9207e1">ast::PropertyNoop</a>, <a class="el" href="classast_1_1PropertyString.html#a6d1b3c3a4f796fd0538f7998a28dc374">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#aba6dcfbc25c5608cf45b6288c5397c78">ast::PropertyTimePoint</a> 内被实现.</p>
 
 </div>
 </div>
@@ -423,7 +424,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>errc_t 错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1PropertyBool.html#a9ae9975fc9d6f976899d4933dceed2e3">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a40b7ca19f897fad0a72a3dc8689d491b">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#adb12807cd24ea925ecd5b64ebadebb54">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyString.html#a64839b2e71513501ccd256a15a62bfa3">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#ab7a025a4c5201dede794a75050cadc2a">ast::PropertyTimePoint</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1PropertyBool.html#a9ae9975fc9d6f976899d4933dceed2e3">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a40b7ca19f897fad0a72a3dc8689d491b">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#adb12807cd24ea925ecd5b64ebadebb54">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyNoop.html#a84849de91a2a417320eb1139184de11c">ast::PropertyNoop</a>, <a class="el" href="classast_1_1PropertyString.html#a64839b2e71513501ccd256a15a62bfa3">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#ab7a025a4c5201dede794a75050cadc2a">ast::PropertyTimePoint</a> 内被实现.</p>
 
 </div>
 </div>
@@ -464,7 +465,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>errc_t 错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1PropertyBool.html#a65e9871670b5e04df6de76b18d0d75e7">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a7d6362d92ccc68c5a986c6e5628fbe32">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#ad162f8865c9843d6e5cf251d489a9cce">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyQuantity.html#a400a4dc225836b6280adcf4533d754d9">ast::PropertyQuantity</a>, <a class="el" href="classast_1_1PropertyString.html#ac4fd1dcefb039c6864bb4d1b8bd1cd1a">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#aada9bcc5c15f450eb49877e1b82dd2d5">ast::PropertyTimePoint</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1PropertyBool.html#a65e9871670b5e04df6de76b18d0d75e7">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a7d6362d92ccc68c5a986c6e5628fbe32">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#ad162f8865c9843d6e5cf251d489a9cce">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyNoop.html#aaf1b02795950d7b334ae5a404aac7838">ast::PropertyNoop</a>, <a class="el" href="classast_1_1PropertyQuantity.html#a400a4dc225836b6280adcf4533d754d9">ast::PropertyQuantity</a>, <a class="el" href="classast_1_1PropertyString.html#ac4fd1dcefb039c6864bb4d1b8bd1cd1a">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#aada9bcc5c15f450eb49877e1b82dd2d5">ast::PropertyTimePoint</a> 内被实现.</p>
 
 </div>
 </div>
@@ -544,7 +545,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>errc_t 错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1PropertyBool.html#aab01b85b40f500ccf39f31afd49f3fa8">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a257b4543879b40ae6ca4c3f840277d08">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#a748fc320fe0593bbd8c24b3c35a9041f">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyString.html#ad4a7377ed3669df99fa8a62cb45f130d">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#ab79e4b56e7006fa8bc8ad3a005831005">ast::PropertyTimePoint</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1PropertyBool.html#aab01b85b40f500ccf39f31afd49f3fa8">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a257b4543879b40ae6ca4c3f840277d08">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#a748fc320fe0593bbd8c24b3c35a9041f">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyNoop.html#ad45b923b2334062592ad37bffc9be153">ast::PropertyNoop</a>, <a class="el" href="classast_1_1PropertyString.html#ad4a7377ed3669df99fa8a62cb45f130d">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#ab79e4b56e7006fa8bc8ad3a005831005">ast::PropertyTimePoint</a> 内被实现.</p>
 
 </div>
 </div>
@@ -585,7 +586,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>errc_t 错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1PropertyBool.html#ac82e4ce0f0d71d363a0dfe96dde1fccd">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a030860dadc6003a0a3aca0b1ef0d3ed2">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#aa7fbf0b48467a01869ad493e4e7ad6e2">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyString.html#a035c99f83c1233b7cd0fae13aab9f37a">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#a8d6138a8cb6339c7669d9d5923639ab3">ast::PropertyTimePoint</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1PropertyBool.html#ac82e4ce0f0d71d363a0dfe96dde1fccd">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a030860dadc6003a0a3aca0b1ef0d3ed2">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#aa7fbf0b48467a01869ad493e4e7ad6e2">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyNoop.html#a6d9338a5b75327ce8db46769419e4884">ast::PropertyNoop</a>, <a class="el" href="classast_1_1PropertyString.html#a035c99f83c1233b7cd0fae13aab9f37a">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#a8d6138a8cb6339c7669d9d5923639ab3">ast::PropertyTimePoint</a> 内被实现.</p>
 
 </div>
 </div>
@@ -626,7 +627,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>errc_t 错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1PropertyBool.html#a2d418d8e5bbf9fdd726c5e262dd5c4d0">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#abee9cf0f08da28ab7911c033a917fd70">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#a4c29b74d3efa658d66e4b2d3c1474049">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyString.html#abeb0481184a95f37caadcf51b7afe4e7">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#a51343cb6e7a320dd762dad0f0c365567">ast::PropertyTimePoint</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1PropertyBool.html#a2d418d8e5bbf9fdd726c5e262dd5c4d0">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#abee9cf0f08da28ab7911c033a917fd70">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#a4c29b74d3efa658d66e4b2d3c1474049">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyNoop.html#a20b5911d0e43af885adcd80bbf34101c">ast::PropertyNoop</a>, <a class="el" href="classast_1_1PropertyString.html#abeb0481184a95f37caadcf51b7afe4e7">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#a51343cb6e7a320dd762dad0f0c365567">ast::PropertyTimePoint</a> 内被实现.</p>
 
 </div>
 </div>
@@ -667,7 +668,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>desc_</b></td>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>errc_t 错误码 </dd></dl>
 
-<p>在 <a class="el" href="classast_1_1PropertyBool.html#aa497a89feedc363657490710ec1c912a">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a5e6be67a896b2e6ebf02468961f83ef3">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#a9c2bf8e1c138fd64f8a8eaac38cfdbfb">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyQuantity.html#a72ec535b73c719d085c19a4c5abe240f">ast::PropertyQuantity</a>, <a class="el" href="classast_1_1PropertyString.html#a6f2721e71873d42e8b64902aba6b5b42">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#afd2bbf7316a49375d97e0ca7e0a4aa3b">ast::PropertyTimePoint</a> 内被实现.</p>
+<p>在 <a class="el" href="classast_1_1PropertyBool.html#aa497a89feedc363657490710ec1c912a">ast::PropertyBool</a>, <a class="el" href="classast_1_1PropertyDouble.html#a5e6be67a896b2e6ebf02468961f83ef3">ast::PropertyDouble</a>, <a class="el" href="classast_1_1PropertyInt.html#a9c2bf8e1c138fd64f8a8eaac38cfdbfb">ast::PropertyInt</a>, <a class="el" href="classast_1_1PropertyNoop.html#a8aeaffa2e3bbdc1394f9b37eed64966b">ast::PropertyNoop</a>, <a class="el" href="classast_1_1PropertyQuantity.html#a72ec535b73c719d085c19a4c5abe240f">ast::PropertyQuantity</a>, <a class="el" href="classast_1_1PropertyString.html#a6f2721e71873d42e8b64902aba6b5b42">ast::PropertyString</a> , 以及 <a class="el" href="classast_1_1PropertyTimePoint.html#afd2bbf7316a49375d97e0ca7e0a4aa3b">ast::PropertyTimePoint</a> 内被实现.</p>
 
 </div>
 </div>

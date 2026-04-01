@@ -18,7 +18,7 @@ var hierarchy =
     [ "ast::args_t", "structast_1_1args__t.html", null ],
     [ "ast::AstGfxAPI", "classast_1_1AstGfxAPI.html", null ],
     [ "ast::AttitudeProfile", "classast_1_1AttitudeProfile.html", null ],
-    [ "ast::Attribute< PropertyType >", "classast_1_1Attribute.html", null ],
+    [ "ast::AttributeBasic< ObjectPtrType, PropertyType >", "classast_1_1AttributeBasic.html", null ],
     [ "AVector3d", "structAVector3d.html", null ],
     [ "ast::BackTrace", "classast_1_1BackTrace.html", null ],
     [ "ast::BaseParser", "classast_1_1BaseParser.html", [
@@ -114,6 +114,7 @@ var hierarchy =
           [ "ast::PropertyQuantity", "classast_1_1PropertyQuantity.html", null ]
         ] ],
         [ "ast::PropertyInt", "classast_1_1PropertyInt.html", null ],
+        [ "ast::PropertyNoop", "classast_1_1PropertyNoop.html", null ],
         [ "ast::PropertyObject", "classast_1_1PropertyObject.html", null ],
         [ "ast::PropertyPOD", "classast_1_1PropertyPOD.html", null ],
         [ "ast::PropertyString", "classast_1_1PropertyString.html", null ],
@@ -611,6 +612,7 @@ var hierarchy =
     [ "ast::VehiclePathData", "structast_1_1VehiclePathData.html", null ],
     [ "ast::WeakPtr< _Object >", "classast_1_1WeakPtr.html", null ],
     [ "ast::WeakPtr< ast::Object >", "classast_1_1WeakPtr.html", null ],
+    [ "ast::WeakPtr< Object >", "classast_1_1WeakPtr.html", null ],
     [ "ast::WorkingDirectory", "classast_1_1WorkingDirectory.html", null ],
     [ "ast::XYSCache", "structast_1_1XYSCache.html", null ]
 ];

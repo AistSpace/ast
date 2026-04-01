@@ -14,7 +14,7 @@ var searchData=
   ['asteroid_11',['Asteroid',['../classast_1_1Asteroid.html',1,'ast']]],
   ['astgfxapi_12',['AstGfxAPI',['../classast_1_1AstGfxAPI.html',1,'ast']]],
   ['attitudeprofile_13',['AttitudeProfile',['../classast_1_1AttitudeProfile.html',1,'ast']]],
-  ['attribute_14',['Attribute',['../classast_1_1Attribute.html',1,'ast']]],
+  ['attributebasic_14',['AttributeBasic',['../classast_1_1AttributeBasic.html',1,'ast']]],
   ['avector3d_15',['AVector3d',['../structAVector3d.html',1,'']]],
   ['axes_16',['Axes',['../classast_1_1Axes.html',1,'ast']]],
   ['axesbodyfixed_17',['AxesBodyFixed',['../classast_1_1AxesBodyFixed.html',1,'ast']]],
