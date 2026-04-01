@@ -210,9 +210,24 @@ TEST(QuantityParser, NoWhitespaceHandling)
 TEST(QuantityParser, WhitespaceHandling)
 {
     Quantity quantity;
+    errc_t err;
+
+    // 前面有空格的浮点数
+    err = aQuantityParse(" 1.23e3", quantity);
+    EXPECT_EQ(quantity, 1.23e3);
+    EXPECT_TRUE(quantity.isValid());
+    EXPECT_NEAR(quantity.magnitude(), 1230, 1e-9);
+
+    // 末尾有空格的浮点数
+     err = aQuantityParse("1.23e3 ", quantity);
+    EXPECT_EQ(err, eNoError);
+    EXPECT_EQ(quantity, 1.23e3);
+    EXPECT_TRUE(quantity.isValid());
+    EXPECT_NEAR(quantity.magnitude(), 1230, 1e-9);
+    
     
     // 数值和单位之间有多个空格
-    errc_t err = aQuantityParse("123   m/s", quantity);
+    err = aQuantityParse("123   m/s", quantity);
     EXPECT_EQ(err, eNoError);
     EXPECT_EQ(quantity, 123 * m/s);
     EXPECT_TRUE(quantity.isValid());
@@ -224,13 +239,20 @@ TEST(QuantityParser, WhitespaceHandling)
     EXPECT_EQ(quantity, 123 * m / s);
     EXPECT_TRUE(quantity.isValid());
     EXPECT_NEAR(quantity.magnitude(), 123.0, 1e-9);
+
+    // 带括号的复合单位，前面有空格
+    err = aQuantityParse("  123  [m/s^2]  ", quantity);
+    EXPECT_EQ(err, eNoError);
+    EXPECT_EQ(quantity, 123 * m/s/s);
+    EXPECT_TRUE(quantity.isValid());
+    EXPECT_NEAR(quantity.magnitude(), 123.0, 1e-9);
 }
 
 // 测试科学计数法
 TEST(QuantityParser, ScientificNotation)
 {
     Quantity quantity;
-    
+
     // 正指数
     errc_t err = aQuantityParse("1.23e3 m", quantity);
     EXPECT_EQ(err, eNoError);

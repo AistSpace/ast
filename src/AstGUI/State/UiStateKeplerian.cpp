@@ -58,13 +58,14 @@ UiStateKeplerian::UiStateKeplerian(QWidget *parent) : UiState(parent)
     // 轨道大小
     sizeLabel_ = new QLabel(tr("轨道大小"), this);
     sizeTypeCombo_ = new QComboBox(this);
-    sizeTypeCombo_->addItem(tr("半长轴"));
-    sizeTypeCombo_->addItem(tr("远地点高度"));
-    sizeTypeCombo_->addItem(tr("远地点半径"));
-    sizeTypeCombo_->addItem(tr("近地点高度"));
-    sizeTypeCombo_->addItem(tr("近地点半径"));
-    sizeTypeCombo_->addItem(tr("周期"));
-    sizeTypeCombo_->addItem(tr("平均角速度"));
+    sizeTypeCombo_->addItem(tr("半长轴"), static_cast<int>(ESizeType::eSMA));
+    sizeTypeCombo_->addItem(tr("远地点高度"), static_cast<int>(ESizeType::eApoAlt));
+    sizeTypeCombo_->addItem(tr("远地点半径"), static_cast<int>(ESizeType::eApoRad));
+    sizeTypeCombo_->addItem(tr("近地点高度"), static_cast<int>(ESizeType::ePeriAlt));
+    sizeTypeCombo_->addItem(tr("近地点半径"), static_cast<int>(ESizeType::ePeriRad));
+    sizeTypeCombo_->addItem(tr("周期"), static_cast<int>(ESizeType::ePeriod));
+    sizeTypeCombo_->addItem(tr("平均角速度"), static_cast<int>(ESizeType::eMeanMotion));
+
     sizeEdit_ = new UiQuantity(this);
     sizeEdit_->setQuantity(Quantity(6678137));
     mainLayout->addWidget(sizeLabel_, row, 0);
@@ -75,11 +76,12 @@ UiStateKeplerian::UiStateKeplerian(QWidget *parent) : UiState(parent)
     // 轨道形状
     shapeLabel_ = new QLabel(tr("轨道形状"), this);
     shapeTypeCombo_ = new QComboBox(this);
-    shapeTypeCombo_->addItem(tr("偏心率"));
-    shapeTypeCombo_->addItem(tr("远地点高度"));
-    shapeTypeCombo_->addItem(tr("远地点半径"));
-    shapeTypeCombo_->addItem(tr("近地点高度"));
-    shapeTypeCombo_->addItem(tr("近地点半径"));
+    shapeTypeCombo_->addItem(tr("偏心率"), static_cast<int>(EShapeType::eEcc));
+    shapeTypeCombo_->addItem(tr("远地点高度"), static_cast<int>(EShapeType::eApoAlt));
+    shapeTypeCombo_->addItem(tr("远地点半径"), static_cast<int>(EShapeType::eApoRad));
+    shapeTypeCombo_->addItem(tr("近地点高度"), static_cast<int>(EShapeType::ePeriAlt));
+    shapeTypeCombo_->addItem(tr("近地点半径"), static_cast<int>(EShapeType::ePeriRad));
+
     shapeEdit_ = new UiQuantity(this);
     shapeEdit_->setQuantity(Quantity(0.0));
     mainLayout->addWidget(shapeLabel_, row, 0);
@@ -98,8 +100,9 @@ UiStateKeplerian::UiStateKeplerian(QWidget *parent) : UiState(parent)
     // 轨道面方向
     orientationLabel_ = new QLabel(tr("轨道面方向"), this);
     orientationTypeCombo_ = new QComboBox(this);
-    orientationTypeCombo_->addItem(tr("升交点赤经"));
-    orientationTypeCombo_->addItem(tr("升交点经度"));
+    orientationTypeCombo_->addItem(tr("升交点赤经"), static_cast<int>(EOrientationType::eRAAN));
+    orientationTypeCombo_->addItem(tr("升交点经度"), static_cast<int>(EOrientationType::eLAN));
+    
     orientationEdit_ = new UiQuantity(this);
     orientationEdit_->setQuantity(Quantity(0.0, deg));
     mainLayout->addWidget(orientationLabel_, row, 0);
@@ -118,14 +121,15 @@ UiStateKeplerian::UiStateKeplerian(QWidget *parent) : UiState(parent)
     // 轨道位置
     positionLabel_ = new QLabel(tr("轨道位置"), this);
     positionTypeCombo_ = new QComboBox(this);
-    positionTypeCombo_->addItem(tr("真近点角"));
-    positionTypeCombo_->addItem(tr("平近点角"));
-    positionTypeCombo_->addItem(tr("偏近点角"));
-    positionTypeCombo_->addItem(tr("纬度幅角"));
-    positionTypeCombo_->addItem(tr("过近地点后时间"));
-    positionTypeCombo_->addItem(tr("过升交点后时间"));
-    positionTypeCombo_->addItem(tr("过近地点时刻"));
-    positionTypeCombo_->addItem(tr("过升交点时刻"));
+    positionTypeCombo_->addItem(tr("真近点角"), static_cast<int>(EPositionType::eTrueAnomaly));
+    positionTypeCombo_->addItem(tr("平近点角"), static_cast<int>(EPositionType::eMeanAnomaly));
+    positionTypeCombo_->addItem(tr("偏近点角"), static_cast<int>(EPositionType::eEccAnomaly));
+    positionTypeCombo_->addItem(tr("纬度幅角"), static_cast<int>(EPositionType::eArgLat));
+    positionTypeCombo_->addItem(tr("过近地点后时间"), static_cast<int>(EPositionType::eTimePastPeri));
+    positionTypeCombo_->addItem(tr("过升交点后时间"), static_cast<int>(EPositionType::eTimePastAscNode));
+    // positionTypeCombo_->addItem(tr("过近地点时刻"), static_cast<int>(EPositionType::eTimeOfPeriPassage));
+    // positionTypeCombo_->addItem(tr("过升交点时刻"), static_cast<int>(EPositionType::eTimeOfAscNodePassage));
+
     positionEdit_ = new UiQuantity(this);
     positionEdit_->setQuantity(Quantity(0.0, deg));
     mainLayout->addWidget(positionLabel_, row, 0);
@@ -136,148 +140,50 @@ UiStateKeplerian::UiStateKeplerian(QWidget *parent) : UiState(parent)
     setLayout(mainLayout);
 
     // 连接信号槽
-    connect(epochEdit_, &UiTimePoint::timePointChanged, this, &UiStateKeplerian::apply);
-    connect(sizeEdit_, &UiQuantity::quantityChanged, this, &UiStateKeplerian::apply);
-    connect(sizeTypeCombo_, &QComboBox::currentTextChanged, this, &UiStateKeplerian::apply);
-    connect(shapeEdit_, &UiQuantity::quantityChanged, this, &UiStateKeplerian::apply);
-    connect(shapeTypeCombo_, &QComboBox::currentTextChanged, this, &UiStateKeplerian::apply);
-    connect(incEdit_, &UiQuantity::quantityChanged, this, &UiStateKeplerian::apply);
-    connect(orientationEdit_, &UiQuantity::quantityChanged, this, &UiStateKeplerian::apply);
-    connect(orientationTypeCombo_, &QComboBox::currentTextChanged, this, &UiStateKeplerian::apply);
-    connect(argPeriEdit_, &UiQuantity::quantityChanged, this, &UiStateKeplerian::apply);
-    connect(positionEdit_, &UiQuantity::quantityChanged, this, &UiStateKeplerian::apply);
-    connect(positionTypeCombo_, &QComboBox::currentTextChanged, this, &UiStateKeplerian::apply);
+    connect(epochEdit_, &UiTimePoint::timePointChanged, this, &UiStateKeplerian::onEpochChanged);
+    connect(sizeEdit_, &UiQuantity::quantityChanged, this, &UiStateKeplerian::onSizeParamChanged);
+    connect(sizeTypeCombo_, &QComboBox::currentTextChanged, this, &UiStateKeplerian::onSizeTypeChanged);
+    connect(shapeEdit_, &UiQuantity::quantityChanged, this, &UiStateKeplerian::onShapeParamChanged);
+    connect(shapeTypeCombo_, &QComboBox::currentTextChanged, this, &UiStateKeplerian::onShapeTypeChanged);
+    connect(incEdit_, &UiQuantity::quantityChanged, this, &UiStateKeplerian::onIncChanged);
+    connect(orientationEdit_, &UiQuantity::quantityChanged, this, &UiStateKeplerian::onOrientationParamChanged);
+    connect(orientationTypeCombo_, &QComboBox::currentTextChanged, this, &UiStateKeplerian::onOrientationTypeChanged);
+    connect(argPeriEdit_, &UiQuantity::quantityChanged, this, &UiStateKeplerian::onArgPeriChanged);
+    connect(positionEdit_, &UiQuantity::quantityChanged, this, &UiStateKeplerian::onPositionParamChanged);
+    connect(positionTypeCombo_, &QComboBox::currentTextChanged, this, &UiStateKeplerian::onPositionTypeChanged);
+    connect(frameCombo_, &QComboBox::currentTextChanged, this, &UiStateKeplerian::onFrameChanged);
 }
 
 void UiStateKeplerian::refreshUi()
 {
-    if(auto state = getStateKeplerian()){
-        // 设置轨道历元
-        TimePoint timePoint = state->getStateEpoch();
-        epochEdit_->setTimePoint(timePoint);
-        
-        // 设置轨道大小
-        double sizeParam = state->getSizeParam();
-        ESizeType sizeType = static_cast<ESizeType>(sizeTypeCombo_->currentIndex());
-        state->setSizeType(sizeType);
-        switch(sizeType){
-        case ESizeType::eSMA:
-            sizeEdit_->setQuantity(Quantity(sizeParam, m));
-            break;
-        case ESizeType::eApoAlt:
-        case ESizeType::ePeriAlt:
-            sizeEdit_->setQuantity(Quantity(sizeParam, m));
-            break;
-        case ESizeType::eApoRad:
-        case ESizeType::ePeriRad:
-            sizeEdit_->setQuantity(Quantity(sizeParam, m));
-            break;
-        case ESizeType::ePeriod:
-            sizeEdit_->setQuantity(Quantity(sizeParam, s));
-            break;
-        case ESizeType::eMeanMotion:
-            sizeEdit_->setQuantity(Quantity(sizeParam, rad / s));
-            break;
-        }
-        
-        // 设置轨道形状
-        double shapeParam = state->getShapeParam();
-        EShapeType shapeType = static_cast<EShapeType>(shapeTypeCombo_->currentIndex());
-        state->setShapeType(shapeType);
-        switch(shapeType){
-        case EShapeType::eEcc:
-            shapeEdit_->setQuantity(Quantity(shapeParam));
-            break;
-        case EShapeType::eApoAlt:
-        case EShapeType::ePeriAlt:
-            shapeEdit_->setQuantity(Quantity(shapeParam, m));
-            break;
-        case EShapeType::eApoRad:
-        case EShapeType::ePeriRad:
-            shapeEdit_->setQuantity(Quantity(shapeParam, m));
-            break;
-        }
-        
-        // 设置倾角
-        incEdit_->setQuantity(Quantity(state->getInc(), deg));
-        
-        // 设置轨道面方向
-        double orientationParam = state->getOrientationParam();
-        EOrientationType orientationType = static_cast<EOrientationType>(orientationTypeCombo_->currentIndex());
-        state->setOrientationType(orientationType);
-        orientationEdit_->setQuantity(Quantity(orientationParam, deg));
-        
-        // 设置近地点幅角
-        argPeriEdit_->setQuantity(Quantity(state->getArgPeri(), deg));
-        
-        // 设置轨道位置
-        double positionParam = state->getPositionParam();
-        EPositionType positionType = static_cast<EPositionType>(positionTypeCombo_->currentIndex());
-        state->setPositionType(positionType);
-        switch(positionType){
-        case EPositionType::eTrueAnomaly:
-        case EPositionType::eMeanAnomaly:
-        case EPositionType::eEccAnomaly:
-        case EPositionType::eArgLat:
-            positionEdit_->setQuantity(Quantity(positionParam, deg));
-            break;
-        case EPositionType::eTimePastPeri:
-        case EPositionType::eTimePastAscNode:
-            positionEdit_->setQuantity(Quantity(positionParam, s));
-            break;
-        case EPositionType::eTimeOfPeriPassage:
-        case EPositionType::eTimeOfAscNodePassage:
-            // 这里需要特殊处理，因为是时间点
-            break;
-        }
-    }
+    refreshSizeType();
+    refreshSizeParam();
+    refreshShapeType();
+    refreshShapeParam();
+    refreshOrientationType();
+    refreshOrientationParam();
+    refreshPositionType();
+    refreshPositionParam();
+    refreshEpoch();
+    refreshFrame();
+    refreshInc();
+    refreshArgPeri();
 }
 
-void UiStateKeplerian::apply()
-{
-    if (auto state = getStateKeplerian())
-    {
-        applyTo(state);
-        emit stateKeplerianChanged(state);
-    }
-}
+// void UiStateKeplerian::apply()
+// {
+//     if (auto state = getStateKeplerian())
+//     {
+//         emit stateKeplerianChanged(state);
+//     }
+// }
 
-void UiStateKeplerian::applyTo(StateKeplerian *state)
-{
-    // 获取轨道历元
-    TimePoint timePoint = epochEdit_->getTimePoint();
-    state->setStateEpoch(timePoint);
-    
-    // 设置轨道大小
-    ESizeType sizeType = static_cast<ESizeType>(sizeTypeCombo_->currentIndex());
-    state->setSizeType(sizeType);
-    double sizeParam = sizeEdit_->getValueSI();
-    state->setSizeParam(sizeParam, sizeType);
-    
-    // 设置轨道形状
-    EShapeType shapeType = static_cast<EShapeType>(shapeTypeCombo_->currentIndex());
-    state->setShapeType(shapeType);
-    double shapeParam = shapeEdit_->getValueSI();
-    state->setShapeParam(shapeParam, shapeType);
-    
-    // 设置倾角
-    state->setInc(incEdit_->getValueSI());
-    
-    // 设置轨道面方向
-    EOrientationType orientationType = static_cast<EOrientationType>(orientationTypeCombo_->currentIndex());
-    state->setOrientationType(orientationType);
-    double orientationParam = orientationEdit_->getValueSI();
-    state->setOrientationParam(orientationParam, orientationType);
-    
-    // 设置近地点幅角
-    state->setArgPeri(argPeriEdit_->getValueSI());
-    
-    // 设置轨道位置
-    EPositionType positionType = static_cast<EPositionType>(positionTypeCombo_->currentIndex());
-    state->setPositionType(positionType);
-    double positionParam = positionEdit_->getValueSI();
-    state->setPositionParam(positionParam, positionType);
-}
+// void UiStateKeplerian::applyTo(StateKeplerian *state)
+// {
+//     auto oldState = getStateKeplerian();
+//     setObject(state);
+//     
+// }
 
 void UiStateKeplerian::setStateKeplerian(StateKeplerian* state)
 {
@@ -291,6 +197,304 @@ void UiStateKeplerian::setStateKeplerian(StateKeplerian* state)
 StateKeplerian* UiStateKeplerian::getStateKeplerian() const
 {
     return dynamic_cast<StateKeplerian*>(getObject());
+}
+
+void UiStateKeplerian::onSizeTypeChanged()
+{
+    if (auto state = getStateKeplerian())
+    {
+        ESizeType sizeType = static_cast<ESizeType>(sizeTypeCombo_->currentData().toInt());
+        state->setSizeType(sizeType);
+        refreshUi();
+        emit stateKeplerianChanged(state);
+    }
+}
+
+void UiStateKeplerian::onSizeParamChanged()
+{
+    if (auto state = getStateKeplerian())
+    {
+        double sizeParam = sizeEdit_->getValueSI();
+        state->setSizeParam(sizeParam);
+        refreshUi();
+        emit stateKeplerianChanged(state);
+    }
+}
+
+void UiStateKeplerian::onShapeTypeChanged()
+{
+    if (auto state = getStateKeplerian())
+    {
+        EShapeType shapeType = static_cast<EShapeType>(shapeTypeCombo_->currentData().toInt());
+        state->setShapeType(shapeType);
+        refreshUi();
+        emit stateKeplerianChanged(state);
+    }
+}
+
+void UiStateKeplerian::onShapeParamChanged()
+{
+    if (auto state = getStateKeplerian())
+    {
+        double shapeParam = shapeEdit_->getValueSI();
+        state->setShapeParam(shapeParam);
+        refreshUi();
+        emit stateKeplerianChanged(state);
+    }
+}
+
+void UiStateKeplerian::onOrientationTypeChanged()
+{
+    if (auto state = getStateKeplerian())
+    {
+        EOrientationType orientationType = static_cast<EOrientationType>(orientationTypeCombo_->currentData().toInt());
+        state->setOrientationType(orientationType);
+        refreshUi();
+        emit stateKeplerianChanged(state);
+    }
+}
+
+void UiStateKeplerian::onOrientationParamChanged()
+{
+    if (auto state = getStateKeplerian())
+    {
+        double orientationParam = orientationEdit_->getValueSI();
+        state->setOrientationParam(orientationParam);
+        refreshUi();
+        emit stateKeplerianChanged(state);
+    }
+}
+
+void UiStateKeplerian::onPositionTypeChanged()
+{
+    if (auto state = getStateKeplerian())
+    {
+        EPositionType positionType = static_cast<EPositionType>(positionTypeCombo_->currentData().toInt());
+        state->setPositionType(positionType);
+        refreshUi();
+        emit stateKeplerianChanged(state);
+    }
+}
+
+void UiStateKeplerian::onPositionParamChanged()
+{
+    if (auto state = getStateKeplerian())
+    {
+        double positionParam = positionEdit_->getValueSI();
+        state->setPositionParam(positionParam);
+        refreshUi();
+        emit stateKeplerianChanged(state);
+    }
+}
+
+void UiStateKeplerian::onEpochChanged()
+{
+    if (auto state = getStateKeplerian())
+    {
+        TimePoint timePoint = epochEdit_->getTimePoint();
+        state->setStateEpoch(timePoint);
+        refreshUi();
+        emit stateKeplerianChanged(state);
+    }
+}
+
+void UiStateKeplerian::onFrameChanged()
+{
+    if (auto state = getStateKeplerian())
+    {
+        // 坐标系暂时只支持ICRF
+        refreshUi();
+        emit stateKeplerianChanged(state);
+    }
+}
+
+void UiStateKeplerian::onIncChanged()
+{
+    if (auto state = getStateKeplerian())
+    {
+        state->setInc(incEdit_->getValueSI());
+        refreshUi();
+        emit stateKeplerianChanged(state);
+    }
+}
+
+void UiStateKeplerian::onArgPeriChanged()
+{
+    if (auto state = getStateKeplerian())
+    {
+        state->setArgPeri(argPeriEdit_->getValueSI());
+        refreshUi();
+        emit stateKeplerianChanged(state);
+    }
+}
+
+void UiStateKeplerian::refreshSizeType()
+{
+    if (auto state = getStateKeplerian())
+    {
+        ESizeType sizeType = state->getSizeType();
+        int index = sizeTypeCombo_->findData(static_cast<int>(sizeType));
+        if (index != -1)
+        {
+            sizeTypeCombo_->setCurrentIndex(index);
+        }else{
+            // 处理未知的sizeType
+        }
+    }
+}
+
+void UiStateKeplerian::refreshSizeParam()
+{
+    if (auto state = getStateKeplerian())
+    {
+        ESizeType sizeType = state->getSizeType();
+        double sizeParam = state->getSizeParam();
+        switch(sizeType){
+        case ESizeType::eSMA:
+        case ESizeType::eApoAlt:
+        case ESizeType::ePeriAlt:
+        case ESizeType::eApoRad:
+        case ESizeType::ePeriRad:
+            sizeEdit_->setQuantity(Quantity(sizeParam, m));
+            break;
+        case ESizeType::ePeriod:
+            sizeEdit_->setQuantity(Quantity(sizeParam, s));
+            break;
+        case ESizeType::eMeanMotion:
+            sizeEdit_->setQuantity(Quantity(sizeParam, rad / s));
+            break;
+        }
+    }
+}
+
+void UiStateKeplerian::refreshShapeType()
+{
+    if (auto state = getStateKeplerian())
+    {
+        EShapeType shapeType = state->getShapeType();
+        int index = shapeTypeCombo_->findData(static_cast<int>(shapeType));
+        if (index != -1)
+        {
+            shapeTypeCombo_->setCurrentIndex(index);
+        }else{
+            // 处理未知的shapeType
+        }
+    }
+}
+
+void UiStateKeplerian::refreshShapeParam()
+{
+    if (auto state = getStateKeplerian())
+    {
+        EShapeType shapeType = state->getShapeType();
+        double shapeParam = state->getShapeParam();
+        switch(shapeType){
+        case EShapeType::eEcc:
+            shapeEdit_->setQuantity(Quantity(shapeParam));
+            break;
+        case EShapeType::eApoAlt:
+        case EShapeType::ePeriAlt:
+        case EShapeType::eApoRad:
+        case EShapeType::ePeriRad:
+            shapeEdit_->setQuantity(Quantity(shapeParam, m));
+            break;
+        }
+    }
+}
+
+void UiStateKeplerian::refreshOrientationType()
+{
+    if (auto state = getStateKeplerian())
+    {
+        EOrientationType orientationType = state->getOrientationType();
+        int index = orientationTypeCombo_->findData(static_cast<int>(orientationType));
+        if (index != -1)
+        {
+            orientationTypeCombo_->setCurrentIndex(index);
+        }else{
+            // 处理未知的orientationType
+        }
+    }
+}
+
+void UiStateKeplerian::refreshOrientationParam()
+{
+    if (auto state = getStateKeplerian())
+    {
+        double orientationParam = state->getOrientationParam();
+        orientationEdit_->setQuantity(Quantity(orientationParam, rad));
+    }
+}
+
+void UiStateKeplerian::refreshPositionType()
+{
+    if (auto state = getStateKeplerian())
+    {
+        EPositionType positionType = state->getPositionType();
+        int index = positionTypeCombo_->findData(static_cast<int>(positionType));
+        if (index != -1)
+        {
+            positionTypeCombo_->setCurrentIndex(index);
+        }else{
+            // 处理未知的positionType
+        }
+    }
+}
+
+void UiStateKeplerian::refreshPositionParam()
+{
+    if (auto state = getStateKeplerian())
+    {
+        EPositionType positionType = state->getPositionType();
+        double positionParam = state->getPositionParam();
+        switch(positionType){
+        case EPositionType::eTrueAnomaly:
+        case EPositionType::eMeanAnomaly:
+        case EPositionType::eEccAnomaly:
+        case EPositionType::eArgLat:
+            positionEdit_->setQuantity(Quantity(positionParam, rad));
+            break;
+        case EPositionType::eTimePastPeri:
+        case EPositionType::eTimePastAscNode:
+            positionEdit_->setQuantity(Quantity(positionParam, s));
+            break;
+        case EPositionType::eTimeOfPeriPassage:
+        case EPositionType::eTimeOfAscNodePassage:
+            // 这里需要特殊处理，因为是时间点
+            break;
+        }
+    }
+}
+
+void UiStateKeplerian::refreshEpoch()
+{
+    if (auto state = getStateKeplerian())
+    {
+        TimePoint timePoint = state->getStateEpoch();
+        epochEdit_->setTimePoint(timePoint);
+    }
+}
+
+void UiStateKeplerian::refreshFrame()
+{
+    // 坐标系暂时只支持ICRF
+    frameCombo_->setCurrentIndex(0);
+}
+
+void UiStateKeplerian::refreshInc()
+{
+    if (auto state = getStateKeplerian())
+    {
+        incEdit_->setValueSI(state->getInc());
+    }
+}
+
+void UiStateKeplerian::refreshArgPeri()
+{
+    if (auto state = getStateKeplerian())
+    {
+        argPeriEdit_->setValueSI(state->getArgPeri());
+    }
 }
 
 AST_NAMESPACE_END

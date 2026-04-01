@@ -173,6 +173,18 @@ public:
 
     /// @brief 获取近地点半径
     double getPeriRad() const;
+
+    /// @brief 获取轨道大小的定义方式
+    ESizeType getSizeType() const{return sizeType_;}
+    
+    /// @brief 获取轨道形状的定义方式
+    EShapeType getShapeType() const{return shapeType_;}
+
+    /// @brief 获取轨道面方向的定义方式
+    EOrientationType getOrientationType() const{return orientationType_;}
+
+    /// @brief 获取轨道位置的定义方式
+    EPositionType getPositionType() const{return positionType_;}
 PROPERTIES:
     /// @brief 获取半长轴
     length_d getSMA() const;

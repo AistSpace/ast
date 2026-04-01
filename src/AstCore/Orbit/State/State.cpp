@@ -91,6 +91,7 @@ double State::getBodyRadius() const
 {
     if(auto body = getBody())
         return body->getRadius();
+    aError("failed to get body radius");
     return 0.0;
 }
 

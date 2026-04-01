@@ -48,11 +48,37 @@ public:
     StateKeplerian* getStateKeplerian() const;
     void setStateKeplerian(StateKeplerian* state);
     void refreshUi();
-    void apply();
+    // void apply();
+    // void applyTo(StateKeplerian* state);
+protected:
+    void onSizeTypeChanged();
+    void onSizeParamChanged();
+    void onShapeTypeChanged();
+    void onShapeParamChanged();
+    void onOrientationTypeChanged();
+    void onOrientationParamChanged();
+    void onPositionTypeChanged();
+    void onPositionParamChanged();
+    void onEpochChanged();
+    void onFrameChanged();
+    void onIncChanged();
+    void onArgPeriChanged();
+protected:
+    void refreshSizeType();
+    void refreshSizeParam();
+    void refreshShapeType();
+    void refreshShapeParam();
+    void refreshOrientationType();
+    void refreshOrientationParam();
+    void refreshPositionType();
+    void refreshPositionParam();
+    void refreshEpoch();
+    void refreshFrame();
+    void refreshInc();
+    void refreshArgPeri();
+
 signals:
     void stateKeplerianChanged(StateKeplerian* state);
-private slots:
-    void applyTo(StateKeplerian* state);
 private:
     // 轨道历元
     UiTimePoint* epochEdit_{nullptr};

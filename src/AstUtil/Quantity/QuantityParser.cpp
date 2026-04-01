@@ -46,6 +46,8 @@ errc_t aQuantityParse(StringView sv, double& magnitude, Unit& unit)
         return eErrorParse;
     }
 
+    skipWhitespace(position, end);
+
     // 如果已经解析到了字符串的末尾，则单位为空
     if (*position == '\0' || position >= end)
     {
@@ -53,8 +55,8 @@ errc_t aQuantityParse(StringView sv, double& magnitude, Unit& unit)
         return eNoError;
     }
 
+    // 如果存在单位，则解析单位
     {
-        skipWhitespace(position, end);
         StringView sv(position, end - position);
         if (!sv.empty() && sv.front() == '[') {
             auto pos = sv.rfind(']');

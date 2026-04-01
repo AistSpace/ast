@@ -20,6 +20,9 @@
 
 #include "AstGUI/UiStateKeplerian.hpp"
 #include "AstCore/StateKeplerian.hpp"
+#include "AstCore/CelestialBody.hpp"
+#include "AstCore/RunTime.hpp"
+#include "AstUtil/Literals.hpp"
 #include <QApplication>
 #include <QMainWindow>
 #include <QVBoxLayout>
@@ -30,6 +33,7 @@ AST_USING_NAMESPACE
 
 int main(int argc, char* argv[])
 {
+    aInitialize();
     printf("testUiStateKeplerian.cpp\n");
     QApplication app(argc, argv);
     
@@ -47,12 +51,13 @@ int main(int argc, char* argv[])
     
     // 创建 StateKeplerian 对象
     StateKeplerian* stateKeplerian = StateKeplerian::New();
-    stateKeplerian->setSMA(7000000); // 半长轴 7000 km
+    stateKeplerian->setSMA(7000000_km); // 半长轴 7000 km
     stateKeplerian->setEcc(0.1);     // 偏心率 0.1
-    stateKeplerian->setInc(30.0);    // 倾角 30 度
-    stateKeplerian->setRAAN(45.0);   // 升交点赤经 45 度
-    stateKeplerian->setArgPeri(60.0); // 近地点幅角 60 度
-    stateKeplerian->setTrueAnomaly(90.0); // 真近点角 90 度
+    stateKeplerian->setInc(30.0_deg);    // 倾角 30 度
+    stateKeplerian->setRAAN(45.0_deg);   // 升交点赤经 45 度
+    stateKeplerian->setArgPeri(60.0_deg); // 近地点幅角 60 度
+    stateKeplerian->setTrueAnomaly(90.0_deg); // 真近点角 90 度
+    stateKeplerian->setFrame(aGetEarth()->makeFrameICRF()); // 设置参考系为 地球ICRF
     
     // 绑定 StateKeplerian 对象
     uiStateKeplerian->setStateKeplerian(stateKeplerian);
@@ -87,7 +92,7 @@ int main(int argc, char* argv[])
     
     window.setCentralWidget(centralWidget);
     window.setWindowTitle("UiStateKeplerian Test");
-    window.resize(800, 600);
+    window.resize(1000, 600);
     window.show();
     
     return app.exec();
