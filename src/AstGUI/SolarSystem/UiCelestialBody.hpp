@@ -1,9 +1,9 @@
 ///
-/// @file      IArchive.hpp
+/// @file      UiCelestialBody.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-31
+/// @date      2026-04-01
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,7 +21,6 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "Archive.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,20 +29,7 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class AST_UTIL_API IArchive: public Archive
-{
-public:
-    using Archive::Archive;
 
-    IArchive& operator&(Attribute& attr) override;
-
-    template<typename T>
-    IArchive& operator>>(T& val)
-    {
-        Archive::operator&(val);
-        return *this;
-    }
-};
 
 /*! @} */
 

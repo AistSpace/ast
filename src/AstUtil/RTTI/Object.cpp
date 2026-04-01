@@ -22,6 +22,7 @@
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/Class.hpp"            // for Class
 #include "AstUtil/Property.hpp"         // for Property
+#include "AstUtil/Attribute.hpp"        // for Attribute
  
 AST_NAMESPACE_BEGIN
  
@@ -31,6 +32,11 @@ static_assert(sizeof(Object) == sizeof(void*) * 1 + sizeof(uint32_t) * 2, "size 
 Class *Object::getType() const
 {
     return nullptr;
+}
+
+Attribute Object::attr(StringView path)
+{
+    return Attribute(this, this->getProperty(path));
 }
 
 errc_t Object::getAttrBool(StringView path, bool &value) const

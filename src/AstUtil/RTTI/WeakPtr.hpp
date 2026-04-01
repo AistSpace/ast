@@ -37,7 +37,10 @@ public:
         :m_object{ nullptr }
     {
     }
-
+    WeakPtr(std::nullptr_t)
+        :m_object{ nullptr }
+    {
+    }
     WeakPtr(_Object* obj)
         :m_object{ obj }
     {

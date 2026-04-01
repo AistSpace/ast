@@ -24,8 +24,8 @@
 #include "AstUtil/SharedPtr.hpp"
 #include "AstUtil/ScopedPtr.hpp"
 #include "AstUtil/WeakPtr.hpp"
-#include "AstUtil/Attribute.hpp"
 #include "AstUtil/Class.hpp"
+#include "AstUtil/ReflectAPI.hpp"
 #include <string>       // for std::string
 #include <stdint.h>     // for uint32_t
 #include <assert.h>     // for assert
@@ -48,6 +48,10 @@ AST_NAMESPACE_BEGIN
 class Class;        // 类元信息
 class Property;     // 属性元信息
 
+template<typename ObjectPtrType, typename PropertyType>
+class AttributeBasic;
+
+typedef AttributeBasic<WeakPtr<Object>, Property> Attribute;
 
 // AST 对象运行时元信息
 #define AST_OBJECT(TYPE) \
@@ -85,10 +89,7 @@ public:
     /// @brief 获取属性，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @return Attribute 属性
-    Attribute<> attr(StringView path)
-    {
-        return Attribute<>(this, this->getProperty(path));
-    }
+    Attribute attr(StringView path);
 
 public:
     /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
@@ -264,4 +265,4 @@ AST_NAMESPACE_END
 
 AST_DECL_TYPE_ALIAS(Object)
 
-
+#include "AstUtil/Attribute.hpp"

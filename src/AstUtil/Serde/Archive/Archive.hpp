@@ -66,7 +66,7 @@ public:
     virtual Archive& operator&(int& val) = 0;
     virtual Archive& operator&(double& val) = 0;
     virtual Archive& operator&(std::string& val) = 0;
-    virtual Archive& operator&(Attribute<>& attr) = 0;
+    virtual Archive& operator&(Attribute& attr) = 0;
 };
 
 /*! @} */

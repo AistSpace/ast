@@ -33,8 +33,12 @@ class SharedPtr
 {
 public:
     SharedPtr()
-        :m_object{}
+        :m_object{ nullptr }
     {}
+    SharedPtr(std::nullptr_t)
+        :m_object{ nullptr }
+    {
+    }
     SharedPtr(_Object* obj)
         :m_object{ obj }
     {
@@ -70,6 +74,10 @@ public:
     {
         return m_object;
     }
+    explicit operator bool() const
+    {
+        return m_object != nullptr;
+    }
     _Object* operator->() const
     {
         return m_object;
@@ -99,7 +107,7 @@ protected:
             m_object->decRef();
     }
 protected:
-    _Object* m_object;
+    _Object* m_object{nullptr};
 };
 
 
