@@ -24,19 +24,30 @@
 #include "AstUtil/CppSerializer.hpp"
 #include "AstUtil/IO.hpp"
 #include "AstUtil/BuilderAPI.hpp"
+#include "AstUtil/Literals.hpp"
 #include "AstTest/Test.h"
 #include "AstTest/TestSerialize.hpp"
 #include "AstCore/StateCartesian.hpp"
+#include "AstCore/StateKeplerian.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/CelestialBody.hpp"
 
 AST_USING_NAMESPACE
 
-TEST(SerializeCppTest, StateCartesian) {
+class SerializeCppTest: public testing::Test{
+public:
+    void SetUp() override{
+        aInitialize();
+    }
+    void TearDown() override{
+        aUninitialize();
+    }
+};
+
+TEST_F(SerializeCppTest, StateCartesian) {
     if(aIsCI())
         GTEST_SKIP();
 
-    aInitialize();
     auto earth = aGetBody("Earth");
     StateCartesian* state = new StateCartesian();
     state->setStateEpoch(TimePoint::FromUTC(2022, 2, 4, 12, 0, 0));
@@ -53,4 +64,24 @@ TEST(SerializeCppTest, StateCartesian) {
 }
 
 
+TEST_F(SerializeCppTest, StateKeplerian) {
+    GTEST_SKIP();
+    if(aIsCI())
+        GTEST_SKIP();
+
+    auto earth = aGetBody("Earth");
+    StateKeplerian* state = new StateKeplerian();
+    state->setStateEpoch(TimePoint::FromUTC(2022, 2, 4, 12, 0, 0));
+    state->setFrame(earth->makeFrameICRF());
+    state->setSMA(1000000_km);
+    state->setEcc(0.1);
+    state->setInc(10_deg);
+    state->setRAAN(20_deg);
+    state->setArgPeri(30_deg);
+    state->setTrueAnomaly(30_deg);
+    errc_t rc = aTestSerializeCpp(state);
+    EXPECT_EQ(rc, eNoError);
+}
+
 GTEST_MAIN()
+
