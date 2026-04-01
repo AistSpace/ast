@@ -5,7 +5,7 @@ var STKEphemerisFileParser_8cpp =
       [ "eLagrange", "STKEphemerisFileParser_8cpp.html#ad5260f2008c9ceaced8a537b5877c379ab047d1c7477202d20a0272d6dc5f8126", null ],
       [ "eOnePt", "STKEphemerisFileParser_8cpp.html#ad5260f2008c9ceaced8a537b5877c379aa44aabb95f9e0b6818decb7a90a6562d", null ]
     ] ],
-    [ "aParserSTKEphemeris", "STKEphemerisFileParser_8cpp.html#a96ec66c943eb69edb8008da408b4f310", null ],
-    [ "aParserSTKEphemeris", "STKEphemerisFileParser_8cpp.html#a1bf3ea569fb3c48d006843ab1036b6d4", null ],
-    [ "aParserSTKEphemeris", "STKEphemerisFileParser_8cpp.html#aa011361789dc55f62799c794d4b932bc", null ]
+    [ "aLoadSTKEphemeris", "STKEphemerisFileParser_8cpp.html#a9d92246e6d9184ce19ac6801eb0a3148", null ],
+    [ "aLoadSTKEphemeris", "STKEphemerisFileParser_8cpp.html#add40f0b982539d1547eb983876a69b2b", null ],
+    [ "aLoadSTKEphemeris", "STKEphemerisFileParser_8cpp.html#ac369fccff4a6149a461eca26e77940df", null ]
 ];
