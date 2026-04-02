@@ -31,6 +31,11 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+/// @brief 获取所有已注册的类名
+/// @details names 输出参数，用于存储所有已注册的类名
+/// @return 无
+AST_UTIL_CAPI void aGetAllClassNames(std::vector<std::string>& names);
+
 /// @brief 获取类的元数据
 /// @details 根据类名获取类的元数据
 /// @param name 类名

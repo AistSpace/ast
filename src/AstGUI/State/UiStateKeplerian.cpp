@@ -30,6 +30,12 @@ AST_NAMESPACE_BEGIN
 
 using namespace units;
 
+UiStateKeplerian::UiStateKeplerian(Object *object, QWidget *parent)
+    : UiStateKeplerian(parent)
+{
+    setStateKeplerian(dynamic_cast<StateKeplerian*>(object));
+}
+
 UiStateKeplerian::UiStateKeplerian(QWidget *parent) : UiState(parent)
 {
     // 创建主布局

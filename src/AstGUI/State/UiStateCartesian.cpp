@@ -33,6 +33,12 @@ AST_NAMESPACE_BEGIN
 
 using namespace units;
 
+UiStateCartesian::UiStateCartesian(Object *object, QWidget *parent)
+    : UiStateCartesian(parent)
+{
+    setStateCartesian(dynamic_cast<StateCartesian*>(object));
+}
+
 UiStateCartesian::UiStateCartesian(QWidget *parent) : UiState(parent)
 {
     // 创建主布局

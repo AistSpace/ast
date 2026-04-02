@@ -38,6 +38,12 @@ AST_NAMESPACE_BEGIN
 
 using namespace units;
 
+UiMotionTwoBody::UiMotionTwoBody(Object *object, QWidget *parent)
+    : UiMotionTwoBody(parent)
+{
+    setMotionTwoBody(dynamic_cast<MotionTwoBody*>(object));
+}
+
 UiMotionTwoBody::UiMotionTwoBody(QWidget *parent)
     : UiMotionProfile(parent)
 {

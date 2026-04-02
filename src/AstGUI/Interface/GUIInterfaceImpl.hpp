@@ -1,5 +1,5 @@
 ///
-/// @file      ClassRegistry.hpp
+/// @file      GUIInterfaceImpl.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -21,8 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include <unordered_map>
-#include <string>
+#include "AstUtil/GUIInterface.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -31,25 +30,24 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class Class;
-
-/// @brief 类注册器
-/// @details 用于注册和查找类的元数据
-class ClassRegistry
+/// @brief GUI接口实现类
+class GUIInterfaceImpl : public GUIInterface
 {
 public:
-    ClassRegistry() = default;
-    ~ClassRegistry() = default;
-    static ClassRegistry* Instance();
+    GUIInterfaceImpl() = default;
+    ~GUIInterfaceImpl() override = default;
+    static GUIInterfaceImpl* Instance();
 
-    Class* getClass(StringView name) const;
-    void getAllClassNames(std::vector<std::string>& names) const;
-    void registerClass(Class* cls);
-    void registerClass(StringView name, Class* cls);
-protected:
-    using ClassMap = std::unordered_map<std::string, Class*>;
-    ClassMap classMap_;
+    errc_t editObject(Object* object) override;
+    Object* selectObject(StringView typeName) override;
 };
+
+
+/// @brief 获取GUI接口实现类实例
+/// @return GUI接口实现类实例
+AST_GUI_CAPI GUIInterface* aGUIInterfaceImpl();
+
+
 
 /*! @} */
 

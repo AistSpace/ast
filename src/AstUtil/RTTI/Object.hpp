@@ -86,13 +86,19 @@ public:
     virtual Class* getType() const;
     static Class staticType;
     static inline Class* getStaticType(){return &staticType;}
-public:
+public: // 编辑属性
+    
+    /// @brief 打开编辑对话框，用于编辑对象的属性
+    /// @return errc_t 错误码
+    errc_t openEditDialog();
+
+public: // 通用属性访问
     /// @brief 获取属性，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @return Attribute 属性
     Attribute attr(StringView path);
 
-public:
+public: // 获取属性
     /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @param value 属性值引用
@@ -117,7 +123,7 @@ public:
     /// @return errc_t 错误码
     errc_t getAttrString(StringView path, std::string& value) const;
 
-public:
+public: // 获取属性值
     /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @return double 属性值
@@ -138,7 +144,7 @@ public:
     /// @return std::string 属性值
     std::string getAttrString(StringView path) const;
 
-public:
+public: // 设置属性值
     /// @param path 属性路径
     /// @param value 属性值
     /// @return errc_t 错误码
@@ -162,6 +168,7 @@ public:
     /// @return errc_t 错误码
     errc_t setAttrString(StringView path, StringView value);
 
+public: // 类型与字段属性
     /// @brief 获取对象类型
     /// @return Class* 类型元信息
     Class* type() const{return getType();} // 转发到新接口getType
@@ -170,7 +177,8 @@ public:
     /// @param fieldName 属性名
     /// @return Property* 属性元信息
     Property* getProperty(StringView fieldName) const;
-    
+
+public: // 引用计数
     /// @brief 获取强引用计数
     /// @return uint32_t 强引用计数
     uint32_t refCount() const{return refcnt_;}

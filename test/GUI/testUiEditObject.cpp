@@ -1,5 +1,5 @@
 ///
-/// @file      testRTTI.cpp
+/// @file      testUiEditObject.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,49 +18,27 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
+#include "AstUtil/Object.hpp"
 #include "AstUtil/RTTIAPI.hpp"
 #include "AstCore/RunTime.hpp"
 #include "AstTest/Test.h"
-#include <vector>
-#include <string>
+#include "AstSim/MotionTwoBody.hpp"
 
 AST_USING_NAMESPACE
 
-const std::vector<std::string> classNames = {"StateCartesian", "StateKeplerian"};
-
-
-class RTTITest: public testing::Test
+TEST(UiEditObject, Test)
 {
-public:
-    void SetUp()
+    SharedPtr<MotionTwoBody> motion = new MotionTwoBody();
+    aInitialize();
+    std::vector<std::string> names;
+    aGetAllClassNames(names);
+    for(auto& name: names)
     {
-        aInitialize();
-    }
-    void TearDown()
-    {
-        aUninitialize();
-    }
-};
-
-TEST_F(RTTITest, NewObject) 
-{
-    for(auto className: classNames)
-    {
-        auto obj = aMakeObject(className);
-        EXPECT_TRUE(obj != nullptr);
+        auto obj = aMakeObject(name);
+        EXPECT_TRUE(obj);
+        EXPECT_EQ(obj->openEditDialog(), 0);
     }
 }
-
-TEST_F(RTTITest, ClassDefaultObject)
-{
-    for(auto className: classNames)
-    {
-        auto obj = aGetClassDefaultObject(className);
-        EXPECT_TRUE(obj != nullptr);
-    }
-}
-
-
-
 
 GTEST_MAIN()
+

@@ -42,6 +42,14 @@ Class *ClassRegistry::getClass(StringView name) const
     return nullptr;
 }
 
+void ClassRegistry::getAllClassNames(std::vector<std::string> &names) const
+{
+    for(auto &it : classMap_){
+        if(it.second)
+            names.push_back(it.second->name());
+    }
+}
+
 void ClassRegistry::registerClass(Class *cls)
 {
     if(!cls)

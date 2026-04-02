@@ -39,6 +39,7 @@ using PMotionTwoBody = MotionTwoBody*;
 class AST_SIM_API MotionTwoBody final: public MotionOrbitDynamics
 {
 public:
+    AST_OBJECT(MotionTwoBody)
     static MotionTwoBody* New();
     MotionTwoBody() = default;
     ~MotionTwoBody() override = default;

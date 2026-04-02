@@ -19,9 +19,32 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "UiOperator.hpp"
+#include "GUIInterface.hpp"
+#include "AstUtil/StringView.hpp"
 
 AST_NAMESPACE_BEGIN
 
 
+errc_t aUiEditObject(Object *object)
+{
+    GUIInterface *gui = GUIInterface::CurrentInstance();
+    if (gui == nullptr)
+    {
+        return eErrorNullPtr;
+    }
+    return gui->editObject(object);
+}
+
+Object *aUiSelectObject(StringView typeName)
+{
+    GUIInterface *gui = GUIInterface::CurrentInstance();
+    if (gui == nullptr)
+    {
+        return nullptr;
+    }
+    return gui->selectObject(typeName);
+}
+
 
 AST_NAMESPACE_END
+

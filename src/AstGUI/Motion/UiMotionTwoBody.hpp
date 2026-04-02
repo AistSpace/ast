@@ -49,6 +49,7 @@ class AST_GUI_API UiMotionTwoBody: public UiMotionProfile
 {
     Q_OBJECT
 public:
+    UiMotionTwoBody(Object* object, QWidget *parent = nullptr);
     UiMotionTwoBody(QWidget *parent = nullptr);
     ~UiMotionTwoBody() = default;
 

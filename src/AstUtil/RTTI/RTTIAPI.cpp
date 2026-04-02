@@ -24,7 +24,13 @@
 #include "AstUtil/ClassRegistry.hpp"
 #include "AstUtil/Object.hpp"
 
+
 AST_NAMESPACE_BEGIN
+
+void aGetAllClassNames(std::vector<std::string> &names)
+{
+    ClassRegistry::Instance()->getAllClassNames(names);
+}
 
 Class *aGetClass(StringView name)
 {

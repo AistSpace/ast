@@ -23,6 +23,7 @@
 #include "AstUtil/Class.hpp"            // for Class
 #include "AstUtil/Property.hpp"         // for Property
 #include "AstUtil/Attribute.hpp"        // for Attribute
+#include "AstUtil/UiOperator.hpp"
  
 AST_NAMESPACE_BEGIN
  
@@ -34,6 +35,11 @@ Class Object::staticType;
 Class *Object::getType() const
 {
     return nullptr;
+}
+
+errc_t Object::openEditDialog()
+{
+    return aUiEditObject(this);
 }
 
 Attribute Object::attr(StringView path)
