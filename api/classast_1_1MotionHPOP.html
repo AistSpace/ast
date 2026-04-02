@@ -117,7 +117,7 @@ $(function(){initNavTree('classast_1_1MotionHPOP.html',''); initResizable(true);
 <area href="classast_1_1MotionOrbitDynamics.html" title="轨道动力学基础运动模型数据结构" alt="ast::MotionOrbitDynamics" shape="rect" coords="0,168,163,192"/>
 <area href="classast_1_1MotionWithIntervalStep.html" title="具有时间段和步长的运动模型" alt="ast::MotionWithIntervalStep" shape="rect" coords="0,112,163,136"/>
 <area href="classast_1_1MotionProfile.html" title="运动定义接口" alt="ast::MotionProfile" shape="rect" coords="0,56,163,80"/>
-<area href="classast_1_1Object.html" title="对象基类，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能" alt="ast::Object" shape="rect" coords="0,0,163,24"/>
+<area href="classast_1_1Object.html" title="对象基类，继承自该类的对象可以使用运行时类型信息相关功能，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能" alt="ast::Object" shape="rect" coords="0,0,163,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -143,6 +143,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setInitialState</b> (
 <tr class="separator:aad2b2b274fef89d6bc67e44965f94a7c inherit pub_methods_classast_1_1MotionOrbitDynamics"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a504cb93d7a1d21a1c85a2bf9c8a419fb inherit pub_methods_classast_1_1MotionOrbitDynamics" id="r_a504cb93d7a1d21a1c85a2bf9c8a419fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionOrbitDynamics.html#a504cb93d7a1d21a1c85a2bf9c8a419fb">setPropagationFrame</a> (<a class="el" href="classast_1_1Frame.html">Frame</a> *frame)</td></tr>
 <tr class="separator:a504cb93d7a1d21a1c85a2bf9c8a419fb inherit pub_methods_classast_1_1MotionOrbitDynamics"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0efa481490e744f5dc568a90dacf0d57 inherit pub_methods_classast_1_1MotionOrbitDynamics" id="r_a0efa481490e744f5dc568a90dacf0d57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceast.html#ab96fec81957cc2c158036b02a89198f0">EStateType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionOrbitDynamics.html#a0efa481490e744f5dc568a90dacf0d57">getStateType</a> () const</td></tr>
+<tr class="separator:a0efa481490e744f5dc568a90dacf0d57 inherit pub_methods_classast_1_1MotionOrbitDynamics"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad36b37cd252c003e0f7d843bd4dfbff3 inherit pub_methods_classast_1_1MotionOrbitDynamics" id="r_ad36b37cd252c003e0f7d843bd4dfbff3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionOrbitDynamics.html#ad36b37cd252c003e0f7d843bd4dfbff3">setStateType</a> (<a class="el" href="namespaceast.html#ab96fec81957cc2c158036b02a89198f0">EStateType</a> <a class="el" href="classast_1_1Object.html#ad30c577e616caa73f91c3866cc540157">type</a>)</td></tr>
+<tr class="separator:ad36b37cd252c003e0f7d843bd4dfbff3 inherit pub_methods_classast_1_1MotionOrbitDynamics"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classast_1_1MotionWithIntervalStep"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classast_1_1MotionWithIntervalStep')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classast_1_1MotionWithIntervalStep.html">ast::MotionWithIntervalStep</a></td></tr>
 <tr class="memitem:a0c925d3092a1cbff7505ab7ac9ec5b5f inherit pub_methods_classast_1_1MotionWithIntervalStep" id="r_a0c925d3092a1cbff7505ab7ac9ec5b5f"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1MotionWithIntervalStep.html#a0c925d3092a1cbff7505ab7ac9ec5b5f">getInterval</a> (<a class="el" href="classast_1_1TimeInterval.html">TimeInterval</a> &amp;interval) const</td></tr>
 <tr class="separator:a0c925d3092a1cbff7505ab7ac9ec5b5f inherit pub_methods_classast_1_1MotionWithIntervalStep"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -226,6 +230,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setInterval</b> (cons
 <tr class="memitem:a81dc38eb783b20a137de764fb9651a19" id="r_a81dc38eb783b20a137de764fb9651a19"><td class="memItemLeft" align="right" valign="top"><a id="a81dc38eb783b20a137de764fb9651a19" name="a81dc38eb783b20a137de764fb9651a19"></a>
 static <a class="el" href="classast_1_1MotionHPOP.html">PMotionHPOP</a>&#160;</td><td class="memItemRight" valign="bottom"><b>New</b> ()</td></tr>
 <tr class="separator:a81dc38eb783b20a137de764fb9651a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classast_1_1Object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classast_1_1Object')"><img src="closed.png" alt="-"/>&#160;静态 Public 成员函数 继承自 <a class="el" href="classast_1_1Object.html">ast::Object</a></td></tr>
+<tr class="memitem:a2bf080a2c5d703063fcf8676a1b0d485 inherit pub_static_methods_classast_1_1Object" id="r_a2bf080a2c5d703063fcf8676a1b0d485"><td class="memItemLeft" align="right" valign="top">
+static <a class="el" href="classast_1_1Class.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getStaticType</b> ()</td></tr>
+<tr class="separator:a2bf080a2c5d703063fcf8676a1b0d485 inherit pub_static_methods_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
@@ -256,6 +264,10 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_static_attribs_classast_1_1Object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_attribs_classast_1_1Object')"><img src="closed.png" alt="-"/>&#160;静态 Public 属性 继承自 <a class="el" href="classast_1_1Object.html">ast::Object</a></td></tr>
+<tr class="memitem:a0d3a787620d7bd3b8b619bcbef67bb68 inherit pub_static_attribs_classast_1_1Object" id="r_a0d3a787620d7bd3b8b619bcbef67bb68"><td class="memItemLeft" align="right" valign="top">
+static <a class="el" href="classast_1_1Class.html">Class</a>&#160;</td><td class="memItemRight" valign="bottom"><b>staticType</b></td></tr>
+<tr class="separator:a0d3a787620d7bd3b8b619bcbef67bb68 inherit pub_static_attribs_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classast_1_1MotionOrbitDynamics"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classast_1_1MotionOrbitDynamics')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classast_1_1MotionOrbitDynamics.html">ast::MotionOrbitDynamics</a></td></tr>
 <tr class="memitem:ab6ab558bf69e6ba3e5bf4c9d71a15509 inherit pro_methods_classast_1_1MotionOrbitDynamics" id="r_ab6ab558bf69e6ba3e5bf4c9d71a15509"><td class="memItemLeft" align="right" valign="top">
 errc_t&#160;</td><td class="memItemRight" valign="bottom"><b>getPropagationParams</b> (<a class="el" href="structast_1_1MotionOrbitDynamics_1_1PropagationParams.html">PropagationParams</a> &amp;params) const</td></tr>

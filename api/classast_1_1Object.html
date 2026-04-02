@@ -100,6 +100,8 @@ $(function(){initNavTree('classast_1_1Object.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pub-static-attribs">静态 Public 属性</a> &#124;
 <a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="#pro-attribs">Protected 属性</a> &#124;
 <a href="classast_1_1Object-members.html">所有成员列表</a>  </div>
@@ -183,6 +185,18 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:aecd84a95fab6db0c0efb7fb34863b11c" id="r_aecd84a95fab6db0c0efb7fb34863b11c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecd84a95fab6db0c0efb7fb34863b11c">decRefNoDelete</a> ()</td></tr>
 <tr class="separator:aecd84a95fab6db0c0efb7fb34863b11c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a2bf080a2c5d703063fcf8676a1b0d485" id="r_a2bf080a2c5d703063fcf8676a1b0d485"><td class="memItemLeft" align="right" valign="top"><a id="a2bf080a2c5d703063fcf8676a1b0d485" name="a2bf080a2c5d703063fcf8676a1b0d485"></a>
+static <a class="el" href="classast_1_1Class.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getStaticType</b> ()</td></tr>
+<tr class="separator:a2bf080a2c5d703063fcf8676a1b0d485"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:a0d3a787620d7bd3b8b619bcbef67bb68" id="r_a0d3a787620d7bd3b8b619bcbef67bb68"><td class="memItemLeft" align="right" valign="top"><a id="a0d3a787620d7bd3b8b619bcbef67bb68" name="a0d3a787620d7bd3b8b619bcbef67bb68"></a>
+static <a class="el" href="classast_1_1Class.html">Class</a>&#160;</td><td class="memItemRight" valign="bottom"><b>staticType</b></td></tr>
+<tr class="separator:a0d3a787620d7bd3b8b619bcbef67bb68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>
 <tr class="memitem:a26df1078be6121773b18dd5c5092432e" id="r_a26df1078be6121773b18dd5c5092432e"><td class="memItemLeft" align="right" valign="top"><a id="a26df1078be6121773b18dd5c5092432e" name="a26df1078be6121773b18dd5c5092432e"></a>
@@ -199,7 +213,8 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <tr class="separator:ab2b61413b6753045cfc785d791080a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>对象基类，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能 </p>
+<div class="textblock"><p>对象基类，继承自该类的对象可以使用运行时类型信息相关功能，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能 </p>
+<p>参考了Qt的QObject类、UE的UObject类、以及Python的PyObject等类的设计和实现 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
 <a id="a0192227e3d8184f7a6d75dec82993170" name="a0192227e3d8184f7a6d75dec82993170"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0192227e3d8184f7a6d75dec82993170">&#9670;&#160;</a></span>attr()</h2>

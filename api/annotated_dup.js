@@ -110,6 +110,7 @@ var annotated_dup =
       [ "CelestialBody", "classast_1_1CelestialBody.html", "classast_1_1CelestialBody" ],
       [ "CircularOrbitDesigner", "classast_1_1CircularOrbitDesigner.html", "classast_1_1CircularOrbitDesigner" ],
       [ "Class", "classast_1_1Class.html", "classast_1_1Class" ],
+      [ "ClassRegistry", "classast_1_1ClassRegistry.html", null ],
       [ "CNLEMinpackSolver", "classast_1_1CNLEMinpackSolver.html", null ],
       [ "CNLPIpoptSolver", "classast_1_1CNLPIpoptSolver.html", null ],
       [ "CNLPSnoptSolver", "classast_1_1CNLPSnoptSolver.html", null ],

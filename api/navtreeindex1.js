@@ -126,6 +126,9 @@ var NAVTREEINDEX1 =
 "CircularOrbitDesigner_8cpp.html":[4,0,0,1,6,1,2],
 "CircularOrbitDesigner_8hpp.html":[4,0,0,1,6,1,3],
 "CircularOrbitDesigner_8hpp_source.html":[4,0,0,1,6,1,3],
+"ClassRegistry_8cpp.html":[4,0,0,13,7,1],
+"ClassRegistry_8hpp.html":[4,0,0,13,7,2],
+"ClassRegistry_8hpp_source.html":[4,0,0,13,7,2],
 "Class_8cpp.html":[4,0,0,13,7,0,2],
 "Class_8hpp.html":[4,0,0,13,7,0,3],
 "Class_8hpp_source.html":[4,0,0,13,7,0,3],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "Endian_8hpp_source.html":[4,0,0,13,5,3],
 "Environment_8cpp.html":[4,0,0,13,5,4],
 "Environment_8hpp.html":[4,0,0,13,5,5],
-"Environment_8hpp_source.html":[4,0,0,13,5,5],
-"EphemerisFileParser_8cpp.html":[4,0,0,1,3,1,0],
-"EphemerisFileParser_8hpp.html":[4,0,0,1,3,1,1],
-"EphemerisFileParser_8hpp_source.html":[4,0,0,1,3,1,1]
+"Environment_8hpp_source.html":[4,0,0,13,5,5]
 };

@@ -343,7 +343,7 @@ var searchData=
   ['etrueanomaly_340',['eTrueAnomaly',['../namespaceast.html#a9de38fd17316aadc192e14bfee3a2c30a207a52997130815e48e5570ca4c634be',1,'ast']]],
   ['eturquoise_341',['eTurquoise',['../group__Util.html#ggac1947c945d205687379e80f42bba8dfdaa74558bf06ca7eed4838743b850dad5e',1,'ast']]],
   ['eunit_342',['eUnit',['../namespaceast.html#ab30969f1d9a484eedacefdc5a6953f14a40180dbf986774f37463e57071df86fb',1,'ast']]],
-  ['eunknown_343',['eUnknown',['../namespaceast.html#ad5260f2008c9ceaced8a537b5877c379aaf8a9112a5a055e50fee0d5ddad77ae5',1,'ast']]],
+  ['eunknown_343',['eUnknown',['../namespaceast.html#ad5260f2008c9ceaced8a537b5877c379aaf8a9112a5a055e50fee0d5ddad77ae5',1,'ast::eUnknown'],['../namespaceast.html#ab96fec81957cc2c158036b02a89198f0a64c3acc11ffdb1be30ea339290bd1508',1,'ast::eUnknown']]],
   ['euranus_344',['eUranus',['../classast_1_1JplDe.html#a577b7b65a916a9c36041770f2fc5fef1a51df310f478e81f62874c99b368bb5c6',1,'ast::JplDe']]],
   ['eutc_345',['eUTC',['../classast_1_1DateTime.html#a4dfd1e72a1730a4456aa76542b9de867acc0ee529d453f9d592c48f6695ecde89',1,'ast::DateTime']]],
   ['evenus_346',['eVenus',['../classast_1_1JplDe.html#a577b7b65a916a9c36041770f2fc5fef1a9b2c4a4c75f282829c792e0e2aae9615',1,'ast::JplDe']]],

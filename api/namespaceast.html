@@ -278,6 +278,8 @@ $(function(){initNavTree('namespaceast.html',''); initResizable(true); });
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Class.html">Class</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1ClassRegistry.html">ClassRegistry</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1CNLEMinpackSolver.html">CNLEMinpackSolver</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1CNLPIpoptSolver.html">CNLPIpoptSolver</a></td></tr>
@@ -1327,6 +1329,7 @@ typedef std::array&lt; <a class="el" href="classast_1_1AEP8Data.html">AEP8Data</
 <tr class="separator:ad226f5138693fa4cb352f8c2201281df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab96fec81957cc2c158036b02a89198f0" id="r_ab96fec81957cc2c158036b02a89198f0"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab96fec81957cc2c158036b02a89198f0">EStateType</a> { <a class="el" href="#ab96fec81957cc2c158036b02a89198f0ab2857087f6ac735b490837f6ea566707">eCartesian</a>
 , <a class="el" href="#ab96fec81957cc2c158036b02a89198f0ac29f4242fedd02baf87fbc607461696c">eKeplerian</a>
+, <a class="el" href="#ab96fec81957cc2c158036b02a89198f0a64c3acc11ffdb1be30ea339290bd1508">eUnknown</a>
  }</td></tr>
 <tr class="separator:ab96fec81957cc2c158036b02a89198f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42503bc04b484437e930407c57f5658c" id="r_a42503bc04b484437e930407c57f5658c"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42503bc04b484437e930407c57f5658c">ESizeType</a> { <br />
@@ -4323,6 +4326,20 @@ template&lt;typename T , std::string T::* Member&gt; </td></tr>
 <tr class="memitem:gab1f1da4e88219f2a7797a180f28a869f" id="r_gab1f1da4e88219f2a7797a180f28a869f"><td class="memTemplParams" colspan="2">template&lt;typename T , const std::string &amp;(T::*)() const Getter, void(T::*)(<a class="el" href="classast_1_1StringViewBasic.html">StringView</a>) Setter&gt; </td></tr>
 <tr class="memitem:gab1f1da4e88219f2a7797a180f28a869f"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__RTTI.html#gab1f1da4e88219f2a7797a180f28a869f">aNewPropertyString</a> ()</td></tr>
 <tr class="separator:gab1f1da4e88219f2a7797a180f28a869f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4ab0aeafea06cb726b9b242379d361df" id="r_ga4ab0aeafea06cb726b9b242379d361df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Class.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__RTTI.html#ga4ab0aeafea06cb726b9b242379d361df">aGetClass</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
+<tr class="separator:ga4ab0aeafea06cb726b9b242379d361df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafca0a4e10333068c12cfadc1b5bdb145" id="r_gafca0a4e10333068c12cfadc1b5bdb145"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__RTTI.html#gafca0a4e10333068c12cfadc1b5bdb145">aRegisterClass</a> (<a class="el" href="classast_1_1Class.html">Class</a> *cls)</td></tr>
+<tr class="separator:gafca0a4e10333068c12cfadc1b5bdb145"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad68114b7c166e8d927cb2fb97e6a07a9" id="r_gad68114b7c166e8d927cb2fb97e6a07a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__RTTI.html#gad68114b7c166e8d927cb2fb97e6a07a9">aGetClassDefaultObject</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
+<tr class="separator:gad68114b7c166e8d927cb2fb97e6a07a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga846b248935590d9072cdb05af6534f8b" id="r_ga846b248935590d9072cdb05af6534f8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__RTTI.html#ga846b248935590d9072cdb05af6534f8b">aGetClassDefaultObject</a> (<a class="el" href="classast_1_1Class.html">Class</a> *cls)</td></tr>
+<tr class="separator:ga846b248935590d9072cdb05af6534f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga76d39fb3f19fe83ece5d756a9c5efeeb" id="r_ga76d39fb3f19fe83ece5d756a9c5efeeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__RTTI.html#ga76d39fb3f19fe83ece5d756a9c5efeeb">aNewObject</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
+<tr class="separator:ga76d39fb3f19fe83ece5d756a9c5efeeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac773a55dc25b4065657e0d2ab5ce3b21" id="r_gac773a55dc25b4065657e0d2ab5ce3b21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__RTTI.html#gac773a55dc25b4065657e0d2ab5ce3b21">aDeleteObject</a> (<a class="el" href="classast_1_1Object.html">Object</a> *obj)</td></tr>
+<tr class="separator:gac773a55dc25b4065657e0d2ab5ce3b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga22ca397466c55ee01565bb6460526887" id="r_ga22ca397466c55ee01565bb6460526887"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Object.html">Object</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__RTTI.html#ga22ca397466c55ee01565bb6460526887">aMakeObject</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
+<tr class="separator:ga22ca397466c55ee01565bb6460526887"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71b813a2936599c48dcf88435f26fbc2" id="r_a71b813a2936599c48dcf88435f26fbc2"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a71b813a2936599c48dcf88435f26fbc2"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classast_1_1NameValuePair.html">NameValuePair</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a71b813a2936599c48dcf88435f26fbc2">make_nvp</a> (const char *name, T &amp;val)</td></tr>
 <tr class="separator:a71b813a2936599c48dcf88435f26fbc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -5372,6 +5389,8 @@ DataDirFunc&#160;</td><td class="memItemRight" valign="bottom"><b>fDataDir</b> {
 <tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ab96fec81957cc2c158036b02a89198f0ab2857087f6ac735b490837f6ea566707" name="ab96fec81957cc2c158036b02a89198f0ab2857087f6ac735b490837f6ea566707"></a>eCartesian&#160;</td><td class="fielddoc"><p>笛卡尔状态 </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ab96fec81957cc2c158036b02a89198f0ac29f4242fedd02baf87fbc607461696c" name="ab96fec81957cc2c158036b02a89198f0ac29f4242fedd02baf87fbc607461696c"></a>eKeplerian&#160;</td><td class="fielddoc"><p>开普勒状态 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab96fec81957cc2c158036b02a89198f0a64c3acc11ffdb1be30ea339290bd1508" name="ab96fec81957cc2c158036b02a89198f0a64c3acc11ffdb1be30ea339290bd1508"></a>eUnknown&#160;</td><td class="fielddoc"><p>未知状态类型 </p>
 </td></tr>
 </table>
 

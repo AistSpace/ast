@@ -20,7 +20,7 @@ var searchData=
   ['makeframemoe_17',['makeFrameMOE',['../classast_1_1CelestialBody.html#aa7eb7b4fe71b5911887d12b8f15c085a',1,'ast::CelestialBody::makeFrameMOE(const TimePoint &amp;tp) const'],['../classast_1_1CelestialBody.html#acb63ef5296d536d7e5a256b2169cbf06',1,'ast::CelestialBody::makeFrameMOE(EventTime *time) const']]],
   ['makeframetod_18',['makeFrameTOD',['../classast_1_1CelestialBody.html#a1a14bc3007d6149bfdb723caae04c5d7',1,'ast::CelestialBody']]],
   ['makeframetoe_19',['makeFrameTOE',['../classast_1_1CelestialBody.html#a82a634abbda5bab8fdb3d6fd4864a93d',1,'ast::CelestialBody::makeFrameTOE(const TimePoint &amp;tp) const'],['../classast_1_1CelestialBody.html#a85f0090b4702bb649fe090eb10e59c36',1,'ast::CelestialBody::makeFrameTOE(EventTime *time) const']]],
-  ['makeshared_20',['MakeShared',['../classast_1_1FrameAssembly.html#a6c9b4dc9b53ca9776f82f3cb3620d2ac',1,'ast::FrameAssembly']]],
+  ['makeshared_20',['MakeShared',['../classast_1_1FrameAssembly.html#a6c9b4dc9b53ca9776f82f3cb3620d2ac',1,'ast::FrameAssembly::MakeShared()'],['../classast_1_1State.html#a07ffd7a549e9226e748bf2d7fc9d535a',1,'ast::State::MakeShared(EStateType type)'],['../classast_1_1State.html#a6ae0d10bb04ba656cc03e973308ba912',1,'ast::State::MakeShared(State &amp;state, EStateType type)']]],
   ['mass_21',['Mass',['../classast_1_1Dimension.html#a60dcb6c9614eb4f51fabe29a3837908c',1,'ast::Dimension']]],
   ['match_22',['match',['../classast_1_1Parser.html#a44fef303ad78d081b03399e8c524a1b9',1,'ast::Parser']]],
   ['maxsplits_23',['MaxSplits',['../group__String.html#ga23b571e554986d779a8a24063270b42b',1,'ast']]],

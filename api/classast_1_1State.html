@@ -100,6 +100,7 @@ $(function(){initNavTree('classast_1_1State.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="#pro-attribs">Protected 属性</a> &#124;
 <a href="classast_1_1State-members.html">所有成员列表</a>  </div>
@@ -116,7 +117,7 @@ $(function(){initNavTree('classast_1_1State.html',''); initResizable(true); });
  <div class="center">
   <img src="classast_1_1State.png" usemap="#ast::State_map" alt=""/>
   <map id="ast::State_map" name="ast::State_map">
-<area href="classast_1_1Object.html" title="对象基类，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能" alt="ast::Object" shape="rect" coords="63,0,179,24"/>
+<area href="classast_1_1Object.html" title="对象基类，继承自该类的对象可以使用运行时类型信息相关功能，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能" alt="ast::Object" shape="rect" coords="63,0,179,24"/>
 <area href="classast_1_1StateCartesian.html" title="笛卡尔状态(直角坐标)" alt="ast::StateCartesian" shape="rect" coords="0,112,116,136"/>
 <area href="classast_1_1StateKeplerian.html" title="开普勒轨道根数状态" alt="ast::StateKeplerian" shape="rect" coords="126,112,242,136"/>
   </map>
@@ -213,6 +214,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setFrame</b> (<a clas
 <tr class="memitem:aecd84a95fab6db0c0efb7fb34863b11c inherit pub_methods_classast_1_1Object" id="r_aecd84a95fab6db0c0efb7fb34863b11c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Object.html#aecd84a95fab6db0c0efb7fb34863b11c">decRefNoDelete</a> ()</td></tr>
 <tr class="separator:aecd84a95fab6db0c0efb7fb34863b11c inherit pub_methods_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a07ffd7a549e9226e748bf2d7fc9d535a" id="r_a07ffd7a549e9226e748bf2d7fc9d535a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classast_1_1SharedPtr.html">HState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07ffd7a549e9226e748bf2d7fc9d535a">MakeShared</a> (<a class="el" href="namespaceast.html#ab96fec81957cc2c158036b02a89198f0">EStateType</a> <a class="el" href="classast_1_1Object.html#ad30c577e616caa73f91c3866cc540157">type</a>)</td></tr>
+<tr class="separator:a07ffd7a549e9226e748bf2d7fc9d535a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ae0d10bb04ba656cc03e973308ba912" id="r_a6ae0d10bb04ba656cc03e973308ba912"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classast_1_1SharedPtr.html">HState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ae0d10bb04ba656cc03e973308ba912">MakeShared</a> (<a class="el" href="classast_1_1State.html">State</a> &amp;state, <a class="el" href="namespaceast.html#ab96fec81957cc2c158036b02a89198f0">EStateType</a> <a class="el" href="classast_1_1Object.html#ad30c577e616caa73f91c3866cc540157">type</a>)</td></tr>
+<tr class="separator:a6ae0d10bb04ba656cc03e973308ba912"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8e8f658d9bae72c5a3e6c329497983c" id="r_ab8e8f658d9bae72c5a3e6c329497983c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classast_1_1State.html">PState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8e8f658d9bae72c5a3e6c329497983c">New</a> (<a class="el" href="namespaceast.html#ab96fec81957cc2c158036b02a89198f0">EStateType</a> <a class="el" href="classast_1_1Object.html#ad30c577e616caa73f91c3866cc540157">type</a>)</td></tr>
+<tr class="separator:ab8e8f658d9bae72c5a3e6c329497983c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f4224a8ff47f5472a795217287bfac4" id="r_a4f4224a8ff47f5472a795217287bfac4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classast_1_1State.html">PState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f4224a8ff47f5472a795217287bfac4">New</a> (<a class="el" href="classast_1_1State.html">State</a> &amp;state, <a class="el" href="namespaceast.html#ab96fec81957cc2c158036b02a89198f0">EStateType</a> <a class="el" href="classast_1_1Object.html#ad30c577e616caa73f91c3866cc540157">type</a>)</td></tr>
+<tr class="separator:a4f4224a8ff47f5472a795217287bfac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classast_1_1Object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classast_1_1Object')"><img src="closed.png" alt="-"/>&#160;静态 Public 成员函数 继承自 <a class="el" href="classast_1_1Object.html">ast::Object</a></td></tr>
+<tr class="memitem:a2bf080a2c5d703063fcf8676a1b0d485 inherit pub_static_methods_classast_1_1Object" id="r_a2bf080a2c5d703063fcf8676a1b0d485"><td class="memItemLeft" align="right" valign="top">
+static <a class="el" href="classast_1_1Class.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getStaticType</b> ()</td></tr>
+<tr class="separator:a2bf080a2c5d703063fcf8676a1b0d485 inherit pub_static_methods_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>
 <tr class="memitem:a11336cf7f15654fb1404eea0877e634b" id="r_a11336cf7f15654fb1404eea0877e634b"><td class="memItemLeft" align="right" valign="top"><a id="a11336cf7f15654fb1404eea0877e634b" name="a11336cf7f15654fb1404eea0877e634b"></a>
@@ -241,6 +257,13 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <tr class="memitem:ab2b61413b6753045cfc785d791080a96 inherit pro_attribs_classast_1_1Object" id="r_ab2b61413b6753045cfc785d791080a96"><td class="memItemLeft" align="right" valign="top">
 std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>weakrefcnt_</b></td></tr>
 <tr class="separator:ab2b61413b6753045cfc785d791080a96 inherit pro_attribs_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_static_attribs_classast_1_1Object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_attribs_classast_1_1Object')"><img src="closed.png" alt="-"/>&#160;静态 Public 属性 继承自 <a class="el" href="classast_1_1Object.html">ast::Object</a></td></tr>
+<tr class="memitem:a0d3a787620d7bd3b8b619bcbef67bb68 inherit pub_static_attribs_classast_1_1Object" id="r_a0d3a787620d7bd3b8b619bcbef67bb68"><td class="memItemLeft" align="right" valign="top">
+static <a class="el" href="classast_1_1Class.html">Class</a>&#160;</td><td class="memItemRight" valign="bottom"><b>staticType</b></td></tr>
+<tr class="separator:a0d3a787620d7bd3b8b619bcbef67bb68 inherit pub_static_attribs_classast_1_1Object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>航天器状态 </p>
@@ -519,6 +542,152 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <dl class="section return"><dt>返回</dt><dd>EStateType 状态类型 </dd></dl>
 
 <p>在 <a class="el" href="classast_1_1StateCartesian.html#a82558f7253ea3083780e8292a9ec4d4a">ast::StateCartesian</a> , 以及 <a class="el" href="classast_1_1StateKeplerian.html#a6df7105f740567a6328a2e57192e5e94">ast::StateKeplerian</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a07ffd7a549e9226e748bf2d7fc9d535a" name="a07ffd7a549e9226e748bf2d7fc9d535a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07ffd7a549e9226e748bf2d7fc9d535a">&#9670;&#160;</a></span>MakeShared() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1SharedPtr.html">HState</a> ast::State::MakeShared </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceast.html#ab96fec81957cc2c158036b02a89198f0">EStateType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建状态 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>状态类型 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>HState 状态句柄 </dd></dl>
+
+</div>
+</div>
+<a id="a6ae0d10bb04ba656cc03e973308ba912" name="a6ae0d10bb04ba656cc03e973308ba912"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ae0d10bb04ba656cc03e973308ba912">&#9670;&#160;</a></span>MakeShared() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1SharedPtr.html">HState</a> ast::State::MakeShared </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1State.html">State</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceast.html#ab96fec81957cc2c158036b02a89198f0">EStateType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建状态 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>状态 </td></tr>
+    <tr><td class="paramname">type</td><td>状态类型 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>HState 状态句柄 </dd></dl>
+
+</div>
+</div>
+<a id="ab8e8f658d9bae72c5a3e6c329497983c" name="ab8e8f658d9bae72c5a3e6c329497983c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8e8f658d9bae72c5a3e6c329497983c">&#9670;&#160;</a></span>New() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1State.html">PState</a> ast::State::New </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceast.html#ab96fec81957cc2c158036b02a89198f0">EStateType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建状态 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>状态类型 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>PState 状态指针 </dd></dl>
+
+</div>
+</div>
+<a id="a4f4224a8ff47f5472a795217287bfac4" name="a4f4224a8ff47f5472a795217287bfac4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f4224a8ff47f5472a795217287bfac4">&#9670;&#160;</a></span>New() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1State.html">PState</a> ast::State::New </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1State.html">State</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceast.html#ab96fec81957cc2c158036b02a89198f0">EStateType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建状态 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>状态 </td></tr>
+    <tr><td class="paramname">type</td><td>状态类型 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>PState 状态指针 </dd></dl>
 
 </div>
 </div>
