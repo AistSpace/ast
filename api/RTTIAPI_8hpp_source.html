@@ -111,29 +111,32 @@ $(function(){initNavTree('RTTIAPI_8hpp_source.html',''); initResizable(true); })
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>AST_NAMESPACE_BEGIN</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>AST_UTIL_CAPI Class* <a class="code hl_function" href="group__RTTI.html#ga4ab0aeafea06cb726b9b242379d361df">aGetClass</a>(StringView name);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>AST_UTIL_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__RTTI.html#gafca0a4e10333068c12cfadc1b5bdb145">aRegisterClass</a>(Class* cls);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>AST_UTIL_API Object* <a class="code hl_function" href="group__RTTI.html#gad68114b7c166e8d927cb2fb97e6a07a9">aGetClassDefaultObject</a>(StringView name);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>AST_UTIL_API Object* <a class="code hl_function" href="group__RTTI.html#gad68114b7c166e8d927cb2fb97e6a07a9">aGetClassDefaultObject</a>(Class* cls);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>AST_UTIL_CAPI Object* <a class="code hl_function" href="group__RTTI.html#ga76d39fb3f19fe83ece5d756a9c5efeeb">aNewObject</a>(StringView name);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>AST_UTIL_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__RTTI.html#gac773a55dc25b4065657e0d2ab5ce3b21">aDeleteObject</a>(Object* obj);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>AST_UTIL_API SharedPtr&lt;Object&gt; <a class="code hl_function" href="group__RTTI.html#ga22ca397466c55ee01565bb6460526887">aMakeObject</a>(StringView name);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>AST_NAMESPACE_END</div>
-<div class="ttc" id="agroup__RTTI_html_ga22ca397466c55ee01565bb6460526887"><div class="ttname"><a href="group__RTTI.html#ga22ca397466c55ee01565bb6460526887">ast::aMakeObject</a></div><div class="ttdeci">SharedPtr&lt; Object &gt; aMakeObject(StringView name)</div><div class="ttdoc">创建对象，返回智能指针</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:65</div></div>
-<div class="ttc" id="agroup__RTTI_html_ga4ab0aeafea06cb726b9b242379d361df"><div class="ttname"><a href="group__RTTI.html#ga4ab0aeafea06cb726b9b242379d361df">ast::aGetClass</a></div><div class="ttdeci">Class * aGetClass(StringView name)</div><div class="ttdoc">获取类的元数据</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:29</div></div>
-<div class="ttc" id="agroup__RTTI_html_ga76d39fb3f19fe83ece5d756a9c5efeeb"><div class="ttname"><a href="group__RTTI.html#ga76d39fb3f19fe83ece5d756a9c5efeeb">ast::aNewObject</a></div><div class="ttdeci">Object * aNewObject(StringView name)</div><div class="ttdoc">创建对象，返回裸指针</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:52</div></div>
-<div class="ttc" id="agroup__RTTI_html_gac773a55dc25b4065657e0d2ab5ce3b21"><div class="ttname"><a href="group__RTTI.html#gac773a55dc25b4065657e0d2ab5ce3b21">ast::aDeleteObject</a></div><div class="ttdeci">void aDeleteObject(Object *obj)</div><div class="ttdoc">删除对象</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:60</div></div>
-<div class="ttc" id="agroup__RTTI_html_gad68114b7c166e8d927cb2fb97e6a07a9"><div class="ttname"><a href="group__RTTI.html#gad68114b7c166e8d927cb2fb97e6a07a9">ast::aGetClassDefaultObject</a></div><div class="ttdeci">Object * aGetClassDefaultObject(StringView name)</div><div class="ttdoc">根据类名获取类的默认对象(CDO)</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:39</div></div>
-<div class="ttc" id="agroup__RTTI_html_gafca0a4e10333068c12cfadc1b5bdb145"><div class="ttname"><a href="group__RTTI.html#gafca0a4e10333068c12cfadc1b5bdb145">ast::aRegisterClass</a></div><div class="ttdeci">void aRegisterClass(Class *cls)</div><div class="ttdoc">注册类</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:34</div></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>AST_UTIL_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__RTTI.html#gad5657a636622fe1200c3978ec4325a0a">aGetAllClassNames</a>(std::vector&lt;std::string&gt;&amp; names);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>AST_UTIL_CAPI Class* <a class="code hl_function" href="group__RTTI.html#ga4ab0aeafea06cb726b9b242379d361df">aGetClass</a>(StringView name);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>AST_UTIL_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__RTTI.html#gafca0a4e10333068c12cfadc1b5bdb145">aRegisterClass</a>(Class* cls);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>AST_UTIL_API Object* <a class="code hl_function" href="group__RTTI.html#gad68114b7c166e8d927cb2fb97e6a07a9">aGetClassDefaultObject</a>(StringView name);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>AST_UTIL_API Object* <a class="code hl_function" href="group__RTTI.html#gad68114b7c166e8d927cb2fb97e6a07a9">aGetClassDefaultObject</a>(Class* cls);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>AST_UTIL_CAPI Object* <a class="code hl_function" href="group__RTTI.html#ga76d39fb3f19fe83ece5d756a9c5efeeb">aNewObject</a>(StringView name);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>AST_UTIL_CAPI <span class="keywordtype">void</span> <a class="code hl_function" href="group__RTTI.html#gac773a55dc25b4065657e0d2ab5ce3b21">aDeleteObject</a>(Object* obj);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>AST_UTIL_API SharedPtr&lt;Object&gt; <a class="code hl_function" href="group__RTTI.html#ga22ca397466c55ee01565bb6460526887">aMakeObject</a>(StringView name);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>AST_NAMESPACE_END</div>
+<div class="ttc" id="agroup__RTTI_html_ga22ca397466c55ee01565bb6460526887"><div class="ttname"><a href="group__RTTI.html#ga22ca397466c55ee01565bb6460526887">ast::aMakeObject</a></div><div class="ttdeci">SharedPtr&lt; Object &gt; aMakeObject(StringView name)</div><div class="ttdoc">创建对象，返回智能指针</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:71</div></div>
+<div class="ttc" id="agroup__RTTI_html_ga4ab0aeafea06cb726b9b242379d361df"><div class="ttname"><a href="group__RTTI.html#ga4ab0aeafea06cb726b9b242379d361df">ast::aGetClass</a></div><div class="ttdeci">Class * aGetClass(StringView name)</div><div class="ttdoc">获取类的元数据</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:35</div></div>
+<div class="ttc" id="agroup__RTTI_html_ga76d39fb3f19fe83ece5d756a9c5efeeb"><div class="ttname"><a href="group__RTTI.html#ga76d39fb3f19fe83ece5d756a9c5efeeb">ast::aNewObject</a></div><div class="ttdeci">Object * aNewObject(StringView name)</div><div class="ttdoc">创建对象，返回裸指针</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:58</div></div>
+<div class="ttc" id="agroup__RTTI_html_gac773a55dc25b4065657e0d2ab5ce3b21"><div class="ttname"><a href="group__RTTI.html#gac773a55dc25b4065657e0d2ab5ce3b21">ast::aDeleteObject</a></div><div class="ttdeci">void aDeleteObject(Object *obj)</div><div class="ttdoc">删除对象</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:66</div></div>
+<div class="ttc" id="agroup__RTTI_html_gad5657a636622fe1200c3978ec4325a0a"><div class="ttname"><a href="group__RTTI.html#gad5657a636622fe1200c3978ec4325a0a">ast::aGetAllClassNames</a></div><div class="ttdeci">void aGetAllClassNames(std::vector&lt; std::string &gt; &amp;names)</div><div class="ttdoc">获取所有已注册的类名</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:30</div></div>
+<div class="ttc" id="agroup__RTTI_html_gad68114b7c166e8d927cb2fb97e6a07a9"><div class="ttname"><a href="group__RTTI.html#gad68114b7c166e8d927cb2fb97e6a07a9">ast::aGetClassDefaultObject</a></div><div class="ttdeci">Object * aGetClassDefaultObject(StringView name)</div><div class="ttdoc">根据类名获取类的默认对象(CDO)</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:45</div></div>
+<div class="ttc" id="agroup__RTTI_html_gafca0a4e10333068c12cfadc1b5bdb145"><div class="ttname"><a href="group__RTTI.html#gafca0a4e10333068c12cfadc1b5bdb145">ast::aRegisterClass</a></div><div class="ttdeci">void aRegisterClass(Class *cls)</div><div class="ttdoc">注册类</div><div class="ttdef"><b>定义</b> RTTIAPI.cpp:40</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

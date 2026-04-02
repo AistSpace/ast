@@ -6,5 +6,6 @@ var searchData=
   ['_7egfxcelestialbody_3',['~GfxCelestialBody',['../classast_1_1GfxCelestialBody.html#a6154059b703e0fcde322b2efceb8ca6e',1,'ast::GfxCelestialBody']]],
   ['_7egfxmain_4',['~GfxMain',['../classast_1_1GfxMain.html#a4a2c217af55956b72ef9df2575f965fd',1,'ast::GfxMain']]],
   ['_7egfxsolarsystem_5',['~GfxSolarSystem',['../classast_1_1GfxSolarSystem.html#abef2341ab4d0615308cc9ff9c17018f0',1,'ast::GfxSolarSystem']]],
-  ['_7einlpproblem_6',['~INLPProblem',['../classast_1_1INLPProblem.html#a5bd273b6afc818829a36d745147e8aea',1,'ast::INLPProblem']]]
+  ['_7eguiinterface_6',['~GUIInterface',['../classast_1_1GUIInterface.html#a21fd42ca1ddf0dc1eb5e83df4c338f36',1,'ast::GUIInterface']]],
+  ['_7einlpproblem_7',['~INLPProblem',['../classast_1_1INLPProblem.html#a5bd273b6afc818829a36d745147e8aea',1,'ast::INLPProblem']]]
 ];

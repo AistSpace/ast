@@ -180,6 +180,9 @@ var hierarchy =
       [ "ast::GravityField", "classast_1_1GravityField.html", null ]
     ] ],
     [ "ast::GravityFieldLoader", "classast_1_1GravityFieldLoader.html", null ],
+    [ "ast::GUIInterface", "classast_1_1GUIInterface.html", [
+      [ "ast::GUIInterfaceImpl", "classast_1_1GUIInterfaceImpl.html", null ]
+    ] ],
     [ "std::hash< _AST StringViewBasic< _Char > >", "structstd_1_1hash_3_01__AST_01StringViewBasic_3_01__Char_01_4_01_4.html", null ],
     [ "ast::HPOP", "classast_1_1HPOP.html", null ],
     [ "ast::HPOPForceModel", "classast_1_1HPOPForceModel.html", null ],
@@ -425,6 +428,7 @@ var hierarchy =
         [ "ast::StateKeplerian", "classast_1_1StateKeplerian.html", null ]
       ] ]
     ] ],
+    [ "ast::ObjectEditRegistry", "classast_1_1ObjectEditRegistry.html", null ],
     [ "ast::ODEEventDetector", "classast_1_1ODEEventDetector.html", [
       [ "ast::ODEEventDetectorGeneric< Func >", "classast_1_1ODEEventDetectorGeneric.html", null ]
     ] ],
@@ -471,6 +475,9 @@ var hierarchy =
     ] ],
     [ "QMainWindow", null, [
       [ "ast::UiMainWindow", "classast_1_1UiMainWindow.html", null ]
+    ] ],
+    [ "QObject", null, [
+      [ "ast::CloseEventDetecter", "classast_1_1CloseEventDetecter.html", null ]
     ] ],
     [ "ast::Quantity", "classast_1_1Quantity.html", null ],
     [ "ast::Quaternion", "classast_1_1Quaternion.html", null ],

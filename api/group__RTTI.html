@@ -269,6 +269,8 @@ template&lt;typename T , std::string T::* Member&gt; </td></tr>
 <tr class="memitem:gab1f1da4e88219f2a7797a180f28a869f" id="r_gab1f1da4e88219f2a7797a180f28a869f"><td class="memTemplParams" colspan="2">template&lt;typename T , const std::string &amp;(T::*)() const Getter, void(T::*)(<a class="el" href="classast_1_1StringViewBasic.html">StringView</a>) Setter&gt; </td></tr>
 <tr class="memitem:gab1f1da4e88219f2a7797a180f28a869f"><td class="memTemplItemLeft" align="right" valign="top">A_ALWAYS_INLINE <a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#gab1f1da4e88219f2a7797a180f28a869f">ast::aNewPropertyString</a> ()</td></tr>
 <tr class="separator:gab1f1da4e88219f2a7797a180f28a869f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad5657a636622fe1200c3978ec4325a0a" id="r_gad5657a636622fe1200c3978ec4325a0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gad5657a636622fe1200c3978ec4325a0a">ast::aGetAllClassNames</a> (std::vector&lt; std::string &gt; &amp;names)</td></tr>
+<tr class="separator:gad5657a636622fe1200c3978ec4325a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4ab0aeafea06cb726b9b242379d361df" id="r_ga4ab0aeafea06cb726b9b242379d361df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Class.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga4ab0aeafea06cb726b9b242379d361df">ast::aGetClass</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
 <tr class="separator:ga4ab0aeafea06cb726b9b242379d361df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafca0a4e10333068c12cfadc1b5bdb145" id="r_gafca0a4e10333068c12cfadc1b5bdb145"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gafca0a4e10333068c12cfadc1b5bdb145">ast::aRegisterClass</a> (<a class="el" href="classast_1_1Class.html">Class</a> *cls)</td></tr>
@@ -797,6 +799,26 @@ template&lt;&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>errc_t 错误码 </dd></dl>
+
+</div>
+</div>
+<a id="gad5657a636622fe1200c3978ec4325a0a" name="gad5657a636622fe1200c3978ec4325a0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad5657a636622fe1200c3978ec4325a0a">&#9670;&#160;</a></span>aGetAllClassNames()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_UTIL_CAPI void ast::aGetAllClassNames </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>names</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取所有已注册的类名 </p>
+<p>names 输出参数，用于存储所有已注册的类名 </p><dl class="section return"><dt>返回</dt><dd>无 </dd></dl>
 
 </div>
 </div>

@@ -18,6 +18,7 @@ var classast_1_1Object =
     [ "incRef", "classast_1_1Object.html#a200ecf89b239336aae46e9b2e6045f7c", null ],
     [ "incWeakRef", "classast_1_1Object.html#a318851ef5849dfb6c7555ba0b47c533d", null ],
     [ "isDestructed", "classast_1_1Object.html#a6fd5f058fcc84490d373f3194a001397", null ],
+    [ "openEditDialog", "classast_1_1Object.html#a267659228339fcfd14616d55b87d2abd", null ],
     [ "refCount", "classast_1_1Object.html#a91ca8d28b3a279e60ce673d69b5a545b", null ],
     [ "setAttrBool", "classast_1_1Object.html#a5072bda9b7931524868edbf014d4ff92", null ],
     [ "setAttrDouble", "classast_1_1Object.html#acac18023e736d3e498ab1cf2965b9abf", null ],

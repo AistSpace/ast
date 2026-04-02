@@ -11,6 +11,8 @@ var dir_58f1c1acee87c1819259ff24dc93e089 =
     [ "FileSystemSimple.hpp", "FileSystemSimple_8hpp_source.html", null ],
     [ "GUI.cpp", "GUI_8cpp.html", "GUI_8cpp" ],
     [ "GUI.hpp", "GUI_8hpp.html", "GUI_8hpp" ],
+    [ "GUIInterface.cpp", "GUIInterface_8cpp.html", null ],
+    [ "GUIInterface.hpp", "GUIInterface_8hpp.html", null ],
     [ "IO.cpp", "IO_8cpp.html", "IO_8cpp" ],
     [ "IO.hpp", "IO_8hpp.html", "IO_8hpp" ],
     [ "LibraryLoader.cpp", "LibraryLoader_8cpp.html", "LibraryLoader_8cpp" ],
@@ -25,6 +27,6 @@ var dir_58f1c1acee87c1819259ff24dc93e089 =
     [ "StringPosix.hpp", "StringPosix_8hpp.html", "StringPosix_8hpp" ],
     [ "Terminal.cpp", "Terminal_8cpp.html", null ],
     [ "Terminal.hpp", "Terminal_8hpp.html", null ],
-    [ "UiOperator.cpp", "UiOperator_8cpp.html", null ],
+    [ "UiOperator.cpp", "UiOperator_8cpp.html", "UiOperator_8cpp" ],
     [ "UiOperator.hpp", "UiOperator_8hpp.html", "UiOperator_8hpp" ]
 ];

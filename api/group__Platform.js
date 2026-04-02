@@ -2,6 +2,11 @@ var group__Platform =
 [
     [ "ast::fs_simple", "namespaceast_1_1fs__simple.html", null ],
     [ "ast::posix", "namespaceast_1_1posix.html", null ],
+    [ "ast::GUIInterface", "classast_1_1GUIInterface.html", [
+      [ "~GUIInterface", "classast_1_1GUIInterface.html#a21fd42ca1ddf0dc1eb5e83df4c338f36", null ],
+      [ "editObject", "classast_1_1GUIInterface.html#a8ca5ae91cab9b454468b07637075b9b3", null ],
+      [ "selectObject", "classast_1_1GUIInterface.html#aa6d548a96175ce5ca651534192a4cae1", null ]
+    ] ],
     [ "ast::EEndian", "group__Platform.html#gae5cf4de7adb0a012861b982458f81526", [
       [ "ast::eLittleEndian", "group__Platform.html#ggae5cf4de7adb0a012861b982458f81526ae3046b598c718c3efb499423ed6272ec", null ],
       [ "ast::eBigEndian", "group__Platform.html#ggae5cf4de7adb0a012861b982458f81526aa62c0343340b8ffd29f021d1546be637", null ]
@@ -34,7 +39,5 @@ var group__Platform =
     [ "ast::aStdOutIsFile", "group__Platform.html#ga038a62d786234b02f668f9460bbd86f6", null ],
     [ "ast::aStdOutIsTerminal", "group__Platform.html#gaef5625c409a6ef4a8ddf3e4b2aff79b5", null ],
     [ "ast::aUiEditObject", "group__Platform.html#ga0e988e64c58fbe5bfa847b6ae04d8dba", null ],
-    [ "ast::aUiNewEditWidget", "group__Platform.html#ga70d3f705f380134646f9608765a75950", null ],
-    [ "ast::aUiRegEditWidget", "group__Platform.html#gaa2c0fb5bfaa44732ba907dfd96396f3a", null ],
     [ "ast::aUiSelectObject", "group__Platform.html#ga9d38a8540eaa686e730caab9e588e35f", null ]
 ];

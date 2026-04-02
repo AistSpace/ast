@@ -46,8 +46,9 @@ var searchData=
   ['cross_43',['cross',['../namespaceast_1_1math.html#afe4763a2a941b3324f166f3377767b77',1,'ast::math']]],
   ['cubicmeter_44',['CubicMeter',['../classast_1_1Unit.html#a66b30b76091c42c9cb48b5d3da015b82',1,'ast::Unit']]],
   ['current_45',['Current',['../classast_1_1Dimension.html#a355b0590aaa630b473b4d29def7bd501',1,'ast::Dimension']]],
-  ['currentlexeme_46',['currentLexeme',['../classast_1_1Parser.html#aeca390ef2b07e1e5fe0169687034dfc0',1,'ast::Parser']]],
-  ['currentscope_47',['currentScope',['../classast_1_1Interpreter.html#a0772639e1ca5d4dfca4c39ffd38bbb2b',1,'ast::Interpreter']]],
-  ['currenttime_48',['CurrentTime',['../classast_1_1TimePoint.html#a1ca2a286c9ea94244924ea954fa525de',1,'ast::TimePoint']]],
-  ['currenttokentype_49',['currentTokenType',['../classast_1_1Parser.html#ad9d0cc741db76c6803aed27fe49cebb2',1,'ast::Parser']]]
+  ['currentinstance_46',['CurrentInstance',['../classast_1_1GUIInterface.html#a33580986d439a71418f6602ca77b5637',1,'ast::GUIInterface']]],
+  ['currentlexeme_47',['currentLexeme',['../classast_1_1Parser.html#aeca390ef2b07e1e5fe0169687034dfc0',1,'ast::Parser']]],
+  ['currentscope_48',['currentScope',['../classast_1_1Interpreter.html#a0772639e1ca5d4dfca4c39ffd38bbb2b',1,'ast::Interpreter']]],
+  ['currenttime_49',['CurrentTime',['../classast_1_1TimePoint.html#a1ca2a286c9ea94244924ea954fa525de',1,'ast::TimePoint']]],
+  ['currenttokentype_50',['currentTokenType',['../classast_1_1Parser.html#ad9d0cc741db76c6803aed27fe49cebb2',1,'ast::Parser']]]
 ];
