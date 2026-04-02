@@ -77,15 +77,15 @@ UiMotionTwoBody::UiMotionTwoBody(QWidget *parent)
     leftLayout_->addLayout(propagationFrameLayout_);
     
     // 坐标类型
-    coordTypeLayout_ = new QHBoxLayout();
-    coordTypeLabel_ = new QLabel(tr("坐标类型"), this);
-    coordTypeCombo_ = new QComboBox(this);
-    coordTypeCombo_->addItem(tr("直角坐标"), static_cast<int>(EStateType::eCartesian));
-    coordTypeCombo_->addItem(tr("开普勒根数"), static_cast<int>(EStateType::eKeplerian));
+    stateTypeLayout_ = new QHBoxLayout();
+    stateTypeLabel_ = new QLabel(tr("坐标类型"), this);
+    stateTypeCombo_ = new QComboBox(this);
+    stateTypeCombo_->addItem(tr("直角坐标"), static_cast<int>(EStateType::eCartesian));
+    stateTypeCombo_->addItem(tr("开普勒根数"), static_cast<int>(EStateType::eKeplerian));
 
-    coordTypeLayout_->addWidget(coordTypeLabel_);
-    coordTypeLayout_->addWidget(coordTypeCombo_);
-    leftLayout_->addLayout(coordTypeLayout_);
+    stateTypeLayout_->addWidget(stateTypeLabel_);
+    stateTypeLayout_->addWidget(stateTypeCombo_);
+    leftLayout_->addLayout(stateTypeLayout_);
     
     // 创建右侧布局
     rightLayout_ = new QVBoxLayout();
@@ -114,10 +114,12 @@ UiMotionTwoBody::UiMotionTwoBody(QWidget *parent)
     
     // 连接信号槽
     connect(stateCartesianEdit_, &UiStateCartesian::stateCartesianChanged, this, &UiMotionTwoBody::apply);
-    connect(stepSizeEdit_, &UiQuantity::quantityChanged, this, &UiMotionTwoBody::apply);
-    connect(timeIntervalEdit_, &UiTimeInterval::timeIntervalChanged, this, &UiMotionTwoBody::apply);
-    connect(propagationFrameCombo_, &QComboBox::currentTextChanged, this, &UiMotionTwoBody::apply);
-    connect(coordTypeCombo_, &QComboBox::currentTextChanged, this, &UiMotionTwoBody::apply);
+    connect(stateKeplerianEdit_, &UiStateKeplerian::stateKeplerianChanged, this, &UiMotionTwoBody::apply);
+
+    connect(stepSizeEdit_, &UiQuantity::quantityChanged, this, &UiMotionTwoBody::onStepSizeChanged);
+    connect(timeIntervalEdit_, &UiTimeInterval::timeIntervalChanged, this, &UiMotionTwoBody::onIntervalChanged);
+    connect(propagationFrameCombo_, &QComboBox::currentTextChanged, this, &UiMotionTwoBody::onPropagationFrameChanged);
+    connect(stateTypeCombo_, &QComboBox::currentTextChanged, this, &UiMotionTwoBody::onStateTypeChanged);
 }
 
 MotionTwoBody* UiMotionTwoBody::getMotionTwoBody() const
@@ -133,12 +135,7 @@ void UiMotionTwoBody::setMotionTwoBody(MotionTwoBody* motion)
 
 void UiMotionTwoBody::refreshUi()
 {
-    if (auto motionTwoBody = getMotionTwoBody())
-    {
-        // 这里可以添加代码，根据MotionTwoBody的状态更新UI
-        // 例如，更新时间、位置、速度等参数
-        A_UNUSED(motionTwoBody);
-    }
+    refreshStateType();
 }
 
 void UiMotionTwoBody::apply()
@@ -151,28 +148,64 @@ void UiMotionTwoBody::apply()
 
 void UiMotionTwoBody::onStateTypeChanged()
 {
-    EStateType stateType = static_cast<EStateType>(coordTypeCombo_->currentData().toInt());
-    if (stateType == EStateType::eCartesian)
+    if(auto motionTwoBody = getMotionTwoBody())
     {
-        stateCartesianEdit_->setVisible(true);
-        stateKeplerianEdit_->setVisible(false);
+        EStateType stateType = static_cast<EStateType>(stateTypeCombo_->currentData().toInt());
+        motionTwoBody->setStateType(stateType);
+        refreshStateType();
     }
-    else if (stateType == EStateType::eKeplerian)
+}
+
+void UiMotionTwoBody::onStepSizeChanged()
+{
+    if(auto motionTwoBody = getMotionTwoBody())
     {
-        stateKeplerianEdit_->setVisible(true);
-        stateCartesianEdit_->setVisible(false);
+        double stepSizeSI = stepSizeEdit_->getValueSI();
+        motionTwoBody->setStepSize(stepSizeSI);
     }
-    else
+}
+
+void UiMotionTwoBody::onIntervalChanged()
+{
+    if(auto motionTwoBody = getMotionTwoBody())
     {
-        stateKeplerianEdit_->setVisible(false);
-        stateCartesianEdit_->setVisible(false);
+        TimeInterval interval = timeIntervalEdit_->getTimeInterval();
+        motionTwoBody->setInterval(interval);
     }
+}
+
+void UiMotionTwoBody::onPropagationFrameChanged()
+{
+
 }
 
 void UiMotionTwoBody::refreshStateType()
 {
-    EStateType stateType = getMotionTwoBody()->getStateType();
-    
+    if(auto motionTwoBody = getMotionTwoBody())
+    {
+        EStateType stateType = motionTwoBody->getStateType();
+        int index = stateTypeCombo_->findData(static_cast<int>(stateType));
+        // stateTypeCombo_->blockSignals(true);
+        stateTypeCombo_->setCurrentIndex(index);
+        // stateTypeCombo_->blockSignals(false);
+        if (stateType == EStateType::eCartesian)
+        {
+            stateKeplerianEdit_->hide();
+            stateCartesianEdit_->show();
+            stateCartesianEdit_->setStateCartesian(dynamic_cast<StateCartesian*>(motionTwoBody->getInitialState()));
+        }
+        else if (stateType == EStateType::eKeplerian)
+        {
+            stateCartesianEdit_->hide();
+            stateKeplerianEdit_->show();
+            stateKeplerianEdit_->setStateKeplerian(dynamic_cast<StateKeplerian*>(motionTwoBody->getInitialState()));
+        }
+        else
+        {
+            stateKeplerianEdit_->hide();
+            stateCartesianEdit_->hide();
+        }
+    }
 }
 
 void UiMotionTwoBody::applyTo(MotionTwoBody* motion)

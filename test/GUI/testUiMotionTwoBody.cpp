@@ -21,6 +21,7 @@
 #include "AstGUI/UiMotionTwoBody.hpp"
 #include "AstSim/MotionTwoBody.hpp"
 #include "AstCore/StateCartesian.hpp"
+#include "AstCore/CelestialBody.hpp"
 #include <QApplication>
 #include <QMainWindow>
 #include <QVBoxLayout>
@@ -29,6 +30,7 @@ AST_NAMESPACE_BEGIN
 
 int testUiMotionTwoBody()
 {
+    aInitialize();
     int argc = 0;
     char** argv = nullptr;
     QApplication app(argc, argv);
@@ -52,6 +54,8 @@ int testUiMotionTwoBody()
     // 设置给UI组件
     uiMotionTwoBody->setMotionTwoBody(motionTwoBody);
     
+    auto earth = aGetEarth();
+
     // 创建StateCartesian对象
     StateCartesian* stateCartesian = StateCartesian::New();
     
@@ -62,6 +66,8 @@ int testUiMotionTwoBody()
     stateCartesian->setVx(0.0);
     stateCartesian->setVy(7905.36828);
     stateCartesian->setVz(0.0);
+    stateCartesian->setStateEpoch(TimePoint::FromUTC(2026, 4, 3, 0, 1, 0));
+    stateCartesian->setFrame(earth->makeFrameICRF());
     
     // 设置给MotionTwoBody
     motionTwoBody->setInitialState(stateCartesian);

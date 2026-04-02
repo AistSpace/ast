@@ -36,6 +36,11 @@ HState State::MakeShared(EStateType type)
     return New(type);
 }
 
+HState State::MakeShared(State &state, EStateType type)
+{
+    return New(state, type);
+}
+
 PState State::New(EStateType type)
 {
     switch (type)
@@ -45,6 +50,22 @@ PState State::New(EStateType type)
         break;
     case EStateType::eKeplerian:
         return new StateKeplerian();
+    default:
+        break;
+    }
+    aError("unknown state type");
+    return nullptr;
+}
+
+PState State::New(State &state, EStateType type)
+{
+    switch (type)
+    {
+    case EStateType::eCartesian:
+        return new StateCartesian(state);
+        break;
+    case EStateType::eKeplerian:
+        return new StateKeplerian(state);
     default:
         break;
     }

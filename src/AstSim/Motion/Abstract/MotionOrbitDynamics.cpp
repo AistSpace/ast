@@ -42,8 +42,10 @@ void MotionOrbitDynamics::setStateType(EStateType type)
         {
             return;
         }
+        initialState_ = State::MakeShared(*initialState_, type);
+    }else{
+        initialState_ = State::MakeShared(type);
     }
-    initialState_ = State::MakeShared(type);
 }
 
 errc_t MotionOrbitDynamics::getPropagationParams(PropagationParams &params) const

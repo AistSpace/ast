@@ -35,7 +35,7 @@ UiStateKeplerian::UiStateKeplerian(QWidget *parent) : UiState(parent)
     // 创建主布局
     QGridLayout* mainLayout = new QGridLayout(this);
     mainLayout->setColumnStretch(0, 1);
-    mainLayout->setColumnStretch(1, 2);
+    mainLayout->setColumnStretch(1, 1);
     mainLayout->setColumnStretch(2, 3);
     
     int row = 0;
@@ -485,6 +485,10 @@ void UiStateKeplerian::refreshInc()
 {
     if (auto state = getStateKeplerian())
     {
+        if(incEdit_->getUnit().dimension() != Dimension::Angle())
+        {
+            incEdit_->setUnit(rad);
+        }
         incEdit_->setValueSI(state->getInc());
     }
 }
@@ -493,6 +497,10 @@ void UiStateKeplerian::refreshArgPeri()
 {
     if (auto state = getStateKeplerian())
     {
+        if(argPeriEdit_->getUnit().dimension() != Dimension::Angle())
+        {
+            argPeriEdit_->setUnit(rad);
+        }
         argPeriEdit_->setValueSI(state->getArgPeri());
     }
 }

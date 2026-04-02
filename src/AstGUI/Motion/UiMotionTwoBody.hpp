@@ -58,6 +58,9 @@ public:
     void apply();
 protected:
     void onStateTypeChanged();
+    void onStepSizeChanged();
+    void onIntervalChanged();
+    void onPropagationFrameChanged();
 protected:
     void refreshStateType();
 private slots:
@@ -79,9 +82,9 @@ private:
     QHBoxLayout* propagationFrameLayout_{nullptr};
     QLabel* propagationFrameLabel_{nullptr};
     QComboBox* propagationFrameCombo_{nullptr};
-    QHBoxLayout* coordTypeLayout_{nullptr};
-    QLabel* coordTypeLabel_{nullptr};
-    QComboBox* coordTypeCombo_{nullptr};
+    QHBoxLayout* stateTypeLayout_{nullptr};
+    QLabel* stateTypeLabel_{nullptr};
+    QComboBox* stateTypeCombo_{nullptr};
     
     // 右侧控件
     UiStateCartesian* stateCartesianEdit_{nullptr};
