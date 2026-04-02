@@ -26,6 +26,7 @@
 #include "AstGUI/UiTimePoint.hpp"
 #include "AstGUI/UiQuantity.hpp"
 #include "AstGUI/UiStateCartesian.hpp"
+#include "AstGUI/UiStateKeplerian.hpp"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QGridLayout>
@@ -55,6 +56,10 @@ public:
     void setMotionTwoBody(MotionTwoBody* motion);
     void refreshUi();
     void apply();
+protected:
+    void onStateTypeChanged();
+protected:
+    void refreshStateType();
 private slots:
     void applyTo(MotionTwoBody* motion);
 private:
@@ -80,6 +85,7 @@ private:
     
     // 右侧控件
     UiStateCartesian* stateCartesianEdit_{nullptr};
+    UiStateKeplerian* stateKeplerianEdit_{nullptr};
     
     // 数据
     MotionTwoBody* motionTwoBody_{nullptr};

@@ -24,7 +24,6 @@
 #include "AstUtil/SharedPtr.hpp"
 #include "AstUtil/ScopedPtr.hpp"
 #include "AstUtil/WeakPtr.hpp"
-#include "AstUtil/Class.hpp"
 #include "AstUtil/ReflectAPI.hpp"
 #include <string>       // for std::string
 #include <stdint.h>     // for uint32_t
@@ -72,7 +71,8 @@ typedef AttributeBasic<WeakPtr<Object>, Property> Attribute;
 
 
 
-/// @brief 对象基类，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能
+/// @brief 对象基类，继承自该类的对象可以使用运行时类型信息相关功能，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能
+/// @details 参考了Qt的QObject类、UE的UObject类、以及Python的PyObject等类的设计和实现
 class AST_UTIL_API Object
 {
 public:
@@ -84,7 +84,8 @@ public:
     /// @brief 获取对象的类型元信息
     /// @return Class* 类型元信息指针
     virtual Class* getType() const;
-
+    static Class staticType;
+    static inline Class* getStaticType(){return &staticType;}
 public:
     /// @brief 获取属性，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
@@ -251,7 +252,7 @@ protected:
         , weakrefcnt_(1)
     {}
 protected:
-    // Class*                type_;                 ///< 类型元信息，同时用于标识对象是否被析构
+    // Class*                type_;                 ///< 类型元信息，同时用于标识对象是否被析构(废弃)
     std::atomic<uint32_t>    refcnt_;               ///< 强引用计数，给SharedPtr使用
     std::atomic<uint32_t>    weakrefcnt_;           ///< 弱引用计数，给WeakPtr使用
 };
@@ -266,3 +267,4 @@ AST_NAMESPACE_END
 AST_DECL_TYPE_ALIAS(Object)
 
 #include "AstUtil/Attribute.hpp"
+#include "AstUtil/Class.hpp"

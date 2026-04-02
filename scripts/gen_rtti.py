@@ -49,6 +49,7 @@ class ClassInfo:
     def __init__(self, name, file_path):
         self.name: str = name
         self.file_path:Optional[str] = file_path
+        self.parent: Optional[str] = None  # 父类名称
         self.properties: Dict[str, PropertyInfo] = {}
 
     def add_property(self, prop: PropertyInfo):
@@ -232,6 +233,14 @@ class BaseHeaderAnalyzer:
         
         lines.append("")  # 空行
         lines.append(f"    cls->setName(\"{class_info.name}\");")
+        lines.append(f"    cls->addToRegistry();")
+        if class_info.parent:
+            lines.append(f"    cls->setParent<{class_info.parent}>();")
+        else:
+            lines.append("    cls->setParent(nullptr);")
+        lines.append(f"    cls->setConstructor<{class_info.name}>();")
+        
+        lines.append("")  # 空行
         
         # 生成addProperty调用
         for _, prop_info in class_info.properties.items():
@@ -286,6 +295,7 @@ class BaseHeaderAnalyzer:
                 continue
             
             print(f"\n类: {class_name}")
+            print(f"父类: {class_info.parent or '无'}")
             print(f"属性数量: {len(class_info.properties)}")
             
             for _, prop_info in class_info.properties.items():
@@ -365,6 +375,15 @@ class ClangHeaderAnalyzer(BaseHeaderAnalyzer):
                 else:
                     class_info = ClassInfo(name=class_name, file_path=file_path)
                     self.classes[class_name] = class_info
+                
+                # 提取父类信息
+                for child in cursor.get_children():
+                    if child.kind == CursorKind.CXX_BASE_SPECIFIER:
+                        base_class_name = child.type.spelling
+                        if base_class_name:
+                            class_info.parent = base_class_name
+                            break
+                
                 # 分析类的属性
                 self._analyze_class_properties(class_info, cursor)
         else:

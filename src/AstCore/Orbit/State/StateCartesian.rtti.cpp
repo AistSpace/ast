@@ -13,6 +13,10 @@ void StateCartesian::ClassInit(Class* cls)
 {
 
     cls->setName("StateCartesian");
+    cls->addToRegistry();
+    cls->setParent<State>();
+    cls->setConstructor<StateCartesian>();
+
     cls->addProperty("x", aNewPropertyDouble<StateCartesian, &StateCartesian::x, &StateCartesian::setX>());
     cls->addProperty("y", aNewPropertyDouble<StateCartesian, &StateCartesian::y, &StateCartesian::setY>());
     cls->addProperty("z", aNewPropertyDouble<StateCartesian, &StateCartesian::z, &StateCartesian::setZ>());

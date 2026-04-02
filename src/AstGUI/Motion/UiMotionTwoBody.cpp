@@ -20,8 +20,10 @@
 #include "UiMotionTwoBody.hpp"
 #include "AstSim/MotionTwoBody.hpp"
 #include "AstGUI/UiStateCartesian.hpp"
+#include "AstGUI/UiStateKeplerian.hpp"
 #include "AstGUI/UiTimeInterval.hpp"
 #include "AstCore/StateCartesian.hpp"
+#include "AstCore/StateKeplerian.hpp"
 #include "AstCore/TimeInterval.hpp"
 #include "AstUtil/Unit.hpp"
 #include "AstUtil/Quantity.hpp"
@@ -78,7 +80,9 @@ UiMotionTwoBody::UiMotionTwoBody(QWidget *parent)
     coordTypeLayout_ = new QHBoxLayout();
     coordTypeLabel_ = new QLabel(tr("坐标类型"), this);
     coordTypeCombo_ = new QComboBox(this);
-    coordTypeCombo_->addItem(tr("位置速度"));
+    coordTypeCombo_->addItem(tr("直角坐标"), static_cast<int>(EStateType::eCartesian));
+    coordTypeCombo_->addItem(tr("开普勒根数"), static_cast<int>(EStateType::eKeplerian));
+
     coordTypeLayout_->addWidget(coordTypeLabel_);
     coordTypeLayout_->addWidget(coordTypeCombo_);
     leftLayout_->addLayout(coordTypeLayout_);
@@ -88,7 +92,11 @@ UiMotionTwoBody::UiMotionTwoBody(QWidget *parent)
     
     // 使用UiStateCartesian组件
     stateCartesianEdit_ = new UiStateCartesian(this);
+    stateKeplerianEdit_ = new UiStateKeplerian(this);
     rightLayout_->addWidget(stateCartesianEdit_);
+    rightLayout_->addWidget(stateKeplerianEdit_);
+    stateKeplerianEdit_->setVisible(false);
+    stateCartesianEdit_->setVisible(true);
     
     // 将左右布局添加到网格布局
     gridLayout_->addLayout(leftLayout_, 0, 0);
@@ -139,6 +147,32 @@ void UiMotionTwoBody::apply()
     {
         applyTo(motionTwoBody);
     }
+}
+
+void UiMotionTwoBody::onStateTypeChanged()
+{
+    EStateType stateType = static_cast<EStateType>(coordTypeCombo_->currentData().toInt());
+    if (stateType == EStateType::eCartesian)
+    {
+        stateCartesianEdit_->setVisible(true);
+        stateKeplerianEdit_->setVisible(false);
+    }
+    else if (stateType == EStateType::eKeplerian)
+    {
+        stateKeplerianEdit_->setVisible(true);
+        stateCartesianEdit_->setVisible(false);
+    }
+    else
+    {
+        stateKeplerianEdit_->setVisible(false);
+        stateCartesianEdit_->setVisible(false);
+    }
+}
+
+void UiMotionTwoBody::refreshStateType()
+{
+    EStateType stateType = getMotionTwoBody()->getStateType();
+    
 }
 
 void UiMotionTwoBody::applyTo(MotionTwoBody* motion)

@@ -29,6 +29,8 @@ AST_NAMESPACE_BEGIN
 
 static_assert(sizeof(Object) == sizeof(void*) * 1 + sizeof(uint32_t) * 2, "size not correct");      // 检查 Object 类的大小是否正确
 
+Class Object::staticType;
+
 Class *Object::getType() const
 {
     return nullptr;

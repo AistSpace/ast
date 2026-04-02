@@ -62,7 +62,13 @@ public:
     /// @param frame 预报坐标系指针
     void setPropagationFrame(Frame* frame) { propagationFrame_ = frame; }
 
+    /// @brief 获取状态类型
+    /// @return 状态类型
+    EStateType getStateType() const;
 
+    /// @brief 设置状态类型
+    /// @param type 状态类型
+    void setStateType(EStateType type);
 protected:
     struct PropagationParams
     {

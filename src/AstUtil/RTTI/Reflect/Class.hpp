@@ -22,27 +22,75 @@
 
 #include "AstGlobal.h"
 #include "Struct.hpp"
+#include "AstUtil/SharedPtr.hpp"
+#include "AstUtil/Object.hpp"
 
 AST_NAMESPACE_BEGIN
 
+class Object;
 
-/// @brief 类元信息
 /// @brief 类元信息
 /// @details 类元信息，包含类的名称、属性、方法等
 /// @todo 实现类的反射机制
 /// @ingroup RTTI
-class Class: public Struct
+class AST_UTIL_API Class: public Struct
 {
+    typedef Object* (*FConstructor)();
+
 public:
-    Class(Class* parent = nullptr) 
-        : parent_(parent) {}    
+    /// @brief 构造函数
+    /// @param parent 父类指针
+    Class(Class* parent = nullptr);
+
+    ~Class();
 
     /// @brief 获取父类
     /// @return Class* 父类指针
     Class* getParent() const{ return parent_; }
 
+    /// @brief 注册类到类注册器
+    void addToRegistry() const;
+
+    /// @brief 创建新对象
+    /// @return Object* 新对象指针
+    Object* NewObject() const;
+
+    /// @brief 获取默认对象
+    /// @return Object* 默认对象指针
+    Object* getDefaultObject() const;
+public:
+
+    /// @brief 设置父类
+    /// @warning 内部使用，不建议外部调用，否则可能导致未定义行为
+    /// @param parent 父类指针
+    void setParent(Class* parent){ parent_ = parent; }
+    
+    /// @brief 设置构造函数
+    /// @warning 内部使用，不建议外部调用，否则可能导致未定义行为
+    /// @param constructor 构造函数指针
+    void setConstructor(FConstructor constructor){ constructor_ = constructor; }
+
+    /// @brief 设置父类
+    /// @warning 内部使用，不建议外部调用，否则可能导致未定义行为
+    /// @param T 父类类型
+    template<typename T>
+    void setParent()
+    {
+        //setParent(T::getStaticType());
+        setParent(&T::staticType);
+    }
+
+    /// @brief 设置构造函数
+    /// @warning 内部使用，不建议外部调用，否则可能导致未定义行为
+    /// @param T 构造函数类型
+    template<typename T>
+    void setConstructor(){
+        setConstructor([]() -> Object* { return new T(); });
+    }
 protected:
-    Class* parent_;     ///< 父类
+    Class* parent_{nullptr};                       ///< 父类
+    FConstructor constructor_{nullptr};            ///< 构造函数
+    SharedPtr<Object> defaultObject_{nullptr};     ///< 默认对象
 };
 
 
