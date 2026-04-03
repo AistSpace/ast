@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['weakrefcnt_5f_0',['weakrefcnt_',['../classast_1_1Object.html#ab2b61413b6753045cfc785d791080a96',1,'ast::Object']]],
-  ['width_5f_1',['width_',['../classast_1_1DataPort.html#a7af44933dd2d189fcd825047f605626a',1,'ast::DataPort']]],
-  ['workstateobserver_5f_2',['workStateObserver_',['../classast_1_1ODEIntegrator.html#a4a919ef0c3f1c8bad5446e00b6619d3d',1,'ast::ODEIntegrator']]]
+  ['width_5f_0',['width_',['../classast_1_1DataPort.html#a7af44933dd2d189fcd825047f605626a',1,'ast::DataPort']]],
+  ['workstateobserver_5f_1',['workStateObserver_',['../classast_1_1ODEIntegrator.html#a4a919ef0c3f1c8bad5446e00b6619d3d',1,'ast::ODEIntegrator']]]
 ];

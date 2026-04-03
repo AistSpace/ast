@@ -103,7 +103,7 @@ $(function(){initNavTree('classast_1_1Object.html',''); initResizable(true); });
 <a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="#pub-static-attribs">静态 Public 属性</a> &#124;
 <a href="#pro-methods">Protected 成员函数</a> &#124;
-<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="#friends">友元</a> &#124;
 <a href="classast_1_1Object-members.html">所有成员列表</a>  </div>
   <div class="headertitle"><div class="title">ast::Object类 参考<div class="ingroups"><a class="el" href="group__Util.html">工具模块</a> &raquo; <a class="el" href="group__RTTI.html">运行时类型信息</a></div></div></div>
 </div><!--header-->
@@ -134,8 +134,16 @@ $(function(){initNavTree('classast_1_1Object.html',''); initResizable(true); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
+<tr class="memitem:a3e2ce8041e46f520a6f50b2d661245b9" id="r_a3e2ce8041e46f520a6f50b2d661245b9"><td class="memItemLeft" align="right" valign="top"><a id="a3e2ce8041e46f520a6f50b2d661245b9" name="a3e2ce8041e46f520a6f50b2d661245b9"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Object</b> (<a class="el" href="classast_1_1Object.html">Object</a> *parentScope)</td></tr>
+<tr class="separator:a3e2ce8041e46f520a6f50b2d661245b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62f159ae7909680956affebd590f1783" id="r_a62f159ae7909680956affebd590f1783"><td class="memItemLeft" align="right" valign="top"><a id="a62f159ae7909680956affebd590f1783" name="a62f159ae7909680956affebd590f1783"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Object</b> (std::nullptr_t)</td></tr>
+<tr class="separator:a62f159ae7909680956affebd590f1783"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5992c59eef6fd156988573616d3e8d5" id="r_ad5992c59eef6fd156988573616d3e8d5"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classast_1_1Class.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5992c59eef6fd156988573616d3e8d5">getType</a> () const</td></tr>
 <tr class="separator:ad5992c59eef6fd156988573616d3e8d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af67a932f9e931527a18ce0c714ba11d0" id="r_af67a932f9e931527a18ce0c714ba11d0"><td class="memItemLeft" align="right" valign="top">virtual const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af67a932f9e931527a18ce0c714ba11d0">getName</a> () const</td></tr>
+<tr class="separator:af67a932f9e931527a18ce0c714ba11d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a267659228339fcfd14616d55b87d2abd" id="r_a267659228339fcfd14616d55b87d2abd"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a267659228339fcfd14616d55b87d2abd">openEditDialog</a> ()</td></tr>
 <tr class="separator:a267659228339fcfd14616d55b87d2abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0192227e3d8184f7a6d75dec82993170" id="r_a0192227e3d8184f7a6d75dec82993170"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1AttributeBasic.html">Attribute</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0192227e3d8184f7a6d75dec82993170">attr</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> path)</td></tr>
@@ -168,6 +176,12 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:ad30c577e616caa73f91c3866cc540157"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3f855bf1ea116440b9f5ee84ed6cd7f" id="r_ae3f855bf1ea116440b9f5ee84ed6cd7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Property.html">Property</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3f855bf1ea116440b9f5ee84ed6cd7f">getProperty</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> fieldName) const</td></tr>
 <tr class="separator:ae3f855bf1ea116440b9f5ee84ed6cd7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae01884ecdd890335f205b0bb847c5ed5" id="r_ae01884ecdd890335f205b0bb847c5ed5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae01884ecdd890335f205b0bb847c5ed5">getID</a> () const</td></tr>
+<tr class="separator:ae01884ecdd890335f205b0bb847c5ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1dc2f5c87a654f28c43a1d038928cc3" id="r_aa1dc2f5c87a654f28c43a1d038928cc3"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1dc2f5c87a654f28c43a1d038928cc3">setParentScope</a> (<a class="el" href="classast_1_1Object.html">Object</a> *parentScope)</td></tr>
+<tr class="separator:aa1dc2f5c87a654f28c43a1d038928cc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0d02bedcd1d0659d69b9fb9127fbf9a" id="r_af0d02bedcd1d0659d69b9fb9127fbf9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0d02bedcd1d0659d69b9fb9127fbf9a">getParentScope</a> () const</td></tr>
+<tr class="separator:af0d02bedcd1d0659d69b9fb9127fbf9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91ca8d28b3a279e60ce673d69b5a545b" id="r_a91ca8d28b3a279e60ce673d69b5a545b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91ca8d28b3a279e60ce673d69b5a545b">refCount</a> () const</td></tr>
 <tr class="separator:a91ca8d28b3a279e60ce673d69b5a545b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0413d6286436cde9376cee0cdaba541b" id="r_a0413d6286436cde9376cee0cdaba541b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0413d6286436cde9376cee0cdaba541b">weakRefCount</a> () const</td></tr>
@@ -205,14 +219,11 @@ Protected 成员函数</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Object</b> (const <a class="el" href="classast_1_1Object.html">Object</a> &amp;obj)</td></tr>
 <tr class="separator:a26df1078be6121773b18dd5c5092432e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected 属性</h2></td></tr>
-<tr class="memitem:ac9d7b9428b9e9c4771a1ece11a3b43e3" id="r_ac9d7b9428b9e9c4771a1ece11a3b43e3"><td class="memItemLeft" align="right" valign="top"><a id="ac9d7b9428b9e9c4771a1ece11a3b43e3" name="ac9d7b9428b9e9c4771a1ece11a3b43e3"></a>
-std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>refcnt_</b></td></tr>
-<tr class="separator:ac9d7b9428b9e9c4771a1ece11a3b43e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2b61413b6753045cfc785d791080a96" id="r_ab2b61413b6753045cfc785d791080a96"><td class="memItemLeft" align="right" valign="top"><a id="ab2b61413b6753045cfc785d791080a96" name="ab2b61413b6753045cfc785d791080a96"></a>
-std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>weakrefcnt_</b></td></tr>
-<tr class="separator:ab2b61413b6753045cfc785d791080a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+友元</h2></td></tr>
+<tr class="memitem:a8b86bdcdb7c54a536293d8632363e114" id="r_a8b86bdcdb7c54a536293d8632363e114"><td class="memItemLeft" align="right" valign="top"><a id="a8b86bdcdb7c54a536293d8632363e114" name="a8b86bdcdb7c54a536293d8632363e114"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectManager</b></td></tr>
+<tr class="separator:a8b86bdcdb7c54a536293d8632363e114"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>对象基类，继承自该类的对象可以使用运行时类型信息相关功能，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能 </p>
@@ -584,6 +595,76 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
 
 </div>
 </div>
+<a id="ae01884ecdd890335f205b0bb847c5ed5" name="ae01884ecdd890335f205b0bb847c5ed5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae01884ecdd890335f205b0bb847c5ed5">&#9670;&#160;</a></span>getID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t ast::Object::getID </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取对象ID </p>
+<dl class="section return"><dt>返回</dt><dd>uint32_t 对象ID </dd></dl>
+
+</div>
+</div>
+<a id="af67a932f9e931527a18ce0c714ba11d0" name="af67a932f9e931527a18ce0c714ba11d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af67a932f9e931527a18ce0c714ba11d0">&#9670;&#160;</a></span>getName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; ast::Object::getName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取对象的名称 </p>
+<dl class="section return"><dt>返回</dt><dd>const char* 对象名称 </dd></dl>
+
+<p>被 <a class="el" href="classast_1_1CelestialBody.html#aabf36d0dd7857c676e2d19a13c9c9291">ast::CelestialBody</a> , 以及 <a class="el" href="classast_1_1Mover.html#a85ebd59213acea75af9784ce0b423b6e">ast::Mover</a> 重载.</p>
+
+</div>
+</div>
+<a id="af0d02bedcd1d0659d69b9fb9127fbf9a" name="af0d02bedcd1d0659d69b9fb9127fbf9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0d02bedcd1d0659d69b9fb9127fbf9a">&#9670;&#160;</a></span>getParentScope()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classast_1_1Object.html">Object</a> * ast::Object::getParentScope </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取对象的父作用域 </p>
+<dl class="section return"><dt>返回</dt><dd>Object* 父作用域指针 </dd></dl>
+
+</div>
+</div>
 <a id="ae3f855bf1ea116440b9f5ee84ed6cd7f" name="ae3f855bf1ea116440b9f5ee84ed6cd7f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae3f855bf1ea116440b9f5ee84ed6cd7f">&#9670;&#160;</a></span>getProperty()</h2>
 
@@ -885,6 +966,32 @@ std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"
   <table class="params">
     <tr><td class="paramname">path</td><td>属性路径 </td></tr>
     <tr><td class="paramname">value</td><td>属性值 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>errc_t 错误码 </dd></dl>
+
+</div>
+</div>
+<a id="aa1dc2f5c87a654f28c43a1d038928cc3" name="aa1dc2f5c87a654f28c43a1d038928cc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1dc2f5c87a654f28c43a1d038928cc3">&#9670;&#160;</a></span>setParentScope()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">errc_t ast::Object::setParentScope </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Object.html">Object</a> *</td>          <td class="paramname"><span class="paramname"><em>parentScope</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置对象的父作用域 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parentScope</td><td>父作用域指针 </td></tr>
   </table>
   </dd>
 </dl>

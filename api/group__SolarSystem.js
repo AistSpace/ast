@@ -10,6 +10,7 @@ var group__SolarSystem =
       [ "getEphemeris", "classast_1_1CelestialBody.html#a3ced1c2f435fec0c81b013e4821ab4ab", null ],
       [ "getFrame", "classast_1_1CelestialBody.html#aa7c2d646d8e836996c70591dbeb3c910", null ],
       [ "getGM", "classast_1_1CelestialBody.html#a5fef29d135109b4b53feedfe50dc5c01", null ],
+      [ "getGravityField", "classast_1_1CelestialBody.html#ab5df1040c082453395917c6b81642566", null ],
       [ "getGravityModel", "classast_1_1CelestialBody.html#a33a059f3a4383fdab0ee4f2fe4e5b669", null ],
       [ "getJ2", "classast_1_1CelestialBody.html#a50c9fbb215bac72a3e78a90af19e01b6", null ],
       [ "getJ3", "classast_1_1CelestialBody.html#a0a46672910c6d55714d734a5d38f9c0c", null ],
@@ -59,7 +60,6 @@ var group__SolarSystem =
       [ "makeFrameTOE", "classast_1_1CelestialBody.html#a82a634abbda5bab8fdb3d6fd4864a93d", null ],
       [ "makeFrameTOE", "classast_1_1CelestialBody.html#a85f0090b4702bb649fe090eb10e59c36", null ],
       [ "setGravityModel", "classast_1_1CelestialBody.html#acd1771311b5ced7a41d2d611f56863a9", null ],
-      [ "__pad0__", "classast_1_1CelestialBody.html#ac9dc13b6926f70f312f3896a6c620f69", null ],
       [ "axesFixed_", "classast_1_1CelestialBody.html#a3a3257e3f2c62fd3ca75f6cdb5d812ff", null ],
       [ "axesInertial_", "classast_1_1CelestialBody.html#aa18f0b89f7fa2b1a50d417a589f42522", null ],
       [ "axesMOD_", "classast_1_1CelestialBody.html#a11879995b1f42dbcdff2f0c966b4ebd2", null ],
@@ -73,6 +73,8 @@ var group__SolarSystem =
       [ "orientation_", "classast_1_1CelestialBody.html#a44182741b2ae49b7c5ce5bfcde6275b0", null ],
       [ "parent_", "classast_1_1CelestialBody.html#ac2d4ad177a330c15d89b602aa8aa9702", null ],
       [ "radius_", "classast_1_1CelestialBody.html#a87d4a909c92bfadee894f42cd5175838", null ],
+      [ "shape_", "classast_1_1CelestialBody.html#a951e555d1ca3ca24ab7205f48d738682", null ],
+      [ "solarSystem_", "classast_1_1CelestialBody.html#a9c2b986d61ad512ef507bec9ca9dcded", null ],
       [ "systemGM_", "classast_1_1CelestialBody.html#af7315bf6731ca1a1af2cfa28dde3edbf", null ]
     ] ],
     [ "ast::BodyEphemeris", "classast_1_1BodyEphemeris.html", [

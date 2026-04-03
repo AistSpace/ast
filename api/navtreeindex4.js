@@ -101,6 +101,12 @@ var NAVTREEINDEX4 =
 "ObjectEditRegistry_8hpp.html#a5ee505f80941487945b0ff8c1b668f46":[4,0,0,3,3,3,1],
 "ObjectEditRegistry_8hpp.html#ad085c071a789a488cd5e583b8124b34c":[4,0,0,3,3,3,2],
 "ObjectEditRegistry_8hpp_source.html":[4,0,0,3,3,3],
+"ObjectManager_8cpp.html":[4,0,0,13,7,5],
+"ObjectManager_8hpp.html":[4,0,0,13,7,6],
+"ObjectManager_8hpp_source.html":[4,0,0,13,7,6],
+"ObjectNode_8cpp.html":[4,0,0,13,7,7],
+"ObjectNode_8hpp.html":[4,0,0,13,7,8],
+"ObjectNode_8hpp_source.html":[4,0,0,13,7,8],
 "Object_8cpp.html":[4,0,0,13,7,3],
 "OpAssignPredefined_8cpp.html":[4,0,0,9,6,0,2],
 "OpAssignPredefined_8hpp.html":[4,0,0,9,6,0,3],
@@ -243,11 +249,5 @@ var NAVTREEINDEX4 =
 "PropertyVisitor_8cpp.html":[4,0,0,13,7,0,1,0],
 "PropertyVisitor_8hpp.html":[4,0,0,13,7,0,1,1],
 "PropertyVisitor_8hpp_source.html":[4,0,0,13,7,0,1,1],
-"Property_8cpp.html":[4,0,0,13,7,0,6],
-"Property_8hpp.html":[4,0,0,13,7,0,7],
-"Property_8hpp_source.html":[4,0,0,13,7,0,7],
-"PythonSerializer_8cpp.html":[4,0,0,13,8,7],
-"PythonSerializer_8hpp.html":[4,0,0,13,8,8],
-"PythonSerializer_8hpp_source.html":[4,0,0,13,8,8],
-"QuantityParser_8cpp.html":[4,0,0,13,6,4]
+"Property_8cpp.html":[4,0,0,13,7,0,6]
 };

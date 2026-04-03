@@ -36,10 +36,11 @@ var searchData=
   ['evaluatepolyzero_33',['evaluatePolyZero',['../classast_1_1RotationElement.html#ae5b557f446687f751b8dabddec3bab63',1,'ast::RotationElement']]],
   ['evaluatezero_34',['evaluateZero',['../classast_1_1RotationElement.html#aea22c9fc9d14ad8d5930023571a016da',1,'ast::RotationElement']]],
   ['exec_35',['exec',['../classast_1_1Expr.html#a79f28079bdd2f51261961eb52c246096',1,'ast::Expr::exec()'],['../classast_1_1Symbol.html#a69ab28992cbd8f4383f17e9ebaee8309',1,'ast::Symbol::exec()']]],
-  ['exprcall_36',['ExprCall',['../classast_1_1ExprCall.html#affd77c6d8fd44f341e27aaec112d9eb0',1,'ast::ExprCall']]],
-  ['exprforrange_37',['ExprForRange',['../classast_1_1ExprForRange.html#a40cfd6d44bd6b852f489b9a1e24247e4',1,'ast::ExprForRange::ExprForRange()'],['../classast_1_1ExprForRange.html#ad8703f52fd845351e5775d9be23b5841',1,'ast::ExprForRange::ExprForRange(Expr *variable, Expr *range, Expr *body)']]],
-  ['exprif_38',['ExprIf',['../classast_1_1ExprIf.html#a48f8217e1b153d77fcc0b08391c6e45f',1,'ast::ExprIf']]],
-  ['exprmacroexpand_39',['ExprMacroExpand',['../classast_1_1ExprMacroExpand.html#a5277e3536b3da262d348d33a983d1fe6',1,'ast::ExprMacroExpand']]],
-  ['exprrange_40',['ExprRange',['../classast_1_1ExprRange.html#ab0d6fc9421a9ad39486fd1e7ba81ecc7',1,'ast::ExprRange']]],
-  ['exprwhile_41',['ExprWhile',['../classast_1_1ExprWhile.html#a660cc55f8066498d43ede38b5c64507c',1,'ast::ExprWhile::ExprWhile()'],['../classast_1_1ExprWhile.html#a8617ef1a15a15deb4e06c70a118e42fb',1,'ast::ExprWhile::ExprWhile(Expr *condition, Expr *body)']]]
+  ['expired_36',['expired',['../classast_1_1ObjectNode.html#a52b2df8527eecdd753affaf37607f96d',1,'ast::ObjectNode']]],
+  ['exprcall_37',['ExprCall',['../classast_1_1ExprCall.html#affd77c6d8fd44f341e27aaec112d9eb0',1,'ast::ExprCall']]],
+  ['exprforrange_38',['ExprForRange',['../classast_1_1ExprForRange.html#a40cfd6d44bd6b852f489b9a1e24247e4',1,'ast::ExprForRange::ExprForRange()'],['../classast_1_1ExprForRange.html#ad8703f52fd845351e5775d9be23b5841',1,'ast::ExprForRange::ExprForRange(Expr *variable, Expr *range, Expr *body)']]],
+  ['exprif_39',['ExprIf',['../classast_1_1ExprIf.html#a48f8217e1b153d77fcc0b08391c6e45f',1,'ast::ExprIf']]],
+  ['exprmacroexpand_40',['ExprMacroExpand',['../classast_1_1ExprMacroExpand.html#a5277e3536b3da262d348d33a983d1fe6',1,'ast::ExprMacroExpand']]],
+  ['exprrange_41',['ExprRange',['../classast_1_1ExprRange.html#ab0d6fc9421a9ad39486fd1e7ba81ecc7',1,'ast::ExprRange']]],
+  ['exprwhile_42',['ExprWhile',['../classast_1_1ExprWhile.html#a660cc55f8066498d43ede38b5c64507c',1,'ast::ExprWhile::ExprWhile()'],['../classast_1_1ExprWhile.html#a8617ef1a15a15deb4e06c70a118e42fb',1,'ast::ExprWhile::ExprWhile(Expr *condition, Expr *body)']]]
 ];

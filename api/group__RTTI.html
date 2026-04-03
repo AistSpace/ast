@@ -180,6 +180,9 @@ typedef errc_t(*&#160;</td><td class="memItemRight" valign="bottom"><b>ast::FPro
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 枚举</h2></td></tr>
+<tr class="memitem:gac13a9c098b6368f2d73d61bed3b324ec" id="r_gac13a9c098b6368f2d73d61bed3b324ec"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="#ggac13a9c098b6368f2d73d61bed3b324ecabb2ccfb13bbc2fc2827f77f2a3556ea2">ast::INVALID_ID</a> = -1
+ }</td></tr>
+<tr class="separator:gac13a9c098b6368f2d73d61bed3b324ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab1de86ab568b3c12ac0a28cb2d5dda9a" id="r_gab1de86ab568b3c12ac0a28cb2d5dda9a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gab1de86ab568b3c12ac0a28cb2d5dda9a">ast::EValueType</a> { <a class="el" href="#ggab1de86ab568b3c12ac0a28cb2d5dda9aa84e2b5c1c6a74461c4e674cd7ba6ba14">ast::eDouble</a>
 , <a class="el" href="#ggab1de86ab568b3c12ac0a28cb2d5dda9aad3d9845e310f5aaaf419e69673363242">ast::eInt</a>
 , <a class="el" href="#ggab1de86ab568b3c12ac0a28cb2d5dda9aa005483d8e82f7e1a1c8fb4217956699b">ast::eBool</a>
@@ -279,12 +282,24 @@ template&lt;typename T , std::string T::* Member&gt; </td></tr>
 <tr class="separator:gad68114b7c166e8d927cb2fb97e6a07a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga846b248935590d9072cdb05af6534f8b" id="r_ga846b248935590d9072cdb05af6534f8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga846b248935590d9072cdb05af6534f8b">ast::aGetClassDefaultObject</a> (<a class="el" href="classast_1_1Class.html">Class</a> *cls)</td></tr>
 <tr class="separator:ga846b248935590d9072cdb05af6534f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga76d39fb3f19fe83ece5d756a9c5efeeb" id="r_ga76d39fb3f19fe83ece5d756a9c5efeeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga76d39fb3f19fe83ece5d756a9c5efeeb">ast::aNewObject</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
-<tr class="separator:ga76d39fb3f19fe83ece5d756a9c5efeeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga949a9d47b45a81d30148cb09b83ab35b" id="r_ga949a9d47b45a81d30148cb09b83ab35b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga949a9d47b45a81d30148cb09b83ab35b">ast::aNewObject</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name, <a class="el" href="classast_1_1Object.html">Object</a> *parentScope=nullptr)</td></tr>
+<tr class="separator:ga949a9d47b45a81d30148cb09b83ab35b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac773a55dc25b4065657e0d2ab5ce3b21" id="r_gac773a55dc25b4065657e0d2ab5ce3b21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gac773a55dc25b4065657e0d2ab5ce3b21">ast::aDeleteObject</a> (<a class="el" href="classast_1_1Object.html">Object</a> *obj)</td></tr>
 <tr class="separator:gac773a55dc25b4065657e0d2ab5ce3b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga22ca397466c55ee01565bb6460526887" id="r_ga22ca397466c55ee01565bb6460526887"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Object.html">Object</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga22ca397466c55ee01565bb6460526887">ast::aMakeObject</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
-<tr class="separator:ga22ca397466c55ee01565bb6460526887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e7b21139f9b78f32be3e1920dc0cdf7" id="r_ga0e7b21139f9b78f32be3e1920dc0cdf7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Object.html">Object</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga0e7b21139f9b78f32be3e1920dc0cdf7">ast::aMakeObject</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name, <a class="el" href="classast_1_1Object.html">Object</a> *parentScope=nullptr)</td></tr>
+<tr class="separator:ga0e7b21139f9b78f32be3e1920dc0cdf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4d4549eb5762209b33943582f9326ea6" id="r_ga4d4549eb5762209b33943582f9326ea6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga4d4549eb5762209b33943582f9326ea6">ast::aGetObject</a> (uint32_t id)</td></tr>
+<tr class="separator:ga4d4549eb5762209b33943582f9326ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaf1c525b5e6a41dcf1f853523b8500c7" id="r_gaaf1c525b5e6a41dcf1f853523b8500c7"><td class="memItemLeft" align="right" valign="top">AST_UTIL_CAPI uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaaf1c525b5e6a41dcf1f853523b8500c7">ast::aGetObjectID</a> (<a class="el" href="classast_1_1Object.html">Object</a> *obj)</td></tr>
+<tr class="separator:gaaf1c525b5e6a41dcf1f853523b8500c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga33abde566a2b1d0d9477262b58394145" id="r_ga33abde566a2b1d0d9477262b58394145"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga33abde566a2b1d0d9477262b58394145">ast::aAddObject</a> (<a class="el" href="classast_1_1Object.html">Object</a> *object)</td></tr>
+<tr class="separator:ga33abde566a2b1d0d9477262b58394145"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7ed60d1a7c0c2d4cbbd535e0b4f2b051" id="r_ga7ed60d1a7c0c2d4cbbd535e0b4f2b051"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga7ed60d1a7c0c2d4cbbd535e0b4f2b051">ast::aSetParentScope</a> (<a class="el" href="classast_1_1Object.html">Object</a> *obj, <a class="el" href="classast_1_1Object.html">Object</a> *parentScope)</td></tr>
+<tr class="separator:ga7ed60d1a7c0c2d4cbbd535e0b4f2b051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga25a796d58add8beaf21d2c9a61b0434d" id="r_ga25a796d58add8beaf21d2c9a61b0434d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga25a796d58add8beaf21d2c9a61b0434d">ast::aGetParentScope</a> (<a class="el" href="classast_1_1Object.html">Object</a> *obj)</td></tr>
+<tr class="separator:ga25a796d58add8beaf21d2c9a61b0434d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4cf4746905276a2cd14409a73d584ea1" id="r_ga4cf4746905276a2cd14409a73d584ea1"><td class="memItemLeft" align="right" valign="top">AST_UTIL_API <a class="el" href="classast_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga4cf4746905276a2cd14409a73d584ea1">ast::aFindChild</a> (<a class="el" href="classast_1_1Object.html">Object</a> *parentScope, <a class="el" href="classast_1_1Class.html">Class</a> *cls, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
+<tr class="separator:ga4cf4746905276a2cd14409a73d584ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">宏定义说明</h2>
 <a id="gaee87285b5b93d27bb93d178bb84edf19" name="gaee87285b5b93d27bb93d178bb84edf19"></a>
@@ -389,6 +404,24 @@ template&lt;typename T , std::string T::* Member&gt; </td></tr>
 </div>
 </div>
 <h2 class="groupheader">枚举类型说明</h2>
+<a id="gac13a9c098b6368f2d73d61bed3b324ec" name="gac13a9c098b6368f2d73d61bed3b324ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac13a9c098b6368f2d73d61bed3b324ec">&#9670;&#160;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ggac13a9c098b6368f2d73d61bed3b324ecabb2ccfb13bbc2fc2827f77f2a3556ea2" name="ggac13a9c098b6368f2d73d61bed3b324ecabb2ccfb13bbc2fc2827f77f2a3556ea2"></a>INVALID_ID&#160;</td><td class="fielddoc"><p>无效对象ID </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a id="gab1de86ab568b3c12ac0a28cb2d5dda9a" name="gab1de86ab568b3c12ac0a28cb2d5dda9a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gab1de86ab568b3c12ac0a28cb2d5dda9a">&#9670;&#160;</a></span>EValueType</h2>
 
@@ -714,6 +747,32 @@ template&lt;&gt; </div>
 
 </div>
 </div>
+<a id="ga33abde566a2b1d0d9477262b58394145" name="ga33abde566a2b1d0d9477262b58394145"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga33abde566a2b1d0d9477262b58394145">&#9670;&#160;</a></span>aAddObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_UTIL_CAPI uint32_t ast::aAddObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Object.html">Object</a> *</td>          <td class="paramname"><span class="paramname"><em>object</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>添加对象到对象管理器 </p>
+<p>将对象添加到对象管理器中，返回对象的索引/对象ID， 如果对象已存在则返回已存在的索引/对象ID </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>对象的索引/对象ID </dd></dl>
+
+</div>
+</div>
 <a id="gac773a55dc25b4065657e0d2ab5ce3b21" name="gac773a55dc25b4065657e0d2ab5ce3b21"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gac773a55dc25b4065657e0d2ab5ce3b21">&#9670;&#160;</a></span>aDeleteObject()</h2>
 
@@ -799,6 +858,43 @@ template&lt;&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>errc_t 错误码 </dd></dl>
+
+</div>
+</div>
+<a id="ga4cf4746905276a2cd14409a73d584ea1" name="ga4cf4746905276a2cd14409a73d584ea1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4cf4746905276a2cd14409a73d584ea1">&#9670;&#160;</a></span>aFindChild()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_UTIL_API <a class="el" href="classast_1_1Object.html">Object</a> * ast::aFindChild </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Object.html">Object</a> *</td>          <td class="paramname"><span class="paramname"><em>parentScope</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Class.html">Class</a> *</td>          <td class="paramname"><span class="paramname"><em>cls</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>查找对象的子对象 </p>
+<p>根据父对象、类指针和子对象名查找子对象 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parentScope</td><td>父对象指针 </td></tr>
+    <tr><td class="paramname">cls</td><td>类指针 </td></tr>
+    <tr><td class="paramname">name</td><td>子对象名 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>子对象指针 </dd></dl>
 
 </div>
 </div>
@@ -900,8 +996,74 @@ template&lt;&gt; </div>
 
 </div>
 </div>
-<a id="ga22ca397466c55ee01565bb6460526887" name="ga22ca397466c55ee01565bb6460526887"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga22ca397466c55ee01565bb6460526887">&#9670;&#160;</a></span>aMakeObject()</h2>
+<a id="ga4d4549eb5762209b33943582f9326ea6" name="ga4d4549eb5762209b33943582f9326ea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4d4549eb5762209b33943582f9326ea6">&#9670;&#160;</a></span>aGetObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_UTIL_CAPI <a class="el" href="classast_1_1Object.html">Object</a> * ast::aGetObject </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>根据索引获取对象 </p>
+<p>根据对象的索引获取对象 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>对象索引/对象ID </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>对象指针 </dd></dl>
+
+</div>
+</div>
+<a id="gaaf1c525b5e6a41dcf1f853523b8500c7" name="gaaf1c525b5e6a41dcf1f853523b8500c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaf1c525b5e6a41dcf1f853523b8500c7">&#9670;&#160;</a></span>aGetObjectID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_UTIL_CAPI uint32_t ast::aGetObjectID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Object.html">Object</a> *</td>          <td class="paramname"><span class="paramname"><em>obj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取对象的索引/对象ID </p>
+<p>obj 对象指针 </p><dl class="section return"><dt>返回</dt><dd>对象的索引/对象ID </dd></dl>
+
+</div>
+</div>
+<a id="ga25a796d58add8beaf21d2c9a61b0434d" name="ga25a796d58add8beaf21d2c9a61b0434d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga25a796d58add8beaf21d2c9a61b0434d">&#9670;&#160;</a></span>aGetParentScope()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_UTIL_CAPI <a class="el" href="classast_1_1Object.html">Object</a> * ast::aGetParentScope </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Object.html">Object</a> *</td>          <td class="paramname"><span class="paramname"><em>obj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取对象的父作用域 </p>
+<p>obj 对象指针 </p><dl class="section return"><dt>返回</dt><dd>父作用域指针 </dd></dl>
+
+</div>
+</div>
+<a id="ga0e7b21139f9b78f32be3e1920dc0cdf7" name="ga0e7b21139f9b78f32be3e1920dc0cdf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0e7b21139f9b78f32be3e1920dc0cdf7">&#9670;&#160;</a></span>aMakeObject()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -909,8 +1071,12 @@ template&lt;&gt; </div>
         <tr>
           <td class="memname">AST_UTIL_API <a class="el" href="classast_1_1SharedPtr.html">SharedPtr</a>&lt; <a class="el" href="classast_1_1Object.html">Object</a> &gt; ast::aMakeObject </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Object.html">Object</a> *</td>          <td class="paramname"><span class="paramname"><em>parentScope</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -919,6 +1085,7 @@ template&lt;&gt; </div>
 <p>根据类名创建对象 </p><dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>类名 </td></tr>
+    <tr><td class="paramname">parentScope</td><td>父作用域指针 </td></tr>
   </table>
   </dd>
 </dl>
@@ -926,8 +1093,8 @@ template&lt;&gt; </div>
 
 </div>
 </div>
-<a id="ga76d39fb3f19fe83ece5d756a9c5efeeb" name="ga76d39fb3f19fe83ece5d756a9c5efeeb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga76d39fb3f19fe83ece5d756a9c5efeeb">&#9670;&#160;</a></span>aNewObject()</h2>
+<a id="ga949a9d47b45a81d30148cb09b83ab35b" name="ga949a9d47b45a81d30148cb09b83ab35b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga949a9d47b45a81d30148cb09b83ab35b">&#9670;&#160;</a></span>aNewObject()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -935,8 +1102,12 @@ template&lt;&gt; </div>
         <tr>
           <td class="memname">AST_UTIL_CAPI <a class="el" href="classast_1_1Object.html">Object</a> * ast::aNewObject </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Object.html">Object</a> *</td>          <td class="paramname"><span class="paramname"><em>parentScope</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -946,6 +1117,7 @@ template&lt;&gt; </div>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>类名 </td></tr>
+    <tr><td class="paramname">parentScope</td><td>父作用域指针 </td></tr>
   </table>
   </dd>
 </dl>
@@ -1315,6 +1487,36 @@ template&lt;typename T , const std::string &amp;(T::*)() const Getter, void(T::*
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>类的元数据指针 </dd></dl>
+
+</div>
+</div>
+<a id="ga7ed60d1a7c0c2d4cbbd535e0b4f2b051" name="ga7ed60d1a7c0c2d4cbbd535e0b4f2b051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7ed60d1a7c0c2d4cbbd535e0b4f2b051">&#9670;&#160;</a></span>aSetParentScope()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_UTIL_CAPI errc_t ast::aSetParentScope </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1Object.html">Object</a> *</td>          <td class="paramname"><span class="paramname"><em>obj</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Object.html">Object</a> *</td>          <td class="paramname"><span class="paramname"><em>parentScope</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置对象的父作用域 </p>
+<p>obj 对象指针 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parentScope</td><td>父作用域指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
 
 </div>
 </div>

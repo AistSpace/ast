@@ -4,7 +4,7 @@ var classast_1_1Class =
     [ "addToRegistry", "classast_1_1Class.html#a8341b220558cbac691cb6cb8ce10d52a", null ],
     [ "getDefaultObject", "classast_1_1Class.html#ae6ea2fa70abfee13febffeee9402ffbb", null ],
     [ "getParent", "classast_1_1Class.html#a276024d991282a8c3dd99c0b97f63df8", null ],
-    [ "NewObject", "classast_1_1Class.html#ad9af909b4ad2f03d7ce7768442840e8c", null ],
+    [ "NewObject", "classast_1_1Class.html#a991c2ed1ec6768ee55d093106ce4d68b", null ],
     [ "setConstructor", "classast_1_1Class.html#a22afde6ce1a133566f56d960b95833e8", null ],
     [ "setConstructor", "classast_1_1Class.html#ac8924b03c261b1252e68229d1135f672", null ],
     [ "setParent", "classast_1_1Class.html#ab686a3a67a08c59663f271cbcb56e144", null ],

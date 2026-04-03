@@ -13,6 +13,9 @@ var classast_1_1Object =
     [ "getAttrInt", "classast_1_1Object.html#a176eed2230b79d84c0c35d15f2e16c8a", null ],
     [ "getAttrString", "classast_1_1Object.html#aa457c9e1855e145d566b078711bfc7f2", null ],
     [ "getAttrString", "classast_1_1Object.html#a0453c247fc031a539e31e325e7d33347", null ],
+    [ "getID", "classast_1_1Object.html#ae01884ecdd890335f205b0bb847c5ed5", null ],
+    [ "getName", "classast_1_1Object.html#af67a932f9e931527a18ce0c714ba11d0", null ],
+    [ "getParentScope", "classast_1_1Object.html#af0d02bedcd1d0659d69b9fb9127fbf9a", null ],
     [ "getProperty", "classast_1_1Object.html#ae3f855bf1ea116440b9f5ee84ed6cd7f", null ],
     [ "getType", "classast_1_1Object.html#ad5992c59eef6fd156988573616d3e8d5", null ],
     [ "incRef", "classast_1_1Object.html#a200ecf89b239336aae46e9b2e6045f7c", null ],
@@ -24,8 +27,7 @@ var classast_1_1Object =
     [ "setAttrDouble", "classast_1_1Object.html#acac18023e736d3e498ab1cf2965b9abf", null ],
     [ "setAttrInt", "classast_1_1Object.html#aed0f50f23efc8b9b92411a70723a0ce6", null ],
     [ "setAttrString", "classast_1_1Object.html#a8bb71491623a8c5669eada6ac83965ea", null ],
+    [ "setParentScope", "classast_1_1Object.html#aa1dc2f5c87a654f28c43a1d038928cc3", null ],
     [ "type", "classast_1_1Object.html#ad30c577e616caa73f91c3866cc540157", null ],
-    [ "weakRefCount", "classast_1_1Object.html#a0413d6286436cde9376cee0cdaba541b", null ],
-    [ "refcnt_", "classast_1_1Object.html#ac9d7b9428b9e9c4771a1ece11a3b43e3", null ],
-    [ "weakrefcnt_", "classast_1_1Object.html#ab2b61413b6753045cfc785d791080a96", null ]
+    [ "weakRefCount", "classast_1_1Object.html#a0413d6286436cde9376cee0cdaba541b", null ]
 ];

@@ -429,6 +429,8 @@ var hierarchy =
       ] ]
     ] ],
     [ "ast::ObjectEditRegistry", "classast_1_1ObjectEditRegistry.html", null ],
+    [ "ast::ObjectManager", "classast_1_1ObjectManager.html", null ],
+    [ "ast::ObjectNode", "classast_1_1ObjectNode.html", null ],
     [ "ast::ODEEventDetector", "classast_1_1ODEEventDetector.html", [
       [ "ast::ODEEventDetectorGeneric< Func >", "classast_1_1ODEEventDetectorGeneric.html", null ]
     ] ],
@@ -483,6 +485,7 @@ var hierarchy =
     [ "ast::Quaternion", "classast_1_1Quaternion.html", null ],
     [ "QWidget", null, [
       [ "ast::UiObject", "classast_1_1UiObject.html", [
+        [ "ast::UiCelestialBody", "classast_1_1UiCelestialBody.html", null ],
         [ "ast::UiMotionProfile", "classast_1_1UiMotionProfile.html", [
           [ "ast::UiMotionTwoBody", "classast_1_1UiMotionTwoBody.html", null ]
         ] ],
@@ -507,6 +510,7 @@ var hierarchy =
     [ "ast::ScopedPtr< ast::AttitudeProfile >", "classast_1_1ScopedPtr.html", null ],
     [ "ast::ScopedPtr< ast::BodyEphemeris >", "classast_1_1ScopedPtr.html", null ],
     [ "ast::ScopedPtr< ast::BodyOrientation >", "classast_1_1ScopedPtr.html", null ],
+    [ "ast::ScopedPtr< ast::BodyShape >", "classast_1_1ScopedPtr.html", null ],
     [ "ast::ScopedPtr< ast::Ephemeris >", "classast_1_1ScopedPtr.html", null ],
     [ "ast::ScopedPtr< ast::MotionProfile >", "classast_1_1ScopedPtr.html", null ],
     [ "ast::ScopedPtrDeleter< T, typename >", "structast_1_1ScopedPtrDeleter.html", null ],
@@ -621,6 +625,7 @@ var hierarchy =
     [ "ast::VehiclePathData", "structast_1_1VehiclePathData.html", null ],
     [ "ast::WeakPtr< _Object >", "classast_1_1WeakPtr.html", null ],
     [ "ast::WeakPtr< ast::Object >", "classast_1_1WeakPtr.html", null ],
+    [ "ast::WeakPtr< ast::SolarSystem >", "classast_1_1WeakPtr.html", null ],
     [ "ast::WeakPtr< Object >", "classast_1_1WeakPtr.html", null ],
     [ "ast::WorkingDirectory", "classast_1_1WorkingDirectory.html", null ],
     [ "ast::XYSCache", "structast_1_1XYSCache.html", null ]

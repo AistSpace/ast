@@ -1,5 +1,11 @@
 var NAVTREEINDEX8 =
 {
+"classast_1_1BaseOrbitDesigner.html#aa710d2d3dc564020791e348b760ec02c":[0,0,3,1,0],
+"classast_1_1BaseOrbitDesigner.html#ab82f58afe9a01ffe9b46e1cf55d685bb":[0,0,3,1,10],
+"classast_1_1BaseOrbitDesigner.html#ad2b6be4ce44a90fc430fa82f2f184895":[0,0,3,1,7],
+"classast_1_1BaseOrbitDesigner.html#ad9ee006e9c77fe678a84287ed695ccf9":[0,0,3,1,9],
+"classast_1_1BaseOrbitDesigner.html#ae04a7e2e04e444075df14bf98bc37db6":[0,0,3,1,6],
+"classast_1_1BaseOrbitDesigner.html#af176d9785645bd34d983c3c5fb60ce5f":[0,0,3,1,3],
 "classast_1_1BaseParser.html":[0,4,1,0],
 "classast_1_1BaseParser.html#a0ffc6e1ebca53ddfe3f0b78dd6dd8307":[0,4,1,0,13],
 "classast_1_1BaseParser.html#a21da5069622d910ae3784a60af89de6d":[0,4,1,0,5],
@@ -243,11 +249,5 @@ var NAVTREEINDEX8 =
 "classast_1_1BodyEphemeris.html#a1f5651a840f20ee9ede887d151f234a2":[0,0,5,1,4],
 "classast_1_1BodyEphemeris.html#a7bc37bb40921dc485a458130051f7e0e":[0,0,5,1,2],
 "classast_1_1BodyEphemeris.html#aa09c59ec72c50e271aa5a56e6d594912":[0,0,5,1,0],
-"classast_1_1BodyEphemeris.html#ad3a62ffd699511e16a2c09dee7e8a6c5":[0,0,5,1,1],
-"classast_1_1BodyEphemeris.html#ae278ba0998cba33886e253fb25e59db2":[0,0,5,1,3],
-"classast_1_1BodyEphemerisDE.html":[0,0,5,2],
-"classast_1_1BodyEphemerisDE.html#a258a1cac057918775a0ab6141d403d4a":[0,0,5,2,1],
-"classast_1_1BodyEphemerisDE.html#abc3fdf1759501af613db1d20bb571215":[0,0,5,2,0],
-"classast_1_1BodyEphemerisNoop.html":[0,0,5,3],
-"classast_1_1BodyEphemerisNoop.html#a13d8bf978cffa1f97ade67a2cd06f635":[0,0,5,3,0]
+"classast_1_1BodyEphemeris.html#ad3a62ffd699511e16a2c09dee7e8a6c5":[0,0,5,1,1]
 };
