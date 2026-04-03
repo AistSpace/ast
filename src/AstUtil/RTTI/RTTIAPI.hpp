@@ -31,6 +31,11 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+// -----------
+// 类型元信息
+// -----------
+
+
 /// @brief 获取所有已注册的类名
 /// @details names 输出参数，用于存储所有已注册的类名
 /// @return 无
@@ -64,8 +69,9 @@ AST_UTIL_API Object* aGetClassDefaultObject(Class* cls);
 /// @details 根据类名创建对象
 /// @warning 创建的对象需要手动管理生命周期（手动释放内存）
 /// @param name 类名
+/// @param parentScope 父作用域指针
 /// @return 对象指针
-AST_UTIL_CAPI Object* aNewObject(StringView name);
+AST_UTIL_CAPI Object* aNewObject(StringView name, Object* parentScope=nullptr);
 
 /// @brief 删除对象
 /// @details 用于释放对象裸指针对应的内存
@@ -76,8 +82,54 @@ AST_UTIL_CAPI void aDeleteObject(Object* obj);
 /// @brief 创建对象，返回智能指针
 /// @details 根据类名创建对象
 /// @param name 类名
+/// @param parentScope 父作用域指针
 /// @return 对象智能指针
-AST_UTIL_API SharedPtr<Object> aMakeObject(StringView name);
+AST_UTIL_API SharedPtr<Object> aMakeObject(StringView name, Object* parentScope=nullptr);
+
+
+
+// -----------
+// 对象管理
+// -----------
+
+/// @brief 根据索引获取对象
+/// @details 根据对象的索引获取对象
+/// @param id 对象索引/对象ID
+/// @return 对象指针
+AST_UTIL_CAPI Object* aGetObject(uint32_t id);
+
+/// @brief 获取对象的索引/对象ID
+/// @details obj 对象指针
+/// @return 对象的索引/对象ID
+AST_UTIL_CAPI uint32_t aGetObjectID(Object* obj);
+
+/// @brief 添加对象到对象管理器
+/// @details 
+/// 将对象添加到对象管理器中，返回对象的索引/对象ID，
+/// 如果对象已存在则返回已存在的索引/对象ID
+/// @param object 对象指针
+/// @return 对象的索引/对象ID
+AST_UTIL_CAPI uint32_t aAddObject(Object* object);
+
+/// @brief 设置对象的父作用域
+/// @details obj 对象指针
+/// @param parentScope 父作用域指针
+/// @return 错误码
+AST_UTIL_CAPI errc_t aSetParentScope(Object* obj, Object* parentScope);
+
+
+/// @brief 获取对象的父作用域
+/// @details obj 对象指针
+/// @return 父作用域指针
+AST_UTIL_CAPI Object* aGetParentScope(Object* obj);
+
+/// @brief 查找对象的子对象
+/// @details 根据父对象、类指针和子对象名查找子对象
+/// @param parentScope 父对象指针
+/// @param cls 类指针
+/// @param name 子对象名
+/// @return 子对象指针
+AST_UTIL_API Object* aFindChild(Object* parentScope, Class* cls, StringView name);
 
 
 

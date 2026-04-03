@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include <unordered_map>
 #include <string>
+#include <vector>
 
 AST_NAMESPACE_BEGIN
 

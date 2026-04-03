@@ -68,6 +68,11 @@ public:
         }
         return *this;
     }
+    SharedPtr& operator=(std::nullptr_t)
+    {
+        reset();
+        return *this;
+    }
     // 这里还是设置为支持隐式转换，因为在很多情况下，我们需要将SharedPtr转换为_Object*
     // explicit 
     operator _Object*() const
@@ -94,6 +99,11 @@ public:
             m_object = nullptr;
         }
         return obj;
+    }
+    void reset()
+    {
+        _decRef();
+        m_object = nullptr;
     }
 protected:
     void _incRef()

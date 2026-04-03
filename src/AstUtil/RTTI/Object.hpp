@@ -70,6 +70,10 @@ typedef AttributeBasic<WeakPtr<Object>, Property> Attribute;
     Class TYPE::staticType;\
 
 
+enum {
+    INVALID_ID = -1, ///< 无效对象ID
+};
+
 
 /// @brief 对象基类，继承自该类的对象可以使用运行时类型信息相关功能，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能
 /// @details 参考了Qt的QObject类、UE的UObject类、以及Python的PyObject等类的设计和实现
@@ -80,12 +84,21 @@ public:
         : refcnt_{0}
         , weakrefcnt_{1}
     {}
+    Object(Object* parentScope);
+    Object(std::nullptr_t);
 public:
+    static Class staticType;
+    static inline Class* getStaticType(){return &staticType;}
+
     /// @brief 获取对象的类型元信息
     /// @return Class* 类型元信息指针
     virtual Class* getType() const;
-    static Class staticType;
-    static inline Class* getStaticType(){return &staticType;}
+
+    /// @brief 获取对象的名称
+    /// @return const char* 对象名称
+    virtual const std::string& getName() const;
+
+
 public: // 编辑属性
     
     /// @brief 打开编辑对话框，用于编辑对象的属性
@@ -177,7 +190,20 @@ public: // 类型与字段属性
     /// @param fieldName 属性名
     /// @return Property* 属性元信息
     Property* getProperty(StringView fieldName) const;
+public: // 对象ID
 
+    /// @brief 获取对象ID
+    /// @return uint32_t 对象ID
+    uint32_t getID() const;
+
+    /// @brief 设置对象的父作用域
+    /// @param parentScope 父作用域指针
+    /// @return errc_t 错误码
+    errc_t setParentScope(Object* parentScope);
+
+    /// @brief 获取对象的父作用域
+    /// @return Object* 父作用域指针
+    Object* getParentScope() const;
 public: // 引用计数
     /// @brief 获取强引用计数
     /// @return uint32_t 强引用计数
@@ -254,15 +280,18 @@ private:
     }
 
 protected:
-    virtual ~Object() = default;
+    friend class ObjectManager;
+    virtual ~Object();
     Object(const Object& obj)
         : refcnt_(0)
         , weakrefcnt_(1)
     {}
-protected:
-    // Class*                type_;                 ///< 类型元信息，同时用于标识对象是否被析构(废弃)
-    std::atomic<uint32_t>    refcnt_;               ///< 强引用计数，给SharedPtr使用
-    std::atomic<uint32_t>    weakrefcnt_;           ///< 弱引用计数，给WeakPtr使用
+private:
+    // Class*                type_;                                     ///< 类型元信息，同时用于标识对象是否被析构(废弃)
+    std::atomic<uint32_t>    refcnt_{0};                                ///< 强引用计数，给SharedPtr使用
+    std::atomic<uint32_t>    weakrefcnt_{1};                            ///< 弱引用计数，给WeakPtr使用
+    uint32_t                 index_{static_cast<uint32_t>(INVALID_ID)}; ///< 对象索引，用于唯一标识对象
+    uint32_t                 flags_{0};                                 ///< 对象标志位，用于存储对象的额外信息
 };
 
 

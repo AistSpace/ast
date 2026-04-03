@@ -42,7 +42,7 @@ public:
     {}
     BodyEphemerisDE(CelestialBody* body)
         : body_(body)
-        , jplIndex_(body->jplIndex_)
+        , jplIndex_(body->getJplIndex())
     {}
 
     ~BodyEphemerisDE() override = default;

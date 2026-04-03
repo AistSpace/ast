@@ -20,6 +20,11 @@
 
 #include "AstUtil/RTTIAPI.hpp"
 #include "AstCore/RunTime.hpp"
+#include "AstCore/StateCartesian.hpp"
+#include "AstCore/StateKeplerian.hpp"
+#include "AstCore/CelestialBody.hpp"
+#include "AstCore/FrameAssembly.hpp"
+
 #include "AstTest/Test.h"
 #include <vector>
 #include <string>
@@ -57,6 +62,50 @@ TEST_F(RTTITest, ClassDefaultObject)
     {
         auto obj = aGetClassDefaultObject(className);
         EXPECT_TRUE(obj != nullptr);
+    }
+}
+
+TEST_F(RTTITest, ObjectParentScope)
+{
+    // 测试父作用域能否正确设置和获取，以及父作用域被销毁后子对象的弱引用是否失效
+    {
+        SharedPtr<CelestialBody> body = new CelestialBody();
+        auto frame = new FrameAssembly();
+        frame->setParentScope(body);
+        EXPECT_EQ(body.get(), frame->getParentScope());
+        WeakPtr<FrameAssembly> frame_wp = frame;
+        EXPECT_FALSE(frame_wp.expired());
+        body.reset();
+        EXPECT_TRUE(frame_wp.expired());
+    }
+    // 测试父作用域为临时对象时，子对象的弱引用是否失效
+    {
+        WeakPtr<FrameAssembly> frame_wp;
+        {
+            CelestialBody body;
+            auto frame = new FrameAssembly();
+            frame->setParentScope(&body);
+            frame_wp = frame;
+            EXPECT_FALSE(frame_wp.expired());
+        }
+        EXPECT_TRUE(frame_wp.expired());
+    }
+    {
+        SharedPtr<CelestialBody> body = new CelestialBody();
+        
+        auto frame = new FrameAssembly();
+        frame->setParentScope(body);
+        WeakPtr<FrameAssembly> frame_wp = frame;
+
+        StateCartesian* state = new StateCartesian();
+        state->setParentScope(frame);
+        WeakPtr<StateCartesian> state_wp = state;
+
+        EXPECT_FALSE(frame_wp.expired());
+        EXPECT_FALSE(state_wp.expired());
+        body.reset();
+        EXPECT_TRUE(frame_wp.expired());
+        EXPECT_TRUE(state_wp.expired());
     }
 }
 

@@ -34,7 +34,7 @@ errc_t BodyEphemerisSPK::openSPKFile(StringView spkfile)
 int BodyEphemerisSPK::getSpiceIndex() const
 {
     if(body_){
-        return body_->jplSpiceId_;
+        return body_->getJplSpiceId();
     }
     return spiceIndex_;
 }

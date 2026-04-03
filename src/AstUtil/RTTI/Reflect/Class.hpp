@@ -35,7 +35,7 @@ class Object;
 /// @ingroup RTTI
 class AST_UTIL_API Class: public Struct
 {
-    typedef Object* (*FConstructor)();
+    typedef Object* (*FConstructor)(Object* parentScope);
 
 public:
     /// @brief 构造函数
@@ -53,7 +53,7 @@ public:
 
     /// @brief 创建新对象
     /// @return Object* 新对象指针
-    Object* NewObject() const;
+    Object* NewObject(Object* parentScope) const;
 
     /// @brief 获取默认对象
     /// @return Object* 默认对象指针
@@ -85,7 +85,11 @@ public:
     /// @param T 构造函数类型
     template<typename T>
     void setConstructor(){
-        setConstructor([]() -> Object* { return new T(); });
+        setConstructor([](Object* parentScope) -> Object* { 
+            auto obj = new T(); 
+            obj->setParentScope(parentScope); 
+            return obj; 
+        });
     }
 protected:
     Class* parent_{nullptr};                       ///< 父类

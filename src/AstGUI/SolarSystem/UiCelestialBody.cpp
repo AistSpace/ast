@@ -19,9 +19,20 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "UiCelestialBody.hpp"
+#include "AstCore/CelestialBody.hpp"
 
 AST_NAMESPACE_BEGIN
 
+CelestialBody *UiCelestialBody::getCelestialBody() const
+{
+    return dynamic_cast<CelestialBody*>(getObject());
+}
 
+void UiCelestialBody::setCelestialBody(CelestialBody *body)
+{
+    setObject(body);
+}
 
 AST_NAMESPACE_END
+
+

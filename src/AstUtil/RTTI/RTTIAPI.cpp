@@ -23,6 +23,7 @@
 #include "AstUtil/Class.hpp"
 #include "AstUtil/ClassRegistry.hpp"
 #include "AstUtil/Object.hpp"
+#include "AstUtil/ObjectManager.hpp"
 
 
 AST_NAMESPACE_BEGIN
@@ -55,12 +56,12 @@ Object *aGetClassDefaultObject(Class *cls)
     return cls->getDefaultObject();
 }
 
-Object *aNewObject(StringView name)
+Object *aNewObject(StringView name, Object* parentScope)
 {
     Class *cls = aGetClass(name);
     if(!cls)
         return nullptr;
-    return cls->NewObject();
+    return cls->NewObject(parentScope);
 }
 
 void aDeleteObject(Object *obj)
@@ -68,9 +69,29 @@ void aDeleteObject(Object *obj)
     obj->destruct();
 }
 
-SharedPtr<Object> aMakeObject(StringView name)
+SharedPtr<Object> aMakeObject(StringView name, Object* parentScope)
 {
-    return aNewObject(name);
+    return aNewObject(name, parentScope);
+}
+
+Object *aGetObject(uint32_t id)
+{
+    return ObjectManager::CurrentInstance().getObject(id);
+}
+
+uint32_t aAddObject(Object *object)
+{
+    return ObjectManager::CurrentInstance().addObject(object);
+}
+
+errc_t aSetParentScope(Object *obj, Object *parentScope)
+{
+    return ObjectManager::CurrentInstance().setParentScope(obj, parentScope);
+}
+
+Object *aGetParentScope(Object *obj)
+{
+    return ObjectManager::CurrentInstance().getParentScope(obj);
 }
 
 AST_NAMESPACE_END

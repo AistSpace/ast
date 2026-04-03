@@ -38,10 +38,10 @@ void Class::addToRegistry() const
     aRegisterClass(const_cast<Class*>(this));
 }
 
-Object *Class::NewObject() const
+Object *Class::NewObject(Object* parentScope) const
 {
     if (constructor_)
-        return constructor_();
+        return constructor_(parentScope);
     return nullptr;
 }
 
@@ -49,7 +49,7 @@ Object *Class::getDefaultObject() const
 {
     if (defaultObject_)
         return defaultObject_.get();
-    const_cast<Class*>(this)->defaultObject_ = NewObject();
+    const_cast<Class*>(this)->defaultObject_ = NewObject(nullptr);
     return defaultObject_.get();
 }
 

@@ -44,7 +44,7 @@ public:
     {}
     BodyEphemerisSPK(CelestialBody* body)
         : body_(body)
-        , spiceIndex_(body->jplSpiceId_)
+        , spiceIndex_(body->getJplSpiceId())
     {}
 
     ~BodyEphemerisSPK() override = default;

@@ -24,17 +24,38 @@
 #include "AstUtil/Property.hpp"         // for Property
 #include "AstUtil/Attribute.hpp"        // for Attribute
 #include "AstUtil/UiOperator.hpp"
- 
+#include "AstUtil/ObjectManager.hpp"
+#include "AstUtil/RTTIAPI.hpp"
+#include "AstUtil/Logger.hpp"
+
 AST_NAMESPACE_BEGIN
  
 
-static_assert(sizeof(Object) == sizeof(void*) * 1 + sizeof(uint32_t) * 2, "size not correct");      // 检查 Object 类的大小是否正确
+static_assert(sizeof(Object) == sizeof(void*) * 1 + sizeof(uint32_t) * 4, "size not correct");      // 检查 Object 类的大小是否正确
 
 Class Object::staticType;
 
+Object::Object(Object *parentScope)
+    : Object{}
+{
+    setParentScope(parentScope);
+}
+
+Object::Object(std::nullptr_t)
+    : Object{}
+{
+}
+
 Class *Object::getType() const
 {
-    return nullptr;
+    return &staticType;
+}
+
+const std::string empty;
+
+const std::string &Object::getName() const
+{
+    return empty;
 }
 
 errc_t Object::openEditDialog()
@@ -152,5 +173,36 @@ Property *Object::getProperty(StringView fieldName) const
     return nullptr;
 }
 
+uint32_t Object::getID() const
+{
+    if(index_ == static_cast<uint32_t>(INVALID_ID))
+    {
+        // @todo 从对象管理器获取对象ID
+        return aAddObject(const_cast<Object*>(this));
+    }
+    return index_;
+}
+
+errc_t Object::setParentScope(Object *parentScope)
+{
+    return aSetParentScope(this, parentScope);
+}
+
+Object *Object::getParentScope() const
+{
+    return aGetParentScope(const_cast<Object*>(this));
+}
+
+Object::~Object()
+{
+    if(index_ != static_cast<uint32_t>(INVALID_ID))
+    {
+        errc_t rc = ObjectManager::CurrentInstance().removeNode(index_);
+        if(rc != eNoError)
+        {
+            aError("failed to remove object from object manager");
+        }
+    }
+}
 
 AST_NAMESPACE_END

@@ -63,6 +63,11 @@ public:
         }
         return *this;
     }
+    WeakPtr& operator=(std::nullptr_t)
+    {
+        reset();
+        return *this;
+    }
     WeakPtr& operator=(const WeakPtr& ptr)
     {
         if (this != &ptr) {
@@ -76,10 +81,19 @@ public:
     }
     _Object* get() const
     {
-        if (!m_object || m_object->isDestructed()) {
+        if (expired()) {
             return nullptr;
         }
         return m_object;
+    }
+    bool expired() const
+    {
+        return !m_object || m_object->isDestructed();
+    }
+    void reset()
+    {
+        _decWeakRef();
+        m_object = nullptr;
     }
 private:
     void _incWeakRef()

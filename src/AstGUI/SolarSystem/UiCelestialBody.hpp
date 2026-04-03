@@ -21,6 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstGUI/UiObject.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -29,7 +30,19 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class CelestialBody;
 
+class UiCelestialBody: public UiObject
+{
+public:
+    UiCelestialBody(Object* object, QWidget* parent = nullptr);
+    UiCelestialBody(QWidget* parent = nullptr);
+
+    CelestialBody* getCelestialBody() const;
+    void setCelestialBody(CelestialBody* body);
+protected:
+
+};
 
 /*! @} */
 
