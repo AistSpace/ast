@@ -118,17 +118,18 @@ $(function(){initNavTree('classast_1_1Object.html',''); initResizable(true); });
  <div class="center">
   <img src="classast_1_1Object.png" usemap="#ast::Object_map" alt=""/>
   <map id="ast::Object_map" name="ast::Object_map">
-<area href="classast_1_1Axes.html" title="轴系类" alt="ast::Axes" shape="rect" coords="119,56,228,80"/>
-<area href="classast_1_1BodyShape.html" title="天体形状基类" alt="ast::BodyShape" shape="rect" coords="119,112,228,136"/>
-<area href="classast_1_1EventInterval.html" title="事件时间段" alt="ast::EventInterval" shape="rect" coords="119,168,228,192"/>
-<area href="classast_1_1EventTime.html" title="事件时间" alt="ast::EventTime" shape="rect" coords="119,224,228,248"/>
-<area href="classast_1_1Expr.html" title="表达式基类" alt="ast::Expr" shape="rect" coords="119,280,228,304"/>
-<area href="classast_1_1Frame.html" title="坐标系类" alt="ast::Frame" shape="rect" coords="119,336,228,360"/>
-<area href="classast_1_1MockObject.html" alt="ast::MockObject" shape="rect" coords="119,392,228,416"/>
-<area href="classast_1_1MotionProfile.html" title="运动定义接口" alt="ast::MotionProfile" shape="rect" coords="119,448,228,472"/>
-<area href="classast_1_1Point.html" alt="ast::Point" shape="rect" coords="119,504,228,528"/>
-<area href="classast_1_1SolarSystem.html" title="太阳系" alt="ast::SolarSystem" shape="rect" coords="119,560,228,584"/>
-<area href="classast_1_1State.html" title="航天器状态" alt="ast::State" shape="rect" coords="119,616,228,640"/>
+<area href="classast_1_1Axes.html" title="轴系类" alt="ast::Axes" shape="rect" coords="135,56,260,80"/>
+<area href="classast_1_1BodyOrientation.html" title="天体姿态/指向" alt="ast::BodyOrientation" shape="rect" coords="135,112,260,136"/>
+<area href="classast_1_1BodyShape.html" title="天体形状基类" alt="ast::BodyShape" shape="rect" coords="135,168,260,192"/>
+<area href="classast_1_1EventInterval.html" title="事件时间段" alt="ast::EventInterval" shape="rect" coords="135,224,260,248"/>
+<area href="classast_1_1EventTime.html" title="事件时间" alt="ast::EventTime" shape="rect" coords="135,280,260,304"/>
+<area href="classast_1_1Expr.html" title="表达式基类" alt="ast::Expr" shape="rect" coords="135,336,260,360"/>
+<area href="classast_1_1Frame.html" title="坐标系类" alt="ast::Frame" shape="rect" coords="135,392,260,416"/>
+<area href="classast_1_1MockObject.html" alt="ast::MockObject" shape="rect" coords="135,448,260,472"/>
+<area href="classast_1_1MotionProfile.html" title="运动定义接口" alt="ast::MotionProfile" shape="rect" coords="135,504,260,528"/>
+<area href="classast_1_1Point.html" alt="ast::Point" shape="rect" coords="135,560,260,584"/>
+<area href="classast_1_1SolarSystem.html" title="太阳系" alt="ast::SolarSystem" shape="rect" coords="135,616,260,640"/>
+<area href="classast_1_1State.html" title="航天器状态" alt="ast::State" shape="rect" coords="135,672,260,696"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -218,6 +219,9 @@ Protected 成员函数</h2></td></tr>
 <tr class="memitem:a26df1078be6121773b18dd5c5092432e" id="r_a26df1078be6121773b18dd5c5092432e"><td class="memItemLeft" align="right" valign="top"><a id="a26df1078be6121773b18dd5c5092432e" name="a26df1078be6121773b18dd5c5092432e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Object</b> (const <a class="el" href="classast_1_1Object.html">Object</a> &amp;obj)</td></tr>
 <tr class="separator:a26df1078be6121773b18dd5c5092432e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1e2aee7be6a86b1899ef0fde1ba1c34" id="r_af1e2aee7be6a86b1899ef0fde1ba1c34"><td class="memItemLeft" align="right" valign="top"><a id="af1e2aee7be6a86b1899ef0fde1ba1c34" name="af1e2aee7be6a86b1899ef0fde1ba1c34"></a>
+<a class="el" href="classast_1_1Object.html">Object</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classast_1_1Object.html">Object</a> &amp;obj)</td></tr>
+<tr class="separator:af1e2aee7be6a86b1899ef0fde1ba1c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 友元</h2></td></tr>
@@ -641,7 +645,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectManager</b></t
 <p>获取对象的名称 </p>
 <dl class="section return"><dt>返回</dt><dd>const char* 对象名称 </dd></dl>
 
-<p>被 <a class="el" href="classast_1_1CelestialBody.html#aabf36d0dd7857c676e2d19a13c9c9291">ast::CelestialBody</a> , 以及 <a class="el" href="classast_1_1Mover.html#a85ebd59213acea75af9784ce0b423b6e">ast::Mover</a> 重载.</p>
+<p>被 <a class="el" href="classast_1_1CelestialBody.html#aaf8e86ad6783f5af889fb098b73419f7">ast::CelestialBody</a> , 以及 <a class="el" href="classast_1_1Mover.html#a85ebd59213acea75af9784ce0b423b6e">ast::Mover</a> 重载.</p>
 
 </div>
 </div>

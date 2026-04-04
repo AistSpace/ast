@@ -43,12 +43,6 @@ var hierarchy =
       ] ]
     ] ],
     [ "ast::BKVTree", "classast_1_1BKVTree.html", null ],
-    [ "ast::BodyOrientation", "classast_1_1BodyOrientation.html", [
-      [ "ast::EarthOrientation", "classast_1_1EarthOrientation.html", null ],
-      [ "ast::MoonOrientation", "classast_1_1MoonOrientation.html", null ],
-      [ "ast::NoopOrientation", "classast_1_1NoopOrientation.html", null ],
-      [ "ast::RotationalData", "classast_1_1RotationalData.html", null ]
-    ] ],
     [ "ast::Breakpoint", "classast_1_1Breakpoint.html", null ],
     [ "ast::BuiltinAxesRegistry", "classast_1_1BuiltinAxesRegistry.html", null ],
     [ "ast::strings_internal::ByAnyChar", "classast_1_1strings__internal_1_1ByAnyChar.html", null ],
@@ -320,6 +314,12 @@ var hierarchy =
         [ "ast::AxesFrozenAtEventTime", "classast_1_1AxesFrozenAtEventTime.html", null ],
         [ "ast::AxesICRF", "classast_1_1AxesICRF.html", null ],
         [ "ast::AxesRoot", "classast_1_1AxesRoot.html", null ]
+      ] ],
+      [ "ast::BodyOrientation", "classast_1_1BodyOrientation.html", [
+        [ "ast::EarthOrientation", "classast_1_1EarthOrientation.html", null ],
+        [ "ast::MoonOrientation", "classast_1_1MoonOrientation.html", null ],
+        [ "ast::NoopOrientation", "classast_1_1NoopOrientation.html", null ],
+        [ "ast::RotationalData", "classast_1_1RotationalData.html", null ]
       ] ],
       [ "ast::BodyShape", "classast_1_1BodyShape.html", [
         [ "ast::EllipsoidShape", "classast_1_1EllipsoidShape.html", null ],
