@@ -58,7 +58,7 @@ public:
     ~CelestialBody();
 
     /// @brief 获取天体名称
-    const std::string& getName() const { return name_; }
+    const std::string& getName() const override { return name_; }
     void setName(StringView name) { name_ = std::string(name); }
     
     /// @brief 获取JPL SPICE ID

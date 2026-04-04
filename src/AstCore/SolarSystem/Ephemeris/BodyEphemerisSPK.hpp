@@ -37,6 +37,8 @@ AST_NAMESPACE_BEGIN
 class AST_CORE_API BodyEphemerisSPK : public BodyEphemeris
 {
 public:
+    AST_OBJECT(BodyEphemerisSPK)
+    AST_PROPERT(SpiceIndex)
     BodyEphemerisSPK() = default;
     
     BodyEphemerisSPK(int spiceIndex)
@@ -51,15 +53,16 @@ public:
 
     errc_t openSPKFile(StringView spkfile);
 
-    int getSpiceIndex() const;
-
-    void setSpiceIndex(int spiceIndex){spiceIndex_ = spiceIndex;}
 
     errc_t getPosICRF(const TimePoint& tp, Vector3d& pos) const override;
 
     errc_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
 
     errc_t getInterval(TimeInterval &interval) const override;
+PROPERTIES:
+    int getSpiceIndex() const;
+
+    void setSpiceIndex(int spiceIndex){spiceIndex_ = spiceIndex;}
 protected:
     CelestialBody* body_{nullptr};
     int            spiceIndex_{-1};

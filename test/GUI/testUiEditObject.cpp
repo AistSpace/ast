@@ -34,6 +34,7 @@ TEST(UiEditObject, Test)
     aGetAllClassNames(names);
     for(auto& name: names)
     {
+        printf("test for className: %s\n", name.c_str());
         auto obj = aMakeObject(name);
         EXPECT_TRUE(obj);
         EXPECT_EQ(obj->openEditDialog(), 0);

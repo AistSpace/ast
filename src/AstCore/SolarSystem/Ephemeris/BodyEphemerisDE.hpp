@@ -35,6 +35,9 @@ AST_NAMESPACE_BEGIN
 class AST_CORE_API BodyEphemerisDE : public BodyEphemeris
 {
 public:
+    AST_OBJECT(BodyEphemerisDE)
+    AST_PROPERT(JplIndex)
+    
     BodyEphemerisDE() = default;
 
     BodyEphemerisDE(int jplIndex)
@@ -47,16 +50,16 @@ public:
 
     ~BodyEphemerisDE() override = default;
 
-    int getJplIndex() const;
-
-    void setJplIndex(int jplIndex){jplIndex_ = jplIndex;}
-
     errc_t getPosICRF(const TimePoint& tp, Vector3d& pos) const override;
 
     errc_t getPosVelICRF(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const override;
 
     errc_t getInterval(TimeInterval& interval) const override;
 
+PROPERTIES:
+    int getJplIndex() const;
+
+    void setJplIndex(int jplIndex){jplIndex_ = jplIndex;}
 protected:
     CelestialBody* body_{nullptr};
     int jplIndex_{-1};

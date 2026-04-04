@@ -34,10 +34,13 @@ AST_NAMESPACE_BEGIN
 class AST_CORE_API BodyEphemerisNoop : public BodyEphemeris
 {
 public:
+    AST_OBJECT(BodyEphemerisNoop)
+
     BodyEphemerisNoop() = default;
     ~BodyEphemerisNoop() = default;
     errc_t getPosICRF(const TimePoint& time, Vector3d& pos) const override;
     errc_t getPosVelICRF(const TimePoint& time, Vector3d& pos, Vector3d& vel) const override;
+    errc_t getInterval(TimeInterval &interval) const override;
 };
 
 

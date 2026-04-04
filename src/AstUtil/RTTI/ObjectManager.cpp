@@ -42,37 +42,31 @@ uint32_t ObjectManager::addObject(Object *object)
         return INVALID_ID;
     if(object->index_ != static_cast<uint32_t>(INVALID_ID))
         return object->index_;
-    uint32_t index = nextIndex_;
-    advanceIndex();
-    if(index >= objects_.size())
+    uint32_t index;
+    uint32_t numTries = 0;
+    while(1)
     {
-        ObjectNode *node = new ObjectNode(object);
-        object->index_ = index;
-        objects_.push_back(node);
-    }
-    else 
-    {
-        uint32_t numTries = 0;
-        while(1)
+        index = nextIndex_;
+        advanceIndex();
+        if(index >= objects_.size())
         {
-            if(objects_[index]->expired())
-            {
-                objects_[index]->object_ = object;
-                object->index_ = index;
-                break;
-            }
-            else
-            {
-                index = nextIndex_;
-                advanceIndex();
-                if(numTries++ > maxObjectCount_)
-                {
-                    index = INVALID_ID;
-                    // @todo 处理对象管理器已满的情况
-                    aCritical("object manager is full, max object count is %d", maxObjectCount_);
-                    break;
-                }
-            }
+            ObjectNode *node = new ObjectNode(object);
+            object->index_ = index;
+            objects_.push_back(node);
+            break;
+        }
+        else if(objects_[index]->expired())
+        {
+            objects_[index]->object_ = object;
+            object->index_ = index;
+            break;
+        }
+        else if(numTries++ > maxObjectCount_)
+        {
+            index = INVALID_ID;
+            // @todo 处理对象管理器已满的情况
+            aCritical("object manager is full, max object count is %d", maxObjectCount_);
+            break;
         }
     }
     return index;

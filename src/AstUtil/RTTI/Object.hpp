@@ -286,6 +286,11 @@ protected:
         : refcnt_(0)
         , weakrefcnt_(1)
     {}
+    Object& operator=(const Object& obj)
+    {
+        A_UNUSED(obj);
+        return *this;
+    }
 private:
     // Class*                type_;                                     ///< 类型元信息，同时用于标识对象是否被析构(废弃)
     std::atomic<uint32_t>    refcnt_{0};                                ///< 强引用计数，给SharedPtr使用

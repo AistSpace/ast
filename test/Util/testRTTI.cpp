@@ -31,7 +31,6 @@
 
 AST_USING_NAMESPACE
 
-const std::vector<std::string> classNames = {"StateCartesian", "StateKeplerian"};
 
 
 class RTTITest: public testing::Test
@@ -49,8 +48,11 @@ public:
 
 TEST_F(RTTITest, NewObject) 
 {
+    std::vector<std::string> classNames;
+    aGetAllClassNames(classNames);
     for(auto className: classNames)
     {
+        printf("test for className: %s\n", className.c_str());
         auto obj = aMakeObject(className);
         EXPECT_TRUE(obj != nullptr);
     }
@@ -58,8 +60,11 @@ TEST_F(RTTITest, NewObject)
 
 TEST_F(RTTITest, ClassDefaultObject)
 {
+    std::vector<std::string> classNames;
+    aGetAllClassNames(classNames);
     for(auto className: classNames)
     {
+        printf("test for className: %s\n", className.c_str());
         auto obj = aGetClassDefaultObject(className);
         EXPECT_TRUE(obj != nullptr);
     }
