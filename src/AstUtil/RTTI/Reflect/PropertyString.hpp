@@ -29,7 +29,7 @@ AST_NAMESPACE_BEGIN
 /// @brief 字符串属性
 /// @details 字符串属性，包含属性的名称、描述等信息
 /// @ingroup RTTI
-class PropertyString: public Property
+class AST_UTIL_API PropertyString: public Property
 {
 public:
     using InputType  = property_trait<std::string>::input_type;

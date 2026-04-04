@@ -12,6 +12,11 @@ static bool StateKeplerian_ClassInited = (StateKeplerian::ClassInit(&StateKepler
 void StateKeplerian::ClassInit(Class* cls)
 {
 
+    cls->setName("StateKeplerian");
+    cls->addToRegistry();
+    cls->setParent<State>();
+    cls->setConstructor<StateKeplerian>();
+
     cls->addProperty("SMA", aNewPropertyQuantity<StateKeplerian, &StateKeplerian::getSMA, &StateKeplerian::setSMA>(Dimension::Length()));
     cls->addProperty("Period", aNewPropertyQuantity<StateKeplerian, &StateKeplerian::getPeriod, &StateKeplerian::setPeriod>(Dimension::Time()));
     cls->addProperty("MeanMotion", aNewPropertyQuantity<StateKeplerian, &StateKeplerian::getMeanMotion, &StateKeplerian::setMeanMotion>(Dimension::AngularVelocity()));

@@ -39,6 +39,7 @@ enum class EStateType
 {
     eCartesian,     ///< 笛卡尔状态
     eKeplerian,     ///< 开普勒状态
+    eUnknown,       ///< 未知状态类型
 };
 
 class State;
@@ -53,6 +54,30 @@ class AST_CORE_API State: public Object
 public:
     State() = default;
     ~State() override = default;
+
+    /// @brief 创建状态
+    /// @param type 状态类型
+    /// @return HState 状态句柄
+    static HState MakeShared(EStateType type);
+
+    /// @brief 创建状态
+    /// @param state 状态
+    /// @param type 状态类型
+    /// @return HState 状态句柄
+    static HState MakeShared(State& state, EStateType type);
+
+
+    /// @brief 创建状态
+    /// @param type 状态类型
+    /// @return PState 状态指针
+    static PState New(EStateType type);
+
+
+    /// @brief 创建状态
+    /// @param state 状态
+    /// @param type 状态类型
+    /// @return PState 状态指针
+    static PState New(State& state, EStateType type);
 protected:
     State(const State& state) = default; // 怎么处理深拷贝? 现在默认浅拷贝
 public:

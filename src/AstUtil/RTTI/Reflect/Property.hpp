@@ -54,7 +54,7 @@ AST_UTIL_CAPI errc_t aFakeGet(const void* container, void* value);
 AST_UTIL_CAPI errc_t aFakeSet(void* container, const void* value);
 
 /// @brief 反射属性类
-class Property: public Field
+class AST_UTIL_API Property: public Field
 {
 public:
     /// @brief 属性标志位

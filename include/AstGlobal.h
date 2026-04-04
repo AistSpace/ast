@@ -30,7 +30,7 @@
  * 前缀 _           ：内部宏
  * 
  * 前缀 AST_WITH_   ：是否带有某个第三方库，例如eigen、boost、fmt、ipopt等
- * 前缀 AST_ENABLE_ ：是否启用某个特定功能，通常是性能、调试、特性的开关，例如调试信息、缓存、日志、AVX2指令集等
+ * 前缀 AST_ENABLE_ ：是否启用某个特定特性，通常是性能、调试、功能的开关，例如调试信息、缓存、日志、后缀名称等
  * 前缀 AST_USE_    ：是否使用某个实现方法，通常是可选、可替换的实现方式，例如不同的算法、不同的数据结构
  * 前缀 AST_HAS_    ：是否具有某个特定功能，通常是指示标准库是否有某功能，例如是否有某个函数、是否有某个类型
  * 前缀 AST_NO_     ：是否不支持某个特定功能、第三方库
@@ -90,25 +90,17 @@
 
 // 定义调试库后缀
 #if defined(_WIN32) && defined(_DEBUG)
-#   define AST_DEBUG_SUFFIX(NAME) NAME "D"
+#   define _AST_DEBUG_SUFFIX "D"
+#   define _AST_ENABLE_DEBUG_SUFFIX  // 内部宏，标识是否启用了调试库后缀
+#   define AST_APPEND_DEBUG(NAME) NAME _AST_DEBUG_SUFFIX
 #else
-#   define AST_DEBUG_SUFFIX(NAME) NAME
+#   undef  _AST_ENABLE_DEBUG_SUFFIX
+#   define AST_APPEND_DEBUG(NAME) NAME
 #endif
 
 
 // 定义访问函数
 #define AST_DEF_ACCESS_METHOD(TYPE, NAME) TYPE NAME() const{return NAME##_;} TYPE& NAME(){return NAME##_;}
-
-
-// AST 对象运行时元信息
-#define AST_OBJECT(TYPE) \
-    static Class staticType;\
-    static inline Class* getStaticType(){return &staticType;}\
-    Class* getType() const override{return &staticType;} \
-    static void ClassInit(Class* cls);\
-    
-#define _AST_IMPL_OBJECT(TYPE) \
-    Class TYPE::staticType;\
 
 #ifdef AST_PROPERTIES_MARK
 #   define AST_PROPERTIES AST_PROPERTIES_MARK public
@@ -238,12 +230,12 @@
 #define AST_TEST_CAPI A_DECL_EXTERN_C AST_TEST_API
 
 // ast项目序列化模块导出声明
-#ifdef AST_BUILD_LIB_SERDE
-#    define AST_SERDE_API A_DECL_EXPORT
-#else
-#    define AST_SERDE_API A_DECL_IMPORT
-#endif
-#define AST_SERDE_CAPI A_DECL_EXTERN_C AST_SERDE_API
+// #ifdef AST_BUILD_LIB_SERDE
+// #    define AST_SERDE_API A_DECL_EXPORT
+// #else
+// #    define AST_SERDE_API A_DECL_IMPORT
+// #endif
+// #define AST_SERDE_CAPI A_DECL_EXTERN_C AST_SERDE_API
 
 
 #ifndef AST_PROJECT_NAME
@@ -281,13 +273,13 @@ typedef enum EError
  * 下面这些别名用于类型元信息标注，例如：
  * ```
  * class Demo{
- * properties:
+ * PROPERTIES:
  *   time_d   timestamp;        // 时间量纲
  *   angle_d  heading;          // 角度量纲
  *   length_d distance;         // 长度量纲
  * };
  * ```
- * 通过这些标注，反射工具可以识别这些类型，提取其属性元信息，然后生成相应代码，例如动态反射、序列化
+ * 通过这些标注，反射工具(例如libclang)可以识别这些类型，提取其属性元信息，然后生成相应代码，例如动态反射、序列化
  * 使用 `_d` 后缀，表示 dimension 和 double，避免了使用 `_t` 后缀与标准库 `time_t` 的冲突
  */ 
 typedef double length_d, mass_d, time_d, area_d, speed_d, force_d, energy_d, power_d, angle_d, angvel_d; 

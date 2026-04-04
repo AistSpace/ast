@@ -19,9 +19,40 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "Class.hpp"
+#include "AstUtil/RTTIAPI.hpp"
+#include "AstUtil/Object.hpp"
 
 AST_NAMESPACE_BEGIN
 
-// const int sizeofClass = sizeof(Class);
+Class::Class(Class *parent)
+    : parent_(parent) 
+{
+}
+
+Class::~Class()
+{
+}
+
+void Class::addToRegistry() const
+{
+    aRegisterClass(const_cast<Class*>(this));
+}
+
+Object *Class::NewObject(Object* parentScope) const
+{
+    if (constructor_)
+        return constructor_(parentScope);
+    return nullptr;
+}
+
+Object *Class::getDefaultObject() const
+{
+    if (defaultObject_)
+        return defaultObject_.get();
+    const_cast<Class*>(this)->defaultObject_ = NewObject(nullptr);
+    return defaultObject_.get();
+}
 
 AST_NAMESPACE_END
+
+

@@ -59,17 +59,7 @@ std::string _aFileParentDir(StringView filepath_)
     return filepath;
 }
 
-std::string aLibDir()
-{
-    return _aFileParentDir(aLibPath());
-}
-
-std::string aExeDir()
-{
-    return _aFileParentDir(aExePath());
-}
-
-std::string aLibPath()
+std::string aGetModulePathFromAddress(void *addr)
 {
 #ifdef _WIN32
     // Windows平台实现
@@ -80,7 +70,7 @@ std::string aLibPath()
     if (GetModuleHandleExW(
         GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
         GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
-        reinterpret_cast<LPCWSTR>(&aLibDir),
+        reinterpret_cast<LPCWSTR>(addr),
         &hModule))
     {
         // 获取模块路径
@@ -100,7 +90,7 @@ std::string aLibPath()
 #else
     // Unix-like平台实现 (Linux, macOS等)
     Dl_info dlInfo;
-    if (dladdr(reinterpret_cast<void*>(&aLibDir), &dlInfo))
+    if (dladdr(reinterpret_cast<void*>(addr), &dlInfo))
     {
         if (dlInfo.dli_fname != nullptr)
         {
@@ -115,6 +105,21 @@ std::string aLibPath()
     }
 #endif
     return std::string();
+}
+
+std::string aLibDir()
+{
+    return _aFileParentDir(aLibPath());
+}
+
+std::string aExeDir()
+{
+    return _aFileParentDir(aExePath());
+}
+
+std::string aLibPath()
+{
+    return aGetModulePathFromAddress(reinterpret_cast<void*>(&aLibPath));
 }
 
 std::string aExePath()

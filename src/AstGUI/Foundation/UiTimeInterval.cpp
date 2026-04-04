@@ -21,6 +21,7 @@
 #include "UiTimeInterval.hpp"
 #include "AstCore/TimePoint.hpp"
 #include <QVBoxLayout>
+#include <QDebug>
 
 AST_NAMESPACE_BEGIN
 
@@ -38,16 +39,19 @@ UiTimeInterval::UiTimeInterval(QWidget* parent) : QWidget(parent)
     layout->addWidget(stopTimeEdit_);
     layout->setContentsMargins(0, 0, 0, 0);
     setLayout(layout);
-    
-    // 连接信号和槽
-    connect(startTimeEdit_, &QLineEdit::editingFinished, this, &UiTimeInterval::onTimeEdited);
-    connect(stopTimeEdit_, &QLineEdit::editingFinished, this, &UiTimeInterval::onTimeEdited);
-    
+
+    // 设置尺寸策略
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
     // 设置默认时间区间
     TimePoint start{}; // = TimePoint::TodayUTC();
     TimePoint end{};  // = TimePoint::TomorrowUTC();
     TimeInterval interval(start, end);
     setTimeInterval(interval);
+
+    // 连接信号和槽
+    connect(startTimeEdit_, &UiTimePoint::timePointChanged, this, &UiTimeInterval::updateTimeInterval);
+    connect(stopTimeEdit_,  &UiTimePoint::timePointChanged, this, &UiTimeInterval::updateTimeInterval);
 }
 
 void UiTimeInterval::setTimeInterval(const TimeInterval& timeInterval)
@@ -59,14 +63,15 @@ void UiTimeInterval::setTimeInterval(const TimeInterval& timeInterval)
     stopTimeEdit_->setTimePoint(timeInterval.getStop());
 }
 
-void UiTimeInterval::onTimeEdited()
+void UiTimeInterval::updateTimeInterval()
 {
     // 获取开始时间和结束时间
     TimePoint start = startTimeEdit_->getTimePoint();
-    TimePoint end = stopTimeEdit_->getTimePoint();
+    TimePoint stop  =  stopTimeEdit_->getTimePoint();
     
     // 更新时间区间
-    timeInterval_.setStartStop(start, end);
+    timeInterval_.setStartStop(start, stop);
+    emit timeIntervalChanged(timeInterval_);
 }
 
 

@@ -50,8 +50,8 @@ int main(int argc, char* argv[])
     });
 
 
-    QObject::connect(uiQuantity, &UiQuantity::editingFinished, [uiQuantity]() {
-        qDebug() << "after editing finished:" << uiQuantity->getQuantity().toString().c_str();
+    QObject::connect(uiQuantity, &UiQuantity::quantityChanged, [uiQuantity]() {
+        qDebug() << "after quantityChanged:" << uiQuantity->getQuantity().toString().c_str();
     });
     
     // 设置默认值

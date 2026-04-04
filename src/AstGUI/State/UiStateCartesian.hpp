@@ -23,7 +23,7 @@
 #include "AstGlobal.h"
 #include "AstGUI/UiState.hpp"
 #include "AstGUI/UiQuantity.hpp"
-#include <QLineEdit>
+#include "AstGUI/UiTimePoint.hpp"
 #include <QComboBox>
 
 AST_NAMESPACE_BEGIN
@@ -39,15 +39,21 @@ class AST_GUI_API UiStateCartesian: public UiState
 {
     Q_OBJECT
 public:
+    UiStateCartesian(Object* object, QWidget *parent = nullptr);
     UiStateCartesian(QWidget *parent = nullptr);
     ~UiStateCartesian() = default;
 
+    void refreshUi();
+    void apply();
+    void applyTo(StateCartesian* state);
+
     void setStateCartesian(StateCartesian* state);
     StateCartesian* getStateCartesian() const;
+signals:
+    void stateCartesianChanged(StateCartesian* state);
 private:
     // 左侧控件
-    QLineEdit* epochEdit_{nullptr};
-    QComboBox* epochUnitCombo_{nullptr};
+    UiTimePoint* epochEdit_{nullptr};
     QComboBox* frameCombo_{nullptr};
     
     // 右侧控件
@@ -57,9 +63,6 @@ private:
     UiQuantity* velXEdit_{nullptr};
     UiQuantity* velYEdit_{nullptr};
     UiQuantity* velZEdit_{nullptr};
-    
-    // 状态对象
-    StateCartesian* stateCartesian_{nullptr};
 };
 
 

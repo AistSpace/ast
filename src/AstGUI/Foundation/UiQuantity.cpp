@@ -28,7 +28,7 @@ UiQuantity::UiQuantity(QWidget* parent)
     : QLineEdit(parent)
 {
     setToolTipDuration(0);
-    connect(this, &QLineEdit::editingFinished, this, &UiQuantity::onEditingFinished);
+    connect(this, &QLineEdit::editingFinished, this, &UiQuantity::updateQuantity);
 }
 
 void UiQuantity::setQuantity(const Quantity& quantity)
@@ -98,7 +98,7 @@ void UiQuantity::setValueUnit(double value, const Unit& unit)
     this->setQuantity(currentQuantity_);
 }
 
-void UiQuantity::onEditingFinished()
+void UiQuantity::updateQuantity()
 {
     QString text = this->text();
     errc_t rc = aQuantityParse(text.toUtf8().data(), currentQuantity_);
@@ -111,6 +111,7 @@ void UiQuantity::onEditingFinished()
         // 解析成功，恢复默认样式
         setStyleSheet("");
         setToolTip("");
+        emit quantityChanged(currentQuantity_);
     }
 }
 

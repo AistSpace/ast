@@ -24,8 +24,7 @@
 #include "AstUtil/SharedPtr.hpp"
 #include "AstUtil/ScopedPtr.hpp"
 #include "AstUtil/WeakPtr.hpp"
-#include "AstUtil/Attribute.hpp"
-#include "AstUtil/Class.hpp"
+#include "AstUtil/ReflectAPI.hpp"
 #include <string>       // for std::string
 #include <stdint.h>     // for uint32_t
 #include <assert.h>     // for assert
@@ -48,7 +47,36 @@ AST_NAMESPACE_BEGIN
 class Class;        // 类元信息
 class Property;     // 属性元信息
 
-/// @brief 对象基类，实现运行时元信息、强弱引用计数
+template<typename ObjectPtrType, typename PropertyType>
+class AttributeBasic;
+
+typedef AttributeBasic<WeakPtr<Object>, Property> Attribute;
+
+// AST 对象运行时元信息
+#define AST_OBJECT(TYPE) \
+    static Class staticType;\
+    static inline Class* getStaticType(){return &staticType;}\
+    Class* getType() const override{return &staticType;} \
+    static void ClassInit(Class* cls);\
+
+// 定义属性
+#define AST_PROPERT(NAME)   static constexpr const char* _prop_##NAME = #NAME;
+
+// 获取属性名称
+#define AST_PROPERT_NAME(CLASS, NAME) CLASS::_prop_##NAME
+#define aPropertyName(CLASS, NAME) AST_PROPERT_NAME(CLASS, NAME)
+
+#define _AST_IMPL_OBJECT(TYPE) \
+    Class TYPE::staticType;\
+
+
+enum {
+    INVALID_ID = -1, ///< 无效对象ID
+};
+
+
+/// @brief 对象基类，继承自该类的对象可以使用运行时类型信息相关功能，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能
+/// @details 参考了Qt的QObject类、UE的UObject类、以及Python的PyObject等类的设计和实现
 class AST_UTIL_API Object
 {
 public:
@@ -56,21 +84,34 @@ public:
         : refcnt_{0}
         , weakrefcnt_{1}
     {}
+    Object(Object* parentScope);
+    Object(std::nullptr_t);
 public:
+    static Class staticType;
+    static inline Class* getStaticType(){return &staticType;}
+
     /// @brief 获取对象的类型元信息
     /// @return Class* 类型元信息指针
     virtual Class* getType() const;
 
-public:
+    /// @brief 获取对象的名称
+    /// @return const char* 对象名称
+    virtual const std::string& getName() const;
+
+
+public: // 编辑属性
+    
+    /// @brief 打开编辑对话框，用于编辑对象的属性
+    /// @return errc_t 错误码
+    errc_t openEditDialog();
+
+public: // 通用属性访问
     /// @brief 获取属性，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @return Attribute 属性
-    Attribute<Property> attr(StringView path)
-    {
-        return Attribute<Property>(this, this->getProperty(path));
-    }
+    Attribute attr(StringView path);
 
-public:
+public: // 获取属性
     /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @param value 属性值引用
@@ -95,7 +136,7 @@ public:
     /// @return errc_t 错误码
     errc_t getAttrString(StringView path, std::string& value) const;
 
-public:
+public: // 获取属性值
     /// @brief 获取属性值，属性路径格式为 "attr1.attr2.attr3"
     /// @param path 属性路径
     /// @return double 属性值
@@ -116,7 +157,7 @@ public:
     /// @return std::string 属性值
     std::string getAttrString(StringView path) const;
 
-public:
+public: // 设置属性值
     /// @param path 属性路径
     /// @param value 属性值
     /// @return errc_t 错误码
@@ -140,6 +181,7 @@ public:
     /// @return errc_t 错误码
     errc_t setAttrString(StringView path, StringView value);
 
+public: // 类型与字段属性
     /// @brief 获取对象类型
     /// @return Class* 类型元信息
     Class* type() const{return getType();} // 转发到新接口getType
@@ -148,7 +190,21 @@ public:
     /// @param fieldName 属性名
     /// @return Property* 属性元信息
     Property* getProperty(StringView fieldName) const;
-    
+public: // 对象ID
+
+    /// @brief 获取对象ID
+    /// @return uint32_t 对象ID
+    uint32_t getID() const;
+
+    /// @brief 设置对象的父作用域
+    /// @param parentScope 父作用域指针
+    /// @return errc_t 错误码
+    errc_t setParentScope(Object* parentScope);
+
+    /// @brief 获取对象的父作用域
+    /// @return Object* 父作用域指针
+    Object* getParentScope() const;
+public: // 引用计数
     /// @brief 获取强引用计数
     /// @return uint32_t 强引用计数
     uint32_t refCount() const{return refcnt_;}
@@ -224,15 +280,23 @@ private:
     }
 
 protected:
-    virtual ~Object() = default;
+    friend class ObjectManager;
+    virtual ~Object();
     Object(const Object& obj)
         : refcnt_(0)
         , weakrefcnt_(1)
     {}
-protected:
-    // Class*                type_;                 ///< 类型元信息，同时用于标识对象是否被析构
-    std::atomic<uint32_t>    refcnt_;               ///< 强引用计数，给SharedPtr使用
-    std::atomic<uint32_t>    weakrefcnt_;           ///< 弱引用计数，给WeakPtr使用
+    Object& operator=(const Object& obj)
+    {
+        A_UNUSED(obj);
+        return *this;
+    }
+private:
+    // Class*                type_;                                     ///< 类型元信息，同时用于标识对象是否被析构(废弃)
+    std::atomic<uint32_t>    refcnt_{0};                                ///< 强引用计数，给SharedPtr使用
+    std::atomic<uint32_t>    weakrefcnt_{1};                            ///< 弱引用计数，给WeakPtr使用
+    uint32_t                 index_{static_cast<uint32_t>(INVALID_ID)}; ///< 对象索引，用于唯一标识对象
+    uint32_t                 flags_{0};                                 ///< 对象标志位，用于存储对象的额外信息
 };
 
 
@@ -244,4 +308,5 @@ AST_NAMESPACE_END
 
 AST_DECL_TYPE_ALIAS(Object)
 
-
+#include "AstUtil/Attribute.hpp"
+#include "AstUtil/Class.hpp"

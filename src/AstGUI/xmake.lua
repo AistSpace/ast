@@ -2,7 +2,7 @@
     add_rules("qt.shared")
     add_files("**.cpp")
     add_files("**.hpp")
-    add_files("**.ui")
+    -- add_files("**.ui")
     add_deps("AstUtil", "AstSim", "AstCore", "AstMath")
     add_frameworks("QtWidgets", "QtGui", "QtCore")
     add_defines("AST_BUILD_LIB_GUI")

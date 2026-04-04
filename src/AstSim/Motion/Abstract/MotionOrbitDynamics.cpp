@@ -22,8 +22,31 @@
 #include "AstCore/EventInterval.hpp"
 #include "AstCore/EventIntervalExplicit.hpp"
 
+
 AST_NAMESPACE_BEGIN
 
+EStateType MotionOrbitDynamics::getStateType() const
+{
+    if(initialState_)
+    {
+        return initialState_->getStateType();
+    }
+    return EStateType::eUnknown;
+}
+
+void MotionOrbitDynamics::setStateType(EStateType type)
+{
+    if(initialState_)
+    {
+        if(initialState_->getStateType() == type)
+        {
+            return;
+        }
+        initialState_ = State::MakeShared(*initialState_, type);
+    }else{
+        initialState_ = State::MakeShared(type);
+    }
+}
 
 errc_t MotionOrbitDynamics::getPropagationParams(PropagationParams &params) const
 {

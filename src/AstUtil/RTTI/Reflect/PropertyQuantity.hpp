@@ -36,12 +36,13 @@ AST_NAMESPACE_BEGIN
 /// @brief 数量值属性
 /// @details 数量值属性，包含属性的名称、描述等信息
 /// @ingroup RTTI
-class PropertyQuantity: public PropertyDouble
+class AST_UTIL_API PropertyQuantity: public PropertyDouble
 {
 public:
     PropertyQuantity(FPropertyGet getter, FPropertySet setter, Dimension dimension);
     PropertyQuantity(StringView name, StringView desc, FPropertyGet getter, FPropertySet setter, Dimension dimension);
-
+    
+    errc_t accept(PropertyVisitor& visitor, const void* container) override;
     errc_t getValueString(const void* container, std::string& value) override;
     errc_t setValueString(void* container, StringView value) override;
 protected:

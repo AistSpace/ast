@@ -56,9 +56,17 @@ public:
     /// @return Property* 属性指针
     Property* getProperty(StringView name);
 
+    /// @brief 获取属性列表
+    /// @return const PropertyList& 属性列表
+    const PropertyList& getProperties() const{return properties_;}
+
+    /// @brief 获取模块名, 不包含调试后缀
+    /// @return std::string 模块名
+    std::string getModuleName() const;
+
 protected:
-    PropertyList m_properties;
-    PropertyMap  m_propertyMap;
+    PropertyList properties_;
+    PropertyMap  propertyMap_;
 };
 
 

@@ -48,13 +48,13 @@ public:
     /// @brief 获取时间区间
     /// @return 时间区间
     const TimeInterval& getTimeInterval() const { return timeInterval_; }
-
+signals:
+    void timeIntervalChanged(const TimeInterval& timeInterval);
 private:
-    void onTimeEdited();
-
+    void updateTimeInterval();
 private:
-    UiTimePoint* startTimeEdit_ = nullptr;
-    UiTimePoint* stopTimeEdit_ = nullptr;
+    UiTimePoint* startTimeEdit_{nullptr};
+    UiTimePoint* stopTimeEdit_{nullptr};
     TimeInterval timeInterval_;
 };
 

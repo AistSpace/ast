@@ -25,9 +25,53 @@
 #include "AstCore/OrbitElement.hpp"
 #include "AstCore/CelestialBody.hpp"
 #include "AstMath/KinematicTransform.hpp"
+#include "AstCore/StateCartesian.hpp"
+#include "AstCore/StateKeplerian.hpp"
 
 
 AST_NAMESPACE_BEGIN
+
+HState State::MakeShared(EStateType type)
+{
+    return New(type);
+}
+
+HState State::MakeShared(State &state, EStateType type)
+{
+    return New(state, type);
+}
+
+PState State::New(EStateType type)
+{
+    switch (type)
+    {
+    case EStateType::eCartesian:
+        return new StateCartesian();
+        break;
+    case EStateType::eKeplerian:
+        return new StateKeplerian();
+    default:
+        break;
+    }
+    aError("unknown state type");
+    return nullptr;
+}
+
+PState State::New(State &state, EStateType type)
+{
+    switch (type)
+    {
+    case EStateType::eCartesian:
+        return new StateCartesian(state);
+        break;
+    case EStateType::eKeplerian:
+        return new StateKeplerian(state);
+    default:
+        break;
+    }
+    aError("unknown state type");
+    return nullptr;
+}
 
 void State::setFrame(Frame *frame)
 {
@@ -91,6 +135,7 @@ double State::getBodyRadius() const
 {
     if(auto body = getBody())
         return body->getRadius();
+    aError("failed to get body radius");
     return 0.0;
 }
 

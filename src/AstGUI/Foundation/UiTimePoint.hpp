@@ -39,8 +39,10 @@ public:
     ~UiTimePoint() = default;
     const TimePoint& getTimePoint() const { return timePoint_; }
     void setTimePoint(const TimePoint& timePoint);
+signals:
+    void timePointChanged(const TimePoint& timePoint);
 private:
-    void onEditingFinished();
+    void updateTimePoint();
 private:
     TimePoint timePoint_;
 };

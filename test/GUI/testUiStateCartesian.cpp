@@ -57,18 +57,25 @@ int main(int argc, char* argv[])
     // 绑定 StateCartesian 对象
     uiStateCartesian->setStateCartesian(stateCartesian);
     
+    QObject::connect(uiStateCartesian, &UiStateCartesian::stateCartesianChanged, [](StateCartesian* newState) {
+        if (newState)
+        {
+            qDebug() << "StateCartesian Changed:" << newState->x() << newState->y() << newState->z() << newState->vx() << newState->vy() << newState->vz();
+        }
+    });
+
     QObject::connect(testButton, &QPushButton::clicked, [uiStateCartesian, stateCartesian]() {
         // 测试 getStateCartesian 方法
         StateCartesian* updatedState = uiStateCartesian->getStateCartesian();
         if (updatedState)
         {
             qDebug() << "Updated StateCartesian:";
-            qDebug() << "X:" << updatedState->getX();
-            qDebug() << "Y:" << updatedState->getY();
-            qDebug() << "Z:" << updatedState->getZ();
-            qDebug() << "Vx:" << updatedState->getVx();
-            qDebug() << "Vy:" << updatedState->getVy();
-            qDebug() << "Vz:" << updatedState->getVz();
+            qDebug() << "X:" << updatedState->x();
+            qDebug() << "Y:" << updatedState->y();
+            qDebug() << "Z:" << updatedState->z();
+            qDebug() << "Vx:" << updatedState->vx();
+            qDebug() << "Vy:" << updatedState->vy();
+            qDebug() << "Vz:" << updatedState->vz();
         }
     });
     

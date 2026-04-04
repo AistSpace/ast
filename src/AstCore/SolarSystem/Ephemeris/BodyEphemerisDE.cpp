@@ -29,7 +29,7 @@ AST_NAMESPACE_BEGIN
 int BodyEphemerisDE::getJplIndex() const
 {
     if(body_){
-        return body_->jplIndex_;
+        return body_->getJplIndex();
     }
     return jplIndex_;
 }

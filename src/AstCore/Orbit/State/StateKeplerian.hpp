@@ -86,6 +86,28 @@ class AST_CORE_API StateKeplerian final: public State
 {
 public:
     AST_OBJECT(StateKeplerian)
+    AST_PROPERT(SMA)
+    AST_PROPERT(Period)
+    AST_PROPERT(MeanMotion)
+    AST_PROPERT(ApoRadForSize)
+    AST_PROPERT(ApoAltForSize)
+    AST_PROPERT(PeriRadForSize)
+    AST_PROPERT(PeriAltForSize)
+    AST_PROPERT(Ecc)
+    AST_PROPERT(ApoRadForShape)
+    AST_PROPERT(ApoAltForShape)
+    AST_PROPERT(PeriRadForShape)
+    AST_PROPERT(PeriAltForShape)
+    AST_PROPERT(Inc)
+    AST_PROPERT(RAAN)
+    AST_PROPERT(LAN)
+    AST_PROPERT(ArgPeri)
+    AST_PROPERT(TrueAnomaly)
+    AST_PROPERT(MeanAnomaly)
+    AST_PROPERT(EccAnomaly)
+    AST_PROPERT(ArgLat)
+    AST_PROPERT(TimePastPeri)
+    AST_PROPERT(TimePastAscNode)
     static PStateKeplerian New();
     static HStateKeplerian MakeShared();
     static PStateKeplerian New(const ModOrbElem& modOrbElem);
@@ -151,6 +173,18 @@ public:
 
     /// @brief 获取近地点半径
     double getPeriRad() const;
+
+    /// @brief 获取轨道大小的定义方式
+    ESizeType getSizeType() const{return sizeType_;}
+    
+    /// @brief 获取轨道形状的定义方式
+    EShapeType getShapeType() const{return shapeType_;}
+
+    /// @brief 获取轨道面方向的定义方式
+    EOrientationType getOrientationType() const{return orientationType_;}
+
+    /// @brief 获取轨道位置的定义方式
+    EPositionType getPositionType() const{return positionType_;}
 PROPERTIES:
     /// @brief 获取半长轴
     length_d getSMA() const;

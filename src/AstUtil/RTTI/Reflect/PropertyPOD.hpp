@@ -29,7 +29,7 @@ AST_NAMESPACE_BEGIN
 /// @details POD类型是指简单的数据类型，如int、float、double、bool等。
 /// @todo 拟作为int, double, bool等的基础属性类，其他属性类继承自该类。
 /// @ingroup RTTI
-class PropertyPOD : public Property
+class AST_UTIL_API PropertyPOD : public Property
 {
 public:
     using Property::Property;

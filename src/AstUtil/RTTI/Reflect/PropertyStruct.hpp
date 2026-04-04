@@ -28,7 +28,7 @@ AST_NAMESPACE_BEGIN
 /// @brief 结构体属性
 /// @details 结构体属性，包含属性的名称、描述等信息
 /// @ingroup RTTI
-class PropertyStruct: public Property
+class AST_UTIL_API PropertyStruct: public Property
 {
 public:
     using Property::Property;

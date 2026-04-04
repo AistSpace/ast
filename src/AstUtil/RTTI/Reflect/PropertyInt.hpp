@@ -29,7 +29,7 @@ AST_NAMESPACE_BEGIN
 /// @brief 反射属性类（int类型）
 /// @details 反射属性类（int类型），包含属性的名称、描述等信息
 /// @ingroup RTTI
-class PropertyInt: public Property
+class AST_UTIL_API PropertyInt: public Property
 {
 public:
     using Property::Property;

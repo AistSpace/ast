@@ -21,16 +21,18 @@
 #include "AstGUI/AstGUIAPI.hpp"
 #include "AstGUI/UiMainWindow.hpp"
 #include "AstUtil/GUI.hpp"
+#include "AstUtil/FileSystem.hpp"
 #include <QApplication>
 
 AST_NAMESPACE_BEGIN
 
 errc_t aGuiInit()
 {
-    errc_t err = 0;
-
-
-    return err;
+    errc_t rc = 0;
+    int argc = 0;
+    char *argv[] = { nullptr };
+    rc = aQAppInit(argc, argv);
+    return rc;
 }
 
 

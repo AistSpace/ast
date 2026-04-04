@@ -32,10 +32,10 @@
 
 AST_NAMESPACE_BEGIN
 
-errc_t aParserSTKEphemeris(StringView filepath, HEphemeris &ephemeris)
+errc_t aLoadSTKEphemeris(StringView filepath, HEphemeris &ephemeris)
 {
     BKVParser parser(filepath);
-    return aParserSTKEphemeris(parser, ephemeris);
+    return aLoadSTKEphemeris(parser, ephemeris);
 }
 
 enum EInterpolationMethod
@@ -83,13 +83,14 @@ static errc_t parsePosVel(
 }
 
 
-errc_t aParserSTKEphemeris(BKVParser &parser, ScopedPtr<Ephemeris> &ephemeris)
+errc_t aLoadSTKEphemeris(BKVParser &parser, ScopedPtr<Ephemeris> &ephemeris)
 {
     if(!parser.isOpen())
         return eErrorInvalidParam;
     BKVParser::EToken token;
     BKVItemView item;
     struct {
+        std::string binaryFileName_;                           ///< 二进制文件名称
         int numberOfEphemerisPoints_{0};                       ///< 星历点数
         TimePoint scenarioEpoch_{};                            ///< 场景时间点
         EInterpolationMethod interpolationMethod_{eUnknown};   ///< 插值方法
@@ -114,7 +115,11 @@ errc_t aParserSTKEphemeris(BKVParser &parser, ScopedPtr<Ephemeris> &ephemeris)
             StringView key = item.key();
             ValueView value = item.value();
             
-            if(aEqualsIgnoreCase(key, "NumberOfEphemerisPoints"))
+            if(aEqualsIgnoreCase(key, "BinaryFileName"))
+            {
+                data.binaryFileName_ = value.toString();
+            }
+            else if(aEqualsIgnoreCase(key, "NumberOfEphemerisPoints"))
             {
                 data.numberOfEphemerisPoints_ = value.toInt();
                 if(data.numberOfEphemerisPoints_ <= 0){
@@ -201,34 +206,45 @@ errc_t aParserSTKEphemeris(BKVParser &parser, ScopedPtr<Ephemeris> &ephemeris)
                 else if(aEqualsIgnoreCase(value, "Kilometers"))
                     data.distanceUnitFactor_ = 1e3;
             }
-            else if(aEqualsIgnoreCase(key, "EphemerisTimePosVel"))
-            {
-                errc_t rc = parsePosVel(
-                    parser, 
-                    data.numberOfEphemerisPoints_,
-                    data.times_,
-                    data.positions_,
-                    data.velocities_
-                );
-                if(rc != eNoError){
-                    aError("failed to parse ephemerisTimePosVel");
-                    return rc;
+            else{
+                if(!data.binaryFileName_.empty())
+                {
+                    // 如果是通过二进制文件保存的，则EphemerisTimePosVel等字段下面没有数据，不需要读取
+                    // @todo 解析二进制文件，他的格式是？
                 }
-            }
-            else if(aEqualsIgnoreCase(key, "EphemerisEciTimePosVel"))
-            {
-                data.body_ = aGetEarth();
-                data.frame_ = data.body_->makeFrameInertial();
-                errc_t rc = parsePosVel(
-                    parser, 
-                    data.numberOfEphemerisPoints_,
-                    data.times_,
-                    data.positions_,
-                    data.velocities_
-                );
-                if(rc != eNoError){
-                    aError("failed to parse ephemerisEciTimePosVel");
-                    return rc;
+                else
+                {
+                    // 如果不是通过二进制文件保存的，则这些字段下面有数据，需要读取
+                    if(aEqualsIgnoreCase(key, "EphemerisTimePosVel"))
+                    {
+                        errc_t rc = parsePosVel(
+                            parser, 
+                            data.numberOfEphemerisPoints_,
+                            data.times_,
+                            data.positions_,
+                            data.velocities_
+                        );
+                        if(rc != eNoError){
+                            aError("failed to parse ephemerisTimePosVel");
+                            return rc;
+                        }
+                    }
+                    else if(aEqualsIgnoreCase(key, "EphemerisEciTimePosVel"))
+                    {
+                        data.body_ = aGetEarth();
+                        data.frame_ = data.body_->makeFrameInertial();
+                        errc_t rc = parsePosVel(
+                            parser, 
+                            data.numberOfEphemerisPoints_,
+                            data.times_,
+                            data.positions_,
+                            data.velocities_
+                        );
+                        if(rc != eNoError){
+                            aError("failed to parse ephemerisEciTimePosVel");
+                            return rc;
+                        }
+                    }
                 }
             }
         }
@@ -270,10 +286,10 @@ errc_t aParserSTKEphemeris(BKVParser &parser, ScopedPtr<Ephemeris> &ephemeris)
     return eNoError;
 }
 
-errc_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
+errc_t aLoadSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
 {
     ScopedPtr<Ephemeris> ephem;
-    errc_t rc = aParserSTKEphemeris(parser, ephem);
+    errc_t rc = aLoadSTKEphemeris(parser, ephem);
     if(rc)
         return rc;
     ephemeris = ephem.release();
@@ -282,7 +298,7 @@ errc_t aParserSTKEphemeris(BKVParser &parser, HEphemeris &ephemeris)
 
 errc_t STKEphemerisFileParser::parse(StringView filepath, HEphemeris& ephemeris)
 {
-    return aParserSTKEphemeris(filepath, ephemeris);
+    return aLoadSTKEphemeris(filepath, ephemeris);
 }
 
 

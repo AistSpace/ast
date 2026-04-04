@@ -32,4 +32,9 @@ errc_t BodyEphemerisNoop::getPosVelICRF(const TimePoint &time, Vector3d &pos, Ve
     return -1;
 }
 
+errc_t BodyEphemerisNoop::getInterval(TimeInterval &interval) const
+{
+    return -1;
+}
+
 AST_NAMESPACE_END

@@ -1,1 +1,1 @@
-#include "../../src/AstGUI/Foundation/UiMotionSPICE.hpp"
+#include "../../src/AstGUI/Motion/UiMotionSPICE.hpp"

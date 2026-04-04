@@ -22,6 +22,17 @@
 
 #include "AstGlobal.h"
 #include "AstGUI/UiMotionProfile.hpp"
+#include "AstGUI/UiTimeInterval.hpp"
+#include "AstGUI/UiTimePoint.hpp"
+#include "AstGUI/UiQuantity.hpp"
+#include "AstGUI/UiStateCartesian.hpp"
+#include "AstGUI/UiStateKeplerian.hpp"
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QGridLayout>
+#include <QLabel>
+#include <QCheckBox>
+#include <QComboBox>
 
 
 
@@ -38,12 +49,50 @@ class AST_GUI_API UiMotionTwoBody: public UiMotionProfile
 {
     Q_OBJECT
 public:
+    UiMotionTwoBody(Object* object, QWidget *parent = nullptr);
     UiMotionTwoBody(QWidget *parent = nullptr);
     ~UiMotionTwoBody() = default;
 
     MotionTwoBody* getMotionTwoBody() const;
+    void setMotionTwoBody(MotionTwoBody* motion);
+    void refreshUi();
+    void apply();
+protected:
+    void onStateTypeChanged();
+    void onStepSizeChanged();
+    void onIntervalChanged();
+    void onPropagationFrameChanged();
+protected:
+    void refreshStateType();
+private slots:
+    void applyTo(MotionTwoBody* motion);
 private:
+    // 布局
+    QVBoxLayout* mainLayout_{nullptr};
+    QGridLayout* gridLayout_{nullptr};
+    QVBoxLayout* leftLayout_{nullptr};
+    QVBoxLayout* rightLayout_{nullptr};
     
+    // 左侧控件
+    QHBoxLayout* timeIntervalLayout_{nullptr};
+    QLabel* timeIntervalLabel_{nullptr};
+    UiTimeInterval* timeIntervalEdit_{nullptr};
+    QHBoxLayout* stepSizeLayout_{nullptr};
+    QLabel* stepSizeLabel_{nullptr};
+    UiQuantity* stepSizeEdit_{nullptr};
+    QHBoxLayout* propagationFrameLayout_{nullptr};
+    QLabel* propagationFrameLabel_{nullptr};
+    QComboBox* propagationFrameCombo_{nullptr};
+    QHBoxLayout* stateTypeLayout_{nullptr};
+    QLabel* stateTypeLabel_{nullptr};
+    QComboBox* stateTypeCombo_{nullptr};
+    
+    // 右侧控件
+    UiStateCartesian* stateCartesianEdit_{nullptr};
+    UiStateKeplerian* stateKeplerianEdit_{nullptr};
+    
+    // 数据
+    MotionTwoBody* motionTwoBody_{nullptr};
 };
 
 

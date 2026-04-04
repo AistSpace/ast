@@ -33,6 +33,7 @@
 #include "AstCore/Point.hpp"
 #include "AstCore/Frame.hpp"
 #include "AstCore/AxesAPI.hpp"
+#include "AstCore/BodyShape.hpp"
 #include "AstUtil/SharedPtr.hpp"
 #include "AstUtil/ScopedPtr.hpp"
 
@@ -57,7 +58,7 @@ public:
     ~CelestialBody();
 
     /// @brief 获取天体名称
-    const std::string& getName() const { return name_; }
+    const std::string& getName() const override { return name_; }
     void setName(StringView name) { name_ = std::string(name); }
     
     /// @brief 获取JPL SPICE ID
@@ -136,13 +137,19 @@ public: // 从Point继承重写的函数
     errc_t getPos(const TimePoint& tp, Vector3d& pos) const final;
     errc_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
 
-public: // 天体的星历和指向/姿态
+PROPERTIES: // 天体的形状、重力场、星历、姿态
 
-    /// @brief 获取天体姿态
-    BodyOrientation* getOrientation() const { return orientation_.get(); }
+    /// @brief 获取天体形状
+    BodyShape* getShape() const { return shape_.get(); }
+
+    /// @brief 获取天体重力场
+    const GravityField& getGravityField() const { return gravityField_; }
 
     /// @brief 获取天体星历
     BodyEphemeris* getEphemeris() const { return ephemeris_.get(); }
+
+    /// @brief 获取天体姿态
+    BodyOrientation* getOrientation() const { return orientation_.get(); }
 
 public:
 
@@ -274,7 +281,7 @@ protected:
     errc_t loadMeanEarthDefinition(BKVParser& parser);
 
     A_DISABLE_COPY(CelestialBody)
-PROPERTIES:
+protected:
     WeakPtr<SolarSystem>        solarSystem_;              ///< 太阳系指针
     SharedPtr<CelestialBody>    parent_;                   ///< 父天体
     std::string                 name_;                     ///< 天体名称
@@ -284,6 +291,7 @@ PROPERTIES:
     int                         jplSpiceId_{-1};           ///< JPL SPICE ID
     int                         jplIndex_{-1};             ///< JPL DE Index
     GravityField                gravityField_;             ///< 重力场
+    ScopedPtr<BodyShape>        shape_;                    ///< 天体形状
     ScopedPtr<BodyOrientation>  orientation_;              ///< 天体姿态
     ScopedPtr<BodyEphemeris>    ephemeris_;                ///< 天体星历
 

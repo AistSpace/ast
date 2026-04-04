@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstUtil/BodyShape.hpp"
+#include "BodyShape.hpp"
 
 AST_NAMESPACE_BEGIN
 

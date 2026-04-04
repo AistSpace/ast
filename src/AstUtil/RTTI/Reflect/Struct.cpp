@@ -22,12 +22,13 @@
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/Property.hpp"
 #include "AstUtil/StringUtil.hpp"
+#include "AstUtil/FileSystem.hpp"
 
 AST_NAMESPACE_BEGIN
 
 Struct::~Struct()
 {
-    for (auto property : m_properties)
+    for (auto property : properties_)
     {
         delete property;
     }
@@ -35,8 +36,12 @@ Struct::~Struct()
 
 Property *Struct::addProperty(StringView name, Property *property)
 {
-    m_propertyMap[aAsciiStrToLower(name)] = property;
-    m_properties.push_back(property);
+    std::string strname = aAsciiStrToLower(name);
+    if(property->name().empty()){
+        property->setName(strname);
+    }
+    propertyMap_[strname] = property;
+    properties_.push_back(property);
     return property;
 }
 
@@ -47,12 +52,34 @@ Property *Struct::addProperty(Property *property)
 
 Property *Struct::getProperty(StringView name)
 {
-    auto it = m_propertyMap.find(aAsciiStrToLower(name));
-    if (it == m_propertyMap.end())
+    auto it = propertyMap_.find(aAsciiStrToLower(name));
+    if (it == propertyMap_.end())
     {
         return nullptr;
     }
     return it->second;
 }
+
+std::string Struct::getModuleName() const
+{
+    fs::path modulePath = aGetModulePathFromAddress(const_cast<Struct*>(this));
+    std::string moduleName = modulePath.stem().string();
+#ifndef _MSC_VER
+    {
+        if(StringView(moduleName).substr(0, 3) == "lib"){
+            moduleName = moduleName.substr(3);
+        }
+    }
+#endif
+#ifdef _AST_ENABLE_DEBUG_SUFFIX
+    {
+        if(StringView(moduleName).ends_with(_AST_DEBUG_SUFFIX)){
+            return moduleName.substr(0, moduleName.size() - std::char_traits<char>::length(_AST_DEBUG_SUFFIX));
+        }
+    }
+#endif
+    return moduleName;
+}
+
 
 AST_NAMESPACE_END

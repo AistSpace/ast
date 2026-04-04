@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "AstCore/Ephemeris.hpp"
 #include "AstUtil/ScopedPtr.hpp"
+#include "AstCore/Object.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -41,7 +42,7 @@ class MotionSPICE;
 class MotionProfileVisitor;
 
 /// @brief 运动定义接口
-class AST_SIM_API MotionProfile
+class AST_SIM_API MotionProfile: public Object
 {
 public:
     MotionProfile() = default;

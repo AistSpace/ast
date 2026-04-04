@@ -23,6 +23,7 @@
 #include "AstUtil/Quantity.hpp"
 #include "AstUtil/QuantityParser.hpp"
 #include "AstUtil/Logger.hpp"
+#include "AstUtil/PropertyVisitor.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -38,6 +39,11 @@ PropertyQuantity::PropertyQuantity(StringView name, StringView desc, FPropertyGe
     : PropertyDouble(name, desc, getter, setter)
     , dimension_(dimension)
 {
+}
+
+errc_t PropertyQuantity::accept(PropertyVisitor &visitor, const void *container)
+{
+    return visitor.visit(*this, container);
 }
 
 errc_t PropertyQuantity::getValueString(const void *container, std::string &value)

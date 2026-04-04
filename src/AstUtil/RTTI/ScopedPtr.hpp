@@ -64,6 +64,10 @@ public:
     ScopedPtr()
         :m_pointer{ nullptr }
     {}
+    ScopedPtr(std::nullptr_t)
+        :m_pointer{ nullptr }
+    {
+    }
     ScopedPtr& operator=(T* ptr)
     {
         this->reset(ptr);
@@ -104,7 +108,7 @@ private:
             ScopedPtrDeleter<T>::cleanup(ptr);
     }
 protected:
-    T* m_pointer;
+    T* m_pointer{nullptr};
 };
  
 AST_NAMESPACE_END

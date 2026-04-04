@@ -22,6 +22,9 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/Property.hpp"
+#include "AstUtil/SharedPtr.hpp"
+#include "AstUtil/WeakPtr.hpp"
+#include "AstUtil/Object.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -32,55 +35,65 @@ AST_NAMESPACE_BEGIN
 
 
 class Property;
-
+class Object;
 /// @brief 对象的特定属性
-template<typename PropertyType=Property>
-class Attribute
+template<typename ObjectPtrType=WeakPtr<Object>, typename PropertyType=Property>
+class AttributeBasic
 {
 public:
-    Attribute(void* object, PropertyType* property)
-        : object_(object), property_(property)
+
+    AttributeBasic(ObjectPtrType object, PropertyType* property)
+        : object_(object)
+        , property_(property)
     {
     }
     errc_t getValueDouble(double& value) const
     {
-        if(!property_ || !object_) return eErrorInvalidParam;
-        return property_->getValueDouble(object_, value);
+        auto object = getObject();
+        if(!property_ || !object) return eErrorInvalidParam;
+        return property_->getValueDouble(object, value);
     }
     errc_t setValueDouble(double value)
     {
-        if(!property_ || !object_) return eErrorInvalidParam;
-        return property_->setValueDouble(object_, value);
+        auto object = getObject();
+        if(!property_ || !object) return eErrorInvalidParam;
+        return property_->setValueDouble(object, value);
     }
     errc_t getValueInt(int& value) const
     {
-        if(!property_ || !object_) return eErrorInvalidParam;
-        return property_->getValueInt(object_, value);
+        auto object = getObject();
+        if(!property_ || !object) return eErrorInvalidParam;
+        return property_->getValueInt(object, value);
     }
     errc_t setValueInt(int value)
     {
-        if(!property_ || !object_) return eErrorInvalidParam;
-        return property_->setValueInt(object_, value);
+        auto object = getObject();
+        if(!property_ || !object) return eErrorInvalidParam;
+        return property_->setValueInt(object, value);
     }
     errc_t getValueBool(bool& value) const
     {
-        if(!property_ || !object_) return eErrorInvalidParam;
-        return property_->getValueBool(object_, value);
+        auto object = getObject();
+        if(!property_ || !object) return eErrorInvalidParam;
+        return property_->getValueBool(object, value);
     }
     errc_t setValueBool(bool value)
     {
-        if(!property_ || !object_) return eErrorInvalidParam;
-        return property_->setValueBool(object_, value);
+        auto object = getObject();
+        if(!property_ || !object) return eErrorInvalidParam;
+        return property_->setValueBool(object, value);
     }
     errc_t getValueString(std::string& value) const
     {
-        if(!property_ || !object_) return eErrorInvalidParam;
-        return property_->getValueString(object_, value);
+        auto object = getObject();  
+        if(!property_ || !object) return eErrorInvalidParam;
+        return property_->getValueString(object, value);
     }
     errc_t setValueString(StringView value)
     {
-        if(!property_ || !object_) return eErrorInvalidParam;
-        return property_->setValueString(object_, value);
+        auto object = getObject();
+        if(!property_ || !object) return eErrorInvalidParam;
+        return property_->setValueString(object, value);
     }
 public:
     double getValueDouble() const
@@ -125,32 +138,48 @@ public:
         return getValueString();
     }
 public:
-    Attribute& operator=(double value)
+    AttributeBasic& operator=(double value)
     {
         setValueDouble(value);
         return *this;
     }
-    Attribute& operator=(int value)
+    AttributeBasic& operator=(int value)
     {
         setValueInt(value);
         return *this;
     }
     // 避免对bool类型的隐式转换
     template<typename T, typename = typename std::enable_if<std::is_same<T, bool>::value>::type>
-    Attribute& operator=(T value)
+    AttributeBasic& operator=(T value)
     {
         setValueBool(value);
         return *this;
     }
-    Attribute& operator=(StringView value)
+    AttributeBasic& operator=(StringView value)
     {
         setValueString(value);
         return *this;
-    }   
+    }
 protected:
-    void*     object_{nullptr};
+    void* getObject() const;
+protected:
+    ObjectPtrType object_{};
     PropertyType* property_{nullptr};
 };
+
+template<>
+inline void* AttributeBasic<WeakPtr<Object>, Property>::getObject() const
+{
+    return object_.get();
+}
+
+template<typename ObjectPtrType, typename PropertyType>
+inline void* AttributeBasic<ObjectPtrType, PropertyType>::getObject() const
+{
+    return object_;
+}
+
+typedef AttributeBasic<> Attribute;
 
 /*! @} */
 
