@@ -31,7 +31,7 @@ var searchData=
   ['valstring_2ecpp_28',['ValString.cpp',['../ValString_8cpp.html',1,'']]],
   ['valstring_2ehpp_29',['ValString.hpp',['../ValString_8hpp.html',1,'']]],
   ['value_30',['Value',['../classast_1_1Value.html',1,'ast']]],
-  ['value_31',['value',['../classast_1_1BKVItemView.html#add0d25682e8dd0d088cf22e5c9e71a79',1,'ast::BKVItemView::value()'],['../classast_1_1ValueView.html#acdd1db334acdd72a72ab11f8480b6762',1,'ast::ValueView::value()'],['../classast_1_1Dimension.html#a28132d172a69ac7fa728105d545a9f7c',1,'ast::Dimension::value()']]],
+  ['value_31',['value',['../classast_1_1UiDouble.html#a708ed5f9984c2ec758ab6af8ed652e04',1,'ast::UiDouble::value()'],['../classast_1_1UiInteger.html#a943a8e8d82baf5f6d3405051843d4b5f',1,'ast::UiInteger::value()'],['../classast_1_1BKVItemView.html#add0d25682e8dd0d088cf22e5c9e71a79',1,'ast::BKVItemView::value()'],['../classast_1_1ValueView.html#acdd1db334acdd72a72ab11f8480b6762',1,'ast::ValueView::value()'],['../classast_1_1Dimension.html#a28132d172a69ac7fa728105d545a9f7c',1,'ast::Dimension::value()']]],
   ['value_2ecpp_32',['Value.cpp',['../Value_8cpp.html',1,'']]],
   ['value_2ehpp_33',['Value.hpp',['../Value_8hpp.html',1,'']]],
   ['value_5f_34',['value_',['../classast_1_1BKVItemView.html#ad928159f3b3ea45268618ce2e35f27a9',1,'ast::BKVItemView']]],

@@ -472,8 +472,12 @@ var hierarchy =
     [ "ast::property_trait< TimePoint >", "structast_1_1property__trait_3_01TimePoint_01_4.html", null ],
     [ "ast::PropertyVisitor", "classast_1_1PropertyVisitor.html", null ],
     [ "QLineEdit", null, [
-      [ "ast::UiQuantity", "classast_1_1UiQuantity.html", null ],
-      [ "ast::UiTimePoint", "classast_1_1UiTimePoint.html", null ]
+      [ "ast::UiTimePoint", "classast_1_1UiTimePoint.html", null ],
+      [ "ast::UiValueEdit", "classast_1_1UiValueEdit.html", [
+        [ "ast::UiDouble", "classast_1_1UiDouble.html", null ],
+        [ "ast::UiInteger", "classast_1_1UiInteger.html", null ],
+        [ "ast::UiQuantity", "classast_1_1UiQuantity.html", null ]
+      ] ]
     ] ],
     [ "QMainWindow", null, [
       [ "ast::UiMainWindow", "classast_1_1UiMainWindow.html", null ]
@@ -484,7 +488,10 @@ var hierarchy =
     [ "ast::Quantity", "classast_1_1Quantity.html", null ],
     [ "ast::Quaternion", "classast_1_1Quaternion.html", null ],
     [ "QWidget", null, [
+      [ "ast::UiFilePath", "classast_1_1UiFilePath.html", null ],
       [ "ast::UiObject", "classast_1_1UiObject.html", [
+        [ "ast::UiBodyEphemerisDE", "classast_1_1UiBodyEphemerisDE.html", null ],
+        [ "ast::UiBodyEphemerisSPK", "classast_1_1UiBodyEphemerisSPK.html", null ],
         [ "ast::UiCelestialBody", "classast_1_1UiCelestialBody.html", null ],
         [ "ast::UiMotionProfile", "classast_1_1UiMotionProfile.html", [
           [ "ast::UiMotionTwoBody", "classast_1_1UiMotionTwoBody.html", null ]
