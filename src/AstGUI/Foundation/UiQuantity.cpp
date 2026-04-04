@@ -25,9 +25,8 @@
 AST_NAMESPACE_BEGIN
 
 UiQuantity::UiQuantity(QWidget* parent)
-    : QLineEdit(parent)
+    : UiValueEdit(parent)
 {
-    setToolTipDuration(0);
     connect(this, &QLineEdit::editingFinished, this, &UiQuantity::updateQuantity);
 }
 
@@ -35,6 +34,7 @@ void UiQuantity::setQuantity(const Quantity& quantity)
 {
     currentQuantity_ = quantity;
     setText(QString::fromUtf8(currentQuantity_.toString().c_str()));
+    setNormal();
 }
 
 Quantity UiQuantity::getQuantity() const
@@ -105,12 +105,10 @@ void UiQuantity::updateQuantity()
     if(rc){
         // 显示错误提示
         aError("failed to parse quantity: %s", text.toUtf8().data());
-        setStyleSheet("background-color: #FFCCCC;");
-        setToolTip(tr("quantity format error, please input correct quantity format"));
+        setError(tr("quantity format error, please input correct quantity format"));
     }else{
-        // 解析成功，恢复默认样式
-        setStyleSheet("");
-        setToolTip("");
+        // 解析成功，恢复正常状态
+        setNormal();
         emit quantityChanged(currentQuantity_);
     }
 }

@@ -23,9 +23,9 @@
 #include "AstGlobal.h"
 #include <QWidget>
 #include <QHBoxLayout>
-#include <QLineEdit>
 #include <QComboBox>
 #include <QMetaType>
+#include "UiValueEdit.hpp"
 #include "AstUtil/Quantity.hpp"
 #include "AstUtil/Unit.hpp"
 
@@ -39,7 +39,7 @@ AST_NAMESPACE_BEGIN
 
 /// @brief 数量输入框
 /// @details 用于输入数量值，支持数值和单位选择。
-class AST_GUI_API UiQuantity: public QLineEdit
+class AST_GUI_API UiQuantity: public UiValueEdit
 {
     Q_OBJECT
 

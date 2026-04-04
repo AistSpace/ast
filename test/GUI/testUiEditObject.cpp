@@ -31,6 +31,15 @@ TEST(UiEditObject, Test)
     SharedPtr<MotionTwoBody> motion = new MotionTwoBody();
     aInitialize();
     std::vector<std::string> names;
+    names = {"BodyEphemerisSPK", "BodyEphemerisDE"};
+    for(auto& name: names)
+    {
+        printf("test for className: %s\n", name.c_str());
+        auto obj = aMakeObject(name);
+        EXPECT_TRUE(obj);
+        EXPECT_EQ(obj->openEditDialog(), 0);
+    }
+
     aGetAllClassNames(names);
     for(auto& name: names)
     {

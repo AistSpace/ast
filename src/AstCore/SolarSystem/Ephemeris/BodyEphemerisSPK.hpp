@@ -53,6 +53,7 @@ public:
 
     errc_t openSPKFile(StringView spkfile);
 
+    const std::string& getFilePath() const;
 
     errc_t getPosICRF(const TimePoint& tp, Vector3d& pos) const override;
 

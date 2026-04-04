@@ -24,11 +24,15 @@
 
 #include "AstCore/StateCartesian.hpp"
 #include "AstCore/StateKeplerian.hpp"
+#include "AstCore/BodyEphemerisDE.hpp"
+#include "AstCore/BodyEphemerisSPK.hpp"
 #include "AstSim/MotionTwoBody.hpp"
 
 #include "AstGUI/UiStateCartesian.hpp"
 #include "AstGUI/UiStateKeplerian.hpp"
 #include "AstGUI/UiMotionTwoBody.hpp"
+#include "AstGUI/UiBodyEphemerisDE.hpp"
+#include "AstGUI/UiBodyEphemerisSPK.hpp"
 #include "AstGUI/AstGUIAPI.hpp"
 
 AST_NAMESPACE_BEGIN
@@ -46,6 +50,8 @@ ObjectEditRegistry::ObjectEditRegistry(bool shouldRegistEditWidget)
         registerEditWidget(StateCartesian::getStaticType(), [](Object *object) -> QWidget* { return new UiStateCartesian(object); });
         registerEditWidget(StateKeplerian::getStaticType(), [](Object *object) -> QWidget* { return new UiStateKeplerian(object); });
         registerEditWidget(MotionTwoBody::getStaticType(), [](Object *object) -> QWidget* { return new UiMotionTwoBody(object); });
+        registerEditWidget(BodyEphemerisDE::getStaticType(), [](Object *object) -> QWidget* { return new UiBodyEphemerisDE(object); });
+        registerEditWidget(BodyEphemerisSPK::getStaticType(), [](Object *object) -> QWidget* { return new UiBodyEphemerisSPK(object); });
     }
 }
 
@@ -82,4 +88,3 @@ QWidget *aUiNewEditWidget(Object *object)
 }
 
 AST_NAMESPACE_END
-
