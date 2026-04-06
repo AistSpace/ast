@@ -83,7 +83,7 @@ class KinematicRotation;
 
 
 /// @brief     从ECI转换为ECF的坐标旋转变换
-/// @details   ~
+/// @details   ECI为地球惯性系，根据相关的配置，ECI可能为J2000或ICRF。
 /// @param     tp  时间点
 /// @param     rotation  坐标旋转变换
 AST_CORE_API void aECIToECFTransform(const TimePoint& tp, Rotation& rotation);

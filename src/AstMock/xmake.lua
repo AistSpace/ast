@@ -2,9 +2,8 @@
     set_kind("shared")
     add_files("**.cpp")
     add_files("**.c")
-    add_headerfiles("**.hpp")
+    add_headerfiles("**.hpp", {prefixdir="AstMock"})
     -- add_headerfiles("**.h")
-    add_headerfiles("../../(include/AstGlobal.h)")
     add_defines("AST_BUILD_LIB_MOCK")
     add_deps("AstUtil", "AstMath", "AstCore")
     

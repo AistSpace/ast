@@ -3,7 +3,7 @@ target("AstWeather")
     add_files("**.cpp")
     add_files("**.c")
     add_deps("AstUtil", "AstMath")
-    add_headerfiles("**.hpp")
+    add_headerfiles("**.hpp", {prefixdir="AstWeather"})
     add_defines("AST_BUILD_LIB_WEATHER")
     if has_package("libf2c") then
         add_defines("AST_WITH_LIBF2C")

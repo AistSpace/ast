@@ -1,5 +1,6 @@
 target("AstSPICE")
     set_kind("shared")
+    add_headerfiles("**.hpp", {prefixdir="AstSPICE"})
     add_files("**.cpp")
     add_defines("AST_BUILD_LIB_SPICE")
     add_deps("AstMath", "AstCore")

@@ -1,5 +1,7 @@
 ﻿target("AstMath")
     set_kind("shared")
+    add_headerfiles("**.hpp", {prefixdir="AstMath"})
+    add_headerfiles("**.h", {prefixdir="AstMath"})
     add_files("**.c")
     add_files("**.cpp")
     add_deps("AstUtil")

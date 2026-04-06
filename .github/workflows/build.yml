@@ -35,7 +35,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: xmake-cache
-          key: ${{ matrix.os }}-${{ matrix.arch }}-v5
+          key: ${{ matrix.os }}-${{ matrix.arch }}-v6
 
       - name: 设置xmake相关目录
         run: |
@@ -49,13 +49,23 @@ jobs:
           packages: libgl1-mesa-dev libglu1-mesa-dev
           version: 2
 
-      - name: 配置项目
+      - name: 编译release版本
         run: |
           xmake f -cy --with_test=y -m release
-          xmake show
-
-      - name: 编译项目
-        run: |
           xmake
 
+      - name: 编译debug版本
+        run: |
+          xmake f -cy --with_test=y -m debug
+          xmake
+
+      - name: 打包项目
+        run: |
+          xmake pack -f zip
           
+      - name: 上传产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: SpaceAST
+          path: build/xpack/
+           
