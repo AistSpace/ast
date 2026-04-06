@@ -66,6 +66,6 @@ jobs:
       - name: 上传产物
         uses: actions/upload-artifact@v4
         with:
-          name: SpaceAST
+          name: SpaceAST-${{ matrix.os }}-${{ matrix.arch }}
           path: build/xpack/
            
