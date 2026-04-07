@@ -1,5 +1,6 @@
 var NAVTREEINDEX19 =
 {
+"classast_1_1SimpleOrbitDesigner.html#a3aee12bf9e1b2d7a9abee8fd8cb337bb":[0,0,3,6,9],
 "classast_1_1SimpleOrbitDesigner.html#a3b5ed1db777c1288ed24b75e869d53fd":[0,0,3,6,8],
 "classast_1_1SimpleOrbitDesigner.html#a3cf7105209fbaf7cb0d44fd2a9be5c14":[0,0,3,6,2],
 "classast_1_1SimpleOrbitDesigner.html#a510822282b3844fd1957db80ddce1e5a":[0,0,3,6,14],
@@ -248,6 +249,5 @@ var NAVTREEINDEX19 =
 "classast_1_1StateKeplerian.html#a63281a15f500fb1ae08f822b92daf558":[2,0,0,375,19],
 "classast_1_1StateKeplerian.html#a63281a15f500fb1ae08f822b92daf558":[3,0,0,374,19],
 "classast_1_1StateKeplerian.html#a65ae3efb2410b900c07152dddd8f23d9":[2,0,0,375,14],
-"classast_1_1StateKeplerian.html#a65ae3efb2410b900c07152dddd8f23d9":[3,0,0,374,14],
-"classast_1_1StateKeplerian.html#a666a7f30b5225199af10ea2d96af3095":[2,0,0,375,63]
+"classast_1_1StateKeplerian.html#a65ae3efb2410b900c07152dddd8f23d9":[3,0,0,374,14]
 };

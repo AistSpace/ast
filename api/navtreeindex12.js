@@ -1,5 +1,6 @@
 var NAVTREEINDEX12 =
 {
+"classast_1_1FundamentalArguments.html#af4544fa68e7a015f0486718fe18f6a78":[3,0,0,154,6],
 "classast_1_1GUIInterface.html":[0,4,2,2],
 "classast_1_1GUIInterface.html#a21fd42ca1ddf0dc1eb5e83df4c338f36":[0,4,2,2,0],
 "classast_1_1GUIInterface.html#a8ca5ae91cab9b454468b07637075b9b3":[0,4,2,2,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX12 =
 "classast_1_1GravityField.html#ab6bcff41b82e377e0ad2dbded11a04c7":[3,0,0,168,21],
 "classast_1_1GravityField.html#abb600bf03f4fd719313dae90cbdb3682":[2,0,0,169,28],
 "classast_1_1GravityField.html#abb600bf03f4fd719313dae90cbdb3682":[3,0,0,168,28],
-"classast_1_1GravityField.html#abf41169c929d25e079209590ebdf3f5a":[2,0,0,169,27],
-"classast_1_1GravityField.html#abf41169c929d25e079209590ebdf3f5a":[3,0,0,168,27]
+"classast_1_1GravityField.html#abf41169c929d25e079209590ebdf3f5a":[2,0,0,169,27]
 };
