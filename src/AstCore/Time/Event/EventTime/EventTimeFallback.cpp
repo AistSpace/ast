@@ -20,10 +20,16 @@
 
 #include "EventTimeFallback.hpp"
 #include "AstUtil/Logger.hpp"
+#include "AstCore/EventTimeExplicit.hpp"
 
 AST_NAMESPACE_BEGIN
 
 EventTimeFallback *EventTimeFallback::New(EventTime* primary, EventTime* fallback)
+{
+    return new EventTimeFallback(primary, fallback);
+}
+
+EventTimeFallback *EventTimeFallback::New(EventTime *primary, const TimePoint &fallback)
 {
     return new EventTimeFallback(primary, fallback);
 }
@@ -33,9 +39,20 @@ SharedPtr<EventTimeFallback> EventTimeFallback::MakeShared(EventTime* primary, E
     return new EventTimeFallback(primary, fallback);
 }
 
+SharedPtr<EventTimeFallback> EventTimeFallback::MakeShared(EventTime *primary, const TimePoint &fallback)
+{
+    return new EventTimeFallback(primary, fallback);
+}
+
 EventTimeFallback::EventTimeFallback(EventTime* primary, EventTime* fallback)
     : primary_(primary)
     , fallback_(fallback)
+{
+}
+
+EventTimeFallback::EventTimeFallback(EventTime *primary, const TimePoint &fallback)
+    : primary_(primary)
+    , fallback_(EventTimeExplicit::New(fallback))
 {
 }
 

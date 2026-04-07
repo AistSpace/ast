@@ -36,8 +36,11 @@ AST_NAMESPACE_BEGIN
 
 /// @brief Spice API
 /// @details 处理CSPICE库的动态加载、卸载、函数调用等
+/// 这里只对CSPICE库进行简单的包装：
+/// - 在保证接口不变的情况下，确保线程安全
+/// - 针对文件加载增加了引用计数机制
+/// - 处理了文件路径的编码问题
 /// @warning 注意CSPICE库的默认长度单位是**千米**
-/// 这里不会对CSPICE库进行额外的包装，只会进行一次调用的转发
 class AST_CORE_API SpiceApi
 {
 public:
@@ -89,9 +92,9 @@ public:
 public: // 包装函数
 
     /// @brief 加载spice内核文件
-    /// @param libpath 内核文件路径
+    /// @param file 内核文件路径
     /// @return 错误码
-    errc_t furnsh(const char* libpath);
+    errc_t furnsh(const char* file);
 
     /// @brief 计算spice位置
     /// @param targ 目标体ID
@@ -112,10 +115,10 @@ public: // 包装函数
 
     /// @brief 加载SPK内核文件
     /// @details 在CSPICE的接口基础上增加了引用计数机制
-    /// @param libpath 内核文件路径
+    /// @param filename 内核文件路径
     /// @param handle 内核句柄
     /// @return 错误码
-    errc_t spklef(const char* libpath, int* handle);
+    errc_t spklef(const char* filename, int* handle);
 
     /// @brief 鞋子SPK内核文件
     /// @details 在CSPICE的接口基础上增加了引用计数机制

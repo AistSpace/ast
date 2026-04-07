@@ -19,11 +19,17 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "EventIntervalFallback.hpp"
+#include "EventIntervalExplicit.hpp"
 #include "AstUtil/Logger.hpp"
 
 AST_NAMESPACE_BEGIN
 
 EventIntervalFallback *EventIntervalFallback::New(EventInterval* primary, EventInterval* fallback)
+{
+    return new EventIntervalFallback(primary, fallback);
+}
+
+EventIntervalFallback *EventIntervalFallback::New(EventInterval *primary, const TimeInterval &fallback)
 {
     return new EventIntervalFallback(primary, fallback);
 }
@@ -36,6 +42,12 @@ SharedPtr<EventIntervalFallback> EventIntervalFallback::MakeShared(EventInterval
 EventIntervalFallback::EventIntervalFallback(EventInterval* primary, EventInterval* fallback)
     : primary_(primary)
     , fallback_(fallback)
+{
+}
+
+EventIntervalFallback::EventIntervalFallback(EventInterval *primary, const TimeInterval &fallback)
+    : primary_(primary)
+    , fallback_(EventIntervalExplicit::New(fallback))
 {
 }
 

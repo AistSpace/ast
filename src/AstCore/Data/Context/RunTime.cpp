@@ -356,8 +356,12 @@ std::string aDataDirGet()
 
 errc_t aDataDirGet(std::string &datadir)
 {
-    auto context = aDataContext_GetCurrent();
-    if (A_UNLIKELY(context->dataDir().empty())) 
+    auto context = t_currentDataContext;
+    if(!context)
+    {
+        return aDataDirGetDefault(datadir);
+    }
+    else if (A_UNLIKELY(context->dataDir().empty())) 
     {
         errc_t rc = aDataDirGetDefault(datadir);
         aDataDirSet(datadir);
@@ -375,6 +379,10 @@ errc_t aDataDirSet(StringView dirpath)
     }
     auto context = aDataContext_GetCurrent();
     context->setDataDir(dirpath);
+    if(!context->isInitialized())
+    {
+        aWarning("data context is not initialized.");
+    }
     return eNoError;
 }
 
@@ -385,19 +393,6 @@ DataContext* aDataContext_GetDefault()
 {
     if (A_UNLIKELY(!g_defaultDataContext)) {
         g_defaultDataContext.reset(aDataContext_New());
-    }
-    return g_defaultDataContext.get();}
-
-
-DataContext* aDataContext_EnsureDefault()
-{
-    if (A_UNLIKELY(!g_defaultDataContext)) {
-        auto context = aDataContext_New();
-        if(!context->isInitialized())
-        {
-            aInitialize(context);
-        }
-        g_defaultDataContext.reset(context);
     }
     return g_defaultDataContext.get();
 }
@@ -415,8 +410,12 @@ DataContext* aDataContext_EnsureCurrent()
 {
     if (A_UNLIKELY(!t_currentDataContext))
     {
-        auto context = aDataContext_EnsureDefault();
+        auto context = aDataContext_GetDefault();
         aDataContext_SetCurrent(context);
+        if(!context->isInitialized())
+        {
+            aInitialize(context);
+        }
     }
     return t_currentDataContext;
 }

@@ -65,6 +65,7 @@ public:
     /// @brief 获取切换后的工作目录
     StringView getCurrentPath() const { return curpath_; }
 protected:
+    A_DISABLE_COPY(WorkingDirectory);
     std::string oldpath_;
     StringView curpath_;
 };
