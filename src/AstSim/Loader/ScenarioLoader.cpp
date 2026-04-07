@@ -311,6 +311,10 @@ errc_t aLoadScenario(StringView filepath, Scenario &scenario)
                             if(errc_t rc = _aLoadExtensions(parser, scenario)){
                                 return rc;
                             }
+                        }else if(aEqualsIgnoreCase(scenarioItem.value(), "SubObjects")){
+                            if(errc_t rc = _aLoadSubObjects(parser, &scenario)){
+                                return rc;
+                            }
                         }
                     }else if(scenarioToken == BKVParser::eBlockEnd){
                         if(aEqualsIgnoreCase(scenarioItem.value(), "Scenario")){

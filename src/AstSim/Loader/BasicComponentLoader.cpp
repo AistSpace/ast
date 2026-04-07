@@ -19,14 +19,148 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "BasicComponentLoader.hpp"
+#include "AstSim/ObjectLoader.hpp"
 #include "AstCore/EventTime.hpp"
 #include "AstCore/EventTimeExplicit.hpp"
 #include "AstCore/EventIntervalExplicit.hpp"
 #include "AstCore/EventIntervalLinkTo.hpp"
 #include "AstUtil/BKVParser.hpp"
 #include "AstUtil/StringUtil.hpp"
+#include "AstUtil/FileSystem.hpp"
+#include "AstUtil/RTTIAPI.hpp"
 
 AST_NAMESPACE_BEGIN
+
+
+
+StringView aClassSTKExtension(StringView objectType)
+{
+    if(aEqualsIgnoreCase(objectType, "Scenario"))
+    {
+        return "sc";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Aircraft"))
+    {
+        return "ac";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Chain"))
+    {
+        return "c";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Facility"))
+    {
+        return "f";
+    }
+    else if(aEqualsIgnoreCase(objectType, "GroundVehicle"))
+    {
+        return "gv";
+    }
+    else if(aEqualsIgnoreCase(objectType, "LaunchVehicle"))
+    {
+        return "lv";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Missile"))
+    {
+        return "mi";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Planet"))
+    {
+        return "pl";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Receiver"))
+    {
+        return "r";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Satellite"))
+    {
+        return "sa";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Sensor"))
+    {
+        return "sn";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Ship"))
+    {
+        return "sh";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Submarine"))
+    {
+        return "su";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Transmitter"))
+    {
+        return "x";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Place"))
+    {
+        return "plc";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Target"))
+    {
+        return "t";
+    }
+    else if(aEqualsIgnoreCase(objectType, "AdvCAT"))
+    {
+        return "ca";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Antenna"))
+    {
+        return "antenna";
+    }
+    else if(aEqualsIgnoreCase(objectType, "AreaTarget"))
+    {
+        return "at";
+    }
+    else if(aEqualsIgnoreCase(objectType, "AttitudeCoverage"))
+    {
+        return "acv";
+    }
+    else if(aEqualsIgnoreCase(objectType, "AttitudeFigureOfMerit"))
+    {
+        return "afm";
+    }
+    else if(aEqualsIgnoreCase(objectType, "CommSystem"))
+    {
+        return "cs";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Constellation"))
+    {
+        return "cn";
+    }
+    else if(aEqualsIgnoreCase(objectType, "CoverageDefinition"))
+    {
+        return "cv";
+    }
+    else if(aEqualsIgnoreCase(objectType, "FigureOfMerit"))
+    {
+        return "fm";
+    }
+    else if(aEqualsIgnoreCase(objectType, "LineTarget"))
+    {
+        return "lt";
+    }
+    else if(aEqualsIgnoreCase(objectType, "MTO"))
+    {
+        return "mt";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Radar"))
+    {
+        return "rd";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Star"))
+    {
+        return "st";
+    }
+    else if(aEqualsIgnoreCase(objectType, "Volumetric"))
+    {
+        return "vo";
+    }
+    else
+    {
+        aError("unknown object class: '%.*s'", objectType.size(), objectType.data());    
+        return "";
+    }
+}
 
 
 errc_t _aLoadEventTimeImplicit(BKVParser& parser, SharedPtr<EventTime>& eventTime)
@@ -197,6 +331,66 @@ errc_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInt
                 // @todo 处理异常情况
             }
             break;
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
+errc_t _aLoadSubObjects(BKVParser &parser, Object *parentObject)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eBlockBegin)
+        {
+            if(aEqualsIgnoreCase(item.value(), "SubObject")){
+                
+            }
+        }
+        else if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "Class")){
+                StringView objectType = item.value();
+                while(1)
+                {
+                    StringView objectName = parser.getLineSkipHashComment();
+                    objectName = aStripAsciiWhitespace(objectName);
+                    if(objectName.empty())
+                    {
+                        continue;
+                    }
+                    else if(objectName.starts_with("END "))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        std::string fileNameWithExt = std::string(objectName) + "." + std::string(aClassSTKExtension(objectType));
+                        std::string filePath = fs::path(parser.getFilePath()).parent_path() / fileNameWithExt;
+                        SharedPtr<Object> object;
+                        errc_t rc = aLoadObject(filePath, objectType, object);
+                        if(rc || !object)
+                        {
+                            aError("failed to load sub object '%.*s'", filePath.size(), filePath.data());
+                        }
+                        else
+                        {
+                            rc = aSetParentScope(object, parentObject);
+                            if(rc)
+                            {
+                                aError("failed to set parent scope for sub object '%.*s'", filePath.size(), filePath.data());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else if(token == BKVParser::eBlockEnd)
+        {
+            if(aEqualsIgnoreCase(item.value(), "SubObject")){
+                break;
+            }
         }
     }while(token != BKVParser::eEOF);
     return eNoError;

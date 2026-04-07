@@ -20,6 +20,8 @@
 
 #include "AstSim/ScenarioLoader.hpp"
 #include "AstSim/Scenario.hpp"
+#include "AstUtil/RTTIAPI.hpp"
+#include "AstUtil/ObjectManager.hpp"
 #include "AstTest/Test.h"
 
 AST_USING_NAMESPACE
@@ -29,11 +31,20 @@ TEST(ScenarioLoader, LoadScenario)
     if(aIsCI())
         GTEST_SKIP();
     
-    Scenario scenario;
-    StringView scenarioFile = aTestGetConfigValue("STK_SCENARIO_FILE");
-    errc_t rc = aLoadScenario(scenarioFile, scenario);
-    EXPECT_EQ(rc, eNoError);
-    
+    // 测试加载场景文件
+    {
+        Scenario scenario;
+        StringView scenarioFile = aTestGetConfigValue("STK_SCENARIO_FILE");
+        errc_t rc = aLoadScenario(scenarioFile, scenario);
+        EXPECT_EQ(rc, eNoError);
+        auto objectCount = ObjectManager::CurrentInstance().getObjectCount();
+        EXPECT_GT(objectCount, 0);
+    }
+    // 检查对象是否已经销毁
+    {
+        auto objectCount = ObjectManager::CurrentInstance().getObjectCount();
+        EXPECT_EQ(objectCount, 0);
+    }
 }
 
 GTEST_MAIN()

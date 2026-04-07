@@ -33,7 +33,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 设施对象
-class Facility: public Point
+class AST_SIM_API Facility: public Point
 {
 public:
     Facility() = default;

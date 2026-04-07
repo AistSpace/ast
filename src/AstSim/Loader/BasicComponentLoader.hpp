@@ -41,8 +41,15 @@ struct VehiclePathData
     bool smoothInterp_ = false;
 };
 
+/// @brief 获取对象文件扩展名
+/// @details objectType 对象类型
+/// @return 文件扩展名，例如 "sc", "sa", "fa", "sn"
+AST_SIM_API StringView aClassSTKExtension(StringView objectType);
+
+
 errc_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInterval);
 errc_t _aLoadEventTime(BKVParser& parser, SharedPtr<EventTime>& eventTime);
+errc_t _aLoadSubObjects(BKVParser& parser, Object* parentObject);
 
 
 /*! @} */
