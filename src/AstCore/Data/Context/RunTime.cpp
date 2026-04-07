@@ -302,7 +302,7 @@ errc_t aInitializeByConfig(DataContext* context, StringView configfile)
 
 errc_t aInitializeByConfig(StringView configfile)
 {
-    auto context = aDataContext_EnsureCurrent();
+    auto context = aDataContext_GetCurrent();
     return aInitializeByConfig(context, configfile);
 }
 
@@ -328,7 +328,7 @@ errc_t aInitialize(DataContext* context)
 
 errc_t aInitialize()
 {
-    auto context = aDataContext_EnsureCurrent();
+    auto context = aDataContext_GetCurrent();
     return aInitialize(context);
 }
 
@@ -356,7 +356,7 @@ std::string aDataDirGet()
 
 errc_t aDataDirGet(std::string &datadir)
 {
-    auto context = aDataContext_EnsureCurrent();
+    auto context = aDataContext_GetCurrent();
     if (A_UNLIKELY(context->dataDir().empty())) 
     {
         errc_t rc = aDataDirGetDefault(datadir);
@@ -373,42 +373,56 @@ errc_t aDataDirSet(StringView dirpath)
         aError("dirpath is not a directory.");
         return eErrorInvalidParam;
     }
-    auto context = aDataContext_EnsureCurrent();
+    auto context = aDataContext_GetCurrent();
     context->setDataDir(dirpath);
     return eNoError;
 }
 
 
-DataContext* aDataContext_GetCurrent()
-{
-    assert(t_currentDataContext && "Current DataContext is null!");
-    return t_currentDataContext;
-}
+
 
 DataContext* aDataContext_GetDefault()
 {
-    return g_defaultDataContext.get();
-}
+    if (A_UNLIKELY(!g_defaultDataContext)) {
+        g_defaultDataContext.reset(aDataContext_New());
+    }
+    return g_defaultDataContext.get();}
 
 
 DataContext* aDataContext_EnsureDefault()
 {
-    if (!g_defaultDataContext) {
-        g_defaultDataContext.reset(aDataContext_New());
+    if (A_UNLIKELY(!g_defaultDataContext)) {
+        auto context = aDataContext_New();
+        if(!context->isInitialized())
+        {
+            aInitialize(context);
+        }
+        g_defaultDataContext.reset(context);
     }
     return g_defaultDataContext.get();
+}
+
+DataContext* aDataContext_GetCurrent()
+{
+    if (A_UNLIKELY(!t_currentDataContext)) {
+        auto context = aDataContext_GetDefault();
+        aDataContext_SetCurrent(context);
+    }
+    return t_currentDataContext;
 }
 
 DataContext* aDataContext_EnsureCurrent()
 {
     if (A_UNLIKELY(!t_currentDataContext))
     {
-        aDataContext_SetCurrent(aDataContext_EnsureDefault());
+        auto context = aDataContext_EnsureDefault();
+        aDataContext_SetCurrent(context);
     }
     return t_currentDataContext;
 }
 
-void aDataContext_SetCurrent(DataContext* context)
+
+void aDataContext_SetCurrent(DataContext *context)
 {
     t_currentDataContext = context;
 }

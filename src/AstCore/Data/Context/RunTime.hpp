@@ -82,23 +82,29 @@ AST_CORE_CAPI IAUXYS* aGlobalContext_GetIAUXYS();
 
 // data context
 
-/// @brief 获取当前线程的数据上下文
-/// @return 
-AST_CORE_CAPI DataContext* aDataContext_GetCurrent();
 
 /// @brief 获取默认数据上下文
+/// 如果默认数据上下文不存在，则创建一个新的默认数据上下文
+/// @return 默认数据上下文
 AST_CORE_CAPI DataContext* aDataContext_GetDefault();
 
 
 /// @brief 确保默认数据上下文存在
-/// 如果默认数据上下文不存在，则创建一个新的默认数据上下文。
-/// @return 
+/// 如果默认数据上下文不存在，则创建一个新的默认数据上下文
+/// 如果默认数据上下文未初始化，则初始化
+/// @return 默认数据上下文
 AST_CORE_CAPI DataContext* aDataContext_EnsureDefault();
 
 
+/// @brief 获取当前线程的数据上下文
+/// 如果当前线程的数据上下文不存在，则将默认数据上下文设置为当前线程的数据上下文
+/// @return 当前线程的数据上下文
+AST_CORE_CAPI DataContext* aDataContext_GetCurrent();
+
 /// @brief 确保当前线程的数据上下文存在
-/// 如果当前线程的数据上下文不存在，则将默认数据上下文设置为当前线程的数据上下文。
-/// @return 
+/// 如果当前线程的数据上下文不存在，则将默认数据上下文设置为当前线程的数据上下文
+/// 如果当前线程的数据上下文未初始化，则初始化
+/// @return 当前线程的数据上下文
 AST_CORE_CAPI DataContext* aDataContext_EnsureCurrent();
 
 /// @brief 设置当前线程的数据上下文

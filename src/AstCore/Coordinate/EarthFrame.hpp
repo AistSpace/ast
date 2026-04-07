@@ -513,6 +513,95 @@ AST_CORE_CAPI void aTIRFToECF(const TimePoint& tp, const Vector3d& vecTIRF, Vect
 
 
 // ----------------
+// ICRF -> J2000
+// ----------------
+
+
+/// @brief     从ICRF转换为J2000的坐标旋转变换
+/// @param     tp  时间点
+/// @param     rotation  坐标旋转变换
+AST_CORE_API void aICRFToJ2000Transform(const TimePoint& tp, Rotation& rotation);
+
+
+/// @brief     从ICRF转换为J2000的坐标旋转变换
+/// @param     tp  时间点
+/// @param     rotation  坐标旋转变换，带角速度信息
+AST_CORE_API void aICRFToJ2000Transform(const TimePoint& tp, KinematicRotation& rotation);
+
+
+/// @brief     从ICRF转换为J2000的坐标转换矩阵
+/// @param     tp  时间点
+/// @param     matrix  坐标转换矩阵
+AST_CORE_CAPI void aICRFToJ2000Matrix(const TimePoint& tp, Matrix3d& matrix);
+
+
+/// @brief 从ICRF转换为J2000的坐标转换
+/// @param tp 时间点
+/// @param vecICRF ICRF坐标
+/// @param vecJ2000 J2000坐标
+/// @return 
+AST_CORE_API void aICRFToJ2000(const TimePoint& tp, const Vector3d& vecICRF, Vector3d& vecJ2000);
+
+
+/// @brief     从ICRF转换为J2000的坐标转换
+/// @param     tp  时间点
+/// @param     vecICRF  ICRF坐标
+/// @param     velICRF  ICRF速度
+/// @param     vecJ2000  J2000坐标
+/// @param     velJ2000  J2000速度
+AST_CORE_API void aICRFToJ2000(
+    const TimePoint& tp, 
+    const Vector3d& vecICRF,
+    const Vector3d& velICRF,
+    Vector3d& vecJ2000,
+    Vector3d& velJ2000
+);
+
+
+
+// ----------------
+// J2000 -> ICRF
+// ----------------
+
+/// @brief     从J2000转换为ICRF的坐标旋转变换
+/// @param     tp  时间点
+/// @param     rotation  坐标旋转变换
+AST_CORE_API void aJ2000ToICRFTransform(const TimePoint& tp, Rotation& rotation);
+
+/// @brief     从J2000转换为ICRF的坐标旋转变换
+/// @param     tp  时间点
+/// @param     rotation  坐标旋转变换，带角速度信息
+AST_CORE_API void aJ2000ToICRFTransform(const TimePoint& tp, KinematicRotation& rotation);
+
+/// @brief     从J2000转换为ICRF的坐标转换矩阵
+/// @param     tp  时间点
+/// @param     matrix  坐标转换矩阵
+AST_CORE_CAPI void aJ2000ToICRFMatrix(const TimePoint& tp, Matrix3d& matrix);
+
+
+/// @brief 从J2000转换为ICRF的坐标转换
+/// @param tp 时间点
+/// @param vecJ2000 J2000坐标
+/// @param vecICRF ICRF坐标
+AST_CORE_API void aJ2000ToICRF(const TimePoint& tp, const Vector3d& vecJ2000, Vector3d& vecICRF);
+
+
+/// @brief     从J2000转换为ICRF的坐标转换
+/// @param     tp  时间点
+/// @param     vecJ2000  J2000坐标
+/// @param     velJ2000  J2000速度
+/// @param     vecICRF  ICRF坐标
+/// @param     velICRF  ICRF速度
+AST_CORE_API void aJ2000ToICRF(
+    const TimePoint& tp, 
+    const Vector3d& vecJ2000,
+    const Vector3d& velJ2000,
+    Vector3d& vecICRF,
+    Vector3d& velICRF
+);
+
+
+// ----------------
 // Alias
 // ----------------
 
