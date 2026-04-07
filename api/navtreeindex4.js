@@ -1,5 +1,7 @@
 var NAVTREEINDEX4 =
 {
+"MotionProfile_8cpp.html":[4,0,0,10,2,10],
+"MotionProfile_8hpp.html":[4,0,0,10,2,11],
 "MotionProfile_8hpp_source.html":[4,0,0,10,2,11],
 "MotionRealTime_8hpp_source.html":[4,0,0,10,2,12],
 "MotionSGP4_8hpp_source.html":[4,0,0,10,2,13],
@@ -204,9 +206,9 @@ var NAVTREEINDEX4 =
 "PointingDirection_8cpp.html":[4,0,0,0,0,14],
 "PointingDirection_8hpp.html":[4,0,0,0,0,15],
 "PointingDirection_8hpp_source.html":[4,0,0,0,0,15],
-"Polynomial_8cpp.html":[4,0,0,13,10,12],
-"Polynomial_8hpp.html":[4,0,0,13,10,13],
-"Polynomial_8hpp_source.html":[4,0,0,13,10,13],
+"Polynomial_8cpp.html":[4,0,0,13,10,13],
+"Polynomial_8hpp.html":[4,0,0,13,10,14],
+"Polynomial_8hpp_source.html":[4,0,0,13,10,14],
 "PosixExt_8cpp.html":[4,0,0,13,5,21],
 "PosixExt_8hpp.html":[4,0,0,13,5,22],
 "PosixExt_8hpp.html#a9c97106431856ac3fd1b9ac8308f39b1":[4,0,0,13,5,22,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX4 =
 "PropertyTimePoint_8hpp.html":[4,0,0,1,8,1],
 "PropertyTimePoint_8hpp_source.html":[4,0,0,1,8,1],
 "PropertyVisitor_8cpp.html":[4,0,0,13,7,0,1,0],
-"PropertyVisitor_8hpp.html":[4,0,0,13,7,0,1,1],
-"PropertyVisitor_8hpp_source.html":[4,0,0,13,7,0,1,1],
-"Property_8cpp.html":[4,0,0,13,7,0,6]
+"PropertyVisitor_8hpp.html":[4,0,0,13,7,0,1,1]
 };

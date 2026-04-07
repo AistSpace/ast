@@ -540,6 +540,8 @@ $(function(){initNavTree('namespaceast.html',''); initResizable(true); });
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Lexer.html">Lexer</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1LocaleGuard.html">LocaleGuard</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1LoggerStream.html">LoggerStream</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1LongDuration.html">LongDuration</a></td></tr>
@@ -759,6 +761,8 @@ $(function(){initNavTree('namespaceast.html',''); initResizable(true); });
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1RotationElement.html">RotationElement</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Scanner.html">Scanner</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1Scenario.html">Scenario</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classast_1_1ScopedPtr.html">ScopedPtr</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2309,8 +2313,6 @@ errc_t&#160;</td><td class="memItemRight" valign="bottom"><b>aUninitialize</b> (
 <tr class="separator:ga9b4e17ce85add0e4eea8e29d80e4385c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabd352addd4bfd3dcecb35a480212d9f5" id="r_gabd352addd4bfd3dcecb35a480212d9f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1DataContext.html">DataContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#gabd352addd4bfd3dcecb35a480212d9f5">aDataContext_GetDefault</a> ()</td></tr>
 <tr class="separator:gabd352addd4bfd3dcecb35a480212d9f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6b71837a4fa5dcbe6f059efca4e75297" id="r_ga6b71837a4fa5dcbe6f059efca4e75297"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1DataContext.html">DataContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#ga6b71837a4fa5dcbe6f059efca4e75297">aDataContext_EnsureDefault</a> ()</td></tr>
-<tr class="separator:ga6b71837a4fa5dcbe6f059efca4e75297"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga40dcbf6fa05827fe9b7a7837a01105bd" id="r_ga40dcbf6fa05827fe9b7a7837a01105bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1DataContext.html">DataContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#ga40dcbf6fa05827fe9b7a7837a01105bd">aDataContext_GetCurrent</a> ()</td></tr>
 <tr class="separator:ga40dcbf6fa05827fe9b7a7837a01105bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga362102d8c58857b6e3d6b48b83bd0944" id="r_ga362102d8c58857b6e3d6b48b83bd0944"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1DataContext.html">DataContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Data.html#ga362102d8c58857b6e3d6b48b83bd0944">aDataContext_EnsureCurrent</a> ()</td></tr>
@@ -3803,6 +3805,35 @@ errc_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadSatellite</b>
 <tr class="separator:a78dd9dd2f49d87ab188942604cc37d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07467233de3dedc50d1e95736a578d12" id="r_a07467233de3dedc50d1e95736a578d12"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07467233de3dedc50d1e95736a578d12">aLoadMover</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath, <a class="el" href="classast_1_1Mover.html">Mover</a> &amp;mover)</td></tr>
 <tr class="separator:a07467233de3dedc50d1e95736a578d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc025cc76864c19d22fc1829e06c5003" id="r_afc025cc76864c19d22fc1829e06c5003"><td class="memItemLeft" align="right" valign="top"><a id="afc025cc76864c19d22fc1829e06c5003" name="afc025cc76864c19d22fc1829e06c5003"></a>
+errc_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadEpoch</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Scenario.html">Scenario</a> &amp;scenario)</td></tr>
+<tr class="separator:afc025cc76864c19d22fc1829e06c5003"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5206432f451008274269ed7a603f968e" id="r_a5206432f451008274269ed7a603f968e"><td class="memItemLeft" align="right" valign="top"><a id="a5206432f451008274269ed7a603f968e" name="a5206432f451008274269ed7a603f968e"></a>
+errc_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadInterval</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Scenario.html">Scenario</a> &amp;scenario)</td></tr>
+<tr class="separator:a5206432f451008274269ed7a603f968e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8c6773968496f749e9f7bb25a5886d5" id="r_aa8c6773968496f749e9f7bb25a5886d5"><td class="memItemLeft" align="right" valign="top"><a id="aa8c6773968496f749e9f7bb25a5886d5" name="aa8c6773968496f749e9f7bb25a5886d5"></a>
+errc_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadEOPFile</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Scenario.html">Scenario</a> &amp;scenario)</td></tr>
+<tr class="separator:aa8c6773968496f749e9f7bb25a5886d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae72ef6b8562cddc525a820245548d3d2" id="r_ae72ef6b8562cddc525a820245548d3d2"><td class="memItemLeft" align="right" valign="top"><a id="ae72ef6b8562cddc525a820245548d3d2" name="ae72ef6b8562cddc525a820245548d3d2"></a>
+errc_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadGlobalPrefs</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Scenario.html">Scenario</a> &amp;scenario)</td></tr>
+<tr class="separator:ae72ef6b8562cddc525a820245548d3d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47ef6ccc4edc66b736944fa54aaaacb2" id="r_a47ef6ccc4edc66b736944fa54aaaacb2"><td class="memItemLeft" align="right" valign="top"><a id="a47ef6ccc4edc66b736944fa54aaaacb2" name="a47ef6ccc4edc66b736944fa54aaaacb2"></a>
+errc_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadCentralBody</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Scenario.html">Scenario</a> &amp;scenario)</td></tr>
+<tr class="separator:a47ef6ccc4edc66b736944fa54aaaacb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95044a240604605b32bc99529f74f170" id="r_a95044a240604605b32bc99529f74f170"><td class="memItemLeft" align="right" valign="top"><a id="a95044a240604605b32bc99529f74f170" name="a95044a240604605b32bc99529f74f170"></a>
+errc_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadCentralBodyTerrain</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Scenario.html">Scenario</a> &amp;scenario)</td></tr>
+<tr class="separator:a95044a240604605b32bc99529f74f170"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a690b1b455f232a3b52fda365cb53dad0" id="r_a690b1b455f232a3b52fda365cb53dad0"><td class="memItemLeft" align="right" valign="top"><a id="a690b1b455f232a3b52fda365cb53dad0" name="a690b1b455f232a3b52fda365cb53dad0"></a>
+errc_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadStarCollection</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Scenario.html">Scenario</a> &amp;scenario)</td></tr>
+<tr class="separator:a690b1b455f232a3b52fda365cb53dad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf853462db2d4fe64df91cb783715d69" id="r_abf853462db2d4fe64df91cb783715d69"><td class="memItemLeft" align="right" valign="top"><a id="abf853462db2d4fe64df91cb783715d69" name="abf853462db2d4fe64df91cb783715d69"></a>
+errc_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadScenarioLicenses</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Scenario.html">Scenario</a> &amp;scenario)</td></tr>
+<tr class="separator:abf853462db2d4fe64df91cb783715d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3ead603f63d3e3581d965dd13daba22" id="r_ab3ead603f63d3e3581d965dd13daba22"><td class="memItemLeft" align="right" valign="top"><a id="ab3ead603f63d3e3581d965dd13daba22" name="ab3ead603f63d3e3581d965dd13daba22"></a>
+errc_t&#160;</td><td class="memItemRight" valign="bottom"><b>_aLoadExtensions</b> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Scenario.html">Scenario</a> &amp;scenario)</td></tr>
+<tr class="separator:ab3ead603f63d3e3581d965dd13daba22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f153a9398e1ac61f90600cdcf3f78e3" id="r_a4f153a9398e1ac61f90600cdcf3f78e3"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f153a9398e1ac61f90600cdcf3f78e3">aLoadScenario</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath, <a class="el" href="classast_1_1Scenario.html">Scenario</a> &amp;scenario)</td></tr>
+<tr class="separator:a4f153a9398e1ac61f90600cdcf3f78e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3245987ee7f10c497082ce21a60c4857" id="r_ga3245987ee7f10c497082ce21a60c4857"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1Axes.html">Axes</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga3245987ee7f10c497082ce21a60c4857">aSpiceFindAxes</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
 <tr class="separator:ga3245987ee7f10c497082ce21a60c4857"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga12f41a902b92a5041319c0929ea394b8" id="r_ga12f41a902b92a5041319c0929ea394b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classast_1_1CelestialBody.html">CelestialBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Spice.html#ga12f41a902b92a5041319c0929ea394b8">aSpiceFindBody</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> name)</td></tr>
@@ -6663,6 +6694,37 @@ template&lt;typename GeometryType , typename RotationType &gt; </div>
   <table class="params">
     <tr><td class="paramname">filepath</td><td>文件路径 </td></tr>
     <tr><td class="paramname">mover</td><td>移动对象引用 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+</div>
+</div>
+<a id="a4f153a9398e1ac61f90600cdcf3f78e3" name="a4f153a9398e1ac61f90600cdcf3f78e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f153a9398e1ac61f90600cdcf3f78e3">&#9670;&#160;</a></span>aLoadScenario()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AST_SIM_CAPI errc_t ast::aLoadScenario </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classast_1_1StringViewBasic.html">StringView</a></td>          <td class="paramname"><span class="paramname"><em>filepath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classast_1_1Scenario.html">Scenario</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>scenario</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>加载场景 </p>
+<p>从文件加载场景 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>文件路径 </td></tr>
+    <tr><td class="paramname">scenario</td><td>场景引用 </td></tr>
   </table>
   </dd>
 </dl>

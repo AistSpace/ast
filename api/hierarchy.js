@@ -267,6 +267,7 @@ var hierarchy =
     [ "ast::LatLonAlt", "classast_1_1LatLonAlt.html", null ],
     [ "ast::LeapSecond", "classast_1_1LeapSecond.html", null ],
     [ "ast::Lexer", "classast_1_1Lexer.html", null ],
+    [ "ast::LocaleGuard", "classast_1_1LocaleGuard.html", null ],
     [ "ast::LoggerStream", "classast_1_1LoggerStream.html", null ],
     [ "ast::LongDuration", "classast_1_1LongDuration.html", null ],
     [ "lower6_1_", "structlower6__1__.html", null ],
@@ -422,6 +423,7 @@ var hierarchy =
         [ "ast::PointRoot", "classast_1_1PointRoot.html", null ],
         [ "ast::PointSSBarycenter", "classast_1_1PointSSBarycenter.html", null ]
       ] ],
+      [ "ast::Scenario", "classast_1_1Scenario.html", null ],
       [ "ast::SolarSystem", "classast_1_1SolarSystem.html", null ],
       [ "ast::State", "classast_1_1State.html", [
         [ "ast::StateCartesian", "classast_1_1StateCartesian.html", null ],
