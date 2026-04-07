@@ -22,9 +22,10 @@ xpack("ast")
         end
         -- windows下添加调试库
         if plat == "windows" then
-            local debug_dir = "build/windows/" .. arch .. "/debug"
-            package:add("installfiles", debug_dir .. "/Ast*D.dll", {prefixdir = "bin"})
-            package:add("installfiles", debug_dir .. "/Ast*D.lib", {prefixdir = "lib"})
+            local debug_dir = "build/windows/" .. arch .. "/debug/"
+            package:add("installfiles", debug_dir .. "Ast*D.lib", {prefixdir = "lib"})
+            package:add("installfiles", debug_dir .. "Ast*D.dll", {prefixdir = "bin"})
+            -- package:add("installfiles", debug_dir .. "Ast*D.pdb", {prefixdir = "bin"})
         end
     end)
    
