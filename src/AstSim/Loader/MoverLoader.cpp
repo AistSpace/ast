@@ -414,22 +414,7 @@ errc_t _aLoadExtensions(BKVParser& parser, Mover& mover)
     return eNoError;
 }
 
-errc_t _aLoadSubObjects(BKVParser& parser, Mover& mover)
-{
-    BKVItemView item;
-    BKVParser::EToken token;
-    do{
-        token = parser.getNext(item);
-        if(token == BKVParser::eBlockEnd){
-            if(aEqualsIgnoreCase(item.value(), "SubObjects")){
-                return eNoError;
-            }
-        }
-    }while(token != BKVParser::eEOF);
-    return eNoError;
-}
-
-errc_t _aLoadSatellite(BKVParser& parser, Mover& mover)
+errc_t _aLoadMover(BKVParser& parser, StringView moverType, Mover& mover)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -475,18 +460,25 @@ errc_t _aLoadSatellite(BKVParser& parser, Mover& mover)
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "SubObjects")){
-                if(errc_t rc = _aLoadSubObjects(parser, mover)){
+                if(errc_t rc = _aLoadSubObjects(parser, &mover)){
                     return rc;
                 }
             }
         }else if(token == BKVParser::eBlockEnd){
-            if(aEqualsIgnoreCase(item.value(), "Satellite")){
+            if(aEqualsIgnoreCase(item.value(), moverType)){
                 return eNoError;
             }
         }
     }while(token != BKVParser::eEOF);
     return eNoError;
 }
+
+
+errc_t _aLoadSatellite(BKVParser& parser, Mover& mover)
+{
+    return _aLoadMover(parser, "Satellite", mover);
+}
+
 
 errc_t aLoadMover(StringView filepath, Mover &mover)
 {
@@ -505,11 +497,16 @@ errc_t aLoadMover(StringView filepath, Mover &mover)
             // @todo 处理版本信息
         }
         else if(token == BKVParser::eBlockBegin){
-            if(aEqualsIgnoreCase(item.value(), "Satellite")){
-                if(errc_t rc = _aLoadSatellite(parser, mover)){
-                    return rc;
-                }
-            }
+            // if(aEqualsIgnoreCase(item.value(), "Satellite")){
+            //     if(errc_t rc = _aLoadSatellite(parser, mover)){
+            //         return rc;
+            //     }
+            // }
+
+            
+            // 第一个BEGIN END块的名称就是Mover的类型
+            StringView moverType = item.value();
+            return _aLoadMover(parser, moverType, mover);
         }
     }while(token != BKVParser::eEOF);
     return eNoError;

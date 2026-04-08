@@ -24,6 +24,7 @@
 #include "AstUtil/StringUtil.hpp"
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/BKVParser.hpp"
+
 #include "AstSim/Mover.hpp"
 #include "AstSim/Spacecraft.hpp"
 #include "AstSim/MoverLoader.hpp"
@@ -42,7 +43,12 @@
 #include "AstSim/CommSystem.hpp"
 #include "AstSim/Constellation.hpp"
 #include "AstSim/CoverageDefinition.hpp"
-#include "AstCore/CelestialBodyLoader.hpp"
+#include "AstSim/Sensor.hpp"
+#include "AstSim/AttitudeCoverage.hpp"
+#include "AstSim/Radar.hpp"
+#include "AstSim/Antenna.hpp"
+#include "AstSim/Receiver.hpp"
+
 #include "LineTargetLoader.hpp"
 #include "MTOLoader.hpp"
 #include "PlaceLoader.hpp"
@@ -54,6 +60,11 @@
 #include "CommSystemLoader.hpp"
 #include "ConstellationLoader.hpp"
 #include "CoverageDefinitionLoader.hpp"
+#include "SensorLoader.hpp"
+#include "AttitudeCoverageLoader.hpp"
+#include "RadarLoader.hpp"
+#include "AntennaLoader.hpp"
+#include "ReceiverLoader.hpp"
 
 
 AST_NAMESPACE_BEGIN
@@ -166,6 +177,36 @@ errc_t aLoadObject(StringView filepath, StringView objectType, SharedPtr<Object>
         auto coverageDefinition = new CoverageDefinition();
         object = coverageDefinition;
         return aLoadCoverageDefinition(filepath, *coverageDefinition);
+    }
+    else if(aEqualsIgnoreCase(objectType, "Sensor"))
+    {
+        auto sensor = new Sensor();
+        object = sensor;
+        return aLoadSensor(filepath, *sensor);
+    }
+    else if(aEqualsIgnoreCase(objectType, "AttitudeCoverage"))
+    {
+        auto attitudeCoverage = new AttitudeCoverage();
+        object = attitudeCoverage;
+        return aLoadAttitudeCoverage(filepath, *attitudeCoverage);
+    }
+    else if(aEqualsIgnoreCase(objectType, "Radar"))
+    {
+        auto radar = new Radar();
+        object = radar;
+        return aLoadRadar(filepath, *radar);
+    }
+    else if(aEqualsIgnoreCase(objectType, "Antenna"))
+    {
+        auto antenna = new Antenna();
+        object = antenna;
+        return aLoadAntenna(filepath, *antenna);
+    }
+    else if(aEqualsIgnoreCase(objectType, "Receiver"))
+    {
+        auto receiver = new Receiver();
+        object = receiver;
+        return aLoadReceiver(filepath, *receiver);
     }
     else
     {
