@@ -305,7 +305,9 @@ var hierarchy =
     [ "ast::NutationTerm", "classast_1_1NutationTerm.html", null ],
     [ "ast::Object", "classast_1_1Object.html", [
       [ "ast::AdvCAT", "classast_1_1AdvCAT.html", null ],
+      [ "ast::Antenna", "classast_1_1Antenna.html", null ],
       [ "ast::AreaTarget", "classast_1_1AreaTarget.html", null ],
+      [ "ast::AttitudeCoverage", "classast_1_1AttitudeCoverage.html", null ],
       [ "ast::Axes", "classast_1_1Axes.html", [
         [ "ast::AxesBodyRelated", "classast_1_1AxesBodyRelated.html", [
           [ "ast::AxesBodyFixed", "classast_1_1AxesBodyFixed.html", null ],
@@ -437,7 +439,10 @@ var hierarchy =
         [ "ast::PointRoot", "classast_1_1PointRoot.html", null ],
         [ "ast::PointSSBarycenter", "classast_1_1PointSSBarycenter.html", null ]
       ] ],
+      [ "ast::Radar", "classast_1_1Radar.html", null ],
+      [ "ast::Receiver", "classast_1_1Receiver.html", null ],
       [ "ast::Scenario", "classast_1_1Scenario.html", null ],
+      [ "ast::Sensor", "classast_1_1Sensor.html", null ],
       [ "ast::SolarSystem", "classast_1_1SolarSystem.html", null ],
       [ "ast::State", "classast_1_1State.html", [
         [ "ast::StateCartesian", "classast_1_1StateCartesian.html", null ],
