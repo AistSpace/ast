@@ -52,6 +52,7 @@ Frame (抽象基类)
 ├── FrameRoot (根坐标系)
 ├── FrameICRF (国际天球参考系)
 ├── FrameAssembly (组装坐标系)
+├── FrameFixed (天体固连坐标系)
 └── FrameWithEpoch (带历元坐标系)
 ```
 
@@ -63,9 +64,6 @@ Frame (抽象基类)
 
 - **ICRF (International Celestial Reference Frame)**：国际天球参考系，是目前最精确的惯性参考系
 - **FrameICRF**：库提供的ICRF坐标系实现
-- 适用于描述卫星相对天体的惯性运动
-
-- **ICRF (International Celestial Reference Frame)**：国际天球参考系，是目前最精确的惯性参考系
 - 适用于描述卫星相对天体的惯性运动
 
 ### 2. 天球参考系
