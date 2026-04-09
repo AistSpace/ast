@@ -4,7 +4,7 @@
 int main() {
     AST_USING_NAMESPACE
     // 创建日期时间对象 
-    DateTime dttm;
+    DateTime dttm{};
     dttm.year() = 2023;
     dttm.month() = 12;
     dttm.day() = 31;

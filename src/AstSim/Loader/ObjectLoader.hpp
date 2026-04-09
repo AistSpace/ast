@@ -30,11 +30,21 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+/// @brief 加载对象
+/// @details 从文件加载对象
+/// @param filepath 文件路径
+/// @param object 加载的对象
+/// @return errc_t 加载结果
+// errc_t aLoadObject(StringView filepath, SharedPtr<Object>& object);
 
 
 /// @brief 加载对象
 /// @details 从文件加载对象
-errc_t aLoadObject(StringView filepath, StringView objectType, SharedPtr<Object>& object);
+/// @param filepath 文件路径
+/// @param objectType 对象类型
+/// @param object 加载的对象
+/// @return errc_t 加载结果
+AST_SIM_API errc_t aLoadObject(StringView filepath, StringView objectType, SharedPtr<Object>& object);
 
 
 /*! @} */

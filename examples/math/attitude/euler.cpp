@@ -17,7 +17,7 @@ int main() {
     {
         // 另一个作用域：转换为四元数
         Euler euler{0.1745, 0.3491, 0.5236};
-        Quaternion quat;
+        Quaternion quat{};
         euler.toQuat(Euler::eZYX, quat);
         
         std::cout << "四元数: " << quat.qs() << ", " << quat.qx() 

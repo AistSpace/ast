@@ -185,7 +185,7 @@ public:
     Self& operator*=(const Self& other);
 
 public:
-    Scalar data_[Row][Col];
+    Scalar data_[Row][Col]{};
 };
 
 

@@ -175,7 +175,7 @@ errc_t EOP::setEntry(int mjd, const Entry &entry)
 
 double EOP::getUT1MinusUTC(const TimePoint &tp) const
 {
-    JulianDate jdUTC;
+    JulianDate jdUTC{};
     aTimePointToUTC(tp, jdUTC);
     return getUT1MinusUTC_UTC(jdUTC);
 }
@@ -202,7 +202,7 @@ double EOP::getUT1MinusUTC_UTCMJD(double mjdUTC) const
 
 void EOP::getPoleMotion(const TimePoint &tp, double &x, double &y) const
 {
-    JulianDate jdUTC;
+    JulianDate jdUTC{};
     aTimePointToUTC(tp, jdUTC);
     return getPoleMotionUTC(jdUTC, x, y);
 }
@@ -229,7 +229,7 @@ void EOP::getPoleMotionUTCMJD(double mjdUTC, double &x, double &y) const
 
 double EOP::getLOD(const TimePoint &tp) const
 {
-    JulianDate jdUTC;
+    JulianDate jdUTC{};
     aTimePointToUTC(tp, jdUTC);
     return getLOD_UTC(jdUTC);
 }
@@ -253,7 +253,7 @@ double EOP::getLOD_UTCMJD(double mjdUTC) const
 
 void EOP::getXYCorrection(const TimePoint &tp, array2d &xyCorrection) const
 {
-    JulianDate jdUTC;
+    JulianDate jdUTC{};
     aTimePointToUTC(tp, jdUTC);
     return getXYCorrectionUTC(jdUTC, xyCorrection);
 }

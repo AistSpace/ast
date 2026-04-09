@@ -1,8 +1,9 @@
 ///
-/// @file      PlaceLoader.cpp
-/// @brief     地点加载器实现
+/// @file      MockUninitializedPointer.hpp
+/// @brief     
+/// @details   
 /// @author    axel
-/// @date      2026-04-07
+/// @date      2026-04-08
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -17,15 +18,29 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "PlaceLoader.hpp"
-#include "AstSim/Place.hpp"
-#include "AstSim/FacilityLoader.hpp"
+#pragma once
+
+#include "AstGlobal.h"
+#include "AstUtil/Object.hpp"
 
 AST_NAMESPACE_BEGIN
 
-errc_t aLoadPlace(StringView filepath, Place& place)
+/*!
+    @addtogroup 
+    @{
+*/
+
+class MockUninitializedPointer
 {
-    return aLoadFacility(filepath, "Place", place);
-}
+public:
+    MockUninitializedPointer();
+    ~MockUninitializedPointer();
+
+    void doSomething();
+private:
+    Object* object_{};
+};
+
+/*! @} */
 
 AST_NAMESPACE_END

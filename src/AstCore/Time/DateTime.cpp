@@ -532,7 +532,7 @@ errc_t aDateTimeParseAny(StringView str, DateTime &dttm)
 
 DateTime DateTime::FromJD(const JulianDate &jd)
 {
-    DateTime dttm;
+    DateTime dttm{};
     aJDToDateTime(jd, dttm);
     return dttm;
 }
@@ -540,7 +540,7 @@ DateTime DateTime::FromJD(const JulianDate &jd)
 // 静态方法实现
 DateTime DateTime::FromString(StringView str, StringView format)
 {
-    DateTime dttm;
+    DateTime dttm{};
     errc_t err = aDateTimeParse(str, format, dttm);
     if (err != eNoError) {
         // 如果解析失败
@@ -552,7 +552,7 @@ DateTime DateTime::FromString(StringView str, StringView format)
 DateTime DateTime::FromString(StringView str)
 {
     // 采用默认格式解析
-    DateTime dttm;
+    DateTime dttm{};
     errc_t err = aDateTimeParseAny(str, dttm);
     if(err != eNoError) {
         // 如果解析失败
@@ -563,7 +563,7 @@ DateTime DateTime::FromString(StringView str)
 
 DateTime DateTime::FromGregorian(StringView str)
 {
-    DateTime dttm;
+    DateTime dttm{};
     if (aDateTimeParseGregorian(str, dttm) != eNoError) {
         // 如果解析失败，返回当前时间
         aCurrentDateTimeLocal(dttm);

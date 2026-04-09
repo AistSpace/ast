@@ -252,8 +252,8 @@ errc_t _aLoadEventIntervalImplicit(BKVParser& parser, SharedPtr<EventInterval>& 
 
 errc_t _aLoadInterval(BKVParser& parser, TimeInterval& interval)
 {
-    TimePoint start;
-    TimePoint stop;
+    TimePoint start{};
+    TimePoint stop{};
     BKVItemView item;
     while(1){
         BKVParser::EToken token = parser.getNext(item);

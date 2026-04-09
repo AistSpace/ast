@@ -237,14 +237,14 @@ int JplDe::readDataBlock(size_t idx)
 
 errc_t JplDe::getState(const TimePoint& time, int dataid, double pos[], double vel[])
 {
-    JulianDate jdTDB;
+    JulianDate jdTDB{};
     aTimePointToTDB(time, jdTDB);
     return getStateTDB(jdTDB, dataid, pos, vel);
 }
 
 errc_t JplDe::getState(const TimePoint& time, int datalist[11], double statelist[11][6])
 {
-    JulianDate jdTDB;
+    JulianDate jdTDB{};
     aTimePointToTDB(time, jdTDB);
     return getStateTDB(jdTDB, datalist, statelist);
 }
@@ -486,12 +486,12 @@ errc_t JplDe::getStateTDB(const JulianDate& jdTDB, int cblist[11], double pv[11]
     struct InterpolationCoeff
     {
         int     n_pos_coeff{ -1 };
-        int     n_vel_coeff;
-        int     idx_interval;
-        double  pos_coeff[MAX_CHEBY];
-        double  vel_coeff[MAX_CHEBY];
-        double  twot;
-        double  tspan;
+        int     n_vel_coeff{};
+        int     idx_interval{};
+        double  pos_coeff[MAX_CHEBY]{};
+        double  vel_coeff[MAX_CHEBY]{};
+        double  twot{};
+        double  tspan{};
     };
 
     //const int ncm = 3;  // for cb, dimension = 3

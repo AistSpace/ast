@@ -55,7 +55,7 @@ private:
 private:
     UiTimePoint* startTimeEdit_{nullptr};
     UiTimePoint* stopTimeEdit_{nullptr};
-    TimeInterval timeInterval_;
+    TimeInterval timeInterval_{};
 };
 
 /*! @} */

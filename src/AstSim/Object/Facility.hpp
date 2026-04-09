@@ -24,6 +24,8 @@
 #include "AstCore/Point.hpp"
 #include "AstCore/GeodeticPoint.hpp"
 #include "AstCore/CelestialBody.hpp"
+#include "AstSim/CentroidPosition.hpp"
+#include "AstUtil/StringView.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -42,9 +44,17 @@ public: // 从Point继承重写的函数
     Frame* getFrame() const final;
     errc_t getPos(const TimePoint& tp, Vector3d& pos) const final;
     errc_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
+public:
+    const std::string& getName() const override {return name_;}
+    void setName(StringView name){name_ = std::string(name);}
+public:
+    Body* getBody() const {return position_.getBody();}
+    void setPosition(const CentroidPosition& position){position_ = position;}
+    const CentroidPosition& getPosition() const{return position_;}
+    CentroidPosition& position(){return position_;}
 protected:
-    SharedPtr<CelestialBody> body_;                 ///< 设施所在的天体
-    GeodeticPoint            position_{};           ///< 设施位置
+    std::string name_;
+    CentroidPosition position_;
 };
 
 /*! @} */

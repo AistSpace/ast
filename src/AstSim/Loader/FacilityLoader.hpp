@@ -31,6 +31,30 @@ AST_NAMESPACE_BEGIN
 
 class Facility;
 
+
+/// @brief 加载设施
+/// @param parser BKV解析器
+/// @param objectType 对象类型
+/// @param facility 设施引用
+/// @return 错误码
+AST_SIM_API errc_t aLoadFacility(BKVParser& parser, StringView objectType, Facility& facility);
+
+/// @brief 加载设施
+/// @details 从文件加载设施
+/// @param parser BKV解析器
+/// @param facility 设施引用
+/// @return 错误码
+AST_SIM_API errc_t aLoadFacility(BKVParser& parser, Facility& facility);
+
+
+/// @brief 加载设施
+/// @details 从文件加载设施
+/// @param filepath 文件路径
+/// @param objectType 对象类型
+/// @param facility 设施引用
+/// @return 错误码
+AST_SIM_API errc_t aLoadFacility(StringView filepath, StringView objectType, Facility& facility);
+
 /// @brief 加载设施
 /// @details 从文件加载设施
 AST_SIM_API errc_t aLoadFacility(StringView filepath, Facility& facility);

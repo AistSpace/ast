@@ -69,6 +69,12 @@
 
 AST_NAMESPACE_BEGIN
 
+// errc_t aLoadObject(StringView filepath, SharedPtr<Object> &object)
+// {
+//     
+// }
+
+
 errc_t aLoadObject(StringView filepath, StringView objectType, SharedPtr<Object> &object)
 {
     if(

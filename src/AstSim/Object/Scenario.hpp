@@ -94,7 +94,7 @@ protected:
     SharedPtr<EventTime> epoch_;            ///< 场景历元时间
     SharedPtr<EventInterval> interval_;     ///< 场景时间间隔
     std::string eopFileName_;               ///< EOP文件名
-    bool inheritEOPSource_;                 ///< 是否继承EOP来源设置
+    bool inheritEOPSource_{};                 ///< 是否继承EOP来源设置
     SharedPtr<CelestialBody> primaryBody_;                  ///< 场景天体
 };
 

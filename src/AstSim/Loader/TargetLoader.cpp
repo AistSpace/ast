@@ -19,6 +19,8 @@
 
 #include "TargetLoader.hpp"
 #include "AstSim/Target.hpp"
+#include "AstSim/Facility.hpp"
+#include "AstSim/FacilityLoader.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/StringUtil.hpp"
 #include "AstUtil/Logger.hpp"
@@ -28,9 +30,7 @@ AST_NAMESPACE_BEGIN
 
 errc_t aLoadTarget(StringView filepath, Target& target)
 {
-    // 这里实现目标对象的加载逻辑
-    // 目前先返回成功，后续可以根据需要实现具体的加载逻辑
-    return eNoError;
+    return aLoadFacility(filepath, "Target", target);
 }
 
 AST_NAMESPACE_END

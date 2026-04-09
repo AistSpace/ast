@@ -285,7 +285,7 @@ static void aPoleMotionMatrix_3(const PoleMotionSXY& sxy, Matrix3d &matrix)
 
 void aGTODToECFMatrix(const TimePoint &tp, Matrix3d &matrix)
 {
-    PoleMotionSXY sxy;
+    PoleMotionSXY sxy{};
     sxy.s = poleMotionS(tp);
     aPoleMotion(tp, sxy.x, sxy.y);
     // printf("sp = %.20g, x = %.20g, y = %.20g\n", sxy.s, sxy.x, sxy.y);

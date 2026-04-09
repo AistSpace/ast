@@ -49,7 +49,7 @@ errc_t loadSpaceWeather(BKVParser& parser, int numPoints, std::vector<SpaceWeath
          */
         
         SpaceWeather::Entry entry{};
-        Date date;
+        Date date{};
         date.year()  = aParseInt(line.substr(0, 4));
         date.month() = aParseInt(line.substr(5, 2));
         date.day()   = aParseInt(line.substr(8, 2));

@@ -78,7 +78,7 @@ errc_t JplSpk::getPosICRF(
     Vector3d &pos)
 {
     double et = aTimePointToSpiceEt(tp);
-    CartState state;
+    CartState state{};
     double lt;
     errc_t rc = SpiceApi::Instance()->spkgeo(target, et, "J2000", referenceBody, state.data(), &lt);
     pos = state.pos() * 1e3;
@@ -93,7 +93,7 @@ errc_t JplSpk::getPosVelICRF(
     Vector3d& vel
 ){
     double et = aTimePointToSpiceEt(tp);
-    CartState state;
+    CartState state{};
     double lt;
     errc_t rc = SpiceApi::Instance()->spkgeo(target, et, "J2000", referenceBody, state.data(), &lt);
     pos = state.pos() * 1e3;

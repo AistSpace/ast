@@ -19,7 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "TestSerialize.hpp"
-#include "AstUtil/Target.hpp"
+#include "AstUtil/BuildTarget.hpp"
 #include "AstUtil/CppSerializer.hpp"
 #include "AstUtil/SerdeAPI.hpp"
 #include "AstUtil/IO.hpp"
@@ -50,7 +50,7 @@ errc_t aTestSerializeCpp(Object *object)
     fwrite(str.c_str(), 1, str.size(), file);
     fclose(file);
     // 编译执行
-    Target target("temp_for_test_serialize");
+    BuildTarget target("temp_for_test_serialize");
     rc = target
         .setKind("binary")
         .addFiles({filepath1})

@@ -59,7 +59,7 @@ public:
     /// @return    QWidget*  编辑控件指针
     QWidget* newEditWidget(Object *object);
 protected:
-    EditWidgetMap editWidgetMap_;
+    EditWidgetMap editWidgetMap_{};
 };
 
 

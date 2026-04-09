@@ -16,7 +16,7 @@ int main() {
     std::cout << "四元数转矩阵成功" << std::endl;
     
     // 旋转矩阵转欧拉角 (ZYX顺序)
-    Euler euler;
+    Euler euler{};
     aMatrixToEuler(matrix, Euler::eZYX, euler);
     
     std::cout << "欧拉角: " << euler.angle1() << ", " 

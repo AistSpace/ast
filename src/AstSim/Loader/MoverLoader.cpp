@@ -55,8 +55,8 @@ errc_t _aLoadSPICE(BKVParser& parser, const VehiclePathData& vehiclePathData, Sc
         bool useLTDelay_{false};
         bool use1stOrderDelay_{false};
         bool use3rdOrderDelay_{false};
-        TimePoint startTime_;
-        TimePoint stopTime_;
+        TimePoint startTime_{};
+        TimePoint stopTime_{};
         SharedPtr<EventInterval> ephemSmartInterval_;
     } data;
 

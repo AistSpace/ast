@@ -1,6 +1,6 @@
 ///
-/// @file      PlaceLoader.cpp
-/// @brief     地点加载器实现
+/// @file      CentroidPosition.cpp
+/// @brief     质心位置类实现
 /// @author    axel
 /// @date      2026-04-07
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
@@ -17,15 +17,18 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "PlaceLoader.hpp"
-#include "AstSim/Place.hpp"
-#include "AstSim/FacilityLoader.hpp"
+#include "CentroidPosition.hpp"
+#include "AstUtil/StringUtil.hpp"
+#include "AstCore/CelestialBody.hpp"
 
 AST_NAMESPACE_BEGIN
 
-errc_t aLoadPlace(StringView filepath, Place& place)
+
+void CentroidPosition::setBody(Body *body)
 {
-    return aLoadFacility(filepath, "Place", place);
+    body_ = body;
 }
 
+
 AST_NAMESPACE_END
+

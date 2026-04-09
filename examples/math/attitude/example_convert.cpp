@@ -12,7 +12,7 @@ int main() {
     
     {
         // 欧拉角 -> 四元数
-        Quaternion quat;
+        Quaternion quat{};
         initial_euler.toQuat(Euler::eZYX, quat);
         std::cout << "转换后的四元数: " << quat.qs() << ", " << quat.qx() 
                   << ", " << quat.qy() << ", " << quat.qz() << std::endl;
@@ -20,7 +20,7 @@ int main() {
     
     {
         // 四元数 -> 矩阵
-        Quaternion quat;
+        Quaternion quat{};
         initial_euler.toQuat(Euler::eZYX, quat);
         
         Matrix3d matrix;
@@ -30,13 +30,13 @@ int main() {
     
     {
         // 矩阵 -> 欧拉角 (完整循环)
-        Quaternion quat;
+        Quaternion quat{};
         initial_euler.toQuat(Euler::eZYX, quat);
         
         Matrix3d matrix;
         aQuatToMatrix(quat, matrix);
         
-        Euler final_euler;
+        Euler final_euler{};
         aMatrixToEuler(matrix, Euler::eZYX, final_euler);
         
         std::cout << "最终欧拉角: " << final_euler.angle1() << ", " 

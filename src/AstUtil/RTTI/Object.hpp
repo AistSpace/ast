@@ -296,7 +296,7 @@ private:
     std::atomic<uint32_t>    refcnt_{0};                                ///< 强引用计数，给SharedPtr使用
     std::atomic<uint32_t>    weakrefcnt_{1};                            ///< 弱引用计数，给WeakPtr使用
     uint32_t                 index_{static_cast<uint32_t>(INVALID_ID)}; ///< 对象索引，用于唯一标识对象
-    uint32_t                 flags_{0};                                 ///< 对象标志位，用于存储对象的额外信息
+    // uint32_t                 flags_{0};                                 ///< 对象标志位，用于存储对象的额外信息
 };
 
 

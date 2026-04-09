@@ -580,7 +580,7 @@ void aTheoreticalXYS_IERS2010(double t, array3d& xys)
 {
     auto globalCxt = aGlobalContext_Get();
     // 根据IERS 2010规范，计算行星基础参数
-    FundamentalArguments fundargs;
+    FundamentalArguments fundargs{};
     aFundamentalArguments_IERS2010(t, fundargs);
     // 根据IERS 2010规范，计算xys值
     globalCxt->iauXYS()->eval(t, fundargs, xys);

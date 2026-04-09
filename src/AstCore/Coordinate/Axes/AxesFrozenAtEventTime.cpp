@@ -52,7 +52,7 @@ Axes *AxesFrozenAtEventTime::getParent() const
 errc_t AxesFrozenAtEventTime::getTransform(const TimePoint &tp, Rotation &rotation) const
 {
     A_UNUSED(tp);
-    TimePoint epoch;
+    TimePoint epoch{};
     errc_t rc = getEpoch(epoch);
     if(rc) return rc;
     return aAxesTransform(referenceAxes_, axes_, epoch, rotation);
@@ -61,7 +61,7 @@ errc_t AxesFrozenAtEventTime::getTransform(const TimePoint &tp, Rotation &rotati
 errc_t AxesFrozenAtEventTime::getTransform(const TimePoint &tp, KinematicRotation &rotation) const
 {
     A_UNUSED(tp);
-    TimePoint epoch;
+    TimePoint epoch{};
     errc_t rc = getEpoch(epoch);
     if(rc) return rc;
     rotation.setRotationRate(Vector3d::Zero());

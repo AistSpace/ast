@@ -62,7 +62,7 @@ errc_t MotionOrbitDynamics::getPropagationParams(PropagationParams &params) cons
 errc_t MotionOrbitDynamics::discreteInterval(const TimePoint &epoch, double stepSize, std::vector<double> &times) const
 {
     errc_t rc;
-    TimeInterval interval;
+    TimeInterval interval{};
     rc = this->getInterval(interval);   AST_CHECK_ERRCODE(rc, "failed to get interval");
     rc = interval.discrete(epoch, stepSize, times);   AST_CHECK_ERRCODE(rc, "failed to discrete interval");
     return rc;

@@ -52,7 +52,7 @@ void UiTimePoint::updateTimePoint()
     std::string timeStr = text.toUtf8().toStdString();
     
     // 解析时间字符串并更新时间点
-    TimePoint tp;
+    TimePoint tp{};
     errc_t rc = aTimePointParse(timeStr, tp);
     if(rc){
         aError("failed to parse time point '%s'", timeStr.c_str());

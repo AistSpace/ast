@@ -27,7 +27,7 @@ AST_NAMESPACE_BEGIN
 
 errc_t PropertyTimePoint::getValueBool(const void* container, bool& value)
 {
-    TimePoint time;
+    TimePoint time{};
     errc_t ret = this->getValue(container, &time);
     if (ret != eNoError)
     {
@@ -64,7 +64,7 @@ errc_t PropertyTimePoint::setValueInt(void* container, int value)
 
 errc_t PropertyTimePoint::getValueString(const void* container, std::string& value)
 {
-    TimePoint time;
+    TimePoint time{};
     errc_t ret = this->getValue(container, &time);
     if (ret != eNoError)
     {
@@ -75,7 +75,7 @@ errc_t PropertyTimePoint::getValueString(const void* container, std::string& val
 
 errc_t PropertyTimePoint::setValueString(void* container, StringView value)
 {
-    TimePoint time;
+    TimePoint time{};
     errc_t ret = aTimePointParse(value, time);
     if (ret != eNoError)
     {
@@ -86,7 +86,7 @@ errc_t PropertyTimePoint::setValueString(void* container, StringView value)
 
 errc_t PropertyTimePoint::getValueDouble(const void* container, double& value)
 {
-    TimePoint time;
+    TimePoint time{};
     errc_t ret = this->getValue(container, &time);
     if (ret != eNoError)
     {
@@ -98,7 +98,7 @@ errc_t PropertyTimePoint::getValueDouble(const void* container, double& value)
 
 errc_t PropertyTimePoint::setValueDouble(void* container, double value)
 {
-    TimePoint time;
+    TimePoint time{};
     aEpochSecondToTimePoint(value, time);
     return this->setValue(container, &time);
 }

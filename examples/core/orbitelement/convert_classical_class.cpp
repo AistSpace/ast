@@ -14,7 +14,7 @@ int main() {
     Vector3d vel{0.0, 7726.0, 0.0};      // 近地轨道速度
     
     // 转换为经典轨道根数
-    OrbElem elem;
+    OrbElem elem{};
     errc_t err = aCartToOrbElem(pos, vel, gmEarth, elem);
     
     if (err == eNoError) {

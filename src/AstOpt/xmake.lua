@@ -2,6 +2,7 @@
     set_kind("shared")
     add_files("**.cpp")
     -- add_files("**.c")
+    add_files("SnoptAPI.cpp", {unity_group = "snoptapi"})
     add_headerfiles("**.hpp", {prefixdir="AstOpt"})
     add_headerfiles("**.h", {prefixdir="AstOpt"})
     add_defines("AST_BUILD_LIB_OPT")

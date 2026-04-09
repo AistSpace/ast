@@ -21,7 +21,7 @@ int main() {
     }
     {
         // 设置为单位四元数
-        Quaternion q;
+        Quaternion q{};
         q.setIdentity();
         
         std::cout << "单位四元数: " << q.qs() << ", " << q.qx() 

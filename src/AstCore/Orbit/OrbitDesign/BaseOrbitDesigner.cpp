@@ -42,7 +42,7 @@ CelestialBody *BaseOrbitDesigner::getDefaultCelestialBody()
 
 errc_t BaseOrbitDesigner::getOrbitState(CartState &cartState) const
 {
-    ModOrbElem orbElem;
+    ModOrbElem orbElem{};
     errc_t rc = getOrbitState(orbElem);
     if(rc != eNoError){
         return rc;
@@ -52,7 +52,7 @@ errc_t BaseOrbitDesigner::getOrbitState(CartState &cartState) const
 
 errc_t BaseOrbitDesigner::getOrbitState(OrbElem &orbElem) const
 {
-    ModOrbElem modOrbElem;
+    ModOrbElem modOrbElem{};
     errc_t rc = getOrbitState(modOrbElem);
     if(rc != eNoError){
         return rc;

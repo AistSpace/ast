@@ -178,19 +178,19 @@ protected:
     void deinit();
 private:
     double        Factor;  // Factor = 1 (magnetic) or -mu (gravity)
-    double**      C;       // Normalized harmonic coefficients
-    double**      S;       // Normalized harmonic coefficients
-    double**      A;       // Normalized 'derived' Assoc. Legendre Poly
-    double**      V;       // Normalization factor
-    double*       Re;      // powers of projection of pos onto x_ecf (re)
-    double*       Im;      // powers of projection of pos onto y_ecf (im)
-    double**      N1;      // Temporary
-    double**      N2;      // Temporary
-    double**      VR01;    // Temporary
-    double**      VR11;    // Temporary
-    double**      VR02;    // Temporary
-    double**      VR12;    // Temporary
-    double**      VR22;    // Temporary
+    double**      C{};       // Normalized harmonic coefficients
+    double**      S{};       // Normalized harmonic coefficients
+    double**      A{};       // Normalized 'derived' Assoc. Legendre Poly
+    double**      V{};       // Normalization factor
+    double*       Re{};      // powers of projection of pos onto x_ecf (re)
+    double*       Im{};      // powers of projection of pos onto y_ecf (im)
+    double**      N1{};      // Temporary
+    double**      N2{};      // Temporary
+    double**      VR01{};    // Temporary
+    double**      VR11{};    // Temporary
+    double**      VR02{};    // Temporary
+    double**      VR12{};    // Temporary
+    double**      VR22{};    // Temporary
 };
 
 

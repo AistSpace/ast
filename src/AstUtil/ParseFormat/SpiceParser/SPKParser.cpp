@@ -278,7 +278,7 @@ errc_t SPKParser::getStateType2(const SPK_Descriptor& spkDescriptor, double et, 
 {
     int rsize;
     {
-        SPK_Type2_Trailer trailer;
+        SPK_Type2_Trailer trailer{};
         size_t offset = 8 * spkDescriptor.end_addr - sizeof(SPK_Type2_Trailer);
         size_t size = read(&trailer, sizeof(SPK_Type2_Trailer), offset);
         if(size != sizeof(SPK_Type2_Trailer))

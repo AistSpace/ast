@@ -21,7 +21,7 @@
 #include "ScenarioLoader.hpp"
 #include "CommonlyUsedHeaders.hpp"
 #include "BasicComponentLoader.hpp"
-#include "AstSim/Object/Scenario.hpp"
+#include "AstSim/Scenario.hpp"
 #include "AstUtil/Logger.hpp"
 #include "AstCore/EventTimeFallback.hpp"
 
@@ -30,7 +30,7 @@ AST_NAMESPACE_BEGIN
 
 errc_t _aLoadEpoch(BKVParser& parser, Scenario& scenario)
 {
-    TimePoint epoch;
+    TimePoint epoch{};
     HEventTime eventTime;
     BKVItemView item;
     BKVParser::EToken token;
@@ -63,7 +63,7 @@ errc_t _aLoadInterval(BKVParser& parser, Scenario& scenario)
 {
     BKVItemView item;
     BKVParser::EToken token;
-    TimePoint startTime, stopTime;
+    TimePoint startTime{}, stopTime{};
     HEventInterval eventInterval;
     do{
         token = parser.getNext(item);

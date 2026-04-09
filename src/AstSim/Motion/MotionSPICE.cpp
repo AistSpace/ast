@@ -37,7 +37,7 @@ errc_t MotionSPICE::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
 
 errc_t MotionSPICE::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
 {
-    TimeInterval interval;
+    TimeInterval interval{};
     errc_t rc = this->getInterval(interval);
     if(rc)
     {

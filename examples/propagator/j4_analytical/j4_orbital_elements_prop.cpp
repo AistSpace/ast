@@ -20,7 +20,7 @@ int main()
     const double re_earth = kEarthRadius;
     
     // 创建改进轨道根数 (大椭圆轨道示例)
-    ModOrbElem orb_elem;
+    ModOrbElem orb_elem{};
     orb_elem.rp_ = 26500_km;       // 近拱点半径 
     orb_elem.e_ = 0.73;           // 偏心率
     orb_elem.i_ = 28.5 * kDegToRad; // 倾角

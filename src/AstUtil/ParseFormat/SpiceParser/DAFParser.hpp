@@ -123,7 +123,7 @@ protected:
     const DAF_FileRecord* getFileRecord() const;
     
 protected:
-    Record                      fileRecord_;                ///< 文件记录头
+    Record                      fileRecord_{};              ///< 文件记录头
     bool                        isValidFile_=false;         ///< 文件是否有效
     bool                        isSameEndian_=false;        ///< 是否与当前系统字节序相同
 };

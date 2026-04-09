@@ -247,7 +247,7 @@ errc_t aDateTimeFormat(const DateTime& dttm, StringView format, std::string& str
         {
             // 这里需要将日期时间转换为 Unix 时间戳
             // 简化实现：使用 mktime
-            struct tm tm_time;
+            struct tm tm_time{};
             tm_time.tm_year = year - 1900;
             tm_time.tm_mon = month - 1;
             tm_time.tm_mday = day;

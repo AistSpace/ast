@@ -1,9 +1,9 @@
 ///
-/// @file      BuilderAPI.hpp
+/// @file      MockUninitializedPointer.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-30
+/// @date      2026-04-08
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -18,20 +18,43 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#pragma once
-
-#include "AstGlobal.h"
-#include "AstUtil/BuildTarget.hpp"
+#include "MockUninitializedPointer.hpp"
+#include "AstUtil/RTTIAPI.hpp"
 
 AST_NAMESPACE_BEGIN
 
-/*!
-    @addtogroup 
-    @{
-*/
 
 
+MockUninitializedPointer::MockUninitializedPointer()
+{
+}
+MockUninitializedPointer::~MockUninitializedPointer()
+{
+}
 
-/*! @} */
+void MockUninitializedPointer::doSomething()
+{
+    if(object_)
+    {
+       std::string name =  object_->getName();
+       printf("%s", name.c_str());
+    }
+}
+
+void doSomeThing(int id)
+{
+    Object* object = nullptr;
+    if(id > 0){
+        object = aGetObject(id);
+    }
+
+    if(object)
+    {
+       std::string name =  object->getName();
+       printf("%s", name.c_str());
+    }
+}
 
 AST_NAMESPACE_END
+
+

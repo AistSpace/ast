@@ -83,10 +83,10 @@ errc_t State::changeFrame(Frame *frame)
 {
     if(frame_ == frame)
         return eNoError;
-    CartState state;
+    CartState state{};
     this->getState(state);
     KinematicTransform transform;
-    TimePoint epoch;
+    TimePoint epoch{};
     errc_t rc = getStateEpoch(epoch);
     if(rc) return rc;
     rc = aFrameTransform(this->frame_, frame, epoch, transform);
