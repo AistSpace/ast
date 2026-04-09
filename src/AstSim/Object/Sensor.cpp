@@ -2,7 +2,7 @@
 /// @file      Sensor.cpp
 /// @brief     传感器对象实现
 /// @author    axel
-/// @date      2026-04-07
+/// @date      2026-04-09
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -18,15 +18,44 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "Sensor.hpp"
-#include "AstUtil/Class.hpp"
+#include "AstCore/Frame.hpp"
+#include "AstCore/CelestialBody.hpp"
 
 AST_NAMESPACE_BEGIN
 
 _AST_IMPL_OBJECT(Sensor)
 
-void Sensor::ClassInit(Class* cls)
+Sensor::Sensor()
 {
-    // 可以在这里添加Sensor特有的属性
+
 }
+
+Frame *Sensor::getFrame() const
+{
+    if(!location_.expired())
+    {
+        return location_->getFrame();
+    }
+    return nullptr;
+}
+
+errc_t Sensor::getPos(const TimePoint& tp, Vector3d& pos) const
+{
+    if(!location_.expired())
+    {
+        return location_->getPos(tp, pos);
+    }
+    return eErrorNullPtr;
+}
+
+errc_t Sensor::getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const
+{
+    if(!location_.expired())
+    {
+        return location_->getPosVel(tp, pos, vel);
+    }
+    return eErrorNullPtr;
+}
+
 
 AST_NAMESPACE_END

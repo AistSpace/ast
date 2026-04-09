@@ -21,6 +21,7 @@
 #pragma once
  
 #include "AstGlobal.h"
+#include "AstUtil/Object.hpp"
 
 AST_NAMESPACE_BEGIN
  
@@ -88,23 +89,35 @@ public:
     }
     bool expired() const
     {
-        return !m_object || m_object->isDestructed();
+        return !m_object || aObject_IsDestructed(m_object);
     }
     void reset()
     {
         _decWeakRef();
         m_object = nullptr;
     }
+    _Object* operator->() const
+    {
+        return m_object;
+    }
+    operator _Object*() const
+    {
+        return m_object;
+    }
+    explicit operator bool() const
+    {
+        return !expired();
+    }
 private:
     void _incWeakRef()
     {
         if(m_object)
-            m_object->incWeakRef();
+            aObject_IncWeakRef(m_object);
     }
     void _decWeakRef()
     {
         if(m_object)
-            m_object->decWeakRef();
+            aObject_DecWeakRef(m_object);
     }
 protected:
     _Object* m_object{nullptr};

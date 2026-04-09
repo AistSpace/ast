@@ -21,6 +21,11 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/Object.hpp"
+#include "AstUtil/StringView.hpp"
+#include "AstCore/Point.hpp"
+#include "AstCore/FieldOfView.hpp"
+#include "AstSim/CentroidPosition.hpp"
+#include <memory>
 
 AST_NAMESPACE_BEGIN
 
@@ -30,13 +35,29 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 传感器对象
-class AST_SIM_API Sensor: public Object
+class AST_SIM_API Sensor: public Point
 {
 public:
-    Sensor() = default;
-    ~Sensor() override = default;
-
     AST_OBJECT(Sensor)
+    Sensor();
+    ~Sensor() override = default;
+public:
+    const std::string& getName() const override { return name_; }
+    void setName(StringView name) { name_ = std::string(name); }
+
+public: // 从 Point 类继承的方法
+    Frame* getFrame() const final;
+    errc_t getPos(const TimePoint& tp, Vector3d& pos) const final;
+    errc_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
+
+    // 视场相关方法
+    void setFieldOfView(const SharedPtr<FieldOfView>& fov) { fov_ = fov; }
+    const SharedPtr<FieldOfView>& getFieldOfView() const { return fov_; }
+
+private:
+    std::string name_;               ///< 传感器名称
+    WeakPtr<Point> location_;        ///< 传感器位置点, 弱引用
+    SharedPtr<FieldOfView> fov_;     ///< 传感器视场
 };
 
 /*! @} */
