@@ -2,16 +2,12 @@
 #include "AstCore/AxesICRF.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstMath/Rotation.hpp"
-#include "AstMath/Vector.hpp"
 #include "AstMath/Matrix.hpp"
 
 AST_USING_NAMESPACE
 
 int main()
 {
-    // 初始化系统
-    // aInitialize();
-    
     // 创建时间点
     TimePoint tp = TimePoint::FromUTC(2026, 1, 1, 0, 0, 0);
     
@@ -23,21 +19,28 @@ int main()
     Rotation rotation;
     errc_t err = aAxesTransform(icrf, root, tp, rotation);
     
-    if (err == eNoError) {
-        printf("Axes轴系转换示例:\n");
-        printf("源轴系: ICRF\n");
-        printf("目标轴系: Root\n");
-        
-        Matrix3d matrix = rotation.getMatrix();
-        printf("转换矩阵:\n");
-        for (int i = 0; i < 3; i++) {
-            printf("  [%.6f %.6f %.6f]\n", matrix(i,0), matrix(i,1), matrix(i,2));
-        }
+    if (err != eNoError) {
+        printf("错误: aAxesTransform失败，错误码: %d\n", (int)err);
+        return 1;
+    }
+    
+    printf("Axes轴系转换示例:\n");
+    printf("源轴系: ICRF\n");
+    printf("目标轴系: Root\n");
+    
+    Matrix3d matrix = rotation.getMatrix();
+    printf("转换矩阵:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("  [%.6f %.6f %.6f]\n", matrix(i,0), matrix(i,1), matrix(i,2));
     }
     
     // 使用成员函数进行转换
     Rotation rotation2;
-    icrf->getTransformTo(root, tp, rotation2);
+    err = icrf->getTransformTo(root, tp, rotation2);
+    if (err != eNoError) {
+        printf("错误: getTransformTo失败，错误码: %d\n", (int)err);
+        return 1;
+    }
     
     printf("\n使用成员函数getTransformTo获取转换:\n");
     Matrix3d matrix2 = rotation2.getMatrix();

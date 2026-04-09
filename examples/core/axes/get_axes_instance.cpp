@@ -35,10 +35,19 @@ int main()
     }
     
     // 3. 检查轴系层级关系
-    printf("\n--- 轴系层级深度 ---\n");
+    printf("\n--- 轴系层级关系 ---\n");
     printf("ICRF深度: %d\n", icrf->getDepth());
     printf("ECF深度: %d\n", ecf->getDepth());
     printf("TOD深度: %d\n", tod->getDepth());
+    
+    // 4. 验证父子关系
+    printf("\n--- 验证父子关系 ---\n");
+    printf("ECF的父轴系是否为ICRF: %s\n", 
+           (ecf->getParent() == icrf) ? "是" : "否");
+    printf("TOD的父轴系是否为MOD: %s\n", 
+           (tod->getParent() == mod) ? "是" : "否");
+    printf("GTOD的父轴系是否为TOD: %s\n", 
+           (gtod->getParent() == tod) ? "是" : "否");
     
     return 0;
 }

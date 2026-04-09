@@ -11,7 +11,7 @@ int main()
     // 创建时间点
     TimePoint tp = TimePoint::FromUTC(2026, 1, 1, 12, 0, 0);
     
-    printf("BuiltinAxes内置轴系示例:\n");
+    printf("BuiltinAxes内置轴系示例:\n\n");
     
     // 获取各种内置轴系
     // 1. ICRF/J2000 惯性系
@@ -30,7 +30,7 @@ int main()
     Axes* tod = aAxesTOD();
     printf("TOD轴系获取成功, 深度: %d\n", tod->getDepth());
     
-    // 5. GTOD ( Greenwich True Equator of Date) 格林尼治真赤道系
+    // 5. GTOD (Greenwich True Equator of Date) 格林尼治真赤道系
     Axes* gtod = aAxesGTOD();
     printf("GTOD轴系获取成功, 深度: %d\n", gtod->getDepth());
     
@@ -42,7 +42,11 @@ int main()
     
     // 获取J2000到ECF的转换
     Rotation rotation;
-    j2000->getTransformTo(ecf, tp, rotation);
+    errc_t err = j2000->getTransformTo(ecf, tp, rotation);
+    if (err != eNoError) {
+        printf("错误: getTransformTo失败，错误码: %d\n", (int)err);
+        return 1;
+    }
     
     Matrix3d matrix = rotation.getMatrix();
     printf("\nJ2000到ECF转换矩阵:\n");

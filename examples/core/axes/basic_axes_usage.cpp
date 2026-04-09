@@ -17,9 +17,13 @@ int main()
     // 获取根轴系
     Axes* root = aAxesRoot();
     
-    // 从ICRF获取旋转变换
+    // 从ICRF获取旋转变换（ICRF相对父轴系的变换）
     Rotation rotation;
-    icrf->getTransform(tp, rotation);
+    errc_t err = icrf->getTransform(tp, rotation);
+    if (err != eNoError) {
+        printf("错误: getTransform失败，错误码: %d\n", (int)err);
+        return 1;
+    }
     
     // 获取旋转矩阵
     Matrix3d matrix = rotation.getMatrix();
