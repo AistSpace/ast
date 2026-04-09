@@ -66,6 +66,8 @@ Axes* gtod = aAxesGTOD();
 Axes* root = aAxesRoot();
 ```
 
+@[code](/examples/core/axes/get_axes_instance.cpp)
+
 #### 1.2 通过名称获取轴系
 
 ```cpp
@@ -102,6 +104,8 @@ errc_t err = aAxesTransform(source, target, timePoint, rotation);
 source->getTransformTo(target, timePoint, rotation);
 ```
 
+@[code](/examples/core/axes/get_rotation_transform.cpp)
+
 #### 2.2 获取转换矩阵
 
 ```cpp
@@ -109,6 +113,8 @@ source->getTransformTo(target, timePoint, rotation);
 Matrix3d matrix;
 errc_t err = aAxesTransform(source, target, timePoint, matrix);
 ```
+
+@[code](/examples/core/axes/get_transform_matrix.cpp)
 
 #### 2.3 获取运动学旋转变换
 
@@ -123,6 +129,8 @@ Matrix3d rot = kinRot.getRotation();
 // 获取角速度向量
 Vector3d angVel = kinRot.getRotationRate();
 ```
+
+@[code](/examples/core/axes/get_kinematic_rotation.cpp)
 
 ### 3. 冻结轴系
 
@@ -139,6 +147,8 @@ Axes* frozenAxes = AxesFrozen::New(ecf, freezeTime, aAxesICRF());
 auto frozenAxesShared = AxesFrozen::MakeShared(ecf, freezeTime, aAxesICRF());
 ```
 
+@[code](/examples/core/axes/create_frozen_axes.cpp)
+
 #### 3.2 使用冻结轴系
 
 ```cpp
@@ -148,6 +158,8 @@ frozenAxes->getTransformTo(aAxesICRF(), freezeTime, rotation1);  // 冻结时刻
 frozenAxes->getTransformTo(aAxesICRF(), otherTime, rotation2);   // 其他时刻
 // rotation1 和 rotation2 相同
 ```
+
+@[code](/examples/core/axes/use_frozen_axes.cpp)
 
 ### 4. 轴系层级操作
 
@@ -168,6 +180,8 @@ int depth = axes->getDepth();
 ```cpp
 Axes* ancestor = axes->getAncestor(depth);
 ```
+
+@[code](/examples/core/axes/axes_hierarchy.cpp)
 
 ## 常用轴系说明
 
@@ -206,32 +220,6 @@ src/AstCore/Coordinate/Axes/
 - AstMath/Rotation.hpp：旋转变换
 - AstMath/KinematicRotation.hpp：运动学旋转
 - AstMath/Matrix.hpp：矩阵运算
-
-## 使用示例
-
-### 示例1：基本轴系使用
-
-获取ICRF惯性系并获取其旋转变换：
-
-@[code](/examples/core/axes/basic_axes_usage.cpp)
-
-### 示例2：轴系转换
-
-计算两个轴系之间的旋转变换：
-
-@[code](/examples/core/axes/axes_transform.cpp)
-
-### 示例3：内置轴系使用
-
-使用各种内置轴系进行计算：
-
-@[code](/examples/core/axes/builtin_axes.cpp)
-
-### 示例4：冻结轴系
-
-创建并使用冻结轴系：
-
-@[code](/examples/core/axes/frozen_axes.cpp)
 
 ## 注意事项
 
