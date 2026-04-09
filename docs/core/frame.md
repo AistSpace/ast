@@ -62,16 +62,22 @@ Frame (抽象基类)
 - **ICRF (International Celestial Reference Frame)**：国际天球参考系，是目前最精确的惯性参考系
 - 适用于描述卫星相对天体的惯性运动
 
-### 2. 固连坐标系
-
-- **CBF (Central Body Fixed Frame)**：中心天体固连系，随天体自转
-- 适用于描述卫星相对天体表面的位置
-
-### 3. 中间参考系
+### 2. 天球参考系
 
 - **CIRF (Celestial Intermediate Reference Frame)**：天球中间参考系
-- **TIRF (Terrestrial Intermediate Reference Frame)**：地球中间参考系
 - 用于高精度坐标变换的中间步骤
+
+### 3. 地球固连坐标系
+
+- **CBF (Central Body Fixed Frame)**：中心天体固连系，随天体自转
+- **TIRF (Terrestrial Intermediate Reference Frame)**：地球中间参考系
+- **FrameFixed**：天体固连坐标系，固定在特定天体上
+- 适用于描述卫星相对天体表面的位置
+
+### 4. 其他参考系
+
+- **FrameWithEpoch**：带历元坐标系，支持冻结特定时刻的轴系方向
+- 适用于需要固定轴系方向的分析场景
 
 ## 依赖关系
 
@@ -91,8 +97,23 @@ Frame (抽象基类)
 
 ## API参考
 
+### 基类
+
 @[code](/src/AstCore/Geometry/Euclid/Frame.hpp)
+
+### 根坐标系
+
 @[code](/src/AstCore/Coordinate/Frame/FrameRoot.hpp)
+
+### 国际天球参考系
+
 @[code](/src/AstCore/Coordinate/Frame/FrameICRF.hpp)
+
+### 组装坐标系
+
 @[code](/src/AstCore/Coordinate/Frame/FrameAssembly.hpp)
+
+### 带历元坐标系
+
+@[code](/src/AstCore/Coordinate/Frame/FrameWithEpoch.hpp)
 @[code](/src/AstCore/Coordinate/Frame/FrameWithEpoch.hpp)
