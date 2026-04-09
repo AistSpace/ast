@@ -252,95 +252,29 @@ src/AstSPICE/
 
 ## 使用示例
 
-### 示例1：计算坐标系变换矩阵
+### 示例1：旋转轴与角度 - axisar
 
-```cpp
-#include "AstSPICE/SpiceZpr.hpp"
-#include "AstCore/Time.hpp"
-#include "AstCore/Matrix.hpp"
+使用axisar函数根据旋转轴和角度计算旋转矩阵：
 
-using namespace AST_NAMESPACE;
+@[code](/examples/core/astspice/axisar_rotation.cpp)
 
-// 计算J2000到地球固连系的旋转矩阵
-TimePoint et;  // 设置感兴趣的时间点
-Matrix3d  rotation;
+### 示例2：坐标转换 - latrec/radrec
 
-pxform("J2000", "IAU_EARTH", et, rotation);
-```
+球坐标（半径、经度、纬度）和直角坐标的相互转换：
 
-### 示例2：计算天体位置
+@[code](/examples/core/astspice/coordinate_convert.cpp)
 
-```cpp
-#include "AstSPICE/SpiceZpr.hpp"
-#include "AstCore/CelestialBody.hpp"
+### 示例3：矩阵/欧拉角/四元数转换
 
-using namespace AST_NAMESPACE;
+欧拉角、旋转矩阵和四元数之间的相互转换：
 
-// 计算太阳相对地球的位置
-CelestialBody* earth = aSpiceFindBody("EARTH");
-CelestialBody* sun   = aSpiceFindBody("SUN");
-Vector3d       position;
-double         lightTime;
+@[code](/examples/core/astspice/matrix_euler_quat.cpp)
 
-spkpos(sun, et, "J2000", "LT", earth, position, &lightTime);
-```
+### 示例4：向量旋转与矩阵乘法
 
-### 示例3：坐标转换
+使用vrotv函数绕指定轴旋转向量，以及使用mxm进行矩阵乘法：
 
-```cpp
-// 球坐标转直角坐标
-double radius = 1.0;      // AU
-double lon = 0.0;         // 经度（弧度）
-double lat = 0.0;         // 纬度（弧度）
-Vector3d rectan;
-
-latrecc(radius, lon, lat, rectan);
-
-// 赤经赤纬转直角坐标
-double range = 1.0;       // 距离
-double ra = 0.7854;       // 赤经（弧度）
-double dec = 0.5236;      // 赤纬（弧度）
-
-radrec(range, ra, dec, rectan);
-```
-
-### 示例4：旋转运算
-
-```cpp
-// 欧拉角转旋转矩阵
-Matrix3d r;
-eul2m(angle3, angle2, angle1, 3, 2, 1, r);
-
-// 旋转矩阵转四元数
-Quaternion q;
-m2q(r, q);
-
-// 绕轴旋转向量
-Vector3d v = {1, 0, 0};
-Vector3d axis = {0, 0, 1};
-double theta = M_PI / 4;  // 45度
-Vector3d result;
-
-vrotv(v, axis, theta, result);
-```
-
-### 示例5：使用天体注册表
-
-```cpp
-#include "AstSPICE/RunTime/SpiceRunTime.hpp"
-
-// 获取天体实例
-CelestialBody* moon = aSpiceFindBody("MOON");
-if (moon) {
-    // 使用月球天体进行计算
-}
-
-// 获取参考系实例
-Axes* j2000 = aSpiceFindAxes("J2000");
-if (j2000) {
-    // 使用J2000参考系
-}
-```
+@[code](/examples/core/astspice/vector_rotation.cpp)
 
 ## 注意事项
 
