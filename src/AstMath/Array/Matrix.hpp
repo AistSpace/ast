@@ -185,7 +185,7 @@ public:
     Self& operator*=(const Self& other);
 
 public:
-    Scalar data_[Row][Col]{};
+    Scalar data_[Row][Col];  ///< 矩阵元素；不初始化，确保类型为聚合类型
 };
 
 

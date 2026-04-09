@@ -208,24 +208,25 @@ errc_t SPKParser::parse()
     errc_t rc;
     rc = DAFParser::parse();
     if(rc) return rc;
-    std::vector<DAF_SPKSummaryRecords> spkRecords;
+    std::vector<Record> records;
 
     static_assert(sizeof(DAF_SPKSummaryRecords) == sizeof(Record), "DAF_SPKSummaryRecords size must be 1024");
     static_assert(std::is_pod<DAF_SPKSummaryRecords>::value, "DAF_SPKSummaryRecords must be POD");
     static_assert(std::is_pod<Record>::value, "Record must be POD");
 
-    auto& records = reinterpret_cast<std::vector<Record>&>(spkRecords);
     rc = this->getSummaryRecords(records);
     if(rc) return rc;
     std::vector<SPK_Descriptor> spkDescriptors;
     int sum = 0;
-    for(auto& spkRecord : spkRecords)
+    for(auto& record : records)
     {
+        DAF_SPKSummaryRecords& spkRecord = reinterpret_cast<DAF_SPKSummaryRecords&>(record);
         sum += (int)spkRecord.nsum;
     }
     spkDescriptors.reserve(sum);
-    for(auto& spkRecord : spkRecords)
+    for(auto& record : records)
     {
+        DAF_SPKSummaryRecords& spkRecord = reinterpret_cast<DAF_SPKSummaryRecords&>(record);
         spkDescriptors.insert(spkDescriptors.end(), spkRecord.descriptors, spkRecord.descriptors + (int)spkRecord.nsum);
     }
     spkDescriptors_ = std::move(spkDescriptors);
