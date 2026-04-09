@@ -44,8 +44,8 @@ var dir_128c6f41eb6cfa5c0de7e053913da9fb =
     [ "SpaceObject.hpp", "SpaceObject_8hpp.html", "SpaceObject_8hpp" ],
     [ "Star.cpp", "Star_8cpp.html", null ],
     [ "Star.hpp", "Star_8hpp.html", "Star_8hpp" ],
-    [ "Target.cpp", "AstSim_2Object_2Target_8cpp.html", null ],
-    [ "Target.hpp", "AstSim_2Object_2Target_8hpp.html", "AstSim_2Object_2Target_8hpp" ],
+    [ "Target.cpp", "Target_8cpp.html", null ],
+    [ "Target.hpp", "Target_8hpp.html", "Target_8hpp" ],
     [ "Volumetric.cpp", "Volumetric_8cpp.html", null ],
     [ "Volumetric.hpp", "Volumetric_8hpp.html", "Volumetric_8hpp" ]
 ];

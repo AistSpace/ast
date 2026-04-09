@@ -297,7 +297,7 @@ $(function(){initNavTree('AstUtil_2RTTI_2Object_8hpp_source.html',''); initResiz
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    std::atomic&lt;uint32_t&gt;    refcnt_{0};                                </div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    std::atomic&lt;uint32_t&gt;    weakrefcnt_{1};                            </div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    uint32_t                 index_{<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="group__RTTI.html#ggac13a9c098b6368f2d73d61bed3b324ecabb2ccfb13bbc2fc2827f77f2a3556ea2">INVALID_ID</a>)}; </div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    uint32_t                 flags_{0};                                 </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="comment">// uint32_t                 flags_{0};                                 ///&lt; 对象标志位，用于存储对象的额外信息</span></div>
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>};</div>
 </div>
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
