@@ -11,5 +11,6 @@ target("AstWeather")
     else
         add_defines("AST_NO_LIBF2C")
     end
+    add_rules("c++.unity_build", {batchsize=0}) -- 关闭unity build，防止宏冲突
 
 includes("*/xmake.lua")
