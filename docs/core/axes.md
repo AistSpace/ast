@@ -73,7 +73,7 @@ Axes (抽象基类)
 
 ## API参考
 
-### 基类
+### 核心基类
 
 @[code](/src/AstCore/Geometry/Euclid/Axes.hpp)
 @[code](/src/AstCore/Coordinate/Axes/AxesBodyRelated.hpp)
