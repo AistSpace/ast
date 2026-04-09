@@ -28,6 +28,10 @@ AST_NAMESPACE_BEGIN
 class AST_CORE_API FOVSAR: public FieldOfView
 {
 public:
+    enum EUpdateMode{
+        eConstant, ///< 常量模式
+        eDynamic,  ///< 动态更新模式
+    };
     /// @brief 构造函数
     FOVSAR() = default;
     
@@ -38,25 +42,61 @@ public:
     /// @return 视场类型
     virtual EFOVType getFOVType() const override { return EFOVType::eSAR; }
     
-    /// @brief 设置方位半角
-    /// @param angle 方位半角（度）
-    void setAzimuthHalfAngle(double angle) { azimuthHalfAngle_ = angle; }
+    /// @brief 设置最小仰角
+    /// @param angle 最小仰角（度）
+    void setMinElevAngle(double angle) { minElevAngle_ = angle; }
     
-    /// @brief 获取方位半角
-    /// @return 方位半角（度）
-    double getAzimuthHalfAngle() const { return azimuthHalfAngle_; }
+    /// @brief 获取最小仰角
+    /// @return 最小仰角（度）
+    double getMinElevAngle() const { return minElevAngle_; }
     
-    /// @brief 设置距离半角
-    /// @param angle 距离半角（度）
-    void setRangeHalfAngle(double angle) { rangeHalfAngle_ = angle; }
+    /// @brief 设置最大仰角
+    /// @param angle 最大仰角（度）
+    void setMaxElevAngle(double angle) { maxElevAngle_ = angle; }
     
-    /// @brief 获取距离半角
-    /// @return 距离半角（度）
-    double getRangeHalfAngle() const { return rangeHalfAngle_; }
+    /// @brief 获取最大仰角
+    /// @return 最大仰角（度）
+    double getMaxElevAngle() const { return maxElevAngle_; }
+    
+    /// @brief 设置前向方位排除角
+    /// @param angle 前向方位排除角（度）
+    void setForwardExcludeAngle(double angle) { forwardExcludeAngle_ = angle; }
+    
+    /// @brief 获取前向方位排除角
+    /// @return 前向方位排除角（度）
+    double getForwardExcludeAngle() const { return forwardExcludeAngle_; }
+    
+    /// @brief 设置后向方位排除角
+    /// @param angle 后向方位排除角（度）
+    void setBackwardExcludeAngle(double angle) { backwardExcludeAngle_ = angle; }
+    
+    /// @brief 获取后向方位排除角
+    /// @return 后向方位排除角（度）
+    double getBackwardExcludeAngle() const { return backwardExcludeAngle_; }
+    
+    /// @brief 设置海拔高度
+    /// @param altitude 海拔高度（米）
+    void setAltitude(double altitude) { altitude_ = altitude; }
+    
+    /// @brief 获取海拔高度
+    /// @return 海拔高度（米）
+    double getAltitude() const { return altitude_; }
+    
+    /// @brief 设置更新模式
+    /// @param mode 更新模式
+    void setUpdateMode(EUpdateMode mode) { updateMode_ = mode; }
+    
+    /// @brief 获取更新模式
+    /// @return 更新模式
+    EUpdateMode getUpdateMode() const { return updateMode_; }
     
 private:
-    double azimuthHalfAngle_{0.0};  ///< 方位半角（度）
-    double rangeHalfAngle_{0.0};    ///< 距离半角（度）
+    double minElevAngle_{0.0};          ///< 最小仰角
+    double maxElevAngle_{0.0};          ///< 最大仰角
+    double forwardExcludeAngle_{0.0};   ///< 前向方位排除角
+    double backwardExcludeAngle_{0.0};  ///< 后向方位排除角
+    double altitude_{0.0};              ///< 海拔高度
+    EUpdateMode updateMode_{EUpdateMode::eConstant}; ///< 更新模式
 };
 
 AST_NAMESPACE_END
