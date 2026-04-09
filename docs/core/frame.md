@@ -116,4 +116,3 @@ Frame (抽象基类)
 ### 带历元坐标系
 
 @[code](/src/AstCore/Coordinate/Frame/FrameWithEpoch.hpp)
-@[code](/src/AstCore/Coordinate/Frame/FrameWithEpoch.hpp)
