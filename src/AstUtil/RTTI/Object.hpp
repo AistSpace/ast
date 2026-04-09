@@ -23,7 +23,6 @@
 #include "AstGlobal.h"
 #include "AstUtil/SharedPtr.hpp"
 #include "AstUtil/ScopedPtr.hpp"
-#include "AstUtil/WeakPtr.hpp"
 #include "AstUtil/ReflectAPI.hpp"
 #include <string>       // for std::string
 #include <stdint.h>     // for uint32_t
@@ -46,6 +45,9 @@ AST_NAMESPACE_BEGIN
  
 class Class;        // 类元信息
 class Property;     // 属性元信息
+
+template<typename _Object>
+class WeakPtr;
 
 template<typename ObjectPtrType, typename PropertyType>
 class AttributeBasic;
@@ -75,11 +77,18 @@ enum {
 };
 
 
+
 /// @brief 对象基类，继承自该类的对象可以使用运行时类型信息相关功能，实现强弱引用计数、运行时元信息（属性访问、序列化等）等基础功能
 /// @details 参考了Qt的QObject类、UE的UObject类、以及Python的PyObject等类的设计和实现
 class AST_UTIL_API Object
 {
 public:
+    // friend uint32_t aObject_IncRef(Object* obj);
+    // friend uint32_t aObject_DecRef(Object* obj);
+    // friend uint32_t aObject_IncWeakRef(Object* obj);
+    // friend uint32_t aObject_DecWeakRef(Object* obj);
+    // friend bool aObject_IsDestructed(const Object* obj);
+    
     Object()
         : refcnt_{0}
         , weakrefcnt_{1}
@@ -215,7 +224,7 @@ public: // 引用计数
 
     /// @brief 判断对象是否被析构
     /// @return bool 是否已析构
-    bool     isDestructed() const{return refcnt_ == static_cast<uint32_t>(-1);}
+    bool     isDestructed() const{return aObject_IsDestructed(this);}
 
     /// @brief 析构对象，仅当强引用计数为0时才会被调用
     /// @details 析构对象时，会先将弱引用计数减1，若弱引用计数为0，则会调用析构函数
@@ -229,38 +238,28 @@ public: // 引用计数
     /// @return uint32_t 新的弱引用计数
     uint32_t incWeakRef()
     {
-        return ++weakrefcnt_;
+        return aObject_IncWeakRef(this);
     }
 
     /// @brief 减少弱引用计数
     /// @return uint32_t 新的弱引用计数
     uint32_t decWeakRef()
     {
-        if (weakrefcnt_ == 1) {
-            operator delete(this);
-            return 0;
-        }
-        else {
-            return --weakrefcnt_;
-        }
+        return aObject_DecWeakRef(this);
     }
 
     /// @brief 增加强引用计数
     /// @return uint32_t 新的强引用计数
     uint32_t incRef()
     {
-        return ++refcnt_;
+        return aObject_IncRef(this);
     }
 
     /// @brief 减少强引用计数
     /// @return uint32_t 新的强引用计数
     uint32_t decRef()
     {
-        if (refcnt_ == 1) {
-            this->_destruct();
-            return 0;
-        }
-        return --refcnt_;
+        return aObject_DecRef(this);
     }
 
     /// @brief 减少强引用计数，不删除对象
@@ -291,13 +290,51 @@ protected:
         A_UNUSED(obj);
         return *this;
     }
+public: // 实参依赖查找（ADL）
+    A_ALWAYS_INLINE 
+    friend uint32_t aObject_IncRef(Object* obj)
+    {
+        return ++(obj->refcnt_);
+    }
+    A_ALWAYS_INLINE 
+    friend uint32_t aObject_DecRef(Object* obj)
+    {
+        if (obj->refcnt_ == 1) {
+            obj->_destruct();
+            return 0;
+        }
+        return --(obj->refcnt_);
+    }
+    A_ALWAYS_INLINE 
+    friend uint32_t aObject_IncWeakRef(Object* obj)
+    {
+        return ++(obj->weakrefcnt_);
+    }
+    A_ALWAYS_INLINE 
+    friend uint32_t aObject_DecWeakRef(Object* obj)
+    {
+        if (obj->weakrefcnt_ == 1) {
+            operator delete(obj);
+            return 0;
+        }
+        else {
+            return --(obj->weakrefcnt_);
+        }
+    }
+    A_ALWAYS_INLINE 
+    friend bool aObject_IsDestructed(const Object *obj)
+    {
+        return obj->refcnt_ == static_cast<uint32_t>(-1);
+    }
+
 private:
     // Class*                type_;                                     ///< 类型元信息，同时用于标识对象是否被析构(废弃)
     std::atomic<uint32_t>    refcnt_{0};                                ///< 强引用计数，给SharedPtr使用
     std::atomic<uint32_t>    weakrefcnt_{1};                            ///< 弱引用计数，给WeakPtr使用
     uint32_t                 index_{static_cast<uint32_t>(INVALID_ID)}; ///< 对象索引，用于唯一标识对象
-    uint32_t                 flags_{0};                                 ///< 对象标志位，用于存储对象的额外信息
+    // uint32_t                 flags_{0};                                 ///< 对象标志位，用于存储对象的额外信息
 };
+
 
 
 /*! @} */
@@ -310,3 +347,4 @@ AST_DECL_TYPE_ALIAS(Object)
 
 #include "AstUtil/Attribute.hpp"
 #include "AstUtil/Class.hpp"
+#include "AstUtil/WeakPtr.hpp"

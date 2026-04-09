@@ -1,5 +1,5 @@
 ///
-/// @file      Target.hpp
+/// @file      BuildTarget.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -36,7 +36,7 @@ using StringVector = std::vector<std::string>;
 /// @brief 目标
 /// @details 目标类，用于表示构建目标
 /// @warning 当前只支持g++编译器，无法切换为其他编译器
-class AST_UTIL_API Target
+class AST_UTIL_API BuildTarget
 {
 public: // 配置接口
 
@@ -48,14 +48,14 @@ public: // 配置接口
         eBinary,    ///< 可执行文件目标
     };
 
-    Target() = default;
+    BuildTarget() = default;
 
     /// @brief 构造函数
     /// @details 构造函数，用于创建目标。
     /// @param name 目标名称
-    Target(StringView name);
+    BuildTarget(StringView name);
 
-    ~Target() = default;
+    ~BuildTarget() = default;
 
     /// @brief 获取目标名称
     /// @details 获取目标名称
@@ -65,7 +65,7 @@ public: // 配置接口
     /// @brief 设置目标名称
     /// @details 设置目标名称
     /// @param name 目标名称
-    Target& setName(StringView name);
+    BuildTarget& setName(StringView name);
 
     /// @brief 获取目标类型
     /// @details 获取目标类型
@@ -75,12 +75,12 @@ public: // 配置接口
     /// @brief 设置目标类型
     /// @details 设置目标类型
     /// @param kind 目标类型
-    Target& setKind(StringView kind);
+    BuildTarget& setKind(StringView kind);
 
     /// @brief 设置目标类型
     /// @details 设置目标类型
     /// @param kind 目标类型
-    Target& setKind(EKind kind);
+    BuildTarget& setKind(EKind kind);
 
 
     /// @brief 获取源文件列表
@@ -91,7 +91,7 @@ public: // 配置接口
     /// @brief 添加源文件
     /// @details 添加源文件到目标中
     /// @param files 文件路径列表
-    Target& addFiles(const std::vector<std::string>& files);
+    BuildTarget& addFiles(const std::vector<std::string>& files);
 
 
     /// @brief 获取包含目录列表
@@ -102,7 +102,7 @@ public: // 配置接口
     /// @brief 添加包含目录
     /// @details 添加包含目录到目标中
     /// @param dirs 目录路径列表
-    Target& addIncludeDirs(const std::vector<std::string>& dirs);
+    BuildTarget& addIncludeDirs(const std::vector<std::string>& dirs);
 
 
     /// @brief 获取链接目录列表
@@ -113,7 +113,7 @@ public: // 配置接口
     /// @brief 添加链接目录
     /// @details 添加链接目录到目标中
     /// @param dirs 目录路径列表
-    Target& addLinkDirs(const std::vector<std::string>& dirs);
+    BuildTarget& addLinkDirs(const std::vector<std::string>& dirs);
 
 
     /// @brief 获取链接库列表
@@ -124,7 +124,7 @@ public: // 配置接口
     /// @brief 添加链接库
     /// @details 添加链接库到目标中
     /// @param libs 库路径列表
-    Target& addLinks(const std::vector<std::string>& libs);
+    BuildTarget& addLinks(const std::vector<std::string>& libs);
 
 
     /// @brief 获取宏定义列表
@@ -135,7 +135,7 @@ public: // 配置接口
     /// @brief 添加宏定义
     /// @details 添加宏定义到目标中
     /// @param defines 定义列表
-    Target& addDefines(const std::vector<std::string>& defines);
+    BuildTarget& addDefines(const std::vector<std::string>& defines);
 
     /// @brief 获取目标文件名
     /// @details 获取目标文件名
@@ -143,12 +143,12 @@ public: // 配置接口
     // std::string fileName() const;
     
     /// @brief 获取目标目录
-    // std::string targetDir() const;
+    // std::string BuildTargetDir() const;
 
     /// @brief 获取目标文件路径
     /// @details 获取目标文件路径
     /// @return 目标文件路径
-    // std::string targetFile() const;
+    // std::string BuildTargetFile() const;
 
 public: // 编译、链接、构建、运行、打包等接口
     
@@ -163,7 +163,7 @@ public: // 编译、链接、构建、运行、打包等接口
     
 protected:
     std::string name_;                     ///< 目标名称
-    EKind kind_;                           ///< 目标类型
+    EKind kind_{EKind::eBinary};           ///< 目标类型
     std::vector<std::string> files_;       ///< 源文件列表
     std::vector<std::string> includeDirs_; ///< 包含目录列表
     std::vector<std::string> linkDirs_;    ///< 链接目录列表

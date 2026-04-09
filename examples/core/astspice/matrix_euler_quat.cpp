@@ -1,4 +1,8 @@
 #include "AstSPICE/SpiceZpr.hpp"
+#include "AstUtil/Constants.h"
+#include "AstMath/Matrix.hpp"
+#include "AstMath/Quaternion.hpp"
+
 #include <cmath>
 #include <cstdio>
 
@@ -7,9 +11,9 @@ AST_USING_NAMESPACE
 int main()
 {
     // 示例：欧拉角转旋转矩阵
-    double angle1 = AST_PI / 6;  // 30度
-    double angle2 = AST_PI / 4;  // 45度
-    double angle3 = AST_PI / 3;  // 60度
+    double angle1 = kPI / 6;  // 30度
+    double angle2 = kPI / 4;  // 45度
+    double angle3 = kPI / 3;  // 60度
     
     Matrix3d rotation;
     eul2m(angle3, angle2, angle1, 3, 2, 1, rotation);

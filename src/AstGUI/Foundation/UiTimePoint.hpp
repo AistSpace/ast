@@ -44,7 +44,7 @@ signals:
 private:
     void updateTimePoint();
 private:
-    TimePoint timePoint_;
+    TimePoint timePoint_{};
 };
 
 /*! @} */

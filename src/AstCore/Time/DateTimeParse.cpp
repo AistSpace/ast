@@ -508,7 +508,7 @@ errc_t aDateTimeParse(StringView str, StringView format, DateTime& dttm, bool st
     if (!state.monthSet || !state.daySet)
     {
         if (state.dayofYearSet && state.yearSet) {
-            Date date;
+            Date date{};
             aYDToDate(state.year, state.dayOfYear, date);
             state.month = date.month();
             state.monthSet = true;

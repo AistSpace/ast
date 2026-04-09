@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstUtil/Target.hpp"
+#include "AstUtil/BuildTarget.hpp"
 
 AST_NAMESPACE_BEGIN
 

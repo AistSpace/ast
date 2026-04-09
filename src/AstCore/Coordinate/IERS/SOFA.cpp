@@ -461,7 +461,7 @@ ENutationMethod aNutationMethodGet()
 
 double aGMST_IAU1982(const TimePoint& tp)
 {
-    JulianDate jdUT1;
+    JulianDate jdUT1{};
     aTimePointToUT1(tp, jdUT1);
     return aGMST_UT1_IAU1982(jdUT1);
 }
@@ -534,7 +534,7 @@ double aEquationOfEquinoxes_IAU1994(double t)
 
 double aEarthRotationAngle_IAU2000(const TimePoint &tp)
 {
-    JulianDate jdUT1;
+    JulianDate jdUT1{};
     aTimePointToUT1(tp, jdUT1);
     return aEarthRotationAngleUT1_IAU2000(jdUT1);
 }

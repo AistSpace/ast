@@ -25,7 +25,7 @@ AST_NAMESPACE_BEGIN
 
 errc_t aTimeIntervalFormat(const TimeInterval &interval, std::string &strStart, std::string &strStop)
 {
-    TimePoint start, stop;
+    TimePoint start{}, stop{};
     start = interval.getStart();
     stop = interval.getStop();
     errc_t rc = aTimePointFormat(start, strStart);
@@ -35,7 +35,7 @@ errc_t aTimeIntervalFormat(const TimeInterval &interval, std::string &strStart, 
 
 errc_t aTimeIntervalParse(StringView strStart, StringView strStop, TimeInterval &interval)
 {
-    TimePoint start, stop;
+    TimePoint start{}, stop{};
     errc_t rc = aTimePointParse(strStart, start);
     if(rc != 0){
         return rc;

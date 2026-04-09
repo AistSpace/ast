@@ -3,7 +3,7 @@ target("AstWeather")
     add_files("**.cpp")
     add_files("**.c")
     add_deps("AstUtil", "AstMath")
-    add_headerfiles("**.hpp")
+    add_headerfiles("**.hpp", {prefixdir="AstWeather"})
     add_defines("AST_BUILD_LIB_WEATHER")
     if has_package("libf2c") then
         add_defines("AST_WITH_LIBF2C")
@@ -11,5 +11,6 @@ target("AstWeather")
     else
         add_defines("AST_NO_LIBF2C")
     end
+    add_rules("c++.unity_build", {batchsize=0}) -- 关闭unity build，防止宏冲突
 
 includes("*/xmake.lua")

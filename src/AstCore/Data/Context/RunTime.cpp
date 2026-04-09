@@ -279,11 +279,9 @@ fs::path aRelPathToAbs(const fs::path& relpath, const fs::path& basedir)
     return relpath;
 }
 
-errc_t aInitializeByConfig(DataContext* context, StringView configfile)
+errc_t aInitializeByConfig(DataContext* context)
 {
     auto config = context->config();
-    errc_t rc = config->load(configfile);
-    if(rc) return rc;
     InitalizeConfig initalizeConfig;
     fs::path libdir = aLibDir();
     initalizeConfig.dataDir_ = aRelPathToAbs(config->getConfig("DATA_DIR").toString(), libdir);
@@ -302,25 +300,35 @@ errc_t aInitializeByConfig(DataContext* context, StringView configfile)
 
 errc_t aInitializeByConfig(StringView configfile)
 {
-    auto context = aDataContext_EnsureCurrent();
-    return aInitializeByConfig(context, configfile);
+    auto context = aDataContext_GetCurrent();
+    errc_t rc = context->config()->load(configfile);
+    if(rc) return rc;
+    return aInitializeByConfig(context);
 }
 
-errc_t aInitialize(DataContext* context)
+errc_t aInitializeConfig(DataContext* context)
 {
-    // check for startup config file
     fs::path libdir = aLibDir();
     fs::path startupConfigFile = libdir / AST_PROJECT_NAME "_startup_file.txt";
     if(fs::is_regular_file(startupConfigFile))
     {
-        return aInitializeByConfig(context, startupConfigFile.string());
+        return context->config()->load(startupConfigFile.string());
     }else{
         fs::path exedir = aExeDir();
         startupConfigFile = exedir / AST_PROJECT_NAME "_startup_file.txt";  
         if(fs::is_regular_file(startupConfigFile))
         {
-            return aInitializeByConfig(context, startupConfigFile.string());
+            return context->config()->load(startupConfigFile.string());
         }
+    }
+    return eErrorNotFound;
+}
+
+errc_t aInitialize(DataContext* context)
+{
+    if(!aInitializeConfig(context))
+    {
+        return aInitializeByConfig(context);
     }
     return aInitializeByDefault(context);
 }
@@ -328,7 +336,7 @@ errc_t aInitialize(DataContext* context)
 
 errc_t aInitialize()
 {
-    auto context = aDataContext_EnsureCurrent();
+    auto context = aDataContext_GetCurrent();
     return aInitialize(context);
 }
 
@@ -356,8 +364,12 @@ std::string aDataDirGet()
 
 errc_t aDataDirGet(std::string &datadir)
 {
-    auto context = aDataContext_EnsureCurrent();
-    if (A_UNLIKELY(context->dataDir().empty())) 
+    auto context = t_currentDataContext;
+    if(!context)
+    {
+        return aDataDirGetDefault(datadir);
+    }
+    else if (A_UNLIKELY(context->dataDir().empty())) 
     {
         errc_t rc = aDataDirGetDefault(datadir);
         aDataDirSet(datadir);
@@ -373,42 +385,51 @@ errc_t aDataDirSet(StringView dirpath)
         aError("dirpath is not a directory.");
         return eErrorInvalidParam;
     }
-    auto context = aDataContext_EnsureCurrent();
+    auto context = aDataContext_GetCurrent();
     context->setDataDir(dirpath);
+    if(!context->isInitialized())
+    {
+        aWarning("data context is not initialized.");
+    }
     return eNoError;
 }
 
 
-DataContext* aDataContext_GetCurrent()
-{
-    assert(t_currentDataContext && "Current DataContext is null!");
-    return t_currentDataContext;
-}
+
 
 DataContext* aDataContext_GetDefault()
 {
-    return g_defaultDataContext.get();
-}
-
-
-DataContext* aDataContext_EnsureDefault()
-{
-    if (!g_defaultDataContext) {
+    if (A_UNLIKELY(!g_defaultDataContext)) {
         g_defaultDataContext.reset(aDataContext_New());
     }
     return g_defaultDataContext.get();
+}
+
+DataContext* aDataContext_GetCurrent()
+{
+    if (A_UNLIKELY(!t_currentDataContext)) {
+        auto context = aDataContext_GetDefault();
+        aDataContext_SetCurrent(context);
+    }
+    return t_currentDataContext;
 }
 
 DataContext* aDataContext_EnsureCurrent()
 {
     if (A_UNLIKELY(!t_currentDataContext))
     {
-        aDataContext_SetCurrent(aDataContext_EnsureDefault());
+        auto context = aDataContext_GetDefault();
+        aDataContext_SetCurrent(context);
+        if(!context->isInitialized())
+        {
+            aInitialize(context);
+        }
     }
     return t_currentDataContext;
 }
 
-void aDataContext_SetCurrent(DataContext* context)
+
+void aDataContext_SetCurrent(DataContext *context)
 {
     t_currentDataContext = context;
 }
@@ -433,7 +454,10 @@ IAUXYSPrecomputed* aDataContext_GetIAUXYSPrecomputed()
 
 StartupConfig *aDataContext_GetConfig()
 {
-    auto context = aDataContext_EnsureCurrent();
+    auto context = aDataContext_GetCurrent();
+    if(context->config()->empty()){
+        aInitializeConfig(context);
+    }
     return context->config();
 }
 
@@ -567,7 +591,7 @@ void aTheoreticalXYS_IERS2010(double t, array3d& xys)
 {
     auto globalCxt = aGlobalContext_Get();
     // 根据IERS 2010规范，计算行星基础参数
-    FundamentalArguments fundargs;
+    FundamentalArguments fundargs{};
     aFundamentalArguments_IERS2010(t, fundargs);
     // 根据IERS 2010规范，计算xys值
     globalCxt->iauXYS()->eval(t, fundargs, xys);

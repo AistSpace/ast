@@ -1,4 +1,7 @@
 #include "AstSPICE/SpiceZpr.hpp"
+#include "AstMath/Vector.hpp"
+#include "AstMath/Matrix.hpp"
+#include "AstUtil/Constants.h"
 #include <cmath>
 #include <cstdio>
 
@@ -8,7 +11,7 @@ int main()
 {
     // 绕Z轴旋转45度
     Vector3d axis = {0, 0, 1};
-    double angle = AST_PI / 4;  // 45度
+    double angle = kPI / 4;  // 45度
     Matrix3d rotation;
     
     axisar(axis, angle, rotation);

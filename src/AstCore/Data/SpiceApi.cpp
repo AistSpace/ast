@@ -23,6 +23,7 @@
 #include "AstUtil/LibraryLoader.hpp"
 #include "AstCore/RunTimeConfig.hpp"
 #include "AstUtil/Logger.hpp"
+#include "AstUtil/LocaleGuard.hpp"
 
 
 AST_NAMESPACE_BEGIN
@@ -184,7 +185,7 @@ errc_t SpiceApi::unload()
 
 const char* kSpiceUnloadError = "spice library not loaded, call SpiceApi::load first";
 
-errc_t SpiceApi::furnsh(const char* libpath)
+errc_t SpiceApi::furnsh(const char* file)
 {
     using functype = decltype(&spiceproto::furnsh_c);
     functype furnsh_c = reinterpret_cast<functype>(functions_[ifurnsh]);
@@ -194,7 +195,8 @@ errc_t SpiceApi::furnsh(const char* libpath)
         return eErrorNullPtr;
     }
     std::lock_guard<std::mutex> lock(mutex_);
-    furnsh_c(libpath);
+    LocaleGuard locale_guard(".UTF-8", LC_CTYPE);
+    furnsh_c(file);
     return checkerror();
 }
 
@@ -212,7 +214,7 @@ errc_t SpiceApi::spkgeo(int targ, double et, const char * ref, int obs, double s
     return checkerror();
 }
 
-errc_t SpiceApi::spklef(const char *libpath, int *handle)
+errc_t SpiceApi::spklef(const char *filename, int *handle)
 {
     using functype = decltype(&spiceproto::spklef_c);
     functype spklef_c = reinterpret_cast<functype>(functions_[ispklef]);
@@ -223,7 +225,8 @@ errc_t SpiceApi::spklef(const char *libpath, int *handle)
     }
     spiceproto::SpiceInt h=0;
     std::lock_guard<std::mutex> lock(mutex_);
-    spklef_c(libpath, &h);
+    LocaleGuard locale_guard(".UTF-8", LC_CTYPE);
+    spklef_c(filename, &h);
     if(h >= (spiceproto::SpiceInt)spk_handles_.size())
     {
         spk_handles_.resize(h + 1);

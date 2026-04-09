@@ -54,7 +54,7 @@ errc_t aTestWithEmptyEphemeris(Mover& mover)
         ast_printf("failed to make simple ephemeris\n");
         return rc;
     }
-    TimeInterval interval;
+    TimeInterval interval{};
     rc = ephem_simple_generated->getInterval(interval);
     if(rc != eNoError)
     {
@@ -115,7 +115,7 @@ errc_t aTestFromSTKFile(StringView filepath)
         return eErrorParse;
     }
     
-    TimeInterval interval;
+    TimeInterval interval{};
     rc = ephem_readed->getInterval(interval);
     if(rc != eNoError)
     {

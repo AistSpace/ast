@@ -39,12 +39,12 @@ errc_t MotionHPOP::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
 errc_t MotionHPOP::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
 {
     errc_t rc;
-    PropagationParams params;
+    PropagationParams params{};
     rc = this->getPropagationParams(params);   AST_CHECK_ERRCODE(rc, "failed to get propagation params");
     auto propFrame = params.propagationFrame_;
     const TimePoint& epoch = params.epoch_;
     const CartState& cartState = params.stateInPropagationFrame_;
-    TimeInterval interval;
+    TimeInterval interval{};
     rc = this->getInterval(interval);
     const TimePoint& startTime = interval.getStart();
     const TimePoint stopTime = interval.getStop();

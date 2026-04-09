@@ -105,7 +105,8 @@ TEST_F(FrameTransformTest, TODToGTOD)
 {
     // aInitialize();
     // GTEST_SKIP() << "TODToGTOD is not implemented";
-    aUninitialize(); // 不依赖EOP数据进行计算
+    // aUninitialize(); 
+    aDataContext_GetEOP()->unload(); // 不依赖EOP数据进行计算
     {
         TimePoint tp = TimePoint::FromUTC(2026, 1, 9, 0, 0, 0);
         Vector3d vecTOD{1000_km, 2000_km, 3000_km};
@@ -133,7 +134,8 @@ TEST_F(FrameTransformTest, TODToGTOD)
 
 TEST_F(FrameTransformTest, TODToGTODWithVelocity)
 {
-    aUninitialize(); // 不依赖EOP数据进行计算
+    // aUninitialize(); // 不依赖EOP数据进行计算
+    aDataContext_GetEOP()->unload(); // 不依赖EOP数据进行计算
     {
         TimePoint tp = TimePoint::FromUTC(2026, 1, 9, 0, 0, 0);
         Vector3d vecTOD{1000_km, 2000_km, 3000_km};

@@ -829,7 +829,7 @@ void latrec(double radius, double lon, double lat, Vector3d &rectan)
 void m2eul(const Matrix3d &r, int axis3, int axis2, int axis1, double &angle3, double &angle2, double &angle1)
 {
     int seq = axis1 * 100 + axis2 * 10 + axis3;
-    Euler euler;
+    Euler euler{};
     errc_t rc = aMatrixToEuler(r, seq, euler);
     A_UNUSED(rc);
     angle3 = euler.angle3();
@@ -1323,7 +1323,7 @@ errc_t spkpos(
 {
     if ( targ == nullptr || obs == nullptr )
         return eErrorNullInput;
-    CartState staObs;
+    CartState staObs{};
     errc_t rc  = obs->getPosVelICRF(et, staObs.pos(), staObs.vel());
     if ( rc != 0 )
         return rc;
@@ -1628,7 +1628,7 @@ errc_t tipbod(
 
 errc_t utc2et(StringView utcstr, double &et)
 {
-    DateTime dttm;
+    DateTime dttm{};
     errc_t rc = aDateTimeParseAny(utcstr, dttm);
     if ( rc != 0 )
         return rc;

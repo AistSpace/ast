@@ -1,6 +1,6 @@
+#include "AstUtil/Object.hpp"
 #include "AstUtil/WeakPtr.hpp"
 #include "AstUtil/SharedPtr.hpp"
-#include "AstUtil/Object.hpp"
 
 class MyObject: public _AST Object
 {

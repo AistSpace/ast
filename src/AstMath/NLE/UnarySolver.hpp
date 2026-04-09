@@ -115,7 +115,7 @@ protected:
     double relTol_;         ///< 相对误差容限
     double absTol_;         ///< 绝对误差容限
     int maxIter_;           ///< 最大迭代次数
-    SolverStats stats_;     ///< 求解器统计信息
+    SolverStats stats_{};   ///< 求解器统计信息
 };
 
 using UnaryScalarSolver = UnarySolver;

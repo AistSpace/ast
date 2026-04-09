@@ -31,6 +31,11 @@ errc_t BodyEphemerisSPK::openSPKFile(StringView spkfile)
     return spk_.open(spkfile);
 }
 
+const std::string& BodyEphemerisSPK::getFilePath() const
+{
+    return spk_.getFilePath();
+}
+
 int BodyEphemerisSPK::getSpiceIndex() const
 {
     if(body_){

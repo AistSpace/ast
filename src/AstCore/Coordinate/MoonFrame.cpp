@@ -50,7 +50,7 @@ errc_t aEarthICRFToMoonICRF(const TimePoint &tp, const Vector3d &posInEarthICRF,
 
 errc_t aICRFToMoonPrincipalAxesTransform(const TimePoint &tp, Rotation &rotation)
 {
-    Euler ang;
+    Euler ang{};
     errc_t rc = aJplDeGetLibration(tp, ang);
     if(rc) return rc;
     // static_assert(sizeof(Euler) == sizeof(Vector3d), "Euler and Vector3d must have the same size");

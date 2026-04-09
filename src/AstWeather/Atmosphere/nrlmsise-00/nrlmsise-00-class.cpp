@@ -909,7 +909,7 @@ void NRLMSISE00_FUNC gtd7(struct nrlmsise_input *input, struct nrlmsise_flags *f
 	double dmc;
 	double dmr;
 	double dz28;
-	struct nrlmsise_output soutput;
+	struct nrlmsise_output soutput{};
 	int i;
 
 	tselec(flags);

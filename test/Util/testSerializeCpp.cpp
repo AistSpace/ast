@@ -31,6 +31,8 @@
 #include "AstCore/StateKeplerian.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/CelestialBody.hpp"
+#include "AstCore/BodyEphemerisDE.hpp"
+#include "AstCore/BodyEphemerisSPK.hpp"
 
 AST_USING_NAMESPACE
 
@@ -80,6 +82,32 @@ TEST_F(SerializeCppTest, StateKeplerian) {
     state->setArgPeri(30_deg);
     state->setTrueAnomaly(30_deg);
     errc_t rc = aTestSerializeCpp(state);
+    EXPECT_EQ(rc, eNoError);
+}
+
+TEST_F(SerializeCppTest, BodyEphemerisDE) {
+    if(aIsCI())
+        GTEST_SKIP();
+
+    auto earth = aGetBody("Earth");
+    BodyEphemerisDE* ephemeris = new BodyEphemerisDE();
+    ephemeris->setJplIndex(JplDe::eJupiter);
+
+    errc_t rc = aTestSerializeCpp(ephemeris);
+    EXPECT_EQ(rc, eNoError);
+}
+
+TEST_F(SerializeCppTest, BodyEphemerisSPK) {
+    if(aIsCI())
+        GTEST_SKIP();
+
+    auto earth = aGetBody("Earth");
+    BodyEphemerisSPK* ephemeris = new BodyEphemerisSPK();
+    ephemeris->setSpiceIndex(3);
+    errc_t rc = ephemeris->openSPKFile(aTestGetConfigValue("SPK_FILE"));
+    EXPECT_EQ(rc, eNoError);
+
+    rc = aTestSerializeCpp(ephemeris);
     EXPECT_EQ(rc, eNoError);
 }
 

@@ -75,7 +75,7 @@ void aTimePointToUT1(const TimePoint &time, JulianDate &jdUT1)
 
 void aTimePointToUTC(const TimePoint &time, DateTime &dttmUTC)
 {
-    JulianDate jdUTC;
+    JulianDate jdUTC{};
     aTimePointToUTC(time, jdUTC);
     aJDToDateTime(jdUTC, dttmUTC);
     dttmUTC.normalizeUTC();  // 在这里确保UTC时间是标准化的
@@ -83,7 +83,7 @@ void aTimePointToUTC(const TimePoint &time, DateTime &dttmUTC)
 
 errc_t aTimePointFormat(const TimePoint &time, std::string &str, int precision)
 {
-    DateTime utc;
+    DateTime utc{};
     aTimePointToUTC(time, utc);
     errc_t err = aDateTimeFormatDefault(utc, str, precision);
     str += " UTC";
@@ -93,7 +93,7 @@ errc_t aTimePointFormat(const TimePoint &time, std::string &str, int precision)
 errc_t aTimePointParse(StringView str, TimePoint &time)
 {
     // @todo: 支持解析不同的时间系统
-    DateTime dttmUTC;
+    DateTime dttmUTC{};
     errc_t rc = aDateTimeParseAny(str, dttmUTC);
     time = TimePoint::FromUTC(dttmUTC);
     return rc;
@@ -112,22 +112,22 @@ TimePoint TimePoint::CurrentTime()
 
 TimePoint TimePoint::TodayUTC()
 {
-    DateTime t;
+    DateTime t{};
     aTodayDateTimeUTC(t);
     return FromUTC(t);
 }
 
 TimePoint TimePoint::TomorrowUTC()
 {
-    DateTime t;
+    DateTime t{};
     aTomorrowDateTimeUTC(t);
     return FromUTC(t);
 }
 
 TimePoint TimePoint::FromUTC(const DateTime &dttmUTC)
 {
-    JulianDate jdUTC;
-    JulianDate jdTAI;
+    JulianDate jdUTC{};
+    JulianDate jdTAI{};
     aDateTimeToJD(dttmUTC, jdUTC);
     aUTCToTAI(jdUTC, jdTAI);
     return TimePoint::FromTAI(jdTAI);

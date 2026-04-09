@@ -89,7 +89,7 @@ errc_t MotionTwoBodySax::getMotion(ScopedPtr<MotionProfile>& motion)
     // 这里可以通过类型来判断是否需要新建MotionProfile
     auto motionTwoBody = MotionTwoBody::New();
     auto body = vehiclePathData_.centralBody_; AST_CHECK_NULLPTR(body);
-    ModOrbElem modOrbElem;
+    ModOrbElem modOrbElem{};
     modOrbElem.rp() = radiusOfPerigee_;
     modOrbElem.e() = eccentricity_;
     modOrbElem.i() = inclination_;

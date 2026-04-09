@@ -1,5 +1,5 @@
 ///
-/// @file      Target.cpp
+/// @file      BuildTarget.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,25 +18,25 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AstUtil/Target.hpp"
+#include "AstUtil/BuildTarget.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/Logger.hpp"
-#include "Target.hpp"
+#include "BuildTarget.hpp"
 
 AST_NAMESPACE_BEGIN
 
-Target::Target(StringView name)
+BuildTarget::BuildTarget(StringView name)
 {
     setName(name);
 }
 
-Target& Target::setName(StringView name)
+BuildTarget& BuildTarget::setName(StringView name)
 {
     name_ = std::string(name);
     return *this;
 }
 
-Target& Target::setKind(StringView kind)
+BuildTarget& BuildTarget::setKind(StringView kind)
 {
     if(kind == "shared")
     {
@@ -53,48 +53,48 @@ Target& Target::setKind(StringView kind)
     return *this;
 }
 
-Target &Target::setKind(EKind kind)
+BuildTarget &BuildTarget::setKind(EKind kind)
 {
     kind_ = kind;
     return *this;
 }
 
-Target& Target::addFiles(const std::vector<std::string> &files)
+BuildTarget& BuildTarget::addFiles(const std::vector<std::string> &files)
 {
     files_.insert(files_.end(), files.begin(), files.end());
     return *this;
 }
 
-Target& Target::addIncludeDirs(const std::vector<std::string> &dirs)
+BuildTarget& BuildTarget::addIncludeDirs(const std::vector<std::string> &dirs)
 {
     includeDirs_.insert(includeDirs_.end(), dirs.begin(), dirs.end());
     return *this;
 }
 
-Target& Target::addLinkDirs(const std::vector<std::string> &dirs)
+BuildTarget& BuildTarget::addLinkDirs(const std::vector<std::string> &dirs)
 {
     linkDirs_.insert(linkDirs_.end(), dirs.begin(), dirs.end());
     return *this;
 }
 
-Target& Target::addLinks(const std::vector<std::string> &libs)
+BuildTarget& BuildTarget::addLinks(const std::vector<std::string> &libs)
 {
     links_.insert(links_.end(), libs.begin(), libs.end());
     return *this;
 }
 
-Target& Target::addDefines(const std::vector<std::string> &defines)
+BuildTarget& BuildTarget::addDefines(const std::vector<std::string> &defines)
 {
     defines_.insert(defines_.end(), defines.begin(), defines.end());
     return *this;
 }
 
 
-errc_t Target::build()
+errc_t BuildTarget::build()
 {
     // 检查目标名称
     if (name_.empty()) {
-        aError("Target name is empty");
+        aError("BuildTarget name is empty");
         return -1;
     }
     
@@ -182,17 +182,17 @@ errc_t Target::build()
     return 0;
 }
 
-errc_t Target::run()
+errc_t BuildTarget::run()
 {
     // 检查目标类型是否为可执行文件
     if (kind_ != EKind::eBinary) {
-        aError("Only binary targets can be run");
+        aError("Only binary BuildTargets can be run");
         return -1;
     }
     
     // 检查目标名称
     if (name_.empty()) {
-        aError("Target name is empty");
+        aError("BuildTarget name is empty");
         return -1;
     }
     

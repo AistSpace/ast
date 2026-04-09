@@ -245,11 +245,11 @@ errc_t DAFParser::runTest()
 {
     if(!file_)
         return -1;
-    DAF_FileRecord fileRec;
-    DAF_CommentArea commentRec1;
-    DAF_CommentArea commentRec2;
-    DAF_SummaryRecords summaryRec1;
-    DAF_NameRecords nameRec1;
+    DAF_FileRecord fileRec{};
+    DAF_CommentArea commentRec1{};
+    DAF_CommentArea commentRec2{};
+    DAF_SummaryRecords summaryRec1{};
+    DAF_NameRecords nameRec1{};
     size_t size;
     size = fread(&fileRec, sizeof(DAF_FileRecord), 1, file_);
     size = fread(&commentRec1, sizeof(DAF_CommentArea), 1, file_);

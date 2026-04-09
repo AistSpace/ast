@@ -29,7 +29,7 @@ int main()
     TimePoint epoch1 = TimePoint::FromUTC(2026, 1, 1, 0, 0, 0);
     
     // 创建改进轨道根数 (太阳同步轨道)
-    ModOrbElem modOrbElem1;
+    ModOrbElem modOrbElem1{};
     modOrbElem1.rp_ = 7178.137_km;               // 近拱点半径 (km)
     modOrbElem1.e_ = 0.001;                      // 偏心率
     modOrbElem1.i_ = 98.0_deg;                   // 轨道倾角

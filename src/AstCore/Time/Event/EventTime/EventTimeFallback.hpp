@@ -36,10 +36,15 @@ class AST_CORE_API EventTimeFallback : public EventTime
 {
 public:
     static EventTimeFallback* New(EventTime* primary, EventTime* fallback);
+    static EventTimeFallback* New(EventTime* primary, const TimePoint& fallback);
     static SharedPtr<EventTimeFallback> MakeShared(EventTime* primary, EventTime* fallback);
+    static SharedPtr<EventTimeFallback> MakeShared(EventTime* primary, const TimePoint& fallback);
+
 
     EventTimeFallback() = default;
     EventTimeFallback(EventTime* primary, EventTime* fallback);
+    EventTimeFallback(EventTime* primary, const TimePoint& fallback);
+
     ~EventTimeFallback() override = default;
 
     errc_t getTime(TimePoint& tp) const override;

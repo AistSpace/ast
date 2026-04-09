@@ -36,6 +36,7 @@ BKVSaxPrint::BKVSaxPrint()
 }
 
 BKVSaxPrint::BKVSaxPrint(StringView filepath)
+    : BKVSaxPrint()
 {
     file_ = ast_fopen(filepath.data(), "w");
     if (file_ == nullptr)

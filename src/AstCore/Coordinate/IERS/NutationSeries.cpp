@@ -222,7 +222,7 @@ errc_t NutationSeries::loadSTK(BKVParser &parser)
             {
                 for(int i=0; i<num_points; i++){
                     StringView line = parser.getLineSkipComment();
-                    NutationTerm term;
+                    NutationTerm term{};
                     int index;
                     errc_t err = parseTerm(line, index, term);
                     if(err != eNoError){
@@ -269,7 +269,7 @@ errc_t NutationSeries::loadIERS(BKVParser &parser)
             continue;
         }
         int index;
-        NutationTerm term;
+        NutationTerm term{};
         errc_t err = parseTerm(line, index, term);
         if(err == eNoError){
             terms.push_back(term);

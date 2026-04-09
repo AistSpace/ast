@@ -209,43 +209,56 @@ errc_t aEulerToMatrix(const Euler& euler, int seq, Matrix3d& mtx)
 		case 123:
 			aEuler123ToMatrix(euler, mtx);
 			return 0;
+			break;
 		case 132:
 			aEuler132ToMatrix(euler, mtx);
 			return 0;
+			break;
 		case 213:
 			aEuler213ToMatrix(euler, mtx);
 			return 0;
+			break;
 		case 231:
 			aEuler231ToMatrix(euler, mtx);
 			return 0;
+			break;
 		case 312:
 			aEuler312ToMatrix(euler, mtx);
 			return 0;
+			break;
 		case 321:
 			aEuler321ToMatrix(euler, mtx);
 			return 0;
+			break;
 			// ABA类型
 		case 121:
 			aEuler121ToMatrix(euler, mtx);
 			return 0;
+			break;
 		case 131:
 			aEuler131ToMatrix(euler, mtx);
 			return 0;
+			break;
 		case 212:
 			aEuler212ToMatrix(euler, mtx);
 			return 0;
+			break;
 		case 232:
 			aEuler232ToMatrix(euler, mtx);
 			return 0;
+			break;
 		case 313:
 			aEuler313ToMatrix(euler, mtx);
 			return 0;
+			break;
 		case 323:
 			aEuler323ToMatrix(euler, mtx);
 			return 0;
+			break;
+		default:
+			aError("invalid rotation sequence: %d", seq);
+			return eErrorInvalidParam;
 	}
-	aError("invalid rotation sequence: %d", seq);
-	return eErrorInvalidParam;
 }
 
 errc_t _aEulerToMatrix(const Euler& euler, int seq, Matrix3d& mtx)
@@ -735,14 +748,14 @@ void aAngleAxisToQuat(const AngleAxis &aa, Quaternion &quat)
 
 void aAngleAxisToMatrix(const AngleAxis &aa, Matrix3d &mtx)
 {
-	Quaternion quat;
+	Quaternion quat{};
 	aAngleAxisToQuat(aa, quat);
 	aQuatToMatrix(quat, mtx);
 }
 
 void aMatrixToAngleAxis(const Matrix3d &mtx, AngleAxis &aa)
 {
-	Quaternion quat;
+	Quaternion quat{};
 	aMatrixToQuat(mtx, quat);
 	aQuatToAngleAxis(quat, aa);
 }

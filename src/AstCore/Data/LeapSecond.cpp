@@ -232,7 +232,7 @@ errc_t LeapSecond::loadSpice(FILE* file)
             std::vector<Entry> data;
             for(size_t i = 0; i < count; i++){
                 Entry entry{};
-                DateTime dttm;
+                DateTime dttm{};
                 StringView datesv = values[i * 2 + 1].value();
                 ValueView leapsec = values[i * 2];
                 errc_t rc = aDateTimeParse(datesv, "@%Y-%h-%d", dttm);

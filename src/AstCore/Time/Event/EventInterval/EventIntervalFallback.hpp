@@ -36,10 +36,12 @@ class AST_CORE_API EventIntervalFallback : public EventInterval
 {
 public:
     static EventIntervalFallback* New(EventInterval* primary, EventInterval* fallback);
+    static EventIntervalFallback* New(EventInterval* primary, const TimeInterval& fallback);
     static SharedPtr<EventIntervalFallback> MakeShared(EventInterval* primary, EventInterval* fallback);
 
     EventIntervalFallback() = default;
     EventIntervalFallback(EventInterval* primary, EventInterval* fallback);
+    EventIntervalFallback(EventInterval* primary, const TimeInterval& fallback);
     ~EventIntervalFallback() override = default;
 
     errc_t getInterval(TimeInterval& interval) const override;

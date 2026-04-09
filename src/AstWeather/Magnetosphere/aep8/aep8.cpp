@@ -52,7 +52,7 @@ public:
     ~AEP8Data();
     errc_t load(StringView filepath);
 public:
-    std::array<long, 8> header_;
+    std::array<long, 8> header_{};
     long* data_{nullptr};
 };
 

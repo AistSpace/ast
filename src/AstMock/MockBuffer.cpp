@@ -61,6 +61,7 @@ void aMockBufferStack(unsigned int size)
 void aMockBufferAlloca(unsigned int size)
 {
     double y_interp[3] = {0.0};
+    // #pragma warning(suppress: 6255)
     double* workArray = (double*)alloca(size * sizeof(double));
     aLagrangeInterpolate(x, (double*)y, size, 3, 3.5, (double*)y_interp, workArray);
 }

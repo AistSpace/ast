@@ -94,6 +94,9 @@ public:
 	/// @brief 配置
 	const StartupConfig* config() const {return &m_config;}
 	StartupConfig* config() {return &m_config;}
+
+	/// @brief 是否初始化
+	bool isInitialized() const {return !m_dataDir.empty();}
 protected:
 	SolarSystem  			m_solarSystem;			///< 太阳系数据
 	EOP		    			m_eop;					///< 地球指向数据

@@ -79,7 +79,7 @@ protected:
     errc_t initBlocks(const HPOPForceModel& forceModel);
 protected:
     BlockDynamicSystem      dynamicSystem_; ///< 动力学系统
-    TimePoint               epoch_;         ///< 仿真的参考历元
+    TimePoint               epoch_{};         ///< 仿真的参考历元
     HPOPForceModel          forceModel_;    ///< 力模型配置
     HFrame                  propFrame_;     ///< 预报坐标系
 };

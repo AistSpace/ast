@@ -285,7 +285,7 @@ static void aPoleMotionMatrix_3(const PoleMotionSXY& sxy, Matrix3d &matrix)
 
 void aGTODToECFMatrix(const TimePoint &tp, Matrix3d &matrix)
 {
-    PoleMotionSXY sxy;
+    PoleMotionSXY sxy{};
     sxy.s = poleMotionS(tp);
     aPoleMotion(tp, sxy.x, sxy.y);
     // printf("sp = %.20g, x = %.20g, y = %.20g\n", sxy.s, sxy.x, sxy.y);
@@ -459,6 +459,88 @@ void aTIRFToECF(const TimePoint & tp, const Vector3d & vecTIRF, Vector3d & vecEC
     Rotation rotation;
     aTIRFToECFTransform(tp, rotation);
     vecECF = rotation.transformVector(vecTIRF);
+}
+
+// ICRF -> J2000 转换
+
+void aICRFToJ2000Transform(const TimePoint& tp, Rotation& rotation)
+{
+    Rotation temp1, temp2;
+    aICRFToECFTransform(tp, temp1);
+    aECFToJ2000Transform(tp, temp2);
+    rotation = temp1.composed(temp2);
+}
+
+void aICRFToJ2000Transform(const TimePoint& tp, KinematicRotation& rotation)
+{
+    KinematicRotation temp1, temp2;
+    aICRFToECFTransform(tp, temp1);
+    aECFToJ2000Transform(tp, temp2);
+    rotation = temp1.composed(temp2);
+}
+
+void aICRFToJ2000Matrix(const TimePoint& tp, Matrix3d& matrix)
+{
+    aICRFToJ2000Transform(tp, Rotation::CastFrom(matrix));
+}
+
+void aICRFToJ2000(const TimePoint& tp, const Vector3d& vecICRF, Vector3d& vecJ2000)
+{
+    Rotation rotation;
+    aICRFToJ2000Transform(tp, rotation);
+    vecJ2000 = rotation.transformVector(vecICRF);
+}
+
+void aICRFToJ2000(
+    const TimePoint& tp, 
+    const Vector3d& vecICRF,
+    const Vector3d& velICRF,
+    Vector3d& vecJ2000,
+    Vector3d& velJ2000
+){
+    KinematicRotation rotation;
+    aICRFToJ2000Transform(tp, rotation);
+    rotation.transformVectorVelocity(vecICRF, velICRF, vecJ2000, velJ2000);
+}
+
+
+// J2000 -> ICRF 转换
+
+void aJ2000ToICRFTransform(const TimePoint& tp, Rotation& rotation)
+{
+    aICRFToJ2000Transform(tp, rotation);
+    rotation = rotation.inverse();
+}
+
+
+void aJ2000ToICRFTransform(const TimePoint& tp, KinematicRotation& rotation)
+{
+    aICRFToJ2000Transform(tp, rotation);
+    rotation = rotation.inverse();
+}
+
+void aJ2000ToICRFMatrix(const TimePoint& tp, Matrix3d& matrix)
+{
+    aJ2000ToICRFTransform(tp, Rotation::CastFrom(matrix));
+}
+
+void aJ2000ToICRF(const TimePoint& tp, const Vector3d& vecJ2000, Vector3d& vecICRF)
+{
+    Rotation rotation;
+    aJ2000ToICRFTransform(tp, rotation);
+    vecICRF = rotation.transformVector(vecJ2000);
+}
+
+void aJ2000ToICRF(
+    const TimePoint& tp, 
+    const Vector3d& vecJ2000,
+    const Vector3d& velJ2000,
+    Vector3d& vecICRF,
+    Vector3d& velICRF
+){
+    KinematicRotation rotation;
+    aJ2000ToICRFTransform(tp, rotation);
+    rotation.transformVectorVelocity(vecJ2000, velJ2000, vecICRF, velICRF);
 }
 
 AST_NAMESPACE_END

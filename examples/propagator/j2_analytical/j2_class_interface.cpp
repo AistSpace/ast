@@ -27,7 +27,7 @@ int main()
     // 示例1: 使用轨道根数构造
     std::cout << "\n示例1: 使用轨道根数构造传播器" << std::endl;
     {
-        ModOrbElem orb_elem;
+        ModOrbElem orb_elem{};
         orb_elem.rp_ = 7000_km;
         orb_elem.e_ = 0.01;
         orb_elem.i_ = 45.0 * kDegToRad;
