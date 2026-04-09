@@ -48,6 +48,9 @@ AST_CORE_CAPI errc_t aInitialize();
 /// @brief 通过配置文件初始化
 AST_CORE_CAPI errc_t aInitializeByConfig(StringView configfile);
 
+/// @brief 初始化配置
+AST_CORE_CAPI errc_t aInitializeConfig(DataContext* context);
+
 /// @brief 反初始化
 AST_CORE_CAPI errc_t aUninitialize();
 

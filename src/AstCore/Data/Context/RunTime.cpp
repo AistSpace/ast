@@ -279,11 +279,9 @@ fs::path aRelPathToAbs(const fs::path& relpath, const fs::path& basedir)
     return relpath;
 }
 
-errc_t aInitializeByConfig(DataContext* context, StringView configfile)
+errc_t aInitializeByConfig(DataContext* context)
 {
     auto config = context->config();
-    errc_t rc = config->load(configfile);
-    if(rc) return rc;
     InitalizeConfig initalizeConfig;
     fs::path libdir = aLibDir();
     initalizeConfig.dataDir_ = aRelPathToAbs(config->getConfig("DATA_DIR").toString(), libdir);
@@ -303,24 +301,34 @@ errc_t aInitializeByConfig(DataContext* context, StringView configfile)
 errc_t aInitializeByConfig(StringView configfile)
 {
     auto context = aDataContext_GetCurrent();
-    return aInitializeByConfig(context, configfile);
+    errc_t rc = context->config()->load(configfile);
+    if(rc) return rc;
+    return aInitializeByConfig(context);
 }
 
-errc_t aInitialize(DataContext* context)
+errc_t aInitializeConfig(DataContext* context)
 {
-    // check for startup config file
     fs::path libdir = aLibDir();
     fs::path startupConfigFile = libdir / AST_PROJECT_NAME "_startup_file.txt";
     if(fs::is_regular_file(startupConfigFile))
     {
-        return aInitializeByConfig(context, startupConfigFile.string());
+        return context->config()->load(startupConfigFile.string());
     }else{
         fs::path exedir = aExeDir();
         startupConfigFile = exedir / AST_PROJECT_NAME "_startup_file.txt";  
         if(fs::is_regular_file(startupConfigFile))
         {
-            return aInitializeByConfig(context, startupConfigFile.string());
+            return context->config()->load(startupConfigFile.string());
         }
+    }
+    return eErrorNotFound;
+}
+
+errc_t aInitialize(DataContext* context)
+{
+    if(!aInitializeConfig(context))
+    {
+        return aInitializeByConfig(context);
     }
     return aInitializeByDefault(context);
 }
@@ -446,7 +454,10 @@ IAUXYSPrecomputed* aDataContext_GetIAUXYSPrecomputed()
 
 StartupConfig *aDataContext_GetConfig()
 {
-    auto context = aDataContext_EnsureCurrent();
+    auto context = aDataContext_GetCurrent();
+    if(context->config()->empty()){
+        aInitializeConfig(context);
+    }
     return context->config();
 }
 

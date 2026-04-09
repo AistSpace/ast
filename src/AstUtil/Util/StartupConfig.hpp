@@ -45,6 +45,10 @@ public:
     /// @return 
     errc_t load(StringView filepath);
 
+    /// @brief  检查配置是否为空
+    /// @return 
+    bool empty() const{return configMap_.empty();}
+
     /// @brief  获取配置
     /// @param key 
     /// @return 
