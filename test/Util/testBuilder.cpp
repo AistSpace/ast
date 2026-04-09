@@ -18,7 +18,7 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AstUtil/Target.hpp"
+#include "AstUtil/BuildTarget.hpp"
 #include "AstTest/Test.h"
 
 
@@ -41,7 +41,7 @@ TEST(BuilderTest, Build)
     )";
     fwrite(cppcode.c_str(), 1, strlen(cppcode.c_str()), f);
     fclose(f);
-    Target target("test-builder");
+    BuildTarget target("test-builder");
     errc_t rc = target
         .setKind("binary")
         .addFiles({filepath})
