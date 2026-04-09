@@ -17,6 +17,7 @@
   - **AxesBodyFixed**：天体固连轴系，随天体一同旋转
   - **AxesBodyTOD**：真赤道系轴系
   - **AxesBodyMOD**：平赤道系轴系
+  - **AxesGTOD**：地心天球参考系轴系
 - **AxesFrozen**：冻结轴系，固定在某一时刻的方向
 - **AxesFrozenAtEventTime**：事件时刻冻结轴系
 
@@ -51,7 +52,8 @@ Axes (抽象基类)
 │   ├── AxesBodyInertial (天体惯性轴系)
 │   ├── AxesBodyFixed (天体固连轴系)
 │   ├── AxesBodyTOD (真赤道系轴系)
-│   └── AxesBodyMOD (平赤道系轴系)
+│   ├── AxesBodyMOD (平赤道系轴系)
+│   └── AxesGTOD (地心天球参考系轴系)
 ├── AxesFrozen (冻结轴系)
 └── AxesFrozenAtEventTime (事件时刻冻结轴系)
 ```
@@ -95,6 +97,10 @@ Axes (抽象基类)
 ### 平赤道系轴系
 
 @[code](/src/AstCore/Coordinate/Axes/AxesBodyMOD.hpp)
+
+### 地心天球参考系轴系
+
+@[code](/src/AstCore/Coordinate/Axes/AxesGTOD.hpp)
 
 ### 冻结轴系
 

@@ -12,7 +12,7 @@
 
 坐标系采用树形层次结构组织：
 - **FrameRoot**：根坐标系，是所有坐标系的根节点
-- **FrameICRF**：国际天球参考系坐标系
+- **FrameICRF**：国际天球参考系
 - **FrameAssembly**：组装坐标系，由任意轴系和原点组合而成
 - **FrameWithEpoch**：带轴系历元的坐标系，支持冻结特定时刻的轴系方向
 
@@ -57,7 +57,13 @@ Frame (抽象基类)
 
 ## 主要坐标系类型
 
+> **说明**：以下分类中，`Frame*` 为库提供的具体实现类，其他为理论参考系概念。
+
 ### 1. 惯性坐标系
+
+- **ICRF (International Celestial Reference Frame)**：国际天球参考系，是目前最精确的惯性参考系
+- **FrameICRF**：库提供的ICRF坐标系实现
+- 适用于描述卫星相对天体的惯性运动
 
 - **ICRF (International Celestial Reference Frame)**：国际天球参考系，是目前最精确的惯性参考系
 - 适用于描述卫星相对天体的惯性运动
@@ -71,12 +77,13 @@ Frame (抽象基类)
 
 - **CBF (Central Body Fixed Frame)**：中心天体固连系，随天体自转
 - **TIRF (Terrestrial Intermediate Reference Frame)**：地球中间参考系
-- **FrameFixed**：天体固连坐标系，固定在特定天体上
+- **FrameFixed**：库提供的天体固连坐标系实现
 - 适用于描述卫星相对天体表面的位置
 
-### 4. 其他参考系
+### 4. 其他坐标系实现
 
-- **FrameWithEpoch**：带历元坐标系，支持冻结特定时刻的轴系方向
+- **FrameAssembly**：库提供的组装坐标系实现
+- **FrameWithEpoch**：库提供的带历元坐标系实现，支持冻结特定时刻的轴系方向
 - 适用于需要固定轴系方向的分析场景
 
 ## 依赖关系
