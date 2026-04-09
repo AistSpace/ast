@@ -17,18 +17,17 @@ int main()
     printf("创建冻结轴系示例:\n\n");
     
     // 获取ECF轴系
-    HAxes ecf = aAxesECF();
-    HAxes icrf = aAxesICRF();
+    Axes* ecf = aAxesECF();
+    Axes* icrf = aAxesICRF();
     
-    // 创建冻结轴系：使用MakeShared避免内存泄漏
-    // 在freezeTime时刻冻结ECF轴系
+    // 创建冻结轴系：在freezeTime时刻冻结ECF轴系
     // referenceAxes指定参考轴系，用于确定变换方向
-    HAxesFrozen frozenAxes = AxesFrozen::MakeShared(ecf.get(), freezeTime, icrf.get());
+    Axes* frozenAxes = AxesFrozen::New(ecf, freezeTime, icrf);
     
     printf("冻结时间: 2026-01-01 00:00:00 UTC\n");
-    printf("ECF轴系: %p\n", (void*)ecf.get());
-    printf("参考轴系(ICRF): %p\n", (void*)icrf.get());
-    printf("冻结轴系: %p\n", (void*)frozenAxes.get());
+    printf("ECF轴系: %p\n", (void*)ecf);
+    printf("参考轴系(ICRF): %p\n", (void*)icrf);
+    printf("冻结轴系: %p\n", (void*)frozenAxes);
     
     // 获取冻结轴系的属性
     printf("\n冻结轴系属性:\n");
@@ -39,7 +38,7 @@ int main()
     // 验证冻结轴系的父轴系是参考轴系
     Axes* parent = frozenAxes->getParent();
     printf("\n冻结轴系的父轴系: %p (应为ICRF: %p)\n", 
-           (void*)parent, (void*)icrf.get());
+           (void*)parent, (void*)icrf);
     
     return 0;
 }
