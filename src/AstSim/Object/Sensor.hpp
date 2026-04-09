@@ -49,15 +49,19 @@ public: // 从 Point 类继承的方法
     Frame* getFrame() const final;
     errc_t getPos(const TimePoint& tp, Vector3d& pos) const final;
     errc_t getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) const final;
+public:
+    /// @brief 设置传感器视场
+    /// @param fov 视场对象指针
+    void setFieldOfView(FieldOfView* fov) { fov_ = fov; }
 
-    // 视场相关方法
-    void setFieldOfView(const SharedPtr<FieldOfView>& fov) { fov_ = fov; }
-    const SharedPtr<FieldOfView>& getFieldOfView() const { return fov_; }
+    /// @brief 获取传感器视场
+    /// @return 视场对象指针
+    FieldOfView* getFieldOfView() const { return fov_; }
 
 private:
     std::string name_;               ///< 传感器名称
-    WeakPtr<Point> location_;        ///< 传感器位置点, 弱引用
-    SharedPtr<FieldOfView> fov_;     ///< 传感器视场
+    WeakPtr<Point> location_;        ///< 传感器位置点, 这里使用弱引用
+    SharedPtr<FieldOfView> fov_;     ///< 传感器视场定义
 };
 
 /*! @} */

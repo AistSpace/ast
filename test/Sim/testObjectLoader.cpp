@@ -23,6 +23,7 @@
 #include "AstSim/Facility.hpp"
 #include "AstSim/Target.hpp"
 #include "AstSim/Place.hpp"
+#include "AstSim/Sensor.hpp"
 
 AST_USING_NAMESPACE
 
@@ -78,6 +79,25 @@ TEST(ObjectLoaderTest, LoadPlace)
         auto body = place->getBody();
         EXPECT_TRUE(body != nullptr);
         EXPECT_TRUE(place != nullptr);
+        EXPECT_EQ(ret, 0);
+        EXPECT_TRUE(object != nullptr);
+    }
+}
+
+TEST(ObjectLoaderTest, LoadSensor)
+{
+    if(aIsCI())
+        GTEST_SKIP();
+        
+    std::vector<std::string> files = aTestGetConfigStringVector("STK_SENSOR_FILES");
+    for (const auto &file : files)
+    {
+        SharedPtr<Object> object;
+        errc_t ret = aLoadObject(file, "Sensor", object);
+        Sensor* sensor = dynamic_cast<Sensor*>(object.get());
+        auto fov = sensor->getFieldOfView();
+        EXPECT_TRUE(fov != nullptr);
+        EXPECT_TRUE(sensor != nullptr);
         EXPECT_EQ(ret, 0);
         EXPECT_TRUE(object != nullptr);
     }
