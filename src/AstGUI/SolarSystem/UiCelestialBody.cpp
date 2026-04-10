@@ -23,6 +23,17 @@
 
 AST_NAMESPACE_BEGIN
 
+UiCelestialBody::UiCelestialBody(Object* object, QWidget* parent)
+    : UiObject(parent)
+{
+    setObject(object);
+}
+
+UiCelestialBody::UiCelestialBody(QWidget* parent)
+    : UiObject(parent)
+{
+}
+
 CelestialBody *UiCelestialBody::getCelestialBody() const
 {
     return dynamic_cast<CelestialBody*>(getObject());
@@ -34,5 +45,3 @@ void UiCelestialBody::setCelestialBody(CelestialBody *body)
 }
 
 AST_NAMESPACE_END
-
-
