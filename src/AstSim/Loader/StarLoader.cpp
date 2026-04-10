@@ -19,7 +19,7 @@
 
 #include "StarLoader.hpp"
 #include "CommonlyUsedHeaders.hpp"
-#include "AstSim\Object\Star.hpp"
+#include "AstSim/Star.hpp"
 
 AST_NAMESPACE_BEGIN
 

@@ -19,7 +19,7 @@
 
 #include "PlanetLoader.hpp"
 #include "CommonlyUsedHeaders.hpp"
-#include "AstSim\Object\Planet.hpp"
+#include "AstSim/Planet.hpp"
 
 AST_NAMESPACE_BEGIN
 
