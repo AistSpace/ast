@@ -66,7 +66,7 @@ namespace units
     extern AST_UTIL_API Unit sec;       ///< 秒
     extern AST_UTIL_API Unit s;         ///< 秒
     extern AST_UTIL_API Unit ms;        ///< 毫秒
-    extern AST_UTIL_API Unit min;       ///< 分钟
+    extern AST_UTIL_API Unit minute;    ///< 分钟，不要命名为min，容易与std::min冲突
     extern AST_UTIL_API Unit hour;      ///< 小时
     extern AST_UTIL_API Unit h;         ///< 小时
     extern AST_UTIL_API Unit day;       ///< 天

@@ -55,7 +55,7 @@ UnitManager::UnitManager()
     addUnit(units::h);
     addUnit(units::day);
     addUnit(units::hour);
-    addUnit(units::min);
+    addUnit(units::minute);
     addUnit(units::ms);
 
     addUnit(units::A);

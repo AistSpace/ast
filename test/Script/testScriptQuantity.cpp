@@ -46,7 +46,7 @@ TEST(ScriptQuantity, Parser)
     testParseQuantity("90[deg]", 90 * deg);
     testParseQuantity("3.14[rad]", 3.14 * rad);
     testParseQuantity("60[s]", 60 * s);
-    testParseQuantity("1[min]", 1 * min);
+    testParseQuantity("1[min]", 1 * minute);
     
     // 整数格式
     testParseQuantity("100[m]", 100 * m);

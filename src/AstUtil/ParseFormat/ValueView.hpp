@@ -27,6 +27,7 @@
 #include "AstUtil/GenericValue.hpp"
 #include "AstUtil/StringSplit.hpp"
 #include "AstUtil/StringUtil.hpp"
+#include "AstUtil/Math.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -61,6 +62,11 @@ public:
     double toDouble() const { return aParseDouble(value_); }
     errc_t toDouble(double& value) const { return aParseDouble(value_, value); }
     
+    /// @brief 转换为弧度
+    /// @details 将读取的浮点是从角度转换为弧度
+    angle_d toAngleRad() const {return deg2rad(toDouble());}
+    errc_t toAngleRad(angle_d& value) const {errc_t rc= aParseDouble(value_, value); value=deg2rad(value); return rc;}
+
     /// @brief 转换为浮点数，支持 Fortran 格式浮点数，例如 "1.23D2"，"-1.23d3"
     double toFortranDouble() const { return aParseFortranDouble(value_); }
     errc_t toFortranDouble(double& value) const { return aParseFortranDouble(value_, value); }

@@ -39,6 +39,10 @@ public:
     /// @return 视场类型
     virtual EFOVType getFOVType() const override { return EFOVType::eCustom; }
     
+    /// @brief 接受访问者
+    /// @param visitor 访问者
+    virtual void accept(FieldOfViewVisitor& visitor) override { visitor.visit(*this); }
+    
     /// @brief 添加顶点
     /// @param vertex 顶点坐标
     void addVertex(const Vector3d& vertex) { vertices_.push_back(vertex); }

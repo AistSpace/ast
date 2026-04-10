@@ -57,5 +57,14 @@ errc_t Sensor::getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) cons
     return eErrorNullPtr;
 }
 
+void Sensor::setFieldOfView(FieldOfView *fov)
+{
+    if(fov)
+    {
+        if(fov->getParentScope() == nullptr)
+            fov->setParentScope(this);
+        fov_ = fov;
+    }
+}
 
 AST_NAMESPACE_END

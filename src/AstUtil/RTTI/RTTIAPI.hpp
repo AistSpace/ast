@@ -127,10 +127,19 @@ AST_UTIL_CAPI Object* aGetParentScope(Object* obj);
 /// @details 根据父对象、类指针和子对象名查找子对象
 /// @param parentScope 父对象指针
 /// @param cls 类指针
-/// @param name 子对象名
+/// @param name 子对象名，如果为空则匹配所有子对象
 /// @return 子对象指针
 AST_UTIL_API Object* aFindChild(Object* parentScope, Class* cls, StringView name);
 
+
+/// @brief 查找对象的子对象
+/// @details 根据父对象、类指针和子对象名查找子对象
+/// @param parentScope 父对象指针
+/// @param cls 类指针
+/// @param name 子对象名，如果为空则匹配所有子对象
+/// @param children 输出参数，用于存储子对象指针
+/// @return 错误码
+AST_UTIL_API errc_t aFindChildren(Object* parentScope, Class* cls, StringView name, std::vector<Object*>& children);
 
 
 /*! @} */

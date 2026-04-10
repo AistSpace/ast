@@ -221,8 +221,8 @@ TEST(Quantity, UnitConversion)
     EXPECT_TRUE(1 * g == 1000 * mg);
     
     // 测试时间单位转换
-    EXPECT_TRUE(1 * h == 60 * min);
-    EXPECT_TRUE(1 * min == 60 * s);
+    EXPECT_TRUE(1 * h == 60 * minute);
+    EXPECT_TRUE(1 * minute == 60 * s);
     EXPECT_TRUE(1 * h == 3600 * s);
     
     // 测试面积单位转换

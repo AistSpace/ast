@@ -61,13 +61,13 @@ errc_t _aLoadConical(BKVParser& parser, FOVConical& fov)
         coneToken = parser.getNext(coneItem);
         if(coneToken == BKVParser::eKeyValue){
             if(aEqualsIgnoreCase(coneItem.key(), "InnerConeAngle")){
-                fov.setInnerConeAngle(coneItem.value().toDouble());
+                fov.setInnerConeAngle(coneItem.value().toAngleRad());
             }else if(aEqualsIgnoreCase(coneItem.key(), "OuterConeAngle")){
-                fov.setOuterConeAngle(coneItem.value().toDouble());
+                fov.setOuterConeAngle(coneItem.value().toAngleRad());
             }else if(aEqualsIgnoreCase(coneItem.key(), "MinClockAngle")){
-                fov.setMinClockAngle(coneItem.value().toDouble());
+                fov.setMinClockAngle(coneItem.value().toAngleRad());
             }else if(aEqualsIgnoreCase(coneItem.key(), "MaxClockAngle")){
-                fov.setMaxClockAngle(coneItem.value().toDouble());
+                fov.setMaxClockAngle(coneItem.value().toAngleRad());
             }
         }else if(coneToken == BKVParser::eBlockEnd){
             if(aEqualsIgnoreCase(coneItem.value(), "Conical")){
@@ -86,7 +86,7 @@ errc_t _aLoadHalfPower(BKVParser& parser, FOVHalfPower& fov)
         token = parser.getNext(item);
         if(token == BKVParser::eKeyValue){
             if(aEqualsIgnoreCase(item.key(), "HalfAngle")){
-                fov.setHalfAngle(item.value().toDouble());
+                fov.setHalfAngle(item.value().toAngleRad());
             }else if(aEqualsIgnoreCase(item.key(), "Frequency")){
                 fov.setFrequency(item.value().toDouble());
             }else if(aEqualsIgnoreCase(item.key(), "AntennaDiameter")){
@@ -109,9 +109,9 @@ errc_t _aLoadRectangular(BKVParser& parser, FOVRectangular& fov)
         token = parser.getNext(item);
         if(token == BKVParser::eKeyValue){
             if(aEqualsIgnoreCase(item.key(), "SideToSideAngle")){
-                fov.setHorizontalHalfAngle(item.value().toDouble());
+                fov.setHorizontalHalfAngle(item.value().toAngleRad());
             }else if(aEqualsIgnoreCase(item.key(), "UpDownAngle")){
-                fov.setVerticalHalfAngle(item.value().toDouble());
+                fov.setVerticalHalfAngle(item.value().toAngleRad());
             }
         }else if(token == BKVParser::eBlockEnd){
             if(aEqualsIgnoreCase(item.value(), "Rectangular")){
@@ -130,13 +130,13 @@ errc_t _aLoadSAR(BKVParser& parser, FOVSAR& fov)
         token = parser.getNext(item);
         if(token == BKVParser::eKeyValue){
             if(aEqualsIgnoreCase(item.key(), "MinElevAngle")){
-                fov.setMinElevAngle(item.value().toDouble());
+                fov.setMinElevAngle(item.value().toAngleRad());
             }else if(aEqualsIgnoreCase(item.key(), "MaxElevAngle")){
-                fov.setMaxElevAngle(item.value().toDouble());
+                fov.setMaxElevAngle(item.value().toAngleRad());
             }else if(aEqualsIgnoreCase(item.key(), "FwdExclAngle")){
-                fov.setForwardExcludeAngle(item.value().toDouble());
+                fov.setForwardExcludeAngle(item.value().toAngleRad());
             }else if(aEqualsIgnoreCase(item.key(), "AftExclAngle")){
-                fov.setBackwardExcludeAngle(item.value().toDouble());
+                fov.setBackwardExcludeAngle(item.value().toAngleRad());
             }else if(aEqualsIgnoreCase(item.key(), "Altitude")){
                 fov.setAltitude(item.value().toDouble());
             }else if(aEqualsIgnoreCase(item.key(), "UpdateMode")){
