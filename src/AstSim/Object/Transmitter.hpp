@@ -1,8 +1,8 @@
 ///
-/// @file      Antenna.hpp
-/// @brief     天线对象
+/// @file      Transmitter.hpp
+/// @brief     发射机对象
 /// @author    axel
-/// @date      2026-04-07
+/// @date      2026-04-10
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -20,7 +20,6 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstUtil/Object.hpp"
 #include "AstUtil/ObjectNamed.hpp"
 
 AST_NAMESPACE_BEGIN
@@ -30,14 +29,14 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-/// @brief 天线对象
-class AST_SIM_API Antenna: public ObjectNamed
+/// @brief 发射机对象
+class AST_SIM_API Transmitter: public ObjectNamed
 {
 public:
-    Antenna() = default;
-    ~Antenna() override = default;
+    Transmitter() = default;
+    ~Transmitter() override = default;
 
-    AST_OBJECT(Antenna)
+    AST_OBJECT(Transmitter)
 };
 
 /*! @} */

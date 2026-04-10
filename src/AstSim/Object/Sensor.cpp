@@ -71,8 +71,6 @@ void Sensor::setFieldOfView(FieldOfView *fov)
 {
     if(fov)
     {
-        if(fov->getParentScope() == nullptr)
-            fov->setParentScope(this);
         fov_ = fov;
     }
 }

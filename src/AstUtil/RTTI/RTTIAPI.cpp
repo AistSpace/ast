@@ -24,7 +24,7 @@
 #include "AstUtil/ClassRegistry.hpp"
 #include "AstUtil/Object.hpp"
 #include "AstUtil/ObjectManager.hpp"
-#include "AstUtil/Platform/ColoredPrint.hpp"
+#include "AstUtil/ColoredPrint.hpp"
 #include <cstdio>
 
 

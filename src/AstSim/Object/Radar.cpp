@@ -30,7 +30,7 @@ void Radar::ClassInit(Class* cls)
 {
     cls->setName("Radar");
     cls->addToRegistry();
-    cls->setParent<Object>();
+    cls->setParent<ObjectNamed>();
     cls->setConstructor<Radar>();
 }
 

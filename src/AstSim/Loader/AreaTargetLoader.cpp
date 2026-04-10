@@ -19,6 +19,7 @@
 
 #include "AreaTargetLoader.hpp"
 #include "AstSim/AreaTarget.hpp"
+#include "AstSim/BasicComponentLoader.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/StringUtil.hpp"
 #include "AstUtil/Logger.hpp"
@@ -26,10 +27,123 @@
 
 AST_NAMESPACE_BEGIN
 
+errc_t _aLoadCentroidPosition(BKVParser& parser, AreaTarget& areaTarget)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "CentralBody")){
+                // 处理 CentralBody
+            }else if(aEqualsIgnoreCase(item.key(), "AutoCentroid")){
+                // 处理 AutoCentroid
+            }else if(aEqualsIgnoreCase(item.key(), "EcfLatitude")){
+                // 处理 EcfLatitude
+            }else if(aEqualsIgnoreCase(item.key(), "EcfLongitude")){
+                // 处理 EcfLongitude
+            }else if(aEqualsIgnoreCase(item.key(), "EcfAltitude")){
+                // 处理 EcfAltitude
+            }else if(aEqualsIgnoreCase(item.key(), "UseTerrainInfo")){
+                // 处理 UseTerrainInfo
+            }else if(aEqualsIgnoreCase(item.key(), "DisplayCoords")){
+                // 处理 DisplayCoords
+            }else if(aEqualsIgnoreCase(item.key(), "AreaType")){
+                // 处理 AreaType
+            }else if(aEqualsIgnoreCase(item.key(), "NumberOfPolygonPts")){
+                // 处理 NumberOfPolygonPts
+            }else if(aEqualsIgnoreCase(item.key(), "BoundaryType")){
+                // 处理 BoundaryType
+            }else if(aEqualsIgnoreCase(item.key(), "Granularity")){
+                // 处理 Granularity
+            }
+        }else if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "PolygonPoints")){
+                // 处理 PolygonPoints 块
+                BKVItemView pointItem;
+                BKVParser::EToken pointToken;
+                do{
+                    pointToken = parser.getNext(pointItem);
+                    if(pointToken == BKVParser::eKeyValue){
+                        // 处理多边形点坐标
+                    }
+                }while(pointToken != BKVParser::eBlockEnd);
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "CentroidPosition")){
+                return eNoError;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
+errc_t _aLoadExtensions(BKVParser& parser, AreaTarget& areaTarget)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eBlockBegin){
+            // 处理各种扩展块
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "Extensions")){
+                return eNoError;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
 errc_t aLoadAreaTarget(StringView filepath, AreaTarget& areaTarget)
 {
-    // 这里实现区域目标对象的加载逻辑
-    // 目前先返回成功，后续可以根据需要实现具体的加载逻辑
+    BKVItemView item;
+    BKVParser::EToken token;
+    BKVParser parser(filepath);
+    if(!parser.isOpen()){
+        aError("failed to open file '%.*s'", (int)filepath.size(), filepath.data());
+        return eErrorInvalidFile;
+    }
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue){
+            // 处理文件开头的版本信息和作者信息
+        }
+        else if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "AreaTarget")){
+                // 处理 AreaTarget 块
+                BKVItemView item;
+                BKVParser::EToken areaTargetToken;
+                do{
+                    areaTargetToken = parser.getNext(item);
+                    if(areaTargetToken == BKVParser::eKeyValue){
+                        if(aEqualsIgnoreCase(item.key(), "Name")){
+                            areaTarget.setName(item.value());
+                        }
+                    }else if(areaTargetToken == BKVParser::eBlockBegin){
+                        if(aEqualsIgnoreCase(item.value(), "CentroidPosition")){
+                            if(errc_t rc = _aLoadCentroidPosition(parser, areaTarget)){
+                                return rc;
+                            }
+                        }else if(aEqualsIgnoreCase(item.value(), "Extensions")){
+                            if(errc_t rc = _aLoadExtensions(parser, areaTarget)){
+                                return rc;
+                            }
+                        }else if(aEqualsIgnoreCase(item.value(), "SubObjects")){
+                            if(errc_t rc = _aLoadSubObjects(parser, &areaTarget)){
+                                return rc;
+                            }
+                        }
+                    }else if(areaTargetToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(item.value(), "AreaTarget")){
+                            return eNoError;
+                        }
+                    }
+                }while(areaTargetToken != BKVParser::eEOF);
+            }
+        }
+    }while(token != BKVParser::eEOF);
     return eNoError;
 }
 

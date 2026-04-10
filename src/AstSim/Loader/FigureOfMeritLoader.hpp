@@ -1,8 +1,8 @@
 ///
-/// @file      Antenna.hpp
-/// @brief     天线对象
+/// @file      FigureOfMeritLoader.hpp
+/// @brief     性能指标加载器
 /// @author    axel
-/// @date      2026-04-07
+/// @date      2026-04-10
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -20,26 +20,16 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstUtil/Object.hpp"
-#include "AstUtil/ObjectNamed.hpp"
+#include "AstUtil/StringView.hpp"
 
 AST_NAMESPACE_BEGIN
 
-/*!
-    @addtogroup 
-    @{
-*/
+class FigureOfMerit;
 
-/// @brief 天线对象
-class AST_SIM_API Antenna: public ObjectNamed
-{
-public:
-    Antenna() = default;
-    ~Antenna() override = default;
-
-    AST_OBJECT(Antenna)
-};
-
-/*! @} */
+/// @brief 加载性能指标对象
+/// @param filepath 文件路径
+/// @param figureOfMerit 性能指标对象引用
+/// @return 错误码
+errc_t aLoadFigureOfMerit(StringView filepath, FigureOfMerit& figureOfMerit);
 
 AST_NAMESPACE_END

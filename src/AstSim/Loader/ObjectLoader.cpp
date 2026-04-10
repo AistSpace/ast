@@ -48,10 +48,15 @@
 #include "AstSim/Radar.hpp"
 #include "AstSim/Antenna.hpp"
 #include "AstSim/Receiver.hpp"
+#include "AstSim/FigureOfMerit.hpp"
+#include "AstSim/Transmitter.hpp"
+#include "AstSim/AttitudeFigureOfMerit.hpp"
 
 #include "LineTargetLoader.hpp"
 #include "MTOLoader.hpp"
 #include "PlaceLoader.hpp"
+#include "PlanetLoader.hpp"
+#include "StarLoader.hpp"
 #include "TargetLoader.hpp"
 #include "VolumetricLoader.hpp"
 #include "AdvCATLoader.hpp"
@@ -65,6 +70,9 @@
 #include "RadarLoader.hpp"
 #include "AntennaLoader.hpp"
 #include "ReceiverLoader.hpp"
+#include "FigureOfMeritLoader.hpp"
+#include "TransmitterLoader.hpp"
+#include "AttitudeFigureOfMeritLoader.hpp"
 
 
 AST_NAMESPACE_BEGIN
@@ -118,23 +126,15 @@ errc_t aLoadObject(StringView filepath, StringView objectType, SharedPtr<Object>
     }
     else if(aEqualsIgnoreCase(objectType, "Planet"))
     {
-        HCelestialBody planet;
-        errc_t rc = aLoadBody(filepath, planet);
-        if(rc == eNoError)
-        {
-            object = planet;
-        }
-        return rc;
+        auto planet = new Planet();
+        object = planet;
+        return aLoadPlanet(filepath, *planet);
     }
     else if(aEqualsIgnoreCase(objectType, "Star"))
     {
-        HCelestialBody star;
-        errc_t rc = aLoadBody(filepath, star);
-        if(rc == eNoError)
-        {
-            object = star;
-        }
-        return rc;
+        auto star = new Star();
+        object = star;
+        return aLoadStar(filepath, *star);
     }
     else if(aEqualsIgnoreCase(objectType, "Target"))
     {
@@ -213,6 +213,24 @@ errc_t aLoadObject(StringView filepath, StringView objectType, SharedPtr<Object>
         auto receiver = new Receiver();
         object = receiver;
         return aLoadReceiver(filepath, *receiver);
+    }
+    else if(aEqualsIgnoreCase(objectType, "FigureOfMerit"))
+    {
+        auto figureOfMerit = new FigureOfMerit();
+        object = figureOfMerit;
+        return aLoadFigureOfMerit(filepath, *figureOfMerit);
+    }
+    else if(aEqualsIgnoreCase(objectType, "Transmitter"))
+    {
+        auto transmitter = new Transmitter();
+        object = transmitter;
+        return aLoadTransmitter(filepath, *transmitter);
+    }
+    else if(aEqualsIgnoreCase(objectType, "AttitudeFigureOfMerit"))
+    {
+        auto attitudeFigureOfMerit = new AttitudeFigureOfMerit();
+        object = attitudeFigureOfMerit;
+        return aLoadAttitudeFigureOfMerit(filepath, *attitudeFigureOfMerit);
     }
     else
     {

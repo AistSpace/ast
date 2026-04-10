@@ -18,18 +18,132 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "ConstellationLoader.hpp"
+#include "CommonlyUsedHeaders.hpp"
 #include "AstSim/Constellation.hpp"
-#include "AstUtil/StringView.hpp"
-#include "AstUtil/StringUtil.hpp"
-#include "AstUtil/Logger.hpp"
-#include "AstUtil/BKVParser.hpp"
 
 AST_NAMESPACE_BEGIN
 
+errc_t _aLoadDefinition(BKVParser& parser, Constellation& constellation)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "Type")){
+                // 处理类型
+            }else if(aEqualsIgnoreCase(item.key(), "FromOperator")){
+                // 处理FromOperator
+            }else if(aEqualsIgnoreCase(item.key(), "FromOrder")){
+                // 处理FromOrder
+            }else if(aEqualsIgnoreCase(item.key(), "ToOperator")){
+                // 处理ToOperator
+            }else if(aEqualsIgnoreCase(item.key(), "ToOrder")){
+                // 处理ToOrder
+            }else if(aEqualsIgnoreCase(item.key(), "ToParentConstraint")){
+                // 处理ToParentConstraint
+            }else if(aEqualsIgnoreCase(item.key(), "FromParentConstraint")){
+                // 处理FromParentConstraint
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "Definition")){
+                return eNoError;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
+errc_t _aLoadExtensions(BKVParser& parser, Constellation& constellation)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "ADFFileData")){
+                // 处理ADFFileData
+                while(1){
+                    BKVItemView adfItem;
+                    BKVParser::EToken adfToken;
+                    adfToken = parser.getNext(adfItem);
+                    if(adfToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(adfItem.value(), "ADFFileData")){
+                            break;
+                        }
+                    }
+                }
+            }else if(aEqualsIgnoreCase(item.value(), "Desc")){
+                // 处理Desc
+                while(1){
+                    BKVItemView descItem;
+                    BKVParser::EToken descToken;
+                    descToken = parser.getNext(descItem);
+                    if(descToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(descItem.value(), "Desc")){
+                            break;
+                        }
+                    }
+                }
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "Extensions")){
+                return eNoError;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
 errc_t aLoadConstellation(StringView filepath, Constellation& constellation)
 {
-    // 这里实现星座对象的加载逻辑
-    // 目前先返回成功，后续可以根据需要实现具体的加载逻辑
+    BKVItemView item;
+    BKVParser::EToken token;
+    BKVParser parser(filepath);
+    if(!parser.isOpen()){
+        aError("failed to open file '%.*s'", (int)filepath.size(), filepath.data());
+        return eErrorInvalidFile;
+    }
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            // 处理文件开头的版本信息和作者信息
+        }
+        else if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "Constellation")){
+                BKVItemView constellationItem;
+                BKVParser::EToken constellationToken;
+                do{
+                    constellationToken = parser.getNext(constellationItem);
+                    if(constellationToken == BKVParser::eKeyValue){
+                        if(aEqualsIgnoreCase(constellationItem.key(), "Name")){
+                            constellation.setName(constellationItem.value());
+                        }
+                    }else if(constellationToken == BKVParser::eBlockBegin){
+                        if(aEqualsIgnoreCase(constellationItem.value(), "Definition")){
+                            if(errc_t rc = _aLoadDefinition(parser, constellation)){
+                                return rc;
+                            }
+                        }else if(aEqualsIgnoreCase(constellationItem.value(), "Extensions")){
+                            if(errc_t rc = _aLoadExtensions(parser, constellation)){
+                                return rc;
+                            }
+                        }else if(aEqualsIgnoreCase(constellationItem.value(), "SubObjects")){
+                            if(errc_t rc = _aLoadSubObjects(parser, &constellation)){
+                                return rc;
+                            }
+                        }
+                    }else if(constellationToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(constellationItem.value(), "Constellation")){
+                            return eNoError;
+                        }
+                    }
+                }while(constellationToken != BKVParser::eEOF);
+            }
+        }
+    }while(token != BKVParser::eEOF);
     return eNoError;
 }
 

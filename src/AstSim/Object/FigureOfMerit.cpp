@@ -1,8 +1,8 @@
 ///
-/// @file      Antenna.hpp
-/// @brief     天线对象
+/// @file      FigureOfMerit.cpp
+/// @brief     性能指标对象实现
 /// @author    axel
-/// @date      2026-04-07
+/// @date      2026-04-10
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -17,29 +17,20 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#pragma once
-
-#include "AstGlobal.h"
-#include "AstUtil/Object.hpp"
-#include "AstUtil/ObjectNamed.hpp"
+#include "FigureOfMerit.hpp"
 
 AST_NAMESPACE_BEGIN
+_AST_IMPL_OBJECT(FigureOfMerit)
 
-/*!
-    @addtogroup 
-    @{
-*/
+static bool FigureOfMerit_ClassInited = (FigureOfMerit::ClassInit(&FigureOfMerit::staticType), true);
 
-/// @brief 天线对象
-class AST_SIM_API Antenna: public ObjectNamed
+void FigureOfMerit::ClassInit(Class* cls)
 {
-public:
-    Antenna() = default;
-    ~Antenna() override = default;
+    cls->setName("FigureOfMerit");
+    cls->addToRegistry();
+    cls->setParent<ObjectNamed>();
+    cls->setConstructor<FigureOfMerit>();
+}
 
-    AST_OBJECT(Antenna)
-};
-
-/*! @} */
 
 AST_NAMESPACE_END

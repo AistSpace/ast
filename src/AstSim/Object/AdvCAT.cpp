@@ -30,7 +30,7 @@ void AdvCAT::ClassInit(Class* cls)
 {
     cls->setName("AdvCAT");
     cls->addToRegistry();
-    cls->setParent<Object>();
+    cls->setParent<ObjectNamed>();
     cls->setConstructor<AdvCAT>();
 }
 

@@ -21,6 +21,7 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/Object.hpp"
+#include "AstUtil/ObjectNamed.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,7 +31,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 高级CAT对象
-class AST_SIM_API AdvCAT: public Object
+class AST_SIM_API AdvCAT: public ObjectNamed
 {
 public:
     AdvCAT() = default;

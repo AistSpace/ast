@@ -30,7 +30,7 @@ void Planet::ClassInit(Class* cls)
 {
     cls->setName("Planet");
     cls->addToRegistry();
-    cls->setParent<CelestialBody>();
+    cls->setParent<ObjectNamed>();
     cls->setConstructor<Planet>();
 }
 

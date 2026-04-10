@@ -30,7 +30,7 @@ void Antenna::ClassInit(Class* cls)
 {
     cls->setName("Antenna");
     cls->addToRegistry();
-    cls->setParent<Object>();
+    cls->setParent<ObjectNamed>();
     cls->setConstructor<Antenna>();
 }
 

@@ -293,13 +293,18 @@ errc_t _aLoadSimpleAscent(BKVParser& parser, const VehiclePathData& vehiclePathD
             }else if(aEqualsIgnoreCase(item.key(), "StopTime")){
                 data.stopTime_ = TimePoint::Parse(item.value());
             }
-        }else if(token == BKVParser::eBlockEnd){
+        }else if(token == BKVParser::eBlockBegin)
+        {
+            
+        }
+        else if(token == BKVParser::eBlockEnd){
             if(aEqualsIgnoreCase(item.value(), "SimpleAscent")){
                 break;
             }
         }else if(token == BKVParser::eEOF){
             return eNoError;
         }else{
+            aError("invalid token");
             return eErrorInvalidFile;
         }
     }
@@ -422,6 +427,10 @@ errc_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
                 if(errc_t rc = _aLoadPassDefn(parser, mover)){
                     return rc;
                 }
+            }
+            else
+            {
+                _aSkipUnknownBlock(parser, item.value());
             }
         }else if(token == BKVParser::eBlockEnd){
             if(aEqualsIgnoreCase(item.value(), "VehiclePath")){
@@ -630,41 +639,53 @@ errc_t _aLoadMover(BKVParser& parser, StringView moverType, Mover& mover)
         }else if(token == BKVParser::eBlockBegin){
             if(aEqualsIgnoreCase(item.value(), "VehiclePath")){
                 if(errc_t rc = _aLoadVehiclePath(parser, mover)){
+                    aError("failed to load vehicle path");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Ephemeris")){
                 if(errc_t rc = _aLoadEphemeris(parser, mover)){
+                    aError("failed to load ephemeris");
                     return rc;
                 }
             }
             else if(aEqualsIgnoreCase(item.value(), "MassProperties")){
                 if(errc_t rc = _aLoadMassProperties(parser, mover)){
+                    aError("failed to load mass properties");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Attitude")){
                 if(errc_t rc = _aLoadAttitude(parser, mover)){
+                    aError("failed to load attitude");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Swath")){
                 if(errc_t rc = _aLoadSwath(parser, mover)){
+                    aError("failed to load swath");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Eclipse")){
                 if(errc_t rc = _aLoadEclipse(parser, mover)){
+                    aError("failed to load eclipse");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "RealTimeDef")){
                 if(errc_t rc = _aLoadRealTimeDef(parser, mover)){
+                    aError("failed to load real time def");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Extensions")){
                 if(errc_t rc = _aLoadExtensions(parser, mover)){
+                    aError("failed to load extensions");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "SubObjects")){
                 if(errc_t rc = _aLoadSubObjects(parser, &mover)){
+                    aError("failed to load sub objects");
                     return rc;
                 }
+            }else
+            {
+                _aSkipUnknownBlock(parser, item.value());
             }
         }else if(token == BKVParser::eBlockEnd){
             if(aEqualsIgnoreCase(item.value(), moverType)){
@@ -707,7 +728,7 @@ errc_t aLoadMover(StringView filepath, Mover &mover)
 
             
             // 第一个BEGIN END块的名称就是Mover的类型
-            StringView moverType = item.value();
+            std::string moverType = item.value().toString();
             return _aLoadMover(parser, moverType, mover);
         }
     }while(token != BKVParser::eEOF);

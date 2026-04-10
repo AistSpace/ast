@@ -1,8 +1,8 @@
 ///
-/// @file      MTOLoader.cpp
-/// @brief     多目标加载器实现
+/// @file      AttitudeFigureOfMeritLoader.cpp
+/// @brief     姿态性能指标加载器实现
 /// @author    axel
-/// @date      2026-04-07
+/// @date      2026-04-10
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -17,37 +17,52 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "MTOLoader.hpp"
+#include "AttitudeFigureOfMeritLoader.hpp"
 #include "CommonlyUsedHeaders.hpp"
-#include "AstSim/MTO.hpp"
+#include "AstSim/AttitudeFigureOfMerit.hpp"
 
 AST_NAMESPACE_BEGIN
 
-errc_t _aLoadGeneralTrackData(BKVParser& parser, MTO& mto)
+errc_t _aLoadFomDefinition(BKVParser& parser, AttitudeFigureOfMerit& attitudeFigureOfMerit)
 {
     BKVItemView item;
     BKVParser::EToken token;
     do{
         token = parser.getNext(item);
-        if(token == BKVParser::eKeyValue)
-        {
-            if(aEqualsIgnoreCase(item.key(), "CentralBody")){
-                // 处理中心天体
-            }else if(aEqualsIgnoreCase(item.key(), "SaveTracks")){
-                // 处理是否保存轨迹
-            }else if(aEqualsIgnoreCase(item.key(), "IsStatic")){
-                // 处理是否静态
-            }else if(aEqualsIgnoreCase(item.key(), "StaticGeometry")){
-                // 处理是否静态几何
-            }else if(aEqualsIgnoreCase(item.key(), "BlockSize")){
-                // 处理块大小
-            }else if(aEqualsIgnoreCase(item.key(), "StoredDataType")){
-                // 处理存储数据类型
-            }else if(aEqualsIgnoreCase(item.key(), "Epoch")){
-                // 处理历元
+        if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "SimpleCoverage")){
+                // 处理SimpleCoverage
+                while(1){
+                    BKVItemView simpleItem;
+                    BKVParser::EToken simpleToken;
+                    simpleToken = parser.getNext(simpleItem);
+                    if(simpleToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(simpleItem.value(), "SimpleCoverage")){
+                            break;
+                        }
+                    }
+                }
+            }
+        }else if(token == BKVParser::eKeyValue){
+            if(aEqualsIgnoreCase(item.key(), "ApplySatisfaction")){
+                // 处理ApplySatisfaction
+            }else if(aEqualsIgnoreCase(item.key(), "SatisfactionType")){
+                // 处理SatisfactionType
+            }else if(aEqualsIgnoreCase(item.key(), "SatisfactionThreshold")){
+                // 处理SatisfactionThreshold
+            }else if(aEqualsIgnoreCase(item.key(), "NotExecutedValue")){
+                // 处理NotExecutedValue
+            }else if(aEqualsIgnoreCase(item.key(), "UseFOMValueRangeCheck")){
+                // 处理UseFOMValueRangeCheck
+            }else if(aEqualsIgnoreCase(item.key(), "ExcludeValuesInRange")){
+                // 处理ExcludeValuesInRange
+            }else if(aEqualsIgnoreCase(item.key(), "FOMValueRangeMin")){
+                // 处理FOMValueRangeMin
+            }else if(aEqualsIgnoreCase(item.key(), "FOMValueRangeMax")){
+                // 处理FOMValueRangeMax
             }
         }else if(token == BKVParser::eBlockEnd){
-            if(aEqualsIgnoreCase(item.value(), "GeneralTrackData")){
+            if(aEqualsIgnoreCase(item.value(), "FomDefinition")){
                 return eNoError;
             }
         }
@@ -55,22 +70,7 @@ errc_t _aLoadGeneralTrackData(BKVParser& parser, MTO& mto)
     return eNoError;
 }
 
-errc_t _aLoadDefaultTrackBin(BKVParser& parser, MTO& mto)
-{
-    BKVItemView item;
-    BKVParser::EToken token;
-    do{
-        token = parser.getNext(item);
-        if(token == BKVParser::eBlockEnd){
-            if(aEqualsIgnoreCase(item.value(), "DefaultTrackBin")){
-                return eNoError;
-            }
-        }
-    }while(token != BKVParser::eEOF);
-    return eNoError;
-}
-
-errc_t _aLoadExtensions(BKVParser& parser, MTO& mto)
+errc_t _aLoadExtensions(BKVParser& parser, AttitudeFigureOfMerit& attitudeFigureOfMerit)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -97,18 +97,6 @@ errc_t _aLoadExtensions(BKVParser& parser, MTO& mto)
                     descToken = parser.getNext(descItem);
                     if(descToken == BKVParser::eBlockEnd){
                         if(aEqualsIgnoreCase(descItem.value(), "Desc")){
-                            break;
-                        }
-                    }
-                }
-            }else if(aEqualsIgnoreCase(item.value(), "Crdn")){
-                // 处理Crdn
-                while(1){
-                    BKVItemView crdnItem;
-                    BKVParser::EToken crdnToken;
-                    crdnToken = parser.getNext(crdnItem);
-                    if(crdnToken == BKVParser::eBlockEnd){
-                        if(aEqualsIgnoreCase(crdnItem.value(), "Crdn")){
                             break;
                         }
                     }
@@ -147,7 +135,7 @@ errc_t _aLoadExtensions(BKVParser& parser, MTO& mto)
     return eNoError;
 }
 
-errc_t aLoadMTO(StringView filepath, MTO& mto)
+errc_t aLoadAttitudeFigureOfMerit(StringView filepath, AttitudeFigureOfMerit& attitudeFigureOfMerit)
 {
     BKVItemView item;
     BKVParser::EToken token;
@@ -161,39 +149,35 @@ errc_t aLoadMTO(StringView filepath, MTO& mto)
         if(token == BKVParser::eKeyValue)
         {
             if(aEqualsIgnoreCase(item.key(), "Name")){
-                mto.setName(item.value());
+                attitudeFigureOfMerit.setName(item.value());
             }
         }
         else if(token == BKVParser::eBlockBegin){
-            if(aEqualsIgnoreCase(item.value(), "MTO")){
-                BKVItemView mtoItem;
-                BKVParser::EToken mtoToken;
+            if(aEqualsIgnoreCase(item.value(), "AttitudeFigureOfMerit")){
+                BKVItemView fomItem;
+                BKVParser::EToken fomToken;
                 do{
-                    mtoToken = parser.getNext(mtoItem);
-                    if(mtoToken == BKVParser::eKeyValue){
-                        if(aEqualsIgnoreCase(mtoItem.key(), "Name")){
-                            mto.setName(mtoItem.value());
+                    fomToken = parser.getNext(fomItem);
+                    if(fomToken == BKVParser::eKeyValue){
+                        if(aEqualsIgnoreCase(fomItem.key(), "Name")){
+                            attitudeFigureOfMerit.setName(fomItem.value());
                         }
-                    }else if(mtoToken == BKVParser::eBlockBegin){
-                        if(aEqualsIgnoreCase(mtoItem.value(), "GeneralTrackData")){
-                            if(errc_t rc = _aLoadGeneralTrackData(parser, mto)){
+                    }else if(fomToken == BKVParser::eBlockBegin){
+                        if(aEqualsIgnoreCase(fomItem.value(), "FomDefinition")){
+                            if(errc_t rc = _aLoadFomDefinition(parser, attitudeFigureOfMerit)){
                                 return rc;
                             }
-                        }else if(aEqualsIgnoreCase(mtoItem.value(), "DefaultTrackBin")){
-                            if(errc_t rc = _aLoadDefaultTrackBin(parser, mto)){
-                                return rc;
-                            }
-                        }else if(aEqualsIgnoreCase(mtoItem.value(), "Extensions")){
-                            if(errc_t rc = _aLoadExtensions(parser, mto)){
+                        }else if(aEqualsIgnoreCase(fomItem.value(), "Extensions")){
+                            if(errc_t rc = _aLoadExtensions(parser, attitudeFigureOfMerit)){
                                 return rc;
                             }
                         }
-                    }else if(mtoToken == BKVParser::eBlockEnd){
-                        if(aEqualsIgnoreCase(mtoItem.value(), "MTO")){
+                    }else if(fomToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(fomItem.value(), "AttitudeFigureOfMerit")){
                             return eNoError;
                         }
                     }
-                }while(mtoToken != BKVParser::eEOF);
+                }while(fomToken != BKVParser::eEOF);
             }
         }
     }while(token != BKVParser::eEOF);

@@ -30,7 +30,7 @@ void Chain::ClassInit(Class* cls)
 {
     cls->setName("Chain");
     cls->addToRegistry();
-    cls->setParent<Object>();
+    cls->setParent<ObjectNamed>();
     cls->setConstructor<Chain>();
 }
 

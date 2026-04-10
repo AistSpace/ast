@@ -21,6 +21,7 @@
 
 #include "AstGlobal.h"
 #include "AstCore/CelestialBody.hpp"
+#include "AstUtil/ObjectNamed.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,7 +31,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 行星对象
-class AST_SIM_API Planet: public CelestialBody
+class AST_SIM_API Planet: public ObjectNamed
 {
 public:
     Planet() = default;

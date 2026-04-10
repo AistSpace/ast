@@ -30,7 +30,7 @@ void Star::ClassInit(Class* cls)
 {
     cls->setName("Star");
     cls->addToRegistry();
-    cls->setParent<CelestialBody>();
+    cls->setParent<ObjectNamed>();
     cls->setConstructor<Star>();
 }
 
