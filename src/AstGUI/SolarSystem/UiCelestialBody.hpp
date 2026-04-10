@@ -32,9 +32,9 @@ public:
 
     void refreshUi();
     void apply();
-
-    CelestialBody* getCelestialBody() const;
+    
     void setCelestialBody(CelestialBody* body);
+    CelestialBody* getCelestialBody() const;
 
 signals:
     void celestialBodyChanged(CelestialBody* body);
@@ -58,9 +58,7 @@ private:
     
     // 形状
     QComboBox* shapeCombo_{nullptr};
-    UiQuantity* semiMajorAxisEdit_{nullptr};
-    UiQuantity* semiIntermediateAxisEdit_{nullptr};
-    UiQuantity* semiMinorAxisEdit_{nullptr};
+    UiQuantity* radiusEdit_{nullptr};
     
     // 姿态
     QComboBox* orientationCombo_{nullptr};
