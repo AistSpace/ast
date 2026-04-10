@@ -1,7 +1,7 @@
 ///
 /// @file      testUiCelestialBody.cpp
 /// @brief     测试 UiCelestialBody 类
-/// @details   测试天体编辑界面的功能
+/// @details   测试天体编辑界面功能
 /// @author    Aist
 /// @date      2026-04-10
 /// @copyright 版权所有 (C) 2026-present, ast项目.
@@ -14,7 +14,6 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QDebug>
-#include <QLabel>
 
 AST_USING_NAMESPACE
 
@@ -27,41 +26,54 @@ int main(int argc, char* argv[])
     QWidget* centralWidget = new QWidget(&window);
     QVBoxLayout* layout = new QVBoxLayout(centralWidget);
     
-    // 创建标题
-    QLabel* titleLabel = new QLabel("天体编辑测试", centralWidget);
-    titleLabel->setAlignment(Qt::AlignCenter);
-    layout->addWidget(titleLabel);
-    
     // 创建 UiCelestialBody 组件
     UiCelestialBody* uiCelestialBody = new UiCelestialBody(centralWidget);
     layout->addWidget(uiCelestialBody);
     
-    // 创建测试按钮
+    // 创建按钮区
+    QHBoxLayout* buttonLayout = new QHBoxLayout();
+    
     QPushButton* testButton = new QPushButton("测试", centralWidget);
-    layout->addWidget(testButton);
+    QPushButton* refreshButton = new QPushButton("刷新", centralWidget);
+    buttonLayout->addWidget(testButton);
+    buttonLayout->addWidget(refreshButton);
+    buttonLayout->addStretch();
+    layout->addLayout(buttonLayout);
     
-    // 创建 CelestialBody 对象（地球）
-    CelestialBody* earth = new CelestialBody("Earth");
-    earth->setJplSpiceId(399);  // 地球的NAIF ID
+    // 创建土卫四 (Dione) 天体
+    CelestialBody* dione = new CelestialBody("Dione");
+    dione->setJplSpiceId(604);  // 土卫四的NAIF ID
     
-    // 绑定 CelestialBody 对象
-    uiCelestialBody->setCelestialBody(earth);
+    // 绑定天体
+    uiCelestialBody->setCelestialBody(dione);
     
-    QObject::connect(testButton, &QPushButton::clicked, [uiCelestialBody, earth]() {
+    // 测试按钮
+    QObject::connect(testButton, &QPushButton::clicked, [uiCelestialBody, dione]() {
         CelestialBody* body = uiCelestialBody->getCelestialBody();
         if (body)
         {
-            qDebug() << "CelestialBody Info:";
+            qDebug() << "=== CelestialBody Info ===";
             qDebug() << "Name:" << QString::fromStdString(body->getName());
-            qDebug() << "JPL SPICE ID:" << body->getJplSpiceId();
-            qDebug() << "Radius:" << body->getRadius();
-            qDebug() << "GM:" << body->getGM();
+            qDebug() << "SPICE ID:" << body->getJplSpiceId();
+            qDebug() << "GM:" << body->getGM() << "m³/s²";
+            qDebug() << "Radius:" << body->getRadius() << "m";
+            qDebug() << "Gravity Model:" << QString::fromStdString(body->getGravityModel());
         }
     });
     
+    // 刷新按钮
+    QObject::connect(refreshButton, &QPushButton::clicked, [uiCelestialBody]() {
+        uiCelestialBody->refreshUi();
+    });
+    
+    // 天体变更信号
+    QObject::connect(uiCelestialBody, &UiCelestialBody::celestialBodyChanged, [](CelestialBody* body) {
+        qDebug() << "CelestialBody changed:" << QString::fromStdString(body->getName());
+    });
+    
     window.setCentralWidget(centralWidget);
-    window.setWindowTitle("UiCelestialBody Test");
-    window.resize(600, 400);
+    window.setWindowTitle("UiCelestialBody Test - Dione");
+    window.resize(500, 700);
     window.show();
     
     return app.exec();
