@@ -21,6 +21,7 @@
 #include "Environment.hpp"
 #include "AstUtil/Posix.hpp"
 #include "AstUtil/StringView.hpp"
+#include <cstring>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -110,7 +111,7 @@ bool aTerminalSupportColor()
         };
         
         for (size_t i = 0; i < sizeof(color_terms) / sizeof(color_terms[0]); i++) {
-            if (posix::strcmp(term, color_terms[i]) == 0) {
+            if (std::strcmp(term, color_terms[i]) == 0) {
                 return true;
             }
         }
