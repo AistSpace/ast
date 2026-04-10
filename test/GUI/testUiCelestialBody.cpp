@@ -1,6 +1,7 @@
 ///
 /// @file      testUiCelestialBody.cpp
 /// @brief     测试 UiCelestialBody 类
+/// @details   测试天体编辑界面的功能
 /// @author    Aist
 /// @date      2026-04-10
 /// @copyright 版权所有 (C) 2026-present, ast项目.
@@ -13,6 +14,7 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QDebug>
+#include <QLabel>
 
 AST_USING_NAMESPACE
 
@@ -25,39 +27,41 @@ int main(int argc, char* argv[])
     QWidget* centralWidget = new QWidget(&window);
     QVBoxLayout* layout = new QVBoxLayout(centralWidget);
     
+    // 创建标题
+    QLabel* titleLabel = new QLabel("天体编辑测试", centralWidget);
+    titleLabel->setAlignment(Qt::AlignCenter);
+    layout->addWidget(titleLabel);
+    
+    // 创建 UiCelestialBody 组件
     UiCelestialBody* uiCelestialBody = new UiCelestialBody(centralWidget);
     layout->addWidget(uiCelestialBody);
     
-    QHBoxLayout* buttonLayout = new QHBoxLayout();
+    // 创建测试按钮
     QPushButton* testButton = new QPushButton("测试", centralWidget);
-    QPushButton* refreshButton = new QPushButton("刷新", centralWidget);
-    buttonLayout->addWidget(testButton);
-    buttonLayout->addWidget(refreshButton);
-    buttonLayout->addStretch();
-    layout->addLayout(buttonLayout);
+    layout->addWidget(testButton);
     
-    // 创建天体
-    CelestialBody* body = new CelestialBody("Earth");
-    body->setJplSpiceId(399);
-    uiCelestialBody->setCelestialBody(body);
+    // 创建 CelestialBody 对象（地球）
+    CelestialBody* earth = new CelestialBody("Earth");
+    earth->setJplSpiceId(399);  // 地球的NAIF ID
     
-    QObject::connect(testButton, &QPushButton::clicked, [uiCelestialBody]() {
-        if (auto b = uiCelestialBody->getCelestialBody())
+    // 绑定 CelestialBody 对象
+    uiCelestialBody->setCelestialBody(earth);
+    
+    QObject::connect(testButton, &QPushButton::clicked, [uiCelestialBody, earth]() {
+        CelestialBody* body = uiCelestialBody->getCelestialBody();
+        if (body)
         {
-            qDebug() << "Name:" << QString::fromStdString(b->getName());
-            qDebug() << "SPICE ID:" << b->getJplSpiceId();
-            qDebug() << "GM:" << b->getGM();
-            qDebug() << "Radius:" << b->getRadius();
+            qDebug() << "CelestialBody Info:";
+            qDebug() << "Name:" << QString::fromStdString(body->getName());
+            qDebug() << "JPL SPICE ID:" << body->getJplSpiceId();
+            qDebug() << "Radius:" << body->getRadius();
+            qDebug() << "GM:" << body->getGM();
         }
-    });
-    
-    QObject::connect(refreshButton, &QPushButton::clicked, [uiCelestialBody]() {
-        uiCelestialBody->refreshUi();
     });
     
     window.setCentralWidget(centralWidget);
     window.setWindowTitle("UiCelestialBody Test");
-    window.resize(500, 600);
+    window.resize(600, 400);
     window.show();
     
     return app.exec();
