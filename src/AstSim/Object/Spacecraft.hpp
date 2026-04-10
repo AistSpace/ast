@@ -35,6 +35,7 @@ AST_NAMESPACE_BEGIN
 class Spacecraft: public SpaceObject
 {
 public:
+    AST_OBJECT(Spacecraft)
     Spacecraft() = default;
     ~Spacecraft() override = default;
 };

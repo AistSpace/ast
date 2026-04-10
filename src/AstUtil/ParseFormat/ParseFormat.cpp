@@ -425,7 +425,7 @@ errc_t aParseColor(StringView str, Color& value)
             return eErrorParse;
         }
         // 设置透明度为255
-        value = (rgb << 8) | 0xFF;
+        value = Color((rgb << 8) | 0xFF);
         return eNoError;
     }
     else if (str.size() == 9 && str[0] == '#')
@@ -438,7 +438,7 @@ errc_t aParseColor(StringView str, Color& value)
         {
             return eErrorParse;
         }
-        value = rgba;
+        value = Color(rgba);
         return eNoError;
     }
 

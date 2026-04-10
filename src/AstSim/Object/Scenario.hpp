@@ -43,6 +43,7 @@ class CelestialBody;
 class AST_SIM_API Scenario: public Object
 {
 public:
+    AST_OBJECT(Scenario)
     Scenario();
     ~Scenario();
 public:

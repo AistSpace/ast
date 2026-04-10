@@ -19,10 +19,21 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "Mover.hpp"
-
-
+#include "AstUtil/Class.hpp"
 
 AST_NAMESPACE_BEGIN
+
+_AST_IMPL_OBJECT(Mover)
+
+static bool Mover_ClassInited = (Mover::ClassInit(&Mover::staticType), true);
+
+void Mover::ClassInit(Class* cls)
+{
+    cls->setName("Mover");
+    cls->addToRegistry();
+    cls->setParent<Point>();
+    cls->setConstructor<Mover>();
+}
 
 errc_t Mover::generateEphemeris()
 {
@@ -55,5 +66,3 @@ errc_t Mover::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) const
 }
 
 AST_NAMESPACE_END
-
-

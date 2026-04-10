@@ -294,6 +294,7 @@ typedef void* ptr_t;         ///< 指针类型
 
 #ifdef __cplusplus
 
+enum EColor: color_t;
 typedef std::array<double, 6> array6d;
 typedef std::array<double, 4> array4d;
 typedef std::array<double, 3> array3d;

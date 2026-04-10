@@ -35,6 +35,7 @@ AST_NAMESPACE_BEGIN
 class AST_SIM_API Asteroid: public SpaceObject
 {
 public:
+    AST_OBJECT(Asteroid)
     Asteroid() = default;
     ~Asteroid() override = default;
 };

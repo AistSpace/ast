@@ -1,8 +1,9 @@
 ///
-/// @file      CommSystem.cpp
-/// @brief     通信系统对象实现
+/// @file      ObjectNamed.cpp
+/// @brief     
+/// @details   
 /// @author    axel
-/// @date      2026-04-07
+/// @date      2026-04-10
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -17,21 +18,10 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "CommSystem.hpp"
-#include "AstUtil/Class.hpp"
+#include "ObjectNamed.hpp"
 
 AST_NAMESPACE_BEGIN
 
-_AST_IMPL_OBJECT(CommSystem)
 
-static bool CommSystem_ClassInited = (CommSystem::ClassInit(&CommSystem::staticType), true);
-
-void CommSystem::ClassInit(Class* cls)
-{
-    cls->setName("CommSystem");
-    cls->addToRegistry();
-    cls->setParent<Object>();
-    cls->setConstructor<CommSystem>();
-}
 
 AST_NAMESPACE_END

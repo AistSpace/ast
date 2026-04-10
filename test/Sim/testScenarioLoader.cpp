@@ -39,6 +39,7 @@ TEST(ScenarioLoader, LoadScenario)
         EXPECT_EQ(rc, eNoError);
         auto objectCount = ObjectManager::CurrentInstance().getObjectCount();
         EXPECT_GT(objectCount, 0);
+        aPrintObjectTree(&scenario);
     }
     // 检查对象是否已经销毁
     {

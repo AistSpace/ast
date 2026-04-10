@@ -24,9 +24,14 @@ AST_NAMESPACE_BEGIN
 
 _AST_IMPL_OBJECT(LineTarget)
 
+static bool LineTarget_ClassInited = (LineTarget::ClassInit(&LineTarget::staticType), true);
+
 void LineTarget::ClassInit(Class* cls)
 {
-    // 可以在这里添加LineTarget特有的属性
+    cls->setName("LineTarget");
+    cls->addToRegistry();
+    cls->setParent<Object>();
+    cls->setConstructor<LineTarget>();
 }
 
 AST_NAMESPACE_END

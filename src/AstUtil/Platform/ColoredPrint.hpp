@@ -1,9 +1,8 @@
 ///
-/// @file      WorkingDirectory.cpp
-/// @brief     
-/// @details   
+/// @file      ColoredPrint.hpp
+/// @brief     彩色打印功能
 /// @author    axel
-/// @date      2026-02-19
+/// @date      2026-04-10
 /// @copyright 版权所有 (C) 2026-present, ast项目.
 ///
 /// ast项目（https://github.com/space-ast/ast）
@@ -18,10 +17,28 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "WorkingDirectory.hpp"
+#pragma once
+
+#include "AstGlobal.h"
+#include "AstUtil/Color.hpp"
+#include "AstUtil/ColorNamed.hpp"
 
 AST_NAMESPACE_BEGIN
 
+/*!
+    @addtogroup Util
+	@{
+*/
+
+
+/// @brief 彩色打印函数
+/// @param color 颜色
+/// @param format 格式化字符串
+/// @param ... 可变参数
+void cprintf(Color color, const char* format, ...);
+
+
+/*! @} */
 
 
 AST_NAMESPACE_END

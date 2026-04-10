@@ -39,6 +39,7 @@ AST_NAMESPACE_BEGIN
 class AST_SIM_API Mover: public Point
 {
 public:
+    AST_OBJECT(Mover)
     Mover() = default;
     ~Mover() override = default;
 

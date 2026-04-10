@@ -17,6 +17,7 @@ add_packages("benchmark")
 
 set_warnings("more")
 
+-- 单元测试代码
 if has_package("gtest") then
     local test_files = os.files("**/test*.c*|Archive/**|GUI/**")
     for _, file in ipairs(test_files) do
@@ -31,7 +32,8 @@ if has_package("gtest") then
 end
 
 
-if has_package("qt5base") and has_package("qt5widgets") and has_package("qt5gui") then
+-- GUI测试代码
+if has_package("qt5widgets") then
     local test_files = os.files("GUI/**.cpp")
     for _, file in ipairs(test_files) do
         -- local targetname = file:gsub("[\\/]", "_"):gsub("%.[^.]*$", "")
@@ -46,7 +48,7 @@ if has_package("qt5base") and has_package("qt5widgets") and has_package("qt5gui"
     end
 end
 
-
+-- 性能测试代码
 if has_package("benchmark") then
     local bm_files = os.files("**/bm*.cpp|Archive/**", "**/bm*.c")
     for _, file in ipairs(bm_files) do
@@ -60,6 +62,7 @@ if has_package("benchmark") then
     end
 end
 
+-- 脚本测试代码
 local asc_files = os.files("**/*.asc")
 for _, file in ipairs(asc_files) do
     local targetname = file:gsub("[\\/]", "_"):gsub("%.[^.]*$", "")

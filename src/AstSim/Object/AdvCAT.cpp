@@ -24,9 +24,14 @@ AST_NAMESPACE_BEGIN
 
 _AST_IMPL_OBJECT(AdvCAT)
 
+static bool AdvCAT_ClassInited = (AdvCAT::ClassInit(&AdvCAT::staticType), true);
+
 void AdvCAT::ClassInit(Class* cls)
 {
-    // 可以在这里添加AdvCAT特有的属性
+    cls->setName("AdvCAT");
+    cls->addToRegistry();
+    cls->setParent<Object>();
+    cls->setConstructor<AdvCAT>();
 }
 
 AST_NAMESPACE_END

@@ -24,9 +24,14 @@ AST_NAMESPACE_BEGIN
 
 _AST_IMPL_OBJECT(Planet)
 
+static bool Planet_ClassInited = (Planet::ClassInit(&Planet::staticType), true);
+
 void Planet::ClassInit(Class* cls)
 {
-    // 可以在这里添加Planet特有的属性
+    cls->setName("Planet");
+    cls->addToRegistry();
+    cls->setParent<CelestialBody>();
+    cls->setConstructor<Planet>();
 }
 
 AST_NAMESPACE_END

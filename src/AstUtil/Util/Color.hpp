@@ -86,15 +86,16 @@ A_CONSTEXPR_CXX14 inline void aColorToRGBA(color_t color, uint8_t& r, uint8_t& g
 class Color
 {
 public:
-    constexpr Color() noexcept: value_(0) {}
-    constexpr Color(color_t value) noexcept: value_(value) {}
-    constexpr Color(uint8_t r, uint8_t g, uint8_t b) noexcept: value_(rgb(r, g, b)) {}
-    constexpr Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a) noexcept: value_(rgba(r, g, b, a)) {}
-    constexpr operator color_t() const noexcept { return value_; }
-	constexpr color_t value() const noexcept { return value_; }
-	A_CONSTEXPR_CXX14 color_t& value() noexcept { return value_; }
+    constexpr Color() noexcept: value_(static_cast<EColor>(0)) {}
+    constexpr Color(EColor value) noexcept: value_(value) {}
+    constexpr Color(color_t value) noexcept: Color(EColor(value)) {}
+    constexpr Color(uint8_t r, uint8_t g, uint8_t b) noexcept: Color(rgb(r, g, b)) {}
+    constexpr Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a) noexcept: Color(rgba(r, g, b, a)) {}
+    constexpr operator EColor() const noexcept { return value_; }
+	constexpr EColor value() const noexcept { return value_; }
+	A_CONSTEXPR_CXX14 EColor& value() noexcept { return value_; }
 private:
-    color_t value_;
+    EColor value_;
 };
 
 
