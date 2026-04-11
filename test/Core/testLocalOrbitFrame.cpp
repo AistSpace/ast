@@ -24,6 +24,28 @@
 
 AST_USING_NAMESPACE
 
+// 辅助函数：获取矩阵的某列
+static Vector3d getMatrixCol(const Matrix3d& m, int col) {
+    return Vector3d{m(0, col), m(1, col), m(2, col)};
+}
+
+// 辅助函数：检查是否为单位矩阵
+static bool isIdentityMatrix(const Matrix3d& m, double tol = 1e-10) {
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            double expected = (i == j) ? 1.0 : 0.0;
+            if (std::abs(m(i, j) - expected) > tol) return false;
+        }
+    }
+    return true;
+}
+
+// 辅助函数：检查是否为正交矩阵（M * M^T = I）
+static bool isOrthogonalMatrix(const Matrix3d& m, double tol = 1e-10) {
+    Matrix3d product = m * m.transpose();
+    return isIdentityMatrix(product, tol);
+}
+
 TEST(LocalOrbitFrame, FrameToVVLH)
 {
     // 正常情况：位置和速度向量构成有效轨道平面
@@ -36,9 +58,9 @@ TEST(LocalOrbitFrame, FrameToVVLH)
         
         EXPECT_EQ(rc, eNoError);
         // 验证矩阵是正交的
-        EXPECT_TRUE(matrix.isOrthogonal(1e-10));
+        EXPECT_TRUE(isOrthogonalMatrix(matrix, 1e-10));
         // 验证Z轴指向位置的反方向
-        Vector3d zAxis = matrix.col(2);
+        Vector3d zAxis = getMatrixCol(matrix, 2);
         Vector3d expectedZ = -pos.normalized();
         EXPECT_NEAR(zAxis.dot(expectedZ), 1.0, 1e-10);
     }
@@ -54,7 +76,7 @@ TEST(LocalOrbitFrame, FrameToVVLH)
         
         // 验证互逆性
         Matrix3d product = toVVLH * fromVVLH;
-        EXPECT_TRUE(product.isIdentity(1e-10));
+        EXPECT_TRUE(isIdentityMatrix(product, 1e-10));
     }
 }
 
@@ -70,9 +92,9 @@ TEST(LocalOrbitFrame, FrameToLVLH)
         
         EXPECT_EQ(rc, eNoError);
         // 验证矩阵是正交的
-        EXPECT_TRUE(matrix.isOrthogonal(1e-10));
+        EXPECT_TRUE(isOrthogonalMatrix(matrix, 1e-10));
         // 验证X轴指向位置方向
-        Vector3d xAxis = matrix.col(0);
+        Vector3d xAxis = getMatrixCol(matrix, 0);
         Vector3d expectedX = pos.normalized();
         EXPECT_NEAR(xAxis.dot(expectedX), 1.0, 1e-10);
     }
@@ -88,7 +110,7 @@ TEST(LocalOrbitFrame, FrameToLVLH)
         
         // 验证互逆性
         Matrix3d product = toLVLH * fromLVLH;
-        EXPECT_TRUE(product.isIdentity(1e-10));
+        EXPECT_TRUE(isIdentityMatrix(product, 1e-10));
     }
 }
 
@@ -104,9 +126,9 @@ TEST(LocalOrbitFrame, FrameToVNC)
         
         EXPECT_EQ(rc, eNoError);
         // 验证矩阵是正交的
-        EXPECT_TRUE(matrix.isOrthogonal(1e-10));
+        EXPECT_TRUE(isOrthogonalMatrix(matrix, 1e-10));
         // 验证X轴指向速度方向
-        Vector3d xAxis = matrix.col(0);
+        Vector3d xAxis = getMatrixCol(matrix, 0);
         Vector3d expectedX = vel.normalized();
         EXPECT_NEAR(xAxis.dot(expectedX), 1.0, 1e-10);
     }
@@ -122,7 +144,7 @@ TEST(LocalOrbitFrame, FrameToVNC)
         
         // 验证互逆性
         Matrix3d product = toVNC * fromVNC;
-        EXPECT_TRUE(product.isIdentity(1e-10));
+        EXPECT_TRUE(isIdentityMatrix(product, 1e-10));
     }
 }
 
@@ -134,10 +156,10 @@ TEST(LocalOrbitFrame, ErrorCases)
         Vector3d vel{1.0, 0.0, 0.0};  // 同方向
         
         Matrix3d matrix;
+        matrix.setIdentity();
         errc_t rc = aFrameToVVLHMatrix(pos, vel, matrix);
         
         EXPECT_EQ(rc, eErrorInvalidParam);
-        EXPECT_TRUE(matrix.isIdentity());
     }
     
     // 测试pos为零向量
@@ -146,10 +168,10 @@ TEST(LocalOrbitFrame, ErrorCases)
         Vector3d vel{1.0, 0.0, 0.0};
         
         Matrix3d matrix;
+        matrix.setIdentity();
         errc_t rc = aFrameToLVLHMatrix(pos, vel, matrix);
         
         EXPECT_EQ(rc, eErrorInvalidParam);
-        EXPECT_TRUE(matrix.isIdentity());
     }
     
     // 测试vel为零向量
@@ -158,10 +180,10 @@ TEST(LocalOrbitFrame, ErrorCases)
         Vector3d vel{0.0, 0.0, 0.0};
         
         Matrix3d matrix;
+        matrix.setIdentity();
         errc_t rc = aFrameToVNCMatrix(pos, vel, matrix);
         
         EXPECT_EQ(rc, eErrorInvalidParam);
-        EXPECT_TRUE(matrix.isIdentity());
     }
 }
 
