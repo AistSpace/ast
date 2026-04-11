@@ -20,13 +20,13 @@
 #include "AstCore/LocalOrbitFrame.hpp"
 #include "AstCore/RunTime.hpp"
 #include "AstMath/Matrix.hpp"
-#include "AstTest/Test.h"
+#include "AstTest/AstTestMacro.h"
 
 AST_USING_NAMESPACE
 
-// 辅助函数：获取矩阵的某列
-static Vector3d getMatrixCol(const Matrix3d& m, int col) {
-    return Vector3d{m(0, col), m(1, col), m(2, col)};
+// 辅助函数：获取矩阵的某行（每行是一个轴向量）
+static Vector3d getMatrixRow(const Matrix3d& m, int row) {
+    return Vector3d{m(row, 0), m(row, 1), m(row, 2)};
 }
 
 // 辅助函数：检查是否为单位矩阵
@@ -48,143 +48,97 @@ static bool isOrthogonalMatrix(const Matrix3d& m, double tol = 1e-10) {
 
 TEST(LocalOrbitFrame, FrameToVVLH)
 {
-    // 正常情况：位置和速度向量构成有效轨道平面
-    {
-        Vector3d pos{6778.0, 0.0, 0.0};  // km，近地点在+X方向
-        Vector3d vel{0.0, 7.5, 0.0};     // km/s，在轨道面内
-        
-        Matrix3d matrix;
-        errc_t rc = aFrameToVVLHMatrix(pos, vel, matrix);
-        
-        EXPECT_EQ(rc, eNoError);
-        // 验证矩阵是正交的
-        EXPECT_TRUE(isOrthogonalMatrix(matrix, 1e-10));
-        // 验证Z轴指向位置的反方向
-        Vector3d zAxis = getMatrixCol(matrix, 2);
-        Vector3d expectedZ = -pos.normalized();
-        EXPECT_NEAR(zAxis.dot(expectedZ), 1.0, 1e-10);
-    }
+    Vector3d pos{6778.0, 0.0, 0.0};
+    Vector3d vel{0.0, 7.5, 0.0};
     
-    // 测试VVLH到Frame的逆变换
-    {
-        Vector3d pos{6778.0, 0.0, 0.0};
-        Vector3d vel{0.0, 7.5, 0.0};
-        
-        Matrix3d toVVLH, fromVVLH;
-        aFrameToVVLHMatrix(pos, vel, toVVLH);
-        aVVLHToFrameMatrix(pos, vel, fromVVLH);
-        
-        // 验证互逆性
-        Matrix3d product = toVVLH * fromVVLH;
-        EXPECT_TRUE(isIdentityMatrix(product, 1e-10));
-    }
+    Matrix3d matrix;
+    errc_t rc = aFrameToVVLHMatrix(pos, vel, matrix);
+    
+    EXPECT_EQ(rc, eNoError);
+    EXPECT_TRUE(isOrthogonalMatrix(matrix, 1e-10));
+    
+    Vector3d zAxis = getMatrixRow(matrix, 2);
+    Vector3d expectedZ = -pos.normalized();
+    EXPECT_NEAR(zAxis.dot(expectedZ), 1.0, 1e-10);
+    
+    // 测试逆变换
+    Matrix3d fromVVLH;
+    aVVLHToFrameMatrix(pos, vel, fromVVLH);
+    Matrix3d product = matrix * fromVVLH;
+    EXPECT_TRUE(isIdentityMatrix(product, 1e-10));
 }
 
 TEST(LocalOrbitFrame, FrameToLVLH)
 {
-    // 正常情况
-    {
-        Vector3d pos{6778.0, 0.0, 0.0};
-        Vector3d vel{0.0, 7.5, 0.0};
-        
-        Matrix3d matrix;
-        errc_t rc = aFrameToLVLHMatrix(pos, vel, matrix);
-        
-        EXPECT_EQ(rc, eNoError);
-        // 验证矩阵是正交的
-        EXPECT_TRUE(isOrthogonalMatrix(matrix, 1e-10));
-        // 验证X轴指向位置方向
-        Vector3d xAxis = getMatrixCol(matrix, 0);
-        Vector3d expectedX = pos.normalized();
-        EXPECT_NEAR(xAxis.dot(expectedX), 1.0, 1e-10);
-    }
+    Vector3d pos{6778.0, 0.0, 0.0};
+    Vector3d vel{0.0, 7.5, 0.0};
     
-    // 测试LVLH到Frame的逆变换
-    {
-        Vector3d pos{6778.0, 0.0, 0.0};
-        Vector3d vel{0.0, 7.5, 0.0};
-        
-        Matrix3d toLVLH, fromLVLH;
-        aFrameToLVLHMatrix(pos, vel, toLVLH);
-        aLVLHToFrameMatrix(pos, vel, fromLVLH);
-        
-        // 验证互逆性
-        Matrix3d product = toLVLH * fromLVLH;
-        EXPECT_TRUE(isIdentityMatrix(product, 1e-10));
-    }
+    Matrix3d matrix;
+    errc_t rc = aFrameToLVLHMatrix(pos, vel, matrix);
+    
+    EXPECT_EQ(rc, eNoError);
+    EXPECT_TRUE(isOrthogonalMatrix(matrix, 1e-10));
+    
+    Vector3d xAxis = getMatrixRow(matrix, 0);
+    Vector3d expectedX = pos.normalized();
+    EXPECT_NEAR(xAxis.dot(expectedX), 1.0, 1e-10);
+    
+    Vector3d zAxis = getMatrixRow(matrix, 2);
+    Vector3d expectedZ = pos.cross(vel).normalized();
+    EXPECT_NEAR(zAxis.dot(expectedZ), 1.0, 1e-10);
+    
+    // 测试逆变换
+    Matrix3d fromLVLH;
+    aLVLHToFrameMatrix(pos, vel, fromLVLH);
+    Matrix3d product = matrix * fromLVLH;
+    EXPECT_TRUE(isIdentityMatrix(product, 1e-10));
 }
 
 TEST(LocalOrbitFrame, FrameToVNC)
 {
-    // 正常情况
-    {
-        Vector3d pos{6778.0, 0.0, 0.0};
-        Vector3d vel{0.0, 7.5, 0.0};
-        
-        Matrix3d matrix;
-        errc_t rc = aFrameToVNCMatrix(pos, vel, matrix);
-        
-        EXPECT_EQ(rc, eNoError);
-        // 验证矩阵是正交的
-        EXPECT_TRUE(isOrthogonalMatrix(matrix, 1e-10));
-        // 验证X轴指向速度方向
-        Vector3d xAxis = getMatrixCol(matrix, 0);
-        Vector3d expectedX = vel.normalized();
-        EXPECT_NEAR(xAxis.dot(expectedX), 1.0, 1e-10);
-    }
+    Vector3d pos{6778.0, 0.0, 0.0};
+    Vector3d vel{0.0, 7.5, 0.0};
     
-    // 测试VNC到Frame的逆变换
-    {
-        Vector3d pos{6778.0, 0.0, 0.0};
-        Vector3d vel{0.0, 7.5, 0.0};
-        
-        Matrix3d toVNC, fromVNC;
-        aFrameToVNCMatrix(pos, vel, toVNC);
-        aVNCToFrameMatrix(pos, vel, fromVNC);
-        
-        // 验证互逆性
-        Matrix3d product = toVNC * fromVNC;
-        EXPECT_TRUE(isIdentityMatrix(product, 1e-10));
-    }
+    Matrix3d matrix;
+    errc_t rc = aFrameToVNCMatrix(pos, vel, matrix);
+    
+    EXPECT_EQ(rc, eNoError);
+    EXPECT_TRUE(isOrthogonalMatrix(matrix, 1e-10));
+    
+    Vector3d xAxis = getMatrixRow(matrix, 0);
+    Vector3d expectedX = vel.normalized();
+    EXPECT_NEAR(xAxis.dot(expectedX), 1.0, 1e-10);
+    
+    // 测试逆变换
+    Matrix3d fromVNC;
+    aVNCToFrameMatrix(pos, vel, fromVNC);
+    Matrix3d product = matrix * fromVNC;
+    EXPECT_TRUE(isIdentityMatrix(product, 1e-10));
 }
 
 TEST(LocalOrbitFrame, ErrorCases)
 {
-    // 测试pos和vel方向相同的情况（叉积为零）
+    // pos和vel同方向
     {
         Vector3d pos{1.0, 0.0, 0.0};
-        Vector3d vel{1.0, 0.0, 0.0};  // 同方向
-        
+        Vector3d vel{1.0, 0.0, 0.0};
         Matrix3d matrix;
-        matrix.setIdentity();
-        errc_t rc = aFrameToVVLHMatrix(pos, vel, matrix);
-        
-        EXPECT_EQ(rc, eErrorInvalidParam);
+        EXPECT_EQ(aFrameToVVLHMatrix(pos, vel, matrix), eErrorInvalidParam);
     }
-    
-    // 测试pos为零向量
+    // pos为零
     {
         Vector3d pos{0.0, 0.0, 0.0};
         Vector3d vel{1.0, 0.0, 0.0};
-        
         Matrix3d matrix;
-        matrix.setIdentity();
-        errc_t rc = aFrameToLVLHMatrix(pos, vel, matrix);
-        
-        EXPECT_EQ(rc, eErrorInvalidParam);
+        EXPECT_EQ(aFrameToLVLHMatrix(pos, vel, matrix), eErrorInvalidParam);
     }
-    
-    // 测试vel为零向量
+    // vel为零
     {
         Vector3d pos{1.0, 0.0, 0.0};
         Vector3d vel{0.0, 0.0, 0.0};
-        
         Matrix3d matrix;
-        matrix.setIdentity();
-        errc_t rc = aFrameToVNCMatrix(pos, vel, matrix);
-        
-        EXPECT_EQ(rc, eErrorInvalidParam);
+        EXPECT_EQ(aFrameToVNCMatrix(pos, vel, matrix), eErrorInvalidParam);
     }
 }
 
-// ENU测试已移除：aFrameToENUMatrix 和 aENUToFrameMatrix 函数未实现
+GTEST_MAIN()

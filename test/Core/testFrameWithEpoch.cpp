@@ -21,7 +21,7 @@
 #include "AstCore/PointRoot.hpp"
 #include "AstCore/AxesRoot.hpp"
 #include "AstCore/TimePoint.hpp"
-#include "AstTest/Test.h"
+#include "AstTest/AstTestMacro.h"
 
 AST_USING_NAMESPACE
 
@@ -145,3 +145,5 @@ TEST_F(FrameWithEpochTest, ReferenceAxes)
     
     delete frame;
 }
+
+GTEST_MAIN()
