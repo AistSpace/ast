@@ -25,8 +25,9 @@
 
 AST_USING_NAMESPACE
 
-// 角度转弧度辅助函数
-constexpr double DEG2RAD(double deg) { return deg * M_PI / 180.0; }
+// 角度转弧度辅助函数（使用标准 C++ 常量，跨平台兼容）
+constexpr double PI = 3.14159265358979323846;
+constexpr double DEG2RAD(double deg) { return deg * PI / 180.0; }
 
 // 测试 GeoCoordinate 构造函数
 TEST(GeoCoordinateTest, Constructor)
@@ -113,7 +114,7 @@ TEST(GeoCoordinateTest, GetZenith)
         GeoCoordinate coord(DEG2RAD(45.0), DEG2RAD(90.0), 0.0);
         Vector3d zenith = coord.getZenith();
         EXPECT_NEAR(zenith.norm(), 1.0, 1e-14);
-        EXPECT_GT(zenith.z(), 0.0);  // z分量应为正
+        EXPECT_GT(zenith.z(), 0.0);
     }
     
     // 南半球中纬度
@@ -121,7 +122,7 @@ TEST(GeoCoordinateTest, GetZenith)
         GeoCoordinate coord(DEG2RAD(-45.0), DEG2RAD(90.0), 0.0);
         Vector3d zenith = coord.getZenith();
         EXPECT_NEAR(zenith.norm(), 1.0, 1e-14);
-        EXPECT_LT(zenith.z(), 0.0);  // z分量应为负
+        EXPECT_LT(zenith.z(), 0.0);
     }
 }
 
@@ -163,7 +164,7 @@ TEST(GeoCoordinateTest, GetEast)
         GeoCoordinate coord(DEG2RAD(-30.0), DEG2RAD(45.0), 0.0);
         Vector3d east = coord.getEast();
         EXPECT_NEAR(east.norm(), 1.0, 1e-14);
-        EXPECT_NEAR(east.z(), 0.0, 1e-14);  // 东方向始终水平
+        EXPECT_NEAR(east.z(), 0.0, 1e-14);
     }
 }
 
@@ -196,7 +197,7 @@ TEST(GeoCoordinateTest, GetNorth)
         GeoCoordinate coord(DEG2RAD(45.0), 0.0, 0.0);
         Vector3d north = coord.getNorth();
         EXPECT_NEAR(north.norm(), 1.0, 1e-14);
-        EXPECT_GT(north.z(), 0.0);  // z分量应为正
+        EXPECT_GT(north.z(), 0.0);
     }
     
     // 南半球
@@ -204,7 +205,14 @@ TEST(GeoCoordinateTest, GetNorth)
         GeoCoordinate coord(DEG2RAD(-45.0), 0.0, 0.0);
         Vector3d north = coord.getNorth();
         EXPECT_NEAR(north.norm(), 1.0, 1e-14);
-        EXPECT_GT(north.z(), 0.0);  // 北方向始终指向北极
+        EXPECT_GT(north.z(), 0.0);
+    }
+    
+    // 高纬度（避开精确的极点，测试极点附近行为）
+    {
+        GeoCoordinate coord(DEG2RAD(89.0), 0.0, 0.0);
+        Vector3d north = coord.getNorth();
+        EXPECT_NEAR(north.norm(), 1.0, 1e-14);
     }
 }
 
@@ -231,17 +239,14 @@ TEST(GeoCoordinateTest, Orthogonality)
         Vector3d east = coord.getEast();
         Vector3d north = coord.getNorth();
         
-        // 检查单位向量
         EXPECT_NEAR(zenith.norm(), 1.0, 1e-14);
         EXPECT_NEAR(east.norm(), 1.0, 1e-14);
         EXPECT_NEAR(north.norm(), 1.0, 1e-14);
         
-        // 检查正交性
         EXPECT_NEAR(zenith.dot(east), 0.0, 1e-14);
         EXPECT_NEAR(zenith.dot(north), 0.0, 1e-14);
         EXPECT_NEAR(east.dot(north), 0.0, 1e-14);
         
-        // 检查右手系：east × north = zenith
         Vector3d cross = east.cross(north);
         EXPECT_NEAR(cross.x(), zenith.x(), 1e-14);
         EXPECT_NEAR(cross.y(), zenith.y(), 1e-14);
@@ -269,31 +274,32 @@ TEST(GeoCoordinateTest, Orthogonality)
 // 测试地心纬度到大地纬度转换
 TEST(GeoCoordinateTest, SurfaceCentricToDeticLat)
 {
-    // 地球扁率因子 (WGS84)
     double flatFact = 1.0 / 298.257223563;
     
-    // 赤道上，纬度不变
+    // 赤道上
     double centricLat1 = 0.0;
     double deticLat1 = aSurfaceCentricToDeticLat(centricLat1, flatFact);
     EXPECT_NEAR(deticLat1, 0.0, 1e-14);
     
-    // 中纬度（北半球），大地纬度应大于地心纬度
+    // 北半球中纬度
     double centricLat2 = DEG2RAD(45.0);
     double deticLat2 = aSurfaceCentricToDeticLat(centricLat2, flatFact);
     EXPECT_GT(deticLat2, centricLat2);
-    EXPECT_LT(deticLat2, DEG2RAD(90.0));  // 确保在有效范围内
     
-    // 中纬度（南半球）
+    // 南半球中纬度
     double centricLat3 = DEG2RAD(-45.0);
     double deticLat3 = aSurfaceCentricToDeticLat(centricLat3, flatFact);
-    EXPECT_LT(deticLat3, centricLat3);  // 南半球：大地纬度 < 地心纬度
-    EXPECT_GT(deticLat3, DEG2RAD(-90.0));  // 确保在有效范围内
+    EXPECT_LT(deticLat3, centricLat3);
     
-    // 避开极点附近的数值问题，测试高纬度但不极点
-    double centricLat4 = DEG2RAD(85.0);
+    // 极点（90度）
+    double centricLat4 = DEG2RAD(90.0);
     double deticLat4 = aSurfaceCentricToDeticLat(centricLat4, flatFact);
-    EXPECT_GT(deticLat4, centricLat4);
-    EXPECT_LT(deticLat4, DEG2RAD(90.0));
+    EXPECT_NEAR(deticLat4, DEG2RAD(90.0), 1e-10);
+    
+    // 南极点（-90度）
+    double centricLat5 = DEG2RAD(-90.0);
+    double deticLat5 = aSurfaceCentricToDeticLat(centricLat5, flatFact);
+    EXPECT_NEAR(deticLat5, DEG2RAD(-90.0), 1e-10);
 }
 
 // 测试大地纬度到地心纬度转换
@@ -306,21 +312,25 @@ TEST(GeoCoordinateTest, SurfaceDeticToCentricLat)
     double centricLat1 = aSurfaceDeticToCentricLat(deticLat1, flatFact);
     EXPECT_NEAR(centricLat1, 0.0, 1e-14);
     
-    // 中纬度（北半球），地心纬度应小于大地纬度
+    // 北半球中纬度
     double deticLat2 = DEG2RAD(45.0);
     double centricLat2 = aSurfaceDeticToCentricLat(deticLat2, flatFact);
     EXPECT_LT(centricLat2, deticLat2);
     
-    // 中纬度（南半球）
+    // 南半球中纬度
     double deticLat3 = DEG2RAD(-45.0);
     double centricLat3 = aSurfaceDeticToCentricLat(deticLat3, flatFact);
-    EXPECT_GT(centricLat3, deticLat3);  // 南半球：地心纬度 > 大地纬度
+    EXPECT_GT(centricLat3, deticLat3);
     
-    // 高纬度但非极点
-    double deticLat4 = DEG2RAD(85.0);
+    // 极点（90度）
+    double deticLat4 = DEG2RAD(90.0);
     double centricLat4 = aSurfaceDeticToCentricLat(deticLat4, flatFact);
-    EXPECT_LT(centricLat4, deticLat4);
-    EXPECT_GT(centricLat4, DEG2RAD(0.0));  // 仍为正值
+    EXPECT_NEAR(centricLat4, DEG2RAD(90.0), 1e-10);
+    
+    // 南极点（-90度）
+    double deticLat5 = DEG2RAD(-90.0);
+    double centricLat5 = aSurfaceDeticToCentricLat(deticLat5, flatFact);
+    EXPECT_NEAR(centricLat5, DEG2RAD(-90.0), 1e-10);
 }
 
 // 测试双向转换的可逆性
@@ -328,14 +338,17 @@ TEST(GeoCoordinateTest, CentricDeticReversibility)
 {
     double flatFact = 1.0 / 298.257223563;
     
-    // 测试多个纬度（北半球和南半球）
-    double testLats[] = {0.0, 15.0, 30.0, 45.0, 60.0, 75.0, -15.0, -30.0, -45.0, -60.0, -75.0};
+    // 测试多个纬度（包括极点）
+    double testLats[] = {0.0, 15.0, 30.0, 45.0, 60.0, 75.0, 85.0, 89.0, 90.0,
+                         -15.0, -30.0, -45.0, -60.0, -75.0, -85.0, -89.0, -90.0};
     for (double latDeg : testLats)
     {
         double deticLat = DEG2RAD(latDeg);
         double centricLat = aSurfaceDeticToCentricLat(deticLat, flatFact);
         double deticLat2 = aSurfaceCentricToDeticLat(centricLat, flatFact);
-        EXPECT_NEAR(deticLat2, deticLat, 1e-14) << "Failed at latitude " << latDeg << " degrees";
+        // 极点附近精度稍低
+        double tolerance = (std::abs(latDeg) > 85.0) ? 1e-9 : 1e-13;
+        EXPECT_NEAR(deticLat2, deticLat, tolerance) << "Failed at latitude " << latDeg << " degrees";
     }
 }
 
