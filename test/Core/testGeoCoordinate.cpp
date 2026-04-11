@@ -7,7 +7,7 @@
 using namespace ast;
 
 // WGS84 扁率
-constexpr double WGS84_FLATTENING = 1.0 / 298.257223563;
+// 使用库中定义的 WGS84 地球扁率
 
 // 测试参数构造函数
 TEST(GeoCoordinateTest, ParameterConstructor)
@@ -312,27 +312,27 @@ TEST(GeoCoordinateTest, SurfaceCentricToDeticLat)
 {
     // 赤道上
     double centricLat1 = 0.0;
-    double deticLat1 = aSurfaceCentricToDeticLat(centricLat1, WGS84_FLATTENING);
+    double deticLat1 = aSurfaceCentricToDeticLat(centricLat1, kEarthFlatFact);
     EXPECT_NEAR(deticLat1, 0.0, 1e-14);
     
     // 北半球中纬度
     double centricLat2 = deg2rad(45.0);
-    double deticLat2 = aSurfaceCentricToDeticLat(centricLat2, WGS84_FLATTENING);
+    double deticLat2 = aSurfaceCentricToDeticLat(centricLat2, kEarthFlatFact);
     EXPECT_GT(deticLat2, centricLat2);  // 大地纬度应大于地心纬度
     
     // 南半球中纬度
     double centricLat3 = deg2rad(-45.0);
-    double deticLat3 = aSurfaceCentricToDeticLat(centricLat3, WGS84_FLATTENING);
+    double deticLat3 = aSurfaceCentricToDeticLat(centricLat3, kEarthFlatFact);
     EXPECT_LT(deticLat3, centricLat3);  // 大地纬度应小于地心纬度（绝对值更大）
     
     // 北极点测试
     double centricLat4 = deg2rad(90.0);
-    double deticLat4 = aSurfaceCentricToDeticLat(centricLat4, WGS84_FLATTENING);
+    double deticLat4 = aSurfaceCentricToDeticLat(centricLat4, kEarthFlatFact);
     EXPECT_NEAR(deticLat4, centricLat4, 1e-14);
     
     // 南极点测试
     double centricLat5 = deg2rad(-90.0);
-    double deticLat5 = aSurfaceCentricToDeticLat(centricLat5, WGS84_FLATTENING);
+    double deticLat5 = aSurfaceCentricToDeticLat(centricLat5, kEarthFlatFact);
     EXPECT_NEAR(deticLat5, centricLat5, 1e-14);
 }
 
@@ -341,27 +341,27 @@ TEST(GeoCoordinateTest, SurfaceDeticToCentricLat)
 {
     // 赤道上
     double deticLat1 = 0.0;
-    double centricLat1 = aSurfaceDeticToCentricLat(deticLat1, WGS84_FLATTENING);
+    double centricLat1 = aSurfaceDeticToCentricLat(deticLat1, kEarthFlatFact);
     EXPECT_NEAR(centricLat1, 0.0, 1e-14);
     
     // 北半球中纬度
     double deticLat2 = deg2rad(45.0);
-    double centricLat2 = aSurfaceDeticToCentricLat(deticLat2, WGS84_FLATTENING);
+    double centricLat2 = aSurfaceDeticToCentricLat(deticLat2, kEarthFlatFact);
     EXPECT_LT(centricLat2, deticLat2);  // 地心纬度应小于大地纬度
     
     // 南半球中纬度
     double deticLat3 = deg2rad(-45.0);
-    double centricLat3 = aSurfaceDeticToCentricLat(deticLat3, WGS84_FLATTENING);
+    double centricLat3 = aSurfaceDeticToCentricLat(deticLat3, kEarthFlatFact);
     EXPECT_GT(centricLat3, deticLat3);  // 地心纬度应大于大地纬度（绝对值更小）
     
     // 北极点
     double deticLat4 = deg2rad(90.0);
-    double centricLat4 = aSurfaceDeticToCentricLat(deticLat4, WGS84_FLATTENING);
+    double centricLat4 = aSurfaceDeticToCentricLat(deticLat4, kEarthFlatFact);
     EXPECT_NEAR(centricLat4, deticLat4, 1e-14);
     
     // 南极点
     double deticLat5 = deg2rad(-90.0);
-    double centricLat5 = aSurfaceDeticToCentricLat(deticLat5, WGS84_FLATTENING);
+    double centricLat5 = aSurfaceDeticToCentricLat(deticLat5, kEarthFlatFact);
     EXPECT_NEAR(centricLat5, deticLat5, 1e-14);
 }
 
@@ -372,8 +372,8 @@ TEST(GeoCoordinateTest, LatConversionReversibility)
     const double testLats[] = {-75.0, -45.0, -15.0, 0.0, 15.0, 45.0, 75.0};
     for (double lat : testLats) {
         double centric = deg2rad(lat);
-        double detic = aSurfaceCentricToDeticLat(centric, WGS84_FLATTENING);
-        double centricBack = aSurfaceDeticToCentricLat(detic, WGS84_FLATTENING);
+        double detic = aSurfaceCentricToDeticLat(centric, kEarthFlatFact);
+        double centricBack = aSurfaceDeticToCentricLat(detic, kEarthFlatFact);
         EXPECT_NEAR(centric, centricBack, 1e-14);
     }
     
@@ -381,8 +381,8 @@ TEST(GeoCoordinateTest, LatConversionReversibility)
     const double polarLats[] = {-90.0, -89.0, 89.0, 90.0};
     for (double lat : polarLats) {
         double centric = deg2rad(lat);
-        double detic = aSurfaceCentricToDeticLat(centric, WGS84_FLATTENING);
-        double centricBack = aSurfaceDeticToCentricLat(detic, WGS84_FLATTENING);
+        double detic = aSurfaceCentricToDeticLat(centric, kEarthFlatFact);
+        double centricBack = aSurfaceDeticToCentricLat(detic, kEarthFlatFact);
         EXPECT_NEAR(centric, centricBack, 1e-14);
     }
 }
