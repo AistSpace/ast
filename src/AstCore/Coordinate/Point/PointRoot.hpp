@@ -31,7 +31,7 @@ AST_NAMESPACE_BEGIN
 */
 
 
-class PointRoot : public Point
+class AST_CORE_API PointRoot : public Point
 {
 public:
     PointRoot() = default;
