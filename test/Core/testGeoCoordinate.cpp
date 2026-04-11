@@ -6,6 +6,9 @@
 
 using namespace ast;
 
+// WGS84 扁率
+constexpr double WGS84_FLATTENING = 1.0 / 298.257223563;
+
 // 测试参数构造函数
 TEST(GeoCoordinateTest, ParameterConstructor)
 {
@@ -85,11 +88,8 @@ TEST(GeoCoordinateTest, GetZenith)
         GeoCoordinate coord(deg2rad(45.0), deg2rad(90.0), 0.0);
         Vector3d zenith = coord.getZenith();
         EXPECT_NEAR(zenith.norm(), 1.0, 1e-14);
-        // x = cos(90°) * cos(45°) = 0 * cos(45°) = 0
         EXPECT_NEAR(zenith.x(), 0.0, 1e-14);
-        // y = sin(90°) * cos(45°) = 1 * cos(45°)
         EXPECT_NEAR(zenith.y(), std::cos(deg2rad(45.0)), 1e-14);
-        // z = sin(45°)
         EXPECT_NEAR(zenith.z(), std::sin(deg2rad(45.0)), 1e-14);
     }
     
@@ -177,7 +177,6 @@ TEST(GeoCoordinateTest, GetNorth)
         GeoCoordinate coord(deg2rad(45.0), 0.0, 0.0);
         Vector3d north = coord.getNorth();
         EXPECT_NEAR(north.norm(), 1.0, 1e-14);
-        // 北方向在X-Z平面内，指向极点方向
         EXPECT_NEAR(north.x(), -std::sin(deg2rad(45.0)), 1e-14);
         EXPECT_NEAR(north.y(), 0.0, 1e-14);
         EXPECT_NEAR(north.z(), std::cos(deg2rad(45.0)), 1e-14);
@@ -251,10 +250,18 @@ TEST(GeoCoordinateTest, PoleCases)
         EXPECT_NEAR(zenith.y(), 0.0, 1e-14);
         EXPECT_NEAR(zenith.z(), -1.0, 1e-14);
         
+        // 南极点的东方向和北方向（基于极限定义）
         Vector3d east = coord.getEast();
         Vector3d north = coord.getNorth();
         EXPECT_NEAR(east.norm(), 1.0, 1e-14);
+        EXPECT_NEAR(east.x(), 0.0, 1e-14);
+        EXPECT_NEAR(east.y(), 1.0, 1e-14);
+        EXPECT_NEAR(east.z(), 0.0, 1e-14);
+        
         EXPECT_NEAR(north.norm(), 1.0, 1e-14);
+        EXPECT_NEAR(north.x(), 1.0, 1e-14);
+        EXPECT_NEAR(north.y(), 0.0, 1e-14);
+        EXPECT_NEAR(north.z(), 0.0, 1e-14);
     }
 }
 
@@ -303,76 +310,70 @@ TEST(GeoCoordinateTest, Orthogonality)
 // 测试地心纬度到大地纬度转换
 TEST(GeoCoordinateTest, SurfaceCentricToDeticLat)
 {
-    const double flatFact = 1.0 / 298.257223563;
-    
     // 赤道上
     double centricLat1 = 0.0;
-    double deticLat1 = aSurfaceCentricToDeticLat(centricLat1, flatFact);
+    double deticLat1 = aSurfaceCentricToDeticLat(centricLat1, WGS84_FLATTENING);
     EXPECT_NEAR(deticLat1, 0.0, 1e-14);
     
     // 北半球中纬度
     double centricLat2 = deg2rad(45.0);
-    double deticLat2 = aSurfaceCentricToDeticLat(centricLat2, flatFact);
+    double deticLat2 = aSurfaceCentricToDeticLat(centricLat2, WGS84_FLATTENING);
     EXPECT_GT(deticLat2, centricLat2);  // 大地纬度应大于地心纬度
     
     // 南半球中纬度
     double centricLat3 = deg2rad(-45.0);
-    double deticLat3 = aSurfaceCentricToDeticLat(centricLat3, flatFact);
+    double deticLat3 = aSurfaceCentricToDeticLat(centricLat3, WGS84_FLATTENING);
     EXPECT_LT(deticLat3, centricLat3);  // 大地纬度应小于地心纬度（绝对值更大）
     
     // 北极点测试
     double centricLat4 = deg2rad(90.0);
-    double deticLat4 = aSurfaceCentricToDeticLat(centricLat4, flatFact);
+    double deticLat4 = aSurfaceCentricToDeticLat(centricLat4, WGS84_FLATTENING);
     EXPECT_NEAR(deticLat4, centricLat4, 1e-14);
     
     // 南极点测试
     double centricLat5 = deg2rad(-90.0);
-    double deticLat5 = aSurfaceCentricToDeticLat(centricLat5, flatFact);
+    double deticLat5 = aSurfaceCentricToDeticLat(centricLat5, WGS84_FLATTENING);
     EXPECT_NEAR(deticLat5, centricLat5, 1e-14);
 }
 
 // 测试大地纬度到地心纬度转换
 TEST(GeoCoordinateTest, SurfaceDeticToCentricLat)
 {
-    const double flatFact = 1.0 / 298.257223563;
-    
     // 赤道上
     double deticLat1 = 0.0;
-    double centricLat1 = aSurfaceDeticToCentricLat(deticLat1, flatFact);
+    double centricLat1 = aSurfaceDeticToCentricLat(deticLat1, WGS84_FLATTENING);
     EXPECT_NEAR(centricLat1, 0.0, 1e-14);
     
     // 北半球中纬度
     double deticLat2 = deg2rad(45.0);
-    double centricLat2 = aSurfaceDeticToCentricLat(deticLat2, flatFact);
+    double centricLat2 = aSurfaceDeticToCentricLat(deticLat2, WGS84_FLATTENING);
     EXPECT_LT(centricLat2, deticLat2);  // 地心纬度应小于大地纬度
     
     // 南半球中纬度
     double deticLat3 = deg2rad(-45.0);
-    double centricLat3 = aSurfaceDeticToCentricLat(deticLat3, flatFact);
+    double centricLat3 = aSurfaceDeticToCentricLat(deticLat3, WGS84_FLATTENING);
     EXPECT_GT(centricLat3, deticLat3);  // 地心纬度应大于大地纬度（绝对值更小）
     
     // 北极点
     double deticLat4 = deg2rad(90.0);
-    double centricLat4 = aSurfaceDeticToCentricLat(deticLat4, flatFact);
+    double centricLat4 = aSurfaceDeticToCentricLat(deticLat4, WGS84_FLATTENING);
     EXPECT_NEAR(centricLat4, deticLat4, 1e-14);
     
     // 南极点
     double deticLat5 = deg2rad(-90.0);
-    double centricLat5 = aSurfaceDeticToCentricLat(deticLat5, flatFact);
+    double centricLat5 = aSurfaceDeticToCentricLat(deticLat5, WGS84_FLATTENING);
     EXPECT_NEAR(centricLat5, deticLat5, 1e-14);
 }
 
 // 测试转换的可逆性
 TEST(GeoCoordinateTest, LatConversionReversibility)
 {
-    const double flatFact = 1.0 / 298.257223563;
-    
     // 多个纬度值测试可逆性
     const double testLats[] = {-75.0, -45.0, -15.0, 0.0, 15.0, 45.0, 75.0};
     for (double lat : testLats) {
         double centric = deg2rad(lat);
-        double detic = aSurfaceCentricToDeticLat(centric, flatFact);
-        double centricBack = aSurfaceDeticToCentricLat(detic, flatFact);
+        double detic = aSurfaceCentricToDeticLat(centric, WGS84_FLATTENING);
+        double centricBack = aSurfaceDeticToCentricLat(detic, WGS84_FLATTENING);
         EXPECT_NEAR(centric, centricBack, 1e-14);
     }
     
@@ -380,8 +381,8 @@ TEST(GeoCoordinateTest, LatConversionReversibility)
     const double polarLats[] = {-90.0, -89.0, 89.0, 90.0};
     for (double lat : polarLats) {
         double centric = deg2rad(lat);
-        double detic = aSurfaceCentricToDeticLat(centric, flatFact);
-        double centricBack = aSurfaceDeticToCentricLat(detic, flatFact);
+        double detic = aSurfaceCentricToDeticLat(centric, WGS84_FLATTENING);
+        double centricBack = aSurfaceDeticToCentricLat(detic, WGS84_FLATTENING);
         EXPECT_NEAR(centric, centricBack, 1e-14);
     }
 }
