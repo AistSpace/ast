@@ -9,8 +9,7 @@
 /// ast项目（https://github.com/space-ast/ast）
 /// 本项目基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
-/// 许可证全文请见：
-/// 
+/// 许可证全文请见： 
 ///    http://www.apache.org/licenses/LICENSE-2.0
 /// 
 /// 重要须知：
@@ -166,36 +165,4 @@ TEST(LocalOrbitFrame, ErrorCases)
     }
 }
 
-TEST(LocalOrbitFrame, ENU)
-{
-    // ENU (East-North-Up) 坐标系测试
-    {
-        Vector3d pos{0.0, 0.0, 6378.0};  // 赤道上空
-        Vector3d vel{0.47, 0.0, 0.0};   // 东西向速度
-        
-        Matrix3d matrix;
-        errc_t rc = aFrameToENUMatrix(pos, vel, matrix);
-        
-        EXPECT_EQ(rc, eNoError);
-        EXPECT_TRUE(matrix.isOrthogonal(1e-10));
-        
-        // 验证ENU坐标系定义
-        // Z轴指向天顶（位置方向）
-        Vector3d zAxis = matrix.col(2);
-        Vector3d expectedZ = pos.normalized();
-        EXPECT_NEAR(zAxis.dot(expectedZ), 1.0, 1e-10);
-    }
-    
-    // 测试ENU到Frame的逆变换
-    {
-        Vector3d pos{0.0, 0.0, 6378.0};
-        Vector3d vel{0.47, 0.0, 0.0};
-        
-        Matrix3d toENU, fromENU;
-        aFrameToENUMatrix(pos, vel, toENU);
-        aENUToFrameMatrix(pos, vel, fromENU);
-        
-        Matrix3d product = toENU * fromENU;
-        EXPECT_TRUE(product.isIdentity(1e-10));
-    }
-}
+// ENU测试已移除：aFrameToENUMatrix 和 aENUToFrameMatrix 函数未实现

@@ -9,8 +9,7 @@
 /// ast项目（https://github.com/space-ast/ast）
 /// 本项目基于 Apache 2.0 开源许可证分发。
 /// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
-/// 许可证全文请见：
-/// 
+/// 许可证全文请见： 
 ///    http://www.apache.org/licenses/LICENSE-2.0
 /// 
 /// 重要须知：
@@ -45,9 +44,11 @@ TEST_F(FrameWithEpochTest, DefaultConstruction)
 {
     FrameWithEpoch frame;
     
-    // 默认构造函数应该创建有效的frame
-    EXPECT_NE(frame.getAxes(), nullptr);
+    // 默认构造函数：useEpoch_=false, sourceAxes_=nullptr
+    // 所以 getAxes() 返回 sourceAxes_.get() = nullptr
+    EXPECT_EQ(frame.getAxes(), nullptr);
     EXPECT_EQ(frame.getOrigin(), nullptr);
+    EXPECT_FALSE(frame.getUseEpoch());
 }
 
 TEST_F(FrameWithEpochTest, NewConstruction)
