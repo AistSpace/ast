@@ -145,7 +145,7 @@ TEST_F(EuclidTest, FrameGetParent)
     // 测试获取父坐标系
     Frame* parent = ecf->getParent();
     // ECF的父坐标系应该存在
-    EXPECT_TRUE(parent != nullptr || parent == nullptr);
+    EXPECT_NE(parent, nullptr);
 }
 
 TEST_F(EuclidTest, FrameGetBody)
