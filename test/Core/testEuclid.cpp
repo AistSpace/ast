@@ -191,7 +191,7 @@ TEST_F(EuclidTest, FrameSelfTransform)
     
     // 自变换的位置偏移应该是零
     Vector3d translation = transform.getTranslation();
-    EXPECT_NEAR(translation.norm(), 0.0, 1e-10);
+    EXPECT_NEAR(translation.norm(), 0.0, 1e-14);
 }
 
 TEST_F(EuclidTest, FrameTransformKinematic)
@@ -216,6 +216,7 @@ TEST_F(EuclidTest, FrameTransformNullInput)
     Transform transform;
     
     auto earth = aGetEarth();
+    ASSERT_NE(earth, nullptr);
     auto ecf = earth->makeFrameFixed();
     
     // 空指针输入
