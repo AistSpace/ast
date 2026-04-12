@@ -55,19 +55,19 @@ protected:
 TEST_F(EuclidTest, AxesGetDepth)
 {
     // 测试根轴系深度为1
-    HAxes root = aAxesRoot();
+    Axes* root = aAxesRoot();
     ASSERT_NE(root, nullptr);
     EXPECT_EQ(root->getDepth(), 1);
 }
 
 TEST_F(EuclidTest, AxesGetAncestor)
 {
-    HAxes root = aAxesRoot();
+    Axes* root = aAxesRoot();
     ASSERT_NE(root, nullptr);
     
     // 根轴系的祖先应该是自己
     Axes* ancestor = root->getAncestor(0);
-    EXPECT_EQ(ancestor, root.get());
+    EXPECT_EQ(ancestor, root);
 }
 
 TEST_F(EuclidTest, AxesSelfTransform)
@@ -75,11 +75,11 @@ TEST_F(EuclidTest, AxesSelfTransform)
     auto tp = TimePoint::FromUTC(2026, 3, 4, 0, 0, 0);
     
     // 测试ICRF轴系的自变换（应该是单位旋转）
-    HAxes icrf = aAxesICRF();
+    Axes* icrf = aAxesICRF();
     ASSERT_NE(icrf, nullptr);
     
     Rotation rotation;
-    errc_t rc = aAxesTransform(icrf.get(), icrf.get(), tp, rotation);
+    errc_t rc = aAxesTransform(icrf, icrf, tp, rotation);
     EXPECT_EQ(rc, eNoError);
     
     // 自变换应该是单位旋转矩阵
@@ -104,12 +104,12 @@ TEST_F(EuclidTest, AxesTransformKinematicRotation)
 {
     auto tp = TimePoint::FromUTC(2026, 3, 4, 0, 0, 0);
     
-    HAxes icrf = aAxesICRF();
+    Axes* icrf = aAxesICRF();
     ASSERT_NE(icrf, nullptr);
     
     // 测试动力学旋转版本
     KinematicRotation kr;
-    errc_t rc = aAxesTransform(icrf.get(), icrf.get(), tp, kr);
+    errc_t rc = aAxesTransform(icrf, icrf, tp, kr);
     EXPECT_EQ(rc, eNoError);
 }
 
@@ -122,11 +122,11 @@ TEST_F(EuclidTest, AxesTransformNullInput)
     errc_t rc1 = aAxesTransform(nullptr, nullptr, tp, rotation);
     EXPECT_NE(rc1, eNoError);
     
-    HAxes icrf = aAxesICRF();
-    errc_t rc2 = aAxesTransform(nullptr, icrf.get(), tp, rotation);
+    Axes* icrf = aAxesICRF();
+    errc_t rc2 = aAxesTransform(nullptr, icrf, tp, rotation);
     EXPECT_NE(rc2, eNoError);
     
-    errc_t rc3 = aAxesTransform(icrf.get(), nullptr, tp, rotation);
+    errc_t rc3 = aAxesTransform(icrf, nullptr, tp, rotation);
     EXPECT_NE(rc3, eNoError);
 }
 
