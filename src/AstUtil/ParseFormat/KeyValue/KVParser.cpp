@@ -27,12 +27,12 @@ AST_NAMESPACE_BEGIN
 KVParser::EToken KVParser::getNext(BKVItemView &item)
 {
     static_assert(eEOF == EOF, "eEOF must be EOF");
-
-    if(!file_)
+    auto file = getFile();
+    if(!file)
         return eError;
-    
-    while(fgets(lineBuffer_.data(), (int)lineBuffer_.size(), file_)){
-        StringView line(lineBuffer_.data());
+    auto& lineBuffer = getLineBuffer();
+    while(fgets(lineBuffer.data(), (int)lineBuffer.size(), file)){
+        StringView line(lineBuffer.data());
         if(aIsHashCommentLine(line))
             continue;
         auto pos = line.find('=');

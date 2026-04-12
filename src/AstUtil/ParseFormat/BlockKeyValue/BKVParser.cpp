@@ -59,16 +59,17 @@ BKVParser::~BKVParser()
 
 BKVParser::EToken BKVParser::getNext(StringView &key, ValueView &value)
 {
-    if(!file_)
+    auto file = getFile();
+    if(!file)
         return eError;
 start:
     // #pragma warning(suppress: 4996)
-    if(fscanf(file_, "%1023s", keyBuffer_.data()) != EOF)
+    if(fscanf(file, "%1023s", keyBuffer_.data()) != EOF)
     {
         if(keyBuffer_[0] == '#' && allowComment_)
         {
             // fscanf(file_, "%*[^\n]%*c");                           // 跳过注释行
-            char* str = fgets(valueBuffer_.data(), (int)valueBuffer_.size(), file_);     // 跳过注释行
+            char* str = fgets(valueBuffer_.data(), (int)valueBuffer_.size(), file);     // 跳过注释行
             A_UNUSED(str);
             // printf("comment left parts: %s", value);
             // continue;
@@ -78,20 +79,20 @@ start:
         if(strcasecmp(keyBuffer_.data(), "BEGIN") == 0)
         {
 
-            char* line = fgetlinetrim(valueBuffer_.data(), (int)valueBuffer_.size(), file_);
+            char* line = fgetlinetrim(valueBuffer_.data(), (int)valueBuffer_.size(), file);
             value = StringView(line);
             return eBlockBegin;
         }
         else if(strcasecmp(keyBuffer_.data(), "END") == 0)
         {
-            char* line = fgetlinetrim(valueBuffer_.data(), (int)valueBuffer_.size(), file_);
+            char* line = fgetlinetrim(valueBuffer_.data(), (int)valueBuffer_.size(), file);
             value = StringView(line);
             return eBlockEnd;
         }else{
-            long pos = ftell(file_);        // 记录当前位置
-            char* line = fgetlinetrim(valueBuffer_.data(), (int)valueBuffer_.size(), file_);
+            long pos = ftell(file);        // 记录当前位置
+            char* line = fgetlinetrim(valueBuffer_.data(), (int)valueBuffer_.size(), file);
             if(line && strncasecmp(line, "END ", 4) == 0){
-                fseek(file_, pos, SEEK_SET); // 回退到记录位置
+                fseek(file, pos, SEEK_SET); // 回退到记录位置
                 value = nullptr;
             }else{
                 value = StringView(line);

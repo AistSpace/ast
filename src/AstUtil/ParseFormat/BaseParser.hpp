@@ -147,7 +147,10 @@ public: // 辅助信息
 
     /// @brief 获取当前解析器使用的文件指针
     FILE* getFile() const { return file_; }
+
 protected:
+    std::vector<char>& getLineBuffer() { return lineBuffer_; }
+private:
     FILE*             file_{nullptr};           ///< 文件指针
     bool              fileBorrowed_{false};     ///< 是否从外部借用文件指针
     std::vector<char> lineBuffer_;               ///< 行缓冲区
