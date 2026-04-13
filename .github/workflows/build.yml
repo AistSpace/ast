@@ -41,6 +41,7 @@ jobs:
         run: |
           xmake g --pkg_cachedir=$(pwd)/xmake-cache/cache
           xmake g --pkg_installdir=$(pwd)/xmake-cache/packages
+          xmake repo -u
       
       - name: 配置opengl环境
         if: runner.os != 'Windows'

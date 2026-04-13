@@ -19,9 +19,20 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "Asteroid.hpp"
+#include "AstUtil/Class.hpp"
 
 AST_NAMESPACE_BEGIN
 
+_AST_IMPL_OBJECT(Asteroid)
 
+static bool Asteroid_ClassInited = (Asteroid::ClassInit(&Asteroid::staticType), true);
+
+void Asteroid::ClassInit(Class* cls)
+{
+    cls->setName("Asteroid");
+    cls->addToRegistry();
+    cls->setParent<SpaceObject>();
+    cls->setConstructor<Asteroid>();
+}
 
 AST_NAMESPACE_END

@@ -48,6 +48,10 @@ AST_UTIL_CAPI bool aIsGithubCI();
 AST_UTIL_API bool aIsGitlabCI();
 
 
+/// @brief 检查终端是否支持颜色
+/// @return 如果终端支持颜色，返回true；否则返回false
+AST_UTIL_API bool aTerminalSupportColor();
+
 
 /// @brief 获取当前项目的名称
 /// @return 项目的名称

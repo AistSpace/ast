@@ -21,10 +21,162 @@
 #include "CommonlyUsedHeaders.hpp"
 #include "AstSim/Sensor.hpp"
 #include "AstSim/CentroidPosition.hpp"
+#include "AstCore/FOVSimpleCone.hpp"
+#include "AstCore/FOVConical.hpp"
+#include "AstCore/FOVHalfPower.hpp"
+#include "AstCore/FOVRectangular.hpp"
+#include "AstCore/FOVSAR.hpp"
+#include "AstCore/FOVCustom.hpp"
+#include "AstMath/Vector.hpp"
 
 AST_NAMESPACE_BEGIN
 
-/// @brief 加载传感器图案信息
+
+errc_t _aLoadSimpleCone(BKVParser& parser, FOVSimpleCone& fov)
+{
+    BKVItemView coneItem;
+    BKVParser::EToken coneToken;
+    do{
+        coneToken = parser.getNext(coneItem);
+        if(coneToken == BKVParser::eKeyValue){
+            if(aEqualsIgnoreCase(coneItem.key(), "ConeAngle")){
+                fov.setConeAngle(coneItem.value().toDouble());
+            }else if(aEqualsIgnoreCase(coneItem.key(), "AngularPatternResolution")){
+                fov.setAngularPatternResolution(coneItem.value().toDouble());
+            }
+        }else if(coneToken == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(coneItem.value(), "SimpleCone")){
+                break;
+            }
+        }
+    }while(coneToken != BKVParser::eEOF);
+    return eNoError;
+}
+
+errc_t _aLoadConical(BKVParser& parser, FOVConical& fov)
+{
+    BKVItemView coneItem;
+    BKVParser::EToken coneToken;
+    do{
+        coneToken = parser.getNext(coneItem);
+        if(coneToken == BKVParser::eKeyValue){
+            if(aEqualsIgnoreCase(coneItem.key(), "InnerConeAngle")){
+                fov.setInnerConeAngle(coneItem.value().toAngleRad());
+            }else if(aEqualsIgnoreCase(coneItem.key(), "OuterConeAngle")){
+                fov.setOuterConeAngle(coneItem.value().toAngleRad());
+            }else if(aEqualsIgnoreCase(coneItem.key(), "MinClockAngle")){
+                fov.setMinClockAngle(coneItem.value().toAngleRad());
+            }else if(aEqualsIgnoreCase(coneItem.key(), "MaxClockAngle")){
+                fov.setMaxClockAngle(coneItem.value().toAngleRad());
+            }
+        }else if(coneToken == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(coneItem.value(), "Conical")){
+                break;
+            }
+        }
+    }while(coneToken != BKVParser::eEOF);
+    return eNoError;
+}
+
+errc_t _aLoadHalfPower(BKVParser& parser, FOVHalfPower& fov)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue){
+            if(aEqualsIgnoreCase(item.key(), "HalfAngle")){
+                fov.setHalfAngle(item.value().toAngleRad());
+            }else if(aEqualsIgnoreCase(item.key(), "Frequency")){
+                fov.setFrequency(item.value().toDouble());
+            }else if(aEqualsIgnoreCase(item.key(), "AntennaDiameter")){
+                fov.setAntennaDiameter(item.value().toDouble());
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "HalfPower")){
+                break;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
+errc_t _aLoadRectangular(BKVParser& parser, FOVRectangular& fov)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue){
+            if(aEqualsIgnoreCase(item.key(), "SideToSideAngle")){
+                fov.setHorizontalHalfAngle(item.value().toAngleRad());
+            }else if(aEqualsIgnoreCase(item.key(), "UpDownAngle")){
+                fov.setVerticalHalfAngle(item.value().toAngleRad());
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "Rectangular")){
+                break;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
+errc_t _aLoadSAR(BKVParser& parser, FOVSAR& fov)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue){
+            if(aEqualsIgnoreCase(item.key(), "MinElevAngle")){
+                fov.setMinElevAngle(item.value().toAngleRad());
+            }else if(aEqualsIgnoreCase(item.key(), "MaxElevAngle")){
+                fov.setMaxElevAngle(item.value().toAngleRad());
+            }else if(aEqualsIgnoreCase(item.key(), "FwdExclAngle")){
+                fov.setForwardExcludeAngle(item.value().toAngleRad());
+            }else if(aEqualsIgnoreCase(item.key(), "AftExclAngle")){
+                fov.setBackwardExcludeAngle(item.value().toAngleRad());
+            }else if(aEqualsIgnoreCase(item.key(), "Altitude")){
+                fov.setAltitude(item.value().toDouble());
+            }else if(aEqualsIgnoreCase(item.key(), "UpdateMode")){
+                FOVSAR::EUpdateMode updateMode = FOVSAR::eConstant;
+                if(aEqualsIgnoreCase(item.value(), "Constant")){
+                    updateMode = FOVSAR::eConstant;
+                }else if(aEqualsIgnoreCase(item.value(), "Dynamic")){
+                    updateMode = FOVSAR::eDynamic;
+                }else{
+                    aError("Invalid UpdateMode value: '%s'", item.value().toString().c_str());
+                }
+                fov.setUpdateMode(updateMode);
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "SAR")){
+                break;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
+errc_t _aLoadCustom(BKVParser& parser, FOVCustom& fov)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eBlockBegin){
+            
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "Custom")){
+                break;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
+/// @brief 加载传感器配置
 /// @param parser BKV解析器
 /// @param sensor 传感器引用
 /// @return 错误码
@@ -32,7 +184,7 @@ errc_t _aLoadSensorPattern(BKVParser& parser, Sensor& sensor)
 {
     BKVItemView item;
     BKVParser::EToken token;
-    
+    ScopedPtr<FieldOfView> fov;
     do{
         token = parser.getNext(item);
         if(token == BKVParser::eKeyValue)
@@ -42,46 +194,35 @@ errc_t _aLoadSensorPattern(BKVParser& parser, Sensor& sensor)
             }
         }else if(token == BKVParser::eBlockBegin){
             if(aEqualsIgnoreCase(item.value(), "SimpleCone")){
-                BKVItemView coneItem;
-                BKVParser::EToken coneToken;
-                do{
-                    coneToken = parser.getNext(coneItem);
-                    if(coneToken == BKVParser::eKeyValue){
-                        if(aEqualsIgnoreCase(coneItem.key(), "ConeAngle")){
-                            // @todo 设置锥角
-                        }else if(aEqualsIgnoreCase(coneItem.key(), "AngularPatternResolution")){
-                            // @todo 设置角分辨率
-                        }
-                    }else if(coneToken == BKVParser::eBlockEnd){
-                        if(aEqualsIgnoreCase(coneItem.value(), "SimpleCone")){
-                            break;
-                        }
-                    }
-                }while(coneToken != BKVParser::eEOF);
+                FOVSimpleCone* simpleCone = new FOVSimpleCone();
+                _aLoadSimpleCone(parser, *simpleCone);
+                fov = simpleCone;
             }else if(aEqualsIgnoreCase(item.value(), "Conical")){
-                BKVItemView coneItem;
-                BKVParser::EToken coneToken;
-                do{
-                    coneToken = parser.getNext(coneItem);
-                    if(coneToken == BKVParser::eKeyValue){
-                        if(aEqualsIgnoreCase(coneItem.key(), "InnerConeAngle")){
-                            // @todo 设置内锥角
-                        }else if(aEqualsIgnoreCase(coneItem.key(), "OuterConeAngle")){
-                            // @todo 设置外锥角
-                        }else if(aEqualsIgnoreCase(coneItem.key(), "MinClockAngle")){
-                            // @todo 设置最小时钟角
-                        }else if(aEqualsIgnoreCase(coneItem.key(), "MaxClockAngle")){
-                            // @todo 设置最大时钟角
-                        }
-                    }else if(coneToken == BKVParser::eBlockEnd){
-                        if(aEqualsIgnoreCase(coneItem.value(), "Conical")){
-                            break;
-                        }
-                    }
-                }while(coneToken != BKVParser::eEOF);
+                FOVConical* conical = new FOVConical();
+                _aLoadConical(parser, *conical);
+                fov = conical;
+            }else if(aEqualsIgnoreCase(item.value(), "HalfPower")){
+                FOVHalfPower* halfPower = new FOVHalfPower();
+                _aLoadHalfPower(parser, *halfPower);
+                fov = halfPower;
+            }else if(aEqualsIgnoreCase(item.value(), "Rectangular")){
+                FOVRectangular* rectangular = new FOVRectangular();
+                _aLoadRectangular(parser, *rectangular);
+                fov = rectangular;
+            }else if(aEqualsIgnoreCase(item.value(), "SAR")){
+                FOVSAR* sar = new FOVSAR();
+                _aLoadSAR(parser, *sar);
+                fov = sar;
+            }else if(aEqualsIgnoreCase(item.value(), "Custom")){
+                FOVCustom* custom = new FOVCustom();
+                _aLoadCustom(parser, *custom);
+                fov = custom;
             }
         }else if(token == BKVParser::eBlockEnd){
             if(aEqualsIgnoreCase(item.value(), "Pattern")){
+                if(fov){
+                    sensor.setFieldOfView(fov.release());
+                }
                 return eNoError;
             }
         }

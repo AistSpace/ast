@@ -112,7 +112,8 @@ DAFParser::DAFParser(StringView filepath)
 errc_t DAFParser::parse()
 {
     isValidFile_ = false;
-    if(!file_)
+    auto file = getFile();
+    if(!file)
         return eErrorInvalidFile;
     static_assert(sizeof(DAF_FileRecord) == sizeof(fileRecord_), "fileRecord_ size must be 1024");
     readFileRecord(fileRecord_.data(), fileRecord_.size());
@@ -243,7 +244,8 @@ void DAFParser::printComment(std::FILE *fp) const
 
 errc_t DAFParser::runTest()
 {
-    if(!file_)
+    auto file = getFile();
+    if(!file)
         return -1;
     DAF_FileRecord fileRec{};
     DAF_CommentArea commentRec1{};
@@ -251,11 +253,11 @@ errc_t DAFParser::runTest()
     DAF_SummaryRecords summaryRec1{};
     DAF_NameRecords nameRec1{};
     size_t size;
-    size = fread(&fileRec, sizeof(DAF_FileRecord), 1, file_);
-    size = fread(&commentRec1, sizeof(DAF_CommentArea), 1, file_);
-    size = fread(&commentRec2, sizeof(DAF_CommentArea), 1, file_);
-    size = fread(&summaryRec1, sizeof(DAF_SummaryRecords), 1, file_);
-    size = fread(&nameRec1, sizeof(DAF_NameRecords), 1, file_);
+    size = fread(&fileRec, sizeof(DAF_FileRecord), 1, file);
+    size = fread(&commentRec1, sizeof(DAF_CommentArea), 1, file);
+    size = fread(&commentRec2, sizeof(DAF_CommentArea), 1, file);
+    size = fread(&summaryRec1, sizeof(DAF_SummaryRecords), 1, file);
+    size = fread(&nameRec1, sizeof(DAF_NameRecords), 1, file);
     // SPK_Descriptor spkDesc[14];
     // memcpy(spkDesc, summaryRec1.summaries, sizeof(SPK_Descriptor) * 14);
 

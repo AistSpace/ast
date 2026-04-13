@@ -52,7 +52,7 @@ public: // 从 Point 类继承的方法
 public:
     /// @brief 设置传感器视场
     /// @param fov 视场对象指针
-    void setFieldOfView(FieldOfView* fov) { fov_ = fov; }
+    void setFieldOfView(FieldOfView* fov);
 
     /// @brief 获取传感器视场
     /// @return 视场对象指针

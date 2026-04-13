@@ -22,6 +22,8 @@
 #include "MotionTwoBody.hpp"
 #include "MotionHPOP.hpp"
 #include "MotionSPICE.hpp"
+#include "MotionBallistic.hpp"
+#include "MotionSimpleAscent.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -44,5 +46,16 @@ MotionSPICE *MotionProfile::toSPICE() const
     return dynamic_cast<MotionSPICE*>(const_cast<MotionProfile*>(this));
 }
 
-AST_NAMESPACE_END
+MotionBallistic *MotionProfile::toBallistic() const
+{
+    /// @todo 提升类型动态转换效率
+    return dynamic_cast<MotionBallistic*>(const_cast<MotionProfile*>(this));
+}
 
+MotionSimpleAscent *MotionProfile::toSimpleAscent() const
+{
+    /// @todo 提升类型动态转换效率
+    return dynamic_cast<MotionSimpleAscent*>(const_cast<MotionProfile*>(this));
+}
+
+AST_NAMESPACE_END

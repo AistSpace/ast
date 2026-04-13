@@ -50,8 +50,8 @@ using Body = CelestialBody;
 /// @brief 天体
 class AST_CORE_API CelestialBody : public Point
 {
-    AST_OBJECT(CelestialBody)
 public:
+    AST_OBJECT(CelestialBody)
     CelestialBody();
     CelestialBody(SolarSystem* solarSystem);
     CelestialBody(StringView name, SolarSystem* solarSystem = nullptr);

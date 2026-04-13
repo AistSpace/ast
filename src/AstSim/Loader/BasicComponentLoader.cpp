@@ -28,6 +28,7 @@
 #include "AstUtil/StringUtil.hpp"
 #include "AstUtil/FileSystem.hpp"
 #include "AstUtil/RTTIAPI.hpp"
+#include "AstUtil/Logger.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -351,7 +352,7 @@ errc_t _aLoadSubObjects(BKVParser &parser, Object *parentObject)
         else if(token == BKVParser::eKeyValue)
         {
             if(aEqualsIgnoreCase(item.key(), "Class")){
-                StringView objectType = item.value();
+                std::string objectType = item.value().toString();
                 while(1)
                 {
                     StringView objectName = parser.getLineSkipHashComment();
@@ -370,17 +371,18 @@ errc_t _aLoadSubObjects(BKVParser &parser, Object *parentObject)
                         std::string filePath = fs::path(parser.getFilePath()).parent_path() / fileNameWithExt;
                         SharedPtr<Object> object;
                         errc_t rc = aLoadObject(filePath, objectType, object);
-                        if(rc || !object)
+                        if(rc)
                         {
                             aError("failed to load sub object '%.*s'", filePath.size(), filePath.data());
                         }
-                        else
-                        {
+                        if(object){
                             rc = aSetParentScope(object, parentObject);
                             if(rc)
                             {
                                 aError("failed to set parent scope for sub object '%.*s'", filePath.size(), filePath.data());
                             }
+                        }else{
+                            aError("object is null");
                         }
                     }
                 }
@@ -394,6 +396,36 @@ errc_t _aLoadSubObjects(BKVParser &parser, Object *parentObject)
         }
     }while(token != BKVParser::eEOF);
     return eNoError;
+}
+
+void _aSkipUnknownBlock(BKVParser &parser, StringView blockName)
+{
+    int blockDepth = 0;
+    std::string blockNameStr = std::string(blockName);
+    while(1)
+    {
+        BKVItemView item;
+        BKVParser::EToken token;
+        token = parser.getNext(item);
+        if(token == BKVParser::eBlockBegin)
+        {
+            blockDepth++;
+        }
+        else if(token == BKVParser::eBlockEnd)
+        {
+            if(blockDepth == 0 && aEqualsIgnoreCase(item.value(), blockName)){
+                break;
+            }
+            blockDepth--;
+        }
+        else if(token == BKVParser::eEOF)
+        {
+            break;
+        }else if(token == BKVParser::eError)
+        {
+            break;
+        }
+    }
 }
 
 AST_NAMESPACE_END

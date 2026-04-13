@@ -18,18 +18,186 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "LineTargetLoader.hpp"
+#include "CommonlyUsedHeaders.hpp"
 #include "AstSim/LineTarget.hpp"
-#include "AstUtil/StringView.hpp"
-#include "AstUtil/StringUtil.hpp"
-#include "AstUtil/Logger.hpp"
-#include "AstUtil/BKVParser.hpp"
 
 AST_NAMESPACE_BEGIN
 
+errc_t _aLoadIndexPtData(BKVParser& parser, LineTarget& lineTarget)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "CentralBody")){
+                // 处理中心天体
+            }else if(aEqualsIgnoreCase(item.key(), "AnchorPtIndex")){
+                // 处理锚点索引
+            }else if(aEqualsIgnoreCase(item.key(), "BoundaryType")){
+                // 处理边界类型
+            }else if(aEqualsIgnoreCase(item.key(), "Granularity")){
+                // 处理粒度
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "IndexPtData")){
+                return eNoError;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
+errc_t _aLoadExtensions(BKVParser& parser, LineTarget& lineTarget)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "ExternData")){
+                // 处理ExternData
+                while(1){
+                    BKVItemView externItem;
+                    BKVParser::EToken externToken;
+                    externToken = parser.getNext(externItem);
+                    if(externToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(externItem.value(), "ExternData")){
+                            break;
+                        }
+                    }
+                }
+            }else if(aEqualsIgnoreCase(item.value(), "ADFFileData")){
+                // 处理ADFFileData
+                while(1){
+                    BKVItemView adfItem;
+                    BKVParser::EToken adfToken;
+                    adfToken = parser.getNext(adfItem);
+                    if(adfToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(adfItem.value(), "ADFFileData")){
+                            break;
+                        }
+                    }
+                }
+            }else if(aEqualsIgnoreCase(item.value(), "AccessConstraints")){
+                // 处理AccessConstraints
+                while(1){
+                    BKVItemView constraintItem;
+                    BKVParser::EToken constraintToken;
+                    constraintToken = parser.getNext(constraintItem);
+                    if(constraintToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(constraintItem.value(), "AccessConstraints")){
+                            break;
+                        }
+                    }
+                }
+            }else if(aEqualsIgnoreCase(item.value(), "Desc")){
+                // 处理Desc
+                while(1){
+                    BKVItemView descItem;
+                    BKVParser::EToken descToken;
+                    descToken = parser.getNext(descItem);
+                    if(descToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(descItem.value(), "Desc")){
+                            break;
+                        }
+                    }
+                }
+            }else if(aEqualsIgnoreCase(item.value(), "Crdn")){
+                // 处理Crdn
+                while(1){
+                    BKVItemView crdnItem;
+                    BKVParser::EToken crdnToken;
+                    crdnToken = parser.getNext(crdnItem);
+                    if(crdnToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(crdnItem.value(), "Crdn")){
+                            break;
+                        }
+                    }
+                }
+            }else if(aEqualsIgnoreCase(item.value(), "Graphics")){
+                // 处理Graphics
+                while(1){
+                    BKVItemView graphicsItem;
+                    BKVParser::EToken graphicsToken;
+                    graphicsToken = parser.getNext(graphicsItem);
+                    if(graphicsToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(graphicsItem.value(), "Graphics")){
+                            break;
+                        }
+                    }
+                }
+            }else if(aEqualsIgnoreCase(item.value(), "VO")){
+                // 处理VO
+                while(1){
+                    BKVItemView voItem;
+                    BKVParser::EToken voToken;
+                    voToken = parser.getNext(voItem);
+                    if(voToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(voItem.value(), "VO")){
+                            break;
+                        }
+                    }
+                }
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "Extensions")){
+                return eNoError;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
 errc_t aLoadLineTarget(StringView filepath, LineTarget& lineTarget)
 {
-    // 这里实现线目标对象的加载逻辑
-    // 目前先返回成功，后续可以根据需要实现具体的加载逻辑
+    BKVItemView item;
+    BKVParser::EToken token;
+    BKVParser parser(filepath);
+    if(!parser.isOpen()){
+        aError("failed to open file '%.*s'", (int)filepath.size(), filepath.data());
+        return eErrorInvalidFile;
+    }
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            // 处理文件开头的版本信息和作者信息
+        }
+        else if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "LineTarget")){
+                BKVItemView ltItem;
+                BKVParser::EToken ltToken;
+                do{
+                    ltToken = parser.getNext(ltItem);
+                    if(ltToken == BKVParser::eKeyValue){
+                        if(aEqualsIgnoreCase(ltItem.key(), "Name")){
+                            lineTarget.setName(ltItem.value());
+                        }
+                    }else if(ltToken == BKVParser::eBlockBegin){
+                        if(aEqualsIgnoreCase(ltItem.value(), "IndexPtData")){
+                            if(errc_t rc = _aLoadIndexPtData(parser, lineTarget)){
+                                return rc;
+                            }
+                        }else if(aEqualsIgnoreCase(ltItem.value(), "Extensions")){
+                            if(errc_t rc = _aLoadExtensions(parser, lineTarget)){
+                                return rc;
+                            }
+                        }else if(aEqualsIgnoreCase(ltItem.value(), "SubObjects")){
+                            if(errc_t rc = _aLoadSubObjects(parser, &lineTarget)){
+                                return rc;
+                            }
+                        }
+                    }else if(ltToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(ltItem.value(), "LineTarget")){
+                            return eNoError;
+                        }
+                    }
+                }while(ltToken != BKVParser::eEOF);
+            }
+        }
+    }while(token != BKVParser::eEOF);
     return eNoError;
 }
 

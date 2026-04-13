@@ -21,6 +21,7 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/Object.hpp"
+#include "AstUtil/ObjectNamed.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,7 +31,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 天线对象
-class AST_SIM_API Antenna: public Object
+class AST_SIM_API Antenna: public ObjectNamed
 {
 public:
     Antenna() = default;

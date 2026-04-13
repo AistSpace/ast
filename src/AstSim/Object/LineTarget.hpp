@@ -20,7 +20,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstSim/Mover.hpp"
+#include "AstUtil/ObjectNamed.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,7 +30,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 线目标对象
-class AST_SIM_API LineTarget: public Object
+class AST_SIM_API LineTarget: public ObjectNamed
 {
 public:
     LineTarget() = default;

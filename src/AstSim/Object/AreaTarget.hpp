@@ -20,7 +20,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstUtil/Object.hpp"
+#include "AstUtil/ObjectNamed.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,7 +30,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 区域目标对象
-class AST_SIM_API AreaTarget: public Object
+class AST_SIM_API AreaTarget: public ObjectNamed
 {
 public:
     AreaTarget() = default;

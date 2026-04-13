@@ -201,6 +201,7 @@ void UiCelestialBody::refreshUi()
         // 形状
         if (auto shape = body->getShape())
         {
+            A_UNUSED(shape);
             semiMajorAxisEdit_->blockSignals(true);
             semiMajorAxisEdit_->setQuantity(Quantity(body->getRadius() / 1000.0, km));
             semiMajorAxisEdit_->blockSignals(false);

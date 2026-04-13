@@ -19,8 +19,21 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "Facility.hpp"
+#include "AstUtil/Class.hpp"
 
 AST_NAMESPACE_BEGIN
+
+_AST_IMPL_OBJECT(Facility)
+
+static bool Facility_ClassInited = (Facility::ClassInit(&Facility::staticType), true);
+
+void Facility::ClassInit(Class* cls)
+{
+    cls->setName("Facility");
+    cls->addToRegistry();
+    cls->setParent<Point>();
+    cls->setConstructor<Facility>();
+}
 
 Frame *Facility::getFrame() const
 {
@@ -37,8 +50,4 @@ errc_t Facility::getPosVel(const TimePoint &tp, Vector3d &pos, Vector3d &vel) co
     return -1;
 }
 
-
-
 AST_NAMESPACE_END
-
-

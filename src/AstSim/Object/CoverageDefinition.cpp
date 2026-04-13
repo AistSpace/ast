@@ -24,9 +24,14 @@ AST_NAMESPACE_BEGIN
 
 _AST_IMPL_OBJECT(CoverageDefinition)
 
+static bool CoverageDefinition_ClassInited = (CoverageDefinition::ClassInit(&CoverageDefinition::staticType), true);
+
 void CoverageDefinition::ClassInit(Class* cls)
 {
-    // 可以在这里添加CoverageDefinition特有的属性
+    cls->setName("CoverageDefinition");
+    cls->addToRegistry();
+    cls->setParent<Object>();
+    cls->setConstructor<CoverageDefinition>();
 }
 
 AST_NAMESPACE_END

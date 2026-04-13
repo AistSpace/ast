@@ -66,12 +66,16 @@ public:
     /// @return 父作用域指针
     Object* getParentScope(Object* obj);
 
+    /// @brief 获取对象节点数量
+    /// @warning 对象节点数量可能大于对象数量，因为对象节点对应的对象可能已被删除
+    /// @return 对象节点数量
+    size_t getNodeCount() const {return objects_.size();}
 
-    /// @brief 获取最大对象数量
+    /// @brief 获取可以管理的最大对象数量
     /// @return 最大对象数量
     uint32_t getMaxObjectCount() const{return maxObjectCount_;}
 
-    /// @brief 设置最大对象数量
+    /// @brief 设置可以管理的最大对象数量
     /// @details 如果最大对象数量小于当前对象数量，则设置失败
     /// @param maxCount 最大对象数量
     /// @warning 这个函数会限制对象管理器中最大对象数量，请谨慎使用
@@ -81,6 +85,11 @@ public:
     /// @warning 这个函数会遍历所有对象节点判断对象是否存活，时间复杂度为O(n)，请谨慎使用
     /// @return 当前对象数量
     uint32_t getObjectCount() const;
+
+    /// @brief 获取对象对应的对象节点
+    /// @param obj 对象指针
+    /// @return 对象节点指针
+    ObjectNode* getObjectNode(Object* obj);
 
 protected:
     friend class Object;

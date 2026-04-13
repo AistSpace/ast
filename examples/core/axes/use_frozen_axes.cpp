@@ -67,13 +67,6 @@ int main()
         printf("  [%.8f %.8f %.8f]\n", mat3(i,0), mat3(i,1), mat3(i,2));
     }
     
-    // 验证三次结果是否相同
-    double diff1 = (mat1 - mat2).norm();
-    double diff2 = (mat1 - mat3).norm();
-    printf("\n验证结果:\n");
-    printf("  冻结时刻与6个月后差异: %.10e\n", diff1);
-    printf("  冻结时刻与1年后差异: %.10e\n", diff2);
-    printf("  是否完全相同: %s\n", (diff1 < 1e-10 && diff2 < 1e-10) ? "是" : "否");
-    
+
     return 0;
 }

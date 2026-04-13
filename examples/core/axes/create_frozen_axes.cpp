@@ -22,7 +22,7 @@ int main()
     
     // 创建冻结轴系：在freezeTime时刻冻结ECF轴系
     // referenceAxes指定参考轴系，用于确定变换方向
-    Axes* frozenAxes = AxesFrozen::New(ecf, freezeTime, icrf);
+    AxesFrozen* frozenAxes = AxesFrozen::New(ecf, freezeTime, icrf);
     
     printf("冻结时间: 2026-01-01 00:00:00 UTC\n");
     printf("ECF轴系: %p\n", (void*)ecf);
@@ -31,7 +31,7 @@ int main()
     
     // 获取冻结轴系的属性
     printf("\n冻结轴系属性:\n");
-    printf("  冻结时间: %.3f JD\n", freezeTime.getJ2000Day());
+    printf("  冻结时间: %.3f JD\n", freezeTime.J2000TT());
     printf("  冻结轴系指针: %p\n", (void*)frozenAxes->getAxes());
     printf("  参考轴系指针: %p\n", (void*)frozenAxes->getReferenceAxes());
     

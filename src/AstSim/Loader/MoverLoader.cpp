@@ -23,6 +23,9 @@
 #include "MotionTwoBodySax.hpp"
 #include "MotionHPOPSax.hpp"
 #include "AstCore/STKEphemerisFileParser.hpp"
+#include "AstSim/MotionBallistic.hpp"
+#include "AstSim/MotionSimpleAscent.hpp"
+#include "AstSim/MotionGreatArc.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -136,6 +139,304 @@ errc_t _aLoadSPICE(BKVParser& parser, const VehiclePathData& vehiclePathData, Sc
     return eNoError;
 }
 
+errc_t _aLoadBallistic(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+{
+    struct {
+        TimePoint launchTime_;
+        TimePoint impactTime_;
+        double launchLatitude_{0.0};
+        double launchLongitude_{0.0};
+        double launchAltitude_{0.0};
+        double impactLatitude_{0.0};
+        double impactLongitude_{0.0};
+        double impactAltitude_{0.0};
+        double launchVelocity_{0.0};
+        double launchAzimuth_{0.0};
+        double launchElevation_{0.0};
+        double launchDuration_{0.0};
+        int launchType_{0};
+        int launchControl_{0};
+        double launchApogeeAlt_{0.0};
+        TimePoint startTime_{};
+        TimePoint stopTime_{};
+    } data;
+
+    while(1)
+    {
+        BKVItemView item;
+        BKVParser::EToken token;
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "LaunchTime")){
+                data.launchTime_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "ImpactTime")){
+                data.impactTime_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchLatitude")){
+                data.launchLatitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchLongitude")){
+                data.launchLongitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchAltitude")){
+                data.launchAltitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "ImpactLatitude")){
+                data.impactLatitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "ImpactLongitude")){
+                data.impactLongitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "ImpactAltitude")){
+                data.impactAltitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchVelocity")){
+                data.launchVelocity_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchAzimuth")){
+                data.launchAzimuth_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchElevation")){
+                data.launchElevation_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchDuration")){
+                data.launchDuration_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchType")){
+                data.launchType_ = item.value().toInt();
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchControl")){
+                data.launchControl_ = item.value().toInt();
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchApogeeAlt")){
+                data.launchApogeeAlt_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "StartTime")){
+                data.startTime_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "StopTime")){
+                data.stopTime_ = TimePoint::Parse(item.value());
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "Ballistic")){
+                break;
+            }
+        }else if(token == BKVParser::eEOF){
+            return eNoError;
+        }else{
+            return eErrorInvalidFile;
+        }
+    }
+
+    // 创建弹道运动模型
+    auto motionBallistic = MotionBallistic::New();
+    
+    // 设置弹道参数
+    motionBallistic->setLaunchTime(data.launchTime_);
+    motionBallistic->setImpactTime(data.impactTime_);
+    motionBallistic->setLaunchPosition(data.launchLatitude_, data.launchLongitude_, data.launchAltitude_);
+    motionBallistic->setImpactPosition(data.impactLatitude_, data.impactLongitude_, data.impactAltitude_);
+    motionBallistic->setLaunchVelocity(data.launchVelocity_);
+    motionBallistic->setLaunchAzimuth(data.launchAzimuth_);
+    motionBallistic->setLaunchElevation(data.launchElevation_);
+    motionBallistic->setLaunchDuration(data.launchDuration_);
+    motionBallistic->setLaunchType(data.launchType_);
+    motionBallistic->setLaunchControl(data.launchControl_);
+    motionBallistic->setLaunchApogeeAlt(data.launchApogeeAlt_);
+    
+    // 设置步长
+    // motionBallistic->setStepSize(1.0); // 默认步长为1秒
+    // 
+    // // 设置时间间隔
+    // auto explicitInterval = EventIntervalExplicit::New(data.startTime_, data.stopTime_);
+    // motionBallistic->setInterval(explicitInterval);
+
+    motionProfile = motionBallistic;
+    
+    return eNoError;
+}
+
+errc_t _aLoadSimpleAscent(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+{
+    struct {
+        TimePoint launchTime_;
+        bool useScenTime_{false};
+        TimePoint burnoutTime_;
+        double launchLatitude_{0.0};
+        double launchLongitude_{0.0};
+        double launchAltitude_{0.0};
+        double burnoutLatitude_{0.0};
+        double burnoutLongitude_{0.0};
+        double burnoutAltitude_{0.0};
+        double burnoutVelocity_{0.0};
+        double granularity_{5.0};
+        TimePoint startTime_{};
+        TimePoint stopTime_{};
+    } data;
+
+    while(1)
+    {
+        BKVItemView item;
+        BKVParser::EToken token;
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "LaunchTime")){
+                data.launchTime_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "UseScenTime")){
+                data.useScenTime_ = item.value().toBool();
+            }else if(aEqualsIgnoreCase(item.key(), "BurnoutTime")){
+                data.burnoutTime_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchLatitude")){
+                data.launchLatitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchLongitude")){
+                data.launchLongitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "LaunchAltitude")){
+                data.launchAltitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "BurnoutLatitude")){
+                data.burnoutLatitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "BurnoutLongitude")){
+                data.burnoutLongitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "BurnoutAltitude")){
+                data.burnoutAltitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "BurnoutVelocity")){
+                data.burnoutVelocity_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "Granularity")){
+                data.granularity_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "StartTime")){
+                data.startTime_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "StopTime")){
+                data.stopTime_ = TimePoint::Parse(item.value());
+            }
+        }else if(token == BKVParser::eBlockBegin)
+        {
+            
+        }
+        else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "SimpleAscent")){
+                break;
+            }
+        }else if(token == BKVParser::eEOF){
+            return eNoError;
+        }else{
+            aError("invalid token");
+            return eErrorInvalidFile;
+        }
+    }
+
+    // 创建简单上升运动模型
+    auto motionSimpleAscent = MotionSimpleAscent::New();
+    
+    // 设置简单上升参数
+    motionSimpleAscent->setLaunchTime(data.launchTime_);
+    motionSimpleAscent->setUseScenTime(data.useScenTime_);
+    motionSimpleAscent->setBurnoutTime(data.burnoutTime_);
+    motionSimpleAscent->setLaunchPosition(data.launchLatitude_, data.launchLongitude_, data.launchAltitude_);
+    motionSimpleAscent->setBurnoutPosition(data.burnoutLatitude_, data.burnoutLongitude_, data.burnoutAltitude_);
+    motionSimpleAscent->setBurnoutVelocity(data.burnoutVelocity_);
+    motionSimpleAscent->setGranularity(data.granularity_);
+    
+    // 设置步长
+    // motionSimpleAscent->setStepSize(data.granularity_); // 使用配置的时间粒度作为步长
+    // 
+    // // 设置时间间隔
+    // auto explicitInterval = EventIntervalExplicit::New(data.startTime_, data.stopTime_);
+    // motionSimpleAscent->setInterval(explicitInterval);
+
+    motionProfile = motionSimpleAscent;
+    
+    return eNoError;
+}
+
+errc_t _aLoadGreatArc(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+{
+    struct {
+        int versionIndicator_{0};
+        std::string method_;
+        TimePoint timeOfFirstWaypoint_{};
+        bool useScenTime_{false};
+        double arcGranularity_{0.0};
+        double defaultRate_{0.0};
+        double defaultAltitude_{0.0};
+        double defaultTurnRadius_{0.0};
+        std::string altRef_;
+        std::string altInterpMethod_;
+        int numberOfWaypoints_{0};
+        std::vector<WayPoint> waypoints_;
+        SharedPtr<EventInterval> arcSmartInterval_;
+    } data;
+
+    while(1)
+    {
+        BKVItemView item;
+        BKVParser::EToken token;
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "VersionIndicator")){
+                data.versionIndicator_ = item.value().toInt();
+            }else if(aEqualsIgnoreCase(item.key(), "Method")){
+                data.method_ = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "TimeOfFirstWaypoint")){
+                data.timeOfFirstWaypoint_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "UseScenTime")){
+                data.useScenTime_ = item.value().toBool();
+            }else if(aEqualsIgnoreCase(item.key(), "ArcGranularity")){
+                data.arcGranularity_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "DefaultRate")){
+                data.defaultRate_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "DefaultAltitude")){
+                data.defaultAltitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "DefaultTurnRadius")){
+                data.defaultTurnRadius_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "AltRef")){
+                data.altRef_ = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "AltInterpMethod")){
+                data.altInterpMethod_ = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "NumberOfWaypoints")){
+                data.numberOfWaypoints_ = item.value().toInt();
+            }
+        }else if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "ArcSmartInterval")){
+                errc_t rc = _aLoadEventInterval(parser, data.arcSmartInterval_);
+                if(rc)
+                    aError("failed to load ArcSmartInterval");
+            }else if(aEqualsIgnoreCase(item.value(), "Waypoints")){
+                // 解析航点数据
+                for(int i = 0; i < data.numberOfWaypoints_; i++)
+                {
+                    WayPoint waypoint{};
+                    StringView line = parser.getLineSkipComment();
+                    int status = sscanf(
+                        line.data(), "%lf %lf %lf %lf %lf %lf %lf", 
+                        &waypoint.time_, &waypoint.position_.latitude(), &waypoint.position_.longitude(), &waypoint.position_.altitude(), 
+                        &waypoint.speed_, &waypoint.acceleration_, &waypoint.turnRadius_
+                    );
+                    waypoint.position_.latitude() *= kDegToRad;
+                    waypoint.position_.longitude() *= kDegToRad;
+                    
+                    if(status != 7){
+                        aError("invalid waypoint line");
+                        // return eErrorInvalidFile;
+                    }else{
+                        data.waypoints_.push_back(waypoint);
+                    }
+                }
+            }else{
+                _aSkipUnknownBlock(parser, item.value());
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "GreatArc")){
+                break;
+            }
+        }else if(token == BKVParser::eEOF){
+            return eNoError;
+        }else{
+            return eErrorInvalidFile;
+        }
+    }
+
+    // 创建 GreatArc 运动模型
+    auto motionGreatArc = MotionGreatArc::New();
+    
+    // 设置开始时间
+    motionGreatArc->setStartTime(data.timeOfFirstWaypoint_);
+    
+    // 设置航点数据
+    motionGreatArc->setWayPoints(data.waypoints_);
+    
+    // 设置运动模型
+    motionProfile = motionGreatArc;
+    
+    return eNoError;
+}
+
 errc_t _aLoadPassDefn(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
@@ -216,10 +517,29 @@ errc_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
                     return rc;
                 }
             }
+            else if(aEqualsIgnoreCase(item.value(), "Ballistic")){
+                if(errc_t rc = _aLoadBallistic(parser, data, mover.getMotionProfileHandle())){
+                    return rc;
+                }
+            }
+            else if(aEqualsIgnoreCase(item.value(), "SimpleAscent")){
+                if(errc_t rc = _aLoadSimpleAscent(parser, data, mover.getMotionProfileHandle())){
+                    return rc;
+                }
+            }
+            else if(aEqualsIgnoreCase(item.value(), "GreatArc")){
+                if(errc_t rc = _aLoadGreatArc(parser, data, mover.getMotionProfileHandle())){
+                    return rc;
+                }
+            }
             else if(aEqualsIgnoreCase(item.value(), "PassDefn")){
                 if(errc_t rc = _aLoadPassDefn(parser, mover)){
                     return rc;
                 }
+            }
+            else
+            {
+                _aSkipUnknownBlock(parser, item.value());
             }
         }else if(token == BKVParser::eBlockEnd){
             if(aEqualsIgnoreCase(item.value(), "VehiclePath")){
@@ -428,41 +748,53 @@ errc_t _aLoadMover(BKVParser& parser, StringView moverType, Mover& mover)
         }else if(token == BKVParser::eBlockBegin){
             if(aEqualsIgnoreCase(item.value(), "VehiclePath")){
                 if(errc_t rc = _aLoadVehiclePath(parser, mover)){
+                    aError("failed to load vehicle path");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Ephemeris")){
                 if(errc_t rc = _aLoadEphemeris(parser, mover)){
+                    aError("failed to load ephemeris");
                     return rc;
                 }
             }
             else if(aEqualsIgnoreCase(item.value(), "MassProperties")){
                 if(errc_t rc = _aLoadMassProperties(parser, mover)){
+                    aError("failed to load mass properties");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Attitude")){
                 if(errc_t rc = _aLoadAttitude(parser, mover)){
+                    aError("failed to load attitude");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Swath")){
                 if(errc_t rc = _aLoadSwath(parser, mover)){
+                    aError("failed to load swath");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Eclipse")){
                 if(errc_t rc = _aLoadEclipse(parser, mover)){
+                    aError("failed to load eclipse");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "RealTimeDef")){
                 if(errc_t rc = _aLoadRealTimeDef(parser, mover)){
+                    aError("failed to load real time def");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Extensions")){
                 if(errc_t rc = _aLoadExtensions(parser, mover)){
+                    aError("failed to load extensions");
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "SubObjects")){
                 if(errc_t rc = _aLoadSubObjects(parser, &mover)){
+                    aError("failed to load sub objects");
                     return rc;
                 }
+            }else
+            {
+                _aSkipUnknownBlock(parser, item.value());
             }
         }else if(token == BKVParser::eBlockEnd){
             if(aEqualsIgnoreCase(item.value(), moverType)){
@@ -505,7 +837,7 @@ errc_t aLoadMover(StringView filepath, Mover &mover)
 
             
             // 第一个BEGIN END块的名称就是Mover的类型
-            StringView moverType = item.value();
+            std::string moverType = item.value().toString();
             return _aLoadMover(parser, moverType, mover);
         }
     }while(token != BKVParser::eEOF);

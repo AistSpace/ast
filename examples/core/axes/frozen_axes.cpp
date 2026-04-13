@@ -44,9 +44,5 @@ int main()
         printf("  [%.8f %.8f %.8f]\n", matrix2(i,0), matrix2(i,1), matrix2(i,2));
     }
     
-    // 比较两次结果是否相同
-    bool isSame = (matrix1 - matrix2).norm() < 1e-10;
-    printf("\n两次结果是否相同: %s\n", isSame ? "是" : "否");
-    
     return 0;
 }

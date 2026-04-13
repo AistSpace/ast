@@ -38,6 +38,7 @@ AST_NAMESPACE_BEGIN
 class AST_SIM_API Facility: public Point
 {
 public:
+    AST_OBJECT(Facility)
     Facility() = default;
     ~Facility() override = default;
 public: // 从Point继承重写的函数

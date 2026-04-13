@@ -24,9 +24,14 @@ AST_NAMESPACE_BEGIN
 
 _AST_IMPL_OBJECT(Chain)
 
+static bool Chain_ClassInited = (Chain::ClassInit(&Chain::staticType), true);
+
 void Chain::ClassInit(Class* cls)
 {
-    // 可以在这里添加Chain特有的属性
+    cls->setName("Chain");
+    cls->addToRegistry();
+    cls->setParent<ObjectNamed>();
+    cls->setConstructor<Chain>();
 }
 
 AST_NAMESPACE_END

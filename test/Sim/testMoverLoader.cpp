@@ -19,19 +19,61 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "AstSim/Mover.hpp"
+#include "AstSim/Aircraft.hpp"
+#include "AstSim/Satellite.hpp"
 #include "AstSim/MoverLoader.hpp"
 #include "AstCore/RunTime.hpp"
 #include "AstTest/Test.h"
 #include "AstUtil/StringView.hpp"
+#include "AstMath/Vector.hpp"
 #include <string>
 
 
 AST_USING_NAMESPACE
 
+template<typename MoverType>
+void testLoadMover(StringView filepath)
+{
+    MoverType mover;
+    errc_t ret = aLoadMover(filepath, mover);
+    EXPECT_EQ(ret, eNoError);
+
+    ret = mover.generateEphemeris();
+    EXPECT_EQ(ret, eNoError);
+
+    // 检查是否成功加载了运动模型
+    auto motionProfile = mover.getMotionProfile();
+    EXPECT_NE(motionProfile, nullptr);
+
+    // 检查是否成功加载了星历
+    auto ephemeris = mover.getEphemeris();
+    EXPECT_NE(ephemeris, nullptr);
+
+}
+
+TEST(MoverLoaderTest, LoadAircraft)
+{
+    if(aIsGithubCI()) 
+        GTEST_SKIP();
+
+    aInitialize();
+    std::vector<std::string> files = aTestGetConfigStringVector("STK_AIRCRAFT_FILES");
+    for(auto& file: files)
+    {
+        printf("loading %s\n", file.c_str());
+
+        testLoadMover<Aircraft>(file);
+
+        printf("loaded %s\n", file.c_str());
+    }
+}
+
+
 
 TEST(MoverLoaderTest, LoadSatellite)
 {
-    // if(!aIsGithubCI()) GTEST_SKIP();
+    if(aIsGithubCI()) 
+        GTEST_SKIP();
 
     aInitialize();
     std::vector<std::string> files = aTestGetConfigStringVector("STK_SATELLITE_FILES");
@@ -39,13 +81,13 @@ TEST(MoverLoaderTest, LoadSatellite)
     for(auto& file: files)
     {
         printf("loading %s\n", file.c_str());
-        Mover mover;
-        errc_t ret = aLoadMover(file, mover);
-        EXPECT_EQ(ret, eNoError);
+        testLoadMover<Satellite>(file);
         printf("loaded %s\n", file.c_str());
     }
-    
 }
+
+
+
 
 GTEST_MAIN();
 

@@ -24,9 +24,14 @@ AST_NAMESPACE_BEGIN
 
 _AST_IMPL_OBJECT(Volumetric)
 
+static bool Volumetric_ClassInited = (Volumetric::ClassInit(&Volumetric::staticType), true);
+
 void Volumetric::ClassInit(Class* cls)
 {
-    // 可以在这里添加Volumetric特有的属性
+    cls->setName("Volumetric");
+    cls->addToRegistry();
+    cls->setParent<Object>();
+    cls->setConstructor<Volumetric>();
 }
 
 AST_NAMESPACE_END

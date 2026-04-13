@@ -98,7 +98,7 @@ public:
     errc_t parse(BKVSax& sax);
  
 protected:
-    bool              allowComment_;            ///< 是否允许注释行
+    bool              allowComment_;             ///< 是否允许注释行
     std::vector<char> keyBuffer_;                ///< 内存缓冲区 for key
     std::vector<char> valueBuffer_;              ///< 内存缓冲区 for value
 };

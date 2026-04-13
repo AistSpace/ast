@@ -22,7 +22,7 @@
 
 AST_NAMESPACE_BEGIN
 
-IArchive &IArchive::operator&(Attribute& attr)
+IArchive &IArchive::operator()(Attribute& attr)
 {
     
     return *this;

@@ -25,6 +25,16 @@ AST_NAMESPACE_BEGIN
 
 _AST_IMPL_OBJECT(Sensor)
 
+static bool Sensor_ClassInited = (Sensor::ClassInit(&Sensor::staticType), true);
+
+void Sensor::ClassInit(Class* cls)
+{
+    cls->setName("Sensor");
+    cls->addToRegistry();
+    cls->setParent<Point>();
+    cls->setConstructor<Sensor>();
+}
+
 Sensor::Sensor()
 {
 
@@ -57,5 +67,12 @@ errc_t Sensor::getPosVel(const TimePoint& tp, Vector3d& pos, Vector3d& vel) cons
     return eErrorNullPtr;
 }
 
+void Sensor::setFieldOfView(FieldOfView *fov)
+{
+    if(fov)
+    {
+        fov_ = fov;
+    }
+}
 
 AST_NAMESPACE_END

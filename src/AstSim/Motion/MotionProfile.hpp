@@ -39,6 +39,8 @@ using PMotionProfile = MotionProfile*;
 class MotionTwoBody;
 class MotionHPOP;
 class MotionSPICE;
+class MotionBallistic;
+class MotionSimpleAscent;
 class MotionProfileVisitor;
 
 /// @brief 运动定义接口
@@ -51,6 +53,8 @@ public:
     MotionHPOP* toHPOP() const;
     MotionTwoBody* toTwoBody() const;
     MotionSPICE* toSPICE() const;
+    MotionBallistic* toBallistic() const;
+    MotionSimpleAscent* toSimpleAscent() const;
 public:
     /// @brief 生成特定星历
     /// @param eph 星历指针

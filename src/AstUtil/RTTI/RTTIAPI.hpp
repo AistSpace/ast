@@ -126,12 +126,44 @@ AST_UTIL_CAPI Object* aGetParentScope(Object* obj);
 /// @brief 查找对象的子对象
 /// @details 根据父对象、类指针和子对象名查找子对象
 /// @param parentScope 父对象指针
-/// @param cls 类指针
-/// @param name 子对象名
+/// @param cls 类指针，如果为空则匹配所有类型
+/// @param name 子对象名，如果为空则匹配所有名称
 /// @return 子对象指针
-AST_UTIL_API Object* aFindChild(Object* parentScope, Class* cls, StringView name);
+AST_UTIL_API Object* aFindChild(Object* parentScope, Class* cls=nullptr, StringView name=StringView());
 
 
+/// @brief 查找对象的子对象
+/// @details 根据父对象、类指针和子对象名查找子对象
+/// @param parentScope 父对象指针
+/// @param cls 类指针，如果为空则匹配所有类型
+/// @param name 子对象名，如果为空则匹配所有名称
+/// @param children 输出参数，用于存储子对象指针
+/// @return 错误码
+AST_UTIL_API errc_t aFindChildren(Object* parentScope, Class* cls, StringView name, std::vector<Object*>& children);
+
+
+/// @brief 查找对象的子对象
+/// @details 根据父对象、类指针和子对象名查找子对象
+/// @param parentScope 父对象指针
+/// @param cls 类指针，如果为空则匹配所有类型
+/// @param name 子对象名，如果为空则匹配所有名称
+/// @return 子对象指针向量
+AST_UTIL_API std::vector<Object*> aFindChildren(Object* parentScope, Class* cls=nullptr, StringView name=StringView());
+
+/// @brief 打印对象树的配置结构体
+struct PrintObjectTreeConfig {
+    bool printRefCount = false;  ///< 是否打印强引用计数
+    bool printWeakRefCount = false;  ///< 是否打印弱引用计数
+};
+
+
+/// @brief 打印对象树的结构
+/// @details 递归打印对象树的结构，包括对象名称、类型等信息
+/// @param root 根对象指针
+/// @param indent 缩进级别，默认为0
+/// @param config 配置结构体，默认为不打印引用计数
+AST_UTIL_API void aPrintObjectTree(Object* root, int indent=0);
+AST_UTIL_API void aPrintObjectTree(Object* root, int indent, const PrintObjectTreeConfig& config = PrintObjectTreeConfig());
 
 /*! @} */
 

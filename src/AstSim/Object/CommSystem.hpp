@@ -20,7 +20,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstUtil/Object.hpp"
+#include "AstUtil/ObjectNamed.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,7 +30,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 通信系统对象
-class AST_SIM_API CommSystem: public Object
+class AST_SIM_API CommSystem: public ObjectNamed
 {
 public:
     CommSystem() = default;

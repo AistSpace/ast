@@ -33,6 +33,7 @@ AST_NAMESPACE_BEGIN
 class AST_SIM_API SpaceObject: public Mover
 {
 public:
+    AST_OBJECT(SpaceObject)
     SpaceObject() = default;
     ~SpaceObject() override = default;
 };

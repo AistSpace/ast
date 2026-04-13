@@ -24,9 +24,14 @@ AST_NAMESPACE_BEGIN
 
 _AST_IMPL_OBJECT(Place)
 
+static bool Place_ClassInited = (Place::ClassInit(&Place::staticType), true);
+
 void Place::ClassInit(Class* cls)
 {
-    // 可以在这里添加Place特有的属性
+    cls->setName("Place");
+    cls->addToRegistry();
+    cls->setParent<Facility>();
+    cls->setConstructor<Place>();
 }
 
 AST_NAMESPACE_END

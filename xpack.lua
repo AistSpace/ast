@@ -6,7 +6,8 @@ xpack("ast")
     set_author("axel <space_ast@163.com>")
     set_licensefile("LICENSE")
     set_formats("nsis", "zip", "targz", "srczip", "srctargz", "runself", "rpm", "srpm", "deb")
-    add_targets("ascript")
+    set_inputkind("binary")
+    add_targets("ascript", "AppCLI")
     add_installfiles("(examples/**)|*.lua")
     add_installfiles("scripts/xpack/port.lua", {filename = "xmake.lua"})
     on_load(function(package)
@@ -16,7 +17,7 @@ xpack("ast")
         package:set("basename", "SpaceAST-v$(version)-" .. plat .. "-" .. arch)
         -- 添加所有工程目标
         for targetname, _ in pairs(project.targets()) do
-            if targetname:startswith("Ast") and not targetname:startswith("AstGfx") then
+            if targetname:startswith("Ast") and not targetname == "AstGfx" and not targetname == "AstGUI" then
                 package:add("targets", targetname)
             end
         end

@@ -24,9 +24,14 @@ AST_NAMESPACE_BEGIN
 
 _AST_IMPL_OBJECT(Star)
 
+static bool Star_ClassInited = (Star::ClassInit(&Star::staticType), true);
+
 void Star::ClassInit(Class* cls)
 {
-    // 可以在这里添加Star特有的属性
+    cls->setName("Star");
+    cls->addToRegistry();
+    cls->setParent<ObjectNamed>();
+    cls->setConstructor<Star>();
 }
 
 AST_NAMESPACE_END

@@ -24,9 +24,14 @@ AST_NAMESPACE_BEGIN
 
 _AST_IMPL_OBJECT(AreaTarget)
 
+static bool AreaTarget_ClassInited = (AreaTarget::ClassInit(&AreaTarget::staticType), true);
+
 void AreaTarget::ClassInit(Class* cls)
 {
-    // 可以在这里添加AreaTarget特有的属性
+    cls->setName("AreaTarget");
+    cls->addToRegistry();
+    cls->setParent<Object>();
+    cls->setConstructor<AreaTarget>();
 }
 
 AST_NAMESPACE_END

@@ -38,6 +38,10 @@ public:
     /// @return 视场类型
     virtual EFOVType getFOVType() const override { return EFOVType::eHalfPower; }
     
+    /// @brief 接受访问者
+    /// @param visitor 访问者
+    virtual void accept(FieldOfViewVisitor& visitor) override { visitor.visit(*this); }
+    
     /// @brief 设置半角
     /// @param angle 半角（度）
     void setHalfAngle(double angle) { halfAngle_ = angle; }

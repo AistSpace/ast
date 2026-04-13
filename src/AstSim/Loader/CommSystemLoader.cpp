@@ -18,18 +18,110 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "CommSystemLoader.hpp"
+#include "CommonlyUsedHeaders.hpp"
 #include "AstSim/CommSystem.hpp"
-#include "AstUtil/StringView.hpp"
-#include "AstUtil/StringUtil.hpp"
-#include "AstUtil/Logger.hpp"
-#include "AstUtil/BKVParser.hpp"
 
 AST_NAMESPACE_BEGIN
 
+errc_t _aLoadExtensions(BKVParser& parser, CommSystem& commSystem)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "ADFFileData")){
+                // 处理ADFFileData
+                while(1){
+                    BKVItemView adfItem;
+                    BKVParser::EToken adfToken;
+                    adfToken = parser.getNext(adfItem);
+                    if(adfToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(adfItem.value(), "ADFFileData")){
+                            break;
+                        }
+                    }
+                }
+            }else if(aEqualsIgnoreCase(item.value(), "Desc")){
+                // 处理Desc
+                while(1){
+                    BKVItemView descItem;
+                    BKVParser::EToken descToken;
+                    descToken = parser.getNext(descItem);
+                    if(descToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(descItem.value(), "Desc")){
+                            break;
+                        }
+                    }
+                }
+            }else if(aEqualsIgnoreCase(item.value(), "Graphics")){
+                // 处理Graphics
+                while(1){
+                    BKVItemView graphicsItem;
+                    BKVParser::EToken graphicsToken;
+                    graphicsToken = parser.getNext(graphicsItem);
+                    if(graphicsToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(graphicsItem.value(), "Graphics")){
+                            break;
+                        }
+                    }
+                }
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "Extensions")){
+                return eNoError;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+    return eNoError;
+}
+
 errc_t aLoadCommSystem(StringView filepath, CommSystem& commSystem)
 {
-    // 这里实现通信系统对象的加载逻辑
-    // 目前先返回成功，后续可以根据需要实现具体的加载逻辑
+    BKVItemView item;
+    BKVParser::EToken token;
+    BKVParser parser(filepath);
+    if(!parser.isOpen()){
+        aError("failed to open file '%.*s'", (int)filepath.size(), filepath.data());
+        return eErrorInvalidFile;
+    }
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "Name")){
+                commSystem.setName(item.value());
+            }
+        }
+        else if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "CommSystem")){
+                BKVItemView commSystemItem;
+                BKVParser::EToken commSystemToken;
+                do{
+                    commSystemToken = parser.getNext(commSystemItem);
+                    if(commSystemToken == BKVParser::eKeyValue){
+                        if(aEqualsIgnoreCase(commSystemItem.key(), "Name")){
+                            commSystem.setName(commSystemItem.value());
+                        }
+                    }else if(commSystemToken == BKVParser::eBlockBegin){
+                        if(aEqualsIgnoreCase(commSystemItem.value(), "Extensions")){
+                            if(errc_t rc = _aLoadExtensions(parser, commSystem)){
+                                return rc;
+                            }
+                        }else if(aEqualsIgnoreCase(commSystemItem.value(), "SubObjects")){
+                            if(errc_t rc = _aLoadSubObjects(parser, &commSystem)){
+                                return rc;
+                            }
+                        }
+                    }else if(commSystemToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(commSystemItem.value(), "CommSystem")){
+                            return eNoError;
+                        }
+                    }
+                }while(commSystemToken != BKVParser::eEOF);
+            }
+        }
+    }while(token != BKVParser::eEOF);
     return eNoError;
 }
 

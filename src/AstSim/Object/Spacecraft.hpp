@@ -32,9 +32,10 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 航天器对象
-class Spacecraft: public SpaceObject
+class AST_SIM_API Spacecraft: public SpaceObject
 {
 public:
+    AST_OBJECT(Spacecraft)
     Spacecraft() = default;
     ~Spacecraft() override = default;
 };

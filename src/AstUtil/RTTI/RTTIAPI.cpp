@@ -24,6 +24,8 @@
 #include "AstUtil/ClassRegistry.hpp"
 #include "AstUtil/Object.hpp"
 #include "AstUtil/ObjectManager.hpp"
+#include "AstUtil/ColoredPrint.hpp"
+#include <cstdio>
 
 
 AST_NAMESPACE_BEGIN
@@ -94,5 +96,164 @@ Object *aGetParentScope(Object *obj)
     return ObjectManager::CurrentInstance().getParentScope(obj);
 }
 
-AST_NAMESPACE_END
+Object *aFindChild(Object *parentScope, Class *cls, StringView name)
+{
+    if(!parentScope)
+        return nullptr;
+    
+    // 获取父对象对应的对象节点
+    auto& objectManager = ObjectManager::CurrentInstance();
+    auto parentNode = objectManager.getObjectNode(parentScope);
+    if(!parentNode)
+        return nullptr;
+    
+    // 遍历父对象的子节点
+    for(auto childNode : parentNode->getChildren())
+    {
+        if(childNode->expired())
+            continue;
+        
+        auto childObject = childNode->getObject();
+        if(!childObject)
+            continue;
+        
+        // 检查类型是否匹配
+        if(cls)
+        {
+            bool typeMatch = false;
+            auto childType = childObject->getType();
+            while(childType)
+            {
+                if(childType == cls)
+                {
+                    typeMatch = true;
+                    break;
+                }
+                childType = childType->getParent();
+            }
+            if(!typeMatch)
+                continue;
+        }
+        
+        // 检查名称是否匹配
+        if(name.data())
+        {
+            if(name != childObject->getName())
+                continue;
+        }
+        
+        return childObject;
+    }
+    
+    return nullptr;
+}
 
+errc_t aFindChildren(Object *parentScope, Class *cls, StringView name, std::vector<Object*> &children)
+{
+    if(!parentScope)
+        return -1;
+    
+    children.clear();
+    
+    // 获取父对象对应的对象节点
+    auto& objectManager = ObjectManager::CurrentInstance();
+    auto parentNode = objectManager.getObjectNode(parentScope);
+    if(!parentNode)
+        return -1;
+    auto& childrenNodes = parentNode->getChildren();
+    children.reserve(childrenNodes.size());
+    
+    // 遍历父对象的子节点
+    for(auto childNode : childrenNodes)
+    {
+        if(childNode->expired())
+            continue;
+        
+        auto childObject = childNode->getObject();
+        if(!childObject)
+            continue;
+        
+        // 检查类型是否匹配
+        if(cls)
+        {
+            bool typeMatch = false;
+            auto childType = childObject->getType();
+            while(childType)
+            {
+                if(childType == cls)
+                {
+                    typeMatch = true;
+                    break;
+                }
+                childType = childType->getParent();
+            }
+            if(!typeMatch)
+                continue;
+        }
+        
+        // 检查名称是否匹配
+        if(name.data())
+        {
+            if(name != childObject->getName())
+                continue;
+        }
+        
+        children.push_back(childObject);
+    }
+    
+    return 0;
+}
+
+std::vector<Object*> aFindChildren(Object* parentScope, Class* cls, StringView name)
+{
+    std::vector<Object*> children;
+    aFindChildren(parentScope, cls, name, children);
+    return children;
+}
+
+void aPrintObjectTree(Object* root, int indent)
+{
+    aPrintObjectTree(root, indent, PrintObjectTreeConfig());
+}
+
+void aPrintObjectTree(Object* root, int indent, const PrintObjectTreeConfig& config)
+{
+    if (!root) {
+        return;
+    }
+
+    // 打印缩进
+    for (int i = 0; i < indent; i++) {
+        printf("  ");
+    }
+
+    // 打印对象信息
+    const std::string& name = root->getName();
+    Class* type = root->getType();
+    uint32_t id = root->getID();
+    uint32_t refCount = root->refCount();
+    uint32_t weakRefCount = root->weakRefCount();
+
+    // 使用不同颜色和符号来区分字段
+    cprintf(eGreen, "%s", name.c_str());
+    cprintf(eLightGray, "#%u", id);
+    cprintf(eCyan, " <%s>", type ? type->name().c_str() : "Unknown");
+    
+    // 根据配置决定是否打印引用计数
+    if (config.printRefCount) {
+        cprintf(eLightPink, " R:%u", refCount);
+    }
+    if (config.printWeakRefCount) {
+        cprintf(eLightBlue, " W:%u", weakRefCount);
+    }
+    
+    printf("\n");
+
+    // 打印子对象
+    std::vector<Object*> children = aFindChildren(root);
+    for (Object* child : children) {
+        aPrintObjectTree(child, indent + 1, config);
+    }
+}
+
+AST_NAMESPACE_END

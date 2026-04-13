@@ -47,9 +47,10 @@ PCKParser::PCKParser(StringView filepath)
 
 errc_t PCKParser::getNext(BKVItemView &item)
 {
-    if(!file_)
+    auto file = getFile();
+    if(!file)
         return eErrorInvalidFile;
-    while(fgets(keyBuffer_.data(), (int)keyBuffer_.size(), file_))
+    while(fgets(keyBuffer_.data(), (int)keyBuffer_.size(), file))
     {
         if(keyBuffer_[0] == '\\')
         {

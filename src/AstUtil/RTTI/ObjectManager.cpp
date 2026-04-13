@@ -119,6 +119,17 @@ uint32_t ObjectManager::getObjectCount() const
     return count;
 }
 
+ObjectNode* ObjectManager::getObjectNode(Object* obj)
+{
+    if(!obj)
+        return nullptr;
+    if(obj->index_ == static_cast<uint32_t>(INVALID_ID))
+        return nullptr;
+    if(obj->index_ >= objects_.size())
+        return nullptr;
+    return objects_[obj->index_];
+}
+
 errc_t ObjectManager::removeNode(uint32_t index)
 {
     if(index >= objects_.size())
@@ -134,4 +145,3 @@ void ObjectManager::advanceIndex()
 }
 
 AST_NAMESPACE_END
-

@@ -24,9 +24,14 @@ AST_NAMESPACE_BEGIN
 
 _AST_IMPL_OBJECT(CommSystem)
 
+static bool CommSystem_ClassInited = (CommSystem::ClassInit(&CommSystem::staticType), true);
+
 void CommSystem::ClassInit(Class* cls)
 {
-    // 可以在这里添加CommSystem特有的属性
+    cls->setName("CommSystem");
+    cls->addToRegistry();
+    cls->setParent<Object>();
+    cls->setConstructor<CommSystem>();
 }
 
 AST_NAMESPACE_END

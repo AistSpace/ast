@@ -21,13 +21,13 @@
 #include "JplSpk.hpp"
 #include "AstCore/TimeSystem.hpp"
 #include "AstCore/TimeInterval.hpp"
+#include "AstCore/Interval.hpp"
 #include "AstCore/SpiceApi.hpp"
 #include "AstCore/OrbitElement.hpp"
 #include "AstCore/RunTimeSpice.hpp"
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/SPKParser.hpp"
-
 
 AST_NAMESPACE_BEGIN
 
@@ -102,7 +102,7 @@ errc_t JplSpk::getPosVelICRF(
 }
 
 
-errc_t aSpiceGetInterval(StringView filepath, int target, TimeInterval &interval)
+errc_t aSpiceGetInterval(StringView filepath, int target, TimeInterval &timeInterval)
 {
     /*!
     @note
@@ -119,6 +119,8 @@ errc_t aSpiceGetInterval(StringView filepath, int target, TimeInterval &interval
         return rc;
     }
     const std::vector<SPK_Descriptor>& spkDescriptors = parser.getDescriptors();
+    bool found = false;
+    Interval interval = Interval::Zero();
     for(int i = (int)spkDescriptors.size() - 1; i >= 0; i--)
     {
         const auto& desc = spkDescriptors[i];
@@ -126,13 +128,21 @@ errc_t aSpiceGetInterval(StringView filepath, int target, TimeInterval &interval
         {
             double start = desc.start_time;
             double end = desc.end_time;
-            TimePoint startTime = aSpiceEtToTimePoint(start);
-            TimePoint endTime = aSpiceEtToTimePoint(end);
-            interval.setStartStop(startTime, endTime);
-            /// @todo 这里需要支持多个SPK段的时间间隔的合并
-            break;
+            if(found)
+            {
+                errc_t rc = interval.merge({start, end});
+                if(rc != eNoError)
+                    aError("failed to merge time interval");
+            }else{
+                interval.setStartStop(start, end);
+            }
+            found = true;
         }
     }
+    TimePoint startTime = aSpiceEtToTimePoint(interval.start());
+    TimePoint endTime = aSpiceEtToTimePoint(interval.stop());
+    timeInterval.setStartStop(startTime, endTime);
+    
     return eNoError;
 }
 
@@ -149,7 +159,11 @@ errc_t aSpiceGetBodyIds(StringView filepath, std::vector<int>& ids)
     const std::vector<SPK_Descriptor>& spkDescriptors = parser.getDescriptors();
     for(const auto& desc : spkDescriptors)
     {
-        ids.push_back(desc.target);
+        auto iter = std::find(ids.begin(), ids.end(), desc.target);
+        if(iter == ids.end())
+        {
+            ids.push_back(desc.target);
+        }
     }
     return eNoError;
 }

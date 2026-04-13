@@ -33,6 +33,8 @@ class MotionProfile;
 class MotionTwoBody;
 class MotionHPOP;
 class MotionSPICE;
+class MotionGreatArc;
+
 
 class MotionProfileVisitor
 {
@@ -42,6 +44,7 @@ public:
     virtual void visit(MotionTwoBody& profile) = 0;
     virtual void visit(MotionHPOP& profile) = 0;
     virtual void visit(MotionSPICE& profile) = 0;
+    virtual void visit(MotionGreatArc& profile) = 0;
 
 };
 

@@ -24,6 +24,7 @@
 #include "AstCore/RunTimeConfig.hpp"
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/LocaleGuard.hpp"
+#include "AstUtil/Encode.hpp"
 
 
 AST_NAMESPACE_BEGIN
@@ -195,8 +196,9 @@ errc_t SpiceApi::furnsh(const char* file)
         return eErrorNullPtr;
     }
     std::lock_guard<std::mutex> lock(mutex_);
-    LocaleGuard locale_guard(".UTF-8", LC_CTYPE);
-    furnsh_c(file);
+    std::string crt;
+    aUTF8ToCRT(file, crt);
+    furnsh_c(crt.c_str());
     return checkerror();
 }
 
@@ -225,8 +227,9 @@ errc_t SpiceApi::spklef(const char *filename, int *handle)
     }
     spiceproto::SpiceInt h=0;
     std::lock_guard<std::mutex> lock(mutex_);
-    LocaleGuard locale_guard(".UTF-8", LC_CTYPE);
-    spklef_c(filename, &h);
+    std::string crt;
+    aUTF8ToCRT(filename, crt);
+    spklef_c(crt.c_str(), &h);
     if(h >= (spiceproto::SpiceInt)spk_handles_.size())
     {
         spk_handles_.resize(h + 1);

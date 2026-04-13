@@ -38,7 +38,7 @@ public:
     template<typename T>
     OArchive& operator<<(T& val)
     {
-        Archive::operator&(val);
+        Archive::operator()(val);
         return *this;
     }
 };

@@ -51,6 +51,12 @@ errc_t _aLoadEventInterval(BKVParser& parser, SharedPtr<EventInterval>& eventInt
 errc_t _aLoadEventTime(BKVParser& parser, SharedPtr<EventTime>& eventTime);
 errc_t _aLoadSubObjects(BKVParser& parser, Object* parentObject);
 
+/// @brief 跳过未知块
+/// @details 跳过未知块，直到遇到指定块名
+/// @param parser BKVParser
+/// @param blockName 块名
+/// @return errc_t 错误码
+void _aSkipUnknownBlock(BKVParser& parser, StringView blockName);
 
 /*! @} */
 

@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/Object.hpp"
+#include "FieldOfViewVisitor.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -49,6 +50,10 @@ public:
     /// @brief 获取视场类型
     /// @return 视场类型
     virtual EFOVType getFOVType() const = 0;
+    
+    /// @brief 接受访问者
+    /// @param visitor 访问者
+    virtual void accept(FieldOfViewVisitor& visitor) = 0;
     
     /// @brief 设置详细地形地平线
     /// @param value 是否使用详细地形地平线

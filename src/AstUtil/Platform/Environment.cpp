@@ -21,6 +21,7 @@
 #include "Environment.hpp"
 #include "AstUtil/Posix.hpp"
 #include "AstUtil/StringView.hpp"
+#include <cstring>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -61,6 +62,69 @@ bool aIsGitlabCI()
     if(ci_env && ci_env[0] != '\0')
         return true;
     return false;
+}
+
+bool aTerminalSupportColor()
+{
+    // 首先检查标准输出是否是终端
+    if (!aStdOutIsTerminal()) {
+        return false;
+    }
+    
+    // 检查是否在 CI 环境中
+    // if (aIsCI()) {
+    //     // 大多数 CI 环境支持颜色
+    //     return true;
+    // }
+    
+    #ifdef _WIN32
+    // Windows 平台
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (hConsole == INVALID_HANDLE_VALUE) {
+        return false;
+    }
+    
+    // 检查控制台是否支持颜色
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    if (GetConsoleScreenBufferInfo(hConsole, &csbi)) {
+        // 所有现代 Windows 控制台都支持颜色
+        return true;
+    }
+    return false;
+
+    #elif defined __wasm__
+    // WebAssembly 平台不支持颜色
+    return false;
+    #else
+    // Unix/Linux/macOS 平台
+    
+    // 检查 TERM 环境变量
+    const char* term = posix::getenv("TERM");
+    if (term) {
+        // 常见的支持颜色的终端类型
+        const char* color_terms[] = {
+            "xterm", "xterm-color", "xterm-256color",
+            "vt100", "vt102", "vt220", "vt320",
+            "ansi", "screen", "screen-256color",
+            "tmux", "tmux-256color", "rxvt-unicode", "rxvt-unicode-256color",
+            "linux", "cygwin", "msys", "git-bash"
+        };
+        
+        for (size_t i = 0; i < sizeof(color_terms) / sizeof(color_terms[0]); i++) {
+            if (std::strcmp(term, color_terms[i]) == 0) {
+                return true;
+            }
+        }
+    }
+    
+    // 检查 COLORTERM 环境变量
+    const char* colorterm = posix::getenv("COLORTERM");
+    if (colorterm && colorterm[0] != '\0') {
+        return true;
+    }
+    
+    return false;
+    #endif
 }
 
 StringView aProjectName()
@@ -175,5 +239,3 @@ bool aStdErrIsFile()
 }
 
 AST_NAMESPACE_END
-
-
