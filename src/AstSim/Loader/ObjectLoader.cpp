@@ -27,6 +27,13 @@
 
 #include "AstSim/Mover.hpp"
 #include "AstSim/Spacecraft.hpp"
+#include "AstSim/Satellite.hpp"
+#include "AstSim/Aircraft.hpp"
+#include "AstSim/GroundVehicle.hpp"
+#include "AstSim/LaunchVehicle.hpp"
+#include "AstSim/Missile.hpp"
+#include "AstSim/Ship.hpp"
+#include "AstSim/Submarine.hpp"
 #include "AstSim/MoverLoader.hpp"
 #include "AstSim/Facility.hpp"
 #include "AstSim/FacilityLoader.hpp"
@@ -51,6 +58,8 @@
 #include "AstSim/FigureOfMerit.hpp"
 #include "AstSim/Transmitter.hpp"
 #include "AstSim/AttitudeFigureOfMerit.hpp"
+#include "AstSim/Scenario.hpp"
+
 
 #include "LineTargetLoader.hpp"
 #include "MTOLoader.hpp"
@@ -73,7 +82,7 @@
 #include "FigureOfMeritLoader.hpp"
 #include "TransmitterLoader.hpp"
 #include "AttitudeFigureOfMeritLoader.hpp"
-
+#include "ScenarioLoader.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -85,20 +94,53 @@ AST_NAMESPACE_BEGIN
 
 errc_t aLoadObject(StringView filepath, StringView objectType, SharedPtr<Object> &object)
 {
-    if(
-        aEqualsIgnoreCase(objectType, "Satellite") || 
-        aEqualsIgnoreCase(objectType, "Spacecraft") ||
-        aEqualsIgnoreCase(objectType, "Aircraft") ||
-        aEqualsIgnoreCase(objectType, "GroundVehicle") || 
-        aEqualsIgnoreCase(objectType, "LaunchVehicle") ||
-        aEqualsIgnoreCase(objectType, "Missile") ||
-        aEqualsIgnoreCase(objectType, "Ship") ||
-        aEqualsIgnoreCase(objectType, "Submarine")
-    )
+    if(aEqualsIgnoreCase(objectType, "Satellite"))
     {
-        auto mover = new Mover();
-        object = mover;
-        return aLoadMover(filepath, *mover);
+        auto satellite = new Satellite();
+        object = satellite;
+        return aLoadMover(filepath, *satellite);
+    }
+    else if(aEqualsIgnoreCase(objectType, "Spacecraft"))
+    {
+        auto spacecraft = new Spacecraft();
+        object = spacecraft;
+        return aLoadMover(filepath, *spacecraft);
+    }
+    else if(aEqualsIgnoreCase(objectType, "Aircraft"))
+    {
+        auto aircraft = new Aircraft();
+        object = aircraft;
+        return aLoadMover(filepath, *aircraft);
+    }
+    else if(aEqualsIgnoreCase(objectType, "GroundVehicle"))
+    {
+        auto groundVehicle = new GroundVehicle();
+        object = groundVehicle;
+        return aLoadMover(filepath, *groundVehicle);
+    }
+    else if(aEqualsIgnoreCase(objectType, "LaunchVehicle"))
+    {
+        auto launchVehicle = new LaunchVehicle();
+        object = launchVehicle;
+        return aLoadMover(filepath, *launchVehicle);
+    }
+    else if(aEqualsIgnoreCase(objectType, "Missile"))
+    {
+        auto missile = new Missile();
+        object = missile;
+        return aLoadMover(filepath, *missile);
+    }
+    else if(aEqualsIgnoreCase(objectType, "Ship"))
+    {
+        auto ship = new Ship();
+        object = ship;
+        return aLoadMover(filepath, *ship);
+    }
+    else if(aEqualsIgnoreCase(objectType, "Submarine"))
+    {
+        auto submarine = new Submarine();
+        object = submarine;
+        return aLoadMover(filepath, *submarine);
     }
     else if(aEqualsIgnoreCase(objectType, "Facility"))
     {
@@ -231,6 +273,12 @@ errc_t aLoadObject(StringView filepath, StringView objectType, SharedPtr<Object>
         auto attitudeFigureOfMerit = new AttitudeFigureOfMerit();
         object = attitudeFigureOfMerit;
         return aLoadAttitudeFigureOfMerit(filepath, *attitudeFigureOfMerit);
+    }
+    else if(aEqualsIgnoreCase(objectType, "Scenario"))
+    {
+        auto scenario = new Scenario();
+        object = scenario;
+        return aLoadScenario(filepath, *scenario);
     }
     else
     {
