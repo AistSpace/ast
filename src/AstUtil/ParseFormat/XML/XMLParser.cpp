@@ -30,6 +30,7 @@ errc_t XMLParser::parse(XMLSax& sax)
     buffer_.clear();
     
     if(!isOpen()) {
+        aError("failed to open file");
         return eErrorInvalidFile;
     }
     

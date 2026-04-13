@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "TimePoint.hpp"
+#include "AstUtil/Logger.hpp"
 #include <string>
 #include <limits>
 #include <vector>
@@ -116,6 +117,14 @@ public:
         start_ = -std::numeric_limits<double>::infinity();
         stop_  = +std::numeric_limits<double>::infinity();
     }
+    /// @brief 设置时间区间为零时间区间
+    /// @warning 这将使时间区间无效，无法用于计算。
+    void setZero()
+    {
+        epoch_ = 0;
+        start_ = 0.0;
+        stop_  = 0.0;
+    }
 public:
     /// @brief 时间区间的持续时间（秒）
     double duration() const{return stop_ - start_;}
@@ -156,8 +165,13 @@ public:
     /// @param step 离散化步长（秒）
     /// @return 离散化时间点范围
     DiscreteEpochSecondRange discrete(const TimePoint& epoch, double step) const;
-
-protected:
+public:
+    /// @brief 合并时间区间
+    /// @param other 要合并的时间区间
+    /// @warning 如果时间区间与当前时间区间不重叠，合并操作将失败。
+    /// @return errc_t 错误码
+    errc_t merge(const TimeInterval& other);
+private:
     int64_t epoch_;     ///< 时间区间的基准时间点（秒，从J2000.0 TAI 开始）
     double  start_;     ///< 相对开始时间(s)
     double  stop_;      ///< 相对结束时间(s)
@@ -283,6 +297,26 @@ inline TimeInterval::DiscreteEpochSecondRange TimeInterval::discrete(const TimeP
     double offset = getStart() - epoch;
     double stopOffset = getStop() - epoch;
     return DiscreteEpochSecondRange(offset, step, stopOffset, n);
+}
+
+inline errc_t TimeInterval::merge(const TimeInterval &other)
+{
+    const TimePoint& thisStart = start();
+    const TimePoint& otherStart = other.start();
+    TimePoint thisStop = stop();
+    TimePoint otherStop = other.stop();
+
+    if (thisStart.durationFrom(otherStop) > 0 || otherStart.durationFrom(thisStop) > 0) 
+    {
+        aError("merge time interval failed, no overlap");
+        return eErrorInvalidParam;
+    }
+
+    const TimePoint& mergedStart = (thisStart.durationFrom(otherStart) <= 0) ? thisStart : otherStart;
+    const TimePoint& mergedStop = (thisStop.durationFrom(otherStop) >= 0) ? thisStop : otherStop;
+
+    setStartStop(mergedStart, mergedStop);
+    return eNoError;
 }
 
 /*! @} */

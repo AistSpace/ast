@@ -76,7 +76,7 @@ private:
     int indent = 0;
 };
 
-TEST(XMLParser, Basic) {
+TEST(XMLParserTest, Basic) {
     // 创建一个简单的XML字符串
     const char* xml = R"(
         <?xml version="1.0" encoding="UTF-8"?>
@@ -110,7 +110,7 @@ TEST(XMLParser, Basic) {
     remove("test.xml");
 }
 
-TEST(XMLParser, CDATA) {
+TEST(XMLParserTest, CDATA) {
     // 创建包含CDATA的XML字符串
     const char* xml = R"(
         <root>
@@ -136,7 +136,7 @@ TEST(XMLParser, CDATA) {
     remove("test_cdata.xml");
 }
 
-TEST(XMLNode, Save) {
+TEST(XMLParserTest, Save) {
     // 创建一个XML节点
     XMLNode root("root");
     
@@ -196,7 +196,7 @@ TEST(XMLNode, Save) {
     remove("test_save.xml");
 }
 
-TEST(XMLDocument, Basic) {
+TEST(XMLParserTest, XMLDocument) {
     // 创建XML文档
     XMLDocument doc;
     
@@ -247,6 +247,22 @@ TEST(XMLDocument, Basic) {
     
     // 清理临时文件
     remove("test_document.xml");
+}
+
+
+TEST(XMLParserTest, LoadSTK)
+{
+    if(aIsCI())
+        GTEST_SKIP();
+    std::vector<std::string> stkFiles = aTestGetConfigStringVector("STK_PROPAGATOR_FILES");
+    for(const auto& file : stkFiles)
+    {
+        printf("Loading %s\n", file.c_str());
+        XMLParser parser(file);
+        TestXMLSax sax;
+        errc_t err = parser.parse(sax);
+        EXPECT_EQ(err, eNoError);
+    }
 }
 
 GTEST_MAIN()

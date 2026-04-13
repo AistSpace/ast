@@ -35,7 +35,7 @@ class AST_UTIL_API IArchive: public Archive
 public:
     using Archive::Archive;
 
-    IArchive& operator&(Attribute& attr) override;
+    IArchive& operator()(Attribute& attr) override;
 
     template<typename T>
     IArchive& operator>>(T& val)

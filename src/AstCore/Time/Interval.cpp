@@ -1,9 +1,9 @@
 ///
-/// @file      OArchive.hpp
+/// @file      Interval.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-03-31
+/// @date      2026-04-13
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -18,31 +18,11 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#pragma once
-
-#include "AstGlobal.h"
-#include "Archive.hpp"
-
+#include "Interval.hpp"
 
 AST_NAMESPACE_BEGIN
 
-/*!
-    @addtogroup 
-    @{
-*/
 
-class AST_UTIL_API OArchive: public Archive
-{
-public:
-    using OArchive::OArchive;
-    template<typename T>
-    OArchive& operator<<(T& val)
-    {
-        Archive::operator()(val);
-        return *this;
-    }
-};
-
-/*! @} */
 
 AST_NAMESPACE_END
+
