@@ -1,5 +1,6 @@
 #include "AstCore/Axes.hpp"
 #include "AstCore/AxesICRF.hpp"
+#include "AstCore/AxesRoot.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstMath/Rotation.hpp"
 #include "AstMath/Vector.hpp"

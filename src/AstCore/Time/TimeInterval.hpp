@@ -172,9 +172,9 @@ public:
     /// @return errc_t 错误码
     errc_t merge(const TimeInterval& other);
 private:
-    int64_t epoch_;     ///< 时间区间的基准时间点（秒，从J2000.0 TAI 开始）
-    double  start_;     ///< 相对开始时间(s)
-    double  stop_;      ///< 相对结束时间(s)
+    int64_t epoch_{0};     ///< 时间区间的基准时间点（秒，从J2000.0 TAI 开始）
+    double  start_{0};     ///< 相对开始时间(s)
+    double  stop_{0};      ///< 相对结束时间(s)
 };
 
 

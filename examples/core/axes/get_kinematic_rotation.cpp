@@ -24,7 +24,7 @@ int main()
     
     if (err == eNoError) {
         // 获取旋转矩阵
-        Matrix3d rot = kinRot1.getRotation();
+        Matrix3d rot = kinRot1.getRotation().getMatrix();
         printf("时刻1 - J2000到ECF旋转矩阵:\n");
         for (int i = 0; i < 3; i++) {
             printf("  [%.8f %.8f %.8f]\n", rot(i,0), rot(i,1), rot(i,2));

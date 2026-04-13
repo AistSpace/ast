@@ -213,3 +213,5 @@ TEST(TimeInterval, Iterator)
         EXPECT_EQ(count, 2u);
     }
 }
+
+GTEST_MAIN()
