@@ -39,42 +39,10 @@ AST_NAMESPACE_BEGIN
  
 #ifdef _WIN32
 
-struct LocaleDeleter
+
+static _locale_t _ast_locale_ensure()
 {
-    void operator()(_locale_t locale) const
-    {
-        if (locale) {
-            _free_locale(locale);
-        }
-    }
-};
-
-A_THREAD_LOCAL std::unique_ptr<std::remove_pointer<_locale_t>::type, LocaleDeleter> t_locale;  // utf-8 locale
-
-_locale_t _ast_locale_ensure()
-{
-    static const char* locale_strs[]{
-            ".UTF-8",
-            "zh_CN.UTF-8",
-            "en_US.UTF-8",
-            "C.UTF-8",
-            "C",
-            ""
-    };
-
-    if (A_UNLIKELY(!t_locale)) {
-        for (const char* locale_str : locale_strs) {
-            _locale_t locale = _create_locale(LC_ALL, locale_str);
-            if (locale) {
-                t_locale.reset(locale);
-                break;
-            }
-        }
-        if (!t_locale) {
-            aError("failed to create locale");
-        }
-    }
-    return t_locale.get();
+    return aUTF8Locale();
 }
 
 std::FILE* posix::fopen(const char* filepath, const char* mode)

@@ -18,7 +18,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "RadarLoader.hpp"
-#include "../Object/Radar.hpp"
+#include "AstSim/Radar.hpp"
 #include "BasicComponentLoader.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstUtil/StringUtil.hpp"

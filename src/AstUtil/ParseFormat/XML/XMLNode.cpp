@@ -20,6 +20,8 @@
 
 #include "XMLNode.hpp"
 #include "XMLParser.hpp"
+#include "AstUtil/Logger.hpp"
+#include "AstUtil/IO.hpp"
 #include <cstdio>
 #include <cassert>
 
@@ -71,7 +73,7 @@ errc_t XMLNode::save(StringView filepath)
     }
 
     // 写入 XML 声明
-    fprintf(file, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+    posix::fprintf(file, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
 
     // 递归生成 XML 内容
     if (!generateXML(file, 0)) {
@@ -90,20 +92,20 @@ bool XMLNode::generateXML(FILE* file, int indent) const
     switch (kind_) {
     case EXMLNodeType::eElement:
         // 写入开始标签
-        fprintf(file, "%s<%s", indentStr.c_str(), getName().c_str());
+        posix::fprintf(file, "%s<%s", indentStr.c_str(), getName().c_str());
         
         // 写入属性
         for (std::map<std::string, GenericValue>::const_iterator it = attributes_.begin(); it != attributes_.end(); ++it) {
             const std::string& attrName = it->first;
             const GenericValue& attrValue = it->second;
-            fprintf(file, " %s=\"%s\"", attrName.c_str(), attrValue.c_str());
+            posix::fprintf(file, " %s=\"%s\"", attrName.c_str(), attrValue.c_str());
         }
         
         if (children_.empty()) {
             // 空元素
-            fprintf(file, "/>\n");
+            posix::fprintf(file, "/>\n");
         } else {
-            fprintf(file, ">\n");
+            posix::fprintf(file, ">\n");
             
             
             // 写入子节点
@@ -114,27 +116,27 @@ bool XMLNode::generateXML(FILE* file, int indent) const
             }
             
             // 写入结束标签
-            fprintf(file, "%s</%s>\n", indentStr.c_str(), getName().c_str());
+            posix::fprintf(file, "%s</%s>\n", indentStr.c_str(), getName().c_str());
         }
         break;
         
     case EXMLNodeType::eText:
         {
             std::string escapedText = escapeXML(getText());
-            fprintf(file, "%s%s\n", indentStr.c_str(), escapedText.c_str());
+            posix::fprintf(file, "%s%s\n", indentStr.c_str(), escapedText.c_str());
         }
         break;
         
     case EXMLNodeType::eComment:
-        fprintf(file, "%s<!-- %s -->\n", indentStr.c_str(), getText().c_str());
+        posix::fprintf(file, "%s<!-- %s -->\n", indentStr.c_str(), getText().c_str());
         break;
         
     case EXMLNodeType::eCDATA:
-        fprintf(file, "%s<![CDATA[%s]]>\n", indentStr.c_str(), getText().c_str());
+        posix::fprintf(file, "%s<![CDATA[%s]]>\n", indentStr.c_str(), getText().c_str());
         break;
         
     case EXMLNodeType::eDocType:
-        fprintf(file, "%s<!DOCTYPE %s>\n", indentStr.c_str(), getText().c_str());
+        posix::fprintf(file, "%s<!DOCTYPE %s>\n", indentStr.c_str(), getText().c_str());
         break;
     }
 
