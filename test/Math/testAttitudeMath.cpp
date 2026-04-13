@@ -11,6 +11,7 @@
 #include "AstMath/AngleAxis.hpp"
 #include "AstMath/Quaternion.hpp"
 #include "AstMath/Matrix.hpp"
+#include "AstUtil/Constants.h"
 #include "AstTest/AstTestMacro.h"
 #include <cmath>
 
@@ -44,7 +45,7 @@ TEST(RotationMatrix, XAxis)
 {
     // 被动旋转：mtx(1,2) = sin(angle), mtx(2,1) = -sin(angle)
     Matrix3d mtx;
-    double angle = M_PI / 4;
+    double angle = kPI / 4;
     aRotationXMatrix(angle, mtx);
     
     EXPECT_NEAR(mtx(0, 0), 1.0, 1e-15);
@@ -62,7 +63,7 @@ TEST(RotationMatrix, YAxis)
 {
     // 被动旋转：mtx(0,2) = -sin(angle), mtx(2,0) = sin(angle)
     Matrix3d mtx;
-    double angle = M_PI / 6;
+    double angle = kPI / 6;
     aRotationYMatrix(angle, mtx);
     
     EXPECT_NEAR(mtx(0, 0), std::cos(angle), 1e-15);
@@ -80,7 +81,7 @@ TEST(RotationMatrix, ZAxis)
 {
     // 被动旋转：mtx(0,1) = sin(angle), mtx(1,0) = -sin(angle)
     Matrix3d mtx;
-    double angle = M_PI / 3;
+    double angle = kPI / 3;
     aRotationZMatrix(angle, mtx);
     
     EXPECT_NEAR(mtx(0, 0), std::cos(angle), 1e-15);
@@ -97,7 +98,7 @@ TEST(RotationMatrix, ZAxis)
 TEST(RotationMatrix, GeneralAPI)
 {
     Matrix3d mtx1, mtx2;
-    double angle = M_PI / 4;
+    double angle = kPI / 4;
     
     EXPECT_EQ(aRotationMatrix(angle, 1, mtx1), 0);
     aRotationXMatrix(angle, mtx2);
@@ -116,7 +117,7 @@ TEST(RotationMatrix, Orthogonality)
 {
     // 验证旋转矩阵的正交性
     Matrix3d mtx;
-    aRotationXMatrix(M_PI / 5, mtx);
+    aRotationXMatrix(kPI / 5, mtx);
     
     double det = mtx(0,0)*(mtx(1,1)*mtx(2,2) - mtx(1,2)*mtx(2,1))
                - mtx(0,1)*(mtx(1,0)*mtx(2,2) - mtx(1,2)*mtx(2,0))
@@ -145,7 +146,7 @@ TEST(QuatMatrixConversion, Identity)
 
 TEST(QuatMatrixConversion, RoundTrip)
 {
-    double angle = M_PI / 3;
+    double angle = kPI / 3;
     Quaternion quat;
     quat.w() = std::cos(angle / 2);
     quat.x() = std::sin(angle / 2);
@@ -163,7 +164,7 @@ TEST(QuatMatrixConversion, RoundTrip)
 
 TEST(QuatMatrixConversion, RotationX90)
 {
-    double angle = M_PI / 2;
+    double angle = kHalfPI;
     Quaternion quat;
     quat.w() = std::cos(angle / 2);
     quat.x() = std::sin(angle / 2);
@@ -184,7 +185,7 @@ TEST(QuatMatrixConversion, RotationX90)
 
 TEST(AngleAxisConversion, Basic)
 {
-    double angle = M_PI / 2;
+    double angle = kHalfPI;
     Vector3d axis; axis(0) = 0; axis(1) = 0; axis(2) = 1;
     
     AngleAxis aa;
@@ -200,7 +201,7 @@ TEST(AngleAxisConversion, Basic)
 
 TEST(AngleAxisConversion, MatrixRoundTrip)
 {
-    double angle = M_PI / 3;
+    double angle = kPI / 3;
     Vector3d axis; axis(0) = 1; axis(1) = 1; axis(2) = 1;
     double norm = std::sqrt(3.0);
     axis(0) /= norm; axis(1) /= norm; axis(2) /= norm;
@@ -225,7 +226,7 @@ TEST(AngleAxisConversion, MatrixRoundTrip)
 
 TEST(AngleAxis, Inverse)
 {
-    double angle = M_PI / 4;
+    double angle = kQuarterPI;
     Vector3d axis; axis(0) = 0; axis(1) = 1; axis(2) = 0;
     
     AngleAxis aa;
@@ -241,7 +242,7 @@ TEST(AngleAxis, Inverse)
 
 TEST(AngleAxis, FromRotationMatrix)
 {
-    double angle = M_PI / 4;
+    double angle = kQuarterPI;
     Matrix3d mtx;
     aRotationYMatrix(angle, mtx);
     
@@ -255,7 +256,7 @@ TEST(AngleAxis, FromRotationMatrix)
 
 TEST(AngleAxis, ToRotationMatrix)
 {
-    double angle = M_PI / 3;
+    double angle = kPI / 3;
     Vector3d axis; axis(0) = 0; axis(1) = 0; axis(2) = 1;
     
     AngleAxis aa;
@@ -276,9 +277,9 @@ TEST(AngleAxis, ToRotationMatrix)
 TEST(EulerConversion, XYZOrder)
 {
     Euler euler;
-    euler.angle1() = M_PI / 6;
-    euler.angle2() = M_PI / 4;
-    euler.angle3() = M_PI / 3;
+    euler.angle1() = kPI / 6;
+    euler.angle2() = kQuarterPI;
+    euler.angle3() = kThirdPI;
     
     Matrix3d mtx;
     EXPECT_EQ(euler.toMatrix(Euler::eXYZ, mtx), 0);
@@ -295,9 +296,9 @@ TEST(EulerConversion, XYZOrder)
 TEST(EulerConversion, ZYXOrder)
 {
     Euler euler;
-    euler.angle1() = M_PI / 8;
-    euler.angle2() = M_PI / 6;
-    euler.angle3() = M_PI / 4;
+    euler.angle1() = kPI / 8;
+    euler.angle2() = kPI / 6;
+    euler.angle3() = kQuarterPI;
     
     Matrix3d mtx;
     EXPECT_EQ(euler.toMatrix(Euler::eZYX, mtx), 0);
@@ -314,9 +315,9 @@ TEST(EulerConversion, ZYXOrder)
 TEST(EulerConversion, QuatRoundTrip)
 {
     Euler euler1;
-    euler1.angle1() = M_PI / 4;
-    euler1.angle2() = M_PI / 6;
-    euler1.angle3() = M_PI / 3;
+    euler1.angle1() = kQuarterPI;
+    euler1.angle2() = kPI / 6;
+    euler1.angle3() = kThirdPI;
     
     Quaternion quat;
     EXPECT_EQ(euler1.toQuat(Euler::eXYZ, quat), 0);
@@ -359,7 +360,7 @@ TEST(EulerConversion, AllABATypes)
 {
     Euler euler;
     euler.angle1() = 0.3;
-    euler.angle2() = M_PI / 4;
+    euler.angle2() = kQuarterPI;
     euler.angle3() = 0.5;
     
     Matrix3d mtx;
@@ -386,7 +387,7 @@ TEST(EulerConversion, AllABATypes)
 
 TEST(QuatAngleAxisConversion, RoundTrip)
 {
-    double angle = M_PI / 3;
+    double angle = kThirdPI;
     Quaternion quat;
     double s = std::sin(angle / 2) / std::sqrt(3.0);
     quat.w() = std::cos(angle / 2);
