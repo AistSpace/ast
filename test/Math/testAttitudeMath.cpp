@@ -1,6 +1,6 @@
 ///
-/// @file      testAttitudeConvert.cpp
-/// @brief     AttitudeConvert 模块单元测试
+/// @file      testAttitudeMath.cpp
+/// @brief     AstMath/AttitudeConvert 模块单元测试
 /// @details   测试旋转矩阵、欧拉角、四元数、轴角之间的转换
 /// @author    Aist
 /// @date      2026-04-14
@@ -37,47 +37,61 @@ static void expectQuatNear(const Quaternion& a, const Quaternion& b, double tol 
 }
 
 // ============================================================================
-// 旋转矩阵测试
+// 旋转矩阵测试（被动旋转）
 // ============================================================================
 
 TEST(RotationMatrix, XAxis)
 {
+    // 被动旋转：mtx(1,2) = sin(angle), mtx(2,1) = -sin(angle)
     Matrix3d mtx;
     double angle = M_PI / 4;
     aRotationXMatrix(angle, mtx);
     
     EXPECT_NEAR(mtx(0, 0), 1.0, 1e-15);
     EXPECT_NEAR(mtx(0, 1), 0.0, 1e-15);
+    EXPECT_NEAR(mtx(0, 2), 0.0, 1e-15);
+    EXPECT_NEAR(mtx(1, 0), 0.0, 1e-15);
     EXPECT_NEAR(mtx(1, 1), std::cos(angle), 1e-15);
-    EXPECT_NEAR(mtx(1, 2), -std::sin(angle), 1e-15);
-    EXPECT_NEAR(mtx(2, 1), std::sin(angle), 1e-15);
+    EXPECT_NEAR(mtx(1, 2), std::sin(angle), 1e-15);   // 被动旋转：+sin
+    EXPECT_NEAR(mtx(2, 0), 0.0, 1e-15);
+    EXPECT_NEAR(mtx(2, 1), -std::sin(angle), 1e-15);  // 被动旋转：-sin
     EXPECT_NEAR(mtx(2, 2), std::cos(angle), 1e-15);
 }
 
 TEST(RotationMatrix, YAxis)
 {
+    // 被动旋转：mtx(0,2) = -sin(angle), mtx(2,0) = sin(angle)
     Matrix3d mtx;
     double angle = M_PI / 6;
     aRotationYMatrix(angle, mtx);
     
-    EXPECT_NEAR(mtx(1, 1), 1.0, 1e-15);
     EXPECT_NEAR(mtx(0, 0), std::cos(angle), 1e-15);
-    EXPECT_NEAR(mtx(0, 2), std::sin(angle), 1e-15);
-    EXPECT_NEAR(mtx(2, 0), -std::sin(angle), 1e-15);
+    EXPECT_NEAR(mtx(0, 1), 0.0, 1e-15);
+    EXPECT_NEAR(mtx(0, 2), -std::sin(angle), 1e-15);  // 被动旋转：-sin
+    EXPECT_NEAR(mtx(1, 0), 0.0, 1e-15);
+    EXPECT_NEAR(mtx(1, 1), 1.0, 1e-15);
+    EXPECT_NEAR(mtx(1, 2), 0.0, 1e-15);
+    EXPECT_NEAR(mtx(2, 0), std::sin(angle), 1e-15);   // 被动旋转：+sin
+    EXPECT_NEAR(mtx(2, 1), 0.0, 1e-15);
     EXPECT_NEAR(mtx(2, 2), std::cos(angle), 1e-15);
 }
 
 TEST(RotationMatrix, ZAxis)
 {
+    // 被动旋转：mtx(0,1) = sin(angle), mtx(1,0) = -sin(angle)
     Matrix3d mtx;
     double angle = M_PI / 3;
     aRotationZMatrix(angle, mtx);
     
-    EXPECT_NEAR(mtx(2, 2), 1.0, 1e-15);
     EXPECT_NEAR(mtx(0, 0), std::cos(angle), 1e-15);
-    EXPECT_NEAR(mtx(0, 1), -std::sin(angle), 1e-15);
-    EXPECT_NEAR(mtx(1, 0), std::sin(angle), 1e-15);
+    EXPECT_NEAR(mtx(0, 1), std::sin(angle), 1e-15);   // 被动旋转：+sin
+    EXPECT_NEAR(mtx(0, 2), 0.0, 1e-15);
+    EXPECT_NEAR(mtx(1, 0), -std::sin(angle), 1e-15);  // 被动旋转：-sin
     EXPECT_NEAR(mtx(1, 1), std::cos(angle), 1e-15);
+    EXPECT_NEAR(mtx(1, 2), 0.0, 1e-15);
+    EXPECT_NEAR(mtx(2, 0), 0.0, 1e-15);
+    EXPECT_NEAR(mtx(2, 1), 0.0, 1e-15);
+    EXPECT_NEAR(mtx(2, 2), 1.0, 1e-15);
 }
 
 TEST(RotationMatrix, GeneralAPI)
@@ -100,6 +114,7 @@ TEST(RotationMatrix, GeneralAPI)
 
 TEST(RotationMatrix, Orthogonality)
 {
+    // 验证旋转矩阵的正交性
     Matrix3d mtx;
     aRotationXMatrix(M_PI / 5, mtx);
     
@@ -200,7 +215,12 @@ TEST(AngleAxisConversion, MatrixRoundTrip)
     AngleAxis aa2;
     aMatrixToAngleAxis(mtx, aa2);
     
+    // 验证角度和旋转矩阵
     EXPECT_NEAR(std::abs(aa1.angle()), std::abs(aa2.angle()), 1e-10);
+    
+    Matrix3d mtx2;
+    aAngleAxisToMatrix(aa2, mtx2);
+    expectMatrixNear(mtx, mtx2);
 }
 
 TEST(AngleAxis, Inverse)
@@ -214,6 +234,9 @@ TEST(AngleAxis, Inverse)
     
     AngleAxis aa_inv = aa.inverse();
     EXPECT_NEAR(aa_inv.angle(), -angle, 1e-15);
+    EXPECT_NEAR(aa_inv.axis()(0), axis(0), 1e-15);
+    EXPECT_NEAR(aa_inv.axis()(1), axis(1), 1e-15);
+    EXPECT_NEAR(aa_inv.axis()(2), axis(2), 1e-15);
 }
 
 TEST(AngleAxis, FromRotationMatrix)
@@ -225,8 +248,9 @@ TEST(AngleAxis, FromRotationMatrix)
     AngleAxis aa;
     aa.fromRotationMatrix(mtx);
     
-    EXPECT_NEAR(std::abs(aa.axis()(0)), 0.0, 1e-10);
-    EXPECT_NEAR(std::abs(aa.axis()(1)), 1.0, 1e-10);
+    // 验证旋转矩阵是否一致
+    Matrix3d mtx2 = aa.toRotationMatrix();
+    expectMatrixNear(mtx, mtx2);
 }
 
 TEST(AngleAxis, ToRotationMatrix)
@@ -262,6 +286,7 @@ TEST(EulerConversion, XYZOrder)
     Euler euler2;
     EXPECT_EQ(euler2.fromMatrix(mtx, Euler::eXYZ), 0);
     
+    // 校验所有三个角度
     EXPECT_NEAR(euler.angle1(), euler2.angle1(), 1e-10);
     EXPECT_NEAR(euler.angle2(), euler2.angle2(), 1e-10);
     EXPECT_NEAR(euler.angle3(), euler2.angle3(), 1e-10);
@@ -280,6 +305,7 @@ TEST(EulerConversion, ZYXOrder)
     Euler euler2;
     EXPECT_EQ(euler2.fromMatrix(mtx, Euler::eZYX), 0);
     
+    // 校验所有三个角度
     EXPECT_NEAR(euler.angle1(), euler2.angle1(), 1e-10);
     EXPECT_NEAR(euler.angle2(), euler2.angle2(), 1e-10);
     EXPECT_NEAR(euler.angle3(), euler2.angle3(), 1e-10);
@@ -298,6 +324,7 @@ TEST(EulerConversion, QuatRoundTrip)
     Euler euler2;
     EXPECT_EQ(euler2.fromQuat(quat, Euler::eXYZ), 0);
     
+    // 校验所有三个角度
     EXPECT_NEAR(euler1.angle1(), euler2.angle1(), 1e-10);
     EXPECT_NEAR(euler1.angle2(), euler2.angle2(), 1e-10);
     EXPECT_NEAR(euler1.angle3(), euler2.angle3(), 1e-10);
@@ -317,11 +344,15 @@ TEST(EulerConversion, AllABCTypes)
     aEuler123ToMatrix(euler, mtx);
     aMatrixToEuler123(mtx, euler2);
     EXPECT_NEAR(euler.angle1(), euler2.angle1(), 1e-10);
+    EXPECT_NEAR(euler.angle2(), euler2.angle2(), 1e-10);
+    EXPECT_NEAR(euler.angle3(), euler2.angle3(), 1e-10);
     
     // ZYX (321)
     aEuler321ToMatrix(euler, mtx);
     aMatrixToEuler321(mtx, euler2);
     EXPECT_NEAR(euler.angle1(), euler2.angle1(), 1e-10);
+    EXPECT_NEAR(euler.angle2(), euler2.angle2(), 1e-10);
+    EXPECT_NEAR(euler.angle3(), euler2.angle3(), 1e-10);
 }
 
 TEST(EulerConversion, AllABATypes)
@@ -338,11 +369,15 @@ TEST(EulerConversion, AllABATypes)
     aEuler313ToMatrix(euler, mtx);
     aMatrixToEuler313(mtx, euler2);
     EXPECT_NEAR(euler.angle1(), euler2.angle1(), 1e-10);
+    EXPECT_NEAR(euler.angle2(), euler2.angle2(), 1e-10);
+    EXPECT_NEAR(euler.angle3(), euler2.angle3(), 1e-10);
     
     // ZYZ (323)
     aEuler323ToMatrix(euler, mtx);
     aMatrixToEuler323(mtx, euler2);
     EXPECT_NEAR(euler.angle1(), euler2.angle1(), 1e-10);
+    EXPECT_NEAR(euler.angle2(), euler2.angle2(), 1e-10);
+    EXPECT_NEAR(euler.angle3(), euler2.angle3(), 1e-10);
 }
 
 // ============================================================================
