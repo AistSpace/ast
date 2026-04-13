@@ -64,7 +64,7 @@ errc_t aFrameToLVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame
     }
     else
     {
-        Vector3d axis_y = axis_z.cross(posInFrame);
+        Vector3d axis_y = axis_z.cross(posInFrame).normalized();
         Vector3d axis_x = posInFrame.normalized();
         matrix = {
             axis_x[0], axis_x[1], axis_x[2],
