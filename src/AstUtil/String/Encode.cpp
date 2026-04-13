@@ -24,6 +24,7 @@
 #include <memory>
 #include <stdexcept>
 #include <clocale>
+#include <locale>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -121,7 +122,7 @@ static size_t ansitowcs(wchar_t* wide, const char* ansi, size_t size)
 
 static size_t wcstoansi(char* ansi, const wchar_t* wide, size_t size)
 {
-    return _wcstombs_l(ansi, wide, size, aUTF8Locale());
+    return _wcstombs_l(ansi, wide, size, aAnsiLocale());
 }
 
 
@@ -202,7 +203,7 @@ errc_t aWideToCRT(const wchar_t* wide, std::string& crt)
     if (!wide) {
         return eErrorInvalidParam;
     }
-    auto func = &wcstoansi;
+    auto func = &wcstombs;
     #ifdef _WIN32
     char* locale = setlocale(LC_CTYPE, nullptr);
     if (locale && strcmp(locale, "C") == 0) 
@@ -214,7 +215,7 @@ errc_t aWideToCRT(const wchar_t* wide, std::string& crt)
     // 首先获取所需的缓冲区大小
     size_t size = func(nullptr, wide, 0);
     if (size == static_cast<size_t>(-1)) {
-        return eErrorInvalidParam;
+        size = wcslen(wide) * 4;
     }
 
     // 分配缓冲区并转换
@@ -248,7 +249,7 @@ errc_t aCRTToWide(const char* crt, std::wstring& wide)
     // 首先获取所需的缓冲区大小
     size_t size = func(nullptr, crt, 0);
     if (size == static_cast<size_t>(-1)) {
-        return eErrorInvalidParam;
+        size = strlen(crt);
     }
 
     // 分配缓冲区并转换

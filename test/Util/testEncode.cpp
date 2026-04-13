@@ -27,7 +27,7 @@ AST_USING_NAMESPACE
 TEST(EncodeTest, CRTToWide)
 {
 #ifdef _WIN32
-    setlocale(LC_ALL, ".utf-8");
+    // setlocale(LC_ALL, ".utf-8");
     wchar_t wstr[] = L"\u4E2D\u6587";
     std::string ansi;
     std::string utf8;
@@ -38,8 +38,11 @@ TEST(EncodeTest, CRTToWide)
 
     EXPECT_EQ(utf8, u8"\u4E2D\u6587");
     std::wstring wide;
-    EXPECT_EQ(aCRTToWide(utf8.c_str(), wide), eNoError);
+    EXPECT_EQ(aCRTToWide(ansi.c_str(), wide), eNoError);
     EXPECT_EQ(wide, L"\u4E2D\u6587");
+    std::string crt;
+    EXPECT_EQ(aWideToCRT(wstr, crt), eNoError);
+    EXPECT_EQ(crt, ansi);
 #endif
 }
 
