@@ -400,17 +400,26 @@ errc_t _aLoadSubObjects(BKVParser &parser, Object *parentObject)
 
 void _aSkipUnknownBlock(BKVParser &parser, StringView blockName)
 {
+    int blockDepth = 0;
     std::string blockNameStr = std::string(blockName);
     while(1)
     {
         BKVItemView item;
         BKVParser::EToken token;
         token = parser.getNext(item);
-        if(token == BKVParser::eBlockEnd){
-            if(aEqualsIgnoreCase(item.value(), blockName)){
+        if(token == BKVParser::eBlockBegin)
+        {
+            blockDepth++;
+        }
+        else if(token == BKVParser::eBlockEnd)
+        {
+            if(blockDepth == 0 && aEqualsIgnoreCase(item.value(), blockName)){
                 break;
             }
-        }else if(token == BKVParser::eEOF){
+            blockDepth--;
+        }
+        else if(token == BKVParser::eEOF)
+        {
             break;
         }else if(token == BKVParser::eError)
         {

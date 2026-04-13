@@ -25,6 +25,7 @@
 #include "AstCore/STKEphemerisFileParser.hpp"
 #include "AstSim/MotionBallistic.hpp"
 #include "AstSim/MotionSimpleAscent.hpp"
+#include "AstSim/MotionGreatArc.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -333,6 +334,106 @@ errc_t _aLoadSimpleAscent(BKVParser& parser, const VehiclePathData& vehiclePathD
     return eNoError;
 }
 
+errc_t _aLoadGreatArc(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+{
+    struct {
+        int versionIndicator_{0};
+        std::string method_;
+        TimePoint timeOfFirstWaypoint_{};
+        bool useScenTime_{false};
+        double arcGranularity_{0.0};
+        double defaultRate_{0.0};
+        double defaultAltitude_{0.0};
+        double defaultTurnRadius_{0.0};
+        std::string altRef_;
+        std::string altInterpMethod_;
+        int numberOfWaypoints_{0};
+        std::vector<WayPoint> waypoints_;
+        SharedPtr<EventInterval> arcSmartInterval_;
+    } data;
+
+    while(1)
+    {
+        BKVItemView item;
+        BKVParser::EToken token;
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "VersionIndicator")){
+                data.versionIndicator_ = item.value().toInt();
+            }else if(aEqualsIgnoreCase(item.key(), "Method")){
+                data.method_ = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "TimeOfFirstWaypoint")){
+                data.timeOfFirstWaypoint_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "UseScenTime")){
+                data.useScenTime_ = item.value().toBool();
+            }else if(aEqualsIgnoreCase(item.key(), "ArcGranularity")){
+                data.arcGranularity_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "DefaultRate")){
+                data.defaultRate_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "DefaultAltitude")){
+                data.defaultAltitude_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "DefaultTurnRadius")){
+                data.defaultTurnRadius_ = item.value().toDouble();
+            }else if(aEqualsIgnoreCase(item.key(), "AltRef")){
+                data.altRef_ = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "AltInterpMethod")){
+                data.altInterpMethod_ = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "NumberOfWaypoints")){
+                data.numberOfWaypoints_ = item.value().toInt();
+            }
+        }else if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "ArcSmartInterval")){
+                errc_t rc = _aLoadEventInterval(parser, data.arcSmartInterval_);
+                if(rc)
+                    aError("failed to load ArcSmartInterval");
+            }else if(aEqualsIgnoreCase(item.value(), "Waypoints")){
+                // 解析航点数据
+                for(int i = 0; i < data.numberOfWaypoints_; i++)
+                {
+                    WayPoint waypoint{};
+                    StringView line = parser.getLineSkipComment();
+                    int status = sscanf(
+                        line.data(), "%lf %lf %lf %lf %lf %lf %lf", 
+                        &waypoint.time_, &waypoint.position_.latitude(), &waypoint.position_.longitude(), &waypoint.position_.altitude(), 
+                        &waypoint.speed_, &waypoint.acceleration_, &waypoint.turnRadius_
+                    );
+                    if(status != 7){
+                        aError("invalid waypoint line");
+                        // return eErrorInvalidFile;
+                    }else{
+                        data.waypoints_.push_back(waypoint);
+                    }
+                }
+            }else{
+                _aSkipUnknownBlock(parser, item.value());
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "GreatArc")){
+                break;
+            }
+        }else if(token == BKVParser::eEOF){
+            return eNoError;
+        }else{
+            return eErrorInvalidFile;
+        }
+    }
+
+    // 创建 GreatArc 运动模型
+    auto motionGreatArc = MotionGreatArc::New();
+    
+    // 设置开始时间
+    motionGreatArc->setStartTime(data.timeOfFirstWaypoint_);
+    
+    // 设置航点数据
+    motionGreatArc->setWayPoints(data.waypoints_);
+    
+    // 设置运动模型
+    motionProfile = motionGreatArc;
+    
+    return eNoError;
+}
+
 errc_t _aLoadPassDefn(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
@@ -420,6 +521,11 @@ errc_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
             }
             else if(aEqualsIgnoreCase(item.value(), "SimpleAscent")){
                 if(errc_t rc = _aLoadSimpleAscent(parser, data, mover.getMotionProfileHandle())){
+                    return rc;
+                }
+            }
+            else if(aEqualsIgnoreCase(item.value(), "GreatArc")){
+                if(errc_t rc = _aLoadGreatArc(parser, data, mover.getMotionProfileHandle())){
                     return rc;
                 }
             }

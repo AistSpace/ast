@@ -143,6 +143,11 @@ errc_t aLoadSTKEphemeris(BKVParser &parser, ScopedPtr<Ephemeris> &ephemeris)
                     // 这个的含义还不清楚，1点插值?
                     data.interpolationMethod_ = eOnePt;
                 }
+                else if(aEqualsIgnoreCase(value, "GreatArc"))
+                {
+                    // GreatArc 插值方法，暂时使用 Lagrange 插值
+                    data.interpolationMethod_ = eLagrange;
+                }
                 else
                 {
                     aError("unsupported interpolation method: '%.*s'", (int)value.size(), value.data());

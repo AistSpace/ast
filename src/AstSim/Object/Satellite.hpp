@@ -31,7 +31,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 卫星对象
-class Satellite: public Spacecraft
+class AST_SIM_API Satellite: public Spacecraft
 {
 public:
     AST_OBJECT(Satellite)

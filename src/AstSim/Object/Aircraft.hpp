@@ -31,7 +31,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 航空器对象
-class Aircraft: public Mover
+class AST_SIM_API Aircraft: public Mover
 {
 public:
     AST_OBJECT(Aircraft)
