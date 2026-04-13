@@ -1,0 +1,5 @@
+target("AppCLI")
+    set_kind("binary")
+    add_files("**.cpp")
+    -- add_files("**.ui")
+    add_deps("AstSim", "AstCore", "AstScript")

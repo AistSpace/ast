@@ -398,6 +398,9 @@ errc_t _aLoadGreatArc(BKVParser& parser, const VehiclePathData& vehiclePathData,
                         &waypoint.time_, &waypoint.position_.latitude(), &waypoint.position_.longitude(), &waypoint.position_.altitude(), 
                         &waypoint.speed_, &waypoint.acceleration_, &waypoint.turnRadius_
                     );
+                    waypoint.position_.latitude() *= kDegToRad;
+                    waypoint.position_.longitude() *= kDegToRad;
+                    
                     if(status != 7){
                         aError("invalid waypoint line");
                         // return eErrorInvalidFile;

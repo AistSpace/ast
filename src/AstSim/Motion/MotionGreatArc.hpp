@@ -50,7 +50,7 @@ class MotionGreatArc;
 using PMotionGreatArc = MotionGreatArc*;
 using HMotionGreatArc = SharedPtr<MotionGreatArc>;
 
-class MotionGreatArc : public MotionProfile
+class AST_SIM_API MotionGreatArc : public MotionProfile
 {
 public:
     static PMotionGreatArc New();

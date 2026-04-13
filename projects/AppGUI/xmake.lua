@@ -1,4 +1,4 @@
-target("AppAst")
+target("AppGUI")
     add_rules("qt.widgetapp")
     add_files("**.cpp")
     add_files("**.hpp")
