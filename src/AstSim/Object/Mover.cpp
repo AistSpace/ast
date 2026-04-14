@@ -37,6 +37,8 @@ void Mover::ClassInit(Class* cls)
 
 errc_t Mover::generateEphemeris()
 {
+    if(!motionProfile_)
+        return eErrorNullPtr;
     errc_t rc = motionProfile_->makeEphemerisSimple(ephemeris_);
     if(rc)
         motionProfile_->makeEphemerisSpec(ephemeris_);
