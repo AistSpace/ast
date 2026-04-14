@@ -26,6 +26,7 @@
 #include "AstSim/MotionBallistic.hpp"
 #include "AstSim/MotionSimpleAscent.hpp"
 #include "AstSim/MotionGreatArc.hpp"
+#include "AstSim/MotionExternalEphemeris.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -437,6 +438,40 @@ errc_t _aLoadGreatArc(BKVParser& parser, const VehiclePathData& vehiclePathData,
     return eNoError;
 }
 
+errc_t _aLoadExternExternalEphemeris(BKVParser& parser, const VehiclePathData& VehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    struct {
+        std::string filename_;
+    } data;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "Format")){
+                // @todo 处理格式
+            }else if(aEqualsIgnoreCase(item.key(), "Covariance")){
+                // @todo 处理ephemeris
+            }else if(aEqualsIgnoreCase(item.key(), "Filename"))
+            {
+                data.filename_ = item.value().toString();
+            }
+        }else if(token == BKVParser::eBlockEnd)
+        {
+            if(aEqualsIgnoreCase(item.value(), "StkExternal")){
+                break;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+
+    auto motionExtern = MotionExternalEphemeris::New();
+    motionExtern->setFilePath(data.filename_);
+    motionProfile = motionExtern;
+    
+    return eNoError;
+}
+
 errc_t _aLoadPassDefn(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
@@ -529,6 +564,12 @@ errc_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
             }
             else if(aEqualsIgnoreCase(item.value(), "GreatArc")){
                 if(errc_t rc = _aLoadGreatArc(parser, data, mover.getMotionProfileHandle())){
+                    return rc;
+                }
+            }
+            else if(aEqualsIgnoreCase(item.value(), "StkExternal"))
+            {
+                if(errc_t rc = _aLoadExternExternalEphemeris(parser, data, mover.getMotionProfileHandle())){
                     return rc;
                 }
             }

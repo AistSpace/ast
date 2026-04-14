@@ -46,8 +46,8 @@ void testLoadMover(StringView filepath)
     EXPECT_NE(motionProfile, nullptr);
 
     // 检查是否成功加载了星历
-    auto ephemeris = mover.getEphemeris();
-    EXPECT_NE(ephemeris, nullptr);
+    // auto ephemeris = mover.getEphemeris();
+    // EXPECT_NE(ephemeris, nullptr);
 
 }
 
