@@ -83,10 +83,10 @@ TEST(LibraryLoader, GetLoadError)
 TEST(LibraryLoader, FreeInvalidHandle)
 {
     // 尝试释放一个无效的句柄
-    void* invalid_handle = (void*)0x12345678;
-    errc_t rc = aFreeLibrary(invalid_handle);
+    // 无效指针测试已移除，只测试 nullptr
+    errc_t rc = aFreeLibrary(nullptr);
     // 在某些平台上这可能返回成功或失败，取决于系统行为
-    printf("Free invalid handle result: %d\n", rc);
+    EXPECT_EQ(rc, eErrorNullInput);
 }
 
 // 测试加载标准库（如果存在）
