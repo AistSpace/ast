@@ -40,9 +40,9 @@ errc_t _aLoadSimpleCone(BKVParser& parser, FOVSimpleCone& fov)
         coneToken = parser.getNext(coneItem);
         if(coneToken == BKVParser::eKeyValue){
             if(aEqualsIgnoreCase(coneItem.key(), "ConeAngle")){
-                fov.setConeAngle(coneItem.value().toDouble());
+                fov.setConeAngle(coneItem.value().toAngleRad());
             }else if(aEqualsIgnoreCase(coneItem.key(), "AngularPatternResolution")){
-                fov.setAngularPatternResolution(coneItem.value().toDouble());
+                fov.setAngularPatternResolution(coneItem.value().toAngleRad());
             }
         }else if(coneToken == BKVParser::eBlockEnd){
             if(aEqualsIgnoreCase(coneItem.value(), "SimpleCone")){
