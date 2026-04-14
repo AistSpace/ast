@@ -132,13 +132,27 @@ errc_t MotionHPOPSax::keyValue(StringView key, const ValueView &value)
     else if(aEqualsIgnoreCase(key, "AtmDensityModel")){
         if(aEqualsIgnoreCase(value, "JacchiaRoberts")){
             forceModel_.drag_.atmDensityModel_ = EAtmDensityModel::eJacchiaRoberts;
-        } else if(aEqualsIgnoreCase(value, "NRLMSISE2000")){
+        } else if(aEqualsIgnoreCase(value, "1976Standard")){
+            forceModel_.drag_.atmDensityModel_ = EAtmDensityModel::e1976Standard;
+        } else if(aEqualsIgnoreCase(value, "HarrisPriester")){
+            forceModel_.drag_.atmDensityModel_ = EAtmDensityModel::eHarrisPriester;
+        } else if(aEqualsIgnoreCase(value, "Jacchia70")){
+            forceModel_.drag_.atmDensityModel_ = EAtmDensityModel::eJacchia70;
+        } else if(aEqualsIgnoreCase(value, "Jacchia71")){
+            forceModel_.drag_.atmDensityModel_ = EAtmDensityModel::eJacchia71;
+        }else if(aEqualsIgnoreCase(value, "MSIS00")){
             forceModel_.drag_.atmDensityModel_ = EAtmDensityModel::eNRLMSISE2000;
-        } else if(aEqualsIgnoreCase(value, "MSISE1990")){
+        } else if(aEqualsIgnoreCase(value, "MSIS90")){
             forceModel_.drag_.atmDensityModel_ = EAtmDensityModel::eMSISE1990;
-        } else if(aEqualsIgnoreCase(value, "MSIS1986")){
+        } else if(aEqualsIgnoreCase(value, "MSIS86")){
             forceModel_.drag_.atmDensityModel_ = EAtmDensityModel::eMSIS1986;
-        } else {
+        } else if(aEqualsIgnoreCase(value, "Jacchia60")){
+            forceModel_.drag_.atmDensityModel_ = EAtmDensityModel::eJacchia60;
+        } else if(aEqualsIgnoreCase(value, "CIRA72")){
+            forceModel_.drag_.atmDensityModel_ = EAtmDensityModel::eCIRA72;
+        } else if(aEqualsIgnoreCase(value, "DTM2012")){
+            forceModel_.drag_.atmDensityModel_ = EAtmDensityModel::eDTM2012;
+        }else {
             forceModel_.drag_.atmDensityModel_ = EAtmDensityModel::e1976Standard;
         }
     }
@@ -260,12 +274,29 @@ errc_t MotionHPOPSax::keyValue(StringView key, const ValueView &value)
         // @todo 处理GroundReflectionModelFile
     }
     else if(aEqualsIgnoreCase(key, "ThirdBodyGravity")){
+        std::vector<StringView> values = aStrSplit(value, ByRepeatedWhitespace(), SkipWhitespace());
+        if(values.size() == 0) return 0;
         // 处理三体引力
-        auto body = aGetBody(value);
+        auto body = aGetBody(values[0]);
         if(body){
             HPOPForceModel::ThirdBody thirdBody;
             thirdBody.body_ = body;
             forceModel_.thirdBodies_.push_back(thirdBody);
+        }else{
+            return 0;
+        }
+        if(values.size() == 1) return 0;
+        StringView gmSource = values[1];
+        if(aEqualsIgnoreCase(gmSource, "CbValue")){
+            forceModel_.thirdBodies_.back().gmSource_ = EGMSource::eCbValue;
+        } else if(aEqualsIgnoreCase(gmSource, "JplDE")){
+            forceModel_.thirdBodies_.back().gmSource_ = EGMSource::eJplDE;
+        } else if(aEqualsIgnoreCase(gmSource, "SpecifiedValue")){
+            forceModel_.thirdBodies_.back().gmSource_ = EGMSource::eSpecifiedValue;
+        }
+        if(values.size() == 2) return 0;
+        if(forceModel_.thirdBodies_.back().gmSource_ == EGMSource::eSpecifiedValue){
+            forceModel_.thirdBodies_.back().specifiedGM_ = aParseDouble(values[2]);
         }
     }
     else if(aEqualsIgnoreCase(key, "EphRefFrame")){

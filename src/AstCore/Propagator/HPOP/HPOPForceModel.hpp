@@ -42,10 +42,16 @@ enum class ESolidTideType{
 enum class EAtmDensityModel
 {
     e1976Standard,
+    eHarrisPriester,
+    eJacchia60,
+    eJacchia70,
+    eJacchia71,
     eJacchiaRoberts,
-    eNRLMSISE2000,
-    eMSISE1990,
     eMSIS1986,
+    eMSISE1990,
+    eNRLMSISE2000,
+    eCIRA72,
+    eDTM2012,
 };
 
 enum class EGeoMagneticFluxSource
@@ -74,6 +80,13 @@ enum class EShadowModel
     eNone,
     eCylindrical,
     eDualCone,
+};
+
+enum class EGMSource
+{
+    eCbValue,
+    eJplDE,
+    eSpecifiedValue,
 };
 
 /// @brief 高精度轨道预报力模型
@@ -138,7 +151,9 @@ public:
     struct ThirdBody
     {
         // @warning 下面这些参数的相关计算逻辑尚未实现
-        HCelestialBody body_;                            ///< 天体
+        HCelestialBody body_;                           ///< 天体
+        EGMSource gmSource_{EGMSource::eCbValue};       ///< 引力常数来源
+        double specifiedGM_{0.0};                       ///< 指定的引力常数
     };
     using ThirdBodyList = std::vector<ThirdBody>;
 public:
