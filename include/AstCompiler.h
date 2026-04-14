@@ -281,8 +281,10 @@
 
 #ifdef A_CXX14
 #   define A_CONSTEXPR_CXX14 constexpr
+#   define A_STATIC_ASSERT_CXX14(...) static_assert(__VA_ARGS__)
 #else
 #   define A_CONSTEXPR_CXX14
+#   define A_STATIC_ASSERT_CXX14(...)
 #endif
 
 
