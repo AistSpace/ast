@@ -40,7 +40,7 @@ TEST(LibraryLoader, NullPointer)
     void* proc = aGetProcAddress(nullptr, "test");
     EXPECT_EQ(proc, nullptr);
     
-    proc = aGetProcAddress((void*)1, nullptr);
+    proc = aGetProcAddress(nullptr, nullptr);  // 使用 nullptr 替代假指针，避免未定义行为
     EXPECT_EQ(proc, nullptr);
     
     // 测试 aResolveProcAddress 空参数
