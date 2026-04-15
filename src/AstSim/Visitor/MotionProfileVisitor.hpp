@@ -34,7 +34,9 @@ class MotionTwoBody;
 class MotionHPOP;
 class MotionSPICE;
 class MotionGreatArc;
-
+class MotionExternalEphemeris;
+class MotionJ2Analytical;
+class MotionJ4Analytical;
 
 class MotionProfileVisitor
 {
@@ -45,7 +47,9 @@ public:
     virtual void visit(MotionHPOP& profile) = 0;
     virtual void visit(MotionSPICE& profile) = 0;
     virtual void visit(MotionGreatArc& profile) = 0;
-
+    virtual void visit(MotionExternalEphemeris& profile) = 0;
+    virtual void visit(MotionJ2Analytical& profile) = 0;
+    virtual void visit(MotionJ4Analytical& profile) = 0;
 };
 
 /*! @} */

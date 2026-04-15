@@ -250,18 +250,19 @@ AST_NAMESPACE_BEGIN
 /// @brief 错误码
 typedef enum EError
 {
-	eNoError = 0,       ///< 没有错误
-    eErrorNullPtr = 1,  ///< 空指针错误
-    eErrorNullInput,    ///< 输入参数是空指针
-    eErrorInvalidParam, ///< 非法输入参数
-    eErrorNotInit,      ///< 没有初始化
-    eErrorInvalidFile,  ///< 文件格式错误
-    eErrorParse,        ///< 解析错误
-    eErrorReadonly,     ///< 只读属性
-    eErrorMaxIter,      ///< 最大迭代次数
-    eErrorDivideByZero, ///< 除零错误
-    eErrorOutOfRange,   ///< 超出范围
-    eErrorNotFound,     ///< 未找到
+	eNoError = 0,           ///< 没有错误
+    eErrorNullPtr = 1,      ///< 空指针错误
+    eErrorNullInput,        ///< 输入参数是空指针
+    eErrorInvalidParam,     ///< 非法输入参数
+    eErrorNotInit,          ///< 没有初始化
+    eErrorInvalidFile,      ///< 文件格式错误
+    eErrorParse,            ///< 解析错误
+    eErrorReadonly,         ///< 只读属性
+    eErrorMaxIter,          ///< 最大迭代次数
+    eErrorDivideByZero,     ///< 除零错误
+    eErrorOutOfRange,       ///< 超出范围
+    eErrorNotFound,         ///< 未找到
+    eErrorNotImplemented,   ///< 未实现
 } AEError;
 
 

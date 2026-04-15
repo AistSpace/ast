@@ -55,6 +55,7 @@ public:
         ierract,
         ifailed,
         ireset,
+        ikclear,
         numfunctions,
     };
     using funcarray = std::array<void*, numfunctions>;
@@ -155,8 +156,8 @@ public: // 包装函数
     /// @param action 错误处理操作
     void erract(const char* operation, int lenout, char* action);
 
-
-    
+    /// @brief 清除所有已加载的内核
+    void kclear();
 protected:
     errc_t checkerror();
     A_DISABLE_COPY(SpiceApi);

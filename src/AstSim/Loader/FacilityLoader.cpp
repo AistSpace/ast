@@ -48,9 +48,9 @@ errc_t _aLoadFacilityCentroidPosition(BKVParser& parser, Facility& facility)
                     aError("failed to get body '%.*s'", bodyname.size(), bodyname.data());
                 }
             }else if(aEqualsIgnoreCase(item.key(), "EcfLatitude")){
-                position.setLatitude(item.value().toDouble());
+                position.setLatitude(item.value().toAngleRad());
             }else if(aEqualsIgnoreCase(item.key(), "EcfLongitude")){
-                position.setLongitude(item.value().toDouble());
+                position.setLongitude(item.value().toAngleRad());
             }else if(aEqualsIgnoreCase(item.key(), "EcfAltitude")){
                 position.setAltitude(item.value().toDouble());
             }else if(aEqualsIgnoreCase(item.key(), "HeightAboveGround")){

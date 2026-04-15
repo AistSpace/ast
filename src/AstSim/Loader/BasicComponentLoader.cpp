@@ -166,7 +166,8 @@ StringView aClassSTKExtension(StringView objectType)
 
 errc_t _aLoadEventTimeImplicit(BKVParser& parser, SharedPtr<EventTime>& eventTime)
 {
-    return -1;
+    _aSkipUnknownBlock(parser, "EVENT");
+    return 0;
 }
 
 errc_t _aLoadEventTime(BKVParser& parser, SharedPtr<EventTime>& eventTime)

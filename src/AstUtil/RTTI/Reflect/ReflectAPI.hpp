@@ -345,7 +345,7 @@ A_ALWAYS_INLINE Property* aNewPropertyInt()
 template<typename T, double (T::* Getter) () const>
 A_ALWAYS_INLINE Property* aNewPropertyDouble()
 {
-    static_assert(Getter!=nullptr, "invalid getter");
+    A_STATIC_ASSERT_CXX14(Getter!=nullptr, "invalid getter");
     
     return _aNewPropertyDouble(
         [](const void* obj, void* value) -> errc_t
@@ -366,7 +366,7 @@ A_ALWAYS_INLINE Property* aNewPropertyDouble()
 template<typename T, double (T::* Getter) () const>
 A_ALWAYS_INLINE Property* aNewPropertyQuantity(Dimension dimension)
 {
-    static_assert(Getter!=nullptr, "invalid getter");
+    A_STATIC_ASSERT_CXX14(Getter!=nullptr, "invalid getter");
 
     return _aNewPropertyQuantity(
         [](const void* obj, void* value) -> errc_t
@@ -410,7 +410,7 @@ A_ALWAYS_INLINE Property* aNewPropertyBool()
         },
         [](void* obj, const void* value) -> errc_t
         {
-            static_assert(Setter!=nullptr, "invalid setter");
+            A_STATIC_ASSERT_CXX14(Setter!=nullptr, "invalid setter");
             (((T*)obj)->*Setter)(*((bool*)value));
             return 0;
         }
@@ -428,8 +428,8 @@ A_ALWAYS_INLINE Property* aNewPropertyBool()
 template<typename T, int(T::* Getter) () const, void (T::* Setter)(int)>
 A_ALWAYS_INLINE Property* aNewPropertyInt()
 {
-    static_assert(Getter!=nullptr, "invalid getter");
-    static_assert(Setter!=nullptr, "invalid setter");
+    A_STATIC_ASSERT_CXX14(Getter!=nullptr, "invalid getter");
+    A_STATIC_ASSERT_CXX14(Setter!=nullptr, "invalid setter");
 
     return _aNewPropertyInt(
         [](const void* obj, void* value) -> errc_t
@@ -455,8 +455,8 @@ A_ALWAYS_INLINE Property* aNewPropertyInt()
 template<typename T, double (T::* Getter) () const, void (T::* Setter)(double)>
 A_ALWAYS_INLINE Property* aNewPropertyDouble()
 {
-    static_assert(Getter!=nullptr, "invalid getter");
-    static_assert(Setter!=nullptr, "invalid setter");
+    A_STATIC_ASSERT_CXX14(Getter!=nullptr, "invalid getter");
+    A_STATIC_ASSERT_CXX14(Setter!=nullptr, "invalid setter");
 
     return _aNewPropertyDouble(
         [](const void* obj, void* value) -> errc_t
@@ -481,8 +481,8 @@ A_ALWAYS_INLINE Property* aNewPropertyDouble()
 template<typename T, double (T::* Getter) () const, void (T::* Setter)(double)>
 A_ALWAYS_INLINE Property* aNewPropertyQuantity(Dimension dimension)
 {
-    static_assert(Getter!=nullptr, "invalid getter");
-    static_assert(Setter!=nullptr, "invalid setter");
+    A_STATIC_ASSERT_CXX14(Getter!=nullptr, "invalid getter");
+    A_STATIC_ASSERT_CXX14(Setter!=nullptr, "invalid setter");
 
     return _aNewPropertyQuantity(
         [](const void* obj, void* value) -> errc_t
@@ -503,8 +503,8 @@ A_ALWAYS_INLINE Property* aNewPropertyQuantity(Dimension dimension)
 template<typename T, const std::string& (T::* Getter) () const, void (T::* Setter)(StringView)>
 A_ALWAYS_INLINE Property* aNewPropertyString()
 {
-    static_assert(Getter!=nullptr, "invalid getter");
-    static_assert(Setter!=nullptr, "invalid setter");
+    A_STATIC_ASSERT_CXX14(Getter!=nullptr, "invalid getter");
+    A_STATIC_ASSERT_CXX14(Setter!=nullptr, "invalid setter");
 
     return _aNewPropertyString(
         [](const void* obj, void* value) -> errc_t
@@ -539,7 +539,7 @@ A_ALWAYS_INLINE Property* aNewPropertyBool()
         },
         [](void* obj, const void* value) -> errc_t
         {
-            static_assert(Setter!=nullptr, "invalid setter");
+            A_STATIC_ASSERT_CXX14(Setter!=nullptr, "invalid setter");
             return (((T*)obj)->*Setter)(*((bool*)value));
         }
     );
@@ -556,8 +556,8 @@ A_ALWAYS_INLINE Property* aNewPropertyBool()
 template<typename T, int (T::* Getter) () const, errc_t (T::* Setter)(int)>
 A_ALWAYS_INLINE Property* aNewPropertyInt()
 {
-    static_assert(Getter!=nullptr, "invalid getter");
-    static_assert(Setter!=nullptr, "invalid setter");
+    A_STATIC_ASSERT_CXX14(Getter!=nullptr, "invalid getter");
+    A_STATIC_ASSERT_CXX14(Setter!=nullptr, "invalid setter");
 
     return _aNewPropertyInt(
         [](const void* obj, void* value) -> errc_t
@@ -582,8 +582,8 @@ A_ALWAYS_INLINE Property* aNewPropertyInt()
 template<typename T, double (T::* Getter) () const, errc_t (T::* Setter)(double)>
 A_ALWAYS_INLINE Property* aNewPropertyDouble()
 {
-    static_assert(Getter!=nullptr, "invalid getter");
-    static_assert(Setter!=nullptr, "invalid setter");
+    A_STATIC_ASSERT_CXX14(Getter!=nullptr, "invalid getter");
+    A_STATIC_ASSERT_CXX14(Setter!=nullptr, "invalid setter");
 
     return _aNewPropertyDouble(
         [](const void* obj, void* value) -> errc_t
@@ -608,8 +608,8 @@ A_ALWAYS_INLINE Property* aNewPropertyDouble()
 template<typename T, double (T::* Getter) () const, errc_t (T::* Setter)(double)>
 A_ALWAYS_INLINE Property* aNewPropertyQuantity(Dimension dimension)
 {
-    static_assert(Getter!=nullptr, "invalid getter");
-    static_assert(Setter!=nullptr, "invalid setter");
+    A_STATIC_ASSERT_CXX14(Getter!=nullptr, "invalid getter");
+    A_STATIC_ASSERT_CXX14(Setter!=nullptr, "invalid setter");
 
     return _aNewPropertyQuantity(
         [](const void* obj, void* value) -> errc_t
@@ -634,8 +634,8 @@ A_ALWAYS_INLINE Property* aNewPropertyQuantity(Dimension dimension)
 template<typename T, const std::string& (T::* Getter) () const, errc_t (T::* Setter)(StringView)>
 A_ALWAYS_INLINE Property* aNewPropertyString()
 {
-    static_assert(Getter!=nullptr, "invalid getter");
-    static_assert(Setter!=nullptr, "invalid setter");
+    A_STATIC_ASSERT_CXX14(Getter!=nullptr, "invalid getter");
+    A_STATIC_ASSERT_CXX14(Setter!=nullptr, "invalid setter");
 
     return _aNewPropertyString(
         [](const void* obj, void* value) -> errc_t

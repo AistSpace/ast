@@ -1,5 +1,5 @@
 ///
-/// @file      MotionSGP4.cpp
+/// @file      MotionExternalEphemeris.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,25 +18,37 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "MotionSGP4.hpp"
+#include "MotionExternalEphemeris.hpp"
+#include "AstSim/Mover.hpp"
+#include "AstSim/MotionProfileVisitor.hpp"
+
+
 
 AST_NAMESPACE_BEGIN
 
-errc_t MotionSGP4::makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const
+MotionExternalEphemeris* MotionExternalEphemeris::New()
 {
-    return eErrorNotImplemented;
+    return new MotionExternalEphemeris();
 }
 
-errc_t MotionSGP4::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
+errc_t MotionExternalEphemeris::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
 {
-    return eErrorNotImplemented;
+    return errc_t();
 }
 
-void MotionSGP4::accept(MotionProfileVisitor &visitor)
+errc_t MotionExternalEphemeris::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
 {
-
+    return errc_t();
 }
 
+void MotionExternalEphemeris::accept(MotionProfileVisitor &visitor)
+{
+    visitor.visit(*this);
+}
 
+errc_t MotionExternalEphemeris::reloadEphemerisFor(Mover& mover)
+{
+    return this->makeEphemerisSimple(mover.getEphemerisHandle());
+}
 
 AST_NAMESPACE_END

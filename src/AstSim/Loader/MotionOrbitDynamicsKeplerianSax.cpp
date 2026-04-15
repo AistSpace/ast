@@ -18,13 +18,13 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "MotionTwoBodySax.hpp"
+#include "MotionOrbitDynamicsKeplerianSax.hpp"
 #include "CommonlyUsedHeaders.hpp"
 
 AST_NAMESPACE_BEGIN
 
 
-errc_t MotionTwoBodySax::keyValue(StringView key, const ValueView &value)
+errc_t MotionOrbitDynamicsKeplerianSax::keyValue(StringView key, const ValueView &value)
 {
     if(aEqualsIgnoreCase(key, "RadiusOfPerigee")){
         radiusOfPerigee_ = value.toDouble();
@@ -70,7 +70,7 @@ errc_t MotionTwoBodySax::keyValue(StringView key, const ValueView &value)
     return MotionOrbitDynamicsSax::keyValue(key, value);
 }
 
-errc_t MotionTwoBodySax::getMotion(ScopedPtr<MotionProfile>& motion)
+errc_t MotionOrbitDynamicsKeplerianSax::getMotion(ScopedPtr<MotionProfile>& motion)
 {
     if(vehiclePathData_.centralBody_ == nullptr){
         aError("vehiclePathData's body is nullptr");
@@ -87,7 +87,7 @@ errc_t MotionTwoBodySax::getMotion(ScopedPtr<MotionProfile>& motion)
         return eErrorNullPtr;
     }
     // 这里可以通过类型来判断是否需要新建MotionProfile
-    auto motionTwoBody = MotionTwoBody::New();
+    auto motionOrbitDynamics = newMotionOrbitDynamics();
     auto body = vehiclePathData_.centralBody_; AST_CHECK_NULLPTR(body);
     ModOrbElem modOrbElem{};
     modOrbElem.rp() = radiusOfPerigee_;
@@ -101,11 +101,11 @@ errc_t MotionTwoBodySax::getMotion(ScopedPtr<MotionProfile>& motion)
     stateKeplerian->setFrame(frame);
     stateKeplerian->setState(modOrbElem);
     stateKeplerian->setStateEpoch(makeStateEpoch());
-    motionTwoBody->setInitialState(stateKeplerian);
-    motionTwoBody->setInterval(makeInterval());
-    motionTwoBody->setPropagationFrame(body->makeFrame(propagationCoordAxes_));
+    motionOrbitDynamics->setInitialState(stateKeplerian);
+    motionOrbitDynamics->setInterval(makeInterval());
+    motionOrbitDynamics->setPropagationFrame(body->makeFrame(propagationCoordAxes_));
 
-    motion = motionTwoBody;
+    motion = motionOrbitDynamics;
     return eNoError;
 }
 

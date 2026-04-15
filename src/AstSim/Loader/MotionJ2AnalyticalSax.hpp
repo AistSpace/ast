@@ -1,5 +1,5 @@
 ///
-/// @file      MotionSGP4.cpp
+/// @file      MotionJ2Analytical.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,25 +18,28 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "MotionSGP4.hpp"
+#pragma once
+
+#include "AstGlobal.h"
+#include "MotionOrbitDynamicsKeplerianSax.hpp"
+#include "MotionJ2Analytical.hpp"
 
 AST_NAMESPACE_BEGIN
 
-errc_t MotionSGP4::makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const
+/*!
+    @addtogroup 
+    @{
+*/
+
+class AST_SIM_API MotionJ2AnalyticalSax: public MotionOrbitDynamicsKeplerianSax
 {
-    return eErrorNotImplemented;
-}
+public:
+    using MotionOrbitDynamicsKeplerianSax::MotionOrbitDynamicsKeplerianSax;
+    MotionOrbitDynamics* newMotionOrbitDynamics() override{
+        return new MotionJ2Analytical();
+    }
+};
 
-errc_t MotionSGP4::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
-{
-    return eErrorNotImplemented;
-}
-
-void MotionSGP4::accept(MotionProfileVisitor &visitor)
-{
-
-}
-
-
+/*! @} */
 
 AST_NAMESPACE_END

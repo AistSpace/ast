@@ -21,7 +21,8 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "MotionOrbitDynamicsSax.hpp"
+#include "MotionOrbitDynamicsKeplerianSax.hpp"
+#include "MotionTwoBody.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,29 +31,13 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class MotionTwoBodySax: public MotionOrbitDynamicsSax
+class AST_SIM_API MotionTwoBodySax: public MotionOrbitDynamicsKeplerianSax
 {
 public:
-    using MotionOrbitDynamicsSax::MotionOrbitDynamicsSax;
-    ~MotionTwoBodySax() override = default;
-public:
-    errc_t keyValue(StringView key, const ValueView& value) override;
-    errc_t getMotion(ScopedPtr<MotionProfile>& motion) override;
-protected:
-    double radiusOfPerigee_ = 0.0;
-    double inclination_ = 0.0;
-    double eccentricity_ = 0.0;
-    double argOfPerigee_ = 0.0;
-    double rightAscension_ = 0.0;
-    double trueAnomaly_ = 0.0;
-    double timeStep_ = 0.0;
-    std::string orbElemCoordSys_;
-    SharedPtr<Axes> orbElemCoordAxes_;
-    std::string propagationCoordSys_;
-    SharedPtr<Axes> propagationCoordAxes_;
-    int displayCoordType_ = 0;
-    std::string displayCoordSys_;
-    SharedPtr<Axes> displayCoordAxes_;
+    using MotionOrbitDynamicsKeplerianSax::MotionOrbitDynamicsKeplerianSax;
+    MotionOrbitDynamics* newMotionOrbitDynamics() override{
+        return new MotionTwoBody();
+    }
 };
 
 

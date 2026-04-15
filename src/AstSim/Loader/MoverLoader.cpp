@@ -21,11 +21,17 @@
 #include "MoverLoader.hpp"
 #include "CommonlyUsedHeaders.hpp"
 #include "MotionTwoBodySax.hpp"
+#include "MotionJ2AnalyticalSax.hpp"
+#include "MotionJ4AnalyticalSax.hpp"
 #include "MotionHPOPSax.hpp"
 #include "AstCore/STKEphemerisFileParser.hpp"
 #include "AstSim/MotionBallistic.hpp"
 #include "AstSim/MotionSimpleAscent.hpp"
 #include "AstSim/MotionGreatArc.hpp"
+#include "AstSim/MotionExternalEphemeris.hpp"
+#include "AstSim/MotionSGP4.hpp"
+#include "AstUtil/Literals.hpp"
+#include "AstUtil/StringUtil.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -38,6 +44,157 @@ errc_t _aLoadTwoBody(BKVParser& parser, const VehiclePathData& vehiclePathData, 
     errc_t rc = parser.parse(sax);
     A_UNUSED(rc);
     return sax.getMotion(motionProfile);
+}
+
+errc_t _aLoadJ2Perturbation(BKVParser& parser, const VehiclePathData& VehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+{
+    MotionJ2AnalyticalSax sax(parser, VehiclePathData);
+    errc_t rc = parser.parse(sax);
+    A_UNUSED(rc);
+    return sax.getMotion(motionProfile);
+}
+
+errc_t _aLoadJ4Perturbation(BKVParser& parser, const VehiclePathData& VehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+{
+    MotionJ4AnalyticalSax sax(parser, VehiclePathData);
+    errc_t rc = parser.parse(sax);
+    A_UNUSED(rc);
+    return sax.getMotion(motionProfile);
+}
+
+errc_t _aLoadSGP4(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+{
+    struct {
+        std::string SSCNumber_;
+        std::string intlDesignator_;
+        std::string commonName_;
+        std::vector<TwoLineElement> elements_;
+        SharedPtr<EventInterval> interval_;
+        double timeStep_ = 0.0;
+        TimePoint startTime_{};
+        TimePoint stopTime_{};
+    } data{};
+
+    while(1)
+    {
+        BKVItemView item;
+        BKVParser::EToken token;
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "SSCNumber")){
+                data.SSCNumber_ = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "IntlDesignator")){
+                data.intlDesignator_ = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "CommonName")){
+                data.commonName_ = item.value().toString();
+            }else if(aEqualsIgnoreCase(item.key(), "EphemSmartInterval"))
+            {
+                if(_aLoadEventInterval(parser, data.interval_))
+                {
+                    aError("failed to load ephemeris interval");
+                }
+            }else if(aEqualsIgnoreCase(item.key(), "StartTime")){
+                data.startTime_ = TimePoint::Parse(item.value());
+            }else if(aEqualsIgnoreCase(item.key(), "StopTime")){
+                data.stopTime_ = TimePoint::Parse(item.value());
+            }
+        }else if(token == BKVParser::eBlockBegin){
+            if(aEqualsIgnoreCase(item.value(), "TwoLineElement")){
+                TwoLineElement tle{};
+                while(1){
+                    BKVItemView tleItem;
+                    BKVParser::EToken tleToken;
+                    tleToken = parser.getNext(tleItem);
+                    if(tleToken == BKVParser::eKeyValue){
+                        if(aEqualsIgnoreCase(tleItem.key(), "Enabled")){
+                            tle.enabled_ = tleItem.value().toBool();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "Source")){
+                            std::string source = tleItem.value().toString();
+                            if(aEqualsIgnoreCase(source, "File")){
+                                tle.source_ = ETLESource::eFile;
+                            }else if(aEqualsIgnoreCase(source, "Edited")){
+                                tle.source_ = ETLESource::eEdited;
+                            }else if(aEqualsIgnoreCase(source, "Server")){
+                                tle.source_ = ETLESource::eServer;
+                            }
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "SwitchMethod")){
+                            std::string method = tleItem.value().toString();
+                            if(aEqualsIgnoreCase(method, "Epoch")){
+                                tle.switch_method_ = ESwitchMethod::eEpoch;
+                            }
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "SwitchEpoch")){
+                            tle.switchEpoch_ = TimePoint::Parse(tleItem.value());
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "TLE")){
+                            // 读取 TLE 两行数据
+                            StringView line1 = parser.getLineSkipComment();
+                            StringView line2 = parser.getLineSkipComment();
+                            tle.tle_.line1_ = std::string(aStripAsciiWhitespace(line1));
+                            tle.tle_.line2_ = std::string(aStripAsciiWhitespace(line2));
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "EpochTime")){
+                            tle.epochTime_ = tleItem.value().toDouble();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "MeanMotionDot")){
+                            tle.meanMotionDotTime_ = tleItem.value().toDouble();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "MotionDotDot")){
+                            tle.motionDotDot_ = tleItem.value().toDouble();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "IEXP")){
+                            tle.iexp_ = tleItem.value().toInt();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "BStar")){
+                            tle.bstar_ = tleItem.value().toDouble();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "IBEXP")){
+                            tle.ibexp_ = tleItem.value().toInt();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "Inclination")){
+                            tle.inclination_ = tleItem.value().toAngleRad();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "RightAscenOfNode")){
+                            tle.rightAscenOfNode_ = tleItem.value().toAngleRad();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "Eccentricity")){
+                            tle.eccentricity_ = tleItem.value().toDouble();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "ArgOfPerigee")){
+                            tle.argOfPerigee_ = tleItem.value().toAngleRad();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "MeanAnomaly")){
+                            tle.meanAnomaly_ = tleItem.value().toAngleRad();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "MeanMotion")){
+                            tle.meanMotion_ = tleItem.value().toDouble() * 1_revs / 1_day ;
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "RevNumber")){
+                            tle.revNumber_ = tleItem.value().toInt();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "EphType")){
+                            tle.ephType_ = tleItem.value().toInt();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "ElementNumber")){
+                            tle.elementNumber_ = tleItem.value().toInt();
+                        }else if(aEqualsIgnoreCase(tleItem.key(), "Classification")){
+                            tle.classification_ = tleItem.value().toString()[0];
+                        }
+                    }else if(tleToken == BKVParser::eBlockEnd){
+                        if(aEqualsIgnoreCase(tleItem.value(), "TwoLineElement")){
+                            data.elements_.push_back(tle);
+                            break;
+                        }
+                    }
+                }
+            }else{
+                _aSkipUnknownBlock(parser, item.value());
+            }
+        }else if(token == BKVParser::eBlockEnd){
+            if(aEqualsIgnoreCase(item.value(), "SGP4")){
+                break;
+            }
+        }else if(token == BKVParser::eError || token == BKVParser::eEOF){
+            break;
+        }
+    };
+
+    auto sgp4 = new MotionSGP4();
+    sgp4->SSCNumber_ = data.SSCNumber_;
+    sgp4->intlDesignator_ = data.intlDesignator_;
+    sgp4->commonName_ = data.commonName_;
+    sgp4->elements_ = data.elements_;
+    sgp4->setStepSize(data.timeStep_);
+    TimeInterval interval(data.startTime_, data.stopTime_);
+    auto fallbackInterval = EventIntervalFallback::New(data.interval_, interval);
+    sgp4->setInterval(fallbackInterval);
+
+    motionProfile = sgp4;
+    return eNoError;
 }
 
 errc_t _aLoadHPOP(BKVParser& parser, const VehiclePathData& vehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
@@ -437,6 +594,40 @@ errc_t _aLoadGreatArc(BKVParser& parser, const VehiclePathData& vehiclePathData,
     return eNoError;
 }
 
+errc_t _aLoadExternExternalEphemeris(BKVParser& parser, const VehiclePathData& VehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+{
+    BKVItemView item;
+    BKVParser::EToken token;
+    struct {
+        std::string filename_;
+    } data;
+    do{
+        token = parser.getNext(item);
+        if(token == BKVParser::eKeyValue)
+        {
+            if(aEqualsIgnoreCase(item.key(), "Format")){
+                // @todo 处理格式
+            }else if(aEqualsIgnoreCase(item.key(), "Covariance")){
+                // @todo 处理ephemeris
+            }else if(aEqualsIgnoreCase(item.key(), "Filename"))
+            {
+                data.filename_ = item.value().toString();
+            }
+        }else if(token == BKVParser::eBlockEnd)
+        {
+            if(aEqualsIgnoreCase(item.value(), "StkExternal")){
+                break;
+            }
+        }
+    }while(token != BKVParser::eEOF);
+
+    auto motionExtern = MotionExternalEphemeris::New();
+    motionExtern->setFilePath(data.filename_);
+    motionProfile = motionExtern;
+    
+    return eNoError;
+}
+
 errc_t _aLoadPassDefn(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
@@ -506,6 +697,21 @@ errc_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
                     return rc;
                 }
             }
+            else if(aEqualsIgnoreCase(item.value(), "J2Perturbation")){
+                if(errc_t rc = _aLoadJ2Perturbation(parser, data, mover.getMotionProfileHandle())){
+                    return rc;
+                }
+            }
+            else if(aEqualsIgnoreCase(item.value(), "J4Perturbation")){
+                if(errc_t rc = _aLoadJ4Perturbation(parser, data, mover.getMotionProfileHandle())){
+                    return rc;
+                }
+            }
+            else if(aEqualsIgnoreCase(item.value(), "SGP4")){
+                if(errc_t rc = _aLoadSGP4(parser, data, mover.getMotionProfileHandle())){
+                    return rc;
+                }
+            }
             else if(aEqualsIgnoreCase(item.value(), "HPOP"))
             {
                 if(errc_t rc = _aLoadHPOP(parser, data, mover.getMotionProfileHandle())){
@@ -529,6 +735,12 @@ errc_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
             }
             else if(aEqualsIgnoreCase(item.value(), "GreatArc")){
                 if(errc_t rc = _aLoadGreatArc(parser, data, mover.getMotionProfileHandle())){
+                    return rc;
+                }
+            }
+            else if(aEqualsIgnoreCase(item.value(), "StkExternal"))
+            {
+                if(errc_t rc = _aLoadExternExternalEphemeris(parser, data, mover.getMotionProfileHandle())){
                     return rc;
                 }
             }

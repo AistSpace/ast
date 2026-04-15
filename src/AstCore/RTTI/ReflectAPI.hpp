@@ -100,8 +100,8 @@ A_ALWAYS_INLINE Property* aNewPropertyTimePoint()
 template<typename T, const TimePoint& (T::* Getter) () const, void (T::* Setter)(const TimePoint&)>
 A_ALWAYS_INLINE Property* aNewPropertyTimePoint()
 {
-    static_assert(Getter!=nullptr, "invalid getter");
-    static_assert(Setter!=nullptr, "invalid setter");
+    A_STATIC_ASSERT_CXX14(Getter!=nullptr, "invalid getter");
+    A_STATIC_ASSERT_CXX14(Setter!=nullptr, "invalid setter");
     
     return _aNewPropertyTimePoint(
         [](const void* obj, void* value) -> errc_t
@@ -122,8 +122,8 @@ A_ALWAYS_INLINE Property* aNewPropertyTimePoint()
 template<typename T, const TimePoint& (T::* Getter) () const, errc_t (T::* Setter)(const TimePoint& value)>
 A_ALWAYS_INLINE Property* aNewPropertyTimePoint()
 {
-    static_assert(Getter!=nullptr, "invalid getter");
-    static_assert(Setter!=nullptr, "invalid setter");
+    A_STATIC_ASSERT_CXX14(Getter!=nullptr, "invalid getter");
+    A_STATIC_ASSERT_CXX14(Setter!=nullptr, "invalid setter");
 
     return _aNewPropertyTimePoint(
         [](const void* obj, void* value) -> errc_t

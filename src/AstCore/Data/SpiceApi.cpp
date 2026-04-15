@@ -86,6 +86,7 @@ namespace spiceproto{
 
     void              reset_c  ( void );
 
+    void              kclear_c ( void );
     
 
     // 根据SpiceZdf.h的说明，SpiceInt的大小是SpiceDouble的一半
@@ -133,7 +134,8 @@ SpiceApi::SpiceApi(bool shouldLoadDynamicLib)
 
 SpiceApi::~SpiceApi()
 {
-    unload();
+    kclear();   // 清除所有已加载的内核
+    unload();   // 卸载库
 }
 
 errc_t SpiceApi::load(StringView dirpath)
@@ -152,6 +154,7 @@ errc_t SpiceApi::load(StringView dirpath)
     funcs[ierract] = aGetProcAddress(lib, "erract_c");
     funcs[ifailed] = aGetProcAddress(lib, "failed_c");
     funcs[ireset]  = aGetProcAddress(lib, "reset_c");
+    funcs[ikclear] = aGetProcAddress(lib, "kclear_c");
     
     int numloaded = funcarray_loadedfunc(funcs);
     if(numloaded < numfunctions)
@@ -312,6 +315,16 @@ void SpiceApi::erract(const char * operation, int lenout, char * action)
         return;
     erract_c(operation, lenout, action);
 }
+
+void SpiceApi::kclear()
+{
+    using functype = decltype(&spiceproto::kclear_c);
+    functype kclear_c = reinterpret_cast<functype>(functions_[ikclear]);
+    if(!kclear_c)
+        return;
+    kclear_c();
+}
+
 
 errc_t SpiceApi::ktotal(const char *kind, int *count)
 {

@@ -37,7 +37,7 @@ class MotionOrbitDynamics;
 struct VehiclePathData;
 class BKVParser;
 
-class MotionOrbitDynamicsSax: public BKVSax
+class AST_SIM_API MotionOrbitDynamicsSax: public BKVSax
 {
 public:
     MotionOrbitDynamicsSax(BKVParser& parser, const VehiclePathData& vehiclePathData)
