@@ -256,6 +256,8 @@ typedef enum EError
     eErrorInvalidParam,     ///< 非法输入参数
     eErrorNotInit,          ///< 没有初始化
     eErrorInvalidFile,      ///< 文件格式错误
+    eErrorInvalidType,      ///< 类型错误
+    eErrorInvalidValue,     ///< 值错误
     eErrorParse,            ///< 解析错误
     eErrorReadonly,         ///< 只读属性
     eErrorMaxIter,          ///< 最大迭代次数
