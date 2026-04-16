@@ -98,7 +98,7 @@ bool XMLNode::generateXML(FILE* file, int indent) const
         for (std::map<std::string, GenericValue>::const_iterator it = attributes_.begin(); it != attributes_.end(); ++it) {
             const std::string& attrName = it->first;
             const GenericValue& attrValue = it->second;
-            posix::fprintf(file, " %s=\"%s\"", attrName.c_str(), attrValue.c_str());
+            posix::fprintf(file, " %s=\"%s\"", attrName.c_str(), escapeXML(attrValue.value()).c_str());
         }
         
         if (children_.empty()) {
@@ -172,6 +172,15 @@ std::string XMLNode::escapeXML(const std::string& str) const
     }
     
     return result;
+}
+
+ValueView XMLNode::getAttribute(const std::string & name)
+{
+    auto it = attributes_.find(name);
+    if(it == attributes_.end()){
+        return {};
+    }
+    return it->second;
 }
 
 void XMLNode::clearChildren()

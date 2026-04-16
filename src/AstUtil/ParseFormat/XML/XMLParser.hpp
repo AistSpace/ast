@@ -24,6 +24,7 @@
 #include "AstUtil/BaseParser.hpp"
 #include "AstUtil/BKVItemView.hpp"
 #include "AstUtil/XMLNode.hpp"
+#include "AstUtil/XMLSax.hpp"
 #include <string>
 #include <vector>
 #include <memory>
@@ -82,7 +83,7 @@ public:
     StringView getComment() const{return nameOrText_;}
     /// @brief 获取属性列表
     /// @return 属性列表
-    const std::vector<BKVItemView>& getAttributes() const{return attributes_;}
+    const XMLSax::AttributeList& getAttributes() const{return attributes_;}
 protected:
     void setName(StringView name){nameOrText_ = name;}
     void setText(StringView text){nameOrText_ = text;}
@@ -128,9 +129,10 @@ private: // XML 片段解析函数
 private:
     size_t pos_{0};                        ///< 当前解析位置
     std::vector<char> buffer_;             ///< 缓冲区
-    std::vector<BKVItemView> attributes_;  ///< 属性列表
+    XMLSax::AttributeList attributes_;     ///< 属性列表
     StringView nameOrText_;                ///< 元素名称或文本内容
     bool selfClosingTag_{false};           ///< 自闭合标签标志
+    std::string unescapedText_;            ///< 未转义的文本内容
 };
 
 

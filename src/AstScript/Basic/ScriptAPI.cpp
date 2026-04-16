@@ -98,6 +98,11 @@ Value* aNewValueDouble(double value)
     return new ValDouble(value);
 }
 
+Value* aNewValueDict()
+{
+    return new ValDict();
+}
+
 Value *aNewValueQuantity(const Quantity &value)
 {
     return new ValQuantity(value);

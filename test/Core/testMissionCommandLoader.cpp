@@ -32,8 +32,10 @@ TEST(MissionCommandLoaderTest, LoadInitialState)
     InitialState initialState;
     std::vector<std::string> files = aTestGetConfigStringVector("STK_INITIALSTATE_FILES");
     for(auto& file: files){
+        printf("loading file: %s\n", file.c_str());
         errc_t rc = aLoadInitialState(file, initialState);
         EXPECT_EQ(rc, eNoError);
+        printf("loaded file: %s\n", file.c_str());
     }
 }
 

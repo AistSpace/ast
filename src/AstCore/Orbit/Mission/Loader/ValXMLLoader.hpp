@@ -1,9 +1,9 @@
 ///
-/// @file      ValMap.hpp
+/// @file      ValXMLLoader.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-04-15
+/// @date      2026-04-16
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,9 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "Value.hpp"
-#include <string>
-#include <map>
+#include "AstScript/Value.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -33,19 +31,12 @@ AST_NAMESPACE_BEGIN
 */
 
 
-class AST_SCRIPT_API ValMap: public Value
-{
-public:
-    AST_EXPR(ValMap)
+/// @brief 加载值
+/// @param filepath 值文件路径
+/// @param value 加载后的值
+/// @return 错误码
+errc_t aLoadValue(StringView filepath, SharedPtr<Value>& value);
 
-    ValMap() = default;
-    ~ValMap() override = default;
-    Value* find(const std::string& name);
-    void insert(const std::string& name, Value* value);
-    using Value::insert;
-protected:
-    std::map<std::string, SharedPtr<Value>> map_;
-};
 
 /*! @} */
 

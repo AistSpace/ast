@@ -410,15 +410,10 @@ JsonValue& JsonValue::operator[](const std::string& key)
     {
         this->setObject({});
     }
-    if (type_ == JsonValueType::Object)
-    {
-        return (*value_.object_)[key];
-    }
-    return NullValue();
+    return const_cast<JsonValue&>(const_cast<const JsonValue&>(*this)[key]);
 }
 
-// 对象下标运算符（C字符串）
-JsonValue& JsonValue::operator[](const char* key)
+const JsonValue& JsonValue::operator[](const std::string& key) const
 {
     if (type_ == JsonValueType::Object)
     {
@@ -426,6 +421,9 @@ JsonValue& JsonValue::operator[](const char* key)
     }
     return NullValue();
 }
+
+
+
 
 // 设置 null 值
 void JsonValue::setNull()
@@ -499,17 +497,24 @@ void JsonValue::clear()
     value_.boolean_ = false;
 }
 
-// 转换为 JSON 字符串表示
-std::string JsonValue::toJsonString() const
+void JsonValue::insert(const std::string& name, JsonValue value)
 {
-    return formatString(0, 0);
+    if(type_ == JsonValueType::Null)
+    {
+        this->setObject({});
+    }
+    if (type_ == JsonValueType::Object)
+    {
+        value_.object_->insert({name, value});
+    }
 }
 
-// 转换为格式化的 JSON 字符串表示
-std::string JsonValue::toFormattedString(int indent) const
+// 转换为 JSON 字符串表示
+std::string JsonValue::toJsonString(int indent) const
 {
     return formatString(0, indent);
 }
+
 
 // 释放资源
 void JsonValue::destroy()
@@ -642,10 +647,6 @@ std::string JsonValue::formatString(int indent, int indentSize) const
                     oss << '\n' << std::string((indent + 1) * indentSize, ' ');
                 }
                 oss << '"' << pair.first << "\": ";
-                if (indentSize > 0)
-                {
-                    oss << ' ';
-                }
                 oss << pair.second.formatString(indent + 1, indentSize);
                 first = false;
             }

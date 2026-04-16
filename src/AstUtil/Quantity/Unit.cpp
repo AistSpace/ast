@@ -446,6 +446,10 @@ namespace units
 
     Unit m3 = Unit::CubicMeter();
     Unit L = Unit::Liter();
+
+    Unit Pa = Unit::Pascal();
+
+    Unit K = Unit::Kelvin();
 }
 
 AST_NAMESPACE_END

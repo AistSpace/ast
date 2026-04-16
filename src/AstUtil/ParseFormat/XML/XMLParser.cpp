@@ -2,6 +2,7 @@
 #include "AstUtil/XMLSax.hpp"
 #include "AstUtil/XMLNode.hpp"
 #include "AstUtil/XMLDomSax.hpp"
+#include "AstUtil/Escape.hpp"
 #include <string>
 #include <sstream>
 
@@ -100,6 +101,9 @@ XMLParser::EToken XMLParser::parseStartElement()
 {
     advance(1);
     StringView content = parseUntil('>');
+    unescapedText_.clear();
+    aUnescapeXML(content, unescapedText_);
+    content = unescapedText_;
     
     // 清空之前的属性
     attributes_.clear();
@@ -208,6 +212,9 @@ XMLParser::EToken XMLParser::parseText()
     StringView text = parseUntil('<');
     advance(-1);
     nameOrText_ = aStripTrailingAsciiWhitespace(text);
+    unescapedText_.clear();
+    aUnescapeXML(nameOrText_, unescapedText_);
+    nameOrText_ = unescapedText_;
     return eCharacters;
 }
 
@@ -364,8 +371,7 @@ XMLParser::EToken XMLParser::getNext()
                     return eEndElement;
                 }
             }
-            advance(1);
-            return eError;
+            return parseText(); 
         }
         else if(c == '\0')
         {

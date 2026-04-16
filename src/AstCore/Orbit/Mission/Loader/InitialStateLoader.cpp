@@ -22,6 +22,8 @@
 #include "AstCore/InitialState.hpp"
 #include "AstUtil/XMLDocument.hpp"
 #include "AstUtil/Archive.hpp"
+#include "AstScript/Value.hpp"
+#include "ValXMLLoader.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -68,12 +70,16 @@ private:
 };
 }
 
+
 errc_t aLoadInitialState(StringView filePath, InitialState& initialState)
 {
-    XMLDocument doc;
-    errc_t rc = doc.load(filePath);
+    errc_t rc;
+    // XMLDocument doc;
+    // errc_t rc = doc.load(filePath);
+    // if(rc)  return rc;
+    SharedPtr<Value> value;
+    rc = aLoadValue(filePath, value);
     if(rc)  return rc;
-    
     return eNoError;
 }
 

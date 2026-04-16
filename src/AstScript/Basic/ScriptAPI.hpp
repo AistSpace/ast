@@ -192,6 +192,11 @@ AST_SCRIPT_CAPI Value* aNewValueBool(bool value);
 /// @warning 返回的 `Value*` 指针由调用者拥有，需要管理其生命周期
 AST_SCRIPT_CAPI Value* aNewValueDouble(double value);
 
+/// @brief 创建字典值对象
+/// @warning 返回的指针由调用者拥有，需要管理其生命周期
+/// @return 字典值对象
+AST_SCRIPT_API Value* aNewValueDict();
+
 class Quantity;
 
 
@@ -398,6 +403,10 @@ A_ALWAYS_INLINE Value* aNewValue(StringView value)
 {
     return aNewValueString(value);
 }
+
+// 通过模板捕获所有其他类型并删除
+template<typename T>
+Value* aNewValue(T) = delete;
 
 /*! @} */
 

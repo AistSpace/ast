@@ -27,7 +27,7 @@
 AST_NAMESPACE_BEGIN
 
 
-class ValMap;
+class ValDict;
 
 /// @brief 值对象基类
 /// @details 
@@ -67,8 +67,7 @@ public:
     operator int() const;
     operator bool() const;
     static Value& NullValue();
-protected:
-    ValMap* toValMap() const;
+    ValDict* toValDict() const;
 private:
 
 };

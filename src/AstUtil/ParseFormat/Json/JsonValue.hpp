@@ -98,6 +98,16 @@ public:
     /// @param other 其他 JSON 值
     /// @return 当前 JSON 值的引用
     JsonValue& operator=(JsonValue&& other) noexcept;
+
+    /// @brief 赋值运算符（模板重载）
+    /// @param value 要赋值的值
+    /// @return 当前 JSON 值的引用
+    template<typename T>
+    JsonValue& operator=(T value)
+    {
+        return this->operator=(JsonValue(value));
+    }
+
     
     /// @brief 析构函数
     ~JsonValue();
@@ -176,7 +186,7 @@ public:
     /// @brief 转换为字符串值运算符
     /// @return 字符串值，null 值返回 "null"，布尔值返回 "true" 或 "false"，数值转换为字符串
     operator std::string() const;
-    
+
     
     /// @brief 数组下标运算符
     /// @param index 数组索引
@@ -190,13 +200,14 @@ public:
     
     /// @brief 对象下标运算符
     /// @param key 对象键
-    /// @return 对应键的 JSON 值引用，如果类型不匹配返回空值
+    /// @return 对应键的 JSON 值引用
     JsonValue& operator[](const std::string& key);
     
     /// @brief 对象下标运算符
     /// @param key 对象键
-    /// @return 对应键的 JSON 值引用，如果类型不匹配返回空值
-    JsonValue& operator[](const char* key);
+    /// @return 对应键的 JSON 值引用
+    const JsonValue& operator[](const std::string& key) const;
+
     
     /// @brief 设置 null 值
     void setNull();
@@ -231,16 +242,26 @@ public:
     
     /// @brief 清空值
     void clear();
+
+    /// @brief 插入键值对
+    /// @param name 键名
+    /// @param value 键值
+    void insert(const std::string& name, JsonValue value);
+
+    /// @brief 插入键值对（模板重载）
+    /// @param name 键名
+    /// @param value 键值
+    template<typename T>
+    void insert(const std::string& name, T value)
+    {
+        return insert(name, JsonValue(value));
+    }
     
     /// @brief 转换为 JSON 字符串表示
     /// @return JSON 值的字符串表示
-    std::string toJsonString() const;
+    std::string toJsonString(int indent = 0) const;
     
-    /// @brief 转换为格式化的 JSON 字符串表示
-    /// @param indent 缩进空格数
-    /// @return 格式化的 JSON 字符串
-    std::string toFormattedString(int indent = 2) const;
-    
+
 private:
     JsonValueType type_;  ///< 值类型
     

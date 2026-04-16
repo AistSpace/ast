@@ -36,8 +36,8 @@ AST_NAMESPACE_BEGIN
 /// @brief XML SAX解析器的回调接口
 class AST_UTIL_API XMLSax {
 public:
+    class AttributeList;
     virtual ~XMLSax() = default;
-    using AttributeList = std::vector<BKVItemView>;
     /// @brief 文档开始回调
     virtual void startDocument() = 0;
     /// @brief 文档结束回调
@@ -53,6 +53,25 @@ public:
     /// @brief 错误回调
     /// @param msg 错误消息
     virtual void error(StringView msg){};
+public:
+    /// @brief XML SAX解析器的属性列表
+    /// @details 用于存储元素的属性，每个属性是一个键值对。
+    class AttributeList: public std::vector<BKVItemView>
+    {
+    public:
+        ValueView get(StringView name) const
+        {
+            for(const auto& item: *this)
+            {
+                if(item.key() == name)
+                {
+                    return item.value();
+                }
+            }
+            return {};
+        }
+    };
+
 };
 
 

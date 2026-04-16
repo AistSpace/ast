@@ -52,6 +52,7 @@ UnitManager::UnitManager()
     addUnit("arcsec", units::arcsec);
 
     addUnit(units::s);
+    addUnit("sec", units::s);
     addUnit(units::h);
     addUnit(units::day);
     addUnit(units::hour);
@@ -67,6 +68,10 @@ UnitManager::UnitManager()
 
     addUnit("m3", units::m3);
     addUnit(units::L);
+
+    addUnit(units::Pa);
+
+    addUnit(units::K);
 }
 
 UnitManager::~UnitManager()

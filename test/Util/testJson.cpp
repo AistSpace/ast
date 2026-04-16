@@ -20,6 +20,8 @@
 
 #include "AstUtil/JsonValue.hpp"
 #include "AstTest/Test.h"
+#include "AstUtil/JsonValue.hpp"
+#include "AstScript/ValDict.hpp"
 
 #ifdef AST_WITH_NLOHMANN_JSON
 #include <nlohmann/json.hpp>
@@ -105,6 +107,29 @@ TEST(JsonText, jsoncpp)
 }
 
 #endif
+
+AST_USING_NAMESPACE;
+
+TEST(JsonText, JsonValue)
+{
+    JsonValue value;
+    value.insert("a", 25);
+    value.insert("b", "hello");
+    value["c"]["d"] = true;
+    printf("value: %s\n", value.toString().c_str());
+    printf("json: %s\n", value.toJsonString(2).c_str());
+}
+
+TEST(JsonText, VarDict)
+{
+    ValDict value;
+    value.insert("a", 25);
+    value.insert("b", "hello");
+    value.insert("c", aNewValueDict());
+    value["c"].insert("d", true);
+    printf("value: %s\n", value.toString().c_str());
+    printf("json: %s\n", value.toJsonString(2).c_str());
+}
 
 
 GTEST_MAIN()

@@ -23,7 +23,8 @@
 #include "ValDouble.hpp"
 #include "ValInt.hpp"
 #include "ValBool.hpp"
-#include "ValMap.hpp"
+#include "ValDict.hpp"
+#include "ValQuantity.hpp"
 #include "ValString.hpp"
 #include "AstScript/ScriptAPI.hpp"
 #include "AstUtil/Logger.hpp"
@@ -37,20 +38,20 @@ Value& Value::NullValue()
     return *aValueNull();
 }
 
-ValMap *Value::toValMap() const
+ValDict *Value::toValDict() const
 {
-    if(this->getType() == &ValMap::staticType)
+    if(this->getType() == &ValDict::staticType)
     {
-        return static_cast<ValMap*>(const_cast<Value*>(this));
+        return static_cast<ValDict*>(const_cast<Value*>(this));
     }
     return nullptr;
 }
 
 void Value::insert(const std::string& name, Value* value)
 {
-    ValMap* map = toValMap();
-    if(map)
-        map->insert(name, value);
+    ValDict* dict = toValDict();
+    if(dict)
+        dict->insert(name, value);
     else{
         SharedPtr<Value> p{value};
         A_UNUSED(p);
@@ -59,9 +60,9 @@ void Value::insert(const std::string& name, Value* value)
 
 Value& Value::operator[](const std::string& name)
 {
-    if(auto map = toValMap())
+    if(auto dict = toValDict())
     {
-        auto value = map->find(name);
+        auto value = dict->find(name);
         if(value)
             return *value;
     }
@@ -100,12 +101,15 @@ std::string Value::toString() const
     if(aValueIsBool(value)){
         return aFormatBool(static_cast<ValBool*>(value)->value());
     }
-    return std::string();
+    return getExpression();
 }
 
 double Value::toDouble() const
 {
     auto value = const_cast<Value*>(this);
+    if(aValueIsQuantity(value)){
+        return static_cast<ValQuantity*>(value)->quantity().getValueSI();
+    }
     if(aValueIsDouble(value)){
         return static_cast<ValDouble*>(value)->value();
     }
@@ -128,6 +132,9 @@ double Value::toDouble() const
 int Value::toInt() const
 {
     auto value = const_cast<Value*>(this);
+    if(aValueIsQuantity(value)){
+        return static_cast<int>(static_cast<ValQuantity*>(value)->quantity().getValueSI());
+    }
     if(aValueIsInt(value)){
         return static_cast<ValInt*>(value)->value();
     }
@@ -150,6 +157,9 @@ int Value::toInt() const
 bool Value::toBool() const
 {
     auto value = const_cast<Value*>(this);
+    if(aValueIsQuantity(value)){
+        return static_cast<ValQuantity*>(value)->quantity().getValueSI() != 0.0;
+    }
     if(aValueIsBool(value)){
         return static_cast<ValBool*>(value)->value();
     }
