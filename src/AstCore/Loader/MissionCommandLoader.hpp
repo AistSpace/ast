@@ -21,6 +21,10 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "InitialStateLoader.hpp"
+#include "ManeuverLoader.hpp"
+#include "PropagateLoader.hpp"
+#include "SequenceLoader.hpp"
 
 AST_NAMESPACE_BEGIN
 

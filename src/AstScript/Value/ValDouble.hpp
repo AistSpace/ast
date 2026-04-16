@@ -27,7 +27,7 @@ AST_NAMESPACE_BEGIN
 
 /// @brief 双精度浮点值
 /// @ingroup Script
-class ValDouble: public ValScalar<double>
+class AST_SCRIPT_API ValDouble: public ValScalar<double>
 {
 public:
     AST_EXPR(ValDouble)

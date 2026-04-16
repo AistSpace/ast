@@ -1,9 +1,9 @@
 ///
-/// @file      InitialState.cpp
+/// @file      ValMap.cpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-04-15
+/// @date      2026-04-16
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -18,13 +18,14 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "InitialState.hpp"
+#include "ValMap.hpp"
 
 AST_NAMESPACE_BEGIN
 
-errc_t InitialState::execute()
+Value *ValMap::find(const std::string &name)
 {
-    return eErrorNotImplemented;
+    auto it = map_.find(name);
+    return it != map_.end() ? it->second.get() : nullptr;
 }
 
 AST_NAMESPACE_END

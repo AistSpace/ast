@@ -65,7 +65,7 @@ public:
     virtual Archive& operator()(int& val, const char* name=nullptr) = 0;
     virtual Archive& operator()(double& val, const char* name=nullptr) = 0;
     virtual Archive& operator()(std::string& val, const char* name=nullptr) = 0;
-    virtual Archive& operator()(Attribute& attr) = 0;
+    virtual Archive& operator()(Attribute& attr) {return *this;};
 public:
     A_ALWAYS_INLINE Archive& operator&(bool& val) { return operator()(val); }
     A_ALWAYS_INLINE Archive& operator&(int& val) { return operator()(val); }

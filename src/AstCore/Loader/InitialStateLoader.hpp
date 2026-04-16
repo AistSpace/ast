@@ -29,6 +29,14 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class InitialState;
+
+
+/// @brief 加载初始状态任务
+/// @details filePath 初始状态任务的文件路径
+/// @param initialState 初始状态任务
+/// @return errc_t 加载结果
+AST_CORE_CAPI errc_t aLoadInitialState(StringView filePath, InitialState& initialState);
 
 
 /*! @} */

@@ -32,7 +32,7 @@ AST_NAMESPACE_BEGIN
 /// 值对象用于表示表达式的求值结果，可以是各种类型的数据，如整数、浮点数、字符串、布尔值等。
 /// 值对象的特点是“求值的结果等于自身”
 /// @ingroup Script
-class Value: public Expr
+class AST_SCRIPT_API Value: public Expr
 {
 public:
     using Expr::Expr;

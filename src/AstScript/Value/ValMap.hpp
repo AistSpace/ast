@@ -1,5 +1,5 @@
 ///
-/// @file      InitialState.hpp
+/// @file      ValMap.hpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -21,8 +21,9 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "MissionCommand.hpp"
-#include "AstCore/SpacecraftState.hpp"
+#include "Value.hpp"
+#include <string>
+#include <map>
 
 AST_NAMESPACE_BEGIN
 
@@ -31,23 +32,15 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-/// @brief 初始状态任务
-/// @details 初始状态任务负责设置初始状态参数，确保任务序列的执行从正确的状态开始
-class AST_CORE_API InitialState: public MissionCommand
+
+class AST_SCRIPT_API ValMap: public Value
 {
 public:
-    InitialState() = default;
-    ~InitialState() = default;
-public:
-    errc_t execute() override;
-    
-    /// @brief 设置初始状态参数
-    void setInitialState(const SpacecraftState& initialState);
-
-    /// @brief 获取初始状态参数
-    const SpacecraftState& getInitialState() const{return initialState_;}
-private:
-    SpacecraftState initialState_;      ///< 初始状态参数
+    ValMap() = default;
+    ~ValMap() override = default;
+    Value* find(const std::string& name);
+protected:
+    std::map<std::string, SharedPtr<Value>> map_;
 };
 
 /*! @} */

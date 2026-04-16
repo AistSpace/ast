@@ -29,7 +29,7 @@ AST_NAMESPACE_BEGIN
 
 /// @brief 数量值
 /// @ingroup Script
-class ValQuantity: public Value
+class AST_SCRIPT_API ValQuantity: public Value
 {
 public:
     AST_EXPR(ValQuantity)

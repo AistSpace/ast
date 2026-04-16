@@ -27,7 +27,7 @@ AST_NAMESPACE_BEGIN
 
 /// @brief 空值
 /// @ingroup Script
-class ValNull: public Value
+class AST_SCRIPT_API ValNull: public Value
 {
 public:
     AST_EXPR(ValNull)

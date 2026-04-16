@@ -1,5 +1,5 @@
 ///
-/// @file      InitialState.cpp
+/// @file      testMissionCommandLoader.cpp
 /// @brief     
 /// @details   
 /// @author    axel
@@ -18,13 +18,28 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "InitialState.hpp"
+#include "AstCore/MissionCommandLoader.hpp"
+#include "AstCore/MissionCommand.hpp"
+#include "AstCore/InitialState.hpp"
+#include "AstCore/SpacecraftState.hpp"
+#include "AstTest/Test.h"
 
-AST_NAMESPACE_BEGIN
 
-errc_t InitialState::execute()
+AST_USING_NAMESPACE;
+
+TEST(MissionCommandLoaderTest, LoadInitialState)
 {
-    return eErrorNotImplemented;
+    InitialState initialState;
+    std::vector<std::string> files = aTestGetConfigStringVector("STK_INITIALSTATE_FILES");
+    for(auto& file: files){
+        errc_t rc = aLoadInitialState(file, initialState);
+        EXPECT_EQ(rc, eNoError);
+    }
 }
 
-AST_NAMESPACE_END
+
+
+
+
+
+GTEST_MAIN()

@@ -37,7 +37,7 @@ using HMissionCommand = SharedPtr<MissionCommand>;
 
 /// @brief 任务命令
 /// @details 任务命令负责执行任务序列中的任务
-class MissionCommand: public Object
+class AST_CORE_API MissionCommand: public Object
 {
 public:
     MissionCommand() = default;

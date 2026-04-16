@@ -19,9 +19,62 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "InitialStateLoader.hpp"
+#include "AstCore/InitialState.hpp"
+#include "AstUtil/XMLDocument.hpp"
+#include "AstUtil/Archive.hpp"
 
 AST_NAMESPACE_BEGIN
 
+/*
+如何同时支持多种XML存储格式?
+方案1：
+通过实现Archive接口对对象属性进行抽象统一，
+这样只要实现两套将XML节点转换为ar对象的调用逻辑即可，与特定对象相关的代码只有一份
+但是不太好处理嵌套对象的情况
+方案2：
+将不同的XML数据转换为统一的抽象树状结构数据，
+然后根据树状结构数据加载到对象中，这样与特定对象相关的代码也只有一份
+目前工程可用的抽象树状结构数据有ValMap体系，好处是支持Quantity类型
+或者针对json格式的数据，写一个json树状结构数据，好处是较为轻量
+或者参考boost的property_tree，写一个通用的树状结构数据
+XMLNode似乎不太合适用于这个场景
+*/
 
+namespace{
+// 方案1废弃
+class InitialStateArchive: public Archive
+{
+public:
+    InitialStateArchive(InitialState& initialState) : initialState_(initialState) {}
+    ~InitialStateArchive() = default;
+    Archive& operator()(bool& val, const char* name=nullptr)
+    {
+        return *this;
+    }
+    Archive& operator()(int& val, const char* name=nullptr)
+    {
+        return *this;
+    }
+    Archive& operator()(double& val, const char* name=nullptr)
+    {
+        return *this;
+    }
+    Archive& operator()(std::string& val, const char* name=nullptr)
+    {
+        return *this;
+    }
+private:
+    InitialState& initialState_;
+};
+}
+
+errc_t aLoadInitialState(StringView filePath, InitialState& initialState)
+{
+    XMLDocument doc;
+    errc_t rc = doc.load(filePath);
+    if(rc)  return rc;
+    
+    return eNoError;
+}
 
 AST_NAMESPACE_END
