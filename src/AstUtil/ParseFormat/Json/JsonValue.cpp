@@ -29,7 +29,7 @@
 AST_NAMESPACE_BEGIN
 
 // 静态空值实例
-JsonValue& JsonValue::nullValue()
+JsonValue& JsonValue::NullValue()
 {
     static JsonValue nullInstance;
     return nullInstance;
@@ -390,7 +390,7 @@ JsonValue& JsonValue::operator[](size_t index)
             value_.array_->resize(index + 1);
         return (*value_.array_)[index];
     }
-    return nullValue();
+    return NullValue();
 }
 
 // 数组下标运算符（常量版本）
@@ -400,7 +400,7 @@ const JsonValue& JsonValue::operator[](size_t index) const
     {
         return (*value_.array_)[index];
     }
-    return nullValue();
+    return NullValue();
 }
 
 // 对象下标运算符（std::string）
@@ -414,7 +414,7 @@ JsonValue& JsonValue::operator[](const std::string& key)
     {
         return (*value_.object_)[key];
     }
-    return nullValue();
+    return NullValue();
 }
 
 // 对象下标运算符（C字符串）
@@ -424,7 +424,7 @@ JsonValue& JsonValue::operator[](const char* key)
     {
         return (*value_.object_)[key];
     }
-    return nullValue();
+    return NullValue();
 }
 
 // 设置 null 值

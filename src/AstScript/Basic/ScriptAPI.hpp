@@ -242,6 +242,10 @@ AST_SCRIPT_CAPI bool aValueIsInt(Value* value);
 /// @return 是否为算术值
 AST_SCRIPT_CAPI bool aValueIsArithmetic(Value* value);
 
+/// @brief 判断值对象是否为字符串值
+/// @param value 值对象
+/// @return 是否为字符串值
+AST_SCRIPT_CAPI bool aValueIsString(Value* value);
 
 /// @brief 判断值对象是否为量值
 /// @param value 值对象

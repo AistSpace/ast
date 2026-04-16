@@ -28,4 +28,12 @@ Value *ValMap::find(const std::string &name)
     return it != map_.end() ? it->second.get() : nullptr;
 }
 
+void ValMap::insert(const std::string &name, Value *value)
+{
+    map_.insert({name, value});
+}
+
+
+
 AST_NAMESPACE_END
+

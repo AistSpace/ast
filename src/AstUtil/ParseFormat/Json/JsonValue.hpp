@@ -254,7 +254,7 @@ private:
     } value_;  ///< 值存储
     
     /// @brief 静态空值实例
-    static JsonValue& nullValue();
+    static JsonValue& NullValue();
     
     /// @brief 释放资源
     void destroy();

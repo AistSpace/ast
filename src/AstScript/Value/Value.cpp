@@ -19,9 +19,172 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "Value.hpp"
+#include "ValNull.hpp"
+#include "ValDouble.hpp"
+#include "ValInt.hpp"
+#include "ValBool.hpp"
+#include "ValMap.hpp"
+#include "ValString.hpp"
+#include "AstScript/ScriptAPI.hpp"
+#include "AstUtil/Logger.hpp"
+#include <limits>
 
 AST_NAMESPACE_BEGIN
 
 
+Value& Value::NullValue()
+{
+    return *aValueNull();
+}
+
+ValMap *Value::toValMap() const
+{
+    if(this->getType() == &ValMap::staticType)
+    {
+        return static_cast<ValMap*>(const_cast<Value*>(this));
+    }
+    return nullptr;
+}
+
+void Value::insert(const std::string& name, Value* value)
+{
+    ValMap* map = toValMap();
+    if(map)
+        map->insert(name, value);
+    else{
+        SharedPtr<Value> p{value};
+        A_UNUSED(p);
+    }
+}
+
+Value& Value::operator[](const std::string& name)
+{
+    if(auto map = toValMap())
+    {
+        auto value = map->find(name);
+        if(value)
+            return *value;
+    }
+    return NullValue();
+}
+
+const Value& Value::operator[](const std::string& name) const
+{
+    return const_cast<Value*>(this)->operator[](name);
+}
+
+Value& Value::operator[](size_t index)
+{
+    return NullValue();
+}
+const Value& Value::operator[](size_t index) const
+{
+    return NullValue();
+}
+bool Value::isNull() const
+{
+    return getType() == &ValNull::staticType;
+}
+std::string Value::toString() const
+{
+    auto value = const_cast<Value*>(this);
+    if(aValueIsString(value)){
+        return static_cast<ValString*>(value)->value();
+    }
+    if(aValueIsDouble(value)){
+        return aFormatDouble(static_cast<ValDouble*>(value)->value());
+    }   
+    if(aValueIsInt(value)){
+        return aFormatInt(static_cast<ValInt*>(value)->value());
+    }
+    if(aValueIsBool(value)){
+        return aFormatBool(static_cast<ValBool*>(value)->value());
+    }
+    return std::string();
+}
+
+double Value::toDouble() const
+{
+    auto value = const_cast<Value*>(this);
+    if(aValueIsDouble(value)){
+        return static_cast<ValDouble*>(value)->value();
+    }
+    if(aValueIsInt(value)){
+        return static_cast<ValInt*>(value)->value();
+    }
+    if(aValueIsBool(value)){
+        return static_cast<ValBool*>(value)->value() ? 1.0 : 0.0;
+    }
+    if(aValueIsString(value)){
+        double ret;
+        errc_t rc = aParseDouble(static_cast<ValString*>(value)->value(), ret);
+        if(rc == eNoError){
+            return ret;
+        }
+    }
+    aError("Value is not an arithmetic value and is not a valid arithmetic string");
+    return std::numeric_limits<double>::quiet_NaN();
+}
+int Value::toInt() const
+{
+    auto value = const_cast<Value*>(this);
+    if(aValueIsInt(value)){
+        return static_cast<ValInt*>(value)->value();
+    }
+    if(aValueIsBool(value)){
+        return static_cast<ValBool*>(value)->value() ? 1 : 0;
+    }
+    if(aValueIsDouble(value)){
+        return static_cast<int>(static_cast<ValDouble*>(value)->value());
+    }
+    if(aValueIsString(value)){
+        int ret;
+        errc_t rc = aParseInt(static_cast<ValString*>(value)->value(), ret);
+        if(rc == eNoError){
+            return ret;
+        }
+    }
+    aError("Value is not an integer and is not a valid integer string");
+    return 0;
+}
+bool Value::toBool() const
+{
+    auto value = const_cast<Value*>(this);
+    if(aValueIsBool(value)){
+        return static_cast<ValBool*>(value)->value();
+    }
+    if(aValueIsInt(value)){
+        return static_cast<ValInt*>(value)->value() != 0;
+    }
+    if(aValueIsDouble(value)){
+        return static_cast<ValDouble*>(value)->value() != 0.0;
+    }
+    if(aValueIsString(value)){
+        bool ret;
+        errc_t rc = aParseBool(static_cast<ValString*>(value)->value(), ret);
+        if(rc == eNoError){
+            return ret;
+        }
+    }
+    aError("Value is not a bool and is not a valid boolean string");
+    return false;
+}
+
+Value::operator std::string() const
+{
+    return toString();
+}
+Value::operator double() const
+{
+    return toDouble();
+}
+Value::operator int() const
+{
+    return toInt();
+}
+Value::operator bool() const
+{
+    return toBool();
+}
 
 AST_NAMESPACE_END

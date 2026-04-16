@@ -36,9 +36,13 @@ AST_NAMESPACE_BEGIN
 class AST_SCRIPT_API ValMap: public Value
 {
 public:
+    AST_EXPR(ValMap)
+
     ValMap() = default;
     ~ValMap() override = default;
     Value* find(const std::string& name);
+    void insert(const std::string& name, Value* value);
+    using Value::insert;
 protected:
     std::map<std::string, SharedPtr<Value>> map_;
 };

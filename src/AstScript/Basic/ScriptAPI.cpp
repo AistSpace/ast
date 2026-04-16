@@ -162,19 +162,15 @@ bool aValueIsQuantity(Value *value)
     return value && (value)->type() == &ValQuantity::staticType;
 }
 
+bool aValueIsString(Value *value)
+{
+    return value && (value)->type() == &ValString::staticType;
+}
+
+
 double aValueToDouble(Value *value)
 {
-    if(aValueIsDouble(value)){
-        return static_cast<ValDouble*>(value)->value();
-    }
-    if(aValueIsInt(value)){
-        return static_cast<ValInt*>(value)->value();
-    }
-    if(aValueIsBool(value)){
-        return static_cast<ValBool*>(value)->value() ? 1.0 : 0.0;
-    }
-    aError("Value is not an arithmetic");
-    return std::numeric_limits<double>::quiet_NaN();
+    return value->toDouble();
 }
 
 bool aValueUnboxBool(Value *value)
@@ -362,3 +358,4 @@ Value* aIterateNext(Value* container, int& index)
 
 
 AST_NAMESPACE_END
+

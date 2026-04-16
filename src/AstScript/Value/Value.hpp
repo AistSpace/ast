@@ -22,9 +22,12 @@
 
 #include "AstGlobal.h"
 #include "AstScript/Expr.hpp"
+#include "AstScript/ScriptAPI.hpp"
 
 AST_NAMESPACE_BEGIN
 
+
+class ValMap;
 
 /// @brief 值对象基类
 /// @details 
@@ -43,7 +46,31 @@ public:
     
     /// @brief 设置值
     errc_t setValue(Value*) final{return eErrorReadonly;}
-    
+public:
+    void insert(const std::string& name, Value* value);
+    template<typename T>
+    void insert(const std::string& name, T value)
+    {
+        insert(name, aNewValue(value));
+    }
+    Value& operator[](const std::string& name);
+    const Value& operator[](const std::string& name) const;
+    Value& operator[](size_t index);
+    const Value& operator[](size_t index) const;
+    bool isNull() const;
+    std::string toString() const;
+    double toDouble() const;
+    int toInt() const;
+    bool toBool() const;
+    operator std::string() const;
+    operator double() const;
+    operator int() const;
+    operator bool() const;
+    static Value& NullValue();
+protected:
+    ValMap* toValMap() const;
+private:
+
 };
 
 AST_NAMESPACE_END
