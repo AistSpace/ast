@@ -277,7 +277,17 @@ private:
         this->refcnt_ = static_cast<uint32_t>(-1); // 标识对象是否被析构. bit mask indicate whether object is destructed.
         this->decWeakRef();
     }
+protected: // 延迟链接
+    /// @brief 添加延迟链接
+    /// @param link 延迟链接函数
+    template<typename T>
+    void addDelayedLink(T &&link)
+    {
 
+    }
+    /// @brief 解析延迟链接
+    /// @details 解析所有延迟链接
+    void resolveLinks();
 protected:
     friend class ObjectManager;
     virtual ~Object();

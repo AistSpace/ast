@@ -340,14 +340,14 @@ class TimeInterval;         ///< 时间段
 class JulianDate;           ///< 儒略日
 class ModJulianDate;        ///< 简约儒略日
 
-class System;
-class Axes;
-class Point;
-class CelestialBody;
-using Body = CelestialBody;
+class Frame;                 ///< 坐标系
+class Axes;                  ///< 坐标轴
+class Point;                 ///< 坐标点
+class CelestialBody;         ///< 天体
+using Body = CelestialBody;  
 
-class EventTime;
-class EventInterval;
+class EventTime;             ///< 事件时间
+class EventInterval;         ///< 事件时间段
 
 class Identifier;           ///< 标识符
 class BKVParser;            ///< BKV解析器

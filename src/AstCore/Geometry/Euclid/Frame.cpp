@@ -27,6 +27,8 @@
 
 AST_NAMESPACE_BEGIN
 
+_AST_IMPL_OBJECT(Frame)
+
 CelestialBody *Frame::getBody()
 {
     if(auto origin = getOrigin())

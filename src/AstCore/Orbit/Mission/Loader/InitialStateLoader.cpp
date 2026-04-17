@@ -73,28 +73,22 @@ private:
 };
 }
 
-
-errc_t aLoadInitialState(StringView filePath, InitialState& initialState)
+errc_t aLoadInitialState(const Value& dictRoot, InitialState& initialState)
 {
-    errc_t rc;
-    SharedPtr<Value> value;
-    rc = aLoadValue(filePath, value);
-    if(rc)  return rc;
-    if(!value) return eErrorNullPtr;
-    const Value& dictRoot = *value.get();
     if(dictRoot["Type"].toString() != "InitialState")
     {
         aError("invalid type, expect 'InitialState'");
         return eErrorInvalidParam;
     }
-    auto& dictCoordinateType = dictRoot["CoordinateType"];
+    // 似乎不用判断"CoordinateType"字段，因为默认存的都是Cartesian坐标
+    // auto& dictCoordinateType = dictRoot["CoordinateType"];
     auto& spacecraftState = initialState.getInitialState();
-    if(!dictCoordinateType.isNull())
+    // if(!dictCoordinateType.isNull())
     {
         HState state;
         auto& dictOrbitState = dictRoot["InitialState"]["Orbit_State"];
-        std::string coordType = dictCoordinateType.toString();
-        if(coordType == "Cartesian")
+        // std::string coordType = dictCoordinateType.toString();
+        // if(coordType == "Cartesian")
         {
             StateCartesian* cartesian = StateCartesian::New();
             state = cartesian;
@@ -132,6 +126,17 @@ errc_t aLoadInitialState(StringView filePath, InitialState& initialState)
 
     }
     return eNoError;
+}
+
+
+errc_t aLoadInitialState(StringView filePath, InitialState& initialState)
+{
+    errc_t rc;
+    SharedPtr<Value> value;
+    rc = aLoadValue(filePath, value);
+    if(rc)  return rc;
+    if(!value) return eErrorNullPtr;
+    return aLoadInitialState(*value, initialState);
 }
 
 AST_NAMESPACE_END

@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/Object.hpp"
+#include "AstUtil/ObjectNamed.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -55,9 +56,10 @@ AST_CORE_API errc_t aFrameTransform(Frame* source, Frame* target, const TimePoin
 
 /// @brief 坐标系类
 /// @details 坐标系类表示一个三维空间中的坐标系，包含了坐标系的变换信息。
-class AST_CORE_API Frame: public Object
+class AST_CORE_API Frame: public ObjectNamed
 {
 public:
+    AST_OBJECT(Frame)
     Frame() = default;
     ~Frame() override= default;
 

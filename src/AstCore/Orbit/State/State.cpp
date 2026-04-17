@@ -19,15 +19,15 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "State.hpp"
+#include "AstMath/KinematicTransform.hpp"
 #include "AstCore/EventTimeExplicit.hpp"
 #include "AstCore/FrameWithEpoch.hpp"
 #include "AstCore/FrameAssembly.hpp"
 #include "AstCore/OrbitElement.hpp"
 #include "AstCore/CelestialBody.hpp"
-#include "AstMath/KinematicTransform.hpp"
 #include "AstCore/StateCartesian.hpp"
 #include "AstCore/StateKeplerian.hpp"
-
+#include "AstCore/Resolve.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -81,7 +81,17 @@ void State::setFrame(Frame *frame)
 
 errc_t State::setFrameByName(StringView frameName)
 {
-    return -1;
+    // std::string name(frameName);
+    // addDelayedLink([name](){
+    //     return (Frame*)(nullptr);
+    // });
+    auto frame = aResolveFrame(frameName);
+    if(!frame){
+        aError("failed to resolve frame '%.*s'", frameName.size(), frameName.data());
+        return -1;
+    }
+    this->setFrame(frame);
+    return eNoError;
 }
 
 errc_t State::changeFrame(Frame *frame)
