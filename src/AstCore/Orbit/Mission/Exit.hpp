@@ -1,9 +1,9 @@
 ///
-/// @file      Sequence.hpp
+/// @file      Exit.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-04-15
+/// @date      2026-04-18
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,7 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "MissionCommand.hpp"
+#include "Stop.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,18 +30,16 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class AST_CORE_API Sequence: public MissionCommand
-{
-public:
-    Sequence() = default;
-    ~Sequence() = default;
-public:
-    errc_t execute() override;
-    void setCommands(const std::vector<HMissionCommand>& commands);
-    void setCommands(std::vector<HMissionCommand>&& commands);
-private:
-    std::vector<HMissionCommand> commands_;     ///< 任务命令序列
-};
+
+/*
+备注：
+似乎NASA的工程师受到Fortran的影响，所以采用了Stop命令来退出所有的Mission执行?
+就像在函数里使用STOP语句来退出程序一样(退出所有的函数调用)
+C/C++里使用exit来退出程序，所以这里给Stop命令一个别名，就是Exit命令.
+*/
+
+using Exit = Stop;
+
 
 /*! @} */
 

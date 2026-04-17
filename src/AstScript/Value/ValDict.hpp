@@ -35,6 +35,7 @@ AST_NAMESPACE_BEGIN
 /// @brief 字典值
 class AST_SCRIPT_API ValDict: public Value
 {
+    using MapType = std::map<std::string, SharedPtr<Value>>;
 public:
     AST_EXPR(ValDict)
     static ValDict* New();
@@ -47,11 +48,11 @@ public:
     std::string toJsonString() const;
     std::string toJsonString(int indent) const;
     std::string getExpression(Object* context=nullptr) const override;
-
+    const ValueMapType& getMap() const{return map_;}
 protected:
     std::string toJsonString(int indent, int currentIndent) const;
 protected:
-    std::map<std::string, SharedPtr<Value>> map_;
+    MapType map_;
 };
 
 /*! @} */

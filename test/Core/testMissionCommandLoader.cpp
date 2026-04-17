@@ -40,6 +40,18 @@ TEST(MissionCommandLoaderTest, LoadInitialState)
 }
 
 
+TEST(MissionCommandLoaderTest, LoadMissionCommand)
+{
+    SharedPtr<MissionCommand> missionCommand;
+    std::vector<std::string> files = aTestGetConfigStringVector("STK_SEQUENCE_FILES");
+    for(auto& file: files){
+        printf("loading file: %s\n", file.c_str());
+        errc_t rc = aLoadMissionCommand(file, missionCommand);
+        EXPECT_TRUE(missionCommand != nullptr);
+        EXPECT_EQ(rc, eNoError);
+        printf("loaded file: %s\n", file.c_str());
+    }
+}
 
 
 

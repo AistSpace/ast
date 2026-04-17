@@ -19,14 +19,41 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "SequenceLoader.hpp"
+#include "AstCore/Sequence.hpp"
 #include "AstScript/Value.hpp"
 #include "AstUtil/StringView.hpp"
+#include "AstUtil/Logger.hpp"
 #include "ValXMLLoader.hpp"
+#include "MissionCommandLoader.hpp"
 
 AST_NAMESPACE_BEGIN
 
-errc_t aLoadSequence(const Value& value, Sequence& sequence)
+errc_t aLoadSequence(const Value& dictRoot, Sequence& sequence)
 {
+    if(dictRoot["Type"].toString() != "Sequence")
+    {
+        aError("invalid type, expect 'Sequence'");
+        return eErrorInvalidParam;
+    }
+    auto& dictSegmentList = dictRoot["SegmentList"];
+    auto& items = dictSegmentList.items();
+    std::vector<HMissionCommand> commands;
+    commands.reserve(items.size());
+    for(auto& item: items)
+    {
+        auto& name = item.first;
+        const auto& dictSegment = *item.second;
+        HMissionCommand command;
+        errc_t rc = aLoadMissionCommand(dictSegment, command);
+        if(!rc && command != nullptr)
+        {
+            commands.push_back(command);
+        }else
+        {
+            aError("failed to load mission command '%s'", name.c_str());
+        }
+    }
+    sequence.setCommands(commands);
     return 0;
 }
 

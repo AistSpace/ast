@@ -23,11 +23,13 @@
 #include "AstGlobal.h"
 #include "AstScript/Expr.hpp"
 #include "AstScript/ScriptAPI.hpp"
+#include <map>
 
 AST_NAMESPACE_BEGIN
 
 
 class ValDict;
+using ValueMapType = std::map<std::string, SharedPtr<Value>>;
 
 /// @brief 值对象基类
 /// @details 
@@ -70,6 +72,7 @@ public:
     operator bool() const;
     static Value& NullValue();
     ValDict* toValDict() const;
+    const ValueMapType& items() const;
 private:
 
 };

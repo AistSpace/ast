@@ -39,12 +39,12 @@ class MissionCommand;
 /// @brief 从值加载任务命令
 /// @param value 值
 /// @param missionCommand 任务命令对象
-errc_t aLoadMissionCommand(const Value& value, SharedPtr<MissionCommand>& missionCommand);
+AST_CORE_API errc_t aLoadMissionCommand(const Value& value, SharedPtr<MissionCommand>& missionCommand);
 
 /// @brief 从文件加载任务命令
 /// @param filepath 文件路径
 /// @param missionCommand 任务命令对象
-errc_t aLoadMissionCommand(StringView filepath, SharedPtr<MissionCommand>& missionCommand);
+AST_CORE_API errc_t aLoadMissionCommand(StringView filepath, SharedPtr<MissionCommand>& missionCommand);
 
 /*! @} */
 

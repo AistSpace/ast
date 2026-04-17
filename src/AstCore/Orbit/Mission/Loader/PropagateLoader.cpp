@@ -26,7 +26,7 @@ AST_NAMESPACE_BEGIN
 
 errc_t aLoadPropagate(const Value& dictRoot, Propagate& propagate)
 {
-    return -1;
+    return 0;
 }
 
 errc_t aLoadPropagate(StringView filepath, Propagate& propagate)

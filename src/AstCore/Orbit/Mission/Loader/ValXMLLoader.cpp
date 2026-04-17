@@ -199,7 +199,7 @@ errc_t aLoadValue(StringView filepath, SharedPtr<Value>& value)
     XMLParser parser(filepath);
     errc_t rc = parser.parse(sax);
     value = sax.getValue();
-#if 1
+#if 0
     if(auto dict = value->toValDict()){
         std::string json = dict->toJsonString(2);
         printf("json: %s\n", json.c_str());

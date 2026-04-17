@@ -34,6 +34,16 @@ errc_t Sequence::execute()
 }
 
 
+void Sequence::setCommands(const std::vector<HMissionCommand>& commands)
+{
+    commands_ = commands;
+}
+
+void Sequence::setCommands(std::vector<HMissionCommand>&& commands)
+{
+    commands_ = std::move(commands);
+}
+
 
 AST_NAMESPACE_END
 

@@ -1,9 +1,9 @@
 ///
-/// @file      Sequence.hpp
+/// @file      Break.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-04-15
+/// @date      2026-04-18
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,7 +21,6 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "MissionCommand.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,18 +29,7 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class AST_CORE_API Sequence: public MissionCommand
-{
-public:
-    Sequence() = default;
-    ~Sequence() = default;
-public:
-    errc_t execute() override;
-    void setCommands(const std::vector<HMissionCommand>& commands);
-    void setCommands(std::vector<HMissionCommand>&& commands);
-private:
-    std::vector<HMissionCommand> commands_;     ///< 任务命令序列
-};
+
 
 /*! @} */
 

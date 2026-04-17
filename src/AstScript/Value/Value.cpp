@@ -47,6 +47,17 @@ ValDict *Value::toValDict() const
     return nullptr;
 }
 
+static ValueMapType emptyMap;
+
+const ValueMapType& Value::items() const
+{
+    if(auto dict = toValDict())
+        return dict->getMap();
+    return emptyMap;
+}
+
+
+
 void Value::insert(const std::string& name, Value* value)
 {
     ValDict* dict = toValDict();

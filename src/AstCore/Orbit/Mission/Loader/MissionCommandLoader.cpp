@@ -25,6 +25,11 @@
 #include "AstCore/InitialState.hpp"
 #include "AstCore/Maneuver.hpp"
 #include "AstCore/Propagate.hpp"
+#include "AstCore/End.hpp"
+#include "AstCore/Continue.hpp"
+#include "AstCore/Break.hpp"
+#include "AstCore/Return.hpp"
+#include "AstCore/Stop.hpp"
 
 
 AST_NAMESPACE_BEGIN
@@ -53,7 +58,30 @@ errc_t aLoadMissionCommand(const Value& value, SharedPtr<MissionCommand>& missio
         SharedPtr<Propagate> propagate = new Propagate();
         missionCommand = propagate;
         return aLoadPropagate(value, *propagate);
-    }else
+    }
+    else if(type == "End")
+    {
+        SharedPtr<End> end = new End();
+        missionCommand = end;
+        // End命令仅仅是标识结束，不执行任何操作，所以应该不用加载任何参数
+        // return aLoadEnd(value, *end);
+        return eNoError;
+    }
+    else if(type == "Stop")
+    {
+        SharedPtr<Stop> stop = new Stop();
+        missionCommand = stop;
+        // return aLoadStop(value, *stop);
+        return eNoError;
+    }
+    else if(type == "Return")
+    {
+        SharedPtr<Return> ret = new Return();
+        missionCommand = ret;
+        // return aLoadReturn(value, *ret);
+        return eNoError;
+    }
+    else
     {
         aError("unsupport object type '%.*s'", type.size(), type.data());
     }

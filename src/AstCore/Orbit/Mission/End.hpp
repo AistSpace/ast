@@ -1,9 +1,9 @@
 ///
-/// @file      Sequence.hpp
+/// @file      End.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-04-15
+/// @date      2026-04-18
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -30,17 +30,16 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class AST_CORE_API Sequence: public MissionCommand
+
+/// @brief End命令
+/// @details 仅仅是标识结束，不执行任何操作
+class AST_CORE_API End : public MissionCommand
 {
 public:
-    Sequence() = default;
-    ~Sequence() = default;
+    End() = default;
+    ~End() = default;
 public:
-    errc_t execute() override;
-    void setCommands(const std::vector<HMissionCommand>& commands);
-    void setCommands(std::vector<HMissionCommand>&& commands);
-private:
-    std::vector<HMissionCommand> commands_;     ///< 任务命令序列
+    errc_t execute() override{return eNoError;}
 };
 
 /*! @} */
