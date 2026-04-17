@@ -29,6 +29,21 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class Propagate;
+class Value;
+
+/// @brief 从值加载 propagate 任务
+/// @param value 值
+/// @param propagate 输出的 propagate 对象
+/// @return errc_t 错误码，0表示成功
+AST_CORE_API errc_t aLoadPropagate(const Value& value, Propagate& propagate);
+
+
+/// @brief 加载 propagate 任务
+/// @param filepath propagate 文件名
+/// @param propagate 输出的 propagate 对象
+/// @return errc_t 错误码，0表示成功
+AST_CORE_API errc_t aLoadPropagate(StringView filepath, Propagate& propagate);
 
 
 /*! @} */

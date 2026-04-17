@@ -19,9 +19,55 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "MissionCommandLoader.hpp"
+#include "AstUtil/StringView.hpp"
+#include "ValXMLLoader.hpp"
+#include "AstCore/Sequence.hpp"
+#include "AstCore/InitialState.hpp"
+#include "AstCore/Maneuver.hpp"
+#include "AstCore/Propagate.hpp"
+
 
 AST_NAMESPACE_BEGIN
 
 
+errc_t aLoadMissionCommand(const Value& value, SharedPtr<MissionCommand>& missionCommand)
+{
+    std::string type = value["Type"];
+    if(type == "Sequence")
+    {
+        SharedPtr<Sequence> sequence = new Sequence();
+        missionCommand = sequence;
+        return aLoadSequence(value, *sequence);
+    }else if(type == "InitialState")
+    {
+        SharedPtr<InitialState> initialState = new InitialState();
+        missionCommand = initialState;
+        return aLoadInitialState(value, *initialState);
+    }else if(type == "Maneuver")
+    {
+        SharedPtr<Maneuver> maneuver = new Maneuver();
+        missionCommand = maneuver;
+        return aLoadManeuver(value, *maneuver);
+    }else if(type == "Propagate")
+    {
+        SharedPtr<Propagate> propagate = new Propagate();
+        missionCommand = propagate;
+        return aLoadPropagate(value, *propagate);
+    }else
+    {
+        aError("unsupport object type '%.*s'", type.size(), type.data());
+    }
+    return -1;
+}
+
+errc_t aLoadMissionCommand(StringView filePath, SharedPtr<MissionCommand>& missionCommand)
+{
+    errc_t rc;
+    SharedPtr<Value> value;
+    rc = aLoadValue(filePath, value);
+    if(rc)  return rc;
+    if(!value) return eErrorNullPtr;
+    return aLoadMissionCommand(*value, missionCommand);
+}
 
 AST_NAMESPACE_END

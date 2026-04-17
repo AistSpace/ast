@@ -19,9 +19,26 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "ManeuverLoader.hpp"
+#include "AstUtil/StringView.hpp"
+#include "AstScript/Value.hpp"
+#include "ValXMLLoader.hpp"
+
 
 AST_NAMESPACE_BEGIN
 
+errc_t aLoadManeuver(const Value& dictRoot, Maneuver& maneuver)
+{
+    return 0;
+}
 
+errc_t aLoadManeuver(StringView filename, Maneuver& maneuver)
+{
+    errc_t rc;
+    SharedPtr<Value> value;
+    rc = aLoadValue(filename, value);
+    if(rc)  return rc;
+    if(!value) return eErrorNullPtr;
+    return aLoadManeuver(*value, maneuver);
+}
 
 AST_NAMESPACE_END

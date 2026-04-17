@@ -202,12 +202,13 @@ public:
     /// @param key 对象键
     /// @return 对应键的 JSON 值引用
     JsonValue& operator[](const std::string& key);
+    JsonValue& operator[](const char* key);
     
     /// @brief 对象下标运算符
     /// @param key 对象键
     /// @return 对应键的 JSON 值引用
     const JsonValue& operator[](const std::string& key) const;
-
+    const JsonValue& operator[](const char* key) const;
     
     /// @brief 设置 null 值
     void setNull();

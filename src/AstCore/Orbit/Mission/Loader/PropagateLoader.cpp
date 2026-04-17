@@ -19,9 +19,25 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "Propagate.hpp"
+#include "ValXMLLoader.hpp"
+#include "AstScript/Value.hpp"
 
 AST_NAMESPACE_BEGIN
 
+errc_t aLoadPropagate(const Value& dictRoot, Propagate& propagate)
+{
+    return -1;
+}
+
+errc_t aLoadPropagate(StringView filepath, Propagate& propagate)
+{
+    errc_t rc;
+    SharedPtr<Value> value;
+    rc = aLoadValue(filepath, value);
+    if(rc)  return rc;
+    if(!value) return eErrorNullPtr;
+    return aLoadPropagate(*value, propagate);
+}
 
 
 AST_NAMESPACE_END

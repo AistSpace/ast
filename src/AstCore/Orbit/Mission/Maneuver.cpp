@@ -22,6 +22,9 @@
 
 AST_NAMESPACE_BEGIN
 
-
+errc_t Maneuver::execute()
+{
+    return 0;
+}
 
 AST_NAMESPACE_END

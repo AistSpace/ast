@@ -19,9 +19,27 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "SequenceLoader.hpp"
+#include "AstScript/Value.hpp"
+#include "AstUtil/StringView.hpp"
+#include "ValXMLLoader.hpp"
 
 AST_NAMESPACE_BEGIN
 
+errc_t aLoadSequence(const Value& value, Sequence& sequence)
+{
+    return 0;
+}
+
+
+errc_t aLoadSequence(StringView filepath, Sequence& sequence)
+{
+    errc_t rc;
+    SharedPtr<Value> value;
+    rc = aLoadValue(filepath, value);
+    if(rc)  return rc;
+    if(!value) return eErrorNullPtr;
+    return aLoadSequence(*value, sequence);
+}
 
 
 AST_NAMESPACE_END

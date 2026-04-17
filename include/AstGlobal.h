@@ -326,7 +326,6 @@ typedef StringViewBasic<char>  StringView;
 class Color;                 ///< 颜色
 
 class Quaternion;            ///< 四元数
-
 class Euler;                 ///< 欧拉角
 
 class CartState;             ///< 直角坐标
@@ -350,10 +349,15 @@ class EventTime;             ///< 事件时间
 class EventInterval;         ///< 事件时间段
 
 class Identifier;           ///< 标识符
+class Value;                ///< 值
+class Expr;                 ///< 表达式
+class Variable;             ///< 变量
+
 class BKVParser;            ///< BKV解析器
 
-class Dimension;
-class Unit;
+class Dimension;            ///< 量纲
+class Unit;                 ///< 单位
+class Quantity;             ///< 数量值
 
 #endif
 

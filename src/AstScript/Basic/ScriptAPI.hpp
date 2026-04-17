@@ -404,7 +404,17 @@ A_ALWAYS_INLINE Value* aNewValue(StringView value)
     return aNewValueString(value);
 }
 
-// 通过模板捕获所有其他类型并删除
+A_ALWAYS_INLINE Value* aNewValue(const std::string& value)
+{
+    return aNewValueString(value);
+}
+
+A_ALWAYS_INLINE Value* aNewValue(const char* value)
+{
+    return aNewValueString(value);
+}
+
+// 通过模板捕获所有其他类型并删除，防止隐式转换为 `bool` 类型
 template<typename T>
 Value* aNewValue(T) = delete;
 

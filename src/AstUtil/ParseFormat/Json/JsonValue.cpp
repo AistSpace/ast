@@ -413,6 +413,11 @@ JsonValue& JsonValue::operator[](const std::string& key)
     return const_cast<JsonValue&>(const_cast<const JsonValue&>(*this)[key]);
 }
 
+JsonValue& JsonValue::operator[](const char* key)
+{
+    return this->operator[](std::string(key));
+}
+
 const JsonValue& JsonValue::operator[](const std::string& key) const
 {
     if (type_ == JsonValueType::Object)
@@ -422,6 +427,10 @@ const JsonValue& JsonValue::operator[](const std::string& key) const
     return NullValue();
 }
 
+const JsonValue& JsonValue::operator[](const char* key) const
+{
+    return this->operator[](std::string(key));
+}
 
 
 
