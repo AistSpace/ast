@@ -79,6 +79,11 @@ void State::setFrame(Frame *frame)
     gm_ = frame_->getGM();
 }
 
+errc_t State::setFrameByName(StringView frameName)
+{
+    return -1;
+}
+
 errc_t State::changeFrame(Frame *frame)
 {
     if(frame_ == frame)

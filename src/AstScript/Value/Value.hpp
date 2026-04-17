@@ -55,6 +55,8 @@ public:
     }
     Value& operator[](const std::string& name);
     const Value& operator[](const std::string& name) const;
+    Value& operator[](const char* name);
+    const Value& operator[](const char* name) const;
     Value& operator[](size_t index);
     const Value& operator[](size_t index) const;
     bool isNull() const;

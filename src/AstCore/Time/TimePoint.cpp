@@ -20,6 +20,7 @@
 
 #include "TimePoint.hpp"
 #include "AstCore/TimeSystem.hpp"
+#include "AstUtil/Logger.hpp"
 
 
 AST_NAMESPACE_BEGIN
@@ -90,13 +91,63 @@ errc_t aTimePointFormat(const TimePoint &time, std::string &str, int precision)
     return err;
 }
 
+void processTimeSystemm(StringView& str, StringView &timeSystem)
+{
+    
+}
+
+void processQuote(StringView& str)
+{
+    if(str.back() == '"' && str[0] == '"')
+    {
+        str = str.substr(1, str.size() - 2);
+    }
+}
+
 errc_t aTimePointParse(StringView str, TimePoint &time)
 {
-    // @todo: 支持解析不同的时间系统
-    DateTime dttmUTC{};
-    errc_t rc = aDateTimeParseAny(str, dttmUTC);
-    time = TimePoint::FromUTC(dttmUTC);
-    return rc;
+    str = aStripAsciiWhitespace(str);
+    if(str.empty())
+        return eErrorInvalidParam;
+
+    StringView timeSystem; // 时间系统信息
+
+    if(str.back() == '"' && str[0] == '"')
+    {
+        str = str.substr(1, str.size() - 2);
+    }
+
+    if(std::isalpha(static_cast<unsigned char>(str.back())))
+    {
+        size_t lastSpace = str.find_last_of(' ');
+        if(lastSpace != std::string::npos)
+            timeSystem = str.substr(lastSpace + 1);
+        str = aStripTrailingAsciiWhitespace(str.substr(0, lastSpace));
+        if(str.back() == '"' && str[0] == '"')
+        {
+            str = str.substr(1, str.size() - 2);
+        }
+    }
+
+    DateTime dttm;
+    errc_t rc = aDateTimeParseAny(str, dttm);
+    if(rc != eNoError)
+        return rc;
+    if(timeSystem.empty())
+    {
+        time = TimePoint::FromUTC(dttm);
+    }
+    else if(timeSystem == "TAIG")
+    {
+        time = TimePoint::FromTAI(dttm);
+    }
+    else
+    {
+        // @todo: 支持解析不同的时间系统
+        aError("unsupported time system: '%.*s'", timeSystem.size(), timeSystem.data());
+        return eErrorInvalidParam;
+    }
+    return eNoError;
 }
 
 void aTimePointToTDB(const TimePoint& time, JulianDate& jdTDB)
@@ -124,6 +175,11 @@ TimePoint TimePoint::TomorrowUTC()
     return FromUTC(t);
 }
 
+TimePoint TimePoint::FromUTC(int year, int month, int day, int hour, int minute, double second)
+{
+    return TimePoint::FromUTC({year, month, day, hour, minute, second});
+}
+
 TimePoint TimePoint::FromUTC(const DateTime &dttmUTC)
 {
     JulianDate jdUTC{};
@@ -133,10 +189,13 @@ TimePoint TimePoint::FromUTC(const DateTime &dttmUTC)
     return TimePoint::FromTAI(jdTAI);
 }
 
-TimePoint TimePoint::FromUTC(int year, int month, int day, int hour, int minute, double second)
+TimePoint TimePoint::FromTAI(const DateTime& dttmTAI)
 {
-    return TimePoint::FromUTC({year, month, day, hour, minute, second});
+    JulianDate jdTAI{};
+    aDateTimeToJD(dttmTAI, jdTAI);
+    return TimePoint::FromTAI(jdTAI);
 }
+
 
 TimePoint TimePoint::FromTAI(const JulianDate& jdTAI)
 {
@@ -170,6 +229,16 @@ TimePoint TimePoint::shiftedBySecondInTDB(double second) const
 TimePoint TimePoint::FromIntegerFractional(int64_t integer, double fractional)
 {
     return {integer, fractional};
+}
+
+TimePoint TimePoint::Parse(StringView str)
+{
+    TimePoint time;
+    errc_t rc = aTimePointParse(str, time);
+    if(rc != eNoError){
+        aError("failed to parse TimePoint '%.*s'", str.size(), str.data());
+    }
+    return time;
 }
 
 AST_NAMESPACE_END

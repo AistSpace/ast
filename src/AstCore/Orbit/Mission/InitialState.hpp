@@ -41,11 +41,9 @@ public:
 public:
     errc_t execute() override;
     
-    /// @brief 设置初始状态参数
-    void setInitialState(const SpacecraftState& initialState);
-
     /// @brief 获取初始状态参数
     const SpacecraftState& getInitialState() const{return initialState_;}
+    SpacecraftState& getInitialState(){return initialState_;}
 private:
     SpacecraftState initialState_;      ///< 初始状态参数
 };

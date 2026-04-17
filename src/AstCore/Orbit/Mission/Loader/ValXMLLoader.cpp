@@ -88,6 +88,11 @@ public:
             {
                 context.value_ = aNewValueBool(aParseBool(context.text_));
             }
+            else if(context.class_ == "date")
+            {
+                std::string datestr = aUnquote(context.text_);
+                context.value_ = aNewValueString(datestr);
+            }
             else if(context.class_ == "double")
             {
                 Quantity quantity;

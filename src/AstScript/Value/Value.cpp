@@ -74,6 +74,16 @@ const Value& Value::operator[](const std::string& name) const
     return const_cast<Value*>(this)->operator[](name);
 }
 
+Value& Value::operator[](const char* name)
+{
+    return this->operator[](std::string(name));
+}
+
+const Value& Value::operator[](const char* name) const
+{
+    return this->operator[](std::string(name));
+}
+
 Value& Value::operator[](size_t index)
 {
     return NullValue();
