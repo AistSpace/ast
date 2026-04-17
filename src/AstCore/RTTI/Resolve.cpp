@@ -51,6 +51,7 @@ Frame *aObject_GetFrame(Object* obj, StringView frameName)
         if(frame)
         {
             frame->setName(frameName);
+            frame->setParentScope(obj); // 设置对象的父作用域，防止内存泄漏
             return frame.take();
         }
     }
