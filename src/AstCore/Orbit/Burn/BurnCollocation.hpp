@@ -1,9 +1,9 @@
 ///
-/// @file      Maneuver.cpp
+/// @file      BurnCollocation.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-04-15
+/// @date      2026-04-18
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -18,22 +18,29 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "Maneuver.hpp"
+#pragma once
+
+#include "AstGlobal.h"
+#include "Burn.hpp"
 
 AST_NAMESPACE_BEGIN
 
-errc_t Maneuver::execute()
-{
-    return 0;
-}
+/*!
+    @addtogroup 
+    @{
+*/
 
-void Maneuver::setBurn(Burn* burn)
+/// @brief 发动机点火(正交配置法求解)
+class AST_CORE_API BurnCollocation: public Burn
 {
-    if(burn)
-        burn_ = burn;
-}
+public:
+    BurnCollocation() = default;
+    ~BurnCollocation() = default;
+public:
 
+};
+
+
+/*! @} */
 
 AST_NAMESPACE_END
-
-

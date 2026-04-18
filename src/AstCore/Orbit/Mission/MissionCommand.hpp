@@ -40,6 +40,14 @@ using HMissionCommand = SharedPtr<MissionCommand>;
 class AST_CORE_API MissionCommand: public Object
 {
 public:
+    /// @brief 控制命令
+    enum EControlCommand
+    {
+        eReturn = -999,         ///< 返回到上级
+        eStop = -1999,          ///< 停止任务序列
+        eBreak = -2999,         ///< 跳出当前任务序列
+        eContinue = -3999,      ///< 继续当前任务序列的下一次执行
+    };
     MissionCommand() = default;
     ~MissionCommand() override = default;
 public:

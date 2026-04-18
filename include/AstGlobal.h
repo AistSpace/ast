@@ -265,6 +265,7 @@ typedef enum EError
     eErrorOutOfRange,       ///< 超出范围
     eErrorNotFound,         ///< 未找到
     eErrorNotImplemented,   ///< 未实现
+    eErrorUnsupported,      ///< 不支持的类型
 } AEError;
 
 

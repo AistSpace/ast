@@ -53,7 +53,18 @@ TEST(MissionCommandLoaderTest, LoadMissionCommand)
     }
 }
 
-
+TEST(MissionCommandLoaderTest, LoadPropagate)
+{
+    SharedPtr<MissionCommand> missionCommand;
+    std::vector<std::string> files = aTestGetConfigStringVector("STK_PROPAGATE_FILES");
+    for(auto& file: files){
+        printf("loading file: %s\n", file.c_str());
+        errc_t rc = aLoadMissionCommand(file, missionCommand);
+        EXPECT_TRUE(missionCommand != nullptr);
+        EXPECT_EQ(rc, eNoError);
+        printf("loaded file: %s\n", file.c_str());
+    }
+}
 
 
 GTEST_MAIN()

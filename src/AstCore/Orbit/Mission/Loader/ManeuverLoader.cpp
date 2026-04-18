@@ -22,13 +22,40 @@
 #include "AstUtil/StringView.hpp"
 #include "AstScript/Value.hpp"
 #include "ValXMLLoader.hpp"
+#include "AstUtil/Logger.hpp"
+#include "AstCore/Maneuver.hpp"
+#include "AstCore/Burn.hpp"
+#include "AstCore/BurnImpulsive.hpp"
+#include "AstCore/BurnCollocation.hpp"
+#include "AstCore/BurnFinite.hpp"
+#include "AstCore/BurnLoader.hpp"
 
 
 AST_NAMESPACE_BEGIN
 
 errc_t aLoadManeuver(const Value& dictRoot, Maneuver& maneuver)
 {
-    return 0;
+    errc_t rc;
+    const std::string type = dictRoot["Type"];
+    if(type != "Maneuver")
+    {
+        aError("invalid type, expect 'Maneuver'");
+        return eErrorInvalidParam;
+    }
+    const std::string maneuverType = dictRoot["MnvrType"];
+    const std::string mnvrKey = maneuverType + "Mnvr";
+    SharedPtr<Burn> burn;
+    rc = aLoadBurn(dictRoot[mnvrKey], burn);
+    if(rc || !burn)
+    {
+        aError("failed to load maneuver '%s'", mnvrKey.c_str());
+    }
+    else
+    {
+        burn->setParentScope(&maneuver);    // 设置父作用域为机动，避免内存泄漏与野指针问题
+        maneuver.setBurn(burn);
+    }
+    return eNoError;
 }
 
 errc_t aLoadManeuver(StringView filename, Maneuver& maneuver)

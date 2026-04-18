@@ -1,9 +1,9 @@
 ///
-/// @file      Maneuver.cpp
+/// @file      BurnImpulsive.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-04-15
+/// @date      2026-04-18
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -18,22 +18,31 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "Maneuver.hpp"
+#pragma once
+
+#include "AstGlobal.h"
+#include "AstCore/Burn.hpp"
 
 AST_NAMESPACE_BEGIN
 
-errc_t Maneuver::execute()
-{
-    return 0;
-}
+/*!
+    @addtogroup 
+    @{
+*/
 
-void Maneuver::setBurn(Burn* burn)
-{
-    if(burn)
-        burn_ = burn;
-}
 
+/// @brief 脉冲点火
+class AST_CORE_API BurnImpulsive: public Burn
+{
+public:
+    BurnImpulsive() = default;
+    ~BurnImpulsive() = default;
+private:
+    
+};
+
+
+
+/*! @} */
 
 AST_NAMESPACE_END
-
-

@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "MissionCommand.hpp"
+#include "AstCore/Burn.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -30,14 +31,22 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class Maneuver: public MissionCommand
+class Burn;
+
+/// @brief 机动
+/// @details 机动负责执行任务序列中的机动任务
+class AST_CORE_API Maneuver: public MissionCommand
 {
 public:
     Maneuver() = default;
     ~Maneuver() = default;
 public:
     errc_t execute() override;
+    void setBurn(Burn* burn);
+private:
+    WeakPtr<Burn> burn_;        ///< 发动机点火
 };
+
 
 /*! @} */
 
