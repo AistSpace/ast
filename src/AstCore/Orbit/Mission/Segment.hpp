@@ -1,9 +1,9 @@
 ///
-/// @file      Propagate.hpp
+/// @file      Segment.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-04-15
+/// @date      2026-04-19
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -22,8 +22,6 @@
 
 #include "AstGlobal.h"
 #include "MissionCommand.hpp"
-#include "Segment.hpp"
-
 
 AST_NAMESPACE_BEGIN
 
@@ -32,13 +30,22 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class Propagate: public Segment
+
+/// @brief 任务段
+/// @details 任务段负责执行任务序列中的任务
+/// 参考了GMAT-Architectural-Specification.pdf第26章的Mission Control Sequence Commands
+/// 参考了STK的轨道段MCSSegment
+class AST_CORE_API Segment: public MissionCommand
 {
 public:
-    Propagate() = default;
-    ~Propagate() = default;
+    using MissionCommand::MissionCommand;
+    ~Segment() override = default;
 public:
-    errc_t execute() override;
+    /// @brief 执行任务
+    /// @return 错误码
+    virtual errc_t execute() = 0;
+private:
+    
 };
 
 

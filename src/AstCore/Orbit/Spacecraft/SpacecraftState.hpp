@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstCore/State.hpp"
+#include "AstUtil/Object.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -31,7 +32,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 空间飞行器状态量
-class SpacecraftState
+class SpacecraftState: public Object
 {
 public:
     SpacecraftState() = default;
@@ -106,6 +107,9 @@ protected:
     double tankPressure_{5000};
     double tankTemperature_{293.15};
 };
+
+
+using ScState = SpacecraftState;
 
 /*! @} */
 

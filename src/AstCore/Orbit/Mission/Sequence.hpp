@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "MissionCommand.hpp"
+#include "Segment.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -35,7 +36,7 @@ AST_NAMESPACE_BEGIN
     MCS 的全程是 Mission Command Sequence (任务命令序列) 或者 Mission Control Sequence (任务控制序列)
 */
 
-class AST_CORE_API Sequence: public MissionCommand
+class AST_CORE_API Sequence: public Segment
 {
 public:
     Sequence() = default;

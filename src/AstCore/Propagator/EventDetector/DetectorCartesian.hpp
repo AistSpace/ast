@@ -1,9 +1,9 @@
 ///
-/// @file      Propagate.hpp
+/// @file      DetectorCatesian.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-04-15
+/// @date      2026-04-19
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,9 +21,6 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "MissionCommand.hpp"
-#include "Segment.hpp"
-
 
 AST_NAMESPACE_BEGIN
 
@@ -31,16 +28,6 @@ AST_NAMESPACE_BEGIN
     @addtogroup 
     @{
 */
-
-class Propagate: public Segment
-{
-public:
-    Propagate() = default;
-    ~Propagate() = default;
-public:
-    errc_t execute() override;
-};
-
 
 
 

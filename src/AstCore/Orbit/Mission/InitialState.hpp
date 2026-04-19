@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "MissionCommand.hpp"
 #include "AstCore/SpacecraftState.hpp"
+#include "Segment.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -33,7 +34,7 @@ AST_NAMESPACE_BEGIN
 
 /// @brief 初始状态任务
 /// @details 初始状态任务负责设置初始状态参数，确保任务序列的执行从正确的状态开始
-class AST_CORE_API InitialState: public MissionCommand
+class AST_CORE_API InitialState: public Segment
 {
 public:
     InitialState() = default;

@@ -1,9 +1,9 @@
 ///
-/// @file      Propagate.hpp
+/// @file      ScStateCalculation.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-04-15
+/// @date      2026-04-19
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -21,9 +21,8 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "MissionCommand.hpp"
-#include "Segment.hpp"
-
+#include "AstUtil/ObjectCalculation.hpp"
+#include "AstCore/SpacecraftState.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -32,17 +31,15 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class Propagate: public Segment
+class AST_CORE_API ScStateCalculation: public ObjectCalculation
 {
 public:
-    Propagate() = default;
-    ~Propagate() = default;
-public:
-    errc_t execute() override;
+    Class* getExpectedType() const override {return SpacecraftState::getStaticType();};
+    errc_t calculate(const Object* obj, double& result) override;
+    virtual errc_t calculate(const SpacecraftState& scState, double& result) = 0;
+protected:
+    
 };
-
-
-
 
 /*! @} */
 

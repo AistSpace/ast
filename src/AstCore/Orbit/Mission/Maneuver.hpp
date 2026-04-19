@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "MissionCommand.hpp"
 #include "AstCore/Burn.hpp"
+#include "Segment.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -35,7 +36,7 @@ class Burn;
 
 /// @brief 机动
 /// @details 机动负责执行任务序列中的机动任务
-class AST_CORE_API Maneuver: public MissionCommand
+class AST_CORE_API Maneuver: public Segment
 {
 public:
     Maneuver() = default;

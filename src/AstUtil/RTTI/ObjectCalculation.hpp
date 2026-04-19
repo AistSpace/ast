@@ -1,9 +1,9 @@
 ///
-/// @file      MissionCommand.hpp
+/// @file      ObjectCalculation.hpp
 /// @brief     
 /// @details   
 /// @author    axel
-/// @date      2026-04-15
+/// @date      2026-04-19
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
 /// SpaceAST项目（https://github.com/space-ast/ast）
@@ -31,32 +31,26 @@ AST_NAMESPACE_BEGIN
 */
 
 
-class MissionCommand;
-using PMissianCommand = MissionCommand*;
-using HMissionCommand = SharedPtr<MissionCommand>;
-
-/// @brief 任务命令
-/// @details 任务命令负责执行任务序列中的任务
-/// 参考GMAT的GmatCommand.hpp
-class AST_CORE_API MissionCommand: public Object
+/// @brief 对象计算基类
+/// @details 对象计算基类是所有对象计算类的基类，它定义了对象计算的基本接口
+/// 不同类型的对象计算类通过继承自ObjectCalculation类来实现多态行为
+/// 参考GMATMathSpec.pdf第三章 Calculation Objects
+/// @ingroup RTTI
+class AST_UTIL_API ObjectCalculation : public Object
 {
 public:
-    /// @brief 控制命令
-    enum EControlCommand
-    {
-        eReturn = -999,         ///< 返回到上级
-        eStop = -1999,          ///< 停止任务序列
-        eBreak = -2999,         ///< 跳出当前任务序列
-        eContinue = -3999,      ///< 继续当前任务序列的下一次执行
-    };
-    MissionCommand() = default;
-    ~MissionCommand() override = default;
+    using Object::Object;
+    ~ObjectCalculation() override = default;
 public:
-    /// @brief 执行任务
+    /// @brief 获取期望输入的对象类型
+    /// @return 期望输入的对象类型
+    virtual Class* getExpectedType() const = 0;
+
+    /// @brief 计算结果
+    /// @param obj 要计算的对象
+    /// @param result 计算结果
     /// @return 错误码
-    virtual errc_t execute() = 0;
-private:
-    
+    virtual errc_t calculate(const Object* obj, double& result) = 0;
 };
 
 
