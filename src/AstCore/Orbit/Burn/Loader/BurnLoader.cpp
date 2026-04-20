@@ -32,9 +32,9 @@ AST_NAMESPACE_BEGIN
 errc_t aLoadBurnFinite(const Value &value, BurnFinite &burn)
 {
     const std::string type = value["Type"];
-    if(type != "Maneuver:Collocation")
+    if(type != "Maneuver:Finite")
     {
-        aError("invalid type, expect 'Maneuver:Collocation'");
+        aError("invalid type, expect 'Maneuver:Finite'");
         return eErrorInvalidParam;
     }
     // @todo 加载有限推力点火

@@ -45,6 +45,7 @@ public:
     errc_t execute() override;
     void setCommands(const std::vector<HMissionCommand>& commands);
     void setCommands(std::vector<HMissionCommand>&& commands);
+    const std::vector<HMissionCommand>& getCommands() const;
 private:
     std::vector<HMissionCommand> commands_;     ///< 任务命令序列
 };

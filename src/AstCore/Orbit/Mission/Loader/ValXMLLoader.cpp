@@ -286,7 +286,15 @@ public:
         }
         else if(context.class_ == "DATE")
         {
-            context.value_ = aNewValueString(context.text_);
+            StringView text = aStripAsciiWhitespace(context.text_);
+            if(!text.empty() && !std::isalpha(text.back()))
+            {
+                // 如果没有指定时间系统，则默认是TAI
+                std::string dateString = std::string(text) + " TAI";
+                context.value_ = aNewValueString(dateString);
+            }else{
+                context.value_ = aNewValueString(text);
+            }
         }
         else if(!context.value_)
         {
