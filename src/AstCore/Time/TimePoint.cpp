@@ -137,9 +137,17 @@ errc_t aTimePointParse(StringView str, TimePoint &time)
     {
         time = TimePoint::FromUTC(dttm);
     }
-    else if(timeSystem == "TAIG")
+    else if(timeSystem == "TAI" || timeSystem == "TAIG")
     {
         time = TimePoint::FromTAI(dttm);
+    }
+    else if(timeSystem == "UTC" || timeSystem == "UTCG")
+    {
+        time = TimePoint::FromUTC(dttm);
+    }
+    else if(timeSystem == "TT")
+    {
+        time = TimePoint::FromTT(dttm);
     }
     else
     {
@@ -209,6 +217,13 @@ TimePoint TimePoint::FromTT(const JulianDate &jdTT)
     auto epochTT = epochTTJulianDate;
     auto duration = jdTT - epochTT;
     return {duration.day() * 86400LL, duration.second()};
+}
+
+TimePoint TimePoint::FromTT(const DateTime &dttmTT)
+{
+    JulianDate jdTT{};
+    aDateTimeToJD(dttmTT, jdTT);
+    return FromTT(jdTT);
 }
 
 TimePoint TimePoint::FromTDB(const JulianDate &jdTDB)

@@ -19,9 +19,30 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "MotionMissionCommand.hpp"
+#include "AstSim/MotionProfileVisitor.hpp"
 
 AST_NAMESPACE_BEGIN
 
+
+MotionMissionCommand* MotionMissionCommand::New()
+{
+    return new MotionMissionCommand();
+}
+
+errc_t MotionMissionCommand::makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const
+{
+    return eErrorNotImplemented;
+}
+
+errc_t MotionMissionCommand::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
+{
+    return eErrorNotImplemented;
+}
+
+void MotionMissionCommand::accept(MotionProfileVisitor &visitor)
+{
+    visitor.visit(*this);
+}
 
 
 AST_NAMESPACE_END

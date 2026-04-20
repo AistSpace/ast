@@ -137,6 +137,9 @@ public:
     AST_CORE_API
     static TimePoint FromTT(const JulianDate& jdTT);
 
+    AST_CORE_API
+    static TimePoint FromTT(const DateTime& dttmTT);
+
     /// @brief 从质心动力学时TDB创建时间点
     AST_CORE_API 
     static TimePoint FromTDB(const JulianDate& jdTDB);

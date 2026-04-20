@@ -19,6 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "MotionSGP4.hpp"
+#include "AstSim/MotionProfileVisitor.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -34,7 +35,7 @@ errc_t MotionSGP4::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
 
 void MotionSGP4::accept(MotionProfileVisitor &visitor)
 {
-
+    visitor.visit(*this);
 }
 
 

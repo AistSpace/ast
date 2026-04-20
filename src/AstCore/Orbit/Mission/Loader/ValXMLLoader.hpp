@@ -21,6 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstUtil/SharedPtr.hpp"
 #include "AstScript/Value.hpp"
 
 AST_NAMESPACE_BEGIN
@@ -30,13 +31,19 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
+class Value;
 
 /// @brief 加载值
 /// @param filepath 值文件路径
 /// @param value 加载后的值
 /// @return 错误码
-errc_t aLoadValue(StringView filepath, SharedPtr<Value>& value);
+AST_CORE_API errc_t aLoadValue(StringView filepath, SharedPtr<Value>& value);
 
+/// @brief 加载值
+/// @param file 值文件指针
+/// @param value 加载后的值
+/// @return 错误码
+AST_CORE_API errc_t aLoadValue(FILE* file, SharedPtr<Value>& value);
 
 /*! @} */
 

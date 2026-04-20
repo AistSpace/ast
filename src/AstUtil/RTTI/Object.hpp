@@ -230,6 +230,12 @@ public: // 引用计数
     /// @details 析构对象时，会先将弱引用计数减1，若弱引用计数为0，则会调用析构函数
     void     destruct()
     {
+        #ifndef NDEBUG
+        if(refcnt_ != 0)
+        {
+            printf("object ref count is not 0, can not destruct");
+        }
+        #endif
         assert(refcnt_ == 0);  // 只能直接删除不采用共享引用计数管理的对象
         this->_destruct();
     }

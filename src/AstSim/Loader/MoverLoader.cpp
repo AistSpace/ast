@@ -25,11 +25,15 @@
 #include "MotionJ4AnalyticalSax.hpp"
 #include "MotionHPOPSax.hpp"
 #include "AstCore/STKEphemerisFileParser.hpp"
+#include "AstCore/ValXMLLoader.hpp"
+#include "AstCore/MissionCommandLoader.hpp"
+#include "AstScript/Value.hpp"
 #include "AstSim/MotionBallistic.hpp"
 #include "AstSim/MotionSimpleAscent.hpp"
 #include "AstSim/MotionGreatArc.hpp"
 #include "AstSim/MotionExternalEphemeris.hpp"
 #include "AstSim/MotionSGP4.hpp"
+#include "AstSim/MotionMissionCommand.hpp"
 #include "AstUtil/Literals.hpp"
 #include "AstUtil/StringUtil.hpp"
 
@@ -628,6 +632,45 @@ errc_t _aLoadExternExternalEphemeris(BKVParser& parser, const VehiclePathData& V
     return eNoError;
 }
 
+errc_t _aLoadAstrogator(BKVParser& parser, const VehiclePathData& VehiclePathData, ScopedPtr<MotionProfile>& motionProfile)
+{
+    SharedPtr<Value> value;
+    errc_t rc = aLoadValue(parser.getFile(), value);
+    if(rc || !value)
+    {
+        aError("failed to load astrogator");
+    }
+    else
+    {
+
+        const Value& dictSequence = value->operator[]("MainSEQUENCE");
+        if(!dictSequence.isNull())
+        {
+            auto motionMissionCommand = MotionMissionCommand::New();
+            motionProfile = motionMissionCommand;
+            rc = aLoadSequence(dictSequence, motionMissionCommand->getSequence());
+            if(rc)
+                aError("failed to load MainSEQUENCE");
+        }
+        else
+        {
+            aError("failed to find MainSEQUENCE");
+            return eErrorInvalidParam;
+        }
+    }
+    BKVItemView item;
+    auto token = parser.getNext(item);
+    if(token == BKVParser::eBlockEnd && aEqualsIgnoreCase(item.value(), "Astrogator"))
+    {
+        return eNoError;
+    }
+    else
+    {
+        aError("expected end of Astrogator block");
+        return eErrorInvalidParam;
+    }
+}
+
 errc_t _aLoadPassDefn(BKVParser& parser, Mover& mover)
 {
     BKVItemView item;
@@ -741,6 +784,11 @@ errc_t _aLoadVehiclePath(BKVParser& parser, Mover& mover)
             else if(aEqualsIgnoreCase(item.value(), "StkExternal"))
             {
                 if(errc_t rc = _aLoadExternExternalEphemeris(parser, data, mover.getMotionProfileHandle())){
+                    return rc;
+                }
+            }
+            else if(aEqualsIgnoreCase(item.value(), "Astrogator")){
+                if(errc_t rc = _aLoadAstrogator(parser, data, mover.getMotionProfileHandle())){
                     return rc;
                 }
             }

@@ -20,6 +20,7 @@
 
 #include "ValXMLLoader.hpp"
 #include "AstScript/ValDict.hpp"
+#include "AstScript/Value.hpp"
 #include "AstScript/ScriptAPI.hpp"
 #include "AstUtil/XMLSax.hpp"
 #include "AstUtil/XMLParser.hpp"
@@ -193,10 +194,10 @@ private:
     bool currentIsLeaf_{false};             ///< 是否正在解析叶子元素的文本，用于标识link
 };
 
-errc_t aLoadValue(StringView filepath, SharedPtr<Value>& value)
+
+errc_t aLoadValue(XMLParser& parser, SharedPtr<Value>& value)
 {
     ValXMLSax sax;
-    XMLParser parser(filepath);
     errc_t rc = parser.parse(sax);
     value = sax.getValue();
 #if 0
@@ -208,6 +209,23 @@ errc_t aLoadValue(StringView filepath, SharedPtr<Value>& value)
     return rc;
 }
 
+
+
+errc_t aLoadValue(StringView filepath, SharedPtr<Value>& value)
+{
+    XMLParser parser(filepath);
+    return aLoadValue(parser, value);
+}
+
+
+errc_t aLoadValue(FILE* file, SharedPtr<Value>& value)
+{
+    if(!file)
+        return eErrorNullInput;
+    XMLParser parser;
+    parser.setBorrowedFile(file);
+    return aLoadValue(parser, value);
+}
 
 AST_NAMESPACE_END
 

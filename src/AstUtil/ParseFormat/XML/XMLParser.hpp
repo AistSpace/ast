@@ -62,7 +62,7 @@ public:
 
     XMLParser();
     XMLParser(StringView filepath);
-    ~XMLParser() = default;
+    ~XMLParser();
 
     /// @brief 解析XML文档
     errc_t parse(XMLSax& sax);
@@ -105,7 +105,11 @@ private:
 
     /// @brief 确保缓冲区至少有n个字符
     StringView ensure(size_t n);
-    
+
+    /// @brief 跳转到当前解析位置
+    /// @details 确保解析位置与文件指针位置一致，归还缓冲区剩余空间
+    /// @param pos 解析位置
+    void seekFileToCurrent();
 
 private: // XML 片段解析函数
 

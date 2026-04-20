@@ -21,6 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstCore/Sequence.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -38,8 +39,9 @@ class MissionModerator
 public:
     MissionModerator() = default;
     ~MissionModerator() = default;
+    Sequence& getSequence() { return sequence_; }
 private:
-    
+    Sequence sequence_; ///< 任务序列
 };
 
 /*! @} */

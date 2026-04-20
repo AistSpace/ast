@@ -34,11 +34,18 @@ AST_NAMESPACE_BEGIN
 
 /// @brief 运动任务命令
 /// @details 运动任务命令是运动任务的集合，每个任务都有自己的参数和执行顺序
-class MotionMissionCommand: public MotionProfile
+class AST_SIM_API MotionMissionCommand: public MotionProfile
 {
 public:
+    static MotionMissionCommand* New();
+
     MotionMissionCommand() = default;
     ~MotionMissionCommand() = default;
+
+    Sequence& getSequence() { return mission_.getSequence(); }
+    errc_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const override;
+    errc_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const override;
+    void accept(MotionProfileVisitor& visitor) override;
 private:
     MissionModerator mission_;      ///< 任务序列协调器
 };

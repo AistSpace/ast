@@ -32,6 +32,7 @@ TEST(ScenarioLoader, LoadScenario)
         GTEST_SKIP();
     
     // 测试加载场景文件
+    auto testLoadScenario = []()
     {
         Scenario scenario;
         StringView scenarioFile = aTestGetConfigValue("STK_SCENARIO_FILE");
@@ -40,11 +41,17 @@ TEST(ScenarioLoader, LoadScenario)
         auto objectCount = ObjectManager::CurrentInstance().getObjectCount();
         EXPECT_GT(objectCount, 0);
         aPrintObjectTree(&scenario);
-    }
+    };
+    testLoadScenario();
+
     // 检查对象是否已经销毁
     {
-        auto objectCount = ObjectManager::CurrentInstance().getObjectCount();
-        EXPECT_EQ(objectCount, 0);
+        auto objectCount1 = ObjectManager::CurrentInstance().getObjectCount();
+        testLoadScenario();
+        auto objectCount2 = ObjectManager::CurrentInstance().getObjectCount();
+        EXPECT_EQ(objectCount2, objectCount1);
+        auto objects = ObjectManager::CurrentInstance().getAllObjects();
+        EXPECT_EQ(objects.size(), objectCount2);
     }
 }
 

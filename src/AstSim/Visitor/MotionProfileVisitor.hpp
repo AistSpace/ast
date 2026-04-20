@@ -37,6 +37,8 @@ class MotionGreatArc;
 class MotionExternalEphemeris;
 class MotionJ2Analytical;
 class MotionJ4Analytical;
+class MotionSGP4;
+class MotionMissionCommand;
 
 class MotionProfileVisitor
 {
@@ -50,6 +52,8 @@ public:
     virtual void visit(MotionExternalEphemeris& profile) = 0;
     virtual void visit(MotionJ2Analytical& profile) = 0;
     virtual void visit(MotionJ4Analytical& profile) = 0;
+    virtual void visit(MotionSGP4& profile) = 0;
+    virtual void visit(MotionMissionCommand& profile) = 0;
 };
 
 /*! @} */
