@@ -50,14 +50,16 @@ class AST_UTIL_API XMLParser : public BaseParser
 public:
     enum EToken
     {
-        eError = -1,        ///< 错误
-        eStartDocument,     ///< 文档开始
-        eEndDocument,       ///< 文档结束
-        eStartElement,      ///< 元素开始
-        eEndElement,        ///< 元素结束
-        eCharacters,        ///< 文本内容
-        eComment,           ///< 注释
-        eUnknown,           ///< 未知元素
+        eError = -1,               ///< 错误
+        eStartDocument,            ///< 文档开始
+        eEndDocument,              ///< 文档结束
+        eStartElement,             ///< 元素开始
+        eEndElement,               ///< 元素结束
+        eCharacters,               ///< 文本内容
+        eComment,                  ///< 注释
+        eDocTypeDecl,              ///< DOCTYPE声明
+        eProcessingInstruction,    ///< 处理指令
+        // eUnknown,                  ///< 未知元素
     };
 
     XMLParser();
@@ -119,7 +121,7 @@ private: // XML 片段解析函数
     EToken parseComment();
     EToken parseCDATA();
     EToken parsePI();
-    EToken parseDOCTYPEDecl();
+    EToken parseDocTypeDecl();
     
     /// @brief 解析直到指定字符或序列
     StringView parseUntil(char stopChar);

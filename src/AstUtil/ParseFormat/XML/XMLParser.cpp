@@ -36,8 +36,8 @@ XMLParser::~XMLParser()
 
 errc_t XMLParser::parse(XMLSax& sax) 
 {
-    pos_ = 0;
-    buffer_.clear();
+    // pos_ = 0;
+    // buffer_.clear();
     int depth = 0;
     
     if(!isOpen()) {
@@ -76,6 +76,7 @@ errc_t XMLParser::parse(XMLSax& sax)
             sax.endElement(getName());
             break;
         default:
+            // do nothing
             break;
         }
         if(depth == 0 && token == eEndElement)
@@ -258,17 +259,16 @@ XMLParser::EToken XMLParser::parseCDATA()
     return eCharacters;
 }
 
-// 跳过处理指令 <? ... ?>
+// 处理指令 <? ... ?>
 XMLParser::EToken XMLParser::parsePI() 
 {
     advance(2);
     parseUntil("?>");
-    // 处理指令通常不产生事件，直接请求下一个 Token
-    return eUnknown;
+    return eProcessingInstruction;
 }
 
-// 跳过 DOCTYPE 声明
-XMLParser::EToken XMLParser::parseDOCTYPEDecl() 
+// DOCTYPE 声明
+XMLParser::EToken XMLParser::parseDocTypeDecl() 
 {
     // 消耗 "<!DOCTYPE"
     advance(9);
@@ -281,7 +281,7 @@ XMLParser::EToken XMLParser::parseDOCTYPEDecl()
         if (c == '<') depth++;
         else if (c == '>') depth--;
     }
-    return getNext();
+    return eDocTypeDecl;
 }
 
 StringView XMLParser::parseUntil(char stopChar) 
@@ -364,15 +364,12 @@ XMLParser::EToken XMLParser::getNext()
                 } else if (str.substr(2, 7) == "[CDATA[") {
                     return parseCDATA();
                 } else if (str.substr(2, 9) == "DOCTYPE") {
-                    // DOCTYPE 忽略
-                    parseDOCTYPEDecl();
-                    continue;
+                    return parseDocTypeDecl();
                 } else {
                     return eError;
                 }
             } else if (c2 == '?') {
-                parsePI();
-                continue;
+                return parsePI();
             } else if (c2 == '/') {
                 return parseEndElement();
             } else {

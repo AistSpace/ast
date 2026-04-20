@@ -19,6 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "UnitManager.hpp"
+#include "AstUtil/Logger.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -53,9 +54,10 @@ UnitManager::UnitManager()
 
     addUnit(units::s);
     addUnit("sec", units::s);
-    addUnit(units::h);
+    addUnit("h", units::h);
+    addUnit("hour", units::hour);
+    addUnit("hr", units::hour);
     addUnit(units::day);
-    addUnit(units::hour);
     addUnit(units::minute);
     addUnit(units::ms);
 
@@ -106,6 +108,7 @@ errc_t UnitManager::_addUnit(const std::string &name, const Unit &unit)
 {
     if (units_.find(name) != units_.end())
     {
+        aError("unit %s already exists", name.c_str());
         return eErrorInvalidParam;
     }
     units_[name] = new Unit(unit);

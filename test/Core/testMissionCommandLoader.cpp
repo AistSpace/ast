@@ -22,10 +22,35 @@
 #include "AstCore/MissionCommand.hpp"
 #include "AstCore/InitialState.hpp"
 #include "AstCore/SpacecraftState.hpp"
+#include "AstCore/ValXMLLoader.hpp"
+#include "AstScript/ValDict.hpp"
 #include "AstTest/Test.h"
 
 
 AST_USING_NAMESPACE;
+
+
+TEST(MissionCommandLoaderTest, LoadValue)
+{
+    SharedPtr<Value> value;
+    std::vector<std::string> files = aTestGetConfigStringVector("STK_VALUE_FILES");
+    for(auto& file: files){
+        printf("loading file: %s\n", file.c_str());
+        errc_t rc = aLoadValue(file, value);
+        EXPECT_TRUE(value != nullptr);
+        EXPECT_EQ(rc, eNoError);
+        printf("loaded file: %s\n", file.c_str());
+        if(value)
+        {
+            auto dict = value->toValDict();
+            if(dict)
+            {
+                std::string dictStr = dict->toJsonString(2);
+                printf("%s\n", dictStr.c_str());
+            }
+        }
+    }
+}
 
 TEST(MissionCommandLoaderTest, LoadInitialState)
 {

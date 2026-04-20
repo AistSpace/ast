@@ -28,13 +28,81 @@
 #include "AstUtil/Escape.hpp"
 #include "AstUtil/Quantity.hpp"
 #include "AstUtil/QuantityParser.hpp"
+#include "AstUtil/UnitParser.hpp"
 #include <stack>
 #include <vector>
 
 AST_NAMESPACE_BEGIN
 
+namespace{
 
-class ValXMLSax: public XMLSax
+struct ParseContext{
+    std::string name_;
+    std::string class_;
+    std::string text_;
+    SharedPtr<Value> value_;
+};
+
+class ValXMLSaxBase: public XMLSax
+{
+public:
+    Value* getValue()
+    {
+        return value_.get();
+    }
+protected:
+    ParseContext& getCurrentContext()
+    {
+        if(currentDepth_ >= stack_.size())
+        {
+            stack_.resize(currentDepth_ + 1);
+        }
+        return stack_[currentDepth_];
+    }
+    ParseContext* getParentContext()
+    {
+        if(currentDepth_ == 0)
+            return nullptr;
+        size_t parentDepth = currentDepth_ - 1;
+        if(parentDepth >= stack_.size())
+        {
+            stack_.resize(parentDepth + 1);
+        }
+        return &stack_[parentDepth];
+    }
+    /// @brief 将当前值插入到父上下文的字典中
+    void insertCurrentValueToParentDict()
+    {
+        ParseContext& context = getCurrentContext();
+        ParseContext* parentContextPtr = getParentContext();
+        if(!parentContextPtr)
+        {
+            // aError("parent context is not found");
+            return;
+        }
+        ParseContext& parentContext = *parentContextPtr;
+        ValDict* parentDict{nullptr};
+        if(!parentContext.value_)
+        {
+            parentDict = ValDict::New();
+            parentContext.value_ = parentDict;
+        }else{
+            parentDict = parentContext.value_->toValDict();
+        }
+        if(parentDict)
+        {
+            parentDict->insert(context.name_, context.value_.get());
+        }else{
+            aError("parent element is not a object or container");
+        }
+    }
+protected:
+    size_t currentDepth_{0};                ///< 当前解析深度，1表示根元素
+    std::vector<ParseContext> stack_;       ///< 解析上下文栈
+    SharedPtr<Value> value_;                ///< 当前解析到的值
+};
+
+class ValXMLSax: public ValXMLSaxBase
 {
 public:
     void startDocument() override
@@ -47,8 +115,7 @@ public:
     }
     void startElement(StringView element, const AttributeList& attrs) override
     {
-        currentDepth_ ++;
-        
+        currentDepth_ ++;  // 这里应该先增加深度，再处理元素，保证处理元素内部text时的深度与元素深度一致
         if(inSTKObjectScope_){
             if(element == "OBJECT")
             {
@@ -59,13 +126,13 @@ public:
             }else{
                 aError("unknown element '%.*s', expect 'OBJECT'", element.size(), element.data());
             }
-        }else if(element == "STKOBJECT")
+        }
+        else if(element == "STKOBJECT")
         {
             inSTKObjectScope_ = true;
         }else {
             aError("root element 'STKOBJECT' is not found");
         }
-
     }
     void endElement(StringView element) override
     {
@@ -115,26 +182,17 @@ public:
             {
                 context.value_ = ValDict::New();
             }
-            ParseContext& parentContext = getParentContext();
-            if(parentContext.class_ == "link")
+            ParseContext* parentContextPtr = getParentContext();
+            if(parentContextPtr)
             {
-                parentContext.value_ = context.value_;
-            }
-            else
-            {
-                ValDict* parentDict{nullptr};
-                if(!parentContext.value_)
+                ParseContext& parentContext = *parentContextPtr;
+                if(parentContext.class_ == "link")
                 {
-                    parentDict = ValDict::New();
-                    parentContext.value_ = parentDict;
-                }else{
-                    parentDict = parentContext.value_->toValDict();
+                    parentContext.value_ = context.value_;
                 }
-                if(parentDict)
+                else
                 {
-                    parentDict->insert(context.name_, context.value_.get());
-                }else{
-                    aError("parent element is not a object or container");
+                    insertCurrentValueToParentDict();
                 }
             }
         }else
@@ -142,64 +200,137 @@ public:
             aError("unknown element '%.*s', expect 'OBJECT'", element.size(), element.data());
         }
         currentDepth_ --;
-        
     }
     void characters(StringView text) override
     {
         ParseContext& context = getCurrentContext();
         context.text_ += std::string(text);
     }
-    void comment(StringView text)override
+    void comment(StringView text) override
     {
         // pass
     }
-    void error(StringView msg)override
+    void error(StringView msg) override
     {
         // pass
     }
-    Value* getValue()
-    {
-        return value_.get();
-    }
-private:
-    struct ParseContext{
-        std::string name_;
-        std::string class_;
-        std::string text_;
-        SharedPtr<Value> value_;
-    };
 
-    ParseContext& getCurrentContext()
-    {
-        if(currentDepth_ >= stack_.size())
-        {
-            stack_.resize(currentDepth_ + 1);
-        }
-        return stack_[currentDepth_];
-    }
-    ParseContext& getParentContext()
-    {
-        size_t parentDepth = currentDepth_ - 1;
-        if(parentDepth >= stack_.size())
-        {
-            stack_.resize(parentDepth + 1);
-        }
-        return stack_[parentDepth];
-    }
 private:
-    size_t currentDepth_{0};                ///< 当前解析深度，1表示根元素
-    std::vector<ParseContext> stack_;       ///< 解析上下文栈
-    SharedPtr<Value> value_;                ///< 当前解析到的值
     bool inSTKObjectScope_{false};          ///< 是否在STKOBJECT元素范围内
-    bool currentIsLeaf_{false};             ///< 是否正在解析叶子元素的文本，用于标识link
 };
 
 
+class ValXMLSax2: public ValXMLSaxBase
+{
+public:
+    void startDocument() override
+    {
+
+    }
+    void endDocument() override
+    {
+        if(stack_.size() > 1)
+        {
+            value_ = stack_[1].value_;
+        }
+    }
+    void startElement(StringView element, const AttributeList& attributes) override
+    {
+        currentDepth_ ++; // 这里应该先增加深度，再处理元素，保证处理元素内部text时的深度与元素深度一致
+        ParseContext& context = getCurrentContext();
+        context = {};
+        context.name_ = attributes.get("name").toString();
+        context.class_ = std::string(element);
+        if(element == "QUANTITY")
+        {
+            context.name_ = attributes.get("Unit").toString();
+        }
+    }
+    void endElement(StringView element) override
+    {
+        ParseContext& context = getCurrentContext();
+        ParseContext* parentContextPtr = getParentContext();
+        if(context.class_ == "VAR")
+        {
+            insertCurrentValueToParentDict();
+        }
+        else if(context.class_ == "INT")
+        {
+            context.value_ = aNewValueInt(aParseInt(context.text_));
+        }
+        else if(context.class_ == "REAL")
+        {
+            if(parentContextPtr && parentContextPtr->class_ == "QUANTITY"){
+                parentContextPtr->text_ = context.text_;
+            }else{
+                context.value_ = aNewValueDouble(aParseDouble(context.text_));
+            }
+        }
+        else if(context.class_ == "QUANTITY")
+        {
+            Unit unit;
+            errc_t rc = aUnitParse(context.name_, unit);
+            if(rc){
+                aError("failed to parse unit '%s'", context.name_.c_str());
+            }
+            double magnitude = aParseDouble(context.text_);
+            context.value_ = aNewValueQuantity(Quantity(magnitude, unit));
+        }
+        else if(context.class_ == "BOOL")
+        {
+            context.value_ = aNewValueBool(aParseBool(context.text_));
+        }
+        else if(context.class_ == "STRING")
+        {
+            context.value_ = aNewValueString(aUnquote(context.text_));
+        }
+        else if(context.class_ == "DATE")
+        {
+            context.value_ = aNewValueString(context.text_);
+        }
+        else if(!context.value_)
+        {
+            context.value_ = ValDict::New();
+        }
+        
+        if(parentContextPtr)
+        {
+            if(parentContextPtr->class_ == "VAR" || parentContextPtr->class_ == "LINKTOOBJ")
+            {
+                parentContextPtr->value_ = context.value_;
+            }
+        }
+        currentDepth_ --;
+    }
+    void characters(StringView text) override
+    {
+        ParseContext& context = getCurrentContext();
+        context.text_ += std::string(text);
+    }
+private:
+    
+};
+
+}
+
 errc_t aLoadValue(XMLParser& parser, SharedPtr<Value>& value)
 {
-    ValXMLSax sax;
-    errc_t rc = parser.parse(sax);
-    value = sax.getValue();
+    errc_t rc;
+    auto token = parser.getNext();
+    if(token == XMLParser::eComment)
+    {
+        ValXMLSax sax;
+        rc = parser.parse(sax);
+        value = sax.getValue();
+    }else if(token == XMLParser::eProcessingInstruction)
+    {
+        ValXMLSax2 sax;
+        rc = parser.parse(sax);
+        value = sax.getValue();
+    }else{
+        aError("invalid XML format: expected comment or processing instruction at the beginning");
+        return eErrorInvalidFile;
+    }
 #if 0
     if(auto dict = value->toValDict()){
         std::string json = dict->toJsonString(2);
