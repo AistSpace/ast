@@ -33,12 +33,14 @@ MotionExternalEphemeris* MotionExternalEphemeris::New()
 
 errc_t MotionExternalEphemeris::makeEphemerisSpec(ScopedPtr<Ephemeris> &eph) const
 {
-    return errc_t();
+    A_UNUSED(eph);
+    return eErrorNotImplemented;
 }
 
 errc_t MotionExternalEphemeris::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
 {
-    return errc_t();
+    A_UNUSED(eph);
+    return eErrorNotImplemented;
 }
 
 void MotionExternalEphemeris::accept(MotionProfileVisitor &visitor)
