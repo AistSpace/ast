@@ -89,6 +89,9 @@ namespace units
     extern AST_UTIL_API Unit m3;        ///< 立方米
     extern AST_UTIL_API Unit L;         ///< 升
     
+    extern AST_UTIL_API Unit Pa;        ///< 帕斯卡
+
+    extern AST_UTIL_API Unit K;         ///< 开氏温度
 };
 
 
@@ -388,6 +391,12 @@ public:
     static Unit Liter()
     {
         return Unit("L", 0.001, EDimension::eVolume);
+    }
+
+    /// @brief 帕斯卡单位（压力量纲）
+    static Unit Pascal()
+    {
+        return Unit("Pa", 1.0, EDimension::ePressure);
     }
 
 public:

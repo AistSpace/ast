@@ -192,6 +192,11 @@ AST_SCRIPT_CAPI Value* aNewValueBool(bool value);
 /// @warning 返回的 `Value*` 指针由调用者拥有，需要管理其生命周期
 AST_SCRIPT_CAPI Value* aNewValueDouble(double value);
 
+/// @brief 创建字典值对象
+/// @warning 返回的指针由调用者拥有，需要管理其生命周期
+/// @return 字典值对象
+AST_SCRIPT_API Value* aNewValueDict();
+
 class Quantity;
 
 
@@ -242,6 +247,10 @@ AST_SCRIPT_CAPI bool aValueIsInt(Value* value);
 /// @return 是否为算术值
 AST_SCRIPT_CAPI bool aValueIsArithmetic(Value* value);
 
+/// @brief 判断值对象是否为字符串值
+/// @param value 值对象
+/// @return 是否为字符串值
+AST_SCRIPT_CAPI bool aValueIsString(Value* value);
 
 /// @brief 判断值对象是否为量值
 /// @param value 值对象
@@ -394,6 +403,20 @@ A_ALWAYS_INLINE Value* aNewValue(StringView value)
 {
     return aNewValueString(value);
 }
+
+A_ALWAYS_INLINE Value* aNewValue(const std::string& value)
+{
+    return aNewValueString(value);
+}
+
+A_ALWAYS_INLINE Value* aNewValue(const char* value)
+{
+    return aNewValueString(value);
+}
+
+// 通过模板捕获所有其他类型并删除，防止隐式转换为 `bool` 类型
+template<typename T>
+Value* aNewValue(T) = delete;
 
 /*! @} */
 

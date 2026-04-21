@@ -42,9 +42,7 @@ public:
     /// @brief 构造函数
     /// @param func 被调用的函数表达式
     /// @param args 调用参数列表
-    ExprCall(Expr* func, const std::vector<SharedPtr<Expr>>& args)
-        : func_(func), args_(args)
-    {}
+    ExprCall(Expr* func, const std::vector<SharedPtr<Expr>>& args);
     
     /// @brief 求值
     /// @return Value* 求值结果

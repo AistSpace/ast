@@ -101,6 +101,10 @@ public:
     /// @brief 设置参考坐标系
     void setFrame(Frame* frame);
 
+    /// @brief 设置参考坐标系
+    /// @param frameName 坐标系名称
+    errc_t setFrameByName(StringView frameName);
+
     /// @brief 改变参考坐标系
     /// @param frame 新的参考坐标系
     /// @return errc_t 错误码

@@ -22,9 +22,14 @@
 
 #include "AstGlobal.h"
 #include "AstScript/Expr.hpp"
+#include "AstScript/ScriptAPI.hpp"
+#include <map>
 
 AST_NAMESPACE_BEGIN
 
+
+class ValDict;
+using ValueMapType = std::map<std::string, SharedPtr<Value>>;
 
 /// @brief 值对象基类
 /// @details 
@@ -32,7 +37,7 @@ AST_NAMESPACE_BEGIN
 /// 值对象用于表示表达式的求值结果，可以是各种类型的数据，如整数、浮点数、字符串、布尔值等。
 /// 值对象的特点是“求值的结果等于自身”
 /// @ingroup Script
-class Value: public Expr
+class AST_SCRIPT_API Value: public Expr
 {
 public:
     using Expr::Expr;
@@ -43,7 +48,33 @@ public:
     
     /// @brief 设置值
     errc_t setValue(Value*) final{return eErrorReadonly;}
-    
+public:
+    void insert(const std::string& name, Value* value);
+    template<typename T>
+    void insert(const std::string& name, T value)
+    {
+        insert(name, aNewValue(value));
+    }
+    Value& operator[](const std::string& name);
+    const Value& operator[](const std::string& name) const;
+    Value& operator[](const char* name);
+    const Value& operator[](const char* name) const;
+    Value& operator[](size_t index);
+    const Value& operator[](size_t index) const;
+    bool isNull() const;
+    std::string toString() const;
+    double toDouble() const;
+    int toInt() const;
+    bool toBool() const;
+    operator std::string() const;
+    operator double() const;
+    operator int() const;
+    operator bool() const;
+    static Value& NullValue();
+    ValDict* toValDict() const;
+    const ValueMapType& items() const;
+private:
+
 };
 
 AST_NAMESPACE_END

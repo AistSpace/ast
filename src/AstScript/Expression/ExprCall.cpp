@@ -22,6 +22,12 @@
 
 AST_NAMESPACE_BEGIN
 
+ExprCall::ExprCall(Expr *func, const std::vector<SharedPtr<Expr>> &args)
+    : func_(func), args_(args)
+{
+
+}
+
 
 Value* ExprCall::eval() const
 {

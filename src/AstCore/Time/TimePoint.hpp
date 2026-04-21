@@ -119,11 +119,15 @@ public:
 
     /// @brief 从UTC日期时间创建时间点
     AST_CORE_API
-    static TimePoint FromUTC(const DateTime& dttmUTC);
+    static TimePoint FromUTC(int year, int month, int day, int hour, int minute, double second);
 
     /// @brief 从UTC日期时间创建时间点
     AST_CORE_API
-    static TimePoint FromUTC(int year, int month, int day, int hour, int minute, double second);
+    static TimePoint FromUTC(const DateTime& dttmUTC);
+
+    /// @brief 从原子时TAI日期时间创建时间点
+    AST_CORE_API
+    static TimePoint FromTAI(const DateTime& dttmTAI);
 
     /// @brief 从原子时TAI创建时间点
     AST_CORE_API 
@@ -132,6 +136,9 @@ public:
     /// @brief 从地球时TT创建时间点
     AST_CORE_API
     static TimePoint FromTT(const JulianDate& jdTT);
+
+    AST_CORE_API
+    static TimePoint FromTT(const DateTime& dttmTT);
 
     /// @brief 从质心动力学时TDB创建时间点
     AST_CORE_API 
@@ -149,11 +156,8 @@ public:
     /// @brief 从字符串解析时间点
     /// @param str 时间点字符串
     /// @return TimePoint 解析后的时间点对象
-    static TimePoint Parse(StringView str){
-        TimePoint time;
-        aTimePointParse(str, time);
-        return time;
-    }
+    AST_CORE_API
+    static TimePoint Parse(StringView str);
 
 public:
     /// @brief 时间点的整数秒数部分

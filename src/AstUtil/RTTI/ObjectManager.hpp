@@ -91,6 +91,9 @@ public:
     /// @return 对象节点指针
     ObjectNode* getObjectNode(Object* obj);
 
+    /// @brief 获取所有对象
+    /// @return 所有对象指针向量
+    std::vector<Object*> getAllObjects();
 protected:
     friend class Object;
     errc_t removeNode(uint32_t index);

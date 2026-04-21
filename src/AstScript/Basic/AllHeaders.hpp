@@ -29,6 +29,7 @@
 #include "AstScript/ValQuantity.hpp"
 #include "AstScript/ValNull.hpp"
 #include "AstScript/ValRange.hpp"
+#include "AstScript/ValDict.hpp"
 #include "AstScript/Variable.hpp"
 #include "AstScript/OpBin.hpp"
 #include "AstScript/OpAssign.hpp"

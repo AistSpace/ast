@@ -6,5 +6,5 @@
     add_headerfiles("**.h", {prefixdir="AstCore"})
     add_defines("AST_BUILD_LIB_CORE")
     -- add_extrafiles("xmake.lua")    
-    add_deps("AstUtil", "AstMath", "AstWeather")
+    add_deps("AstUtil", "AstMath", "AstWeather", "AstScript")
     

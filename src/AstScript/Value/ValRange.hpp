@@ -30,7 +30,7 @@ AST_NAMESPACE_BEGIN
 /// @details   表示一个范围值，包含起始值、结束值和步长。
 /// @todo      目前只支持浮点数类型的范围值
 /// @ingroup Script
-class ValRange : public Value
+class AST_SCRIPT_API ValRange : public Value
 {
 public:
     AST_EXPR(ValRange)

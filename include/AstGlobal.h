@@ -256,6 +256,8 @@ typedef enum EError
     eErrorInvalidParam,     ///< 非法输入参数
     eErrorNotInit,          ///< 没有初始化
     eErrorInvalidFile,      ///< 文件格式错误
+    eErrorInvalidType,      ///< 类型错误
+    eErrorInvalidValue,     ///< 值错误
     eErrorParse,            ///< 解析错误
     eErrorReadonly,         ///< 只读属性
     eErrorMaxIter,          ///< 最大迭代次数
@@ -263,6 +265,7 @@ typedef enum EError
     eErrorOutOfRange,       ///< 超出范围
     eErrorNotFound,         ///< 未找到
     eErrorNotImplemented,   ///< 未实现
+    eErrorUnsupported,      ///< 不支持的类型
 } AEError;
 
 
@@ -324,7 +327,6 @@ typedef StringViewBasic<char>  StringView;
 class Color;                 ///< 颜色
 
 class Quaternion;            ///< 四元数
-
 class Euler;                 ///< 欧拉角
 
 class CartState;             ///< 直角坐标
@@ -338,20 +340,25 @@ class TimeInterval;         ///< 时间段
 class JulianDate;           ///< 儒略日
 class ModJulianDate;        ///< 简约儒略日
 
-class System;
-class Axes;
-class Point;
-class CelestialBody;
-using Body = CelestialBody;
+class Frame;                 ///< 坐标系
+class Axes;                  ///< 坐标轴
+class Point;                 ///< 坐标点
+class CelestialBody;         ///< 天体
+using Body = CelestialBody;  
 
-class EventTime;
-class EventInterval;
+class EventTime;             ///< 事件时间
+class EventInterval;         ///< 事件时间段
 
 class Identifier;           ///< 标识符
+class Value;                ///< 值
+class Expr;                 ///< 表达式
+class Variable;             ///< 变量
+
 class BKVParser;            ///< BKV解析器
 
-class Dimension;
-class Unit;
+class Dimension;            ///< 量纲
+class Unit;                 ///< 单位
+class Quantity;             ///< 数量值
 
 #endif
 

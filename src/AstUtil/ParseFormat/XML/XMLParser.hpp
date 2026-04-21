@@ -24,6 +24,7 @@
 #include "AstUtil/BaseParser.hpp"
 #include "AstUtil/BKVItemView.hpp"
 #include "AstUtil/XMLNode.hpp"
+#include "AstUtil/XMLSax.hpp"
 #include <string>
 #include <vector>
 #include <memory>
@@ -49,19 +50,21 @@ class AST_UTIL_API XMLParser : public BaseParser
 public:
     enum EToken
     {
-        eError = -1,        ///< 错误
-        eStartDocument,     ///< 文档开始
-        eEndDocument,       ///< 文档结束
-        eStartElement,      ///< 元素开始
-        eEndElement,        ///< 元素结束
-        eCharacters,        ///< 文本内容
-        eComment,           ///< 注释
-        eUnknown,           ///< 未知元素
+        eError = -1,               ///< 错误
+        eStartDocument,            ///< 文档开始
+        eEndDocument,              ///< 文档结束
+        eStartElement,             ///< 元素开始
+        eEndElement,               ///< 元素结束
+        eCharacters,               ///< 文本内容
+        eComment,                  ///< 注释
+        eDocTypeDecl,              ///< DOCTYPE声明
+        eProcessingInstruction,    ///< 处理指令
+        // eUnknown,                  ///< 未知元素
     };
 
     XMLParser();
     XMLParser(StringView filepath);
-    ~XMLParser() = default;
+    ~XMLParser();
 
     /// @brief 解析XML文档
     errc_t parse(XMLSax& sax);
@@ -82,7 +85,7 @@ public:
     StringView getComment() const{return nameOrText_;}
     /// @brief 获取属性列表
     /// @return 属性列表
-    const std::vector<BKVItemView>& getAttributes() const{return attributes_;}
+    const XMLSax::AttributeList& getAttributes() const{return attributes_;}
 protected:
     void setName(StringView name){nameOrText_ = name;}
     void setText(StringView text){nameOrText_ = text;}
@@ -104,7 +107,11 @@ private:
 
     /// @brief 确保缓冲区至少有n个字符
     StringView ensure(size_t n);
-    
+
+    /// @brief 跳转到当前解析位置
+    /// @details 确保解析位置与文件指针位置一致，归还缓冲区剩余空间
+    /// @param pos 解析位置
+    void seekFileToCurrent();
 
 private: // XML 片段解析函数
 
@@ -114,7 +121,7 @@ private: // XML 片段解析函数
     EToken parseComment();
     EToken parseCDATA();
     EToken parsePI();
-    EToken parseDOCTYPEDecl();
+    EToken parseDocTypeDecl();
     
     /// @brief 解析直到指定字符或序列
     StringView parseUntil(char stopChar);
@@ -128,9 +135,10 @@ private: // XML 片段解析函数
 private:
     size_t pos_{0};                        ///< 当前解析位置
     std::vector<char> buffer_;             ///< 缓冲区
-    std::vector<BKVItemView> attributes_;  ///< 属性列表
+    XMLSax::AttributeList attributes_;     ///< 属性列表
     StringView nameOrText_;                ///< 元素名称或文本内容
     bool selfClosingTag_{false};           ///< 自闭合标签标志
+    std::string unescapedText_;            ///< 未转义的文本内容
 };
 
 

@@ -27,7 +27,7 @@ AST_NAMESPACE_BEGIN
 
 /// @brief 整数值
 /// @ingroup Script
-class ValInt: public ValScalar<int>
+class AST_SCRIPT_API ValInt: public ValScalar<int>
 {
 public:
     AST_EXPR(ValInt)

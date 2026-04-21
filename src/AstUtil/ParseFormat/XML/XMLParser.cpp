@@ -2,12 +2,14 @@
 #include "AstUtil/XMLSax.hpp"
 #include "AstUtil/XMLNode.hpp"
 #include "AstUtil/XMLDomSax.hpp"
+#include "AstUtil/Escape.hpp"
 #include <string>
 #include <sstream>
+#include "XMLParser.hpp"
 
 AST_NAMESPACE_BEGIN
 
-#define _AST_XML_DEFAULT_BUFFER_SIZE 1024
+#define _AST_XML_DEFAULT_BUFFER_SIZE 4096 
 
 
 XMLParser::XMLParser() 
@@ -24,10 +26,19 @@ XMLParser::XMLParser(StringView filepath)
     
 }
 
+XMLParser::~XMLParser()
+{
+    if(isOpen())
+    {
+        seekFileToCurrent();
+    }
+}
+
 errc_t XMLParser::parse(XMLSax& sax) 
 {
-    pos_ = 0;
-    buffer_.clear();
+    // pos_ = 0;
+    // buffer_.clear();
+    int depth = 0;
     
     if(!isOpen()) {
         aError("failed to open file");
@@ -51,6 +62,7 @@ errc_t XMLParser::parse(XMLSax& sax)
             sax.startDocument();
             break;
         case eStartElement:
+            depth++;
             sax.startElement(getName(), getAttributes());
             break;
         case eCharacters:
@@ -60,9 +72,16 @@ errc_t XMLParser::parse(XMLSax& sax)
             sax.comment(getText());
             break;
         case eEndElement:
+            depth--;
             sax.endElement(getName());
             break;
         default:
+            // do nothing
+            break;
+        }
+        if(depth == 0 && token == eEndElement)
+        {
+            this->seekFileToCurrent();  // 确保解析位置与文件指针位置一致，归还缓冲区剩余空间
             break;
         }
     }
@@ -100,6 +119,9 @@ XMLParser::EToken XMLParser::parseStartElement()
 {
     advance(1);
     StringView content = parseUntil('>');
+    unescapedText_.clear();
+    aUnescapeXML(content, unescapedText_);
+    content = unescapedText_;
     
     // 清空之前的属性
     attributes_.clear();
@@ -208,6 +230,9 @@ XMLParser::EToken XMLParser::parseText()
     StringView text = parseUntil('<');
     advance(-1);
     nameOrText_ = aStripTrailingAsciiWhitespace(text);
+    unescapedText_.clear();
+    aUnescapeXML(nameOrText_, unescapedText_);
+    nameOrText_ = unescapedText_;
     return eCharacters;
 }
 
@@ -234,17 +259,16 @@ XMLParser::EToken XMLParser::parseCDATA()
     return eCharacters;
 }
 
-// 跳过处理指令 <? ... ?>
+// 处理指令 <? ... ?>
 XMLParser::EToken XMLParser::parsePI() 
 {
     advance(2);
     parseUntil("?>");
-    // 处理指令通常不产生事件，直接请求下一个 Token
-    return eUnknown;
+    return eProcessingInstruction;
 }
 
-// 跳过 DOCTYPE 声明
-XMLParser::EToken XMLParser::parseDOCTYPEDecl() 
+// DOCTYPE 声明
+XMLParser::EToken XMLParser::parseDocTypeDecl() 
 {
     // 消耗 "<!DOCTYPE"
     advance(9);
@@ -257,7 +281,7 @@ XMLParser::EToken XMLParser::parseDOCTYPEDecl()
         if (c == '<') depth++;
         else if (c == '>') depth--;
     }
-    return getNext();
+    return eDocTypeDecl;
 }
 
 StringView XMLParser::parseUntil(char stopChar) 
@@ -340,15 +364,12 @@ XMLParser::EToken XMLParser::getNext()
                 } else if (str.substr(2, 7) == "[CDATA[") {
                     return parseCDATA();
                 } else if (str.substr(2, 9) == "DOCTYPE") {
-                    // DOCTYPE 忽略
-                    parseDOCTYPEDecl();
-                    continue;
+                    return parseDocTypeDecl();
                 } else {
                     return eError;
                 }
             } else if (c2 == '?') {
-                parsePI();
-                continue;
+                return parsePI();
             } else if (c2 == '/') {
                 return parseEndElement();
             } else {
@@ -364,8 +385,7 @@ XMLParser::EToken XMLParser::getNext()
                     return eEndElement;
                 }
             }
-            advance(1);
-            return eError;
+            return parseText(); 
         }
         else if(c == '\0')
         {
@@ -390,7 +410,10 @@ errc_t XMLParser::appendBuffer(size_t size)
     buffer_.resize(oldSize + size);
     size_t s = fread(buffer_.data() + oldSize, 1, size, getFile());
     if(s != size)
-        buffer_.resize(oldSize + s);
+    {
+        std::fill_n(buffer_.data() + oldSize + s, size - s, '\0');
+        // buffer_.resize(oldSize + s);
+    }
     return eNoError;
 }
 
@@ -431,5 +454,13 @@ StringView XMLParser::ensure(size_t n)
     return StringView(buffer_.data() + pos_, n);
 }
 
+void XMLParser::seekFileToCurrent()
+{
+    ptrdiff_t offset = pos_ - buffer_.size();
+    if(offset != 0){
+        buffer_.resize(pos_);
+        this->seek(offset, std::ios_base::cur);
+    }
+}
 
 AST_NAMESPACE_END

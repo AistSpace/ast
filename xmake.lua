@@ -106,6 +106,9 @@ add_requires("libf2c", {optional = true})                                       
 add_requires("cminpack", {optional = true, configs = {long_double = true}})     -- 可选的cminpack库，用于求解非线性方程组
 add_requires("cspice", {optional = true})                                       -- 可选的cspice库，用于天文计算
 -- add_requires("libintl", {optional = true})                                      -- 可选的libintl库，用于国际化
+-- add_requires("nlohmann_json", {optional = true})                                -- 可选的nlohmann_json库，用于JSON解析
+-- add_requires("jsoncpp", {optional = true})                                      -- 可选的jsoncpp库，用于JSON解析
+-- add_requires("nodeeditor", {optional = true})                                   -- 可选的nodeeditor库，用于节点编辑器
 
 -- 使用llvm工具链编译（可选）
 -- add_requires("llvm", {optional = true})
@@ -159,6 +162,32 @@ end
 -- else 
 --     add_defines("AST_NO_LIBINTL")
 -- end
+
+-- 添加nlohmann_json库依赖（可选）
+-- if has_package("nlohmann_json") then
+--     add_packages("nlohmann_json")
+--     add_defines("AST_WITH_NLOHMANN_JSON")
+-- else
+--     add_defines("AST_NO_NLOHMANN_JSON")
+-- end
+
+-- 添加jsoncpp库依赖（可选）
+-- if has_package("jsoncpp") then
+--     add_packages("jsoncpp")
+--     add_defines("AST_WITH_JSONCPP")
+-- else
+--     add_defines("AST_NO_JSONCPP")
+-- end
+
+
+-- 添加nodeeditor库依赖（可选）
+-- if has_package("nodeeditor") then
+--     add_packages("nodeeditor")
+--     add_defines("AST_WITH_NODEEDITOR")
+-- else
+--     add_defines("AST_NO_NODEEDITOR")
+-- end
+
 
 
 -- 导入子目录配置

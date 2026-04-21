@@ -230,6 +230,12 @@ public: // 引用计数
     /// @details 析构对象时，会先将弱引用计数减1，若弱引用计数为0，则会调用析构函数
     void     destruct()
     {
+        #ifndef NDEBUG
+        if(refcnt_ != 0)
+        {
+            printf("object ref count is not 0, can not destruct");
+        }
+        #endif
         assert(refcnt_ == 0);  // 只能直接删除不采用共享引用计数管理的对象
         this->_destruct();
     }
@@ -277,7 +283,17 @@ private:
         this->refcnt_ = static_cast<uint32_t>(-1); // 标识对象是否被析构. bit mask indicate whether object is destructed.
         this->decWeakRef();
     }
+protected: // 延迟链接
+    /// @brief 添加延迟链接
+    /// @param link 延迟链接函数
+    template<typename T>
+    void addDelayedLink(T &&link)
+    {
 
+    }
+    /// @brief 解析延迟链接
+    /// @details 解析所有延迟链接
+    void resolveLinks();
 protected:
     friend class ObjectManager;
     virtual ~Object();

@@ -130,6 +130,20 @@ ObjectNode* ObjectManager::getObjectNode(Object* obj)
     return objects_[obj->index_];
 }
 
+
+std::vector<Object*> ObjectManager::getAllObjects()
+{
+    std::vector<Object*> objects;
+    for(auto objNode : objects_)
+    {
+        if(!objNode->expired())
+        {
+            objects.push_back(objNode->object_.get());
+        }
+    }
+    return objects;
+}
+
 errc_t ObjectManager::removeNode(uint32_t index)
 {
     if(index >= objects_.size())

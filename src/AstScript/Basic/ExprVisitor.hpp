@@ -34,6 +34,7 @@ class ValDouble;
 class ValString; 
 class ValQuantity; 
 class ValRange;
+class ValMap;
 class OpAssign; 
 class OpBin; 
 class OpUnary; 
@@ -52,13 +53,12 @@ class ExprCall;
 class ExprMacroExpand;
 
 
-
 /// @brief 表达式访问器
 /// @details 用于遍历表达式树的访问器。
 class ExprVisitor{
 public:
     virtual ~ExprVisitor() = default;
-    // virtual void visit(Expr& expr) = 0;
+    virtual void visit(Expr& expr){};
     virtual void visit(Symbol& symbol) = 0;
     
     virtual void visit(Variable& var) = 0;
@@ -69,6 +69,7 @@ public:
     virtual void visit(ValBool& val) = 0;
     virtual void visit(ValQuantity& val) = 0;
     virtual void visit(ValRange& val) = 0;
+    virtual void visit(ValMap& val) = 0;
     
     virtual void visit(OpAssign& op) = 0;
     virtual void visit(OpBin& op) = 0;
