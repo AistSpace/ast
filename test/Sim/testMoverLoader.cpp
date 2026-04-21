@@ -21,7 +21,7 @@
 #include "AstSim/Mover.hpp"
 #include "AstSim/Aircraft.hpp"
 #include "AstSim/Satellite.hpp"
-#include "AstSim/MoverLoader.hpp"
+#include "AstLoader/MoverLoader.hpp"
 #include "AstCore/RunTime.hpp"
 #include "AstTest/Test.h"
 #include "AstUtil/StringView.hpp"

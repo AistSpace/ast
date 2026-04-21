@@ -18,11 +18,11 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AstCore/MissionCommandLoader.hpp"
+#include "AstLoader/MissionCommandLoader.hpp"
 #include "AstCore/MissionCommand.hpp"
 #include "AstCore/InitialState.hpp"
 #include "AstCore/SpacecraftState.hpp"
-#include "AstCore/ValXMLLoader.hpp"
+#include "AstLoader/ValXMLLoader.hpp"
 #include "AstScript/ValDict.hpp"
 #include "AstTest/Test.h"
 

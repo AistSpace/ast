@@ -17,15 +17,16 @@ comment:                  #this is a top-level key
 
 ignore:
   # These libraries are external imports and should not count towards coverage stats
-  - "3rdparty"
-  - "thirdparty"
-  - "test"
-  - "projects"
-  - "examples"
-  - "docs"
-  - "src/AstGui"
+  - "3rdparty"    # 第三方库
+  - "thirdparty"  # 第三方库
+  - "test"        # 测试代码
+  - "projects"    # 上层项目/示例项目
+  - "examples"    # 示例代码
+  - "docs"        # 文档
+  - "src/AstGui"  
   - "src/AstGfx"
   - "src/AstMock"
   - "src/AstOpt"
   - "src/AstOCP"
+  - "src/AstLoader"
 

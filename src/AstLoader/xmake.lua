@@ -1,0 +1,6 @@
+target("AstLoader")
+    set_kind("shared")
+    add_files("**.cpp")
+    add_headerfiles("**.hpp", {prefixdir="AstLoader"})
+    add_deps("AstUtil", "AstSim", "AstCore", "AstMath")
+    add_defines("AST_BUILD_LIB_LOADER")
