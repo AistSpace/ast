@@ -238,6 +238,16 @@
 // #define AST_SERDE_CAPI A_DECL_EXTERN_C AST_SERDE_API
 
 
+// ast项目加载模块导出声明
+#ifdef AST_BUILD_LIB_LOADER
+#    define AST_LOADER_API A_DECL_EXPORT
+#else
+#    define AST_LOADER_API A_DECL_IMPORT
+#endif
+#define AST_LOADER_CAPI A_DECL_EXTERN_C AST_LOADER_API
+
+
+
 #ifndef AST_PROJECT_NAME
 #   define AST_PROJECT_NAME "ast"
 #endif

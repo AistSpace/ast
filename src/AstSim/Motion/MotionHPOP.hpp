@@ -35,7 +35,7 @@ class MotionHPOP;
 using PMotionHPOP = MotionHPOP*;
 using HMotionHPOP = SharedPtr<MotionHPOP>;
 
-class MotionHPOP: public MotionBasic
+class AST_SIM_API MotionHPOP: public MotionBasic
 {
 public:
     static PMotionHPOP New();
