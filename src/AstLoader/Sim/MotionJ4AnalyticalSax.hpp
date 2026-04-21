@@ -31,7 +31,7 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class AST_SIM_API MotionJ4AnalyticalSax: public MotionOrbitDynamicsKeplerianSax
+class AST_LOADER_API MotionJ4AnalyticalSax: public MotionOrbitDynamicsKeplerianSax
 {
 public:
     using MotionOrbitDynamicsKeplerianSax::MotionOrbitDynamicsKeplerianSax;
