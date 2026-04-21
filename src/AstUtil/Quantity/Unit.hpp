@@ -414,7 +414,7 @@ protected:
     {}
 
     /// @param rep 单位表示
-    explicit Unit(UnitRepHandle rep) : rep_(rep) {}
+    Unit(UnitRepHandle rep) : rep_(rep) {}
 
 public:
     /// @brief 从国际单位制转换为该单位对应的值

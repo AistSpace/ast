@@ -357,7 +357,7 @@ public:
     constexpr Dimension() noexcept: dimension_(EDimension::eUnit) {}
 
     /// @brief 隐式构造函数
-    constexpr explicit Dimension(EDimension dimension) noexcept: dimension_(dimension) {}
+    constexpr Dimension(EDimension dimension) noexcept: dimension_(dimension) {}
     
     /// @brief 获取单位量纲
     static constexpr Dimension Unit() { return Dimension(EDimension::eUnit); }
