@@ -53,7 +53,7 @@ public:
     };
 
     BKVParser();
-    BKVParser(StringView filepath);
+    explicit BKVParser(StringView filepath);
     ~BKVParser();
 
     /// @brief 设置是否允许注释

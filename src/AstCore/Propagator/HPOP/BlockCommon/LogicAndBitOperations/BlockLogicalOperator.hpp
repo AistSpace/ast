@@ -37,7 +37,7 @@ enum class ELogicalOperatorType
 class AST_CORE_API BlockLogicalOperator: public FuncBlock
 {
 public:
-    BlockLogicalOperator(ELogicalOperatorType type = ELogicalOperatorType::eAnd);
+    explicit BlockLogicalOperator(ELogicalOperatorType type = ELogicalOperatorType::eAnd);
 
     errc_t run(const SimTime &simTime) override;
     

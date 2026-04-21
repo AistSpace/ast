@@ -56,7 +56,7 @@ public:
 
     XMLNode(EXMLNodeType kind, StringView nameOrText);
 
-    XMLNode(StringView nameOrText);
+    explicit XMLNode(StringView nameOrText);
 
     ~XMLNode();
 

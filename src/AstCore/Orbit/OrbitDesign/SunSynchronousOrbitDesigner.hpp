@@ -46,7 +46,7 @@ public:
         eDescendingNode = 1,
     };
     SunSynchronousOrbitDesigner();
-    SunSynchronousOrbitDesigner(CelestialBody *body);
+    explicit SunSynchronousOrbitDesigner(CelestialBody *body);
     ~SunSynchronousOrbitDesigner() = default;
     errc_t getOrbitState(ModOrbElem &orbElem) const override;
 

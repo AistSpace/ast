@@ -53,7 +53,7 @@ public: // 配置接口
     /// @brief 构造函数
     /// @details 构造函数，用于创建目标。
     /// @param name 目标名称
-    BuildTarget(StringView name);
+    explicit BuildTarget(StringView name);
 
     ~BuildTarget() = default;
 

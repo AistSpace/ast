@@ -36,7 +36,7 @@ class BodyOrientation;
 class AST_CORE_API AxesBodyRelated : public Axes
 {
 public:
-    AxesBodyRelated(CelestialBody* body);
+    explicit AxesBodyRelated(CelestialBody* body);
     ~AxesBodyRelated() override = default;
 protected:
     /// @brief 获取天体的姿态/指向

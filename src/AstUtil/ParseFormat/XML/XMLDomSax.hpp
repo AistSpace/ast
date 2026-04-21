@@ -35,7 +35,7 @@ AST_NAMESPACE_BEGIN
 /// @details 结合了SAX解析和DOM树构建的解析器，通过SAX回调构建DOM树
 class AST_UTIL_API XMLDomSax : public XMLSax {
 public:
-    XMLDomSax(XMLNode& document);
+    explicit XMLDomSax(XMLNode& document);
     ~XMLDomSax() override;
 
     /// @brief 文档开始回调

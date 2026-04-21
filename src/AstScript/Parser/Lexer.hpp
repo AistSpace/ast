@@ -114,7 +114,7 @@ public:
     };
 
 public:
-    Lexer(Scanner* scanner) 
+    explicit Lexer(Scanner* scanner) 
         : scanner_(scanner)
         // , line_(1)
         , current_lexeme_() 

@@ -35,7 +35,7 @@ class AST_GUI_API UiTimePoint : public QLineEdit
 {
     Q_OBJECT
 public:
-    UiTimePoint(QWidget* parent = nullptr);
+    explicit UiTimePoint(QWidget* parent = nullptr);
     ~UiTimePoint() = default;
     const TimePoint& getTimePoint() const { return timePoint_; }
     void setTimePoint(const TimePoint& timePoint);

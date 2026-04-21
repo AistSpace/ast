@@ -60,7 +60,7 @@ class AST_UTIL_API SPKParser: public DAFParser
 {
 public:
     SPKParser();
-    SPKParser(StringView filepath);
+    explicit SPKParser(StringView filepath);
     ~SPKParser() = default;
 
     errc_t parse(StringView filepath);

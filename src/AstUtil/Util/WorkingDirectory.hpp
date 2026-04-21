@@ -38,7 +38,7 @@ AST_NAMESPACE_BEGIN
 class WorkingDirectory
 {
 public:
-    WorkingDirectory(StringView path)
+    explicit WorkingDirectory(StringView path)
     {
         oldpath_ = posix::getcwd();
         /// @todo 需要考虑如何避免创建临时std::string对象 

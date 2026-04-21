@@ -44,7 +44,7 @@ class AST_GUI_API UiQuantity: public UiValueEdit
     Q_OBJECT
 
 public:
-    UiQuantity(QWidget* parent = nullptr);
+    explicit UiQuantity(QWidget* parent = nullptr);
     
     /// @brief 设置数量值
     /// @param quantity 数量值

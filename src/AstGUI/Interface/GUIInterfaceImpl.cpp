@@ -32,7 +32,7 @@ AST_NAMESPACE_BEGIN
 class CloseEventDetecter: public QObject
 {
 public:
-    CloseEventDetecter(QObject *parent) 
+    explicit CloseEventDetecter(QObject *parent) 
         : QObject(parent)
     {
         parent->installEventFilter(this);

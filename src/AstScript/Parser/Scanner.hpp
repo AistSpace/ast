@@ -63,11 +63,11 @@ public:
 class AST_SCRIPT_API StringScanner : public Scanner
 {
 public:
-    StringScanner(const std::string& str) 
+    explicit StringScanner(const std::string& str) 
         : str_(str), current_(0) 
     {}
     
-    StringScanner(StringView str) 
+    explicit StringScanner(StringView str) 
         : str_(str), current_(0) 
     {}
     
@@ -88,7 +88,7 @@ private:
 class AST_SCRIPT_API FileScanner : public Scanner
 {
 public:
-    FileScanner(FILE* file) 
+    explicit FileScanner(FILE* file) 
         : file_(file), current_char_(0), next_char_(0), at_end_(false) 
     {
         // 预读取两个字符
@@ -118,7 +118,7 @@ private:
 class AST_SCRIPT_API StreamScanner : public Scanner
 {
 public:
-    StreamScanner(std::fstream& stream) 
+    explicit StreamScanner(std::fstream& stream) 
         : stream_(stream), current_char_(0), next_char_(0), at_end_(false) 
     {
         // 预读取两个字符

@@ -68,7 +68,7 @@ public:
     SpiceApi() = default;
 
     /// @param shouldLoadDynamicLib 是否自动加载动态库
-    SpiceApi(bool shouldLoadDynamicLib);
+    explicit SpiceApi(bool shouldLoadDynamicLib);
     
     ~SpiceApi();
 

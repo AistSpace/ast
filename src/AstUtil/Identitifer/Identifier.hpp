@@ -44,7 +44,7 @@ private:
     Identifier& operator=(const Identifier&) = delete;
     
     // 私有构造函数，只能通过IdentifierTable创建
-    Identifier(uint32_t len) : length_(len) {}
+    explicit Identifier(uint32_t len) : length_(len) {}
     
 public:
     // 获取数据指针

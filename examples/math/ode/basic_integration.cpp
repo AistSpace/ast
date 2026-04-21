@@ -26,7 +26,7 @@ private:
     double omega_;  // 角频率
     
 public:
-    HarmonicOscillatorODE(double omega = 1.0) : omega_(omega) {}
+    explicit HarmonicOscillatorODE(double omega = 1.0) : omega_(omega) {}
     
     errc_t evaluate(const double* y, double* ydot, double t) override {
         // y[0] = x, y[1] = dx/dt

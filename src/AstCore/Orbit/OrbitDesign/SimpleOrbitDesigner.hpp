@@ -35,7 +35,7 @@ class AST_CORE_API SimpleOrbitDesigner final: public BaseOrbitDesigner
 {
 public:
     SimpleOrbitDesigner();
-    SimpleOrbitDesigner(CelestialBody *body);
+    explicit SimpleOrbitDesigner(CelestialBody *body);
     ~SimpleOrbitDesigner() = default;
 public:
     using BaseOrbitDesigner::getOrbitState;

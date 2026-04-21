@@ -58,7 +58,7 @@ public:
 // 检测y值等于特定值的事件检测器
 class SimpleEventDetector : public ODEEventDetector {
 public:
-    SimpleEventDetector(double targetValue, EDirection direction = eBoth)
+    explicit SimpleEventDetector(double targetValue, EDirection direction = eBoth)
     {
         this->setDirection(direction);
         this->setThreshold(1e-10);
@@ -75,7 +75,7 @@ private:
 // 检测简谐振动达到最大值的事件检测器
 class HarmonicMaxEventDetector : public ODEEventDetector {
 public:
-    HarmonicMaxEventDetector(double goal=0.0) {
+    explicit HarmonicMaxEventDetector(double goal=0.0) {
         this->setDirection(eDecrease); // 当速度从正变负时触发（最大值）
         this->setThreshold(1e-10);
         this->setGoal(goal); // 检测速度为0的点

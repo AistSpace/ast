@@ -56,7 +56,7 @@ class AST_UTIL_API BaseParser
 {
 public:
     BaseParser();
-    BaseParser(StringView filepath);
+    explicit BaseParser(StringView filepath);
     ~BaseParser();
 
     

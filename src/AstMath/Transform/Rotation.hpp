@@ -70,11 +70,11 @@ public:
 
     /// @brief 构造函数
     /// @param quat 四元数
-    Rotation(const Quaternion& quat);
+    explicit Rotation(const Quaternion& quat);
 
     /// @brief 从旋转矩阵构造坐标系旋转对象
     /// @param mat 旋转矩阵
-    Rotation(const Matrix3d& mat);
+    explicit Rotation(const Matrix3d& mat);
 
     /// @brief 从轴角构造坐标系旋转对象
     /// @param axis 旋转轴
@@ -84,7 +84,7 @@ public:
 
     /// @brief 从轴角构造坐标系旋转对象
     /// @param aa 轴角
-    Rotation(const AngleAxis& aa);
+    explicit Rotation(const AngleAxis& aa);
 
     /// @brief 获取旋转矩阵
     /// @return 旋转矩阵

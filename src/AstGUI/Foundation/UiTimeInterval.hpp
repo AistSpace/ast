@@ -38,7 +38,7 @@ class AST_GUI_API UiTimeInterval : public QWidget
 {
     Q_OBJECT
 public:
-    UiTimeInterval(QWidget* parent = nullptr);
+    explicit UiTimeInterval(QWidget* parent = nullptr);
     ~UiTimeInterval() = default;
     
     /// @brief 设置时间区间

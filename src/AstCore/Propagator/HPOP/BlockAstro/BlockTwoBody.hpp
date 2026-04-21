@@ -33,7 +33,7 @@ class AST_CORE_API BlockTwoBody : public BlockDerivative
 {
 public:
     BlockTwoBody();
-    BlockTwoBody(double twoBodyGM);
+    explicit BlockTwoBody(double twoBodyGM);
 
     errc_t run(const SimTime& simTime) override;
 private:

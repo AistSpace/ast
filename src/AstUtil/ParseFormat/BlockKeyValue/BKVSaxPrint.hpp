@@ -34,7 +34,7 @@ class AST_UTIL_API  BKVSaxPrint : public BKVSax
 {
 public:
     BKVSaxPrint();
-    BKVSaxPrint(StringView filepath);
+    explicit BKVSaxPrint(StringView filepath);
     ~BKVSaxPrint();
     errc_t begin(StringView name) override;
     errc_t end(StringView name) override;

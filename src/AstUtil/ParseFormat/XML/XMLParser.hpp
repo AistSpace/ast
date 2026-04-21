@@ -63,7 +63,7 @@ public:
     };
 
     XMLParser();
-    XMLParser(StringView filepath);
+    explicit XMLParser(StringView filepath);
     ~XMLParser();
 
     /// @brief 解析XML文档

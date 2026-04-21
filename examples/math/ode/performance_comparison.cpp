@@ -17,7 +17,7 @@ private:
     double mu_;  // 非线性参数
     
 public:
-    VanDerPolOscillator(double mu = 1.0) : mu_(mu) {}
+    explicit VanDerPolOscillator(double mu = 1.0) : mu_(mu) {}
     
     errc_t evaluate(const double* y, double* ydot, double t) override {
         // y[0] = x, y[1] = dx/dt

@@ -40,7 +40,7 @@ class AST_UTIL_API PCKParser: public BaseParser
 {
 public:
     PCKParser();
-    PCKParser(StringView filepath);
+    explicit PCKParser(StringView filepath);
     ~PCKParser() = default;
 
     /// @brief 获取下一个键值对项

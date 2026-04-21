@@ -68,22 +68,22 @@ public:
         {ESwitchMethod::eEpoch};  
     TimePoint switchEpoch_;      ///< 切换历元
     TLE tle_;                    ///< TLE 数据
-    double epochTime_;           ///< 历元时间
-    double meanMotionDotTime_;   ///< 平均运动导数
-    double motionDotDot_;        ///< 平均运动二阶导数
-    int iexp_;                   ///< 平均运动二阶导数指数
-    double bstar_;               ///< B* 阻力系数
-    int ibexp_;                  ///< B* 阻力系数指数
-    double inclination_;         ///< 倾角
-    double rightAscenOfNode_;    ///< 升交点赤经
-    double eccentricity_;        ///< 偏心率
-    double argOfPerigee_;        ///< 近地点幅角
-    double meanAnomaly_;         ///< 平近点角
-    double meanMotion_;          ///< 平均运动
-    int revNumber_;              ///< 轨道数
-    int ephType_;                ///< 星历类型
-    int elementNumber_;          ///< 元素编号
-    char classification_;        ///< 分类
+    double epochTime_{0.0};           ///< 历元时间
+    double meanMotionDotTime_{0.0};   ///< 平均运动导数
+    double motionDotDot_{0.0};        ///< 平均运动二阶导数
+    int iexp_{0};                   ///< 平均运动二阶导数指数
+    double bstar_{0.0};               ///< B* 阻力系数
+    int ibexp_{0};                  ///< B* 阻力系数指数
+    double inclination_{0.0};         ///< 倾角
+    double rightAscenOfNode_{0.0};    ///< 升交点赤经
+    double eccentricity_{0.0};        ///< 偏心率
+    double argOfPerigee_{0.0};        ///< 近地点幅角
+    double meanAnomaly_{0.0};         ///< 平近点角
+    double meanMotion_{0.0};          ///< 平均运动
+    int revNumber_{0};              ///< 轨道数
+    int ephType_{0};                ///< 星历类型
+    int elementNumber_{0};          ///< 元素编号
+    char classification_{'U'};        ///< 分类
 };
 
 /// @brief SGP4 运动模型

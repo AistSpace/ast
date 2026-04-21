@@ -65,7 +65,7 @@ public:
     Polynomial(const std::initializer_list<double>& init)
         : coeffs_{init}
     {}
-    Polynomial(const std::vector<double>& coeff)
+    explicit Polynomial(const std::vector<double>& coeff)
         : coeffs_{coeff}
     {}
     ~Polynomial() = default;

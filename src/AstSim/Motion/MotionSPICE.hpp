@@ -41,8 +41,8 @@ class AST_SIM_API MotionSPICE: public MotionWithIntervalStep
 {
 public:
     static MotionSPICE* New();
-    MotionSPICE() = default;
-    ~MotionSPICE() = default;
+    MotionSPICE() : spiceIndex_() {}
+    ~MotionSPICE() : spiceIndex_() {}
 public:
     errc_t makeEphemerisSpec(ScopedPtr<Ephemeris>& eph) const override;
     errc_t makeEphemerisSimple(ScopedPtr<Ephemeris>& eph) const override;

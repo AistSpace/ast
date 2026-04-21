@@ -40,7 +40,7 @@ class AST_CORE_API EphemerisLagrangeVar: public Ephemeris
 {
 public:
     EphemerisLagrangeVar() = default;
-    EphemerisLagrangeVar(Frame* frame) : frame_(frame){}
+    explicit EphemerisLagrangeVar(Frame* frame) : frame_(frame){}
     ~EphemerisLagrangeVar() = default;
 public:
     Frame* getFrame() const override;

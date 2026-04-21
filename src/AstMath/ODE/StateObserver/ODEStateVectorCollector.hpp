@@ -32,7 +32,7 @@ AST_NAMESPACE_BEGIN
 class AST_MATH_API ODEStateVectorCollector: public ODEStateObserver
 {
 public:
-    ODEStateVectorCollector(int ndim);
+    explicit ODEStateVectorCollector(int ndim);
     ~ODEStateVectorCollector() = default;
 
     EODEAction onStateUpdate(double* y, double& x, ODEIntegrator* integrator) override;

@@ -48,7 +48,7 @@ public:
     using Record = std::array<char, 1024>;            ///< 记录缓冲区
 
     DAFParser()=default;
-    DAFParser(StringView filepath);
+    explicit DAFParser(StringView filepath);
     ~DAFParser()=default;
 
     using BaseParser::open;

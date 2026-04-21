@@ -43,7 +43,7 @@ public:
     static HEventIntervalExplicit MakeShared(const TimeInterval& interval);
     
     EventIntervalExplicit() = default;
-    EventIntervalExplicit(const TimeInterval& interval);
+    explicit EventIntervalExplicit(const TimeInterval& interval);
     ~EventIntervalExplicit() = default;
     errc_t getInterval(TimeInterval& interval) const override;
 protected:

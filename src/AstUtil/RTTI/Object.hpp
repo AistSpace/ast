@@ -93,7 +93,7 @@ public:
         : refcnt_{0}
         , weakrefcnt_{1}
     {}
-    Object(Object* parentScope);
+    explicit Object(Object* parentScope);
     Object(std::nullptr_t);
 public:
     static Class staticType;

@@ -36,7 +36,7 @@ class AST_CORE_API StationaryOrbitDesigner final: public BaseOrbitDesigner
 {
 public:
     StationaryOrbitDesigner();
-    StationaryOrbitDesigner(CelestialBody *body);
+    explicit StationaryOrbitDesigner(CelestialBody *body);
     ~StationaryOrbitDesigner() = default;
 
     using BaseOrbitDesigner::getOrbitState;

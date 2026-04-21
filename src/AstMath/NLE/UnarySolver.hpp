@@ -76,7 +76,7 @@ public:
     
     /// @brief 构造函数
     /// @param absTol 绝对误差容限
-    UnarySolver(double absTol);
+    explicit UnarySolver(double absTol);
 
     ~UnarySolver() override = default;
 

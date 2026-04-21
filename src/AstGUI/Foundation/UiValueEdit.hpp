@@ -35,7 +35,7 @@ AST_NAMESPACE_BEGIN
 class AST_GUI_API UiValueEdit: public QLineEdit
 {
 public:
-    UiValueEdit(QWidget* parent = nullptr);
+    explicit UiValueEdit(QWidget* parent = nullptr);
     
     /// @brief 设置错误状态
     /// @param errorMessage 错误信息

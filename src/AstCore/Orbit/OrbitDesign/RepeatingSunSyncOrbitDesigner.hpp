@@ -41,7 +41,7 @@ public:
         eRevsPerDay
     };
     RepeatingSunSyncOrbitDesigner();
-    RepeatingSunSyncOrbitDesigner(CelestialBody *body);
+    explicit RepeatingSunSyncOrbitDesigner(CelestialBody *body);
     ~RepeatingSunSyncOrbitDesigner() = default;
     
     using BaseOrbitDesigner::getOrbitState;

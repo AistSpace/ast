@@ -36,7 +36,7 @@ class AST_GUI_API UiObject: public QWidget
 {
     Q_OBJECT
 public:
-    UiObject(QWidget *parent = nullptr);
+    explicit UiObject(QWidget *parent = nullptr);
     ~UiObject() = default;
 
     /// @brief 获取关联的对象

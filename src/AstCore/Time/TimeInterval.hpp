@@ -194,7 +194,7 @@ public:
 
         iterator() = default;
         iterator(const DiscreteTimePointRange* range, size_t idx)
-            : range_(range), idx_(idx) {}
+            : value_(), range_(range), idx_(idx) {}
 
         reference operator*() const {
             if (idx_ == range_->n_ - 1) {
@@ -214,7 +214,7 @@ public:
     private:
         const DiscreteTimePointRange* range_ = nullptr;
         size_t idx_ = 0;
-        mutable TimePoint value_;
+        mutable TimePoint value_{};
     };
 
     iterator begin() const { return iterator(this, 0); }
@@ -243,7 +243,7 @@ public:
 
         iterator() = default;
         iterator(const DiscreteEpochSecondRange* range, size_t idx)
-            : range_(range), idx_(idx) {}
+            : value_(), range_(range), idx_(idx) {}
 
         reference operator*() const {
             if (idx_ == range_->n_ - 1) {
@@ -263,7 +263,7 @@ public:
     private:
         const DiscreteEpochSecondRange* range_ = nullptr;
         size_t idx_ = 0;
-        mutable double value_;
+        mutable double value_{0.0};
     };
 
     iterator begin() const { return iterator(this, 0); }

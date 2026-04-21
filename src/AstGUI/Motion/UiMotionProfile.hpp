@@ -36,7 +36,7 @@ class AST_GUI_API UiMotionProfile: public UiObject
 {
     Q_OBJECT
 public:
-    UiMotionProfile(QWidget *parent = nullptr);
+    explicit UiMotionProfile(QWidget *parent = nullptr);
     ~UiMotionProfile() = default;
 
     MotionProfile* getMotionProfile() const;

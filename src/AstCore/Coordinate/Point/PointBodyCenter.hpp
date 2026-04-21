@@ -37,7 +37,7 @@ class AST_CORE_API PointBodyCenter final: public Point
 {
 public:
     PointBodyCenter() = default;
-    PointBodyCenter(CelestialBody* body);
+    explicit PointBodyCenter(CelestialBody* body);
     ~PointBodyCenter() = default;
     CelestialBody* getBody() const{ return body_; }
     void setBody(CelestialBody* body){ body_ = body; }

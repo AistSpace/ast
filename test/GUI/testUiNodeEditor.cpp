@@ -21,7 +21,7 @@ using QtNodes::NodeDataModel;
 class IntegerData : public NodeData
 {
 public:
-    IntegerData(int value = 0) : _value(value) {}
+    explicit IntegerData(int value = 0) : _value(value) {}
 
     QString type() const override { return "Integer"; }
     int value() const { return _value; }
@@ -242,7 +242,7 @@ private:
 class NodeEditorWindow : public QMainWindow
 {
 public:
-    NodeEditorWindow(QWidget *parent = nullptr)
+    explicit NodeEditorWindow(QWidget *parent = nullptr)
         : QMainWindow(parent)
     {
         setWindowTitle("QtNodes Editor Demo");

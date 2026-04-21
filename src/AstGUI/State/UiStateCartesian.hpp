@@ -39,8 +39,8 @@ class AST_GUI_API UiStateCartesian: public UiState
 {
     Q_OBJECT
 public:
-    UiStateCartesian(Object* object, QWidget *parent = nullptr);
-    UiStateCartesian(QWidget *parent = nullptr);
+    explicit UiStateCartesian(Object* object, QWidget *parent = nullptr);
+    explicit UiStateCartesian(QWidget *parent = nullptr);
     ~UiStateCartesian() = default;
 
     void refreshUi();

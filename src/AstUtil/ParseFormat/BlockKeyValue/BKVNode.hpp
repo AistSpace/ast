@@ -33,7 +33,7 @@ public:
         eBlock,
         eItem,
     };
-    BKVNode(EType type) : type_(type) {}
+    explicit BKVNode(EType type) : type_(type) {}
     virtual ~BKVNode() = default;
 public:
     /// @brief 获取节点类型

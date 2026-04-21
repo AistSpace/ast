@@ -35,7 +35,7 @@ class AST_SPICE_API SpiceFrameRegistry
 {
 public:
     SpiceFrameRegistry() = default;
-    SpiceFrameRegistry(bool whetherInit);
+    explicit SpiceFrameRegistry(bool whetherInit);
     ~SpiceFrameRegistry() = default;
 
     static SpiceFrameRegistry& Instance();

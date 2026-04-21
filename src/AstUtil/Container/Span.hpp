@@ -99,15 +99,15 @@ public:
         : storage_(first, last - first) {}
 
     template <std::size_t N>
-    constexpr Span(element_type (&arr)[N]) noexcept
+    constexpr explicit Span(element_type (&arr)[N]) noexcept
         : storage_(arr, N) {}
 
     template <typename U, std::size_t N>
-    constexpr Span(std::array<U, N>& arr) noexcept
+    constexpr explicit Span(std::array<U, N>& arr) noexcept
         : storage_(arr.data(), N) {}
 
     template <typename U, std::size_t N>
-    constexpr Span(const std::array<U, N>& arr) noexcept
+    constexpr explicit Span(const std::array<U, N>& arr) noexcept
         : storage_(arr.data(), N) {}
 
 #if 0 // 暂时不支持其他容器类型，因为无法确定其内存是否连续

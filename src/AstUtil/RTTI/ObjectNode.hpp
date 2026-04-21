@@ -38,7 +38,7 @@ class AST_UTIL_API ObjectNode
 {
 public:
     ObjectNode() = default;
-    ObjectNode(Object* object)
+    explicit ObjectNode(Object* object)
         : object_(object)
     {}
     friend class ObjectManager;

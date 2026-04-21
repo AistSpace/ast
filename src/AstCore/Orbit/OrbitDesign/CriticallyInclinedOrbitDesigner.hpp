@@ -35,7 +35,7 @@ class AST_CORE_API CriticallyInclinedOrbitDesigner final: public BaseOrbitDesign
 {
 public:
     CriticallyInclinedOrbitDesigner();
-    CriticallyInclinedOrbitDesigner(CelestialBody* body);
+    explicit CriticallyInclinedOrbitDesigner(CelestialBody* body);
     ~CriticallyInclinedOrbitDesigner()=default;
     enum EDirection
     {

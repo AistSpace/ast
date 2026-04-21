@@ -33,7 +33,7 @@ class AST_CORE_API BlockThirdBody : public BlockDerivative
 {
 public:
     BlockThirdBody();
-    BlockThirdBody(double thirdBodyGM);
+    explicit BlockThirdBody(double thirdBodyGM);
 
     errc_t run(const SimTime& simTime) override;
 protected:

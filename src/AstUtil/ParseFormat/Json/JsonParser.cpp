@@ -77,7 +77,7 @@ class JsonParserImpl : public BaseParser
 public:
     JsonParserImpl() : state_(JsonParseState::Start), line_(1), column_(1) {}
     
-    JsonParserImpl(StringView filepath) : BaseParser(filepath), state_(JsonParseState::Start), line_(1), column_(1) {}
+    explicit JsonParserImpl(StringView filepath) : BaseParser(filepath), state_(JsonParseState::Start), line_(1), column_(1) {}
     
     errc_t parseToValue(JsonValue& value);
     errc_t parseToSax(JsonSax& sax);

@@ -40,7 +40,7 @@ public:
         eRevsPerDay
     };
     RepeatingOrbitDesigner();
-    RepeatingOrbitDesigner(CelestialBody *body);
+    explicit RepeatingOrbitDesigner(CelestialBody *body);
     ~RepeatingOrbitDesigner() = default;
     
     using BaseOrbitDesigner::getOrbitState;

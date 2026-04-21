@@ -35,7 +35,7 @@ class AST_CORE_API MolniyaOrbitDesigner : public BaseOrbitDesigner
 {
 public:
     MolniyaOrbitDesigner();
-    MolniyaOrbitDesigner(CelestialBody* body);
+    explicit MolniyaOrbitDesigner(CelestialBody* body);
     ~MolniyaOrbitDesigner() = default;
     using BaseOrbitDesigner::getOrbitState;
 

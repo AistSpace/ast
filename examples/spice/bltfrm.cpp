@@ -47,7 +47,7 @@ int main()
             */
             bltfrm_c ( i, &idset );
 
-            sprintf ( outlin,
+            snprintf(outlin, sizeof(outlin),
                     "Number of frames of class %d: %d",
                     (int) i,
                     (int) card_c(&idset)                );
@@ -61,7 +61,7 @@ int main()
             */
             bltfrm_c ( SPICE_FRMTYP_ALL, &idset );
 
-            sprintf( outlin,
+            snprintf(outlin, sizeof(outlin),
                     "Number of built-in frames: %d",
                     (int) card_c(&idset)                );
 

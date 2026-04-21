@@ -303,7 +303,7 @@ std::string aDateToString(const Date &date)
 {
 	char buffer[32];
 	// #pragma warning(suppress: 4996)
-    sprintf(buffer, "%04d-%02d-%02d", date.year(), date.month(), date.day());
+    snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d", date.year(), date.month(), date.day());
 	return std::string(buffer);
 }
 

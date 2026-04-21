@@ -38,7 +38,7 @@ class AST_CORE_API BuiltinAxesRegistry
 {
 public:
     BuiltinAxesRegistry() = default;
-    BuiltinAxesRegistry(bool whetherInit);
+    explicit BuiltinAxesRegistry(bool whetherInit);
     ~BuiltinAxesRegistry() = default;
     static BuiltinAxesRegistry& Instance();
 

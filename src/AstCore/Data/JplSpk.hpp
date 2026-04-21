@@ -38,7 +38,7 @@ class AST_CORE_API JplSpk
 {
 public:
     JplSpk();
-    JplSpk(StringView spkfile);
+    explicit JplSpk(StringView spkfile);
     ~JplSpk();
 
     /// @brief 打开SPK文件

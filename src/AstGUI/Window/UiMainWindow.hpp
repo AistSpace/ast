@@ -30,7 +30,7 @@ class UiMainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    UiMainWindow(QWidget *parent = nullptr);
+    explicit UiMainWindow(QWidget *parent = nullptr);
     ~UiMainWindow();
 };
 

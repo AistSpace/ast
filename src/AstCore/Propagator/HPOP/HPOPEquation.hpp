@@ -46,7 +46,7 @@ class AST_CORE_API HPOPEquation : public OrdinaryDifferentialEquation
 {
 public:
     HPOPEquation();
-    HPOPEquation(const HPOPForceModel& forceModel);
+    explicit HPOPEquation(const HPOPForceModel& forceModel);
     ~HPOPEquation();
 
     int getDimension() const final;

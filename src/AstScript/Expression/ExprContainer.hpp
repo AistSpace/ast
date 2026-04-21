@@ -37,7 +37,7 @@ public:
 
     ExprContainer() = default;
 
-    ExprContainer(const VectorType& elems)
+    explicit ExprContainer(const VectorType& elems)
         : elems_(elems) {}
     
     /// @brief 获取向量元素

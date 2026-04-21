@@ -29,7 +29,7 @@ AST_NAMESPACE_BEGIN
 class AST_CORE_API BlockConstant: public FuncBlock
 {
 public:
-    BlockConstant(double value = 0.0);
+    explicit BlockConstant(double value = 0.0);
 
     errc_t run(const SimTime &simTime) override;
     

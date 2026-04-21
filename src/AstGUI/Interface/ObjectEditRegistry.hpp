@@ -42,7 +42,7 @@ class AST_GUI_API ObjectEditRegistry
     using EditWidgetMap = std::unordered_map<Class*, FNewEditWidget>;
 public:
     ObjectEditRegistry();
-    ObjectEditRegistry(bool shouldRegistEditWidget);
+    explicit ObjectEditRegistry(bool shouldRegistEditWidget);
     ~ObjectEditRegistry() = default;
 
     static ObjectEditRegistry& Instance();

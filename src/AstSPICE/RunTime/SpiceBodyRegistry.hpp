@@ -36,7 +36,7 @@ class AST_SPICE_API SpiceBodyRegistry
 {
 public:
     SpiceBodyRegistry() = default;
-    SpiceBodyRegistry(bool whetherInit);
+    explicit SpiceBodyRegistry(bool whetherInit);
     ~SpiceBodyRegistry() = default;
     static SpiceBodyRegistry& Instance();
 

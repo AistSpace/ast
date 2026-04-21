@@ -37,8 +37,8 @@ class AST_GUI_API UiBodyEphemerisDE: public UiObject
 {
     Q_OBJECT
 public:
-    UiBodyEphemerisDE(Object* object, QWidget *parent = nullptr);
-    UiBodyEphemerisDE(QWidget *parent = nullptr);
+    explicit UiBodyEphemerisDE(Object* object, QWidget *parent = nullptr);
+    explicit UiBodyEphemerisDE(QWidget *parent = nullptr);
     ~UiBodyEphemerisDE() = default;
 
     void refreshUi();

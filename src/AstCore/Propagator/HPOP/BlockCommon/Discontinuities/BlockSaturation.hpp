@@ -29,7 +29,7 @@ AST_NAMESPACE_BEGIN
 class AST_CORE_API BlockSaturation: public FuncBlock
 {
 public:
-    BlockSaturation(double lowerLimit = -1.0, double upperLimit = 1.0);
+    explicit BlockSaturation(double lowerLimit = -1.0, double upperLimit = 1.0);
 
     errc_t run(const SimTime &simTime) override;
     

@@ -42,8 +42,8 @@ class AST_GUI_API UiStateKeplerian : public UiState
 {
     Q_OBJECT
 public:
-    UiStateKeplerian(Object* object, QWidget *parent = nullptr);
-    UiStateKeplerian(QWidget *parent = nullptr);
+    explicit UiStateKeplerian(Object* object, QWidget *parent = nullptr);
+    explicit UiStateKeplerian(QWidget *parent = nullptr);
     ~UiStateKeplerian() = default;
 
     StateKeplerian* getStateKeplerian() const;

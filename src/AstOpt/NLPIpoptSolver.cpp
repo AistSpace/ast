@@ -151,12 +151,12 @@ public:
         IpoptCalculatedQuantities* ip_cq
     ) override;
 protected:
-    CNLPIpoptSolver* m_solver;
-    INLPProblem* m_problem;
+    CNLPIpoptSolver* m_solver{nullptr};
+    INLPProblem* m_problem{nullptr};
     SolverReturn m_status{SolverReturn::UNASSIGNED };
-    VectorXd m_xopt;
-    VectorXd m_gopt;
-    double   m_obj;
+    VectorXd m_xopt{};
+    VectorXd m_gopt{};
+    double   m_obj{0.0};
 };
 
 

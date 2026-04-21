@@ -35,7 +35,7 @@ class AST_UTIL_API Field
 public:
     Field(){}
 
-    Field(StringView name, StringView desc = "")
+    explicit Field(StringView name, StringView desc = "")
         : name_(name), desc_(desc)
     {}
     

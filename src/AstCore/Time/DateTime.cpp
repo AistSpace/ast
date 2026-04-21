@@ -323,7 +323,7 @@ errc_t aDateTimeFormatGregorianEn(const DateTime& dttm, std::string& str)
 {
     char buffer[64];
     const char* monthName = dttm.date().monthShortName();
-    sprintf(buffer, "%d %s %04d %02d:%02d:%02.3f", 
+    snprintf(buffer, sizeof(buffer), "%d %s %04d %02d:%02d:%02.3f", 
             dttm.day(), monthName, dttm.year(), 
             dttm.hour(), dttm.minute(), dttm.second());
     
@@ -336,7 +336,7 @@ errc_t aDateTimeFormatGMT(const DateTime& dttm, std::string& str)
     char buffer[64];
     const char* weekdayName = dttm.date().weekDayShortName();
     const char* monthName = dttm.date().monthShortName();
-    sprintf(buffer, "%s, %02d %s %04d %02d:%02d:%02.3f GMT", 
+    snprintf(buffer, sizeof(buffer), "%s, %02d %s %04d %02d:%02d:%02.3f GMT", 
             weekdayName, dttm.day(), monthName, dttm.year(), 
             dttm.hour(), dttm.minute(), dttm.second());
     
@@ -348,7 +348,7 @@ errc_t aDateTimeFormatRFC3339(const DateTime& dttm, std::string& str)
 {
     char buffer[64];
     // 默认使用+00:00时区，实际使用时可能需要根据具体时区调整
-    sprintf(buffer, "%04d-%02d-%02dT%02d:%02d:%02.3f+00:00", 
+    snprintf(buffer, sizeof(buffer), "%04d-%02d-%02dT%02d:%02d:%02.3f+00:00", 
             dttm.year(), dttm.month(), dttm.day(), 
             dttm.hour(), dttm.minute(), dttm.second());
     

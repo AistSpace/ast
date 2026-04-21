@@ -30,7 +30,7 @@ class ODEIntegrator;
 class ODEInnerStateObserver : public ODEStateObserver
 {
 public:
-    ODEInnerStateObserver(ODEIntegrator* integrator) 
+    explicit ODEInnerStateObserver(ODEIntegrator* integrator) 
         : integrator_(integrator) {}
     ~ODEInnerStateObserver() = default;
     EODEAction onStateUpdate(double* y, double& x, ODEIntegrator* integrator) final;

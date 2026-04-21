@@ -42,7 +42,7 @@ class GravityField;
 class GravityFieldLoader
 {
 public:
-    GravityFieldLoader(StringView dirpath)
+    explicit GravityFieldLoader(StringView dirpath)
         : dirpath_(dirpath)
     {}
     GravityFieldLoader(int maxLoadDegree, int maxLoadOrder, StringView dirpath)

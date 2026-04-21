@@ -35,7 +35,7 @@ class AST_CORE_API CriticallyInclinedSunSyncOrbitDesigner final: public BaseOrbi
 {
 public:
     CriticallyInclinedSunSyncOrbitDesigner();
-    CriticallyInclinedSunSyncOrbitDesigner(CelestialBody* body);
+    explicit CriticallyInclinedSunSyncOrbitDesigner(CelestialBody* body);
     ~CriticallyInclinedSunSyncOrbitDesigner() = default;
 
     using BaseOrbitDesigner::getOrbitState;

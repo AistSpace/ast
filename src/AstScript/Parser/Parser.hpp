@@ -31,7 +31,7 @@ AST_NAMESPACE_BEGIN
 class AST_SCRIPT_API Parser
 {
 public:
-    Parser(Lexer& lexer);
+    explicit Parser(Lexer& lexer);
     
     /// @brief 获取当前令牌类型
     int currentTokenType() const;

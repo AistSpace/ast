@@ -39,7 +39,7 @@ enum class ERelationalOperatorType
 class AST_CORE_API BlockRelationalOperator: public FuncBlock
 {
 public:
-    BlockRelationalOperator(ERelationalOperatorType type = ERelationalOperatorType::eEqual);
+    explicit BlockRelationalOperator(ERelationalOperatorType type = ERelationalOperatorType::eEqual);
 
     errc_t run(const SimTime &simTime) override;
     

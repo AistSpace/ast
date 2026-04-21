@@ -34,19 +34,19 @@ class GenericValue
 {
 public:
     GenericValue() = default;
-    GenericValue(StringView value)
+    explicit GenericValue(StringView value)
         : value_(value){}
-    GenericValue(const char* value)
+    explicit GenericValue(const char* value)
         : value_(value){}
-    GenericValue(const std::string& value)
+    explicit GenericValue(const std::string& value)
         : value_(value){}
-    GenericValue(int value)
+    explicit GenericValue(int value)
         : value_(aFormatInt(value)){}
-    GenericValue(double value)
+    explicit GenericValue(double value)
         : value_(aFormatDouble(value)){}
-    GenericValue(bool value)
+    explicit GenericValue(bool value)
         : value_(aFormatBool(value)){}
-    GenericValue(Color value)
+    explicit GenericValue(Color value)
         : value_(aFormatColor(value)){}
 
     const std::string& value() const { return value_; }

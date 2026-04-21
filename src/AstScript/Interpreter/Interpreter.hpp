@@ -84,11 +84,11 @@ protected:
 /// @todo 暂时不支持子解释器，只能区分全局解释器和当前解释器。
 class InterpreterContext {
 public:
-    InterpreterContext(Interpreter& interpreter)
+    explicit InterpreterContext(Interpreter& interpreter)
         : InterpreterContext(&interpreter)
     {
     }
-    InterpreterContext(Interpreter* interpreter)
+    explicit InterpreterContext(Interpreter* interpreter)
         : interpreter_(interpreter)
     {
         aScript_SetInterpreter(interpreter);

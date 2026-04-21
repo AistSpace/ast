@@ -11,7 +11,7 @@
 class PortItem : public QGraphicsItem
 {
 public:
-    PortItem(QGraphicsItem *parent = nullptr)
+    explicit PortItem(QGraphicsItem *parent = nullptr)
         : QGraphicsItem(parent)
     {
         setFlags(ItemIsSelectable);
@@ -49,7 +49,7 @@ private:
 class BlockItem : public QGraphicsItem
 {
 public:
-    BlockItem(const QString &name, QGraphicsItem *parent = nullptr)
+    explicit BlockItem(const QString &name, QGraphicsItem *parent = nullptr)
         : QGraphicsItem(parent), m_name(name)
     {
         setFlags(ItemIsMovable | ItemIsSelectable);
@@ -157,7 +157,7 @@ private:
 class SimulinkEditor : public QGraphicsView
 {
 public:
-    SimulinkEditor(QWidget *parent = nullptr)
+    explicit SimulinkEditor(QWidget *parent = nullptr)
         : QGraphicsView(parent)
     {
         m_scene = new QGraphicsScene(this);

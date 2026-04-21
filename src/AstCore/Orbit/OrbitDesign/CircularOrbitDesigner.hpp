@@ -35,7 +35,7 @@ class AST_CORE_API CircularOrbitDesigner final: public BaseOrbitDesigner
 {
 public:
     CircularOrbitDesigner();
-    CircularOrbitDesigner(CelestialBody* body);
+    explicit CircularOrbitDesigner(CelestialBody* body);
     ~CircularOrbitDesigner() = default;
 public:
     

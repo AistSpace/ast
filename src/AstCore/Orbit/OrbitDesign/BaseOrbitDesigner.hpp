@@ -62,7 +62,7 @@ class AST_CORE_API BaseOrbitDesigner: public IOrbitDesigner
 {
 public:
     BaseOrbitDesigner();
-    BaseOrbitDesigner(CelestialBody* body);
+    explicit BaseOrbitDesigner(CelestialBody* body);
     ~BaseOrbitDesigner() = default;
 
     using IOrbitDesigner::getOrbitState;
