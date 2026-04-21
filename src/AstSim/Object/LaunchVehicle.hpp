@@ -31,7 +31,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 运载火箭对象
-class LaunchVehicle: public Spacecraft
+class AST_SIM_API LaunchVehicle: public Spacecraft
 {
 public:
     AST_OBJECT(LaunchVehicle)

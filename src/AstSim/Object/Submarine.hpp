@@ -31,7 +31,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 潜艇对象
-class Submarine: public Mover
+class AST_SIM_API Submarine: public Mover
 {
 public:
     AST_OBJECT(Submarine)

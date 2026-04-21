@@ -32,7 +32,7 @@ AST_NAMESPACE_BEGIN
     @{
 */
 
-class Propagate: public Segment
+class AST_CORE_API Propagate: public Segment
 {
 public:
     Propagate() = default;

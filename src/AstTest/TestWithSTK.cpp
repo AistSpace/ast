@@ -21,7 +21,7 @@
 #include "TestWithSTK.hpp"
 #include "AstCore/BuiltinFrame.hpp"
 #include "AstSim/Mover.hpp"
-#include "AstSim/MoverLoader.hpp"
+#include "AstLoader/MoverLoader.hpp"
 #include "AstUtil/IO.hpp"
 #include "AstUtil/StringView.hpp"
 #include "AstMath/UnarySolver.hpp"  // for aIsClose

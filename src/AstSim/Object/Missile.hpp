@@ -31,7 +31,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 导弹对象
-class Missile: public Mover
+class AST_SIM_API Missile: public Mover
 {
 public:
     AST_OBJECT(Missile)

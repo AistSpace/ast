@@ -31,7 +31,7 @@ AST_NAMESPACE_BEGIN
 */
 
 /// @brief 地面车辆对象
-class GroundVehicle: public Mover
+class AST_SIM_API GroundVehicle: public Mover
 {
 public:
     AST_OBJECT(GroundVehicle)
