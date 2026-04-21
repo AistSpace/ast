@@ -27,6 +27,7 @@
 #include <iomanip>
 #include <sstream>
 #include <cmath>
+#include <cstring>
 
 AST_NAMESPACE_BEGIN
 
@@ -311,7 +312,7 @@ errc_t aDateTimeFormatISO8601(const DateTime& dttm, std::string& str)
 errc_t aDateTimeFormatGregorian(const DateTime& dttm, std::string& str, int precision)
 {
     char buffer[64];
-    sprintf(buffer, "%04d-%02d-%02d %02d:%02d:%02.*f", 
+    snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d %02d:%02d:%02.*f", 
             dttm.year(), dttm.month(), dttm.day(), 
             dttm.hour(), dttm.minute(), precision, dttm.second());
     
@@ -323,7 +324,7 @@ errc_t aDateTimeFormatGregorianEn(const DateTime& dttm, std::string& str)
 {
     char buffer[64];
     const char* monthName = dttm.date().monthShortName();
-    sprintf(buffer, "%d %s %04d %02d:%02d:%02.3f", 
+    snprintf(buffer, sizeof(buffer), "%d %s %04d %02d:%02d:%02.3f", 
             dttm.day(), monthName, dttm.year(), 
             dttm.hour(), dttm.minute(), dttm.second());
     
@@ -336,7 +337,7 @@ errc_t aDateTimeFormatGMT(const DateTime& dttm, std::string& str)
     char buffer[64];
     const char* weekdayName = dttm.date().weekDayShortName();
     const char* monthName = dttm.date().monthShortName();
-    sprintf(buffer, "%s, %02d %s %04d %02d:%02d:%02.3f GMT", 
+    snprintf(buffer, sizeof(buffer), "%s, %02d %s %04d %02d:%02d:%02.3f GMT", 
             weekdayName, dttm.day(), monthName, dttm.year(), 
             dttm.hour(), dttm.minute(), dttm.second());
     
@@ -348,7 +349,7 @@ errc_t aDateTimeFormatRFC3339(const DateTime& dttm, std::string& str)
 {
     char buffer[64];
     // 默认使用+00:00时区，实际使用时可能需要根据具体时区调整
-    sprintf(buffer, "%04d-%02d-%02dT%02d:%02d:%02.3f+00:00", 
+    snprintf(buffer, sizeof(buffer), "%04d-%02d-%02dT%02d:%02d:%02.3f+00:00", 
             dttm.year(), dttm.month(), dttm.day(), 
             dttm.hour(), dttm.minute(), dttm.second());
     
@@ -369,7 +370,7 @@ errc_t aDateTimeFormatRFC2822(const DateTime& dttm, std::string& str)
     const char* weekdayName = dttm.date().weekDayShortName();
     const char* monthName = dttm.date().monthShortName();
     // 默认使用+0000时区，实际使用时可能需要根据具体时区调整
-    sprintf(buffer, "%s, %02d %s %04d %02d:%02d:%02.3f +0000", 
+    snprintf(buffer, sizeof(buffer), "%s, %02d %s %04d %02d:%02d:%02.3f +0000", 
             weekdayName, dttm.day(), monthName, dttm.year(), 
             dttm.hour(), dttm.minute(), dttm.second());
     
@@ -384,22 +385,28 @@ errc_t aDateTimeParseISO8601(StringView str, DateTime& dttm)
     // 简化实现，支持基本的ISO 8601格式：YYYY-MM-DDThh:mm:ss.sssZ
     // 实际应用中可能需要更复杂的解析逻辑
     
-    const char* s = str.data();
+    // Security: StringView may not be null-terminated, copy to a temporary buffer
+    if (str.size() < 19) {
+        return eErrorInvalidParam;
+    }
+    char temp[32];  // Enough for ISO 8601 format
+    size_t copy_len = std::min(str.size(), sizeof(temp) - 1);
+    memcpy(temp, str.data(), copy_len);
+    temp[copy_len] = '\0';
+    
     int year, month, day, hour, minute;
     double second = 0.0;
     
     // 尝试解析基本格式
-    if (strlen(s) >= 19) {
-        if (sscanf(s, "%04d-%02d-%02dT%02d:%02d:%lf", 
-                   &year, &month, &day, &hour, &minute, &second) == 6) {
-            dttm.year() = year;
-            dttm.month() = month;
-            dttm.day() = day;
-            dttm.hour() = hour;
-            dttm.minute() = minute;
-            dttm.second() = second;
-            return eNoError;
-        }
+    if (sscanf(temp, "%04d-%02d-%02dT%02d:%02d:%lf", 
+               &year, &month, &day, &hour, &minute, &second) == 6) {
+        dttm.year() = year;
+        dttm.month() = month;
+        dttm.day() = day;
+        dttm.hour() = hour;
+        dttm.minute() = minute;
+        dttm.second() = second;
+        return eNoError;
     }
     
     return eErrorInvalidParam;

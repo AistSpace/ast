@@ -55,6 +55,7 @@ EODEAction ODEEventObserver::onStateUpdate(double *y, double &x, ODEIntegrator* 
             // pass
             // aError("failed to find event time, error = %d", err);
         }else{
+            // Buffer size validation: destination y is sized by getDimension()
             memcpy(y, integrator->stateTemp(), integrator->getODE()->getDimension() * sizeof(double));
             x = eventTime;
         }
@@ -112,6 +113,7 @@ errc_t ODEEventObserver::findEventTime(double x1, double x2, double& result, ODE
         [detector, integrator, ndim](double t) -> double 
         {
             double t0 = integrator->timeAtStepStart();
+            // Buffer size validation: stateTemp and stateAtStepStart have same size (ndim)
             memcpy(integrator->stateTemp(), integrator->stateAtStepStart(), ndim * sizeof(double));
             integrator->singleStep(*integrator->getODE(), integrator->stateTemp(), t0, t - t0);
             return detector->getDifference(integrator->stateTemp(), t); 
