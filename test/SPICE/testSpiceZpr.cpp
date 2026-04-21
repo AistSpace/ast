@@ -18,7 +18,7 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#define _USE_MATH_DEFINES
+#include "AstUtil/Constants.hpp"
 #include "AstSPICE/SpiceZpr.h"
 #include "AstTest/Test.h"
 #include "AstCore/FrameTransform.hpp"
@@ -74,9 +74,9 @@ TEST(SpiceZpr, axisar)
         double axis[3];
         double angle;
     } testData[] = {
-        {{1.0, 0.0, 0.0}, M_PI / 2.0},
-        {{1.0, 1.0, 0.0}, M_PI / 4.0},
-        {{-5.0, 0.0, 1.0}, M_PI / 8.0}
+        {{1.0, 0.0, 0.0}, kHalfPI},
+        {{1.0, 1.0, 0.0}, kQuarterPI},
+        {{-5.0, 0.0, 1.0}, kPI / 8.0}
     };
     
     for (size_t i = 0; i < sizeof(testData) / sizeof(testData[0]); i++)
@@ -118,8 +118,8 @@ TEST(SpiceZpr, azlrec)
         double el;
     } testData[] = {
         {1.0, 0.0, 0.0},
-        {10.0, M_PI / 4.0, M_PI / 4.0},
-        {5.0, M_PI / 2.0, M_PI / 2.0},
+        {10.0, kQuarterPI, kQuarterPI},
+        {5.0, kHalfPI, kHalfPI},
         {0.000,    0.000_deg,    0.000_deg},
         {1.000,    0.000_deg,    0.000_deg},
         {1.000,  270.000_deg,    0.000_deg},
@@ -1516,8 +1516,8 @@ TEST(SpiceZpr, latrec)
         double lat;
     } testData[] = {
         {1.0, 0.0, 0.0},
-        {5.0, M_PI / 4.0, M_PI / 4.0},
-        {10.0, M_PI / 2.0, M_PI / 2.0},
+        {5.0, kQuarterPI, kQuarterPI},
+        {10.0, kHalfPI, kHalfPI},
         {0.000,    0.000_deg,    0.000_deg},
         {1.000,    0.000_deg,    0.000_deg},
         {1.000,   90.000_deg,    0.000_deg},
@@ -2167,8 +2167,8 @@ TEST(SpiceZpr, radrec)
         double dec;
     } testData[] = {
         {1.0, 0.0, 0.0},
-        {5.0, M_PI / 4.0, M_PI / 4.0},
-        {10.0, M_PI / 2.0, M_PI / 2.0},
+        {5.0, kQuarterPI, kQuarterPI},
+        {10.0, kHalfPI, kHalfPI},
         {0.000,    0.000_deg,    0.000_deg},
         {1.000,    0.000_deg,    0.000_deg},
         {1.000,   90.000_deg,    0.000_deg},
