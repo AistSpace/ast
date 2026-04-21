@@ -17,5 +17,6 @@ var AstCore_2Data_2Context_2RunTime_8hpp =
     [ "aGlobalContext_GetIAUXYS", "AstCore_2Data_2Context_2RunTime_8hpp.html#gab6179a360a2bb2fa49e90ed13801fb7f", null ],
     [ "aInitialize", "AstCore_2Data_2Context_2RunTime_8hpp.html#gab8a08c106d3feb750fdda376651fe6bc", null ],
     [ "aInitializeByConfig", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga6e69b33e4e4f1493b29ea7f4492b2f12", null ],
+    [ "aInitializeConfig", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga950d27b4d045b30589976f1125c168ba", null ],
     [ "aUninitialize", "AstCore_2Data_2Context_2RunTime_8hpp.html#ga864b7bad4c069e934f76e71daf8d4b11", null ]
 ];

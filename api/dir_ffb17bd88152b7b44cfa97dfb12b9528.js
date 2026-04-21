@@ -4,6 +4,8 @@ var dir_ffb17bd88152b7b44cfa97dfb12b9528 =
     [ "ValArray.hpp", "ValArray_8hpp.html", null ],
     [ "ValBool.cpp", "ValBool_8cpp.html", null ],
     [ "ValBool.hpp", "ValBool_8hpp.html", null ],
+    [ "ValDict.cpp", "ValDict_8cpp.html", null ],
+    [ "ValDict.hpp", "ValDict_8hpp_source.html", null ],
     [ "ValDouble.cpp", "ValDouble_8cpp.html", null ],
     [ "ValDouble.hpp", "ValDouble_8hpp.html", null ],
     [ "ValInt.cpp", "ValInt_8cpp.html", null ],

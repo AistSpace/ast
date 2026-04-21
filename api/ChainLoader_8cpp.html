@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>🛰️航天仿真算法库 SpaceAST: src/AstSim/Loader/ChainLoader.cpp 文件参考</title>
+<title>🛰️航天仿真算法库 SpaceAST: src/AstLoader/Sim/ChainLoader.cpp 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -106,6 +106,7 @@ $(function(){initNavTree('ChainLoader_8cpp.html',''); initResizable(true); });
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="ChainLoader_8hpp_source.html">ChainLoader.hpp</a>&quot;</code><br />
 <code>#include &quot;AstSim/Chain.hpp&quot;</code><br />
+<code>#include &quot;AstLoader/BasicComponentLoader.hpp&quot;</code><br />
 <code>#include &quot;AstUtil/StringView.hpp&quot;</code><br />
 <code>#include &quot;AstUtil/StringUtil.hpp&quot;</code><br />
 <code>#include &quot;AstUtil/Logger.hpp&quot;</code><br />
@@ -118,8 +119,18 @@ $(function(){initNavTree('ChainLoader_8cpp.html',''); initResizable(true); });
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:aa3c8e54a5e34a507ea9cc744504d0beb" id="r_aa3c8e54a5e34a507ea9cc744504d0beb"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html#aa3c8e54a5e34a507ea9cc744504d0beb">ast::aLoadChain</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath, <a class="el" href="classast_1_1Chain.html">Chain</a> &amp;chain)</td></tr>
-<tr class="separator:aa3c8e54a5e34a507ea9cc744504d0beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a761a949e7349d676d49781c30a4675" id="r_a0a761a949e7349d676d49781c30a4675"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html#a0a761a949e7349d676d49781c30a4675">ast::_aLoadDefinition</a> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Chain.html">Chain</a> &amp;chain)</td></tr>
+<tr class="separator:a0a761a949e7349d676d49781c30a4675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa7e3b68f598fd7cc418c934ef951573" id="r_aaa7e3b68f598fd7cc418c934ef951573"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html#aaa7e3b68f598fd7cc418c934ef951573">ast::_aLoadExtensions</a> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Chain.html">Chain</a> &amp;chain)</td></tr>
+<tr class="separator:aaa7e3b68f598fd7cc418c934ef951573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9a9a2db74430bf4e44aec9e53f2aef5" id="r_ad9a9a2db74430bf4e44aec9e53f2aef5"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html#ad9a9a2db74430bf4e44aec9e53f2aef5">ast::aLoadChain</a> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> objectType, <a class="el" href="classast_1_1Chain.html">Chain</a> &amp;chain)</td></tr>
+<tr class="separator:ad9a9a2db74430bf4e44aec9e53f2aef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa08e63ffc4e24f6809f05b19b2272320" id="r_aa08e63ffc4e24f6809f05b19b2272320"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html#aa08e63ffc4e24f6809f05b19b2272320">ast::aLoadChain</a> (<a class="el" href="classast_1_1BKVParser.html">BKVParser</a> &amp;parser, <a class="el" href="classast_1_1Chain.html">Chain</a> &amp;chain)</td></tr>
+<tr class="separator:aa08e63ffc4e24f6809f05b19b2272320"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26fb201b84e02aa4280447c613b6244d" id="r_a26fb201b84e02aa4280447c613b6244d"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html#a26fb201b84e02aa4280447c613b6244d">ast::aLoadChain</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath, <a class="el" href="classast_1_1StringViewBasic.html">StringView</a> objectType, <a class="el" href="classast_1_1Chain.html">Chain</a> &amp;chain)</td></tr>
+<tr class="separator:a26fb201b84e02aa4280447c613b6244d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad27294fe6be0813703237555eabc58d7" id="r_ad27294fe6be0813703237555eabc58d7"><td class="memItemLeft" align="right" valign="top">errc_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceast.html#ad27294fe6be0813703237555eabc58d7">ast::aLoadChain</a> (<a class="el" href="classast_1_1StringViewBasic.html">StringView</a> filepath, <a class="el" href="classast_1_1Chain.html">Chain</a> &amp;chain)</td></tr>
+<tr class="separator:ad27294fe6be0813703237555eabc58d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>链加载器实现 </p>
@@ -134,7 +145,7 @@ $(function(){initNavTree('ChainLoader_8cpp.html',''); initResizable(true); });
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_9c9106fcc7ff0f590973c837d2bf1f53.html">AstSim</a></li><li class="navelem"><a class="el" href="dir_ab20f66dbe4b1cae9579ed01e4f7b7d8.html">Loader</a></li><li class="navelem"><a class="el" href="ChainLoader_8cpp.html">ChainLoader.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_0c3e1a5d8bf0fe75b10e37d3496a0636.html">AstLoader</a></li><li class="navelem"><a class="el" href="dir_0e2092a13bf35ef4389b5537d500946c.html">Sim</a></li><li class="navelem"><a class="el" href="ChainLoader_8cpp.html">ChainLoader.cpp</a></li>
     <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
