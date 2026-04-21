@@ -26,6 +26,7 @@
 #include <cctype>
 #include <cmath>
 #include <cstring>
+#include <climits>
 
 AST_NAMESPACE_BEGIN
 
