@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/Span.hpp"
+#include "AstUtil/StringView.hpp"   // for StringView
 #include <string>       // for std::string
 #include <vector>       // for std::vector
 #include <utility>      // for std::pair
@@ -82,8 +83,21 @@ public:
     }
 };
 
+/// @brief 枚举描述符持有器
+/// @details 通过特化其静态成员 get() 提供枚举描述符。
 template<typename EnumType>
-EnumDescriptor<EnumType>& aEnumDescriptor();
+struct EnumDescriptorHolder
+{
+    static EnumDescriptor<EnumType>& get();
+};
+
+/// @brief 获取枚举描述符
+/// @details 需先通过 AST_ENUM_DESCRIPTOR() 定义 EnumDescriptorHolder<EnumType>::get()
+template<typename EnumType>
+EnumDescriptor<EnumType>& aEnumDescriptor()
+{
+    return EnumDescriptorHolder<EnumType>::get();
+}
 
 
 /// @brief 定义一个枚举项（枚举值 + 名称）
@@ -92,12 +106,12 @@ EnumDescriptor<EnumType>& aEnumDescriptor();
 /// @param Name       枚举项的名称字符串
 #define AST_ENUM_VALUE(Enumerator, Name)  {static_cast<EnumDescriptorData::NumberType>(_EnumType::Enumerator), const_cast<char*>(Name)}
 
-/// @brief 定义枚举描述符，即 aEnumDescriptor<EnumType>() 的特化
+/// @brief 定义枚举描述符，即 EnumDescriptorHolder<EnumType>::get() 的特化
 /// @param EnumType 枚举类型
 /// @param ...      枚举项列表，每一项由 AST_ENUM_VALUE() 给出
 #define AST_ENUM_DESCRIPTOR(EnumType, ...) \
     template<> \
-    EnumDescriptor<EnumType>& aEnumDescriptor<EnumType>() \
+    EnumDescriptor<EnumType>& EnumDescriptorHolder<EnumType>::get() \
     { \
         using _EnumType = EnumType; \
         static_assert(sizeof(EnumType) <= sizeof(EnumDescriptorData::NumberType), "size of " #EnumType " must be less than or equal to size of EnumDescriptorData::NumberType"); \

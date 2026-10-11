@@ -144,8 +144,8 @@ Access *aFindAccess(Scenario &scenario, Object &object1, Object &object2)
     for(auto& accessObject: accessObjects)
     {
         if(
-            accessObject->baseObject() == &object2 && accessObject->targetObject() == &object1 || 
-            accessObject->baseObject() == &object1 && accessObject->targetObject() == &object2
+            (accessObject->baseObject() == &object2 && accessObject->targetObject() == &object1) ||
+            (accessObject->baseObject() == &object1 && accessObject->targetObject() == &object2)
         )
         {
             return accessObject;
