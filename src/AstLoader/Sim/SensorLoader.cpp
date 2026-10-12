@@ -32,6 +32,7 @@
 #include "AstCore/AxesFixed.hpp"
 #include "AstMath/Vector.hpp"
 #include "AstMath/Quaternion.hpp"
+#include "AstUtil/ObjectLinker.hpp"
 
 AST_NAMESPACE_BEGIN
 

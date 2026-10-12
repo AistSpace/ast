@@ -21,23 +21,83 @@
 #include "AccessEvaluator.hpp"
 #include "AccessStepper.hpp"
 #include "AstCore/AccessConstraint.hpp"
-#include "AstMath/BrentSolver.hpp"
+#include "AstCore/EventLocator.hpp"
+#include "AstCore/Stepper.hpp"
 #include "AstUtil/Logger.hpp"
-#include <cmath>
 
 AST_NAMESPACE_BEGIN
 
 
-constexpr double kZeroTol = 1e-9;  // 约束值零容差：浮点噪声可能产生 ~1e-10 偏差
+/// @brief 把访问约束适配成事件定位所需的一元标量函数
+/// @details 约束以绝对时间点为自变量，EventLocator 以相对秒为自变量，
+///          故以 epoch 为零点平移：f(x) = constraint->evaluate(epoch + x)
+class AccessConstraintFunc : public UnaryScalarFunc
+{
+public:
+    AccessConstraintFunc(const AccessConstraint& constraint, const TimePoint& epoch)
+        : constraint_(constraint)
+        , epoch_(epoch)
+    {}
+
+    void evaluate(double x, double* out) const override
+    {
+        *out = constraint_.evaluate(epoch_ + x);
+    }
+
+private:
+    const AccessConstraint& constraint_;
+    TimePoint               epoch_;
+};
+
+
+/// @brief 把访问步进策略适配成事件定位所需的步进器
+/// @details 采样时刻仍由 AccessStepper 在绝对时间域上产生，这里以 epoch 为
+///          零点换算成相对秒交给 EventLocator
+class AccessStepperAdapter : public Stepper
+{
+public:
+    AccessStepperAdapter(AccessStepper& stepper, const TimePoint& epoch)
+        : stepper_(stepper)
+        , epoch_(epoch)
+    {}
+
+    void init(double start, double end) override
+    {
+        stepper_.init(epoch_ + start, epoch_ + end);
+    }
+
+    bool first(double& t) override
+    {
+        TimePoint tp;
+        bool success = stepper_.first(tp);
+        t = tp - epoch_;
+        return success;
+    }
+
+    bool next(double& t) override
+    {
+        TimePoint tp;
+        bool success = stepper_.next(tp);
+        t = tp - epoch_;
+        return success;
+    }
+
+private:
+    AccessStepper& stepper_;
+    TimePoint      epoch_;
+};
 
 
 /// @brief 评估访问约束的时间段，累加结果到 result 中
+/// @details 以区间起点为相对时间零点，把绝对时间域上的约束和步进策略折算到
+///          EventLocator 的相对秒域，交由 aFindEventIntervals 完成采样、事件边界
+///          精化与步内极值检测，最后把相对区间换算回绝对时间追加到 result
 /// @param constraint 访问约束
 /// @param stepper 步进策略
 /// @param interval 搜索时间区间
 /// @param result 满足约束的时间段列表，会累加结果，不会清空已有时段
 /// @return 错误码
-static errc_t aEvaluateAccess_AppendResult(
+static errc_t aEvaluateAccess_Append(
     const AccessConstraint* constraint,
     AccessStepper* stepper,
     const TimeInterval& interval,
@@ -46,85 +106,19 @@ static errc_t aEvaluateAccess_AppendResult(
 {
     if (!constraint || !stepper) { return eErrorInvalidParam; }
 
-    auto& start = interval.start();
-    auto& stop  = interval.stop();
-
-    // 初始化步进器
-    stepper->init(start, stop);
-
-    // 初始化结果列表
     if(result.empty())
-        result.setEpoch(start);
+        result.setEpoch(interval.start());
+    
+    const TimePoint& epoch = result.epoch();
+    
+    AccessConstraintFunc func(*constraint, epoch);
+    AccessStepperAdapter adapter(*stepper, epoch);
 
-    // 定义满足约束的判断函数
-    auto isSatisfied = [](double v) { return v >= -kZeroTol; };
-
-    double prevValue = constraint->evaluate(start);
-
-    // 初始访问状态
-    bool   inAccess  = isSatisfied(prevValue);
-    TimePoint boundaryStart = start;
-
-    TimePoint prevTime = start;
-    TimePoint currentTime;
-
-    while (stepper->next(currentTime)) {
-        double currentValue = constraint->evaluate(currentTime);
-
-        // 符号翻转检测（使用容差，容忍浮点噪声导致约束值不精确为零）
-        if (isSatisfied(prevValue) != isSatisfied(currentValue)) {
-            double dt = currentTime - prevTime;
-            TimePoint refTime = prevTime;
-
-            // 精化求根
-            double rootT = 0.0;
-            if (fabs(prevValue) <= kZeroTol || fabs(currentValue) <= kZeroTol) {
-                // 约束值一端近零（平台状）：Brent 无法精化，改用二分法
-                // neg: f(neg) < -kZeroTol, zero: f(zero) >= -kZeroTol
-                double neg, zero;
-                if (!isSatisfied(prevValue)) {
-                    neg = 0;    zero = dt;
-                } else {
-                    neg = dt;   zero = 0;
-                }
-                constexpr double kTol = 1e-4; // 时间精度[s]
-                while (fabs(zero - neg) > kTol) {
-                    double mid = (neg + zero) * 0.5;
-                    double fmid = constraint->evaluate(refTime + mid);
-                    if (isSatisfied(fmid)) {
-                        zero = mid;
-                    } else {
-                        neg  = mid;
-                    }
-                }
-                rootT = zero; // 取非负端
-            } else {
-                // 两端都非零：正常 Brent 求根
-                BrentSolver().solve([constraint, refTime](double x) -> double {
-                    return constraint->evaluate(refTime + x);
-                }, 0.0, dt, rootT);
-            }
-
-            TimePoint rootTime = refTime + rootT;
-
-            if (inAccess) {
-                result.push_back(boundaryStart, rootTime);
-            }
-
-            boundaryStart = rootTime;
-            inAccess = !inAccess;
-        }
-
-        prevTime  = currentTime;
-        prevValue = currentValue;
-    }
-
-    // 处理最后一个区间
-    if (inAccess) {
-        result.push_back(boundaryStart, stop);
-    }
-
-    return eNoError;
+    /*
+    因为统一设置了 epoch
+    这里可以调用 _aFindEventIntervals_Append 函数，直接将结果累加到 result.intervals() 中
+    */
+    return _aFindEventIntervals_Append(func, adapter, interval.toInterval(epoch), result.intervals());
 }
 
 
@@ -136,7 +130,7 @@ errc_t aEvaluateAccess(
 )
 {
     result.clear();
-    return aEvaluateAccess_AppendResult(constraint, stepper, interval, result);
+    return aEvaluateAccess_Append(constraint, stepper, interval, result);
 }
 
 
@@ -151,7 +145,7 @@ errc_t aEvaluateAccess(
     TimeIntervalList satisfiedIntervalList;
     errc_t rc = eNoError;
     for (const auto& interval : intervalList) {
-        errc_t err = aEvaluateAccess_AppendResult(constraint, stepper, interval, satisfiedIntervalList);
+        errc_t err = aEvaluateAccess_Append(constraint, stepper, interval, satisfiedIntervalList);
         if (err != eNoError) {
             rc = err;
             aError(_("计算可见性失败，区间：%s"), interval.toString().c_str());

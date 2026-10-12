@@ -29,7 +29,7 @@
 #include "AstSim/ObjectAccessConstraints.hpp"
 #include "AstCore/AccessEvaluator.hpp"
 #include "AstCore/AccessConstraint.hpp"
-#include "AstCore/FixedStepStepper.hpp"
+#include "AstCore/FixedStepAccessStepper.hpp"
 #include "AstCore/BodyObstructionConstraint.hpp"
 #include "AstCore/FieldOfViewConstraint.hpp"
 
@@ -130,8 +130,7 @@ errc_t Access::compute()
     auto guard = aScopeExit([&]{ for (auto& constraint : constraints) delete constraint;});
 
     // 计算访问时间段
-    FixedStepStepper stepper;
-    stepper.setStepSize(30);
+    FixedStepAccessStepper stepper;
     rc = aEvaluateAccess(constraints, &stepper, intervalAccess, this->accessIntervals_);
     AST_CHECK_ERRCODE(rc, _("计算访问时间段失败"));
 

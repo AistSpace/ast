@@ -1,4 +1,4 @@
-///
+    ///
 /// @file      IntervalList.cpp
 /// @brief     相对时段列表实现
 /// @details   ~
@@ -257,6 +257,21 @@ TimeList IntervalList::discretize(const TimePoint& epoch, double step) const
 
     return result;
 }
+
+std::string IntervalList::toString() const
+{
+    if (empty())
+    {
+        return "IntervalList()";
+    }
+    std::string result;
+    for (const auto& iv : intervals_)
+    {
+        result += iv.toString() + "\n";
+    }
+    return result;
+}
+
 
 
 AST_NAMESPACE_END

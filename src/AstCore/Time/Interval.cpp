@@ -22,7 +22,10 @@
 
 AST_NAMESPACE_BEGIN
 
-
+std::string Interval::toString() const
+{
+    return "[" + std::to_string(start_) + ", " + std::to_string(stop_) + "]";
+}
 
 AST_NAMESPACE_END
 

@@ -25,6 +25,7 @@
 #include "TimePoint.hpp"
 #include <vector>
 #include <initializer_list>
+#include <string>
 
 AST_NAMESPACE_BEGIN
 
@@ -313,7 +314,9 @@ public:
     /// @return TimeList 离散化后的时间点列表
     AST_CORE_API
     TimeList discretize(const TimePoint& epoch, double step) const;
-
+public:
+    AST_CORE_API
+    std::string toString() const;
 private:
     std::vector<Interval> intervals_{};   ///< 相对时间区间列表
 };

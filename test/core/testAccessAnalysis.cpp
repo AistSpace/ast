@@ -36,6 +36,7 @@
 #include "ast/CelestialBody.hpp"
 #include "ast/EventIntervalExplicit.hpp"
 #include "ast/EventTimeExplicit.hpp"
+#include "ast/FixedStepAccessStepper.hpp"
 #include "ast/FrameAssembly.hpp"
 #include "ast/BuiltinAxes.hpp"
 #include "ast/RunTime.hpp"
@@ -122,7 +123,7 @@ static double PrintIntervals(const char* title, const TimeIntervalList& result, 
 /// @brief 用单约束计算访问时段
 static TimeIntervalList EvaluateAccess(AccessConstraint* constraint)
 {
-    FixedStepStepper stepper(60.0);
+    FixedStepAccessStepper stepper(60.0);
     AccessEvaluator evaluator;
     evaluator.setConstraint(constraint);
     evaluator.setStepper(&stepper);
@@ -350,7 +351,7 @@ TEST_F(AccessAnalysisTest, Sensor2ToFacility1)
     FOVSimpleCone fov;
     fov.setConeAngle(deg2rad(45.0));
 
-    FixedStepStepper stepper(60.0);
+    FixedStepAccessStepper stepper(60.0);
 
     FieldOfViewConstraint fovConstraint(sensorFrame, fac1, &fov);
     AccessEvaluator fovEval;
@@ -422,7 +423,7 @@ TEST_F(AccessAnalysisTest, Sensor2ToFacility1_VectorEval)
     BodyObstructionConstraint losConstraint(sat2, fac1, aGetEarth());
 
     std::vector<AccessConstraint*> constraints = {&fovConstraint, &losConstraint};
-    FixedStepStepper stepper(60.0);
+    FixedStepAccessStepper stepper(60.0);
     TimeIntervalList result;
     aEvaluateAccess(constraints, &stepper, DefaultInterval(), result);
 

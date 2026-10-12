@@ -1,5 +1,5 @@
 ///
-/// @file      FixedStepStepper.hpp
+/// @file      FixedStepAccessStepper.hpp
 /// @brief     固定步长步进器
 /// @details   以固定时间步长在时间范围内生成采样点。
 /// @author    axel
@@ -25,18 +25,23 @@
 AST_NAMESPACE_BEGIN
 
 /// @brief 固定步长步进器
-class AST_CORE_API FixedStepStepper : public AccessStepper
+class AST_CORE_API FixedStepAccessStepper : public AccessStepper
 {
 public:
-    AST_OBJECT(FixedStepStepper)
+    AST_OBJECT(FixedStepAccessStepper)
 
-    FixedStepStepper() = default;
+    FixedStepAccessStepper() = default;
 
     /// @brief 构造固定步长步进器
     /// @param stepSize 步长（秒）
-    explicit FixedStepStepper(double stepSize);
+    explicit FixedStepAccessStepper(double stepSize);
 
     void init(const TimePoint& start, const TimePoint& stop) override;
+
+    /// @brief 获取第一个采样时刻（即时间范围起点）
+    bool first(TimePoint& tp) override;
+
+    /// @brief 获取下一个采样时刻（起点之后每隔 stepSize 取一个）
     bool next(TimePoint& tp) override;
 
     void setStepSize(double step) { stepSize_ = step; }
@@ -47,7 +52,6 @@ private:
     TimePoint  start_{};
     TimePoint  stop_{};
     TimePoint  current_{};
-    bool       initDone_{false};
 };
 
 AST_NAMESPACE_END
