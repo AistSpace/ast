@@ -1,4 +1,5 @@
 // AstSim 工程聚合头文件
+#include "AstSim/Access.hpp"
 #include "AstSim/AdvCAT.hpp"
 #include "AstSim/Aircraft.hpp"
 #include "AstSim/Antenna.hpp"
@@ -40,6 +41,9 @@
 #include "AstSim/MotionTwoBody.hpp"
 #include "AstSim/MotionWithIntervalStep.hpp"
 #include "AstSim/Mover.hpp"
+#include "AstSim/ObjectAccessConstraint.hpp"
+#include "AstSim/ObjectAccessConstraints.hpp"
+#include "AstSim/ObjectComponent.hpp"
 #include "AstSim/Place.hpp"
 #include "AstSim/Planet.hpp"
 #include "AstSim/Platform.hpp"

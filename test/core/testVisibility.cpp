@@ -29,7 +29,7 @@
 #include "ast/BodyObstructionConstraint.hpp"
 #include "ast/FieldOfViewConstraint.hpp"
 #include "ast/AccessStepper.hpp"
-#include "ast/FixedStepStepper.hpp"
+#include "ast/FixedStepAccessStepper.hpp"
 #include "ast/AccessEvaluator.hpp"
 #include "ast/AndConstraint.hpp"
 #include "ast/OrConstraint.hpp"
@@ -305,7 +305,7 @@ private:
 TEST(AccessEvaluatorTest, AllPositive)
 {
     MockValueConstraint constraint(1.0);
-    FixedStepStepper stepper(10.0);
+    FixedStepAccessStepper stepper(10.0);
     AccessEvaluator evaluator;
     evaluator.setConstraint(&constraint);
     evaluator.setStepper(&stepper);
@@ -320,7 +320,7 @@ TEST(AccessEvaluatorTest, AllPositive)
 TEST(AccessEvaluatorTest, AllNegative)
 {
     MockValueConstraint constraint(-1.0);
-    FixedStepStepper stepper(10.0);
+    FixedStepAccessStepper stepper(10.0);
     AccessEvaluator evaluator;
     evaluator.setConstraint(&constraint);
     evaluator.setStepper(&stepper);
@@ -334,7 +334,7 @@ TEST(AccessEvaluatorTest, AllNegative)
 // 无约束时返回错误
 TEST(AccessEvaluatorTest, NoConstraint)
 {
-    FixedStepStepper stepper(30.0);
+    FixedStepAccessStepper stepper(30.0);
     AccessEvaluator evaluator;
     evaluator.setStepper(&stepper);
 

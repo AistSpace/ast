@@ -19,6 +19,7 @@
 
 #include "SensorLoader.hpp"
 #include "CommonlyUsedHeaders.hpp"
+#include "AstLoader/ObjectComponentLoader.hpp"
 #include "AstSim/Sensor.hpp"
 #include "AstSim/CentroidPosition.hpp"
 #include "AstCore/FOVSimpleCone.hpp"
@@ -27,7 +28,11 @@
 #include "AstCore/FOVRectangular.hpp"
 #include "AstCore/FOVSAR.hpp"
 #include "AstCore/FOVCustom.hpp"
+#include "AstCore/AttitudeFixed.hpp"
+#include "AstCore/AxesFixed.hpp"
 #include "AstMath/Vector.hpp"
+#include "AstMath/Quaternion.hpp"
+#include "AstUtil/ObjectLinker.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -109,9 +114,9 @@ errc_t _aLoadRectangular(BKVParser& parser, FOVRectangular& fov)
         token = parser.getNext(item);
         if(token == BKVParser::eKeyValue){
             if(aEqualsIgnoreCase(item.key(), "SideToSideAngle")){
-                fov.setHorizontalHalfAngle(item.value().toAngleRad());
+                fov.setHorizontalHalfAngle(item.value().toAngleRad() / 2);
             }else if(aEqualsIgnoreCase(item.key(), "UpDownAngle")){
-                fov.setVerticalHalfAngle(item.value().toAngleRad());
+                fov.setVerticalHalfAngle(item.value().toAngleRad() / 2);
             }
         }else if(token == BKVParser::eBlockEnd){
             if(aEqualsIgnoreCase(item.value(), "Rectangular")){
@@ -242,7 +247,10 @@ errc_t _aLoadSensorPointing(BKVParser& parser, Sensor& sensor)
     do{
         token = parser.getNext(item);
         if(token == BKVParser::eBlockBegin){
-            if(aEqualsIgnoreCase(item.value(), "Fixed")){
+            if(aEqualsIgnoreCase(item.value(), "Fixed"))
+            {
+                SharedPtr<AxesFixed> axesFixed = new AxesFixed();
+                Quaternion quat;
                 BKVItemView fixedItem;
                 BKVParser::EToken fixedToken;
                 do{
@@ -253,16 +261,27 @@ errc_t _aLoadSensorPointing(BKVParser& parser, Sensor& sensor)
                         }else if(aEqualsIgnoreCase(fixedItem.key(), "Sequence")){
                             // @todo 设置序列
                         }else if(aEqualsIgnoreCase(fixedItem.key(), "Qx")){
-                            // @todo 设置四元数x
+                            quat.x() = fixedItem.value().toDouble();
                         }else if(aEqualsIgnoreCase(fixedItem.key(), "Qy")){
-                            // @todo 设置四元数y
+                            quat.y() = fixedItem.value().toDouble();
                         }else if(aEqualsIgnoreCase(fixedItem.key(), "Qz")){
-                            // @todo 设置四元数z
+                            quat.z() = fixedItem.value().toDouble();
                         }else if(aEqualsIgnoreCase(fixedItem.key(), "Qs")){
-                            // @todo 设置四元数s
+                            quat.w() = fixedItem.value().toDouble();
                         }
                     }else if(fixedToken == BKVParser::eBlockEnd){
-                        if(aEqualsIgnoreCase(fixedItem.value(), "Fixed")){
+                        if(aEqualsIgnoreCase(fixedItem.value(), "Fixed"))
+                        {
+                            axesFixed->setRotation(Rotation(quat));
+                            sensor.setOrientation(axesFixed);
+                            axesFixed->addDelayedLink([&sensor, axesFixed]{
+                                auto parent = sensor.getParentScope();
+                                auto platform = aobject_cast<Platform*>(parent);
+                                if(platform)
+                                    axesFixed->setReferenceAxes(&platform->bodyAxes());
+                                else
+                                    aError(_("传感器 '%s' 的父对象不是平台对象"), sensor.getName().c_str());
+                            });
                             break;
                         }
                     }
@@ -337,42 +356,7 @@ errc_t _aLoadSensorLocation(BKVParser& parser, Sensor& sensor)
 /// @return 错误码
 errc_t _aLoadSensorExtensions(BKVParser& parser, Sensor& sensor)
 {
-    BKVItemView item;
-    BKVParser::EToken token;
-    
-    do{
-        token = parser.getNext(item);
-        if(token == BKVParser::eBlockBegin){
-            if(aEqualsIgnoreCase(item.value(), "ExternData")){
-                // @todo 处理外部数据
-            }else if(aEqualsIgnoreCase(item.value(), "ADFFileData")){
-                // @todo 处理ADF文件数据
-            }else if(aEqualsIgnoreCase(item.value(), "AccessConstraints")){
-                // @todo 处理访问约束
-            }else if(aEqualsIgnoreCase(item.value(), "ObjectCoverage")){
-                // @todo 处理对象覆盖
-            }else if(aEqualsIgnoreCase(item.value(), "Desc")){
-                // @todo 处理描述
-            }else if(aEqualsIgnoreCase(item.value(), "Refraction")){
-                // @todo 处理折射
-            }else if(aEqualsIgnoreCase(item.value(), "Crdn")){
-                // @todo 处理坐标系统
-            }else if(aEqualsIgnoreCase(item.value(), "Graphics")){
-                // @todo 处理图形
-            }else if(aEqualsIgnoreCase(item.value(), "Swath")){
-                // @todo 处理扫描带
-            }else if(aEqualsIgnoreCase(item.value(), "VO")){
-                // @todo 处理VO
-            }else if(aEqualsIgnoreCase(item.value(), "DIS")){
-                // @todo 处理DIS
-            }
-        }else if(token == BKVParser::eBlockEnd){
-            if(aEqualsIgnoreCase(item.value(), "Extensions")){
-                return eNoError;
-            }
-        }
-    }while(token != BKVParser::eEOF);
-    return eNoError;
+    return aLoadObjectExtensions(parser, sensor);
 }
 
 
@@ -385,6 +369,7 @@ errc_t aLoadSensor(BKVParser &parser, StringView sensorType, Sensor &sensor)
 {
     BKVItemView item;
     BKVParser::EToken token;
+    bool locationLoaded = false;
     
     do{
         token = parser.getNext(item);
@@ -399,6 +384,7 @@ errc_t aLoadSensor(BKVParser &parser, StringView sensorType, Sensor &sensor)
                     return rc;
                 }
             }else if(aEqualsIgnoreCase(item.value(), "Location")){
+                locationLoaded = true;
                 if(errc_t rc = _aLoadSensorLocation(parser, sensor)){
                     return rc;
                 }
@@ -425,6 +411,18 @@ errc_t aLoadSensor(BKVParser &parser, StringView sensorType, Sensor &sensor)
             }
         }
     }while(token != BKVParser::eEOF);
+
+    if(!locationLoaded)
+    {
+        sensor.setLocation(nullptr);
+        sensor.addDelayedLink([&sensor]{
+            auto point = aobject_cast<Point*>(sensor.getParentScope());
+            if(point)
+                sensor.setLocation(point);
+            else
+                aError(_("传感器 '%s' 的父对象不是点对象"), sensor.getName().c_str());
+        });
+    }
     return eNoError;
 }
 

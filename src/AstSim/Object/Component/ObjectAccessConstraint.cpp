@@ -1,0 +1,77 @@
+///
+/// @file      ObjectAccessConstraint.cpp
+/// @brief     
+/// @details   
+/// @author    axel
+/// @date      2026-10-08
+/// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
+///
+/// SpaceAST项目（https://github.com/space-ast/ast）
+/// 本软件基于 Apache 2.0 开源许可证分发。
+/// 您可在遵守许可证条款的前提下使用、修改和分发本软件。
+/// 许可证全文请见：
+/// 
+///    http://www.apache.org/licenses/LICENSE-2.0
+/// 
+/// 重要须知：
+/// 软件按"现有状态"提供，无任何明示或暗示的担保条件。
+/// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
+/// 使用本软件所产生的风险，需由您自行承担。
+
+#include "ObjectAccessConstraint.hpp"
+#include "AstUtil/EnumDescriptor.hpp"
+#include "AstUtil/StringView.hpp"
+#include "AstUtil/Logger.hpp"
+
+AST_NAMESPACE_BEGIN
+
+AST_ENUM_DESCRIPTOR(EAccessConstraint,
+    AST_ENUM_VALUE(eNone,           "None"),
+    AST_ENUM_VALUE(eFieldOfView,    "FieldOfView"),
+    AST_ENUM_VALUE(eLineOfSight,    "LineOfSight"),
+    AST_ENUM_VALUE(eElevationAngle, "ElevationAngle"),
+    AST_ENUM_VALUE(eRange,          "Range"),
+
+    AST_ENUM_VALUE(eAtFieldOfView,  "AtFieldOfView"),
+)
+
+
+ObjectAccessConstraint::ObjectAccessConstraint(StringView type)
+{
+    errc_t rc = setType(type);
+    if (rc != eNoError)
+    {
+        aWarning(_("未知的访问约束类型: %.*s"), type.size(), type.data());
+    }
+}
+
+errc_t ObjectAccessConstraint::setType(StringView type)
+{
+    auto& descriptor = aEnumDescriptor<EAccessConstraint>();
+    bool found = false;
+    EAccessConstraint value = descriptor.valueOf(type, found);
+    if (!found)
+        return eErrorInvalidParam;
+    type_ = value;
+    return eNoError;
+}
+
+std::string toString(EAccessConstraint type)
+{
+    const char* name = aEnumDescriptor<EAccessConstraint>().nameOf(type);
+    if (name == nullptr)
+        return "<未知枚举值>";
+    return name;
+}
+
+errc_t parse(StringView type, EAccessConstraint &result)
+{
+    bool found = false;
+    result = aEnumDescriptor<EAccessConstraint>().valueOf(type, found);
+    if (!found)
+        return eErrorInvalidParam;
+    return eNoError;
+}
+
+
+AST_NAMESPACE_END

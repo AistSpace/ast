@@ -24,7 +24,7 @@
 #include "AstCore/OrbitPathFilter.hpp"
 #include "AstCore/DistanceConstraint.hpp"
 #include "AstCore/AccessEvaluator.hpp"
-#include "AstCore/FixedStepStepper.hpp"
+#include "AstCore/FixedStepAccessStepper.hpp"
 #include "AstCore/TimeIntervalList.hpp"
 #include "AstCore/SGP4.hpp"
 #include "AstMath/Vector.hpp"
@@ -334,7 +334,7 @@ errc_t CloseApproachAnalyzer::analyze(const TLE& reference, const std::vector<TL
         #endif
 
         const double fineStep =  opts_.sampleStep;
-        FixedStepStepper fineStepper(fineStep);
+        FixedStepAccessStepper fineStepper(fineStep);
 
         DistanceConstraint constraint(&refEph, &candEph, opts_.threshold);
 

@@ -22,6 +22,7 @@
 #include "ast/STKEphemerisFileParser.hpp"
 #include "ast/STKEphemerisFileWriter.hpp"
 #include "ast/EphemerisLagrangeVar.hpp"
+#include "ast/FileSystem.hpp"
 #include "ast/RunTime.hpp"
 #include "ast/CelestialBody.hpp"
 #include "ast/TimePoint.hpp"
@@ -106,6 +107,7 @@ TEST_F(EphemerisFileWriterTest, STKEphemerisFileWriterRoundTrip)
         }
 
         printf("roundtrip ok: %s\n", outFile.c_str());
+        fs::remove(outFile);
     }
 }
 

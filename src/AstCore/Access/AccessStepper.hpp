@@ -27,10 +27,12 @@
 AST_NAMESPACE_BEGIN
 
 /// @brief 步进策略抽象基类
-/// @details 
+/// @details
 /// 子类实现不同的时间采样策略：
 /// - FixedStepStepper：固定步长
 /// - 未来可扩展自适应步长、基于轨道特征的步长等
+/// 采样点由步进器自身决定（不保证起点恰为时间范围起点）：
+/// 先调用 first() 取第一个采样点，再用 next() 依次取后续采样点
 class AST_CORE_API AccessStepper : public ObjectNamed
 {
 public:
@@ -43,6 +45,11 @@ public:
     /// @param start 开始时刻
     /// @param stop 结束时刻
     virtual void init(const TimePoint& start, const TimePoint& stop) = 0;
+
+    /// @brief 获取第一个采样时刻
+    /// @param tp 输出第一个采样时刻
+    /// @return false 表示无采样点
+    virtual bool first(TimePoint& tp) = 0;
 
     /// @brief 获取下一个采样时刻
     /// @param tp 输出下一个采样时刻

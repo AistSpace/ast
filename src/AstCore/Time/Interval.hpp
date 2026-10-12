@@ -27,6 +27,7 @@
 #include <cstddef>
 #include <cmath>
 #include <limits>
+#include <string>
 
 AST_NAMESPACE_BEGIN
 
@@ -135,6 +136,9 @@ public:
 
     /// @brief 交集（返回副本，等价于 intersected）
     Interval operator&(const Interval& other) const { return intersected(other); }
+public:
+    AST_CORE_API
+    std::string toString() const;
 public:
     double start_;
     double stop_;

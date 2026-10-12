@@ -1,5 +1,5 @@
 ///
-/// @file      FixedStepStepper.cpp
+/// @file      FixedStepAccessStepper.cpp
 /// @brief     固定步长步进器实现
 /// @author    axel
 /// @date      2026-07-22
@@ -17,27 +17,35 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "FixedStepStepper.hpp"
+#include "FixedStepAccessStepper.hpp"
 
 AST_NAMESPACE_BEGIN
 
-FixedStepStepper::FixedStepStepper(double stepSize)
+FixedStepAccessStepper::FixedStepAccessStepper(double stepSize)
     : stepSize_(stepSize)
 {
 }
 
-void FixedStepStepper::init(const TimePoint& start, const TimePoint& stop)
+void FixedStepAccessStepper::init(const TimePoint& start, const TimePoint& stop)
 {
     start_   = start;
     stop_    = stop;
     current_ = start;
-    initDone_ = true;
 }
 
-bool FixedStepStepper::next(TimePoint& tp)
+bool FixedStepAccessStepper::first(TimePoint& tp)
 {
-    if (!initDone_) { return false; }
-    if (current_ > stop_) { return false; }
+    current_ = start_;
+    return FixedStepAccessStepper::next(tp);
+}
+
+
+bool FixedStepAccessStepper::next(TimePoint& tp)
+{
+    if (current_ > stop_) { 
+        tp = stop_;
+        return false; 
+    }
 
     tp = current_;
     current_ = current_ + stepSize_;

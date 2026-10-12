@@ -1,4 +1,5 @@
 // AstLoader 工程聚合头文件
+#include "AstLoader/AccessLoader.hpp"
 #include "AstLoader/AdvCATLoader.hpp"
 #include "AstLoader/AntennaLoader.hpp"
 #include "AstLoader/AreaTargetLoader.hpp"
@@ -32,6 +33,7 @@
 #include "AstLoader/MotionTwoBodySax.hpp"
 #include "AstLoader/MoverLoader.hpp"
 #include "AstLoader/NumericalIntegratorLoader.hpp"
+#include "AstLoader/ObjectComponentLoader.hpp"
 #include "AstLoader/ObjectLoader.hpp"
 #include "AstLoader/PlaceLoader.hpp"
 #include "AstLoader/PlanetLoader.hpp"
@@ -54,6 +56,7 @@
 #include "AstLoader/TargetLoader.hpp"
 #include "AstLoader/TargeterProfileLoader.hpp"
 #include "AstLoader/TargeterSequenceLoader.hpp"
+#include "AstLoader/TimelinePrefsLoader.hpp"
 #include "AstLoader/TransmitterLoader.hpp"
 #include "AstLoader/VDFLoader.hpp"
 #include "AstLoader/ValXMLLoader.hpp"
