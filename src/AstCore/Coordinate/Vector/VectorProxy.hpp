@@ -36,7 +36,7 @@ class AST_CORE_API VectorProxy final: public Vector
 {
 public:
     VectorProxy() = default;
-    VectorProxy(Vector* vector):impl_(vector){}
+    explicit VectorProxy(Vector* vector):impl_(vector){}
     ~VectorProxy() override = default;
 
 public:

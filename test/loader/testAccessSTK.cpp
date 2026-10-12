@@ -152,7 +152,7 @@ static void CheckAccessAgainstPrefs(Access* access, const std::string& scenarioD
 
     // 获取计算结果
     auto& intervalList = access->accessIntervals();
-    printf("intervalList.size(): %d\n", intervalList.size());
+    printf("intervalList.size(): %zu\n", intervalList.size());
     printf("intervalList:\n%s\n", intervalList.toString().c_str());
 
     // 加载 TimelinePrefs

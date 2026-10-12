@@ -36,7 +36,7 @@ class AST_CORE_API FrameProxy final: public Frame
 {
 public:
     FrameProxy() = default;
-    FrameProxy(Frame* frame):impl_(frame){}
+    explicit FrameProxy(Frame* frame):impl_(frame){}
     ~FrameProxy() override = default;
 
 public:

@@ -37,7 +37,7 @@ class AST_CORE_API AxesProxy final: public Axes
 {
 public:
     AxesProxy() = default;
-    AxesProxy(Axes* axes):impl_(axes){}
+    explicit AxesProxy(Axes* axes):impl_(axes){}
     ~AxesProxy() override = default;
 
 public:

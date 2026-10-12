@@ -36,7 +36,7 @@ class AST_CORE_API PointProxy final: public Point
 {
 public:
     PointProxy() = default;
-    PointProxy(Point* point):impl_(point){}
+    explicit PointProxy(Point* point):impl_(point){}
     ~PointProxy() override = default;
 
 public:

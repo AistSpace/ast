@@ -36,7 +36,7 @@ class AST_CORE_API AngleProxy final: public Angle
 {
 public:
     AngleProxy() = default;
-    AngleProxy(Angle* angle):impl_(angle){}
+    explicit AngleProxy(Angle* angle):impl_(angle){}
     ~AngleProxy() override = default;
 
 public:

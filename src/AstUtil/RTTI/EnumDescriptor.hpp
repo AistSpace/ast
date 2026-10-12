@@ -45,7 +45,7 @@ public:
     EnumDescriptorData() = default;
     ~EnumDescriptorData() = default;
 
-    EnumDescriptorData(ValueList values) : values_(values) {}
+    explicit EnumDescriptorData(ValueList values) : values_(values) {}
 
 public:
     const char* nameOf(NumberType value) const;
