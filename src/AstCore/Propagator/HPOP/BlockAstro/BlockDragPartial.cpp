@@ -103,6 +103,14 @@ errc_t BlockDragPartial::run(const SimTime& simTime)
 
         // 计算大气密度
         density = atmosphere_->getDensity(tp, posInAtmosFrame);
+        #ifdef _DEBUG
+        if(std::isnan(density))
+        {
+            aError(_("大气密度计算结果为 NaN, 无法计算大气阻力加速度, r=%lf m"), posInAtmosFrame.norm());
+            *accDrag_ = Vector3d::Zero();
+            return eErrorInvalidParam;
+        }
+        #endif
         transform.inverse().transformPositionVelocity(posInAtmosFrame, Vector3d::Zero(), notUsed, atmosVelocity);
 
         // 计算航天器相对于大气的速度

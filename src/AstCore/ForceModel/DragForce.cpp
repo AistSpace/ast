@@ -20,12 +20,34 @@
 
 #include "DragForce.hpp"
 #include "AstWeather/GeomagneticIndex.hpp"
+#include "AstUtil/EnumDescriptor.hpp"
 
 AST_NAMESPACE_BEGIN
 
 double DragForce::ap() const
 {
     return aKpToAp(kp_);
+}
+
+
+AST_ENUM_DESCRIPTOR(EAtmDensityModel, 
+    AST_ENUM_VALUE(eNone,           "None"),
+    AST_ENUM_VALUE(e1976Standard,   "1976Standard"),
+    AST_ENUM_VALUE(eHarrisPriester, "HarrisPriester"),
+    AST_ENUM_VALUE(eJacchia60,      "Jacchia60"),
+    AST_ENUM_VALUE(eJacchia70,      "Jacchia70"),
+    AST_ENUM_VALUE(eJacchia71,      "Jacchia71"),
+    AST_ENUM_VALUE(eJacchiaRoberts, "JacchiaRoberts"),
+    AST_ENUM_VALUE(eMSIS1986,       "MSIS1986"),
+    AST_ENUM_VALUE(eMSISE1990,      "MSISE1990"),
+    AST_ENUM_VALUE(eNRLMSISE2000,   "NRLMSISE2000"),
+    AST_ENUM_VALUE(eCIRA72,         "CIRA72"),
+    AST_ENUM_VALUE(eDTM2012,        "DTM2012"),
+);
+
+std::string toString(EAtmDensityModel model)
+{
+    return aEnumDescriptor<EAtmDensityModel>().nameOf(model);
 }
 
 AST_NAMESPACE_END

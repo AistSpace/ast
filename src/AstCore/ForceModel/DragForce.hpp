@@ -112,6 +112,8 @@ public:
     /// @}
 };
 
+AST_CORE_API std::string toString(EAtmDensityModel model);
+
 /*! @} */
 
 AST_NAMESPACE_END
