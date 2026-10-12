@@ -319,6 +319,9 @@ errc_t aLoadScenarioFile(StringView filepath, Scenario &scenario)
                             if(errc_t rc = _aLoadSubObjects(parser, &scenario)){
                                 return rc;
                             }
+                        }else
+                        {
+                            _aSkipUnknownBlock(parser, scenarioItem.value());
                         }
                     }else if(scenarioToken == BKVParser::eBlockEnd){
                         if(aEqualsIgnoreCase(scenarioItem.value(), "Scenario")){

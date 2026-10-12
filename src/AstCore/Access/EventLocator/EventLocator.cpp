@@ -27,7 +27,7 @@
 AST_NAMESPACE_BEGIN
 
 
-constexpr double kEventZeroTol = 1e-9;  // 函数值零容差：浮点噪声可能产生 ~1e-10 偏差
+constexpr double kEventZeroTol = 2e-9;  // 函数值零容差：浮点噪声可能产生 ~1e-10 偏差
 constexpr double kEventTimeTol = 1e-4;  // 求根的时间精度[s]
 
 /// @brief 判断函数值是否满足事件条件（非负，容忍浮点噪声）
@@ -167,9 +167,12 @@ errc_t _aFindEventIntervals_Append(
     double prev2Value = prevValue;
 
     double currentTime;
+    bool hasNextStep;
+    bool isFirstStep = true;
 
-    while (stepper.next(currentTime)) 
+    do
     {
+        hasNextStep = stepper.next(currentTime);
         const double currentValue = evaluateEventFunc(func, currentTime);
         const int currentDir = slopeSign(currentValue - prevValue);
 
@@ -194,7 +197,7 @@ errc_t _aFindEventIntervals_Append(
             避免了在步进区间的两个端点函数值相同时，该部分区间进入该逻辑两次，从而产生一个非法的反向区间
             同时，通过判断 prevDir != 0 避免了第一步时进入该逻辑（因为 prevDir 变量初始化为 0）
             */
-            
+
             // 极大值（增转减）只在非事件区间内可能向上穿出；
             // 极小值（减转增）只在事件区间内可能向下穿出。其余情形极值不会跨零，无需精化
             const bool mayCross = (prevDir > 0) ? !inEventInterval : inEventInterval;
@@ -215,17 +218,36 @@ errc_t _aFindEventIntervals_Append(
                 }
             }
         }
+        // 情况3: 首段/末段/单段（其前/后没有采样点，构不成斜率反向）两端同号时，
+        //        步内极值不会产生任何斜率信号，需对首段/末段单独检出
+        //        （整段区间只有一步遍历时，也会进入该逻辑）
+        else if(!hasNextStep || isFirstStep)
+        {
+            double first, second;
+            if (findInteriorBoundaries(func, prevTime, prevValue, currentTime, currentValue,
+                                    inEventInterval, first, second)) {
+                if (inEventInterval) {
+                    // 事件区间被凹陷打断：先前区间止于 first，新区间自 second 起
+                    intervals.push_back(eventIntervalStart, first);
+                    eventIntervalStart = second;
+                } else {
+                    // 存在 >0 的凸起：输出 [first, second] 这段独立区间
+                    intervals.push_back(first, second);
+                }
+            }
+            isFirstStep = false;
+        }
 
         prev2Time  = prevTime;
         prev2Value = prevValue;
         prevTime   = currentTime;
         prevValue  = currentValue;
         prevDir    = currentDir;
-    }
+    }while(hasNextStep);
 
-    // 处理最后一个区间
-    if (inEventInterval) {
-        intervals.push_back(eventIntervalStart, interval.stop());
+    // 处理最后一个区间（末段处理改动后，终点可能因落在零容差内而补出一个零宽区间，需丢弃）
+    if (inEventInterval && currentTime - eventIntervalStart > kEventTimeTol) {
+        intervals.push_back(eventIntervalStart, currentTime);
     }
 
     return eNoError;

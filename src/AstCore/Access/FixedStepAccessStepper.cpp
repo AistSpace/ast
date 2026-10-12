@@ -42,7 +42,10 @@ bool FixedStepAccessStepper::first(TimePoint& tp)
 
 bool FixedStepAccessStepper::next(TimePoint& tp)
 {
-    if (current_ > stop_) { return false; }
+    if (current_ > stop_) { 
+        tp = stop_;
+        return false; 
+    }
 
     tp = current_;
     current_ = current_ + stepSize_;

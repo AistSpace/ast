@@ -57,7 +57,7 @@ TEST(EventLocatorTest, AllPositive)
     errc_t rc = aFindEventIntervals(func, stepper, interval, intervals);
 
     EXPECT_EQ(rc, eNoError);
-    EXPECT_EQ(intervals.size(), 1u);
+    ASSERT_EQ(intervals.size(), 1u);
     EXPECT_DOUBLE_EQ(intervals[0].start(), 0.0);
     EXPECT_DOUBLE_EQ(intervals[0].stop(), 100.0);
 }
@@ -76,6 +76,91 @@ TEST(EventLocatorTest, AllNegative)
     EXPECT_EQ(intervals.size(), 0u);
 }
 
+// 步长大于区间长度：采样点只有起点和终点两个
+TEST(EventLocatorTest, SingleStepWholeInterval)
+{
+    MockScalarFunc func([](double x) { return x - 5.0; });
+    FixedStepStepper stepper(20.0); // 步长 20 > 区间长度 10
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    aFindEventIntervals(func, stepper, interval, intervals);
+
+    ASSERT_EQ(intervals.size(), 1u);
+    EXPECT_NEAR(intervals[0].start(), 5.0, 1e-6);
+    EXPECT_DOUBLE_EQ(intervals[0].stop(), 10.0);
+}
+
+// 同上的单步情形，但整段区间都在事件区内
+TEST(EventLocatorTest, SingleStepAllPositive)
+{
+    MockScalarFunc func([](double) { return 1.0; });
+    FixedStepStepper stepper(20.0); // 步长 20 > 区间长度 10
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    errc_t rc = aFindEventIntervals(func, stepper, interval, intervals);
+
+    EXPECT_EQ(rc, eNoError);
+    ASSERT_EQ(intervals.size(), 1u);
+    EXPECT_DOUBLE_EQ(intervals[0].start(), 0.0);
+    EXPECT_DOUBLE_EQ(intervals[0].stop(), 10.0);
+}
+
+// 单步且整段区间都不在事件区内：无输出
+TEST(EventLocatorTest, SingleStepAllOutside)
+{
+    MockScalarFunc func([](double) { return -1.0; });
+    FixedStepStepper stepper(20.0); // 步长 20 > 区间长度 10
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    errc_t rc = aFindEventIntervals(func, stepper, interval, intervals);
+
+    EXPECT_EQ(rc, eNoError);
+    EXPECT_EQ(intervals.size(), 0u);
+}
+
+// 单步、两端采样都满足，但步内是凹陷：中间有一段需要排除的事件外区间
+// f>=0 当且仅当 |x-5| >= 2，事件区应为 [0, 3] 与 [7, 10]
+TEST(EventLocatorTest, SingleStepDipInside)
+{
+    MockScalarFunc func([](double x) {
+        double d = x - 5.0;
+        return 0.1 * d * d - 0.4; // f(0)=f(10)=2.1>0，凹陷谷值 -0.4 在 x=5
+    });
+    FixedStepStepper stepper(20.0); // 步长 20 > 区间长度 10
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    aFindEventIntervals(func, stepper, interval, intervals);
+
+    ASSERT_EQ(intervals.size(), 2u);
+    EXPECT_DOUBLE_EQ(intervals[0].start(), 0.0);
+    EXPECT_NEAR(intervals[0].stop(), 3.0, 1e-6);
+    EXPECT_NEAR(intervals[1].start(), 7.0, 1e-6);
+    EXPECT_DOUBLE_EQ(intervals[1].stop(), 10.0);
+}
+
+// 单步、两端采样都不满足，但步内是凸起：中间有一段事件区间
+// f>=0 当且仅当 |x-5| <= 2，事件区应为 [3, 7]
+TEST(EventLocatorTest, SingleStepBumpInside)
+{
+    MockScalarFunc func([](double x) {
+        double d = x - 5.0;
+        return 0.4 - 0.1 * d * d; // f(0)=f(10)=-2.1<0，凸起峰值 0.4 在 x=5
+    });
+    FixedStepStepper stepper(20.0); // 步长 20 > 区间长度 10
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    aFindEventIntervals(func, stepper, interval, intervals);
+
+    ASSERT_EQ(intervals.size(), 1u);
+    EXPECT_NEAR(intervals[0].start(), 3.0, 1e-6);
+    EXPECT_NEAR(intervals[0].stop(), 7.0, 1e-6);
+}
+
 // 线性函数：过零点恰落在采样网格上，走二分法分支
 TEST(EventLocatorTest, LinearZeroOnGrid)
 {
@@ -86,7 +171,7 @@ TEST(EventLocatorTest, LinearZeroOnGrid)
 
     aFindEventIntervals(func, stepper, interval, intervals);
 
-    EXPECT_EQ(intervals.size(), 1u);
+    ASSERT_EQ(intervals.size(), 1u);
     EXPECT_NEAR(intervals[0].start(), 5.0, 1e-6);
     EXPECT_DOUBLE_EQ(intervals[0].stop(), 10.0);
 }
@@ -100,6 +185,7 @@ TEST(EventLocatorTest, SineSingleInterval)
     IntervalList intervals;
 
     aFindEventIntervals(func, stepper, interval, intervals);
+    printf("intervals: %s\n", intervals.toString().c_str());
 
     EXPECT_EQ(intervals.size(), 1u);
     EXPECT_DOUBLE_EQ(intervals[0].start(), 0.0);
@@ -294,6 +380,161 @@ TEST(EventLocatorTest, EmptyInterval)
 
     EXPECT_EQ(rc, eNoError);
     EXPECT_EQ(intervals.size(), 0u);
+}
+
+// 事件在末段内结束，区间不能无条件延伸到区间终点
+// 步长 3 的采样点为 0/3/6/9，区间终点 10 未被采样，穿越点 9.5 落在末段 (9, 10) 内
+TEST(EventLocatorTest, EventEndsInsideTailStep)
+{
+    MockScalarFunc func([](double x) { return 9.5 - x; });
+    FixedStepStepper stepper(3.0);
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    aFindEventIntervals(func, stepper, interval, intervals);
+
+    ASSERT_EQ(intervals.size(), 1u);
+    EXPECT_DOUBLE_EQ(intervals[0].start(), 0.0);
+    EXPECT_NEAR(intervals[0].stop(), 9.5, 1e-6);
+}
+
+// 事件区间整体藏在末段内：采样点 9 仍在事件区内，但事件已在终点之前结束
+// 事件区为 [8, 9.2]，末段 (9, 10) 内的穿越点为 9.2，应输出 [8, 9.2] 而非 [8, 10]
+TEST(EventLocatorTest, BumpEndsInsideTailStep)
+{
+    MockScalarFunc func([](double x) {
+        double d = x - 8.6;
+        return -(d * d - 0.36);
+    });
+    FixedStepStepper stepper(3.0);
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    aFindEventIntervals(func, stepper, interval, intervals);
+
+    ASSERT_EQ(intervals.size(), 1u);
+    EXPECT_NEAR(intervals[0].start(), 8.0, 1e-6);
+    EXPECT_NEAR(intervals[0].stop(), 9.2, 1e-6);
+}
+
+// 凸起整体藏在末段内：采样点 9 与区间终点 10 都为负，但两者之间有一段事件区间
+// 终点补入循环后，末段 (9, 10) 也在极值检测的覆盖范围内
+// 事件区为 [9.3 ± 0.3*sqrt(0.4)]，即约 [9.1103, 9.4897]
+TEST(EventLocatorTest, BumpInsideTailStep)
+{
+    MockScalarFunc func([](double x) {
+        double d = (x - 9.3) / 0.3;
+        return 0.4 - d * d;
+    });
+    FixedStepStepper stepper(3.0);
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    aFindEventIntervals(func, stepper, interval, intervals);
+
+    const double halfWidth = 0.3 * std::sqrt(0.4);
+    ASSERT_EQ(intervals.size(), 1u);
+    EXPECT_NEAR(intervals[0].start(), 9.3 - halfWidth, 1e-6);
+    EXPECT_NEAR(intervals[0].stop(), 9.3 + halfWidth, 1e-6);
+}
+
+// 凹陷藏在末段内：采样点 9 与区间终点 10 都在事件区内，但两者之间有一段需要排除的事件外区间
+// 事件区为 [0, 9.5 - 0.3*sqrt(0.4)] 与 [9.5 + 0.3*sqrt(0.4), 10]
+TEST(EventLocatorTest, DipInsideTailStep)
+{
+    MockScalarFunc func([](double x) {
+        double d = (x - 9.5) / 0.3;
+        return d * d - 0.4;
+    });
+    FixedStepStepper stepper(3.0);
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    aFindEventIntervals(func, stepper, interval, intervals);
+
+    const double halfWidth = 0.3 * std::sqrt(0.4);
+    ASSERT_EQ(intervals.size(), 2u);
+    EXPECT_DOUBLE_EQ(intervals[0].start(), 0.0);
+    EXPECT_NEAR(intervals[0].stop(), 9.5 - halfWidth, 1e-6);
+    EXPECT_NEAR(intervals[1].start(), 9.5 + halfWidth, 1e-6);
+    EXPECT_DOUBLE_EQ(intervals[1].stop(), 10.0);
+}
+
+// 事件在首段内开始，区间不能无条件回退到区间起点
+// 步长 3 的采样点为 0/3/6/9/10，穿越点 0.5 落在首段 (0, 3) 内
+TEST(EventLocatorTest, EventStartsInsideHeadStep)
+{
+    MockScalarFunc func([](double x) { return x - 0.5; });
+    FixedStepStepper stepper(3.0);
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    aFindEventIntervals(func, stepper, interval, intervals);
+
+    ASSERT_EQ(intervals.size(), 1u);
+    EXPECT_NEAR(intervals[0].start(), 0.5, 1e-6);
+    EXPECT_DOUBLE_EQ(intervals[0].stop(), 10.0);
+}
+
+// 事件区间的起点藏在首段内：采样点 0 不在事件区内，而采样点 3 已进入事件区
+// 事件区为 [2, 4]，首段 (0, 3) 内的穿越点为 2.0，应输出 [2, 4] 而非 [0, 4]
+TEST(EventLocatorTest, BumpStartsInsideHeadStep)
+{
+    MockScalarFunc func([](double x) {
+        double d = x - 3.0;
+        return -(d * d - 1.0);
+    });
+    FixedStepStepper stepper(3.0);
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    aFindEventIntervals(func, stepper, interval, intervals);
+
+    ASSERT_EQ(intervals.size(), 1u);
+    EXPECT_NEAR(intervals[0].start(), 2.0, 1e-6);
+    EXPECT_NEAR(intervals[0].stop(), 4.0, 1e-6);
+}
+
+// 凸起整体藏在首段内：采样点 0 与采样点 3 都为负，但两者之间有一段事件区间
+TEST(EventLocatorTest, BumpInsideHeadStep)
+{
+    MockScalarFunc func([](double x) {
+        double d = (x - 0.3) / 0.3;
+        return 0.4 - d * d;
+    });
+    FixedStepStepper stepper(3.0);
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    aFindEventIntervals(func, stepper, interval, intervals);
+    printf("intervals: %s\n", intervals.toString().c_str());
+
+    const double halfWidth = 0.3 * std::sqrt(0.4);
+    ASSERT_EQ(intervals.size(), 1u);
+    EXPECT_NEAR(intervals[0].start(), 0.3 - halfWidth, 1e-6);
+    EXPECT_NEAR(intervals[0].stop(), 0.3 + halfWidth, 1e-6);
+}
+
+// 凹陷藏在首段内：采样点 0 与采样点 3 都在事件区内，但两者之间有一段需要排除的事件外区间
+// 事件区为 [0, 1.5 - 0.3*sqrt(0.4)] 与 [1.5 + 0.3*sqrt(0.4), 10]
+TEST(EventLocatorTest, DipInsideHeadStep)
+{
+    MockScalarFunc func([](double x) {
+        double d = (x - 1.5) / 0.3;
+        return d * d - 0.4;
+    });
+    FixedStepStepper stepper(3.0);
+    Interval interval{0.0, 10.0};
+    IntervalList intervals;
+
+    aFindEventIntervals(func, stepper, interval, intervals);
+
+    const double halfWidth = 0.3 * std::sqrt(0.4);
+    ASSERT_EQ(intervals.size(), 2u);
+    EXPECT_DOUBLE_EQ(intervals[0].start(), 0.0);
+    EXPECT_NEAR(intervals[0].stop(), 1.5 - halfWidth, 1e-6);
+    EXPECT_NEAR(intervals[1].start(), 1.5 + halfWidth, 1e-6);
+    EXPECT_DOUBLE_EQ(intervals[1].stop(), 10.0);
 }
 
 GTEST_MAIN()

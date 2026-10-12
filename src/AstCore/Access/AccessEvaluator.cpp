@@ -107,7 +107,7 @@ static errc_t aEvaluateAccess_Append(
     if (!constraint || !stepper) { return eErrorInvalidParam; }
 
     if(result.empty())
-        result.setEpoch(interval.start());
+        result.setEpoch(TimePoint{interval.start().integerPart(), 0});
     
     const TimePoint& epoch = result.epoch();
     

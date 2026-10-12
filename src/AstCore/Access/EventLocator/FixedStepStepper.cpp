@@ -44,7 +44,10 @@ bool FixedStepStepper::first(double& t)
 
 bool FixedStepStepper::next(double& t)
 {
-    if (current_ > end_) { return false; }
+    if (current_ > end_) { 
+        t = end_;
+        return false; 
+    }
 
     t = current_;
     current_ = current_ + stepSize_;

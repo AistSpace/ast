@@ -185,29 +185,36 @@ TEST(AccessSTKTest, Case1)
     ASSERT_EQ(rc, eNoError);
 
     auto satellite = aFindChild<Satellite*>(scenario);
-    auto facility = aFindChild<Facility*>(scenario);
+    auto facility1 = aFindChild<Facility*>(scenario, "Facility1");
+    auto facility2 = aFindChild<Facility*>(scenario, "Facility2");
     auto sensorSimpleConic = aFindChild<Sensor*>(satellite, "SimpleConic");
     auto sensorRectangular = aFindChild<Sensor*>(satellite, "Rectangular");
     auto sensorComplexConic = aFindChild<Sensor*>(satellite, "ComplexConic");
 
+    aPrintObjectTree(scenario);
+
     ASSERT_NE(satellite, nullptr);
-    ASSERT_NE(facility, nullptr);
+    ASSERT_NE(facility1, nullptr);
+    ASSERT_NE(facility2, nullptr);
     ASSERT_NE(sensorSimpleConic, nullptr);
     ASSERT_NE(sensorRectangular, nullptr);
     ASSERT_NE(sensorComplexConic, nullptr);
 
     // 获取并验证 Satellite1 <-> Facility1 的 Access 计算工具组件
-    CheckAccessAgainstPrefs(aFindAccess(*scenario, *satellite, *facility), scenarioDir);
+    CheckAccessAgainstPrefs(aFindAccess(*scenario, *satellite, *facility1), scenarioDir);
 
     // 获取并验证 SensorSimpleConic <-> Facility1 的 Access 计算工具组件
-    CheckAccessAgainstPrefs(aFindAccess(*scenario, *sensorSimpleConic, *facility), scenarioDir);
+    CheckAccessAgainstPrefs(aFindAccess(*scenario, *sensorSimpleConic, *facility1), scenarioDir);
 
     // 获取并验证 SensorRectangular <-> Facility1 的 Access 计算工具组件
-    CheckAccessAgainstPrefs(aFindAccess(*scenario, *sensorRectangular, *facility), scenarioDir);
+    CheckAccessAgainstPrefs(aFindAccess(*scenario, *sensorRectangular, *facility1), scenarioDir);
 
     // 获取并验证 SensorComplexConic <-> Facility1 的 Access 计算工具组件
-    CheckAccessAgainstPrefs(aFindAccess(*scenario, *sensorComplexConic, *facility), scenarioDir);
+    CheckAccessAgainstPrefs(aFindAccess(*scenario, *sensorComplexConic, *facility1), scenarioDir);
 
+    // 获取并验证 SensorComplexConic <-> Facility2 的 Access 计算工具组件
+    // 该 Access 的时段非常短(<0.01s)，这里验证其能否成功计算
+    CheckAccessAgainstPrefs(aFindAccess(*scenario, *sensorComplexConic, *facility2), scenarioDir);
 }
 
 GTEST_MAIN()
