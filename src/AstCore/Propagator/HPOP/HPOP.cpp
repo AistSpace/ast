@@ -252,17 +252,17 @@ errc_t HPOP::propagate(const TimePoint &startTime, TimePoint &targetTime, Vector
         return -1;
     }
 
-    stateMapper_->setFrameAndIndices(propagationFrame(), idxPos, idxVel);
+    stateMapperImpl()->setFrameAndIndices(propagationFrame(), idxPos, idxVel);
 
     array6d y;
-    stateMapper_->fromPos(position.data(), y.data());
-    stateMapper_->fromVel(velocity.data(), y.data());
+    stateMapperImpl()->fromPos(position.data(), y.data());
+    stateMapperImpl()->fromVel(velocity.data(), y.data());
 
     err = integrateState(startTime, targetTime, y.data());
     // 计算失败时，也会输出最后一个成功步的状态
 
-    stateMapper_->toPos(y.data(), position.data());
-    stateMapper_->toVel(y.data(), velocity.data());
+    stateMapperImpl()->toPos(y.data(), position.data());
+    stateMapperImpl()->toVel(y.data(), velocity.data());
     return err;
 }
 
@@ -287,17 +287,17 @@ errc_t HPOP::propagate(const TimePoint &startTime, TimePoint &targetTime, CartSt
         return -1;
     }
 
-    stateMapper_->setFrameAndIndices(propagationFrame(), idxPos, idxVel, idxSTM);
+    stateMapperImpl()->setFrameAndIndices(propagationFrame(), idxPos, idxVel, idxSTM);
 
     std::array<double, dimexpected> y;
-    stateMapper_->fromState(state, y.data());
-    stateMapper_->fromStateTransitionMatrix(stm, y.data());
+    stateMapperImpl()->fromState(state, y.data());
+    stateMapperImpl()->fromStateTransitionMatrix(stm, y.data());
 
     err = integrateState(startTime, targetTime, y.data());
     // 计算失败时，也会输出最后一个成功步的状态
 
-    stateMapper_->toState(y.data(), state);
-    stateMapper_->toStateTransitionMatrix(y.data(), stm);
+    stateMapperImpl()->toState(y.data(), state);
+    stateMapperImpl()->toStateTransitionMatrix(y.data(), stm);
     return err;
 }
 
@@ -346,28 +346,28 @@ errc_t HPOP::propagate(const TimePoint& startTime, TimePoint& targetTime,
         }
     }
 
-    stateMapper_->setFrameAndIndices(propagationFrame(), idxPos, idxVel, idxSTM, idxDragSens, idxSRPSens);
+    stateMapperImpl()->setFrameAndIndices(propagationFrame(), idxPos, idxVel, idxSTM, idxDragSens, idxSRPSens);
 
     std::vector<double> y(dim);
-    stateMapper_->fromState(state, y.data());
-    stateMapper_->fromStateTransitionMatrix(stm, y.data());
+    stateMapperImpl()->fromState(state, y.data());
+    stateMapperImpl()->fromStateTransitionMatrix(stm, y.data());
     if (hasB) {
-        stateMapper_->fromStateSensitivityWrtDrag(stateSensWrtDrag, y.data());
+        stateMapperImpl()->fromStateSensitivityWrtDrag(stateSensWrtDrag, y.data());
     }
     if (hasK) {
-        stateMapper_->fromStateSensitivityWrtSRP(stateSensWrtSRP, y.data());
+        stateMapperImpl()->fromStateSensitivityWrtSRP(stateSensWrtSRP, y.data());
     }
 
     err = integrateState(startTime, targetTime, y.data());
     // 计算失败时，也会输出最后一个成功步的状态
 
-    stateMapper_->toState(y.data(), state);
-    stateMapper_->toStateTransitionMatrix(y.data(), stm);
+    stateMapperImpl()->toState(y.data(), state);
+    stateMapperImpl()->toStateTransitionMatrix(y.data(), stm);
     if (hasB) {
-        stateMapper_->toStateSensitivityWrtDrag(y.data(), stateSensWrtDrag);
+        stateMapperImpl()->toStateSensitivityWrtDrag(y.data(), stateSensWrtDrag);
     }
     if (hasK) {
-        stateMapper_->toStateSensitivityWrtSRP(y.data(), stateSensWrtSRP);
+        stateMapperImpl()->toStateSensitivityWrtSRP(y.data(), stateSensWrtSRP);
     }
 
     return err;
@@ -376,7 +376,7 @@ errc_t HPOP::propagate(const TimePoint& startTime, TimePoint& targetTime,
 errc_t HPOP::integrateState(const TimePoint& startTime, TimePoint& targetTime, double* y)
 {
     equation_->setEpoch(startTime);
-    stateMapper_->setEpoch(startTime);
+    stateMapperImpl()->setEpoch(startTime);
     double duration = targetTime - startTime;
     double t = 0;
     
@@ -405,6 +405,11 @@ errc_t HPOP::initialize()
 StateMapper* HPOP::stateMapper() const
 {
     return stateMapper_.get();
+}
+
+HPOPStateMapper* HPOP::stateMapperImpl() const
+{
+    return static_cast<HPOPStateMapper*>(stateMapper_.get());
 }
 
 void HPOP::addEventDetector(EventDetector* eventDetector)

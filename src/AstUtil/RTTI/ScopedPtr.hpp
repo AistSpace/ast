@@ -30,7 +30,7 @@ AST_NAMESPACE_BEGIN
 template<typename T, typename = void>
 struct ScopedPtrDeleter
 {
-    static void cleanup(T* ptr)
+    static void cleanup(T* ptr) noexcept
     {
         delete ptr;
     }
@@ -48,7 +48,7 @@ struct ScopedPtrDeleter<T, typename std::enable_if<std::is_base_of<Object, T>::v
 template<>
 struct ScopedPtrDeleter<std::FILE>
 {
-    static void cleanup(std::FILE* ptr)
+    static void cleanup(std::FILE* ptr) noexcept
     {
         fclose(ptr);
     }
@@ -91,31 +91,31 @@ public:
         this->reset(ptr);
         return *this;
     }
-    ~ScopedPtr()
+    ~ScopedPtr() noexcept
     {
         this->_delete();
     }
-    void reset(T* ptr)
+    void reset(T* ptr) noexcept
     {
         auto oldPtr = pointer_;
         pointer_ = ptr;
         this->_delete(oldPtr);
     }
     /// @brief 释放所接管对象所有权并置空指针
-    void reset()
+    void reset() noexcept
     {
         this->reset(nullptr);
     }
-    T* get() const
+    T* get() const noexcept
     {
         return pointer_;
     }
-    T* operator->() const{return pointer_;}
-    operator T*() const{return pointer_;}
+    T* operator->() const noexcept{return pointer_;}
+    operator T*() const noexcept{return pointer_;}
 
     /// @brief 释放绑定：取消对本指针所接管对象的所有权
     /// @details 清空 pointer_ 并返回原始指针，将所有权转移给调用者；并不会销毁对象
-    T* release()
+    T* release() noexcept
     {
         T* ptr = pointer_;
         pointer_ = nullptr;
@@ -124,11 +124,11 @@ public:
 private:
     ScopedPtr(const ScopedPtr&) = delete;
     ScopedPtr& operator =(const ScopedPtr&) = delete;
-    void _delete()
+    void _delete() noexcept
     {
         this->_delete(pointer_);
     }
-    void _delete(T* ptr)
+    void _delete(T* ptr) noexcept
     {
         if(ptr)
             ScopedPtrDeleter<T>::cleanup(ptr);

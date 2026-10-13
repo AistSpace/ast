@@ -229,6 +229,14 @@ public:
     {
         return {day() - other.day(), second() - other.second()};
     }
+    bool operator<(const JulianDate& other) const
+    {
+        return this->daysFrom(other) < 0;
+    }
+    bool operator==(const JulianDate& other) const
+    {
+        return this->daysFrom(other) == 0;
+    }
 public:
     /// @brief 计算儒略日偏移后的新儒略日
     /// @param second 偏移秒数

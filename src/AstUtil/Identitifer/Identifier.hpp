@@ -69,6 +69,7 @@ public:
     // 有尺寸的版本必须一并声明：只声明无尺寸版本时，若实现仍选中全局 sized delete，问题依旧。
     static void operator delete(void* ptr) noexcept { ::operator delete(ptr); }
     static void operator delete(void* ptr, size_t) noexcept { ::operator delete(ptr); }
+    static void operator delete(void* ptr, void*) noexcept { ::operator delete(ptr); }
 
     // 转换为std::string
     std::string toString() const {

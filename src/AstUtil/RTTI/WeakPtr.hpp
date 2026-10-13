@@ -34,28 +34,28 @@ template<typename _Object>
 class WeakPtr
 {
 public:
-    WeakPtr()
+    WeakPtr() noexcept
         :object_{ nullptr }
     {
     }
-    WeakPtr(std::nullptr_t)
+    WeakPtr(std::nullptr_t) noexcept
         :object_{ nullptr }
     {
     }
-    WeakPtr(_Object* obj)
+    WeakPtr(_Object* obj) noexcept
         :object_{ obj }
     {
         _incWeakRef();
     }
-    WeakPtr(const WeakPtr& ptr)
+    WeakPtr(const WeakPtr& ptr) noexcept
         :WeakPtr{ ptr.object_ }
     {
     }
-    ~WeakPtr()
+    ~WeakPtr() noexcept
     {
         _decWeakRef();
     }
-    WeakPtr& operator=(_Object* obj)
+    WeakPtr& operator=(_Object* obj) noexcept
     {
         if (obj != object_) {
             _decWeakRef();
@@ -64,39 +64,39 @@ public:
         }
         return *this;
     }
-    WeakPtr& operator=(std::nullptr_t)
+    WeakPtr& operator=(std::nullptr_t) noexcept
     {
         reset();
         return *this;
     }
-    WeakPtr& operator=(const WeakPtr& ptr)
+    WeakPtr& operator=(const WeakPtr& ptr) noexcept
     {
         if (this != &ptr) {
             this->operator=(ptr.object_);
         }
         return *this;
     }
-    _Object* lock() const
+    _Object* lock() const noexcept
     {
         return get();
     }
-    _Object* get() const
+    _Object* get() const noexcept
     {
         if (expired()) {
             return nullptr;
         }
         return object_;
     }
-    bool expired() const
+    bool expired() const noexcept
     {
         return !object_ || aObject_IsDestructed(object_);
     }
-    void reset()
+    void reset() noexcept
     {
         _decWeakRef();
         object_ = nullptr;
     }
-    _Object* operator->() const
+    _Object* operator->() const noexcept
     {
         return object_;
     }
@@ -104,29 +104,29 @@ public:
     // {
     //     return get();
     // }
-    explicit operator bool() const
+    explicit operator bool() const noexcept
     {
         return !expired();
     }
-    bool operator==(const WeakPtr& other) const
+    bool operator==(const WeakPtr& other) const noexcept
     {
         return object_ == other.object_;
     }
-    bool operator!=(const WeakPtr& other) const
+    bool operator!=(const WeakPtr& other) const noexcept
     {
         return object_ != other.object_;
     }
-    bool operator<(const WeakPtr& other) const
+    bool operator<(const WeakPtr& other) const noexcept
     {
         return object_ < other.object_;
     }
 private:
-    void _incWeakRef()
+    void _incWeakRef() noexcept
     {
         if(object_)
             aObject_IncWeakRef(object_);
     }
-    void _decWeakRef()
+    void _decWeakRef() noexcept
     {
         if(object_)
             aObject_DecWeakRef(object_);

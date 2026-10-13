@@ -168,8 +168,9 @@ TimeInterval TimeInterval::intersected(const TimeInterval &other) const
     result.intersect(other);
     return result;
 }
-
-template<> struct propagate_nan::allow_efficient_minus<TimePoint> : std::true_type {};
+namespace propagate_nan{
+    template<> struct allow_efficient_minus<TimePoint> : std::true_type {};
+}
 
 bool TimeInterval::intersects(const TimeInterval &other) const
 {
