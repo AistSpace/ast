@@ -19,6 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "NRLMSIS00.hpp"
+#include "AstUtil/Logger.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstWeather/nrlmsise-00.hpp"
 #include "AstWeather/MSIS_Vers.h"

@@ -20,6 +20,7 @@
 
 #include "USSA1976.hpp"
 #include "AstWeather/Atmosphere.hpp"
+#include "AstUtil/Logger.hpp"
 
 AST_NAMESPACE_BEGIN
 

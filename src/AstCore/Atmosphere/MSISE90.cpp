@@ -20,6 +20,7 @@
 
 #include "MSISE90.hpp"
 #include "AstUtil/Math.hpp"
+#include "AstUtil/Logger.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstWeather/MSIS_Vers.h"
 
