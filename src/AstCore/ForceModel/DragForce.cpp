@@ -29,6 +29,38 @@ double DragForce::ap() const
     return aKpToAp(kp_);
 }
 
+double DragForce::kp() const
+{
+    return kp_;
+}
+
+static double f10p7_clamp(double value)
+{
+    if(value < 40.0)
+    {
+        aInfo(_("f10p7 小于 40, 将使用 40 作为默认值"));
+        return 40.0;
+    }
+    else if(value > 10000.0)
+    {
+        aInfo(_("f10p7 大于 10000, 将使用 10000 作为默认值"));
+        return 10000.0;
+    }
+    return value;
+}
+
+
+double DragForce::f10p7Daily() const
+{
+    return f10p7_clamp(f10p7Daily_);
+}
+
+
+double DragForce::f10p7Average() const
+{
+    return f10p7_clamp(f10p7Average_);
+}
+
 
 AST_ENUM_DESCRIPTOR(EAtmDensityModel, 
     AST_ENUM_VALUE(eNone,           "None"),

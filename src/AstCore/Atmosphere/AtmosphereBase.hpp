@@ -50,6 +50,9 @@ public:
 
     /// @brief 获取大气模型的参考坐标系
     Frame* getFrame() const override{return frame_;}
+
+    /// @brief 获取大气模型对应天体形状
+    BodyShape* getShape() const override {return bodyShape_;}
 public:
     /// @brief 是否使用近似高度计算
     bool useApproximateAltitude() const {return useApproximateAltitude_;}

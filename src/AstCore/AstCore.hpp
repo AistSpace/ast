@@ -62,6 +62,7 @@
 #include "AstCore/AxesProxy.hpp"
 #include "AstCore/AxesRoot.hpp"
 #include "AstCore/BaseOrbitDesigner.hpp"
+#include "AstCore/BlendingAtmosphere.hpp"
 #include "AstCore/BlockAbs.hpp"
 #include "AstCore/BlockAdd.hpp"
 #include "AstCore/BlockAstro.hpp"

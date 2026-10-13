@@ -19,9 +19,41 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "Atmosphere.hpp"
+#include "AstCore/CelestialBody.hpp"
+#include "AstCore/BodyShape.hpp"
+#include "AstUtil/Logger.hpp"
 
 AST_NAMESPACE_BEGIN
 
+BodyShape* Atmosphere::getShape() const
+{
+    BodyShape* shape = nullptr;
+    auto frame = getFrame();
+    if(frame)
+    {
+        auto body = frame->getBody();
+        if(body)
+        {
+            aInfo(_("将默认使用坐标系对应天体的形状"));
+            shape = body->getShape();
+        }
+    }
+    if(shape == nullptr)
+    {
+        aInfo(_("将默认使用 WGS84 形状"));
+        shape = aWGS84Spheroid();
+    }
+    return shape;
+}
 
+double Atmosphere::getAltitude(const Vector3d& posInBodyFixed) const
+{
+    auto shape = getShape();
+    if(shape == nullptr)
+        shape = Atmosphere::getShape();
+    GeodeticPoint geodeticPoint;
+    shape->transform(posInBodyFixed, geodeticPoint);
+    return geodeticPoint.altitude();
+}
 
 AST_NAMESPACE_END

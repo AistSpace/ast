@@ -58,6 +58,11 @@ public:
     /// @brief 获取大气模型的参考坐标系
     virtual Frame* getFrame() const = 0;
 
+    /// @brief 获取大气模型对应的天体形状
+    virtual BodyShape* getShape() const;
+
+protected:
+    double getAltitude(const Vector3d& posInBodyFixed) const;
 };
 
 /*! @} */

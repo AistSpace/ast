@@ -75,12 +75,20 @@ public:
     /// @brief 地磁活动 ap 指数
     double ap() const;
 
+    /// @brief 地磁活动 Kp 指数
+    double kp() const;
+
+    /// @brief 当日 F10.7 太阳射电流量
+    double f10p7Daily() const;
+
+    /// @brief 平均 F10.7 太阳射电流量
+    double f10p7Average() const;
 public:
     /// @name 大气密度模型配置
     /// @{
     EAtmDensityModel atmDensityModel_{EAtmDensityModel::e1976Standard};         ///< 主大气密度模型
     EAtmDensityModel lowAltAtmDensityModel_{EAtmDensityModel::eNone};           ///< 低高度辅助模型（通常 eMSISE1990 / eNRLMSISE2000）
-    double atmBlendingRange_{0.0};                                              ///< 主/低高度模型混合过渡范围 [km]
+    double atmBlendingRange_{0.0};                                              ///< 主/低高度模型混合过渡范围 [m]
     /// @}
 
     
