@@ -31,7 +31,7 @@
 AST_NAMESPACE_BEGIN
 
 using namespace math;
-#define _AST_DEBUG_DRAG
+// #define _AST_DEBUG_DRAG
 
 BlockDrag::BlockDrag()
     : BlockDrag(nullptr, 0, 0, nullptr)
@@ -131,19 +131,17 @@ errc_t BlockDrag::run(const SimTime& simTime)
         double density = atmosphere_->getDensity(tp, posInAtmosFrame);
         #ifdef _AST_DEBUG_DRAG
         double alt = posInAtmosFrame.norm() - kEarthRadius;
-        if(alt < 70_km)
+        if(alt < 100_km)
         {
             aDebug(_("大气阻力计算, 时间: %s, 高度: %lf m, 大气密度: %lf kg/m^3"), simTime.timePoint().toString().c_str(), alt, density);
         }
         #endif
-        #ifdef _DEBUG
         if(std::isnan(density))
         {
-            aError(_("大气密度计算结果为 NaN, 无法计算大气阻力加速度, r=%lf m"), posInAtmosFrame.norm());
+            aWarning(_("大气密度为无效值, 无法计算大气阻力加速度, r=%lf m"), posInAtmosFrame.norm());
             *accDrag_ = Vector3d::Zero();
             return eErrorInvalidParam;
         }
-        #endif
         transform.inverse().transformPositionVelocity(posInAtmosFrame, Vector3d::Zero(), notUsed, atmosVelocity);
 
         // 计算航天器相对于大气的速度

@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "Atmosphere.hpp"
+#include "AstUtil/I18n.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -29,6 +30,8 @@ AST_NAMESPACE_BEGIN
     @addtogroup 
     @{
 */
+
+constexpr const char* kInfoInvalidHeight = N_("高度低于 %d km, 该模型不适用, 返回无效值");
 
 class AST_CORE_API AtmosphereBase: public Atmosphere
 {

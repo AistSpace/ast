@@ -259,7 +259,7 @@ errc_t HPOP::propagate(const TimePoint &startTime, TimePoint &targetTime, Vector
     stateMapper_->fromVel(velocity.data(), y.data());
 
     err = integrateState(startTime, targetTime, y.data());
-    if (err) return err;
+    // 计算失败时，也会输出最后一个成功步的状态
 
     stateMapper_->toPos(y.data(), position.data());
     stateMapper_->toVel(y.data(), velocity.data());
@@ -294,7 +294,7 @@ errc_t HPOP::propagate(const TimePoint &startTime, TimePoint &targetTime, CartSt
     stateMapper_->fromStateTransitionMatrix(stm, y.data());
 
     err = integrateState(startTime, targetTime, y.data());
-    if (err) return err;
+    // 计算失败时，也会输出最后一个成功步的状态
 
     stateMapper_->toState(y.data(), state);
     stateMapper_->toStateTransitionMatrix(y.data(), stm);
@@ -359,7 +359,7 @@ errc_t HPOP::propagate(const TimePoint& startTime, TimePoint& targetTime,
     }
 
     err = integrateState(startTime, targetTime, y.data());
-    if (err) return err;
+    // 计算失败时，也会输出最后一个成功步的状态
 
     stateMapper_->toState(y.data(), state);
     stateMapper_->toStateTransitionMatrix(y.data(), stm);
@@ -379,8 +379,10 @@ errc_t HPOP::integrateState(const TimePoint& startTime, TimePoint& targetTime, d
     stateMapper_->setEpoch(startTime);
     double duration = targetTime - startTime;
     double t = 0;
+    
+    // 计算失败时，也会输出最后一个成功步的状态
     errc_t err = integrator_->integrate(*equation_, y, t, duration);
-    if (t != duration && !err) {
+    if (t != duration) {
         targetTime = startTime + t;
     }
     return err;

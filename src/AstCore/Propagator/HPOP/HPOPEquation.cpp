@@ -253,7 +253,7 @@ static Atmosphere* aNewAtmosphere(const DragForce& drag)
 
     if(!atmosphere)
     {
-        aInfo(_("大气模型 '%d' 尚不支持或初始化失败，默认使用 'NRLMSIS00'"), atmDensityModel);
+        aInfo(_("大气模型 '%s' 尚不支持或初始化失败，默认使用 'NRLMSIS00'"), toString(atmDensityModel).c_str());
         atmosphere = new NRLMSIS00(frame, shape, f10p7Daily, f10p7Average, drag.ap());
     }
     atmosphere->setUseApproximateAltitude(drag.useApproxAltForDrag_);

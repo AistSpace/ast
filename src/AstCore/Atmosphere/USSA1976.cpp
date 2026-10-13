@@ -26,6 +26,12 @@ AST_NAMESPACE_BEGIN
 double USSA1976::getDensity(const TimePoint &tp, const Vector3d &posInBodyFixed) const
 {
     double alt = getAltitude(posInBodyFixed);
+    // 高度小于 0 km 时，大气密度值非法，返回 NaN
+    if(alt < 0)
+    {
+        aInfo(_(kInfoInvalidHeight), 0);
+        return kNaN;
+    }
     return aUSSA1976(alt);
 }
 

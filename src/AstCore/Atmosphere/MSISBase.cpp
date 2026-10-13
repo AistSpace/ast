@@ -48,9 +48,18 @@ MSISBase::MSISBase(Frame* frame, BodyShape* bodyShape, double f107Daily, double 
 MSISBase::MSISBase(Frame *frame, BodyShape *bodyShape, SpaceWeatherProvider *spaceWeather)
     : AtmosphereBase(frame, bodyShape)
     , spaceWeather_(spaceWeather)
+    , useDailyAp_{true}
 {
     static_assert(sizeof(storage_) >= sizeof(MSISBase::WorkSpace), "storage_ size must not be less than WorkSpace");
     new (&storage_) WorkSpace;
+	int sv[26]{
+        0,
+        1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1
+    };
+    tselec(this->msis().csw, sv);
+    assert(this->msis().csw.sw[9] == (useDailyAp_ ? 1 : -1));
 }
 
 MSISBase::~MSISBase()
