@@ -23,7 +23,6 @@
 #include "AstGlobal.h"
 #include "AtmosphereBase.hpp"
 #include "AstUtil/ScopedPtr.hpp"
-#include "AstUtil/Literals.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -36,7 +35,7 @@ AST_NAMESPACE_BEGIN
 /// @brief 主/低高度大气模型的过渡带中心高度默认值
 /// @details 各高高度模型的适用下限大致在 86~120 km（1976标准 86 km、JacchiaRoberts 90 km、Jacchia71 100 km、DTM2012 120 km），
 ///    低高度模型（MSISE1990/NRLMSISE2000）自 0 km 起适用。取 100 km 作为默认过渡中心，仅在没有更确切依据时使用。
-constexpr double kDefaultBlendAltitude = 100_km;
+constexpr double kDefaultBlendAltitude = 100e3;
 
 
 /// @brief 主/低高度大气密度模型的混合过渡模型
