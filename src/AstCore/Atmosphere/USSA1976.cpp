@@ -21,6 +21,7 @@
 #include "USSA1976.hpp"
 #include "AstWeather/Atmosphere.hpp"
 #include "AstUtil/Logger.hpp"
+#include "AstUtil/Constants.hpp"
 
 AST_NAMESPACE_BEGIN
 

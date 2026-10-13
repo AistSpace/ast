@@ -21,6 +21,8 @@
 #include "DragForce.hpp"
 #include "AstWeather/GeomagneticIndex.hpp"
 #include "AstUtil/EnumDescriptor.hpp"
+#include "AstUtil/Logger.hpp"
+#include "AstUtil/I18n.hpp"
 
 AST_NAMESPACE_BEGIN
 
