@@ -154,10 +154,10 @@ public:
 
     /// @brief 获取高精度轨道预报方程（可能为 nullptr）
     HPOPEquation* equation() const{return equation_.get();}
-private:
+
     /// @brief 保证方程存在：若为空则用当前配置创建，并返回其指针
     HPOPEquation* ensureEquation() const;
-
+private:
     /// @brief 设置参考历元并执行数值积分
     /// @param[in]     startTime   预报起始时间
     /// @param[in,out] targetTime  预报结束时间（事件触发时会被截断）
