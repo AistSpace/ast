@@ -32,54 +32,30 @@ static VisRenderer* defaultRenderer = nullptr;
 namespace
 {
 
-/// @brief 连接路径与库名（按平台使用对应分隔符）
-std::string joinLibPath(const std::string& dir, const std::string& name)
-{
-    if (dir.empty()) {
-        return name;
-    }
-#ifdef _WIN32
-    return dir + "\\" + name;
-#else
-    return dir + "/" + name;
-#endif
-}
-
-/// @brief 取路径的目录部分（去掉文件名）
-std::string dirOf(const std::string& path)
-{
-    const size_t pos = path.find_last_of("/\\");
-    if (pos == std::string::npos) {
-        return "";
-    }
-    return path.substr(0, pos);
-}
-
 /// @brief 尝试加载并注册默认渲染后端
 /// @details 通过 aLoadLibrary 探测 VTK 后端模块，命中后调用其导出的 aVisVtkRegister()。
 ///          成功后不卸载模块（保持驻留以承载 VTK 窗口）。
 void aTryLoadBackend()
 {
     // 依据平台与调试后缀枚举候选库名
-    std::vector<std::string> names;
-#ifdef _WIN32
-    names.push_back("AstVisVTK.dll");
-    names.push_back("AstVisVTKD.dll");   // Windows debug 版尾随 D 后缀
-#else
-    names.push_back("libAstVisVTK.so");
-    names.push_back("libAstVisVTK.dylib");
+#if defined(_WIN32)
+    const char* names[]{AST_LIB_LINKNAME("AstVisVTK") ".dll"};
+#elif defined __linux__
+    const char* names[]{"libAstVisVTK.so"};
+#elif defined __APPLE__
+    const char* names[]{"libAstVisVTK.dylib"};
 #endif
 
     // 先在可执行文件目录、本模块目录等位置探测
-    std::vector<std::string> dirs;
+    std::vector<fs::path> dirs;
     dirs.push_back("");
     dirs.push_back(aExeDir());
-    dirs.push_back(dirOf(aGetModulePathFromAddress(reinterpret_cast<void*>(&VisRenderer::Default))));
+    dirs.push_back(fs::path(aGetModulePathFromAddress(reinterpret_cast<void*>(&VisRenderer::Default))).parent_path());
     dirs.push_back(aLibDir());
 
-    for (const std::string& dir : dirs) {
-        for (const std::string& name : names) {
-            void* lib = aLoadLibrary(joinLibPath(dir, name).c_str());
+    for (const fs::path& dir : dirs) {
+        for (const char* name : names) {
+            void* lib = aLoadLibrary((dir / name).string());
             if (!lib) {
                 continue;
             }
