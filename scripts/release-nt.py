@@ -55,11 +55,20 @@ EXCLUDE_DIRS = ['data', "test-data", "doc", 'docs', 'build', "thirdparty", "arti
 # 空行替换内容（可配置）
 EMPTY_LINE_REPLACEMENT = '// 警告：请不要修改此文件，所进行的修改都会被不定时覆盖，任何修改都会被直接丢弃，故不要修改此文件的任何代码。'  # 默认替换为空字符串，即删除空行
 
+# 插入到 src 下每个 xmake.lua 文件首行的警告：Lua 用 -- 注释，故在警告文本前加 "-- "
+XMAKE_WARNING_LINE = '-- ' + EMPTY_LINE_REPLACEMENT
+
 
 def ensure_writable(file_path):
     """确保文件可写（Windows 下清除只读属性）"""
     if not os.access(file_path, os.W_OK):
         os.chmod(file_path, stat.S_IWRITE | stat.S_IREAD)
+
+
+def has_utf8_bom(file_path):
+    """判断文件是否带 UTF-8 BOM"""
+    with open(file_path, 'rb') as f:
+        return f.read(3) == b'\xef\xbb\xbf'
 
 
 # 合并模块源文件
@@ -252,6 +261,32 @@ def replace_empty_lines_in_source():
             if file.endswith('.cpp') or file.endswith('.h') or file.endswith('.hpp'):
                 replace_empty_lines(os.path.join(root, file))
 
+
+def prepend_warning_line(file_path):
+    """在文件首行插入一行 Lua 注释形式的警告文本，保持原有的 BOM 与换行符"""
+    with open(file_path, 'r', encoding='utf-8-sig', errors='ignore') as f:
+        content = f.read()
+
+    # 沿用文件原有的换行符，避免在 CRLF 文件中混入 LF
+    ending = '\r\n' if content.split('\n', 1)[0].endswith('\r') else '\n'
+
+    ensure_writable(file_path)
+    # 保持文件原有的 BOM 状态（xmake.lua 不经过 convert_encoding_to_utf8_bom 处理）
+    encoding = 'utf-8-sig' if has_utf8_bom(file_path) else 'utf-8'
+    with open(file_path, 'w', encoding=encoding) as f:
+        f.write(XMAKE_WARNING_LINE + ending + content)
+    print(f"Prepended warning line to: {file_path}")
+
+
+def prepend_warning_to_xmake():
+    """遍历 src 目录下所有的 xmake.lua，在其文件首行插入警告文本"""
+    src_dir = os.path.join(ROOT_DIR, 'src')
+    for root, dirs, files in os.walk(src_dir):
+        dirs[:] = [d for d in dirs if d not in EXCLUDE_DIRS]
+        for file in files:
+            if file == 'xmake.lua':
+                prepend_warning_line(os.path.join(root, file))
+
 def delete_files():
     """删除指定文件"""
     for file_path in FILES_TO_DELETE:
@@ -383,7 +418,7 @@ def main():
     parser.add_argument('--no-merge', action='store_false', dest='merge', default=True,
                         help='不合并模块源文件')
     parser.add_argument('--no-replace-empty', action='store_false', dest='replace_empty', default=True,
-                        help='不替换 .cpp 文件中的空行')
+                        help='不替换源文件中的空行，也不在 xmake.lua 首行插入警告')
     parser.add_argument('--new-author', type=str, default=None, dest='new_author',
                         help='替换所有源文件中 @author 行的作者名')
     args = parser.parse_args()
@@ -403,6 +438,8 @@ def main():
     if args.replace_empty:
         print("Replacing empty lines in source files...")
         replace_empty_lines_in_source()
+        print("Prepending warning line to xmake.lua under src...")
+        prepend_warning_to_xmake()
 
     if args.merge:
         print("Merging module sources...")
