@@ -23,6 +23,7 @@
 #include "AstUtil/Encode.hpp"
 #include <cstdio>
 #include <cstring>
+#include <mutex>
 #include <vector>
 
 // 平台特定的头文件包含
@@ -57,6 +58,12 @@ void* aResolveProcAddress(const char* , const char* )
 }
 
 errc_t aFreeLibrary(void*)
+{
+    aError(_("WASM 不支持释放库"));
+    return eError;
+}
+
+errc_t aFreeLibraryOnExit(void*)
 {
     aError(_("WASM 不支持释放库"));
     return eError;
@@ -165,6 +172,11 @@ private:
     void* handle_{ nullptr };
 };
 
+// 记录已加载的库，在程序结束时自动卸载
+static std::vector<LibraryHolder> loadedLibraries;
+static std::mutex loadedLibrariesMutex;
+
+
 void* aResolveProcAddress(const char* filepath, const char* funcName)
 {
     if (!filepath || !funcName) {
@@ -187,10 +199,19 @@ void* aResolveProcAddress(const char* filepath, const char* funcName)
     }
 
     // 记录已加载的库，在程序结束时自动卸载
-    static std::vector<LibraryHolder> loadedLibraries;
-    loadedLibraries.emplace_back(library);
+    aFreeLibraryOnExit(library);
 
     return procAddress;
+}
+
+
+errc_t aFreeLibraryOnExit(void* lib)
+{
+    if (!lib)
+        return eErrorNullInput;
+    std::lock_guard<std::mutex> lock(loadedLibrariesMutex);
+    loadedLibraries.emplace_back(lib);
+    return eNoError;
 }
 
 
@@ -236,12 +257,16 @@ const char* aGetLoadError()
 
 bool aIsLibrary(StringView fileName)
 {
-    return fileName.ends_with(".dll")
-        || fileName.ends_with(".so")
-        || fileName.ends_with(".dylib")
-        || fileName.ends_with(".a")
-        || fileName.ends_with(".sl")
-        || fileName.ends_with(".bundle");
+#if defined(_WIN32) || defined(_WIN64)
+    return fileName.ends_with(".dll");
+#elif defined(__linux__)
+    return fileName.ends_with(".so");
+#elif defined(__macos__)
+    return fileName.ends_with(".dylib");
+#else
+    aWarning(_("未知平台或该平台不支持动态库"));
+    return false;
+#endif
 }
 
 AST_NAMESPACE_END

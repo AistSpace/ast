@@ -135,12 +135,13 @@ TEST(Library, ResolveNullSymbol)
 // 测试 IsLibrary 静态方法
 TEST(Library, IsLibrary)
 {
+#ifdef _WIN32
     EXPECT_TRUE(Library::IsLibrary("test.dll"));
+#elif defined(__linux__)
     EXPECT_TRUE(Library::IsLibrary("test.so"));
+#elif defined(__macos__)
     EXPECT_TRUE(Library::IsLibrary("test.dylib"));
-    EXPECT_TRUE(Library::IsLibrary("test.a"));
-    EXPECT_TRUE(Library::IsLibrary("test.sl"));
-    EXPECT_TRUE(Library::IsLibrary("test.bundle"));
+#endif
     EXPECT_FALSE(Library::IsLibrary("test.txt"));
     EXPECT_FALSE(Library::IsLibrary("test"));
     EXPECT_FALSE(Library::IsLibrary(""));
