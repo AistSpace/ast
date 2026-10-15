@@ -104,6 +104,13 @@ public:
     /// @return 实际填充的块数，0表示无数据
     int getAp3HourlyList(const TimePoint& tp, double* apList, int maxLookback) const override;
 
+    /// @brief 获取从指定时间向前回溯的连续3小时间隔Kp值列表
+    /// @param tp 参考时间点
+    /// @param kpList 输出缓冲区（kpList[0]=当前块, kpList[1]=3小时前, ...）
+    /// @param maxLookback 最多回溯的块数
+    /// @return 实际填充的块数，0表示无数据
+    int getKp3HourlyList(const TimePoint& tp, double* kpList, int maxLookback) const override;
+
     /// @brief 获取指定时间的Kp的单日平均值
     /// @param tp 时间点
     /// @return 对应的时间点的Kp值
