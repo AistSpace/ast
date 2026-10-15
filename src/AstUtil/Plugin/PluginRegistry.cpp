@@ -179,7 +179,13 @@ errc_t aScanPlugins()
         // 回退到库目录，只处理文件名以 "AstPlugin" 开头的库，
         const std::string libDir = aLibDir();
         if (!libDir.empty())
+        {
+        #if defined(__linux__)
+            registry.scanDirectory(libDir, "libAstPlugin");
+        #else
             registry.scanDirectory(libDir, "AstPlugin");
+        #endif
+        }
     }
 
     return eNoError;
