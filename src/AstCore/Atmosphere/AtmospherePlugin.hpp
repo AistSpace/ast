@@ -22,6 +22,8 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/StringView.hpp"
+#include "AstUtil/ScopedPtr.hpp"
+#include "AstCore/SpaceWeatherProvider.hpp"
 #include <string>
 #include <vector>
 
@@ -37,10 +39,11 @@ class DragForce;
 
 /// @brief 按名字创建插件提供的大气模型
 /// @param name 模型名字，来自插件元数据里的索引键
-/// @param config 大气阻力模型配置
+/// @param spaceWeatherProvider 空间天气数据源
 /// @return 模型实例；未找到或创建失败返回 nullptr。所有权归调用方
 /// @note 插件需要先被发现：调用 aScanPlugins()
-AST_CORE_API Atmosphere* aCreateAtmosphereFromPlugin(StringView name, const DragForce& config);
+AST_CORE_API Atmosphere* aCreateAtmosphereFromPlugin(StringView name, ScopedPtr<SpaceWeatherProvider>& spaceWeatherProvider);
+
 
 /// @brief 列出已发现插件提供的大气模型名字
 AST_CORE_API void aGetPluginAtmosphereModelNames(std::vector<std::string>& names);

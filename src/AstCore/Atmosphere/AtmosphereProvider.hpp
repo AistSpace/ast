@@ -22,6 +22,8 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/PluginInterface.hpp"
+#include "AstUtil/ScopedPtr.hpp"
+#include "AstCore/SpaceWeatherProvider.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -40,9 +42,9 @@ public:
     virtual ~IAtmosphereProvider() = default;
 
     /// @brief 创建模型实例
-    /// @param config 大气阻力模型配置
+    /// @param spaceWeatherProvider 空间天气数据源
     /// @return 模型实例；不支持或初始化失败时返回 nullptr。所有权归调用方
-    virtual Atmosphere* create(const DragForce& config) const = 0;
+    virtual Atmosphere* create(ScopedPtr<SpaceWeatherProvider>& spaceWeatherProvider) const = 0;
 };
 
 /// @brief 大气模型提供者接口的唯一 ID（插件元数据里的 "iid" 必须是此值）

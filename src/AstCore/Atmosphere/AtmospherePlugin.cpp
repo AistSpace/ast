@@ -23,16 +23,17 @@
 #include "AstUtil/PluginRegistry.hpp"
 #include "AstUtil/Logger.hpp"
 #include <string>
+#include <utility>
 #include <vector>
 
 AST_NAMESPACE_BEGIN
 
-Atmosphere* aCreateAtmosphereFromPlugin(StringView name, const DragForce& config)
+Atmosphere* aCreateAtmosphereFromPlugin(StringView name, ScopedPtr<SpaceWeatherProvider>& spaceWeatherProvider)
 {
     IAtmosphereProvider* provider = aPluginRegistry().find<IAtmosphereProvider>(name);
     if (!provider)
         return nullptr;
-    return provider->create(config);
+    return provider->create(spaceWeatherProvider);
 }
 
 void aGetPluginAtmosphereModelNames(std::vector<std::string>& names)

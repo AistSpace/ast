@@ -270,7 +270,8 @@ static Atmosphere* aNewAtmosphereModel(const AtmosphereModelId& id, const DragFo
         {
             name = id.name();
         }
-        auto atmosphere = aCreateAtmosphereFromPlugin(name, drag);
+        ScopedPtr<SpaceWeatherProvider> spaceWeatherProvider = aNewSpaceWeatherProvider(drag);
+        auto atmosphere = aCreateAtmosphereFromPlugin(name, spaceWeatherProvider);
         if(auto base = dynamic_cast<AtmosphereBase*>(atmosphere))
             base->setUseApproximateAltitude(drag.useApproxAltForDrag_);
         if(atmosphere)

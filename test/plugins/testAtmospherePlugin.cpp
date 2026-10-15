@@ -17,6 +17,7 @@
 #include "ast/Literals.hpp"
 #include "ast/Environment.hpp"
 #include "ast/IO.hpp"
+#include "ast/ConstantSpaceWeather.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -43,8 +44,8 @@ TEST(AtmospherePlugin, DiscoverAndCreate)
     EXPECT_TRUE(std::find(names.begin(), names.end(), std::string("Exponential")) != names.end());
 
     // 2. 按名字创建（内置模型不走本接口）
-    DragForce drag;
-    Atmosphere* atmosphere = aCreateAtmosphereFromPlugin("Exponential", drag);
+    ScopedPtr<SpaceWeatherProvider> spaceWeatherProvider = new ConstantSpaceWeather();
+    Atmosphere* atmosphere = aCreateAtmosphereFromPlugin("Exponential", spaceWeatherProvider);
     EXPECT_NE(atmosphere, nullptr);
     if (!atmosphere)
         return;
@@ -72,7 +73,8 @@ TEST(AtmospherePlugin, DiscoverAndCreate)
     }
 
     // 4. 未知名字应返回 nullptr
-    EXPECT_TRUE(aCreateAtmosphereFromPlugin("NoSuchModel", drag) == nullptr);
+    ScopedPtr<SpaceWeatherProvider> spaceWeatherProvider2 = new ConstantSpaceWeather();
+    EXPECT_TRUE(aCreateAtmosphereFromPlugin("NoSuchModel", spaceWeatherProvider2) == nullptr);
 }
 
 GTEST_MAIN()

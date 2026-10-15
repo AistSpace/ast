@@ -35,8 +35,9 @@ namespace {
 class ExponentialProvider : public PluginInstance, public IAtmosphereProvider
 {
 public:
-    Atmosphere* create(const DragForce&) const override
+    Atmosphere* create(ScopedPtr<SpaceWeatherProvider>& spaceWeatherProvider) const override
     {
+        A_UNUSED(spaceWeatherProvider);
         auto earth = aGetEarth();
         if (!earth)
             return nullptr;
