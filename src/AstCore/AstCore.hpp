@@ -12,6 +12,8 @@
 #include "AstCore/AstroBlockFactory.hpp"
 #include "AstCore/Atmosphere.hpp"
 #include "AstCore/AtmosphereBase.hpp"
+#include "AstCore/AtmospherePlugin.hpp"
+#include "AstCore/AtmosphereProvider.hpp"
 #include "AstCore/AttitudeAircraftCoordTurn.hpp"
 #include "AstCore/AttitudeAircraftZDown.hpp"
 #include "AstCore/AttitudeAlignConstrain.hpp"

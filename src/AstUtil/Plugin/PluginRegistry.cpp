@@ -48,11 +48,29 @@ errc_t PluginRegistry::scanDirectory(StringView dir, StringView namePrefix)
     {
         if (!fs::is_regular_file(entry.status()))
             continue;
-
-        const std::string filename = entry.path().filename().string();
-        if (!aIsLibrary(filename))
+        fs::path filename = entry.path().filename();
+        if (!aIsLibrary(filename.string()))
             continue;
-        if (!namePrefix.empty() && !StringView(filename).starts_with(namePrefix))
+
+        #ifdef _WIN32
+        {
+            // windows 下，release 和 debug 版本不能混用
+            // 这里通过文件名后缀进行筛选
+            // @todo 后续需要根据插件动态库元数据进行筛选
+
+            fs::path stem = entry.path().stem();
+            #if defined(_DEBUG)
+            const bool isDebug = true;
+            #else
+            const bool isDebug = false;
+            #endif
+
+            if(StringView(stem.string()).ends_with(_AST_DEBUG_SUFFIX) != isDebug)
+                continue;
+        }
+        #endif
+
+        if (!namePrefix.empty() && !StringView(filename.string()).starts_with(namePrefix))
             continue;
 
         loadPlugin(entry.path().string());
@@ -80,6 +98,13 @@ void PluginRegistry::keys(StringView iid, std::vector<std::string>& keys) const
         if (iid == kv.first.first)
             keys.push_back(kv.first.second);
     }
+}
+
+std::vector<std::string> PluginRegistry::keys(StringView iid) const
+{
+    std::vector<std::string> keys;
+    this->keys(iid, keys);
+    return keys;
 }
 
 size_t PluginRegistry::pluginCount() const

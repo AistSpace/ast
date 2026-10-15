@@ -45,30 +45,23 @@ public:
     virtual ~PluginInstance() = default;
 };
 
-/// @brief 插件元数据导出符号名
-/// @details 
-/// 插件通过 AST_PLUGIN_METADATA 宏导出该符号，内容是 JSON 文本
-/// 在不实例化任何对象的前提下即可读取并建立索引
-#define AST_PLUGIN_METADATA_NAME "ast_plugin_query_metadata"
-
-/// @brief 插件实例入口函数名
-/// @details 插件必须导出一个签名如下的 extern "C" 函数，符号名即此常量：
-/// @code
-///   extern "C" AST_PLUGIN_EXPORT ast::PluginInstance* ast_plugin_instance();
-/// @endcode
-#define AST_PLUGIN_ENTRY_NAME "ast_plugin_instance"
-
 /// @brief 插件入口函数类型
 typedef PluginInstance* (*FPluginInstance)();
 
-/// @brief 导出插件元数据
-/// @param json 元数据 JSON 字面量，schema 为：
-/// @code
-///   [ { "iid": "接口ID", "keys": ["索引键", ...] }, ... ]
-/// @endcode
-/// @note 数组的每个元素是一条独立的 (iid, keys) 声明，一个库可声明多条
-#define AST_PLUGIN_METADATA(json) extern "C" AST_PLUGIN_EXPORT const char ast_plugin_query_metadata[] = json;
 
+// 插件动态库导出符号名称
+
+#define AST_PLUGIN_IID_NAME         ast_plugin_iid
+#define AST_PLUGIN_KEYS_NAME        ast_plugin_keys
+#define AST_PLUGIN_INSTANCE_NAME    ast_plugin_instance
+
+#define AST_PLUGIN_IID_NAMESTR       A_STRINGIZE(AST_PLUGIN_IID_NAME)
+#define AST_PLUGIN_KEYS_NAMESTR      A_STRINGIZE(AST_PLUGIN_KEYS_NAME)
+#define AST_PLUGIN_INSTANCE_NAMESTR  A_STRINGIZE(AST_PLUGIN_INSTANCE_NAME)
+
+#define AST_PLUGIN_INSTANCE(Type)   extern "C" AST_PLUGIN_EXPORT PluginInstance* AST_PLUGIN_INSTANCE_NAME(){static Type instance; return &instance;}
+#define AST_PLUGIN_IID(IFace)       extern "C" AST_PLUGIN_EXPORT const char* AST_PLUGIN_IID_NAME = aInterfaceId<IFace>();
+#define AST_PLUGIN_KEYS(...)        extern "C" AST_PLUGIN_EXPORT const char* AST_PLUGIN_KEYS_NAME[] = {__VA_ARGS__, nullptr};
 
 /// @brief 接口 ID 特化模板
 template<class IFace>

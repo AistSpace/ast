@@ -25,6 +25,28 @@
 
 AST_NAMESPACE_BEGIN
 
+
+namespace{
+    
+errc_t parseMetadata(const char* iid, const char** keys, std::vector<PluginEntry>& out)
+{
+    if (!iid)
+        return eErrorParse;
+    PluginEntry entry;
+    entry.iid = iid;
+    if (keys)
+    {
+        // keys 是以 nullptr 结尾的字符串数组
+        for (const char** p = keys; *p != nullptr; ++p)
+        {
+            entry.keys.push_back(*p);
+        }
+    }
+    out.push_back(std::move(entry));
+    return eNoError;
+}
+}
+
 errc_t PluginLoader::load(StringView filepath)
 {
     if (filepath.empty())
@@ -35,8 +57,15 @@ errc_t PluginLoader::load(StringView filepath)
         return eErrorInvalidFile;
 
     // 元数据：通过元数据实现在不实例化任何对象的前提下识别插件
-    const char* meta = static_cast<const char*>(aGetProcAddress(handle, AST_PLUGIN_METADATA_NAME));
-    if (!meta)
+
+    // 注意符号的间接层数：
+    // ast_plugin_iid 导出的是指针变量，符号地址是那个指针变量自身的地址，需要再解引用一次
+    // ast_plugin_keys 导出的是数组，符号地址就是数组首地址，直接可用
+
+    const char* const* iidAddr = static_cast<const char* const*>(aGetProcAddress(handle, AST_PLUGIN_IID_NAMESTR));
+    const char** keys          = static_cast<const char**>(aGetProcAddress(handle, AST_PLUGIN_KEYS_NAMESTR));
+    const char* iid            = iidAddr ? *iidAddr : nullptr;
+    if (!iid)
     {
         // 不是插件（或未导出元数据），直接卸掉
         aFreeLibrary(handle);
@@ -44,7 +73,7 @@ errc_t PluginLoader::load(StringView filepath)
     }
 
     std::vector<PluginEntry> entries;
-    if (parseMetadata(meta, entries) != eNoError)
+    if (parseMetadata(iid, keys, entries) != eNoError)
     {
         aWarning(_("插件 '%.*s' 的元数据格式非法，已忽略"), filepath.size(), filepath.data());
         aFreeLibrary(handle);
@@ -67,7 +96,7 @@ PluginInstance* PluginLoader::instance()
     if (!handle_)
         return nullptr;
 
-    auto fn = reinterpret_cast<FPluginInstance>(aGetProcAddress(handle_, AST_PLUGIN_ENTRY_NAME));
+    auto fn = reinterpret_cast<FPluginInstance>(aGetProcAddress(handle_, AST_PLUGIN_INSTANCE_NAMESTR));
     if (!fn)
         return nullptr;
 
@@ -75,40 +104,5 @@ PluginInstance* PluginLoader::instance()
     return instance_;
 }
 
-errc_t PluginLoader::parseMetadata(StringView jsonText, std::vector<PluginEntry>& out)
-{
-    JsonValue doc;
-    if (doc.parseFromString(jsonText) != eNoError)
-        return eErrorParse;
-
-    if (!doc.isArray())
-        return eErrorParse;
-
-    for (const JsonValue& item : doc.getArray())
-    {
-        if (!item.isObject())
-            continue;
-
-        PluginEntry entry;
-        entry.iid = item["iid"].toString();
-        if (entry.iid.empty())
-            continue;
-
-        const JsonValue& keys = item["keys"];
-        if (keys.isArray())
-        {
-            for (const JsonValue& key : keys.getArray())
-            {
-                std::string name = key.toString();
-                if (!name.empty())
-                    entry.keys.push_back(std::move(name));
-            }
-        }
-
-        out.push_back(std::move(entry));
-    }
-
-    return out.empty() ? eErrorParse : eNoError;
-}
 
 AST_NAMESPACE_END

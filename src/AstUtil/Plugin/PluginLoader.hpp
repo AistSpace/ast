@@ -65,9 +65,6 @@ public:
     PluginInstance* instance();
 
 private:
-    /// @brief 由插件元数据解析出条目列表
-    static errc_t parseMetadata(StringView jsonText, std::vector<PluginEntry>& out);
-
     void* handle_{nullptr};              ///< 动态库句柄
     std::string filepath_{};             ///< 动态库路径
     std::vector<PluginEntry> entries_{}; ///< 元数据条目

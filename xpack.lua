@@ -14,6 +14,7 @@ xpack("ast")
     add_targets("ascript", "AppCLI", "AppMissionAnalysis")
     -- 源文件安装包的文件
     add_sourcefiles("(src/**)")
+    add_sourcefiles("(plugins/**)")
     add_sourcefiles("(include/**)")
     add_sourcefiles("(examples/**)")
     add_sourcefiles("(test/**)|**bm*")

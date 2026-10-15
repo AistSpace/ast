@@ -62,12 +62,25 @@ public:
     template<class IFace>
     IFace* find(StringView key)
     {
-        PluginInstance* instance = findInstance(aInterfaceId<IFace>(), key);
+        PluginInstance* instance = find(aInterfaceId<IFace>(), key);
         return aPluginCast<IFace>(instance);
     }
 
     /// @brief 列出某接口下已注册的全部索引键
     void keys(StringView iid, std::vector<std::string>& keys) const;
+    std::vector<std::string> keys(StringView iid) const;
+
+    template<class IFace>
+    std::vector<std::string> keys() const
+    {
+        return this->keys(aInterfaceId<IFace>());
+    }
+
+    template<class IFace>
+    void keys(std::vector<std::string>& keys) const
+    {
+        this->keys(aInterfaceId<IFace>(), keys);
+    }
 
     /// @brief 已加载的插件库数量
     size_t pluginCount() const;
