@@ -247,7 +247,7 @@ static Atmosphere* aNewAtmosphereModel(const AtmosphereModelId& id, const DragFo
         EAtmosphereModel model;
         if (!id.name().empty())
         {
-            if(errc_t rc = parse(id.name(), model))
+            if(parse(id.name(), model) != eNoError)
                 break;
         }
         else

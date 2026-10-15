@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstCore/AtmosphereBase.hpp"
+#include "AstPluginAtmosphereGlobal.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -31,7 +32,7 @@ AST_NAMESPACE_BEGIN
 ///   rho(h) = rho0 * exp(-(h - h0) / H)
 /// @endcode
 /// 它不是精确模型，只用于做粗略的量级估算。
-class ExponentialAtmosphere : public AtmosphereBase
+class AST_PLUGIN_ATMOSPHERE_API ExponentialAtmosphere : public AtmosphereBase
 {
 public:
     /// @brief 构造函数

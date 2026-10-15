@@ -305,6 +305,12 @@ if has_package("qt") then
     add_defines("AST_WITH_QT")
 end
 
+-- 添加qwt库依赖（可选）
+if has_package("qwt") then
+    add_defines("AST_WITH_QWT")
+    add_packages("qwt")
+end
+
 -- 添加ipopt库依赖（可选）
 -- if has_package("ipopt") then
 --     add_packages("ipopt")

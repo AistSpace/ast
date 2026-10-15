@@ -85,7 +85,7 @@ if __name__ == "__main__":
         incroot = os.path.join(rootdir, "include")
         clean_dir(incroot)
         clean_header(incroot)
-        for module in ["src"]:
+        for module in ["src", "plugins"]:
             srcroot = os.path.join(rootdir, module)
             gen_module_header(srcroot, incroot)
     except:

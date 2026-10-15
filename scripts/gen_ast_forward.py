@@ -43,6 +43,10 @@ def gen_ast_forward_headers(incroot):
         if rel_root.startswith("AstCOM"):
             continue
 
+        # 跳过 AstPlugin* 目录，插件头文件无需转发
+        if rel_root.startswith("AstPlugin"):
+            continue
+
         for filename in filenames:
             if not is_header(filename):
                 continue
