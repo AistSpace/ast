@@ -200,11 +200,13 @@ errc_t MotionHPOPSax::keyValue(StringView key, const ValueView &value)
         forceModel_.useDrag(value.toBool());
     }
     else if(aEqualsIgnoreCase(key, "AtmDensityModel")){
-        forceModel_.drag().atmDensityModel_ = _aStringToAtmDensityModel_HPOP(value.toString());
-        if(forceModel_.drag().atmDensityModel_ == EAtmDensityModel::eNone){
+         
+        auto model = _aStringToAtmDensityModel_HPOP(value.toString());
+        if(model == EAtmDensityModel::eNone){
             aWarning(_("使用默认大气密度模型 'NRLMSISE2000'"));
-            forceModel_.drag().atmDensityModel_ = EAtmDensityModel::eNRLMSISE2000;
+            model = EAtmDensityModel::eNRLMSISE2000;
         }
+        forceModel_.drag().atmDensityModel_ = model;
     }
     else if(aEqualsIgnoreCase(key, "AtmBlendingRange")){
         forceModel_.drag().atmBlendingRange_ = value.toDouble();

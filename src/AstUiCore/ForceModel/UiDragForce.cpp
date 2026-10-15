@@ -238,8 +238,8 @@ void UiDragForce::refreshUi()
     if (!drag) return;
     
     // 大气密度模型
-    mainAtmCombo_->setCurrentIndex(static_cast<int>(drag->atmDensityModel_));
-    lowAltAtmCombo_->setCurrentIndex(static_cast<int>(drag->lowAltAtmDensityModel_));
+    mainAtmCombo_->setCurrentIndex(static_cast<int>(drag->atmDensityModel_.value()));
+    lowAltAtmCombo_->setCurrentIndex(static_cast<int>(drag->lowAltAtmDensityModel_.value()));
     blendingRangeEdit_->setValue(drag->atmBlendingRange_);
     
     // 太阳通量/地磁指数

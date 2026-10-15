@@ -33,6 +33,7 @@
 #include "AstCore/JplSpk.hpp"
 #include "AstCore/JplDe.hpp"
 #include "AstUtil/DAFParser.hpp"
+#include "AstUtil/PluginRegistry.hpp"
 #include "AstMath/MathOperator.hpp"
 #include "RunTimeData.hpp"
 #include "RunTimeSolarSystem.hpp"
@@ -256,6 +257,14 @@ void aGetInitalizeConfig(InitalizeConfig& config)
     _aGetInitalizeConfig(context, config);
 }
 
+static void aEnsurePluginScanned()
+{
+    static bool scanned = false;
+    if(scanned) return;
+    scanned = true;
+    errc_t rc = aScanPlugins();
+    A_UNUSED(rc);
+}
 
 
 errc_t aInitializeByDefault(DataContext* context)
@@ -297,6 +306,10 @@ errc_t aInitializeByDefault(DataContext* context)
     if(err != eNoError) {
         aError(_("初始化失败，有部分数据文件加载失败"));
     }
+
+    // 确保插件已扫描
+    aEnsurePluginScanned();
+
     return err;
 }
 
@@ -347,6 +360,10 @@ errc_t aInitializeByConfig(DataContext* context, const InitalizeConfig& config)
     if(err != eNoError) {
         aWarning(_("初始化失败，有部分数据文件加载失败"));
     }
+
+    // 确保插件已扫描
+    aEnsurePluginScanned();
+    
     return err;
 }
 

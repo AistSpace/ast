@@ -63,7 +63,18 @@ EnumDescriptorData::NumberType EnumDescriptorData::valueOf(StringView name, bool
     return 0;
 }
 
-
-
+errc_t EnumDescriptorData::valueOf(StringView name, NumberType &result) const
+{
+    for(const auto& entry : values_)
+    {
+        if(aEqualsIgnoreCase(entry.second, name))
+        {
+            result = entry.first;
+            return eNoError;
+        }
+    }
+    result = 0;
+    return eErrorNotFound;
+}
 
 AST_NAMESPACE_END

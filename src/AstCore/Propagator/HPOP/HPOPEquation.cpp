@@ -38,6 +38,8 @@
 #include "AstCore/HarrisPriester.hpp"
 #include "AstCore/DTM2012.hpp"
 #include "AstCore/BlendingAtmosphere.hpp"
+#include "AstCore/AtmosphereBase.hpp"
+#include "AstCore/AtmospherePlugin.hpp"     // for aCreateAtmosphereFromPlugin()
 
 #include "AstUtil/Constants.hpp"
 
@@ -160,7 +162,7 @@ static SpaceWeatherProvider* aNewSpaceWeatherProvider(const DragForce& drag)
     return new ConstantSpaceWeather(drag.f10p7Daily(), drag.f10p7Average(), drag.ap(), drag.kp());
 }
 
-static Atmosphere* aNewAtmosphereModel(EAtmDensityModel atmDensityModel, const DragForce& drag)
+static Atmosphere* aNewAtmosphereModelBuiltin(EAtmDensityModel atmDensityModel, const DragForce& drag)
 {
 
     // 目前的大气模型都是地球的大气模型
@@ -225,15 +227,61 @@ static Atmosphere* aNewAtmosphereModel(EAtmDensityModel atmDensityModel, const D
         }
     }
 
-    if(!atmosphere)
+    /*
+        不支持的模型直接返回空指针，在外层进行兜底处理
+    */
+
+    if(atmosphere)
     {
-        aInfo(_("大气模型 '%s' 尚不支持或初始化失败，默认使用 'NRLMSIS00'"), toString(atmDensityModel).c_str());
-        auto nrlmsis00 = new NRLMSIS00(frame, shape, aNewSpaceWeatherProvider(drag));
-        nrlmsis00->setUseDailyAp(geoMagFluxUpdateRate==EGeoMagFluxUpdateRate::eDaily);
-        atmosphere = nrlmsis00;
+        atmosphere->setUseApproximateAltitude(drag.useApproxAltForDrag_);
     }
-    atmosphere->setUseApproximateAltitude(drag.useApproxAltForDrag_);
     return atmosphere;
+}
+
+/// @brief 按模型标识创建大气模型
+static Atmosphere* aNewAtmosphereModel(const AtmosphereModelId& id, const DragForce& drag)
+{
+    // 先尝试转换为内置枚举，并根据枚举创建内置大气模型
+    do
+    {
+        EAtmosphereModel model;
+        if (!id.name().empty())
+        {
+            if(errc_t rc = parse(id.name(), model))
+                break;
+        }
+        else
+        {
+            model = id.value();
+        }
+        auto atmosphere = aNewAtmosphereModelBuiltin(model, drag);
+        if(atmosphere)
+            return atmosphere;
+    }while(false);
+
+    // 否则，尝试从外部插件加载大气模型
+    {
+        std::string name;
+        if(id.name().empty())
+        {
+            name = toString(id.value());
+        }
+        else
+        {
+            name = id.name();
+        }
+        auto atmosphere = aCreateAtmosphereFromPlugin(name, drag);
+        if(auto base = dynamic_cast<AtmosphereBase*>(atmosphere))
+            base->setUseApproximateAltitude(drag.useApproxAltForDrag_);
+        if(atmosphere)
+            return atmosphere;
+        else
+        {
+            // 如果都失败，则回退到默认大气模型
+            aInfo(_("大气模型 '%s' 尚不支持或初始化失败，将默认使用 'NRLMSIS00' 模型"), name.c_str());
+            return aNewAtmosphereModelBuiltin(EAtmosphereModel::eNRLMSISE2000, drag);
+        }
+    }
 }
 
 static Atmosphere* aNewAtmosphere(const DragForce& drag)
@@ -242,7 +290,7 @@ static Atmosphere* aNewAtmosphere(const DragForce& drag)
     assert(atmosphere);
 
     // 低高度大气模型：与主模型在过渡带内混合
-    if(drag.lowAltAtmDensityModel_ != EAtmDensityModel::eNone && drag.lowAltAtmDensityModel_ != drag.atmDensityModel_)
+    if(drag.lowAltAtmDensityModel_.value() != EAtmDensityModel::eNone || !drag.lowAltAtmDensityModel_.name().empty())
     {
         auto lower = aNewAtmosphereModel(drag.lowAltAtmDensityModel_, drag);
         assert(lower);

@@ -84,4 +84,9 @@ std::string toString(EAtmDensityModel model)
     return aEnumDescriptor<EAtmDensityModel>().nameOf(model);
 }
 
+errc_t parse(StringView type, EAtmDensityModel &result)
+{
+    return aEnumDescriptor<EAtmDensityModel>().valueOf(type, result);
+}
+
 AST_NAMESPACE_END

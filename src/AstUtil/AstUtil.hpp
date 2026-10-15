@@ -44,6 +44,7 @@
 #include "AstUtil/Encode.hpp"
 #include "AstUtil/Endian.hpp"
 #include "AstUtil/EnumDescriptor.hpp"
+#include "AstUtil/EnumOrName.hpp"
 #include "AstUtil/EnumRegistry.hpp"
 #include "AstUtil/Environment.hpp"
 #include "AstUtil/Escape.hpp"

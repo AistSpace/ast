@@ -54,6 +54,8 @@ public:
 
     NumberType valueOf(StringView name, bool& found) const;
 
+    errc_t valueOf(StringView name, NumberType& result) const;
+
 private:
     ValueList values_;  ///< 枚举值列表
 };
@@ -80,6 +82,14 @@ public:
     EnumType valueOf(StringView name, bool& found) const
     {
         return static_cast<EnumType>(EnumDescriptorData::valueOf(name, found));
+    }
+
+    errc_t valueOf(StringView name, EnumType& result) const
+    {
+        NumberType num;
+        errc_t rc = EnumDescriptorData::valueOf(name, num);
+        result = static_cast<EnumType>(num);
+        return rc;
     }
 };
 
