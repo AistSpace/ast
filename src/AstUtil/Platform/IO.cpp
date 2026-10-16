@@ -133,11 +133,17 @@ int posix::vfprintf(FILE * stream, const char * format, va_list args)
         if (wlen > 0) {
             std::vector<wchar_t> wbuffer(wlen);
             MultiByteToWideChar(CP_UTF8, 0, buffer.data(), len, wbuffer.data(), wlen);
-            DWORD written = 0;
-            if (WriteConsoleW(h, wbuffer.data(), wlen, &written, nullptr)) {
-                return len; // 返回写入的 UTF-8 字节数
+            // WriteConsoleW 可能只写入部分字符，需循环写完剩余部分
+            size_t offset = 0;
+            while (offset < static_cast<size_t>(wlen)) {
+                DWORD written = 0;
+                if (!WriteConsoleW(h, wbuffer.data() + offset, static_cast<DWORD>(wlen - offset), &written, nullptr)
+                    || written == 0) {
+                    return -1;
+                }
+                offset += written;
             }
-            return -1;
+            return len; // 返回写入的 UTF-8 字节数
         }
     }
     return _vfprintf_l(stream, format, locale, args);

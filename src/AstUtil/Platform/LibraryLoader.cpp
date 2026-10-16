@@ -261,7 +261,7 @@ bool aIsLibrary(StringView fileName)
     return fileName.ends_with(".dll");
 #elif defined(__linux__)
     return fileName.ends_with(".so");
-#elif defined(__macos__)
+#elif defined(__APPLE__)
     return fileName.ends_with(".dylib");
 #else
     aWarning(_("未知平台或该平台不支持动态库"));

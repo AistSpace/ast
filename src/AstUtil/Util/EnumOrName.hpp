@@ -21,6 +21,9 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstUtil/StringView.hpp"
+
+#include <string>
 
 AST_NAMESPACE_BEGIN
 

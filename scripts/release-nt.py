@@ -264,7 +264,8 @@ def replace_empty_lines_in_source():
 
 def prepend_warning_line(file_path):
     """在文件首行插入一行 Lua 注释形式的警告文本，保持原有的 BOM 与换行符"""
-    with open(file_path, 'r', encoding='utf-8-sig', errors='ignore') as f:
+    # newline='' 避免通用换行符转换，否则 CRLF 会被读成 LF，下面的判断失效
+    with open(file_path, 'r', encoding='utf-8-sig', errors='ignore', newline='') as f:
         content = f.read()
 
     # 沿用文件原有的换行符，避免在 CRLF 文件中混入 LF
@@ -273,7 +274,8 @@ def prepend_warning_line(file_path):
     ensure_writable(file_path)
     # 保持文件原有的 BOM 状态（xmake.lua 不经过 convert_encoding_to_utf8_bom 处理）
     encoding = 'utf-8-sig' if has_utf8_bom(file_path) else 'utf-8'
-    with open(file_path, 'w', encoding=encoding) as f:
+    # newline='' 保证 content 中的换行符原样写回
+    with open(file_path, 'w', encoding=encoding, newline='') as f:
         f.write(XMAKE_WARNING_LINE + ending + content)
     print(f"Prepended warning line to: {file_path}")
 

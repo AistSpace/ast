@@ -1,8 +1,7 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <vector>
-#ifdef AST_WITH_AGG
-#ifdef AST_WITH_MATPLOT
+#if defined(AST_WITH_AGG) && defined(AST_WITH_MATPLOT)
 #include <matplot/matplot.h>
 #include <matplot/backend/backend_registry.h>
 #include "AstPlot/AggBackend.hpp"
@@ -47,6 +46,5 @@ int main()
     // Agg 或 MatPlot 不可用，跳过该示例。
     return 0;
 }
-#endif
 #endif
 
