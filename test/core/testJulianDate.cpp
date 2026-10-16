@@ -226,4 +226,22 @@ TEST(JulianDate, EdgeCases)
     EXPECT_DOUBLE_EQ(jdLarge.dayFractional(), 86399.0 / 86400.0);
 }
 
+/// @brief 比较运算符按"日 + 秒"判定先后与相等
+TEST(JulianDate, Comparison)
+{
+    AST_USING_NAMESPACE
+
+    const JulianDate base = JulianDate::FromDaySecond(2451545, 0.0);
+    const JulianDate sameDayLater = JulianDate::FromDaySecond(2451545, 43200.0);
+    const JulianDate nextDay = JulianDate::FromDaySecond(2451546, 0.0);
+
+    EXPECT_TRUE(base < sameDayLater);
+    EXPECT_TRUE(base < nextDay);
+    EXPECT_FALSE(sameDayLater < base);
+
+    EXPECT_TRUE(base == JulianDate::FromDaySecond(2451545, 0.0));
+    EXPECT_FALSE(base == nextDay);
+    EXPECT_FALSE(base == sameDayLater);
+}
+
 GTEST_MAIN()
