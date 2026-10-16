@@ -44,9 +44,9 @@ ignore:
   - "docs"        # 文档
 
   # GUI / 可视化：验收靠人工，行覆盖率信息量低
-  - "src/AstUi*"
-  - "src/AstVis*"
-  - "src/AstVisualization"
+  # 通配规则：单个 * 只匹配一级、不跨 /，跨目录必须用尾随的 /**。
+  - "src/AstUi*/**"
+  - "src/AstVis*/**"
   - "src/AstChart"
   - "src/AstPlot"
 
@@ -55,6 +55,6 @@ ignore:
   - "src/AstCOM"   # 仅 Windows；覆盖率 job 跑在 Ubuntu 上，永远测不到
   - "src/AstWasm"  # WASM 实验性支持
 
-  # 测试辅助库与求解器封装
+  # 测试辅助库
   - "src/AstTest"  # 测试工具库
   - "src/AstMock"  # 模拟/测试工具
