@@ -70,7 +70,7 @@ constexpr const char* extract_filename_impl(const char* str, const char* last, c
 
 
 /// @brief 从路径中提取文件名，若无分隔符则返回原串
-constexpr const char* extract_filename(const char* str, const char* last_sep_pos=nullptr)
+constexpr const char* extract_filename(const char* str)
 {
     return extract_filename_impl(str, nullptr, str);
 }

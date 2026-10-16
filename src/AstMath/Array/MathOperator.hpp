@@ -408,18 +408,24 @@ struct is_arithmetic_element : std::integral_constant<bool,
 {};
 
 
+/// @brief  仅当 T 为向量运算可用的数值类型时该重载才存在
+/// @note   
+/// 老版本 MSVC（VS2015）解析不了嵌套在 decltype 里的类模板，会误报 C2955
+/// 故用该函数模板判断元素类型，而不是写在 decltype 内部，只声明不定义，仅用于 SFINAE 探测
+template<typename T>
+typename std::enable_if<is_arithmetic_element<T>::value, std::true_type>::type
+arithmeticElementCheck(T);
+
+
 // 定义向量特征：必须要有 size() 和数值型元素的 operator[]
 template<typename T>
 struct is_vector_like {
 private:
     template<typename U>
     static auto test(int) -> decltype(
-        sizeof(std::declval<U>()[0]),   // 有 operator[]，用 sizeof 取用返回值避免报 unused-result
-        size(std::declval<U>()),        // 有 size() 函数
-        typename std::enable_if<
-            is_arithmetic_element<
-                typename std::decay<decltype(std::declval<U>()[0])>::type>::value,
-            std::true_type>::type{}
+        sizeof(std::declval<U>()[0]),                   // 有 operator[] (用 sizeof 取用返回值避免报 unused-result)
+        size(std::declval<U>()),                        // 有 size() 函数
+        arithmeticElementCheck(std::declval<U>()[0])    // 元素类型为数值类型
     );
     
     template<typename>

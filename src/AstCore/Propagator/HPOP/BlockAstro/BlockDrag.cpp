@@ -22,6 +22,7 @@
 #include "AstCore/BlockAstro.hpp"
 #include "AstCore/Frame.hpp"
 #include "AstUtil/Identifier.hpp"
+#include "AstUtil/Literals.hpp"
 #include "AstMath/Vector.hpp"
 #include "AstMath/KinematicRotation.hpp"
 #include "AstMath/KinematicTransform.hpp"
@@ -128,6 +129,19 @@ errc_t BlockDrag::run(const SimTime& simTime)
 
         // 计算大气密度
         double density = atmosphere_->getDensity(tp, posInAtmosFrame);
+        #ifdef _AST_DEBUG_DRAG
+        double alt = posInAtmosFrame.norm() - kEarthRadius;
+        if(alt < 100_km)
+        {
+            aDebug(_("大气阻力计算, 时间: %s, 高度: %lf m, 大气密度: %lf kg/m^3"), simTime.timePoint().toString().c_str(), alt, density);
+        }
+        #endif
+        if(std::isnan(density))
+        {
+            aWarning(_("大气密度为无效值, 无法计算大气阻力加速度, r=%lf m"), posInAtmosFrame.norm());
+            *accDrag_ = Vector3d::Zero();
+            return eErrorInvalidParam;
+        }
         transform.inverse().transformPositionVelocity(posInAtmosFrame, Vector3d::Zero(), notUsed, atmosVelocity);
 
         // 计算航天器相对于大气的速度
@@ -144,7 +158,7 @@ errc_t BlockDrag::run(const SimTime& simTime)
         accDrag = -dragCoefficient_ * dragArea_ * density * relVelocity.norm() / (mass * 2)  * relVelocity;
     }
 
-#if defined(_AST_DEBUG_DRAG)
+#if defined(_AST_DEBUG_DRAG) && 0
     Vector3d accDrag2;
     {
         Vector3d posInAtmosFrame;

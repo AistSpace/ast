@@ -32,33 +32,33 @@ template<typename _Object>
 class SharedPtr
 {
 public:
-    SharedPtr()
+    SharedPtr() noexcept
         :object_{ nullptr }
     {}
-    SharedPtr(std::nullptr_t)
+    SharedPtr(std::nullptr_t) noexcept
         :object_{ nullptr }
     {
     }
-    SharedPtr(_Object* obj)
+    SharedPtr(_Object* obj) noexcept
         :object_{ obj }
     {
         _incRef();
     }
-    SharedPtr(const SharedPtr& ptr)
+    SharedPtr(const SharedPtr& ptr) noexcept
         :SharedPtr{ptr.get()}
     {
 
     }
-    ~SharedPtr()
+    ~SharedPtr() noexcept
     {
         _decRef();
     }
-    SharedPtr& operator=(const SharedPtr& ptr)
+    SharedPtr& operator=(const SharedPtr& ptr) noexcept
     {
         return this->operator=(ptr.get());
     }
 
-    SharedPtr& operator=(_Object* obj)
+    SharedPtr& operator=(_Object* obj) noexcept
     {
         if(obj != object_){ 
             if(obj)
@@ -68,30 +68,30 @@ public:
         }
         return *this;
     }
-    SharedPtr& operator=(std::nullptr_t)
+    SharedPtr& operator=(std::nullptr_t) noexcept
     {
         reset();
         return *this;
     }
     // 这里还是设置为支持隐式转换，因为在很多情况下，我们需要将SharedPtr转换为_Object*
     // explicit 
-    operator _Object*() const
+    operator _Object*() const noexcept
     {
         return object_;
     }
-    explicit operator bool() const
+    explicit operator bool() const noexcept
     {
         return object_ != nullptr;
     }
-    _Object* operator->() const
+    _Object* operator->() const noexcept
     {
         return object_;
     }
-    _Object* get() const
+    _Object* get() const noexcept
     {
         return object_;
     }
-    _Object* take()
+    _Object* take() noexcept
     {
         _Object* obj = object_;
         if(obj){
@@ -100,18 +100,18 @@ public:
         }
         return obj;
     }
-    void reset()
+    void reset() noexcept
     {
         _decRef();
         object_ = nullptr;
     }
 protected:
-    void _incRef()
+    void _incRef() noexcept
     {
         if(object_)
             object_->incRef();
     }
-    void _decRef()
+    void _decRef() noexcept
     {
         if(object_)
             object_->decRef();

@@ -319,6 +319,41 @@ int SpaceWeather::getAp3HourlyList(const TimePoint& tp, double* apList, int maxL
     return filled;
 }
 
+
+int SpaceWeather::getKp3HourlyList(const TimePoint& tp, double* kpList, int maxLookback) const
+{
+    if(data_.empty() || maxLookback <= 0){
+        return 0;
+    }
+
+    DateTime dateTime;
+    aTimePointToUTC(tp, dateTime);
+    int mjdInt = aDateToMJD(dateTime.date());
+    double secOfDay = dateTime.secOfDay();
+    int curBlock = (int)floor(secOfDay / 10800.0);
+
+    if(curBlock < 0) curBlock = 0;
+    if(curBlock >= 8) curBlock = 7;  // 边界保护
+
+    int filled = 0;
+    for(int i = 0; i < maxLookback; ++i)
+    {
+        int totalBlock = mjdInt * 8 + curBlock - i;
+        if(totalBlock < 0) break;
+
+        int targetMJD = totalBlock / 8;
+        int targetBlock = totalBlock % 8;
+
+        const Entry* entry = getEntry(targetMJD);
+        if(entry == nullptr) break;
+
+        // Celestrak 文件里 Kp 列存的是 Kp*10 的整数（2字符），需还原为 Kp
+        kpList[i] = (double)entry->Kp[targetBlock] / 10.0;
+        ++filled;
+    }
+    return filled;
+}
+
 double SpaceWeather::getKpDaily(const TimePoint& tp) const
 {
     JulianDate jdUTC;

@@ -165,7 +165,7 @@
 // 字符串化
 
 #define A_STR(S) #S
-
+#define A_STRINGIZE(S) A_STR(S)
 
 
 // 函数属性宏

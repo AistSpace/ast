@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "Atmosphere.hpp"
+#include "AstUtil/I18n.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -29,6 +30,8 @@ AST_NAMESPACE_BEGIN
     @addtogroup 
     @{
 */
+
+constexpr const char* kInfoInvalidHeight = N_("高度低于 %d km, 该模型不适用, 返回无效值");
 
 class AST_CORE_API AtmosphereBase: public Atmosphere
 {
@@ -47,6 +50,9 @@ public:
 
     /// @brief 获取大气模型的参考坐标系
     Frame* getFrame() const override{return frame_;}
+
+    /// @brief 获取大气模型对应天体形状
+    BodyShape* getShape() const override {return bodyShape_;}
 public:
     /// @brief 是否使用近似高度计算
     bool useApproximateAltitude() const {return useApproximateAltitude_;}

@@ -37,6 +37,9 @@
 #include "AstCore/JacchiaRoberts.hpp"
 #include "AstCore/HarrisPriester.hpp"
 #include "AstCore/DTM2012.hpp"
+#include "AstCore/BlendingAtmosphere.hpp"
+#include "AstCore/AtmosphereBase.hpp"
+#include "AstCore/AtmospherePlugin.hpp"     // for aCreateAtmosphereFromPlugin()
 
 #include "AstUtil/Constants.hpp"
 
@@ -142,22 +145,24 @@ static errc_t aLoadGravityField(const GravityForce& gravity, const Body& body, G
     return eNoError;
 }
 
-static double clamp_f10p7(double value)
+
+static SpaceWeatherProvider* aNewSpaceWeatherProvider(const DragForce& drag)
 {
-    if(value < 40.0)
+    if (drag.useFluxApFile_)
     {
-        aWarning(_("f10p7 小于 40，使用 40 作为默认值"));
-        return 40.0;
+        auto spaceWeather = new SpaceWeather();
+        // @todo: 这里可以添加缓存机制，避免重复加载相同的文件
+        if (!spaceWeather->load(drag.fluxApFile_))
+        {
+            return spaceWeather;
+        }
+        aWarning(_("加载空间天气文件 '%s' 失败，将改用恒定空间天气参数"), drag.fluxApFile_.c_str());
+        delete spaceWeather;
     }
-    else if(value > 10000.0)
-    {
-        aWarning(_("f10p7 大于 10000，使用 10000 作为默认值"));
-        return 10000.0;
-    }
-    return value;
+    return new ConstantSpaceWeather(drag.f10p7Daily(), drag.f10p7Average(), drag.ap(), drag.kp());
 }
 
-static Atmosphere* aNewAtmosphere(const DragForce& drag)
+static Atmosphere* aNewAtmosphereModelBuiltin(EAtmDensityModel atmDensityModel, const DragForce& drag)
 {
 
     // 目前的大气模型都是地球的大气模型
@@ -168,56 +173,27 @@ static Atmosphere* aNewAtmosphere(const DragForce& drag)
     BodyShape* shape = earth->getShape();
     Frame* frame = earth->getFrameFixed();
 
-    double f10p7Daily = clamp_f10p7(drag.f10p7Daily_);
-    double f10p7Average = clamp_f10p7(drag.f10p7Average_);
-
-
-    ScopedPtr<SpaceWeatherProvider> spaceWeather;
-    // 伪循环用于执行后备方案
-    do {
-        if (drag.useFluxApFile_)
-        {
-            auto swfile = new SpaceWeather();
-            spaceWeather = swfile;
-            // @todo: 这里可以添加缓存机制，避免重复加载相同的文件
-            errc_t err = swfile->load(drag.fluxApFile_);
-            if (!err)
-            {
-                break;
-            }
-            else
-            {
-                aWarning(_("加载空间天气文件 '%s' 失败，改用恒定空间天气参数"), drag.fluxApFile_.c_str());
-            }
-        }
-        // 后备方案
-        {
-            spaceWeather = new ConstantSpaceWeather(f10p7Daily, f10p7Average, drag.ap(), drag.kp_);
-        }
-    }while(false);
-    
 
     auto geoMagFluxUpdateRate = drag.geoMagFluxUpdateRate_;
     AtmosphereBase* atmosphere = nullptr;
-    auto atmDensityModel = drag.atmDensityModel_;
     {
         if(atmDensityModel == EAtmDensityModel::eMSIS1986)
         {
-            auto misi86 = new MSIS86(frame, shape, spaceWeather.release());
-            misi86->setUseDailyAp(geoMagFluxUpdateRate==EGeoMagFluxUpdateRate::eDaily);
-            atmosphere = misi86;
+            auto msis86 = new MSIS86(frame, shape, aNewSpaceWeatherProvider(drag));
+            msis86->setUseDailyAp(geoMagFluxUpdateRate==EGeoMagFluxUpdateRate::eDaily);
+            atmosphere = msis86;
         }
         else if(atmDensityModel == EAtmDensityModel::eMSISE1990)
         {
-            auto misi90 = new MSISE90(frame, shape, spaceWeather.release());
-            misi90->setUseDailyAp(geoMagFluxUpdateRate==EGeoMagFluxUpdateRate::eDaily);
-            atmosphere = misi90;
+            auto msise90 = new MSISE90(frame, shape, aNewSpaceWeatherProvider(drag));
+            msise90->setUseDailyAp(geoMagFluxUpdateRate==EGeoMagFluxUpdateRate::eDaily);
+            atmosphere = msise90;
         }
         else if(atmDensityModel == EAtmDensityModel::eNRLMSISE2000)
         {
-            auto misi000 = new NRLMSIS00(frame, shape, spaceWeather.release());
-            misi000->setUseDailyAp(geoMagFluxUpdateRate==EGeoMagFluxUpdateRate::eDaily);
-            atmosphere = misi000;
+            auto nrlmsis00 = new NRLMSIS00(frame, shape, aNewSpaceWeatherProvider(drag));
+            nrlmsis00->setUseDailyAp(geoMagFluxUpdateRate==EGeoMagFluxUpdateRate::eDaily);
+            atmosphere = nrlmsis00;
         }
         else if(atmDensityModel == EAtmDensityModel::e1976Standard)
         {
@@ -225,19 +201,19 @@ static Atmosphere* aNewAtmosphere(const DragForce& drag)
         }
         else if(atmDensityModel == EAtmDensityModel::eJacchiaRoberts)
         {
-            auto jr = new JacchiaRoberts(frame, shape, aGetSun(), f10p7Daily, f10p7Average, drag.kp_);
+            auto jr = new JacchiaRoberts(frame, shape, aGetSun(), drag.f10p7Daily(), drag.f10p7Average(), drag.kp_);
             jr->setSunPosition(drag.sunPosition_);
             atmosphere = jr;
         }
         else if(atmDensityModel == EAtmDensityModel::eHarrisPriester)
         {
-            auto hp = new HarrisPriester(frame, shape, aGetSun(), f10p7Average);
+            auto hp = new HarrisPriester(frame, shape, aGetSun(), drag.f10p7Average());
             hp->setSunPosition(drag.sunPosition_);
             atmosphere = hp;
         }
         else if(atmDensityModel == EAtmDensityModel::eDTM2012)
         {
-            auto dtm = new DTM2012(frame, shape, f10p7Daily, f10p7Average, drag.kp_,
+            auto dtm = new DTM2012(frame, shape, drag.f10p7Daily(), drag.f10p7Average(), drag.kp_,
                                 earth->getDirpath() + "/DTM/dtm_2012_NF.dat");
             if (!dtm->isInitialized())
             {
@@ -251,12 +227,78 @@ static Atmosphere* aNewAtmosphere(const DragForce& drag)
         }
     }
 
-    if(!atmosphere)
+    /*
+        不支持的模型直接返回空指针，在外层进行兜底处理
+    */
+
+    if(atmosphere)
     {
-        aInfo(_("大气模型 '%d' 尚不支持或初始化失败，默认使用 'NRLMSIS00'"), atmDensityModel);
-        atmosphere = new NRLMSIS00(frame, shape, f10p7Daily, f10p7Average, drag.ap());
+        atmosphere->setUseApproximateAltitude(drag.useApproxAltForDrag_);
     }
-    atmosphere->setUseApproximateAltitude(drag.useApproxAltForDrag_);
+    return atmosphere;
+}
+
+/// @brief 按模型标识创建大气模型
+static Atmosphere* aNewAtmosphereModel(const AtmosphereModelId& id, const DragForce& drag)
+{
+    // 先尝试转换为内置枚举，并根据枚举创建内置大气模型
+    do
+    {
+        EAtmosphereModel model;
+        if (!id.name().empty())
+        {
+            if(parse(id.name(), model) != eNoError)
+                break;
+        }
+        else
+        {
+            model = id.value();
+        }
+        auto atmosphere = aNewAtmosphereModelBuiltin(model, drag);
+        if(atmosphere)
+            return atmosphere;
+    }while(false);
+
+    // 否则，尝试从外部插件加载大气模型
+    {
+        std::string name;
+        if(id.name().empty())
+        {
+            name = toString(id.value());
+        }
+        else
+        {
+            name = id.name();
+        }
+        ScopedPtr<SpaceWeatherProvider> spaceWeatherProvider = aNewSpaceWeatherProvider(drag);
+        auto atmosphere = aCreateAtmosphereFromPlugin(name, spaceWeatherProvider);
+        if(auto base = dynamic_cast<AtmosphereBase*>(atmosphere))
+            base->setUseApproximateAltitude(drag.useApproxAltForDrag_);
+        if(atmosphere)
+            return atmosphere;
+        else
+        {
+            // 如果都失败，则回退到默认大气模型
+            aInfo(_("大气模型 '%s' 尚不支持或初始化失败，将默认使用 'NRLMSIS00' 模型"), name.c_str());
+            return aNewAtmosphereModelBuiltin(EAtmosphereModel::eNRLMSISE2000, drag);
+        }
+    }
+}
+
+static Atmosphere* aNewAtmosphere(const DragForce& drag)
+{
+    auto atmosphere = aNewAtmosphereModel(drag.atmDensityModel_, drag);
+    assert(atmosphere);
+
+    // 低高度大气模型：与主模型在过渡带内混合
+    if(drag.lowAltAtmDensityModel_.value() != EAtmDensityModel::eNone || !drag.lowAltAtmDensityModel_.name().empty())
+    {
+        auto lower = aNewAtmosphereModel(drag.lowAltAtmDensityModel_, drag);
+        assert(lower);
+        auto blending = new BlendingAtmosphere(atmosphere, lower);
+        blending->setBlendRange(drag.atmBlendingRange_);
+        return blending;
+    }
     return atmosphere;
 }
 

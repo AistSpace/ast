@@ -66,11 +66,7 @@ std::string toString(EAccessConstraint type)
 
 errc_t parse(StringView type, EAccessConstraint &result)
 {
-    bool found = false;
-    result = aEnumDescriptor<EAccessConstraint>().valueOf(type, found);
-    if (!found)
-        return eErrorInvalidParam;
-    return eNoError;
+    return aEnumDescriptor<EAccessConstraint>().valueOf(type, result);
 }
 
 

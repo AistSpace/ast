@@ -61,9 +61,9 @@ constexpr double kSqrPI      =  9.869604401089358618834490999873	               
 
 
 // 其他数学运算常量
-constexpr double kNaN        =  std::numeric_limits<double>::quiet_NaN();                   ///< NaN 常量
-constexpr double kInf        = +std::numeric_limits<double>::infinity();                    ///< Infinity 常量
-constexpr double kNegInf     = -std::numeric_limits<double>::infinity();                    ///< Negative Infinity 常量
+const double kNaN            =  std::numeric_limits<double>::quiet_NaN();                   ///< NaN 常量
+const double kInf            = +std::numeric_limits<double>::infinity();                    ///< Infinity 常量
+const double kNegInf         = -std::numeric_limits<double>::infinity();                    ///< Negative Infinity 常量
 
 
 

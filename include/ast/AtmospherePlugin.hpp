@@ -1,0 +1,1 @@
+#include "AstCore/AtmospherePlugin.hpp"

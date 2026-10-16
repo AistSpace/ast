@@ -72,6 +72,16 @@ public:
     ///         默认实现返回0（子类需override以提供真实数据）。
     virtual int getAp3HourlyList(const TimePoint& tp, double* apList, int maxLookback) const
     { return 0; }
+
+
+    /// @brief 获取从指定时间向前回溯的连续3小时间隔Kp值列表
+    /// @param tp 参考时间点（tp所在3小时UTC块 = kpList[0]）
+    /// @param kpList 输出缓冲区（kpList[0]=当前块, kpList[1]=3小时前, kpList[2]=6小时前, ...）
+    /// @param maxLookback 最多回溯的块数
+    /// @return 实际填充的块数。返回0表示无3小时间隔数据，调用者应回退到每日Kp模式。
+    ///         默认实现返回0（子类需override以提供真实数据）。
+    virtual int getKp3HourlyList(const TimePoint& tp, double* kpList, int maxLookback) const
+    { return 0; }
 };
 
 /*! @} */

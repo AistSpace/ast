@@ -28,7 +28,7 @@ AST_NAMESPACE_BEGIN
 
 double DetectorRMagnitude::getValue(const SpacecraftState& state, double t) const
 {
-    constexpr double nan = std::numeric_limits<double>::quiet_NaN();
+    const double nan = std::numeric_limits<double>::quiet_NaN();
     errc_t rc;
     auto point = this->point();
     if(!point) return nan;

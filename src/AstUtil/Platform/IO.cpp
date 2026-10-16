@@ -95,8 +95,7 @@ FILE *posix::freopen(const char *filepath, const char *mode, FILE *stream)
 
 int posix::vprintf(const char* format, va_list args)
 {
-    _locale_t locale = _ast_locale_ensure();
-    return _vprintf_l(format, locale, args);
+    return posix::vfprintf(stdout, format, args);
 }
 
 int posix::printf(const char* format, ...)
@@ -104,14 +103,50 @@ int posix::printf(const char* format, ...)
     va_list args;
     int result;
     va_start(args, format);
-    result = _AST posix::vprintf(format, args);
+    result = posix::vprintf(format, args);
     va_end(args);
     return result;
 }
 
 int posix::vfprintf(FILE * stream, const char * format, va_list args)
 {
-    return _vfprintf_l(stream, format, _ast_locale_ensure(), args);
+    auto locale = _ast_locale_ensure();
+
+    HANDLE h = (HANDLE)_get_osfhandle(_fileno(stream));
+    DWORD mode;
+    if (h != INVALID_HANDLE_VALUE && GetConsoleMode(h, &mode)) 
+    {
+        /*
+            如果是控制台，则直接通过 WriteConsoleW 函数打印
+            而不是通过 _vfprintf_l 函数打印输出
+            
+            原因：
+            部分版本的 ucrt 的 _vfprintf_l 函数对 locale 参数的支持不完整，无法正确处理 UTF-8 编码的字符串
+            实测 Windows SDK 10.0.18362.0 版本的 ucrt 有问题，Windows SDK 10.0.26100.0 版本的 ucrt 无问题
+            具体可以参见 ucrt 源码的 lowio/write.cpp 的 _write_nolock 函数
+            老版本的这个函数没有 __crt_cached_ptd_host& ptd 参数
+        */
+        int len = _vsnprintf_l(nullptr, 0, format, locale, args);
+        std::vector<char> buffer(len + 1);
+        _vsnprintf_l(buffer.data(), buffer.size(), format, locale, args);
+        int wlen = MultiByteToWideChar(CP_UTF8, 0, buffer.data(), len, nullptr, 0);
+        if (wlen > 0) {
+            std::vector<wchar_t> wbuffer(wlen);
+            MultiByteToWideChar(CP_UTF8, 0, buffer.data(), len, wbuffer.data(), wlen);
+            // WriteConsoleW 可能只写入部分字符，需循环写完剩余部分
+            size_t offset = 0;
+            while (offset < static_cast<size_t>(wlen)) {
+                DWORD written = 0;
+                if (!WriteConsoleW(h, wbuffer.data() + offset, static_cast<DWORD>(wlen - offset), &written, nullptr)
+                    || written == 0) {
+                    return -1;
+                }
+                offset += written;
+            }
+            return len; // 返回写入的 UTF-8 字节数
+        }
+    }
+    return _vfprintf_l(stream, format, locale, args);
 }
 
 int posix::fprintf(FILE * stream, const char * format, ...)

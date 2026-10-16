@@ -24,6 +24,11 @@ option("with_thirdparty")
     set_default(false)
 option_end()
 
+-- 工程配置选项：是否编译插件工程
+option("with_plugins")
+    set_default(true)
+option_end()
+
 
 -- 工程配置选项：是否检查警告（将警告作为编译错误处理）
 option("check_warnings")
@@ -300,6 +305,12 @@ if has_package("qt") then
     add_defines("AST_WITH_QT")
 end
 
+-- 添加qwt库依赖（可选）
+if has_package("qwt") then
+    add_defines("AST_WITH_QWT")
+    add_packages("qwt")
+end
+
 -- 添加ipopt库依赖（可选）
 -- if has_package("ipopt") then
 --     add_packages("ipopt")
@@ -345,6 +356,10 @@ add_plugindirs("scripts/plugins")
 
 includes("src")
 
+-- 导入插件工程配置
+if has_config("with_plugins") then
+    includes("plugins")
+end
 
 -- 导入项目工程配置
 if has_config("with_projects") then

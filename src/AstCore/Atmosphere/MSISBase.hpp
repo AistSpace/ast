@@ -86,7 +86,7 @@ protected:
     ScopedPtr<SpaceWeatherProvider> spaceWeather_;    ///< 空间天气数据源
 private:
     mutable std::aligned_storage<57000>::type storage_{};
-    bool useDailyAp_{false};                        ///< 是否使用每日Ap值，否则使用3小时Ap值
+    bool useDailyAp_{true};                           ///< 是否使用每日Ap值，否则使用3小时Ap值
 };
 
 /*! @} */

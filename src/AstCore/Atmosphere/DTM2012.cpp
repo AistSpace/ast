@@ -570,8 +570,9 @@ double DTM2012::getDensity(const TimePoint &tp, const Vector3d &posInBodyFixed) 
 
     if (hellp < 120.0)
     {
-        aWarning(_("输入位置的高度 %f km 低于 120 km，返回零密度"), hellp);
-        return 0.0;
+        // 高度小于 120 km 时，该模型不适用，故返回 NaN 表示无效值
+        aInfo(_(kInfoInvalidHeight), 120);
+        return kNaN;
     }
 
     // 获取当前时间的年月日时分秒

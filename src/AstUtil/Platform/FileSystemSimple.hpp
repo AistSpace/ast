@@ -75,7 +75,7 @@ namespace fs_simple
         path(StringView source) : path_(source.data(), source.size())
         {}
         
-        std::string string() const{return path_;}
+        const std::string& string() const{return path_;}
         
         // 返回平台相关的字符串类型
         const string_type& native() const{return path_;}

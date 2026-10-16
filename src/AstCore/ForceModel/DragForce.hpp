@@ -22,6 +22,7 @@
 
 #include "AstGlobal.h"
 #include "ForceModel.hpp"
+#include "AstUtil/EnumOrName.hpp"
 #include <string>
 
 AST_NAMESPACE_BEGIN
@@ -33,7 +34,7 @@ AST_NAMESPACE_BEGIN
 */
 
 
-enum class EAtmDensityModel
+enum class EAtmosphereModel
 {
     eNone,
     e1976Standard,
@@ -49,6 +50,14 @@ enum class EAtmDensityModel
     eDTM2012,
 };
 
+using EAtmDensityModel = EAtmosphereModel;   // alias
+
+/// @brief 大气模型标识：既可赋内置枚举模型，也可赋模型的名字
+/// @code
+///   drag.atmDensityModel_ = EAtmosphereModel::eMSISE1990;   // 内置模型枚举
+///   drag.atmDensityModel_ = "Exponential";                  // 内置模型名称，或者插件模型名称
+/// @endcode
+using AtmosphereModelId = EnumOrName<EAtmosphereModel>;
 
 enum class EGeoMagFluxSource
 {
@@ -75,12 +84,27 @@ public:
     /// @brief 地磁活动 ap 指数
     double ap() const;
 
+    /// @brief 地磁活动 Kp 指数
+    double kp() const;
+
+    /// @brief 当日 F10.7 太阳射电流量
+    double f10p7Daily() const;
+
+    /// @brief 平均 F10.7 太阳射电流量
+    double f10p7Average() const;
+
+    /// @brief 大气模型
+    AtmosphereModelId& atmosphereModel() { return atmDensityModel_; }
+
+    /// @brief 低高度大气模型
+    AtmosphereModelId& lowAltAtmDensityModel() { return lowAltAtmDensityModel_; }
+
 public:
     /// @name 大气密度模型配置
     /// @{
-    EAtmDensityModel atmDensityModel_{EAtmDensityModel::e1976Standard};         ///< 主大气密度模型
-    EAtmDensityModel lowAltAtmDensityModel_{EAtmDensityModel::eNone};           ///< 低高度辅助模型（通常 eMSISE1990 / eNRLMSISE2000）
-    double atmBlendingRange_{0.0};                                              ///< 主/低高度模型混合过渡范围 [km]
+    AtmosphereModelId atmDensityModel_{EAtmosphereModel::e1976Standard};        ///< 大气模型（内置枚举、模型名称或插件模型名称）
+    AtmosphereModelId lowAltAtmDensityModel_{EAtmosphereModel::eNone};          ///< 低高度大气模型（通常为 MSISE1990 / NRLMSISE2000）
+    double atmBlendingRange_{0.0};                                              ///< 主/低高度模型混合过渡范围 [m]
     /// @}
 
     
@@ -111,6 +135,10 @@ public:
     ESunPosition sunPosition_{ESunPosition::eTrue};                             ///< 太阳位置（真实/视太阳位置）
     /// @}
 };
+
+AST_CORE_API std::string toString(EAtmDensityModel model);
+AST_CORE_API errc_t parse(StringView type, EAtmDensityModel &result);
+
 
 /*! @} */
 

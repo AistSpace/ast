@@ -19,6 +19,7 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "NRLMSIS00.hpp"
+#include "AstUtil/Logger.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstWeather/nrlmsise-00.hpp"
 #include "AstWeather/MSIS_Vers.h"
@@ -40,13 +41,6 @@ NRLMSIS00::NRLMSIS00(Frame* frame, BodyShape* bodyShape, SpaceWeatherProvider* s
     : MSISBase(frame, bodyShape, spaceWeather)
 {
 	msis00init(this->msis());
-	int sv[26]{
-        0,
-        1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1
-    };
-    tselec(this->msis().csw, sv);
 }
 
 
@@ -54,6 +48,14 @@ double NRLMSIS00::getDensity(const TimePoint& tp, const Vector3d& posInBodyFixed
 {
     MSISParam param;
     this->getMSISParam(tp, posInBodyFixed, param);
+
+	// NRLMSIS00 的有效高度范围是 [0 km, 1000 km]
+	// 高度小于 0 km 时，模型不适用，故返回 NaN 表示无效值
+	if(A_UNLIKELY(param.alt < 0))
+	{
+		aInfo(_(kInfoInvalidHeight), 0);
+        return kNaN;
+	}
 
     std::array<double, 10> d{};
     std::array<double, 3> t{};

@@ -60,6 +60,18 @@ AST_UTIL_CAPI void* aResolveProcAddress(const char* filepath, const char* funcNa
 AST_UTIL_CAPI errc_t aFreeLibrary(void* lib);
 
 
+/// @brief 声明动态库在程序退出时卸载
+/// @details 
+/// 将动态库句柄登记到进程级列表，在进程结束时统一卸载
+/// 适用于需要长期驻留、又希望在退出前正常卸载的库（例如插件动态库）
+/// @param lib 动态库句柄
+/// @return eNoError: 成功；其他错误码: 失败
+/// @note
+/// 登记后句柄归本模块管理，不得再对其调用 aFreeLibrary
+/// 登记次数应与动态库的加载次数一致：每次 aLoadLibrary 成功对应一次登记
+AST_UTIL_CAPI errc_t aFreeLibraryOnExit(void* lib);
+
+
 /// @brief 获取最后的错误信息
 /// @return 错误信息字符串
 AST_UTIL_CAPI const char* aGetLoadError();

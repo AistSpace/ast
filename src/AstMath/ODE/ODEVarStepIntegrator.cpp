@@ -28,6 +28,7 @@
 
 AST_NAMESPACE_BEGIN
 using namespace math;
+// #define _AST_DEBUG_ODE
 
 ODEVarStepIntegrator::ODEVarStepIntegrator()
     : useMinStep_{false}
@@ -106,6 +107,7 @@ errc_t ODEVarStepIntegrator::integrate(ODE &ode, double* y, double& t, double tf
             return eNoError;
         }
     }
+    bool warnOnMinStep = this->warnOnMinStep_;
     while(1)
     {
         if(!this->useMinStep_){
@@ -126,8 +128,23 @@ errc_t ODEVarStepIntegrator::integrate(ODE &ode, double* y, double& t, double tf
         this->timeAtStepEnd_ = tnew;
         if(errc_t rc = this->singleStep(ode, this->stateAtStepEnd_, t, h))
         {
+            // 计算失败时，输出最后一个成功步的状态
+            std::copy_n(this->stateAtStepStart(), wrk.dimension_, yf);
+            // t = t;
             return rc;
         }
+        
+        // 调试用: 保存上次正确的状态和步长
+        #ifdef _AST_DEBUG_ODE
+            static std::vector<double> save_state;
+            static double save_h;
+            static double save_t;
+            save_state.resize(wrk.dimension_);
+            std::copy_n(this->stateAtStepEnd(), wrk.dimension_, save_state.data());
+            save_h = h;
+            save_t = tnew;
+        #endif
+
         bool isOK = this->isErrorMeet(absh, this->stateAtStepStart_, this->stateAtStepEnd_);
         if(isOK)
         {
@@ -150,8 +167,10 @@ errc_t ODEVarStepIntegrator::integrate(ODE &ode, double* y, double& t, double tf
             if(numAttempts >= this->maxStepAttempts_)
             {
                 // @fixme! 这里是否直接停止积分？
-                if(warnOnMinStep_){
-                    aWarning(_("达到最大迭代次数"));
+                if(warnOnMinStep){
+                    aWarning(_("积分器自适应步长迭代达到最大次数"));
+                    // 在每个积分函数调用中只警告一次，避免重复警告刷屏
+                    warnOnMinStep = false;
                 }
             }else{
                 continue;

@@ -20,6 +20,7 @@
 
 #include "JacchiaRoberts.hpp"
 #include "AstWeather/Atmosphere.hpp"
+#include "AstUtil/Logger.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstCore/JulianDate.hpp"
 #include "AstCore/BodyPosition.hpp"

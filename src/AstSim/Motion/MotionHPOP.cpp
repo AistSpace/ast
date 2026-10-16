@@ -82,7 +82,10 @@ errc_t MotionHPOP::makeEphemerisSimple(ScopedPtr<Ephemeris> &eph) const
     // 进行预报
     TimePoint stopTimeTemp = stopTime;
     rc = hpop.propagate(startTime, stopTimeTemp, cartStateAtStartTime.pos(), cartStateAtStartTime.vel());
-    AST_CHECK_ERRCODE(rc, "failed to propagate");
+    A_UNUSED(rc);
+    // AST_CHECK_ERRCODE(rc, "failed to propagate");
+    // 如果预报失败，可能是轨道轨道过低导致提前停止，
+    // 此时需要将前序星历数据输出，而不是直接返回错误
 
     // 创建星历
     auto ephemLag = new EphemerisLagrangeVar();

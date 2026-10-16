@@ -20,6 +20,8 @@
 
 #include "MSIS86.hpp"
 #include "AstUtil/Math.hpp"
+#include "AstUtil/Logger.hpp"
+#include "AstUtil/Literals.hpp"
 #include "AstCore/TimePoint.hpp"
 #include "AstWeather/MSIS_Vers.h"
 
@@ -38,19 +40,20 @@ MSIS86::MSIS86(Frame *frame, BodyShape *bodyShape, SpaceWeatherProvider *spaceWe
     : MSISBase(frame, bodyShape, spaceWeather)
 {
     msis86init(this->msis());
-    int sv[26]{
-        0,
-        1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1
-    };
-    tselec(this->msis().csw, sv);
 }
 
 double MSIS86::getDensity(const TimePoint& tp, const Vector3d& posInBodyFixed) const
 {
     MSISParam param;
-    this->getMSISParam(tp, posInBodyFixed, param);
+    this->getMSISParam(tp, posInBodyFixed, param);  // 该函数返回数值的单位为 km
+    
+    // MSIS 86 的有效范围是 [85 km, 1000 km]
+    // 高度小于 85 km 时，模型不适用，故返回 NaN 表示无效值
+    if(A_UNLIKELY(param.alt < 85))
+    {
+        aInfo(_(kInfoInvalidHeight), 85);
+        return kNaN;
+    }
 
     std::array<double, 10> d{};
     std::array<double, 3> t{};

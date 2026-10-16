@@ -56,14 +56,6 @@ A_ALWAYS_INLINE const char* translate(const char* msgctxt, const char* msgid)
 // 仅用于标记带上下文的翻译字符串，不进行即时翻译
 #define AST_TRANSLATE_NOOP(Context, String) String
 
-#ifndef QT_TR_NOOP
-    #define QT_TR_NOOP(String) AST_TR_NOOP(String)
-#endif
-
-#ifndef QT_TRANSLATE_NOOP
-    #define QT_TRANSLATE_NOOP(Context, String) AST_TRANSLATE_NOOP(Context, String)
-#endif
-
 //-----------------------
 // 与 libintl 兼容的函数接口
 //-----------------------

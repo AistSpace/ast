@@ -143,11 +143,16 @@ _locale_t aUTF8Locale()
 
     if (A_UNLIKELY(!t_utf8_locale)) {
         // 这里使用凤凰单例模式，解决全局变量的析构顺序问题
-        // 设置控制台I/O编码为UTF-8
-        {
-            SetConsoleOutputCP(CP_UTF8);
-            SetConsoleCP(CP_UTF8);
-        }
+
+
+        // 设置控制台I/O编码为UTF-8，以支持打印unicode表情字符
+        // 更新：
+        // posix::vfprintf 的实现逻辑进行了改进，
+        // 不再依赖 SetConsoleOutputCP 来打印unicode表情字符
+        // {
+        //     SetConsoleOutputCP(CP_UTF8);
+        //     SetConsoleCP(CP_UTF8);
+        // }
         for (const char* locale_str : locale_strs) {
             _locale_t locale = _create_locale(LC_CTYPE, locale_str);
             if (locale) {
