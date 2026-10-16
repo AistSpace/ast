@@ -294,7 +294,9 @@ errc_t aInitializeByDefault(DataContext* context)
     };
     err |= loadSPK(spkfiles);
 
-    err |= context->leapSecond()->loadDefault();
+    // 2027年5月20日，国际计量大会表决通过的决议，从该日开始不再人为增减闰秒
+    // 故这里直接使用硬编码的闰秒数据，不需要从文件加载数据
+    // err |= context->leapSecond()->loadDefault();
     err |= context->jplDe()->openDefault();
     err |= context->eop()->loadDefault();
     //err |= context->spaceWeather()->loadDefault();
@@ -349,7 +351,9 @@ errc_t aInitializeByConfig(DataContext* context, const InitalizeConfig& config)
     // init thread local data context
     // spk 星历要在太阳系天体之前加载
     err |= loadSPK(config.spkFiles_);
-    err |= context->leapSecond()->load(config.leapSecondFile_);
+
+    if(!config.leapSecondFile_.empty())
+        err |= context->leapSecond()->load(config.leapSecondFile_);
     err |= context->jplDe()->open(config.jplDeFile_.c_str());
     err |= context->eop()->load(config.eopFile_);
     // err |= context->spaceWeather()->load(config.spaceWeatherFile_);
