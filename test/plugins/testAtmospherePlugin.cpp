@@ -43,10 +43,10 @@ TEST(AtmospherePlugin, DiscoverAndCreate)
     aGetPluginAtmosphereModelNames(names);
     EXPECT_TRUE(std::find(names.begin(), names.end(), std::string("Exponential")) != names.end());
 
-    // 2. 按名字创建（内置模型不走本接口）
+    // 2. 按名字创建（内置模型不走本接口）；返回的模型所有权归调用方
     ScopedPtr<SpaceWeatherProvider> spaceWeatherProvider = new ConstantSpaceWeather();
-    Atmosphere* atmosphere = aCreateAtmosphereFromPlugin("Exponential", spaceWeatherProvider);
-    EXPECT_NE(atmosphere, nullptr);
+    ScopedPtr<Atmosphere> atmosphere = aCreateAtmosphereFromPlugin("Exponential", spaceWeatherProvider);
+    EXPECT_NE(atmosphere.get(), nullptr);
     if (!atmosphere)
         return;
 

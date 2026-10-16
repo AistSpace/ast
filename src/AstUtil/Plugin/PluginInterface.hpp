@@ -60,8 +60,11 @@ typedef PluginInstance* (*FPluginInstance)();
 #define AST_PLUGIN_INSTANCE_NAMESTR  A_STRINGIZE(AST_PLUGIN_INSTANCE_NAME)
 
 #define AST_PLUGIN_INSTANCE(Type)   extern "C" AST_PLUGIN_EXPORT PluginInstance* AST_PLUGIN_INSTANCE_NAME(){static Type instance; return &instance;}
-#define AST_PLUGIN_IID(IFace)       extern "C" AST_PLUGIN_EXPORT const char* AST_PLUGIN_IID_NAME = aInterfaceId<IFace>();
-#define AST_PLUGIN_KEYS(...)        extern "C" AST_PLUGIN_EXPORT const char* AST_PLUGIN_KEYS_NAME[] = {__VA_ARGS__, nullptr};
+// 带初始化的变量不能直接写成 `extern "C" ... = ...`
+// GCC 会报"initialized and declared 'extern'"
+// 改用 extern "C" { } 代码块承载定义
+#define AST_PLUGIN_IID(IFace)       extern "C" { AST_PLUGIN_EXPORT const char* AST_PLUGIN_IID_NAME = aInterfaceId<IFace>(); }
+#define AST_PLUGIN_KEYS(...)        extern "C" { AST_PLUGIN_EXPORT const char* AST_PLUGIN_KEYS_NAME[] = {__VA_ARGS__, nullptr}; }
 
 /// @brief 接口 ID 特化模板
 template<class IFace>
