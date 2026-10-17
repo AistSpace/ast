@@ -353,7 +353,11 @@ errc_t aInitializeByConfig(DataContext* context, const InitalizeConfig& config)
     err |= loadSPK(config.spkFiles_);
 
     if(!config.leapSecondFile_.empty())
+    {
         err |= context->leapSecond()->load(config.leapSecondFile_);
+        if(context->leapSecond()->data().size() != 28)
+            aWarning(_("所指定的闰秒数据文件中, 数据项数量不为标准的28个"));
+    }
     err |= context->jplDe()->open(config.jplDeFile_.c_str());
     err |= context->eop()->load(config.eopFile_);
     // err |= context->spaceWeather()->load(config.spaceWeatherFile_);
