@@ -23,6 +23,7 @@
 #include "AstCore/OrbitElement.hpp"
 #include "AstUtil/Constants.hpp"
 #include "AstUtil/ParseFormat.hpp"
+#include "AstUtil/StringUtil.hpp"
 
 #include <cmath>
 
@@ -145,6 +146,9 @@ TLE TLE::FromLines(StringView l1, StringView l2)
 
         // 列 08: 密级分类 (1-based 8 → 0-based 7)
         tle.classification_ = l1[7];
+
+        // 列 10-17: 国际编号 (1-based 10-17 → 0-based 9-16)，去掉尾部空格
+        tle.intlDesignation_ = std::string(aStripTrailingAsciiWhitespace(l1.substr(9, 8)));
 
         // 列 19-20: 历元年份（年份后两位）
         int epochYear = aParseInt(l1.substr(18, 2));

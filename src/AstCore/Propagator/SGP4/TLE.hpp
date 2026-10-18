@@ -124,6 +124,9 @@ public:
     int  noradId() const { return noradId_; }
     void setNoradId(int v) { noradId_ = v; }
 
+    const std::string& intlDesignation() const { return intlDesignation_; }
+    void setIntlDesignation(StringView v) { intlDesignation_ = std::string(v); }
+
     int  elementNumber() const { return elementNumber_; }
     void setElementNumber(int v) { elementNumber_ = v; }
 
@@ -152,6 +155,7 @@ private:
     int ephType_{0};                  ///< 星历类型
     int elementNumber_{0};            ///< 元素编号
     int noradId_{0};                  ///< NORAD 目录编号
+    std::string intlDesignation_{};   ///< 国际编号（最多 8 字符，不含尾部空格）
     char classification_{'U'};        ///< 分类
 };
 
@@ -165,6 +169,25 @@ private:
 /// @return NORAD 目录编号；解析失败返回 0
 AST_CORE_CAPI int aParseNoradId(StringView str);
 
+/// @brief 将 TLE 格式化为两行文本
+/// @details 输出不含换行符，每行固定 69 字符
+/// @param tle   TLE 对象
+/// @param line1 输出第 1 行
+/// @param line2 输出第 2 行
+/// @return 错误码
+AST_CORE_API errc_t aTLEToString(const TLE& tle, std::string& line1, std::string& line2);
+
+/// @brief 将时间格式化为 TLE 历元 `YYDDD.DDDDDDDD`（UTC）
+/// @details 只有 1957-2056 年可被两位年份无歧义表示；超出范围返回错误码
+/// @param time UTC 时间
+/// @param out  输出 14 字符串
+AST_CORE_API errc_t aFormatTLEEpoch(const TimePoint& time, std::string& out);
+
+/// @brief 计算一行 TLE 的模 10 校验和
+/// @details 统计前 68 个字符：数字取本身值、减号取 1，字母/空格/句点/加号取 0。
+/// @param line TLE 行文本
+/// @return 0-9 的校验和
+AST_CORE_API int aTLEChecksum(StringView line);
 
 /// @brief 将 TLE 转换为经典轨道根数
 /// @param tle TLE 根数

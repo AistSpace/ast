@@ -518,6 +518,9 @@ class CartState;             ///< 直角坐标
 class ModOrbElem;            ///< 改进轨道根数
 class OrbElem;               ///< 经典轨道根数
 
+class TLE;                   ///< TLE 根数
+class SGP4;                  ///< SGP4 轨道模型
+
 class GeodeticPoint;         ///< 大地坐标
 class LatLon;                ///< 纬度经度坐标
 class LatLonAlt;             ///< 纬经高坐标
