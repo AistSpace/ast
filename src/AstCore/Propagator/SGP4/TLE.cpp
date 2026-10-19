@@ -310,9 +310,8 @@ TLE TLE::FromLines(StringView l1, StringView l2)
 std::string TLE::alpha5() const
 {
     char buffer[6] = {};
-    if(errc_t rc = formatTLESatNum(noradId(), buffer))
+    if (!formatTLESatNum(noradId(), buffer))
     {
-        A_UNUSED(rc);
         aWarning(_("编号 %d 无法转换为 Alpha-5 编号"), noradId());
         return std::string();
     }

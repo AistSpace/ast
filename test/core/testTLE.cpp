@@ -284,6 +284,51 @@ TEST(TLEWriterTest, Alpha5SatelliteNumber)
 }
 
 
+TEST(TLEWriterTest, Alpha5Text)
+{
+    AST_USING_NAMESPACE
+    TLE tle = TLE::FromLines(makeTLELines());
+
+    // 传统编号：5 位数字，左补零
+    EXPECT_EQ(tle.alpha5(), "26661");
+    tle.setNoradId(1234);
+    EXPECT_EQ(tle.alpha5(), "01234");
+
+    // Alpha-5：A=10 起，跳过 I 和 O
+    tle.setNoradId(100000);
+    EXPECT_EQ(tle.alpha5(), "A0000");
+    tle.setNoradId(179999);
+    EXPECT_EQ(tle.alpha5(), "H9999");
+    tle.setNoradId(180000);
+    EXPECT_EQ(tle.alpha5(), "J0000");
+    tle.setNoradId(230000);
+    EXPECT_EQ(tle.alpha5(), "P0000");
+    tle.setNoradId(339999);
+    EXPECT_EQ(tle.alpha5(), "Z9999");
+}
+
+TEST(TLEWriterTest, Alpha5OutOfRange)
+{
+    AST_USING_NAMESPACE
+    TLE tle = TLE::FromLines(makeTLELines());
+
+    // 超出 0..339999 的编号无法表示为 Alpha-5
+    tle.setNoradId(340000);
+    EXPECT_TRUE(tle.alpha5().empty());
+    tle.setNoradId(-1);
+    EXPECT_TRUE(tle.alpha5().empty());
+}
+
+TEST(TLEWriterTest, Alpha5RoundTrip)
+{
+    AST_USING_NAMESPACE
+    TLE tle = TLE::FromLines(makeTLELines());
+
+    tle.setAlpha5("C3456");
+    EXPECT_EQ(tle.noradId(), 123456);
+    EXPECT_EQ(tle.alpha5(), "C3456");
+}
+
 TEST(TLEWriterTest, InternationalDesignation)
 {
     AST_USING_NAMESPACE
