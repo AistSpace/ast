@@ -362,14 +362,16 @@ TEST(SpanTest, FixedExtentSubviews)
     EXPECT_EQ(sub[1], 3);
 }
 
-TEST(SpanTest, FixedExtentFromInitializerList)
+TEST(SpanTest, FixedExtentInitializerListConstraint)
 {
-    std::initializer_list<int> il = {1, 2, 3};
-    Span<const int, 3> s(il);
+    // 固定非零 extent 无法在编译期校验 initializer_list 的长度，因此不提供该
+    // 构造函数，避免空列表或长度不符的列表构造出越界的 span。
+    EXPECT_FALSE((std::is_constructible<Span<const int, 3>, std::initializer_list<int> >::value));
+    EXPECT_TRUE((std::is_constructible<Span<const int>, std::initializer_list<int> >::value));
 
-    EXPECT_EQ(s.size(), 3u);
-    EXPECT_EQ(s.data()[0], 1);
-    EXPECT_EQ(s.back(), 3);
+    // 零 extent 仍然可以接受空初始化列表
+    Span<const int, 0> s({});
+    EXPECT_TRUE(s.empty());
 }
 
 

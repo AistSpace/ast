@@ -97,8 +97,12 @@ public:
     {}
 
     // initializer_list 的元素是 const 的，因此只能用于 const 元素类型的 span。
+    // 只有零 extent 和动态 extent 可以接受初始化列表：
+    // 固定非零 extent 无法在编译期校验列表长度，长度不符（包括空列表）会构造出越界的 span
+    template <bool Initializable = (Extent == 0 || Extent == dynamic_extent),
+              typename std::enable_if<Initializable, int>::type = 0>
     constexpr explicit Span(std::initializer_list<value_type> init) noexcept
-        : storage_(init.begin(), init.size()) 
+        : storage_(init.begin(), init.size())
     {
         static_assert(std::is_const<T>::value, "element_type must be const");
     }
