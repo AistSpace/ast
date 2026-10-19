@@ -173,11 +173,7 @@ Scalar square(Scalar x)
 /// @param x 输入值
 /// @param digits 小数位数
 /// @return 四舍五入后的值
-A_ALWAYS_INLINE double round(double x, int digits)
-{
-    double scale = std::pow(10.0, digits);
-    return std::round(x * scale) / scale;
-}
+AST_UTIL_API double round(double x, int digits);
 
 using std::round;
 
