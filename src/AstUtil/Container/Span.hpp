@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include <vector>
 #include <cstddef>
+#include <cassert>
 #include <iterator>
 #include <type_traits>
 #include <initializer_list>
@@ -39,10 +40,13 @@ constexpr size_t dynamic_extent = static_cast<size_t>(-1);
 template<typename T, size_t Extent>
 class SpanStorage{
 public:
-    // 固定 extent 时长度由 Extent 决定，传入的 size 只用于与动态版本保持接口一致
-    A_CONSTEXPR_CXX14 SpanStorage(T* data, size_t /*size*/) noexcept
+    // 固定 extent 时长度由 Extent 决定，传入的 size 只用于与动态版本保持接口一致；
+    A_CONSTEXPR_CXX14 SpanStorage(T* data, size_t size) noexcept
         : data_(data)
-    {}
+    {
+        A_UNUSED(size);
+        assert(size == Extent);
+    }
     T* data() const noexcept { return data_; }
     A_CONSTEXPR_CXX14 size_t size() const noexcept { return Extent; }
 public:
@@ -85,9 +89,12 @@ public:
     static constexpr std::size_t extent = Extent;
 
     // 构造函数
-    constexpr Span() noexcept 
-        : storage_(nullptr, 0) 
-        {}
+    // 只有零 extent 和动态 extent 可以默认构造
+    template <bool DefaultConstructible = (Extent == 0 || Extent == dynamic_extent),
+              typename std::enable_if<DefaultConstructible, int>::type = 0>
+    constexpr Span() noexcept
+        : storage_(nullptr, 0)
+    {}
 
     // initializer_list 的元素是 const 的，因此只能用于 const 元素类型的 span。
     constexpr explicit Span(std::initializer_list<value_type> init) noexcept

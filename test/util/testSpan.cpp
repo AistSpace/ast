@@ -109,6 +109,14 @@ TEST(SpanTest, DefaultConstructionWithZeroExtent)
     EXPECT_TRUE(s.empty());
 }
 
+TEST(SpanTest, DefaultConstructionConstraint)
+{
+    // 固定非零 extent 的 span 不能默认构造
+    EXPECT_TRUE((std::is_default_constructible<Span<int> >::value));
+    EXPECT_TRUE((std::is_default_constructible<Span<int, 0> >::value));
+    EXPECT_FALSE((std::is_default_constructible<Span<int, 4> >::value));
+}
+
 
 // ================================================================
 // 3. 从 C 数组构造
