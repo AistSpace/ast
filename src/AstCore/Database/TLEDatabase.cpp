@@ -88,12 +88,12 @@ errc_t TLEDatabase::reload()
 // 查询
 // ============================================================================
 
-TLEDatabase::EntryList TLEDatabase::getEntries(const TLEDatabaseQuery& query) const
+TLEDatabase::TLEList TLEDatabase::getEntries(const TLEDatabaseQuery& query) const
 {
     if (query.isEmpty())
         return tles_;
 
-    EntryList results;
+    TLEList results;
     for (const auto& tle : tles_)
     {
         if (query.matches(tle))
@@ -105,6 +105,7 @@ TLEDatabase::EntryList TLEDatabase::getEntries(const TLEDatabaseQuery& query) co
 errc_t TLEDatabase::loadTleFile(StringView filePath)
 {
     tles_.clear();
+    lines_.clear();
 
     std::string filePathStr(filePath);
     ScopedPtr<std::FILE> file = ast_fopen(filePathStr.c_str(), "r");
@@ -156,6 +157,7 @@ errc_t TLEDatabase::loadTleFile(StringView filePath)
 
             TLE tle = TLE::FromLines(tleLines);
             tles_.push_back(std::move(tle));
+            lines_.push_back(tleLines);
 
             // 重置状态
             pendingName.clear();

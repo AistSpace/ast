@@ -518,6 +518,7 @@ class CartState;             ///< 直角坐标
 class ModOrbElem;            ///< 改进轨道根数
 class OrbElem;               ///< 经典轨道根数
 
+class TLELines;              ///< TLE 行
 class TLE;                   ///< TLE 根数
 class SGP4;                  ///< SGP4 轨道模型
 

@@ -94,7 +94,7 @@ bool formatTLEImpliedExp(double value, Span<char, 9> out)
     }
 
     // 下溢：一位指数放不下（|value| < 1e-10），按 0 写出
-    if (exponent < -9)
+    if (exponent < -9 || value == 0)
     {
         std::snprintf(out.data(), out.size(), " 00000-0");
         return true;
@@ -104,7 +104,8 @@ bool formatTLEImpliedExp(double value, Span<char, 9> out)
     if (exponent > 9)
         return false;
 
-    char sign = (value < 0.0) ? '-' : ' ';
+    // 用 signbit 而不是 `value < 0`：-0.0 也要保留负号
+    char sign = std::signbit(value) ? '-' : ' ';
     char expSign = (exponent > 0) ? '+' : '-';
     int expAbs = exponent < 0 ? -exponent : exponent;
     std::snprintf(out.data(), out.size(), "%c%05lld%c%d", sign, mantissa, expSign, expAbs);
@@ -122,7 +123,8 @@ bool formatTLENdot(double value, Span<char, 11> out)
     if (digits > 99999999)
         digits = 99999999;
 
-    char sign = (value < 0.0) ? '-' : ' ';
+    // 用 signbit 而不是 `value < 0`：-0.0 也要保留负号（"- .00000000" 往返一致）
+    char sign = std::signbit(value) ? '-' : ' ';
     std::snprintf(out.data(), out.size(), "%c.%08lld", sign, digits);
     return true;
 }
@@ -302,9 +304,31 @@ TLE TLE::FromLines(StringView l1, StringView l2)
         // 列 64-68: 历元时刻的已转圈数
         tle.revNumber_ = aParseInt(l2.substr(63, 5));
     }
-    tle.lines_.line1() = std::string(l1);
-    tle.lines_.line2() = std::string(l2);
     return tle;
+}
+
+std::string TLE::alpha5() const
+{
+    char buffer[6] = {};
+    if(errc_t rc = formatTLESatNum(noradId(), buffer))
+    {
+        aWarning(_("编号 %d 无法转换为 Alpha-5 编号"), noradId());
+        return std::string();
+    }
+    return std::string(buffer);
+}
+
+void TLE::setAlpha5(StringView v)
+{
+    noradId_ = aParseNoradId(v);
+}
+
+TLELines TLE::toLines() const
+{
+    TLELines lines;
+    lines.name() = name();
+    aTLEToString(*this, lines.line1(), lines.line2());
+    return lines;
 }
 
 

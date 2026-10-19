@@ -24,6 +24,7 @@
 #include "AstGlobal.h"
 #include "Database.hpp"
 #include "AstCore/TLE.hpp"
+#include "AstCore/TLELines.hpp"
 #include "AstUtil/StringView.hpp"
 #include <string>
 #include <vector>
@@ -46,8 +47,8 @@ class TLEDatabaseQuery;
 class AST_CORE_API TLEDatabase : public Database
 {
 public:
-    using Entry = TLE;
-    using EntryList = std::vector<TLE>;
+    using TLEList = std::vector<TLE>;
+    using TLELineList = std::vector<TLELines>;
 
     TLEDatabase();
     explicit TLEDatabase(StringView filePath);
@@ -59,10 +60,13 @@ public:
     bool isLoaded() const { return loaded_; }
 
     // -- 查询 --
-    const EntryList& getEntries() const { return tles_; }
-    EntryList getEntries(const TLEDatabaseQuery& query) const;
+    const TLEList& getEntries() const { return tles_; }
+    TLEList getEntries(const TLEDatabaseQuery& query) const;
+    
     size_t size() const { return tles_.size(); }
 
+    const TLELineList& lines() const { return lines_; }
+    
     const std::string& filePath() const { return filePath_; }
 
 private:
@@ -70,9 +74,10 @@ private:
     errc_t loadTleFile(StringView filePath);
 
 private:
-    std::string filePath_{};    ///< 加载的文件路径
-    std::vector<TLE> tles_{};   ///< TLE 条目
-    bool loaded_{false};        ///< 是否已加载数据
+    std::string filePath_{};        ///< 加载的文件路径
+    std::vector<TLE> tles_{};       ///< TLE 条目
+    std::vector<TLELines> lines_{}; ///< 原始行文本
+    bool loaded_{false};            ///< 是否已加载数据
 };
 
 /*! @} */

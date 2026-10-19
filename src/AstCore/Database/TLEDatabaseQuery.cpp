@@ -195,7 +195,7 @@ bool TLEDatabaseQuery::matches(const TLE& tle) const
     // 名称过滤（子串匹配）
     if (!name_.empty())
     {
-        if (tle.lines().name().find(name_) == std::string::npos)
+        if (tle.name().find(name_) == std::string::npos)
             return false;
     }
 

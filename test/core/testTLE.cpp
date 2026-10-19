@@ -22,6 +22,7 @@
 #include "ast/ParseFormat.hpp"
 #include "ast/RunTime.hpp"
 #include "ast/TestTLE.hpp"
+#include "ast/TLEDatabase.hpp"
 
 #include <cmath>
 #include <string>
@@ -60,10 +61,6 @@ TEST(TLEParserTest, Line1Metadata)
     EXPECT_EQ(tle.intlDesignation(), "99057LT");
     EXPECT_EQ(tle.ephType(), 0);
     EXPECT_EQ(tle.elementNumber(), 999);
-
-    // 原始行文本原样保留
-    EXPECT_EQ(tle.lines().line1(), kLine1);
-    EXPECT_EQ(tle.lines().line2(), kLine2);
 }
 
 
@@ -173,8 +170,6 @@ TEST(TLEParserTest, TruncatedLines)
     EXPECT_EQ(tle.epochTime(), TimePoint{});
     EXPECT_EQ(tle.eccentricity(), 0.0);
     EXPECT_EQ(tle.meanMotion(), 0.0);
-    EXPECT_EQ(tle.lines().line1(), "");
-    EXPECT_EQ(tle.lines().line2(), "");
 }
 
 
@@ -336,5 +331,17 @@ TEST(TLEWriterTest, InvalidFields)
     EXPECT_EQ(aTLEToString(longDesignation, line1, line2), eErrorOutOfRange);
 }
 
+
+TEST(TLEWriterTest, LoadDatabase)
+{
+    TLEDatabase database;
+    errc_t rc = database.load("./test-data/tle/TLE20230212.txt");
+    EXPECT_EQ(rc, eNoError);
+    EXPECT_EQ(database.lines().size(), 24902);
+    for(auto& tlelines: database.lines())
+    {
+        EXPECT_EQ(aTLELinesRoundTripCheck(tlelines), eNoError) << tlelines.name();
+    }
+}
 
 GTEST_MAIN()

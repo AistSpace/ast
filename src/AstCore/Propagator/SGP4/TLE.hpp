@@ -80,8 +80,8 @@ public:
     const TimePoint& switchEpoch() const { return switchEpoch_; }
     void             setSwitchEpoch(const TimePoint& v) { switchEpoch_ = v; }
 
-    const TLELines& lines() const { return lines_; }
-    TLELines&       lines() { return lines_; }
+    const std::string& name() const {return name_;}
+    void setName(StringView v) { name_ = std::string(v); }
 
     const TimePoint& epochTime() const { return epochTime_; }
     void             setEpochTime(const TimePoint& v) { epochTime_ = v; }
@@ -124,6 +124,10 @@ public:
     int  noradId() const { return noradId_; }
     void setNoradId(int v) { noradId_ = v; }
 
+    /// @brief Alpha-5 字符编号
+    std::string alpha5() const;
+    void setAlpha5(StringView v);
+
     const std::string& intlDesignation() const { return intlDesignation_; }
     void setIntlDesignation(StringView v) { intlDesignation_ = std::string(v); }
 
@@ -132,15 +136,18 @@ public:
 
     char classification() const { return classification_; }
     void setClassification(char v) { classification_ = v; }
-
+public:
+    /// @brief 转换为 TLE 行文本
+    /// @return TLE 行文本
+    TLELines toLines() const;
 private:
     bool enabled_{true};              ///< 是否启用
     ETLESource source_                ///< 来源类型
         {ETLESource::eFile};
     ESwitchMethod switch_method_      ///< 切换方法
         {ESwitchMethod::eEpoch};
+    std::string name_{};              ///< 卫星名称（TLE 第 0 行）
     TimePoint switchEpoch_{};         ///< 切换历元
-    TLELines lines_{};                ///< TLE 原始行文本
     TimePoint epochTime_{};           ///< 历元时间
     double meanMotionDotTime_{0.0};   ///< 平均运动导数
     double motionDotDot_{0.0};        ///< 平均运动二阶导数

@@ -38,6 +38,9 @@ AST_NAMESPACE_BEGIN
 AST_TEST_API errc_t aTLERoundTripCheck(const TLE& tle);
 
 
+/// @brief 往返自检：解析后重新序列化，逐字段比对
+/// @return eNoError 一致；eErrorInvalidValue 不一致
+AST_TEST_API errc_t aTLELinesRoundTripCheck(const TLELines& tlelines);
 
 /*! @} */
 

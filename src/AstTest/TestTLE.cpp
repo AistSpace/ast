@@ -108,4 +108,47 @@ errc_t aTLERoundTripCheck(const TLE& tle)
 }
 
 
+errc_t aTLELinesRoundTripCheck(const TLELines& tlelines)
+{
+    auto normalizedLines = tlelines;
+    if(normalizedLines.line1()[33] == '+')
+        normalizedLines.line1()[33] = ' ';
+    if(normalizedLines.line1()[44] == '+')
+        normalizedLines.line1()[44] = ' ';
+    if(normalizedLines.line1()[53] == '+')
+        normalizedLines.line1()[53] = ' ';
+    if(normalizedLines.line1().substr(50, 2) == "+0")
+        normalizedLines.line1()[50] = '-';
+    if(normalizedLines.line1().substr(59, 2) == "+0")
+        normalizedLines.line1()[59] = '-';
+    for(int i = 2; i<=4; i++)
+    {
+        if(normalizedLines.line1()[i] == ' ')
+            normalizedLines.line1()[i] = '0';
+        if(normalizedLines.line2()[i] == ' ')
+            normalizedLines.line2()[i] = '0';
+    }
+
+    auto tle = TLE::FromLines(tlelines);
+    TLELines newlines;
+    errc_t error = aTLEToString(tle, newlines.line1(), newlines.line2());
+    if (error != eNoError)
+        return error;
+    
+    // 检查转换为字符串后是否与原始字符串一致
+    if(normalizedLines.line1().substr(0, 68) != newlines.line1().substr(0, 68))
+    {
+        printf("line 1: %s\n", newlines.line1().c_str());
+        printf("expect: %s\n", tlelines.line1().c_str());
+        return eErrorInvalidValue;
+    }
+    if(normalizedLines.line2().substr(0, 68) != newlines.line2().substr(0, 68))
+    {
+        printf("line 2: %s\n", newlines.line2().c_str());
+        printf("expect: %s\n", tlelines.line2().c_str());
+        return eErrorInvalidValue;
+    }
+    return eNoError;
+}
+
 AST_NAMESPACE_END
