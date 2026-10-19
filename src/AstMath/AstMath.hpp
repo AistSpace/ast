@@ -23,6 +23,7 @@
 #include "AstMath/LagrangeInterpolator.hpp"
 #include "AstMath/LowerMatrix.hpp"
 #include "AstMath/MathOperator.hpp"
+#include "AstMath/MathUtil.hpp"
 #include "AstMath/Matrix.hpp"
 #include "AstMath/NLE.hpp"
 #include "AstMath/ODE.hpp"
