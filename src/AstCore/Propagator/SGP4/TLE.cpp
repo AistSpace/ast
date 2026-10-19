@@ -151,8 +151,10 @@ errc_t formatTLEEpochField(const TimePoint& time, Span<char, 15> out)
     double dayFraction = (double)dttm.dayOfYear() + dttm.time().dayFraction();
     // 按输出精度（8 位小数日）取整；年末可能进位到下一年第 1 天
     dayFraction = round(dayFraction, 8);
+    // dayOfYear 从 1 起算，故跨年条件为 `>= 年末日 + 1`
+    // 否则 12 月 31 日当天（含闰年第 366 天）的任意时刻都会被误判为下一年
     double daysInYear = aIsLeapYear(year) ? 366.0 : 365.0;
-    if (dayFraction > daysInYear)
+    if (dayFraction >= daysInYear + 1.0)
     {
         dayFraction -= daysInYear;
         ++year;

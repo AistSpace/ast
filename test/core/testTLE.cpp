@@ -231,6 +231,18 @@ TEST(TLEWriterTest, EpochYearEndRollover)
 }
 
 
+TEST(TLEWriterTest, EpochFinalDayNoRollover)
+{
+    AST_USING_NAMESPACE
+    // 12 月 31 日当中的历元仍属当年第 365 天，不应进位到下一年
+    TimePoint time = TimePoint::FromUTC(2021, 12, 31, 12, 0, 0);
+
+    std::string epoch;
+    ASSERT_EQ(aFormatTLEEpoch(time, epoch), eNoError);
+    EXPECT_EQ(epoch, "21365.50000000");
+}
+
+
 TEST(TLEWriterTest, EpochOutOfRange)
 {
     AST_USING_NAMESPACE
