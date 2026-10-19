@@ -128,12 +128,10 @@ bool formatTLENdot(double value, Span<char, 11> out)
 }
 
 /// @brief 格式化角度字段（度，固定 4 位小数，8 列）
-/// @details 负数无法用 TLE 的 8 列角度字段表示，直接判错。
 bool formatTLEDegrees(double radians, Span<char, 9> out)
 {
+    radians = aNormalizeAngle0To2Pi(radians);
     double degrees = radians * kRadToDeg;
-    if (!(degrees >= 0.0) || degrees >= 360.0)
-        return false;
     // 宽度 8、空格填充（不能用 `%08.4f`，那会补零成 `051.6416`）
     int length = std::snprintf(out.data(), out.size(), "%8.4f", degrees);
     return length == out.size() - 1;
@@ -422,7 +420,7 @@ errc_t aTLEToString(const TLE& tle, Span<char, 70> line1, Span<char, 70> line2)
     line2[16] = ' ';
 
     // 列 18-25: 升交点赤经
-    if (!formatTLEDegrees(aNormalizeAngle0To2Pi(tle.rightAscenOfNode()), line2.subspan<17, 9>()))
+    if (!formatTLEDegrees((tle.rightAscenOfNode()), line2.subspan<17, 9>()))
         return eErrorOutOfRange;
     line2[25] = ' ';
 
@@ -439,12 +437,12 @@ errc_t aTLEToString(const TLE& tle, Span<char, 70> line1, Span<char, 70> line2)
     line2[33] = ' ';
 
     // 列 35-42: 近地点幅角
-    if (!formatTLEDegrees(aNormalizeAngle0To2Pi(tle.argOfPerigee()), line2.subspan<34, 9>()))
+    if (!formatTLEDegrees((tle.argOfPerigee()), line2.subspan<34, 9>()))
         return eErrorOutOfRange;
     line2[42] = ' ';
 
     // 列 44-51: 平近点角
-    if (!formatTLEDegrees(aNormalizeAngle0To2Pi(tle.meanAnomaly()), line2.subspan<43, 9>()))
+    if (!formatTLEDegrees((tle.meanAnomaly()), line2.subspan<43, 9>()))
         return eErrorOutOfRange;
     line2[51] = ' ';
 
