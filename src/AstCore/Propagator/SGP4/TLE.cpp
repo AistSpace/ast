@@ -136,7 +136,7 @@ bool formatTLEDegrees(double radians, Span<char, 9> out)
     double degrees = radians * kRadToDeg;
     // 宽度 8、空格填充（不能用 `%08.4f`，那会补零成 `051.6416`）
     int length = std::snprintf(out.data(), out.size(), "%8.4f", degrees);
-    return length == out.size() - 1;
+    return length == static_cast<int>(out.size()) - 1;
 }
 
 
@@ -312,6 +312,7 @@ std::string TLE::alpha5() const
     char buffer[6] = {};
     if(errc_t rc = formatTLESatNum(noradId(), buffer))
     {
+        A_UNUSED(rc);
         aWarning(_("编号 %d 无法转换为 Alpha-5 编号"), noradId());
         return std::string();
     }
