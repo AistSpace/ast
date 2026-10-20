@@ -184,8 +184,12 @@ public:
                 if(rc){
                     double d = 0.0;
                     StringView text = aStripAsciiWhitespace(context.text_);
+                    // 先去掉尾部的""，否则严格解析会失败
+                    if(text.ends_with("\"\"")){
+                        text = aStripAsciiWhitespace(text.substr(0, text.size() - 2));
+                    }
                     rc = aParseDouble(text, d);
-                    if(!text.ends_with("\"\"") || rc != eNoError)
+                    if(rc != eNoError)
                     {
                         aError(_("解析数量值 '%.*s' 失败"), text.size(), text.data());
                     }

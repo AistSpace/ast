@@ -1330,7 +1330,7 @@ static std::string _aCrashLinuxResolveAddress(uintptr_t addr)
         if (pipe)
         {
             char lineBuf[256];
-            if (fgets(lineBuf, sizeof(lineBuf), pipe))
+            if (std::fgets(lineBuf, sizeof(lineBuf), pipe))
             {
                 // 去掉末尾换行
                 size_t len = strlen(lineBuf);
@@ -1420,7 +1420,7 @@ errc_t aCrashResolveSymbols(const char* logPath, const char* outPath)
 
     std::vector<std::string> lines;
     char buf[1024];
-    while (fgets(buf, sizeof(buf), fin))
+    while (std::fgets(buf, sizeof(buf), fin))
         lines.push_back(std::string(buf));
     fclose(fin);
 

@@ -48,6 +48,8 @@ AST_UTIL_CAPI errc_t aParseBool(StringView str, bool& value);
 
 
 /// @brief 将字符串转换为整数
+/// @details 严格解析：允许首尾空白，除此之外整个字符串必须是一个整数，
+///          例如 " 123 " 可以解析，"123 abc" 解析失败
 /// @param str 输入字符串
 /// @param value 输出整数
 /// @return 0 成功，其他值 失败
@@ -90,6 +92,8 @@ AST_UTIL_CAPI errc_t _aParseInt_Scanf(StringView str, int& value);      // 基�
 
 
 /// @brief 将字符串转换为双精度浮点数
+/// @details 严格解析：允许首尾空白，除此之外整个字符串必须是一个浮点数，
+///          例如 " 5.35 " 可以解析，"5.35 xyz" 解析失败
 /// @param str 输入字符串
 /// @param value 输出双精度浮点数
 /// @return 0 成功，其他值 失败
@@ -97,6 +101,7 @@ AST_UTIL_CAPI errc_t aParseDouble(StringView str, double& value);
 
 
 /// @brief 解析Fortran格式的双精度浮点数，例如"1.23D-4"、"1.23d-4"等
+/// @details 严格解析，规则同 aParseDouble
 /// @param str 输入字符串
 /// @param value 输出双精度浮点数
 /// @return 0 成功，其他值 失败
@@ -184,6 +189,11 @@ AST_UTIL_CAPI errc_t aFormatColor(Color value, std::string& str);
 AST_UTIL_API std::string aFormatBytes(uint64_t bytes);
 
 
+/// @brief 检查字符串是否为整数
+/// @param str 输入字符串
+/// @return 是否为整数
+AST_UTIL_API bool aIsInt(StringView str);
+
 // alias
 // 下面是内联函数的实现
 
@@ -254,7 +264,7 @@ std::string aFormatColor(Color value)
 A_ALWAYS_INLINE
 bool aParseBool(StringView str)
 {
-    bool value;
+    bool value = false;
     errc_t err = aParseBool(str, value);
     if (A_UNLIKELY(err != eNoError))
     {
@@ -269,7 +279,7 @@ bool aParseBool(StringView str)
 A_ALWAYS_INLINE
 int aParseInt(StringView str)
 {
-    int value;
+    int value = 0;
     errc_t err = aParseInt(str, value);
     if (A_UNLIKELY(err != eNoError))
     {
@@ -285,7 +295,7 @@ int aParseInt(StringView str)
 A_ALWAYS_INLINE
 double aParseDouble(StringView str)
 {
-    double value;
+    double value = 0.0;
     errc_t err = aParseDouble(str, value);
     if (A_UNLIKELY(err != eNoError))
     {
@@ -300,7 +310,7 @@ double aParseDouble(StringView str)
 A_ALWAYS_INLINE
 double aParseFortranDouble(StringView str)
 {
-    double value;
+    double value = 0.0;
     errc_t err = aParseFortranDouble(str, value);
     if (A_UNLIKELY(err != eNoError))
     {

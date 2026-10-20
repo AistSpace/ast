@@ -25,6 +25,70 @@
 
 AST_USING_NAMESPACE
 
+using ParseIntFunc = errc_t (*)(StringView, int&);
+using ParseDoubleFunc = errc_t (*)(StringView, double&);
+
+/// @brief 严格整数解析实现的通用测试
+/// @details 允许首尾空白；数值之后出现任何非空白字符都必须返回 eErrorParse。
+///          适用于 aParseInt 及所有严格解析的内部实现。
+/// @param parse 待测试的解析函数
+static void checkParseIntStrict(ParseIntFunc parse)
+{
+    int value = 0;
+
+    EXPECT_EQ(parse("123", value), eNoError);
+    EXPECT_EQ(value, 123);
+
+    EXPECT_EQ(parse("-456", value), eNoError);
+    EXPECT_EQ(value, -456);
+
+    // 首尾空白是允许的
+    EXPECT_EQ(parse("  123  ", value), eNoError);
+    EXPECT_EQ(value, 123);
+
+    EXPECT_EQ(parse("123\t\r\n", value), eNoError);
+    EXPECT_EQ(value, 123);
+
+    // 数值之后的非空白字符必须导致解析失败
+    EXPECT_EQ(parse("5 xauiw", value), eErrorParse);
+    EXPECT_EQ(parse("5abc", value), eErrorParse);
+    EXPECT_EQ(parse("123 456", value), eErrorParse);
+    EXPECT_EQ(parse("1.5", value), eErrorParse);
+
+    // 非数值输入
+    EXPECT_EQ(parse("abc", value), eErrorParse);
+    EXPECT_NE(parse("", value), eNoError);
+    EXPECT_NE(parse("   ", value), eNoError);
+}
+
+/// @brief 严格浮点解析实现的通用测试
+/// @details 规则同 checkParseIntStrict
+/// @param parse 待测试的解析函数
+static void checkParseDoubleStrict(ParseDoubleFunc parse)
+{
+    double value = 0;
+
+    EXPECT_EQ(parse("5.35", value), eNoError);
+    EXPECT_DOUBLE_EQ(value, 5.35);
+
+    EXPECT_EQ(parse("-789.012", value), eNoError);
+    EXPECT_DOUBLE_EQ(value, -789.012);
+
+    // 首尾空白是允许的
+    EXPECT_EQ(parse("  5.35\t", value), eNoError);
+    EXPECT_DOUBLE_EQ(value, 5.35);
+
+    // 数值之后的非空白字符必须导致解析失败
+    EXPECT_EQ(parse("5.35 xauiw", value), eErrorParse);
+    EXPECT_EQ(parse("5.35e2m", value), eErrorParse);
+    EXPECT_EQ(parse("1.2.3", value), eErrorParse);
+
+    // 非数值输入
+    EXPECT_EQ(parse("abc", value), eErrorParse);
+    EXPECT_NE(parse("", value), eNoError);
+    EXPECT_NE(parse("   ", value), eNoError);
+}
+
 // 测试 aParseBool 函数
 TEST(ParseFormat, aParseBool) {
     bool value;
@@ -87,22 +151,18 @@ TEST(ParseFormat, _aParseInt_LibC_2) {
 #ifdef A_CXX17
 // 测试 _aParseInt_FromChars 函数 (C++17)
 TEST(ParseFormat, _aParseInt_FromChars) {
-    int value;
-    errc_t err;
-    
-    err = _aParseInt_FromChars("123", value);
-    EXPECT_EQ(err, eNoError);
-    EXPECT_EQ(value, 123);
-    
-    err = _aParseInt_FromChars("-456", value);
-    EXPECT_EQ(err, eNoError);
-    EXPECT_EQ(value, -456);
-    
-    // 测试无效输入
-    err = _aParseInt_FromChars("abc", value);
-    EXPECT_EQ(err, eErrorParse);
+    checkParseIntStrict(_aParseInt_FromChars);
 }
 #endif
+
+// 测试基于 strtol 的整数解析实现
+TEST(ParseFormat, _aParseInt_LibC_1) {
+    checkParseIntStrict(_aParseInt_LibC_1);
+}
+
+TEST(ParseFormat, _aParseInt_LibC_3) {
+    checkParseIntStrict(_aParseInt_LibC_3);
+}
 
 TEST(ParseFormat, aParseFortranDouble)
 {
@@ -125,6 +185,41 @@ TEST(ParseFormat, aParseDouble)
     rc = aParseDouble("123.456   ", value);
     EXPECT_EQ(rc, eNoError);
     EXPECT_DOUBLE_EQ(value, 123.456);
+}
+
+// 严格解析：允许首尾空白，但数值之后不允许出现其他字符
+TEST(ParseFormat, aParseIntStrict)
+{
+    checkParseIntStrict(aParseInt);
+}
+
+TEST(ParseFormat, aParseDoubleStrict)
+{
+    checkParseDoubleStrict(aParseDouble);
+}
+
+TEST(ParseFormat, aParseFortranDoubleStrict)
+{
+    double value = 0;
+    errc_t rc;
+
+    rc = aParseFortranDouble("1.657D-3 xyz", value);
+    EXPECT_EQ(rc, eErrorParse);
+
+    rc = aParseFortranDouble(" 1.657D-3 ", value);
+    EXPECT_EQ(rc, eNoError);
+    EXPECT_DOUBLE_EQ(value, 1.657e-3);
+}
+
+// 测试基于 strtod 的浮点解析实现
+TEST(ParseFormat, _aParseDouble_LibC_1)
+{
+    checkParseDoubleStrict(_aParseDouble_LibC_1);
+}
+
+TEST(ParseFormat, _aParseDouble_LibC_3)
+{
+    checkParseDoubleStrict(_aParseDouble_LibC_3);
 }
 
 
@@ -150,40 +245,14 @@ TEST(ParseFormat, _aParseDouble_LibC_2) {
 #ifdef A_CXX17
 // 测试 _aParseDouble_FromChars 函数 (C++17)
 TEST(ParseFormat, _aParseDouble_FromChars) {
-    double value;
-    errc_t err;
-    
-    err = _aParseDouble_FromChars("123.456", value);
-    EXPECT_EQ(err, eNoError);
-    EXPECT_DOUBLE_EQ(value, 123.456);
-    
-    err = _aParseDouble_FromChars("-789.012", value);
-    EXPECT_EQ(err, eNoError);
-    EXPECT_DOUBLE_EQ(value, -789.012);
-    
-    // 测试无效输入
-    err = _aParseDouble_FromChars("abc", value);
-    EXPECT_EQ(err, eErrorParse);
+    checkParseDoubleStrict(_aParseDouble_FromChars);
 }
 #endif
 
 #ifdef AST_WITH_ABSEIL
 // 测试 _aParseDouble_FromChars_Abseil 函数 (需要 abseil 支持)
 TEST(ParseFormat, _aParseDouble_FromChars_Abseil) {
-    double value;
-    errc_t err;
-    
-    err = _aParseDouble_FromChars_Abseil("123.456", value);
-    EXPECT_EQ(err, eNoError);
-    EXPECT_DOUBLE_EQ(value, 123.456);
-    
-    err = _aParseDouble_FromChars_Abseil("-789.012", value);
-    EXPECT_EQ(err, eNoError);
-    EXPECT_DOUBLE_EQ(value, -789.012);
-    
-    // 测试无效输入
-    err = _aParseDouble_FromChars_Abseil("abc", value);
-    EXPECT_EQ(err, eErrorParse);
+    checkParseDoubleStrict(_aParseDouble_FromChars_Abseil);
 }
 #endif
 
