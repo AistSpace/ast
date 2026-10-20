@@ -269,7 +269,7 @@ errc_t aRunCommand(const std::string& cmd)
 
     char buffer[4096];
     std::string output;
-    while (fgets(buffer, sizeof(buffer), pipe))
+    while (std::fgets(buffer, sizeof(buffer), pipe))
         output += buffer;
 
     int exitCode = A_PCLOSE(pipe);

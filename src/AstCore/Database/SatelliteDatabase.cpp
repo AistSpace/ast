@@ -243,7 +243,7 @@ errc_t SatelliteDatabase::loadSatcatFile(StringView filePath)
 
     char buf[256];
 
-    while (fgets(buf, sizeof(buf), file))
+    while (std::fgets(buf, sizeof(buf), file))
     {
         StringView line(buf);
 

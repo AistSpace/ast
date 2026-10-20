@@ -71,7 +71,7 @@ errc_t LeapSecond::loadATK(FILE* file)
     char month_str[10];
     int day;
     while ((int)data.size() < line) {
-        if (fgets(linebuf, sizeof(linebuf), file))
+        if (std::fgets(linebuf, sizeof(linebuf), file))
         {
             // 跳过空行和注释行
             if (linebuf[0] == '#' || linebuf[0] == '\n' || linebuf[0] == '\r') {
@@ -127,7 +127,7 @@ errc_t LeapSecond::loadSTK(FILE *file)
     double mjd;
     double temp;
     while ((int)data.size() < line) {
-        if (fgets(linebuf, sizeof(linebuf), file))
+        if (std::fgets(linebuf, sizeof(linebuf), file))
         {
             // 跳过空行和注释行
             if (linebuf[0] == '#' || linebuf[0] == '\n' || linebuf[0] == '\r') {
@@ -164,7 +164,7 @@ errc_t LeapSecond::loadHPIERS(FILE* file)
     char linebuf[1024];
     // int lineNumber = 0;
     std::vector<Entry> data;
-    while (fgets(linebuf, sizeof(linebuf), file)) {
+    while (std::fgets(linebuf, sizeof(linebuf), file)) {
         // lineNumber++;
 
         // 跳过空行和注释行
@@ -261,13 +261,13 @@ errc_t LeapSecond::load(StringView filepath)
     }
     // 2. 读取第一行
     char linebuf[2048];
-    if (!fgets(linebuf, sizeof(linebuf), file)) {
+    if (!std::fgets(linebuf, sizeof(linebuf), file)) {
         return eErrorInvalidFile;
     }
     // 3. 通过第一行来判断文件格式
     if(linebuf[0] >= '0' && linebuf[0] <= '9'){
         // 读取第二行
-        if (!fgets(linebuf, sizeof(linebuf), file)) {
+        if (!std::fgets(linebuf, sizeof(linebuf), file)) {
             return eErrorInvalidFile;
         }
         std::vector<StringView> cols = aStrSplit(linebuf, ByRepeatedWhitespace(), SkipEmpty());

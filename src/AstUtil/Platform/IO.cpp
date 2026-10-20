@@ -25,6 +25,7 @@
 #include "AstUtil/Network.hpp"
 #include "AstUtil/RunTime.hpp"
 #include "AstUtil/StringUtil.hpp"
+#include "AstUtil/ScopeExit.hpp"
 #include <cerrno>               // for EINVAL, ENOENT, EIO
 #include <clocale>              // for _create_locale, _free_locale
 #include <cstdarg>              // for va_list, va_start, va_end
@@ -177,6 +178,119 @@ int posix::fwprintf(FILE * stream, const wchar_t * format, ...)
     result = _vfwprintf_l(stream, format, _ast_locale_ensure(), args);
     va_end(args);
     return result;
+}
+
+wint_t posix::fgetwc(FILE *stream)
+{
+    // GetConsoleMode 成功说明流连接的是控制台；文件、管道等走函数末尾的标准库实现
+    HANDLE h = (HANDLE)_get_osfhandle(_fileno(stream));
+    DWORD mode;
+    if (h != INVALID_HANDLE_VALUE && GetConsoleMode(h, &mode))
+    {
+        // 标准库 std::fgetwc 能否正常从控制台流读取宽字符依赖于 locale 和 ConsoleCP 的全局状态正确配置
+        // 即必须 setlocale(LC_ALL, "") 且将 ConsoleCP 设置为 ACP
+        // 否则会导致读取到错误编码的宽字符
+        // 
+        // 这里封装了相关逻辑，在调用该函数前不需要进行前置的 locale 设置和 ConsoleCP 的设置，
+        // 直接调用 posix::fgetwc 即可读取到正确的宽字符
+
+        UINT originalCP = ::GetConsoleCP();
+        UINT acp = ::GetACP();
+        auto guard = aScopeExit([originalCP](){
+            ::SetConsoleCP(originalCP);     // 离开作用域（含提前 return）时恢复
+        });
+        if(originalCP != acp)
+        {
+            if(!::SetConsoleCP(acp))
+            {
+                // 代码页切不过去就无法保证字节编码与 ANSI locale 一致，按编码错误处理
+                DWORD err = ::GetLastError();
+                aWarning("SetConsoleCP failed, err: %d", err);
+                guard.release();            // 代码页未变，无需恢复
+                errno = EILSEQ;
+                return WEOF;
+            }
+        }
+        else
+        {
+            guard.release();                // 本来就是这个代码页，无需恢复
+        }
+
+        // if(::GetConsoleCP() == ::GetACP())
+        {
+            // 手工拼出一个 ANSI 多字节字符（ANSI 代码页为单字节或双字节编码）
+            // 再用 ANSI locale 解码成宽字符
+            char mbc[4]{};
+            int ch = fgetc(stream);
+            if(ch == EOF)
+                return WEOF;
+            mbc[0] = static_cast<char>(ch);
+            size_t size = 1;
+            auto ansi_locale = aAnsiLocale();
+            if(_isleadbyte_l(static_cast<unsigned char>(ch), ansi_locale))
+            {
+                // 双字节字符的首字节，再读一个字节
+                ch = fgetc(stream);
+                if(ch == EOF)
+                {
+                    // 双字节字符被截断：首字节退回流中，按编码错误处理
+                    ungetc(mbc[0], stream);
+                    errno = EILSEQ;
+                    return WEOF;
+                }
+                mbc[1] = static_cast<char>(ch);
+                size = 2;
+            }
+            // ANSI locale 下非法的多字节序列（如双字节字符的尾字节不合法）
+            wchar_t wch;
+            if (_mbtowc_l(&wch, mbc, size, ansi_locale) == -1)
+            {
+                errno = EILSEQ;
+                return WEOF;
+            }
+            return wch;
+        }
+    }
+    // 非控制台流（普通文件、重定向或管道的 stdin 等）：
+    // 与标准库 fgetwc 一致，按全局 locale 解码
+    return ::fgetwc(stream);
+}
+
+char* posix::fgets(char* buf, int size, FILE* stream)
+{
+    // GetConsoleMode 成功说明流连接的是控制台；文件、管道等不做编码处理
+    HANDLE h = (HANDLE)_get_osfhandle(_fileno(stream));
+    DWORD mode;
+    if (h != INVALID_HANDLE_VALUE && GetConsoleMode(h, &mode))
+    {
+        // 这里将控制台输入代码页设置为 UTF-8 后再读，不跟随系统的 ANSI 代码页
+        UINT originalCP = ::GetConsoleCP();
+        auto guard = aScopeExit([originalCP](){
+            ::SetConsoleCP(originalCP);     // 离开作用域（含提前 return）时恢复
+        });
+        if(originalCP != CP_UTF8)
+        {
+            if(!::SetConsoleCP(CP_UTF8))
+            {
+                // 切不到 UTF-8 就无法保证 buf 的编码，按编码错误处理
+                DWORD err = ::GetLastError();
+                aWarning("SetConsoleCP failed, err: %d", err);
+                guard.release();            // 代码页未变，无需恢复
+                errno = EILSEQ;
+                return nullptr;
+            }
+        }
+        else
+        {
+            guard.release();                // 本来就是 UTF-8，无需恢复
+        }
+        // 必须在 guard 仍然有效时读取：
+        // 如果把本行提到 if 块外、与末尾的 std::fgets 合并
+        // guard 会先恢复代码页，最终读取得到的就不是 UTF-8 了
+        return std::fgets(buf, size, stream);
+    }
+    // 非控制台流：不做编码转换，按流中的原始字节读入
+    return std::fgets(buf, size, stream);
 }
 
 #else

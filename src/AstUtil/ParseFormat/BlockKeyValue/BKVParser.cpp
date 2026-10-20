@@ -69,7 +69,7 @@ start:
         if(keyBuffer_[0] == '#' && allowComment_)
         {
             // fscanf(file_, "%*[^\n]%*c");                           // 跳过注释行
-            char* str = fgets(valueBuffer_.data(), (int)valueBuffer_.size(), file);     // 跳过注释行
+            char* str = std::fgets(valueBuffer_.data(), (int)valueBuffer_.size(), file);     // 跳过注释行
             A_UNUSED(str);
             // printf("comment left parts: %s", value);
             // continue;

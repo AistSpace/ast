@@ -90,7 +90,7 @@ errc_t AEP8Data::load(StringView filepath)
         return eErrorInvalidFile;
     }
     char linebuf[1024];
-    char* line = fgets(linebuf, sizeof(linebuf), fp.get());
+    char* line = std::fgets(linebuf, sizeof(linebuf), fp.get());
     if(!line)
         return eErrorParse;
     // 读取头信息
@@ -107,7 +107,7 @@ errc_t AEP8Data::load(StringView filepath)
     
     for(int i = 0; i < nline; i++)
     {
-        line = fgets(linebuf, sizeof(linebuf), fp.get());
+        line = std::fgets(linebuf, sizeof(linebuf), fp.get());
         // printf("line=%s", line);
         if(!line)
             return eErrorParse;
@@ -126,7 +126,7 @@ errc_t AEP8Data::load(StringView filepath)
     }
     if(remain > 0)
     {
-        char* line = fgets(linebuf, sizeof(linebuf), fp.get());
+        char* line = std::fgets(linebuf, sizeof(linebuf), fp.get());
         if(!line)
             return eErrorParse;
         StringView sv(linebuf);
