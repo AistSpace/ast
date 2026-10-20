@@ -81,7 +81,15 @@ errc_t PropertyObject::setValueString(void* container, StringView value)
 {
     Object* object = aResolveObject(value, class_);
     if(!object)
+    {
+        // 如果字符串严格是整数，则尝试解析为对象ID并赋值
+        if(aIsInt(value))
+        {
+            int id = aParseInt(value);
+            return setValueInt(container, id);
+        }
         aWarning(_("解析对象失败: '%.*s'"), value.size(), value.data());
+    }
     return setValue(container, object);
 }
 
