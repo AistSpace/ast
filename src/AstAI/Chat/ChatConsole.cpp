@@ -20,6 +20,7 @@
 
 #include "ChatConsole.hpp"
 #include "AstUtil/IO.hpp"
+#include "AstUtil/ColoredPrint.hpp"
 #include <stdio.h>
 
 AST_NAMESPACE_BEGIN
@@ -74,7 +75,7 @@ void ChatConsole::onComplete()
 
 void ChatConsole::onError(const std::string& error)
 {
-    ast_printf("\n  [错误: %s]\n", error.c_str());
+    cprintf(EColor::eRed, "\n[错误] %s\n", error.c_str());
 }
 
 AST_NAMESPACE_END

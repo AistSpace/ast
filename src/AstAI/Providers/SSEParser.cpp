@@ -31,12 +31,7 @@ SSEParser::SSEParser(ChatEventHandler& handler)
 errc_t SSEParser::onHeaders(int statusCode,
                             const std::map<std::string, std::string>& /*headers*/)
 {
-    if (statusCode != 200)
-    {
-        error_ = "HTTP " + std::to_string(statusCode);
-        handler_.onError(error_);
-        return eError;   // 在 header 阶段拒绝，避免读取响应体
-    }
+    statusCode_ = statusCode;
     return eNoError;
 }
 
@@ -44,15 +39,32 @@ errc_t SSEParser::onData(const char* data, size_t size)
 {
     if (handler_.isCancelled())
         return -1;
-    buffer_.append(data, size);
-    processBuffer();
-    return error_.empty() ? 0 : -1;
+    if(statusCode_ == 200)
+    {
+        buffer_.append(data, size);
+        processBuffer();
+        return eNoError;
+    }
+    else
+    {
+        error_.append(data, size);
+        return eNoError;
+    }
 }
 
 void SSEParser::onComplete()
 {
-    processBuffer();  // 刷新缓冲区中残余的数据
-    handler_.onContentComplete(accumulatedContent_);
+    if (statusCode_ != 200)
+    {
+        error_.insert(0, "HTTP " + std::to_string(statusCode_) + " ");
+        handler_.onError(error_);
+    }
+    else
+    {
+        processBuffer();  // 刷新缓冲区中残余的数据
+        handler_.onContentComplete(accumulatedContent_);
+    }
+    
 }
 
 void SSEParser::onError(errc_t /*error*/)
