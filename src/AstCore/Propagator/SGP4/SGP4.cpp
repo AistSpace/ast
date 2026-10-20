@@ -45,11 +45,12 @@ static bool initFromTLE(const TLE& tle, elsetrec& satrec,
     memset(&satrec, 0, sizeof(satrec));
 
     // ---- 1. 卫星编号 ----
-    // 从 TLE 第1行提取 5 字符卫星编号
+    // 获取卫星的 alpha5 字符编号
     char satn[6] = "     ";
-    if (!tle.lines().line1().empty() && tle.lines().line1().size() >= 7)
+    std::string alpha5 = tle.alpha5();
+    if (alpha5.size() >= 5)
     {
-        std::copy_n(tle.lines().line1().c_str() + 2, 5, satn);
+        std::copy_n(alpha5.data(), 5, satn);
         satn[5] = '\0';
     }
     // 去除尾部空格

@@ -415,6 +415,17 @@ AST_CORE_CAPI errc_t aDateTimeParse(StringView str, StringView format, DateTime&
 AST_CORE_CAPI errc_t aDateTimeParseAny(StringView str, DateTime& dttm);
 
 
+// -------------
+// 日期时间辅助函数
+// -------------
+
+/// @brief 将日期时间对象转换为年数和日数
+/// @param[in] dttm 日期时间对象
+/// @param[out] year 年数（例如：2025）
+/// @param[out] day 当年的日数，包含表示当日秒数的小数部分（从1开始，例如：21.5）
+AST_CORE_CAPI void aDateTimeToYD(const DateTime& dttm, double& year, double& day);
+
+
 /// @brief 日期时间
 class DateTime
 {

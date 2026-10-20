@@ -57,6 +57,23 @@ TEST(MathTest, MathDegree)
 }
 
 
+TEST(MathTest, Round)
+{
+    EXPECT_DOUBLE_EQ(round(1.23456, 3), 1.235);
+    EXPECT_DOUBLE_EQ(round(-1.23456, 3), -1.235);
+
+    // 缩放因子溢出/下溢或缩放后上溢时，不应返回 inf 或 NaN
+    EXPECT_DOUBLE_EQ(round(1.5, 400), 1.5);
+    EXPECT_DOUBLE_EQ(round(1.5, -400), 0.0);
+    EXPECT_DOUBLE_EQ(round(1e300, 10), 1e300);
+    EXPECT_DOUBLE_EQ(round(1e300, -300), 1e300);
+    EXPECT_DOUBLE_EQ(round(5.6e-309, 309), 6.0e-309);
+    EXPECT_DOUBLE_EQ(round(std::numeric_limits<double>::infinity(), 3),
+                     std::numeric_limits<double>::infinity());
+    EXPECT_TRUE(std::isnan(round(std::numeric_limits<double>::quiet_NaN(), 3)));
+}
+
+
 GTEST_MAIN()
 
 

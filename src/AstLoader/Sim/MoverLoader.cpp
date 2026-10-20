@@ -139,8 +139,9 @@ errc_t _aLoadSGP4(BKVParser& parser, const VehiclePathData& vehiclePathData, Sco
                             // 读取 TLE 两行数据
                             StringView line1 = parser.getLineSkipComment();
                             StringView line2 = parser.getLineSkipComment();
-                            tle.lines().line1() = std::string(aStripAsciiWhitespace(line1));
-                            tle.lines().line2() = std::string(aStripAsciiWhitespace(line2));
+                            tle = TLE::FromLines(line1, line2);
+                            // tle.lines().line1() = std::string(aStripAsciiWhitespace(line1));
+                            // tle.lines().line2() = std::string(aStripAsciiWhitespace(line2));
                         }else if(aEqualsIgnoreCase(tleItem.key(), "EpochTime")){
                             // EpochTime 存的是 YYDDD.DDDDDDDD double
                             tle.setEpochTime(TimePoint::FromTLEYD(tleItem.value().toDouble()));

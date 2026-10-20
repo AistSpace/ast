@@ -269,9 +269,15 @@ TimePoint TimePoint::FromTLEYD(double tleYD)
 {
     int epochYear = (int)(tleYD / 1000.0);
     double epochDays = tleYD - epochYear * 1000.0;
+    return TimePoint::FromTLEYD(epochYear, epochDays);
+}
+
+TimePoint TimePoint::FromTLEYD(int epochYear, double epochDays)
+{
     int fullYear = (epochYear < 57) ? epochYear + 2000 : epochYear + 1900;
     return TimePoint::FromYD(fullYear, epochDays);
 }
+
 
 TimePoint TimePoint::FromBJT(const DateTime& dttmBJT)
 {

@@ -370,7 +370,10 @@ errc_t CloseApproachAnalyzer::analyze(const TLE& reference, const std::vector<TL
                 if (refineMinDistance(refEph, candEph, intervals[j], res))
                 {
                     res.noradId = cand.noradId();
-                    res.name    = cand.lines().name();
+                    if(!cand.name().empty())
+                        res.name    = cand.name();
+                    else
+                        res.name    = std::to_string(cand.noradId());
                     result.results.push_back(std::move(res));
                 }
             }

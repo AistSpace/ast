@@ -6,6 +6,7 @@ blog
 #.vscode
 .xmake
 .vs
+.backup/
 vs20*
 vsxmake*
 *.asv

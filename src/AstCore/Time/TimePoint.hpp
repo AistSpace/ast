@@ -152,6 +152,9 @@ public:
     /// @details 自动处理两位年份到四位年份的转换（>=57 → 19xx, <57 → 20xx）
     AST_CORE_API
     static TimePoint FromTLEYD(double tleYD);
+    AST_CORE_API
+    static TimePoint FromTLEYD(int y, double d);
+
 
     /// @brief 从北京时日期时间创建时间点
     AST_CORE_API

@@ -8,6 +8,7 @@
 #include "AstTest/TestMarkdown.hpp"
 #include "AstTest/TestScript.hpp"
 #include "AstTest/TestSerialize.hpp"
+#include "AstTest/TestTLE.hpp"
 #include "AstTest/TestWithATK.hpp"
 #include "AstTest/TestWithCopernicus.hpp"
 #include "AstTest/TestWithFreeFlyer.hpp"

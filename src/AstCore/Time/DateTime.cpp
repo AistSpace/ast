@@ -535,6 +535,13 @@ errc_t aDateTimeParseAny(StringView str, DateTime &dttm)
     return eErrorInvalidParam;
 }
 
+
+void aDateTimeToYD(const DateTime& dttm, double& year, double& day)
+{
+    year = dttm.year();
+    day = dttm.dayOfYear() + dttm.time().dayFraction();
+}
+
 DateTime DateTime::FromJD(const JulianDate &jd)
 {
     DateTime dttm{};

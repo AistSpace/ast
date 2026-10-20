@@ -169,6 +169,14 @@ Scalar square(Scalar x)
     return x * x;
 }
 
+/// @brief 对值进行四舍五入，保留指定小数位数
+/// @param x 输入值
+/// @param digits 小数位数
+/// @return 四舍五入后的值
+AST_UTIL_API double round(double x, int digits);
+
+using std::round;
+
 
 /// @brief 将角度量规范化到指定起始范围
 /// @param angle 输入角度（弧度）

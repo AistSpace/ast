@@ -37,7 +37,7 @@
 AST_USING_NAMESPACE
 
 /// @brief TLE 数据库路径
-static const char* kDatabasePath = "./data/Dev/CAT/TLE20230212.txt";
+static const char* kDatabasePath = "./test-data/tle/TLE20230212.txt";
 
 /// @brief 参考目标 NORAD 编号（国际空间站）
 static const int kReferenceNoradId = 25544;
@@ -94,7 +94,6 @@ int main()
     CloseApproachOptions opts;
     opts.window     = TimeInterval(AnalysisStart(), AnalysisStop());
     opts.threshold  = kThreshold;
-    opts.sampleStep = 0.1;   // 5 km 阈值下接近窗口仅 ~0.3-1 s，需亚秒级采样
 
     std::cout << "分析窗口: " << opts.window.toString() << "\n";
     std::cout << "距离阈值: " << kThreshold / 1000.0 << " km\n";
