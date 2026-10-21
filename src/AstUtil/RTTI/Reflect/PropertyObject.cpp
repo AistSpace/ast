@@ -23,6 +23,7 @@
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/Object.hpp"
 #include "AstUtil/RTTIAPI.hpp"
+#include "AstUtil/ParseFormat.hpp"
 
 AST_NAMESPACE_BEGIN
 
