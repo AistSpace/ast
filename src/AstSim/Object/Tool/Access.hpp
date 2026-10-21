@@ -52,11 +52,12 @@ class AST_SIM_API Access : public ObjectNamed
 {
 public:
     AST_OBJECT(Access)
-
+    AST_PROPERT(BaseObject)
+    AST_PROPERT(TargetObject)
     Access() = default;
     ~Access() override = default;
 
-public: // 相关配置
+PROPERTIES: // 相关配置
 
     /// @name 主对象
     /// @{
@@ -70,6 +71,7 @@ public: // 相关配置
     Object* targetObject() const { return targetObject_.get(); }
     /// @}
 
+public:
     /// @name 算法配置
     /// @{
     void setConfig(const AccessConfig& config) { config_ = config; }
