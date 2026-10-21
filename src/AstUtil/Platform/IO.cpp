@@ -218,37 +218,92 @@ wint_t posix::fgetwc(FILE *stream)
 
         // if(::GetConsoleCP() == ::GetACP())
         {
-            // 手工拼出一个 ANSI 多字节字符（ANSI 代码页为单字节或双字节编码）
-            // 再用 ANSI locale 解码成宽字符
-            char mbc[4]{};
-            int ch = fgetc(stream);
-            if(ch == EOF)
-                return WEOF;
-            mbc[0] = static_cast<char>(ch);
-            size_t size = 1;
-            auto ansi_locale = aAnsiLocale();
-            if(_isleadbyte_l(static_cast<unsigned char>(ch), ansi_locale))
+            if (acp == CP_UTF8)
             {
-                // 双字节字符的首字节，再读一个字节
-                ch = fgetc(stream);
-                if(ch == EOF)
+                // 单独处理 UTF-8 编码的多字节字符
+                char mbc[4]{};
+                int len = 0;
+                int ch = fgetc(stream);
+                if (ch == EOF)
+                    return WEOF;
+                mbc[len++] = static_cast<char>(ch);
+
+                auto b = static_cast<unsigned char>(ch);
+                int want = 1;
+                if (b < 0x80)
+                    want = 1;
+                else if (b >= 0xC2 && b <= 0xDF)
+                    want = 2;
+                else if (b >= 0xE0 && b <= 0xEF)
+                    want = 3;
+                else if (b >= 0xF0 && b <= 0xF4)
+                    want = 4;
+                else
                 {
-                    // 双字节字符被截断：首字节退回流中，按编码错误处理
-                    ungetc(mbc[0], stream);
+                    // 孤立的续字节或非法的首字节
                     errno = EILSEQ;
                     return WEOF;
                 }
-                mbc[1] = static_cast<char>(ch);
-                size = 2;
+
+                while (len < want)
+                {
+                    ch = fgetc(stream);
+                    if (ch == EOF)
+                    {
+                        // 多字节字符被截断
+                        errno = EILSEQ;
+                        return WEOF;
+                    }
+                    mbc[len++] = static_cast<char>(ch);
+                }
+
+                wchar_t wch = 0;
+                if (MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, mbc, len, &wch, 1) == 0)
+                {
+                    if (want == 4 && GetLastError() == ERROR_INSUFFICIENT_BUFFER)
+                    {
+                        // 非 BMP 字符在 UTF-16 下需要一对代理项，单个 wint_t 放不下
+                        return 0xFFFD;
+                    }
+                    errno = EILSEQ;
+                    return WEOF;
+                }
+                return wch;
             }
-            // ANSI locale 下非法的多字节序列（如双字节字符的尾字节不合法）
-            wchar_t wch;
-            if (_mbtowc_l(&wch, mbc, size, ansi_locale) == -1)
+            else
             {
-                errno = EILSEQ;
-                return WEOF;
+                // 手工拼出一个 ANSI 多字节字符（ANSI 代码页为单字节或双字节编码）
+                // 再用 ANSI locale 解码成宽字符
+                char mbc[3]{};
+                int ch = fgetc(stream);
+                if(ch == EOF)
+                    return WEOF;
+                mbc[0] = static_cast<char>(ch);
+                size_t size = 1;
+                auto ansi_locale = aAnsiLocale();
+                if(_isleadbyte_l(static_cast<unsigned char>(ch), ansi_locale))
+                {
+                    // 双字节字符的首字节，再读一个字节
+                    ch = fgetc(stream);
+                    if(ch == EOF)
+                    {
+                        // 双字节字符被截断：首字节退回流中，按编码错误处理
+                        ungetc(mbc[0], stream);
+                        errno = EILSEQ;
+                        return WEOF;
+                    }
+                    mbc[1] = static_cast<char>(ch);
+                    size = 2;
+                }
+                // ANSI locale 下非法的多字节序列（如双字节字符的尾字节不合法）
+                wchar_t wch;
+                if (_mbtowc_l(&wch, mbc, size, ansi_locale) == -1)
+                {
+                    errno = EILSEQ;
+                    return WEOF;
+                }
+                return wch;
             }
-            return wch;
         }
     }
     // 非控制台流（普通文件、重定向或管道的 stdin 等）：
