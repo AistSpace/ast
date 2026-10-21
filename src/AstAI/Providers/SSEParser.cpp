@@ -56,11 +56,12 @@ errc_t SSEParser::onData(const char* data, size_t size)
         // 只保留有限长度的错误响应体作为诊断信息
         if (error_.size() >= kMaxErrorBodySize) {
             errorTruncated_ = true;
-            return;
+            return eNoError;
         }
         const size_t remaining = kMaxErrorBodySize - error_.size();
         const size_t count     = std::min(size, remaining);
         error_.append(data, count);
+        errorTruncated_ |= (count < size);
         return eNoError;
     }
 }
