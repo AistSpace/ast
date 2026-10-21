@@ -73,7 +73,8 @@ Provides complete astrodynamics computation capabilities, including coordinate s
 ### Other Extension Modules
 
 - [Simulation Module](src/AstSim/): defines various objects (spacecraft, ground stations, antennas, sensors, etc.) along with their motion and attitude models;
-- [AI Module](src/AstAI/): provides a framework for integration with large language models, supporting tool calling, agent definitions, group chat, and more;
+- [Harness Module](src/AstHarness/): provides the agent runtime for large language models, including provider clients, streaming, the tool-calling loop, sessions, and an MCP server;
+- [Agent Module](src/AstAgent/): provides space-mission agents built on the harness, including system prompts, scene tools, and object/property JSON conversion;
 - [Script Module](src/AstScript/): provides a built-in script interpreter and executors for external scripting languages;
 - [Visualization Module](src/AstVisualization/): provides 2D and 3D visualization of simulation data;
 - [User Interface Module](src/AstUiCore/): provides interactive UI widgets for algorithm components, supporting parameter configuration, result display, and more;

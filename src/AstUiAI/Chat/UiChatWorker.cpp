@@ -10,7 +10,7 @@
 
 #include "UiChatWorker.hpp"
 #include "UiChatEventHandler.hpp"
-#include "AstAI/ChatSession.hpp"
+#include "AstHarness/ChatSession.hpp"
 
 AST_NAMESPACE_BEGIN
 

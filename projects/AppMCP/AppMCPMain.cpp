@@ -18,8 +18,8 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AstAI/AgentMcpToolAdapter.hpp"
-#include "AstAI/McpServer.hpp"
+#include "AstAgent/AgentMcpToolAdapter.hpp"
+#include "AstHarness/McpServer.hpp"
 #include "AstSim/Satellite.hpp"
 
 AST_USING_NAMESPACE
@@ -33,7 +33,7 @@ int main()
     server.setServerName("AstMCP");
     server.setInstructions(u8"Ast 航天任务场景工具。对象只存在于本服务器进程内，进程退出后场景丢失。");
 
-    // 注册AstAI提供的场景工具（具体工具由AgentInit维护）
+    // 注册AstAgent提供的场景工具（具体工具由AgentInit维护）
     aAddAgentToolsToMcpServer(server);
 
     return server.runStdio();

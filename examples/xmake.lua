@@ -2,7 +2,7 @@ set_group("examples")
 set_default(false)
 add_deps(
     "AstUtil", "AstCore", "AstMath", "AstSim", "AstTest",
-    "AstSPICE", "AstPlot", "AstAI", "AstOpt",
+    "AstSPICE", "AstPlot", "AstHarness", "AstAgent", "AstOpt",
     "AstLoader", "AstReport", "AstVisualization"
 )
 add_packages("openmp")

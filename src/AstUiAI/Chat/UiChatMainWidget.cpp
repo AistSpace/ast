@@ -10,7 +10,7 @@
 
 #include "UiChatMainWidget.hpp"
 #include "UiChatPanel.hpp"
-#include "AstAI/ChatSession.hpp"
+#include "AstHarness/ChatSession.hpp"
 #include <QHBoxLayout>
 
 AST_NAMESPACE_BEGIN

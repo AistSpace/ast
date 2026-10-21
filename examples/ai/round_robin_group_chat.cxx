@@ -29,14 +29,14 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AstAI/RoundRobinGroupChat.hpp"
-#include "AstAI/ChatAgent.hpp"
-#include "AstAI/TextMentionTermination.hpp"
-#include "AstAI/DeepSeek.hpp"
-#include "AstAI/LLMConfig.hpp"
-#include "AstAI/ChatMessage.hpp"
-#include "AstAI/ChatMessages.hpp"
-#include "AstAI/AssistantAgent.hpp"
+#include "AstHarness/RoundRobinGroupChat.hpp"
+#include "AstHarness/ChatAgent.hpp"
+#include "AstHarness/TextMentionTermination.hpp"
+#include "AstHarness/DeepSeek.hpp"
+#include "AstHarness/LLMConfig.hpp"
+#include "AstHarness/ChatMessage.hpp"
+#include "AstHarness/ChatMessages.hpp"
+#include "AstHarness/AssistantAgent.hpp"
 #include <iostream>
 #include <cstdlib>
 

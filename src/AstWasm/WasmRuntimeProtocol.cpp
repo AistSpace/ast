@@ -21,8 +21,8 @@
 #include "WasmRuntimeProtocol.hpp"
 #include "AstUtil/RTTIAPI.hpp"
 #include "AstUtil/JsonValue.hpp"
-#include "AstAI/AgentUtil.hpp"
-#include "AstAI/AgentInit.hpp"
+#include "AstAgent/AgentUtil.hpp"
+#include "AstAgent/AgentInit.hpp"
 
 AST_NAMESPACE_BEGIN
 

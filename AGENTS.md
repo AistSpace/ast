@@ -57,7 +57,8 @@ make install PREFIX=$HOME/.local/ast   # 也可装到用户级前缀，当 SDK �
 | AstAnalyzer | 任务分析：约束、变量、打靶法、灵敏度、权衡研究、遍历搜索 |
 | AstUiCore | 基于 Qt5 的 GUI 组件 |
 | AstPy | 通过 SWIG 生成的 Python 绑定 |
-| AstAI | AI 代理、对话服务 |
+| AstHarness | AI 运行时：LLM 接入、流式、工具调用循环、会话、MCP 服务 |
+| AstAgent | 航天领域智能体：系统提示词、场景工具、对象属性 JSON |
 | AstCmd | CLI 命令系统（分发、路由） |
 | AstCLI | CLI 应用程序入口 |
 | AstCOM | Windows COM 封装 |
@@ -68,7 +69,7 @@ make install PREFIX=$HOME/.local/ast   # 也可装到用户级前缀，当 SDK �
 
 `include/Ast.hpp` 是聚合头文件，包含所有核心模块头文件。`include/AstGlobal.h` 定义了命名空间宏、DLL 导出/导入声明以及常用类型的前置声明。
 
-模块依赖顺序：AstUtil → AstMath → AstCore → AstSim。其他模块（AstOpt、AstGUI）依赖这些核心层。
+模块依赖顺序：AstUtil → AstMath → AstCore → AstSim。其他模块（AstOpt、AstGUI）依赖这些核心层。AstHarness 只依赖 AstUtil；AstAgent 依赖 AstHarness 和 AstCore。
 
 ## 代码规范
 

@@ -1,0 +1,7 @@
+target("AstHarness")
+    set_kind("shared")
+    add_files("**.cpp")
+    add_headerfiles("**.hpp", {prefixdir="AstHarness"})
+    add_headerfiles("**.h", {prefixdir="AstHarness"})
+    add_deps("AstUtil")
+    add_defines("AST_BUILD_LIB_HARNESS")

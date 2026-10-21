@@ -10,7 +10,7 @@
 
 #include "UiChatDockWidget.hpp"
 #include "AstUiAI/UiChatMainWidget.hpp"
-#include "AstAI/ChatSession.hpp"
+#include "AstHarness/ChatSession.hpp"
 #include <QMainWindow>
 #include <QApplication>
 

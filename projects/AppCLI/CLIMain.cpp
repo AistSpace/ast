@@ -18,10 +18,11 @@
 /// 除非法律要求或书面同意，作者与贡献者不承担任何责任。
 /// 使用本软件所产生的风险，需由您自行承担。
 
-#include "AstAI/AgentSession.hpp"
-#include "AstAI/ChatAgent.hpp"
-#include "AstAI/AssistantAgent.hpp"
-#include "AstAI/ChatConsole.hpp"
+#include "AstAgent/AgentSession.hpp"
+#include "AstAgent/SpaceEngineer.hpp"
+#include "AstHarness/ChatAgent.hpp"
+#include "AstHarness/AssistantAgent.hpp"
+#include "AstHarness/ChatConsole.hpp"
 #include "AstUtil/IO.hpp"
 #include "AstSim/Satellite.hpp"
 #include <memory>
@@ -42,7 +43,7 @@ int main()
         else if (str[0] == '\n' || str[0] == '\0')
             continue;
         ChatConsole console;
-        session.setAgent(std::unique_ptr<AssistantAgent>(AssistantAgent::NewSpaceEngineer()));
+        session.setAgent(std::unique_ptr<AssistantAgent>(aNewSpaceEngineerAgent()));
         std::string response = session.chatStream(buffer, console);
         A_UNUSED(response);
         // ast_printf("响应: %s\n", response.c_str());

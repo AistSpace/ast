@@ -1,4 +1,4 @@
 target("AppMCP")
     set_kind("binary")
     add_files("**.cpp")
-    add_deps("AstAI", "AstCore", "AstSim", "AstMath", "AstUtil")
+    add_deps("AstHarness", "AstAgent", "AstCore", "AstSim", "AstMath", "AstUtil")

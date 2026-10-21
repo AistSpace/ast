@@ -5,7 +5,8 @@
 %}
 
 %{
-#include "AstAI/AstAI.hpp"
+#include "AstAgent/AstAgent.hpp"
+#include "AstHarness/AstHarness.hpp"
 #include "AstAnalyzer/AstAnalyzer.hpp"
 #include "AstCalc/AstCalc.hpp"
 #include "AstCmd/AstCmd.hpp"

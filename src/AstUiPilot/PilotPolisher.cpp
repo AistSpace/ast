@@ -6,7 +6,7 @@
 
 #include "PilotPolisher.hpp"
 #include "Recorder/RecordStep.hpp"
-#include "AstAI/ChatSession.hpp"
+#include "AstHarness/ChatSession.hpp"
 #include <sstream>
 
 AST_NAMESPACE_BEGIN

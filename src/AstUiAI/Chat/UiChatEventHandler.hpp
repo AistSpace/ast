@@ -23,7 +23,7 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "AstAI/ChatEventHandler.hpp"
+#include "AstHarness/ChatEventHandler.hpp"
 #include "AstUtil/MarkdownHTMLRenderer.hpp"
 #include <QObject>
 #include <atomic>

@@ -1,0 +1,7 @@
+target("AstAgent")
+    set_kind("shared")
+    add_files("**.cpp")
+    add_headerfiles("**.hpp", {prefixdir="AstAgent"})
+    add_headerfiles("**.h", {prefixdir="AstAgent"})
+    add_deps("AstHarness", "AstUtil", "AstCore")
+    add_defines("AST_BUILD_LIB_AGENT")

@@ -19,10 +19,10 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 
-#include "AstAI/AgentSession.hpp"
-#include "AstAI/ChatAgent.hpp"
-#include "AstAI/AssistantAgent.hpp"
-#include "AstAI/ChatConsole.hpp"
+#include "AstHarness/ChatSession.hpp"
+#include "AstHarness/ChatAgent.hpp"
+#include "AstHarness/AssistantAgent.hpp"
+#include "AstHarness/ChatConsole.hpp"
 #include "AstUtil/IO.hpp"
 #include <memory>
 
