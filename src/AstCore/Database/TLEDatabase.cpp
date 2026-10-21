@@ -132,7 +132,7 @@ errc_t TLEDatabase::loadTleFile(StringView filePath)
     std::string currentLine1;    // 当前 TLE 组的第 1 行
     bool expectingLine2 = false; // 是否已收到第 1 行，等待第 2 行
 
-    while (fgets(buf, sizeof(buf), file))
+    while (std::fgets(buf, sizeof(buf), file))
     {
         StringView line(buf);
 

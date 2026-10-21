@@ -183,7 +183,7 @@ errc_t aExtractVDF(StringView filepath, StringView outputDir)
     {
         char lineBuf[4096];
         bool foundEndHeader = false;
-        while (fgets(lineBuf, sizeof(lineBuf), fp))
+        while (std::fgets(lineBuf, sizeof(lineBuf), fp))
         {
             StringView line(lineBuf);
 

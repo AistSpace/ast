@@ -21,6 +21,12 @@
 
 AST_NAMESPACE_BEGIN
 
+namespace
+{
+/// 非 200 响应体保留的最大字节数，避免错误信息无界增长
+constexpr size_t kMaxErrorBodySize = 4096;
+}
+
 SSEParser::SSEParser(ChatEventHandler& handler)
     : handler_(handler)
 {
@@ -31,12 +37,7 @@ SSEParser::SSEParser(ChatEventHandler& handler)
 errc_t SSEParser::onHeaders(int statusCode,
                             const std::map<std::string, std::string>& /*headers*/)
 {
-    if (statusCode != 200)
-    {
-        error_ = "HTTP " + std::to_string(statusCode);
-        handler_.onError(error_);
-        return eError;   // 在 header 阶段拒绝，避免读取响应体
-    }
+    statusCode_ = statusCode;
     return eNoError;
 }
 
@@ -44,15 +45,42 @@ errc_t SSEParser::onData(const char* data, size_t size)
 {
     if (handler_.isCancelled())
         return -1;
-    buffer_.append(data, size);
-    processBuffer();
-    return error_.empty() ? 0 : -1;
+    if(statusCode_ == 200)
+    {
+        buffer_.append(data, size);
+        processBuffer();
+        return eNoError;
+    }
+    else
+    {
+        // 只保留有限长度的错误响应体作为诊断信息
+        if (error_.size() >= kMaxErrorBodySize) {
+            errorTruncated_ = true;
+            return eNoError;
+        }
+        const size_t remaining = kMaxErrorBodySize - error_.size();
+        const size_t count     = std::min(size, remaining);
+        error_.append(data, count);
+        errorTruncated_ |= (count < size);
+        return eNoError;
+    }
 }
 
 void SSEParser::onComplete()
 {
-    processBuffer();  // 刷新缓冲区中残余的数据
-    handler_.onContentComplete(accumulatedContent_);
+    if (statusCode_ != 200)
+    {
+        error_.insert(0, "HTTP " + std::to_string(statusCode_) + " ");
+        if (errorTruncated_)
+            error_ += " [truncated]";
+        handler_.onError(error_);
+    }
+    else
+    {
+        processBuffer();  // 刷新缓冲区中残余的数据
+        handler_.onContentComplete(accumulatedContent_);
+    }
+    
 }
 
 void SSEParser::onError(errc_t /*error*/)

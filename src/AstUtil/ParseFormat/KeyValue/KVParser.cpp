@@ -31,7 +31,7 @@ KVParser::EToken KVParser::getNext(BKVItemView &item)
     if(!file)
         return eError;
     auto& lineBuffer = getLineBuffer();
-    while(fgets(lineBuffer.data(), (int)lineBuffer.size(), file)){
+    while(std::fgets(lineBuffer.data(), (int)lineBuffer.size(), file)){
         StringView line(lineBuffer.data());
         if(aIsHashCommentLine(line))
             continue;

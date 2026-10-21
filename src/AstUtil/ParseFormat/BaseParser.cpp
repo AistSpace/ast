@@ -32,7 +32,7 @@ AST_NAMESPACE_BEGIN
 /// @return    如果成功读取到一行文本，返回指向缓冲区的指针；否则返回 nullptr。
 static char* fgetline(char* buffer, int size, FILE* file)
 {
-    char* ret = fgets(buffer, size, file);
+    char* ret = std::fgets(buffer, size, file);
     if(ret != nullptr)
     {
         buffer[strcspn(buffer, "\n")] = '\0';
@@ -59,7 +59,7 @@ char* fgetlinetrim(char* buffer, int size, FILE* file)
     }else{
         buffer[0] = static_cast<char>(c);
         if(A_LIKELY(size > 1)){
-            char* ret = fgets(buffer + 1, size - 1, file);
+            char* ret = std::fgets(buffer + 1, size - 1, file);
             if(ret != nullptr)
             {
                 size_t len = strlen(ret);
@@ -162,7 +162,7 @@ size_t BaseParser::read(void *buffer, size_t size) const
 
 StringView BaseParser::getLineWithNewline()
 {
-    char* line = fgets(lineBuffer_.data(), (int)lineBuffer_.size(), file_);
+    char* line = std::fgets(lineBuffer_.data(), (int)lineBuffer_.size(), file_);
     return StringView(line);
 }
 

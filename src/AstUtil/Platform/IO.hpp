@@ -115,7 +115,24 @@ int wprintf(const wchar_t* format, ...);
 AST_UTIL_API
 int fwprintf(FILE* stream, const wchar_t* format, ...);
 
+/// @brief 从控制台/文件流读取一个宽字符
+/// @param stream 文件指针
+/// @return 读取到的宽字符；文件结束或编码错误时返回 WEOF，编码错误时 errno 为 EILSEQ
+/// @see fgets
+AST_UTIL_API
+wint_t fgetwc(FILE *stream);
 
+
+/// @brief 从控制台/文件流读取一行
+/// @details 如果是控制台流，则读入 UTF-8 编码的字节串；非控制台流则与标准库 fgets 一致
+/// @param buf 缓冲区指针
+/// @param size 缓冲区大小（字节）
+/// @param stream 文件指针
+/// @return 成功时返回 buf；失败或未读到任何字符即遇到文件结束返回 nullptr，
+///         编码错误时 errno 为 EILSEQ
+/// @see fgetwc
+AST_UTIL_API
+char* fgets(char* buf, int size, FILE* stream);
 
 #else
 using std::fopen;
@@ -126,6 +143,8 @@ using std::printf;
 using std::fprintf;
 using std::wprintf;
 using std::fwprintf;
+using std::fgetwc;
+using std::fgets;
 
 #endif
 }

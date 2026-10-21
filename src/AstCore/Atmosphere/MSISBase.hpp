@@ -53,6 +53,8 @@ public:
     MSISBase(Frame* frame, BodyShape* bodyShape, SpaceWeatherProvider* spaceWeather);
     ~MSISBase();
 
+    A_DISABLE_COPY(MSISBase)
+
     void setSpaceWeatherProvider(SpaceWeatherProvider* spaceWeather);
     void setConstantSpaceWeather(double f107Daily, double f107Average, double ap);
     bool useDailyAp() const { return useDailyAp_; }

@@ -24,6 +24,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <cctype>
 #include <algorithm>
 #include <sstream>
 #include <string>
@@ -53,6 +54,26 @@
 
 AST_NAMESPACE_BEGIN
 
+namespace{
+
+errc_t checkValid(const char* data, size_t size, const char* pos)
+{
+    // 如果位置停留于开头，说明转换失败
+    if(pos == data)
+        return eErrorParse;
+    // 严格解析：数值之后只允许空白字符
+    const char* end = data + size;
+    for (; pos != end; ++pos)
+    {
+        if (!std::isspace(static_cast<unsigned char>(*pos)))
+        {
+            return eErrorParse;
+        }
+    }
+    return eNoError;
+}
+
+}
 
 errc_t aParseBool(StringView str, bool& value)
 {
@@ -107,12 +128,6 @@ errc_t _aParseInt_LibC_1(StringView sv, int& value)
     // 使用标准库函数strtol进行转换
     char* endptr = nullptr;
     long result = std::strtol(str.data(), &endptr, 10);
-    
-    // 检查转换是否成功
-    if (endptr == str.data())
-    {
-        return eErrorParse;
-    }
 
     // 检查是否超出int范围
     if (result < INT_MIN || result > INT_MAX)
@@ -121,7 +136,9 @@ errc_t _aParseInt_LibC_1(StringView sv, int& value)
     }
 
     value = static_cast<int>(result);
-    return eNoError;
+
+    // 检查转换是否成功
+    return checkValid(str.data(), str.size(), endptr);
 }
 
 errc_t _aParseInt_LibC_2(StringView sv, int& value)
@@ -157,12 +174,6 @@ errc_t _aParseInt_LibC_3(StringView sv, int &value)
     // 使用标准库函数strtol进行转换
     char* endptr = nullptr;
     long result = std::strtol(p, &endptr, 10);
-    
-    // 检查转换是否成功
-    if (endptr == p)
-    {
-        return eErrorParse;
-    }
 
     // 检查是否超出int范围
     if (result < INT_MIN || result > INT_MAX)
@@ -171,15 +182,22 @@ errc_t _aParseInt_LibC_3(StringView sv, int &value)
     }
 
     value = static_cast<int>(result);
-    return eNoError;
+
+    // 检查转换是否成功
+    return checkValid(p, sv.size(), endptr);
 }
 
 #ifdef A_CXX17
 errc_t _aParseInt_FromChars(StringView str, int &value)
 {
+    // 严格解析：去除首尾空白后必须整体为整数
     str = aStripAsciiWhitespace(str);
     auto result = std::from_chars(str.data(), str.data() + str.size(), value);
-    return result.ec == std::errc() ? eNoError : eErrorParse;
+    if (result.ec != std::errc() || result.ptr != str.data() + str.size())
+    {
+        return eErrorParse;
+    }
+    return eNoError;
 }
 #endif
 
@@ -319,16 +337,9 @@ errc_t _aParseDouble_LibC_1(StringView sv, double& value)
 
     // 使用标准库函数strtod进行转换
     char* endptr = nullptr;
-    double result = std::strtod(str.data(), &endptr);
+    value = std::strtod(str.data(), &endptr);
 
-    // 检查转换是否成功
-    if (endptr == str.data() )
-    {
-        return eErrorParse;
-    }
-
-    value = result;
-    return eNoError;
+    return checkValid(str.data(), str.size(), endptr);
 }
 
 
@@ -354,16 +365,9 @@ errc_t _aParseDouble_LibC_3(StringView sv, double& value)
 
     // 使用标准库函数strtod进行转换
     char* endptr = nullptr;
-    double result = std::strtod(p, &endptr);
+    value = std::strtod(p, &endptr);
 
-    // 检查转换是否成功
-    if (endptr == p )
-    {
-        return eErrorParse;
-    }
-
-    value = result;
-    return eNoError;
+    return checkValid(p, sv.size(), endptr);
 }
 
 
@@ -377,9 +381,14 @@ errc_t _aParseDouble_LibC_2(StringView sv, double& value)
 #ifdef A_CXX17
 errc_t _aParseDouble_FromChars(StringView str, double &value)
 {
+    // 严格解析：去除首尾空白后必须整体为浮点数
     str = aStripAsciiWhitespace(str);
     auto result = std::from_chars(str.data(), str.data() + str.size(), value);
-    return result.ec == std::errc() ? eNoError : eErrorParse;
+    if (result.ec != std::errc() || result.ptr != str.data() + str.size())
+    {
+        return eErrorParse;
+    }
+    return eNoError;
 }
 
 #endif
@@ -387,9 +396,14 @@ errc_t _aParseDouble_FromChars(StringView str, double &value)
 #ifdef AST_WITH_ABSEIL
 errc_t _aParseDouble_FromChars_Abseil(StringView str, double &value)
 {
+    // 严格解析：去除首尾空白后必须整体为浮点数
     str = aStripAsciiWhitespace(str);
     auto result = absl::from_chars(str.data(), str.data() + str.size(), value);
-    return result.ec == std::errc() ? eNoError : eErrorParse;
+    if (result.ec != std::errc() || result.ptr != str.data() + str.size())
+    {
+        return eErrorParse;
+    }
+    return eNoError;
 }
 #endif
 
@@ -546,6 +560,37 @@ std::string aFormatBytes(uint64_t bytes)
     else
         snprintf(buf, sizeof(buf), "%.1f %s", value, units[unit]);
     return buf;
+}
+
+bool aIsInt(StringView str)
+{
+    const size_t size = str.size();
+    if (size == 0)
+    {
+        return false;
+    }
+
+    // 可选的正负号
+    size_t pos = 0;
+    if (str[pos] == '+' || str[pos] == '-')
+    {
+        ++pos;
+    }
+
+    // 符号之后至少需要一个数字
+    if (pos == size)
+    {
+        return false;
+    }
+
+    for (; pos < size; ++pos)
+    {
+        if (!std::isdigit(static_cast<unsigned char>(str[pos])))
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 AST_NAMESPACE_END

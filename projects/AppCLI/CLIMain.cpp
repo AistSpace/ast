@@ -36,8 +36,10 @@ int main()
     while (true)
     {
         ast_printf("请和我说你的需求，我来设计场景: \n");
-        char* str = fgets(buffer, sizeof(buffer), stdin);
-        if (str && buffer[0] == '\n')
+        char* str = posix::fgets(buffer, sizeof(buffer), stdin);
+        if(!str)
+            break;
+        else if (str[0] == '\n' || str[0] == '\0')
             continue;
         ChatConsole console;
         session.setAgent(std::unique_ptr<AssistantAgent>(AssistantAgent::NewSpaceEngineer()));

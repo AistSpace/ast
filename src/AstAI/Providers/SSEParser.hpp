@@ -73,7 +73,9 @@ private:
     void processToolCallDeltas(const JsonValue& toolCalls);
 
     ChatEventHandler& handler_;
-    bool thoughtCompleted_{false};   // 是否已完成推理/思考内容
+    bool              thoughtCompleted_{false};         ///< 是否已完成推理/思考内容
+    bool              errorTruncated_{false};           ///< 非 200 响应体是否因超出上限被截断
+    int               statusCode_{-1};                  ///< HTTP 状态码, -1 为未初始化
     std::string       buffer_{};
     std::string       error_{};
 

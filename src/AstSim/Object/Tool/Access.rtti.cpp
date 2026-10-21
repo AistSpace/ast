@@ -18,6 +18,8 @@ void Access::ClassInit(Class* cls)
     cls->setParent<ObjectNamed>();
     cls->setConstructor<Access>();
 
+    cls->addProperty("BaseObject", aNewPropertyObject<Access, Object, &Access::baseObject, &Access::setBaseObject>());
+    cls->addProperty("TargetObject", aNewPropertyObject<Access, Object, &Access::targetObject, &Access::setTargetObject>());
 }
 
 AST_NAMESPACE_END

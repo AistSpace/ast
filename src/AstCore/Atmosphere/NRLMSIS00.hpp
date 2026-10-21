@@ -55,6 +55,8 @@ public:
     NRLMSIS00(Frame* ecf, BodyShape* bodyShape, double f107Daily, double f107Average, double ap);
     ~NRLMSIS00() override;
 
+    A_DISABLE_COPY(NRLMSIS00)
+
     double getDensity(const TimePoint& tp, const Vector3d& posInBodyFixed) const override;
 
     
