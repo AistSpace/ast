@@ -1,0 +1,1 @@
+#include "AstAI/AgentMcpToolAdapter.hpp"

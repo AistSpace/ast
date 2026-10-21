@@ -1,5 +1,6 @@
 // AstAI 工程聚合头文件
 #include "AstAI/AgentInit.hpp"
+#include "AstAI/AgentMcpToolAdapter.hpp"
 #include "AstAI/AgentSession.hpp"
 #include "AstAI/AgentUtil.hpp"
 #include "AstAI/Anthropic.hpp"
@@ -17,6 +18,9 @@
 #include "AstAI/DeepSeek.hpp"
 #include "AstAI/LLMClient.hpp"
 #include "AstAI/LLMConfig.hpp"
+#include "AstAI/McpProtocol.hpp"
+#include "AstAI/McpServer.hpp"
+#include "AstAI/McpTool.hpp"
 #include "AstAI/OpenAI.hpp"
 #include "AstAI/RoundRobinGroupChat.hpp"
 #include "AstAI/SSEParser.hpp"

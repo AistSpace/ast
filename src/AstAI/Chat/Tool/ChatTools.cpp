@@ -34,6 +34,36 @@ ChatTools::ChatTools(bool initAsDefault)
     }
 }
 
+ChatTool* ChatTools::findTool(StringView name) const
+{
+    if(name.empty())
+        return nullptr;
+    for(const auto& tool : tools_)
+    {
+        if(tool && StringView(tool->name()) == name)
+            return tool.get();
+    }
+    return nullptr;
+}
+
+ChatTool* ChatTools::addTool(std::unique_ptr<ChatTool>&& tool)
+{
+    if(!tool)
+        return nullptr;
+
+    // 同名工具只保留第一个；名称为空时允许添加，便于调用方随后通过setName设置
+    const std::string& name = tool->name();
+    if(!name.empty() && findTool(name))
+    {
+        aWarning(_("工具 '%s' 已存在，忽略重复注册"), name.c_str());
+        return nullptr;
+    }
+
+    ChatTool* raw = tool.get();
+    tools_.push_back(std::move(tool));
+    return raw;
+}
+
 std::string ChatTools::handleToolCall(const JsonValue& toolCall)
 {
     auto& function = toolCall["function"];

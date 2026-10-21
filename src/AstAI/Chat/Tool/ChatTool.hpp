@@ -35,8 +35,9 @@ AST_NAMESPACE_BEGIN
 class JsonValue;
 
 /// @brief AI工具基类
-/// @details 所有AI工具的基类，定义了工具的基本属性和方法
-class ChatTool
+/// @details 所有AI工具的基类，定义了工具的基本属性和方法。
+///          既可用于OpenAI风格的函数调用，也可通过McpTool别名用于MCP服务器。
+class AST_AI_API ChatTool
 {
 public:
     ChatTool() = default;
@@ -71,13 +72,28 @@ public:
     /// @param parameters 工具参数schema
     void setParameters(const JsonValue& parameters){parameters_ = parameters;}
 
-    /// @brief 转换为JSON值
+    /// @brief 获取工具参数schema（MCP中的inputSchema）
+    const JsonValue& inputSchema() const { return parameters_; }
+
+    /// @brief 设置工具参数schema（MCP中的inputSchema）
+    /// @param schema 工具参数schema
+    void setInputSchema(const JsonValue& schema){parameters_ = schema;}
+
+    /// @brief 获取工具注解（MCP ToolAnnotations）
+    const JsonValue& annotations() const { return annotations_; }
+
+    /// @brief 设置工具注解（MCP ToolAnnotations，OpenAI序列化时忽略）
+    /// @param annotations 工具注解
+    void setAnnotations(const JsonValue& annotations){annotations_ = annotations;}
+
+    /// @brief 转换为OpenAI风格的JSON值
     /// @return JSON值
     JsonValue toJson() const;
 private:
     std::string name_{};              ///< 工具名称
     std::string description_{};       ///< 工具描述
     JsonValue parameters_{};          ///< 工具参数schema
+    JsonValue annotations_{};         ///< 工具注解（MCP专有）
 };
 
 /// @brief 通用模板封装

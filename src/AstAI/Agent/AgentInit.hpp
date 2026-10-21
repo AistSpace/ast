@@ -40,7 +40,7 @@ class JsonValue;
 
 /// @brief 初始化智能体工具集合
 /// @param tools 工具集合
-void aInitAgentTools(ChatTools& tools);
+AST_AI_API void aInitAgentTools(ChatTools& tools);
 
 
 /// @brief 初始化智能体会话

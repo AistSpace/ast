@@ -24,6 +24,7 @@
 #include "ChatTool.hpp"
 #include <vector>
 #include <memory>
+#include <utility>
 
 AST_NAMESPACE_BEGIN
 
@@ -34,8 +35,9 @@ AST_NAMESPACE_BEGIN
 
 
 /// @brief AI工具集合
-/// @details 所有AI工具的集合，用于管理工具的添加、删除和调用
-class ChatTools
+/// @details 所有AI工具的集合，用于管理工具的添加、删除和调用。
+///          同名工具只保留第一个；工具可以在添加后再设置名称。
+class AST_AI_API ChatTools
 {
 public:
     ChatTools() = default;
@@ -51,18 +53,32 @@ public:
 
     /// @brief 添加工具
     /// @param tool 工具指针
-    void addTool(std::unique_ptr<ChatTool>&& tool){tools_.push_back(std::move(tool));}
+    /// @return 添加成功返回工具指针；同名工具已存在时返回nullptr
+    /// @note 工具名称可以为空，添加后再通过 ChatTool::setName 设置
+    ChatTool* addTool(std::unique_ptr<ChatTool>&& tool);
 
+    /// @brief 添加函数形式的工具
+    /// @param func 工具函数，签名为 std::string(const JsonValue&)
+    /// @return 添加成功返回工具指针；同名工具已存在时返回nullptr
     template<typename Func>
     ChatTool* addTool(Func func)
     {
-        ChatTool* tool = new ChatToolGeneric<Func>(func);
-        addTool(std::unique_ptr<ChatTool>(tool));
-        return tool;
+        return addTool(std::unique_ptr<ChatTool>(new ChatToolGeneric<Func>(std::move(func))));
     }
 
     /// @brief 清除所有工具
     void clearTools(){tools_.clear();}
+
+    /// @brief 查找工具
+    /// @param name 工具名称
+    /// @return 工具指针，不存在返回nullptr
+    ChatTool* findTool(StringView name) const;
+
+    /// @brief 获取工具列表
+    const std::vector<std::unique_ptr<ChatTool>>& tools() const {return tools_;}
+
+    /// @brief 获取工具数量
+    size_t size() const {return tools_.size();}
 
     /// @brief 将工具集合转换为JSON格式
     /// @return JSON值
