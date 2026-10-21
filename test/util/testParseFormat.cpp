@@ -498,4 +498,34 @@ TEST(ParseFormat, _aParseInt_Simple) {
 #endif
 }
 
+// 测试 aIsInt：可选的正负号 + 至少一位数字
+TEST(ParseFormat, aIsInt) {
+    // 合法的整数
+    EXPECT_TRUE(aIsInt("123"));
+    EXPECT_TRUE(aIsInt("0"));
+    EXPECT_TRUE(aIsInt("00303"));
+    EXPECT_TRUE(aIsInt("+123"));
+    EXPECT_TRUE(aIsInt("-456"));
+
+    // 空字符串、仅符号、多个符号
+    EXPECT_FALSE(aIsInt(""));
+    EXPECT_FALSE(aIsInt("+"));
+    EXPECT_FALSE(aIsInt("-"));
+    EXPECT_FALSE(aIsInt("+-1"));
+
+    // 含有非数字字符
+    EXPECT_FALSE(aIsInt("12a"));
+    EXPECT_FALSE(aIsInt("1.5"));
+    EXPECT_FALSE(aIsInt("12 34"));
+    EXPECT_FALSE(aIsInt(" 123"));
+    EXPECT_FALSE(aIsInt("123 "));
+
+    // aIsInt 接受的值必须能被 aParseInt 解析
+    const char* valid[] = {"123", "0", "00303", "+123", "-456"};
+    for (const char* s : valid) {
+        int value = 0;
+        EXPECT_EQ(aParseInt(s, value), eNoError) << s;
+    }
+}
+
 GTEST_MAIN()

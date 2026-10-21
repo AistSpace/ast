@@ -564,9 +564,28 @@ std::string aFormatBytes(uint64_t bytes)
 
 bool aIsInt(StringView str)
 {
-    for (char c : str)
+    const size_t size = str.size();
+    if (size == 0)
     {
-        if (!std::isdigit(c))
+        return false;
+    }
+
+    // 可选的正负号
+    size_t pos = 0;
+    if (str[pos] == '+' || str[pos] == '-')
+    {
+        ++pos;
+    }
+
+    // 符号之后至少需要一个数字
+    if (pos == size)
+    {
+        return false;
+    }
+
+    for (; pos < size; ++pos)
+    {
+        if (!std::isdigit(static_cast<unsigned char>(str[pos])))
         {
             return false;
         }

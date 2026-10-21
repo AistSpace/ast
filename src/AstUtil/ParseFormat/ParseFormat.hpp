@@ -190,6 +190,7 @@ AST_UTIL_API std::string aFormatBytes(uint64_t bytes);
 
 
 /// @brief 检查字符串是否为整数
+/// @details 允许可选的前导正负号，符号之后必须至少有一位数字；空字符串和仅含符号的字符串返回 false
 /// @param str 输入字符串
 /// @return 是否为整数
 AST_UTIL_API bool aIsInt(StringView str);
