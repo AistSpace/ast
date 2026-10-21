@@ -21,6 +21,12 @@
 
 AST_NAMESPACE_BEGIN
 
+namespace
+{
+/// 非 200 响应体保留的最大字节数，避免错误信息无界增长
+constexpr size_t kMaxErrorBodySize = 4096;
+}
+
 SSEParser::SSEParser(ChatEventHandler& handler)
     : handler_(handler)
 {
@@ -47,7 +53,14 @@ errc_t SSEParser::onData(const char* data, size_t size)
     }
     else
     {
-        error_.append(data, size);
+        // 只保留有限长度的错误响应体作为诊断信息
+        if (error_.size() >= kMaxErrorBodySize) {
+            errorTruncated_ = true;
+            return;
+        }
+        const size_t remaining = kMaxErrorBodySize - error_.size();
+        const size_t count     = std::min(size, remaining);
+        error_.append(data, count);
         return eNoError;
     }
 }
@@ -57,6 +70,8 @@ void SSEParser::onComplete()
     if (statusCode_ != 200)
     {
         error_.insert(0, "HTTP " + std::to_string(statusCode_) + " ");
+        if (errorTruncated_)
+            error_ += " [truncated]";
         handler_.onError(error_);
     }
     else
