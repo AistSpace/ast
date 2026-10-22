@@ -22,6 +22,7 @@
  
 #include "AstGlobal.h"
 #include "AstUtil/StringView.hpp"
+#include <string>
 
 AST_NAMESPACE_BEGIN
  
@@ -81,6 +82,11 @@ AST_UTIL_CAPI const char* aGetLoadError();
 /// @param fileName 文件名
 /// @return 是否为有效的库后缀
 AST_UTIL_CAPI bool aIsLibrary(StringView fileName);
+
+/// @brief 获取动态库的文件路径
+/// @param lib 动态库
+/// @return 库的文件路径
+AST_UTIL_API std::string aGetModuleFilePath(void *lib);
 
 
 /*! @} */

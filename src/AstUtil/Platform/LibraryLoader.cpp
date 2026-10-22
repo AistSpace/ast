@@ -22,6 +22,7 @@
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/Encode.hpp"
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <mutex>
 #include <vector>
@@ -32,6 +33,9 @@
 #include <libloaderapi.h>
 #else
 #include <dlfcn.h>
+#if defined(__linux__)
+#include <link.h>   // dlinfo / struct link_map
+#endif
 #endif
  
 AST_NAMESPACE_BEGIN
@@ -253,6 +257,61 @@ const char* aGetLoadError()
 }
 
 #endif // A_WASM
+
+
+std::string aGetModuleFilePath(void* lib)
+{
+#ifdef A_WASM
+    (void)lib;
+    return std::string();
+#elif defined(_WIN32) || defined(_WIN64)
+    if (!lib) {
+        return std::string();
+    }
+
+    // GetModuleFileNameW 在缓冲区不足时返回缓冲区大小，需要动态扩容
+    std::wstring buffer(MAX_PATH, L'\0');
+    for (;;) {
+        DWORD len = ::GetModuleFileNameW((HMODULE)lib, &buffer[0], static_cast<DWORD>(buffer.size()));
+        if (len == 0) {
+            return std::string();
+        }
+        if (len < buffer.size()) {
+            buffer.resize(len);
+            break;
+        }
+        if (buffer.size() >= 0x8000) {   // Windows 路径长度上限
+            return std::string();
+        }
+        buffer.resize(buffer.size() * 2);
+    }
+    return aWideToUtf8(buffer.c_str());
+#elif defined(__linux__)
+    if (!lib) {
+        return std::string();
+    }
+
+    // dladdr 只接受符号地址，句柄要用 dlinfo 取 link_map
+    struct link_map* map = nullptr;
+    if (::dlinfo(lib, RTLD_DI_LINKMAP, &map) != 0 || !map || !map->l_name || !map->l_name[0]) {
+        return std::string();
+    }
+
+    std::string path = map->l_name;
+    // dlopen 传入的是不带路径的文件名时，l_name 也只是文件名，尽量还原成绝对路径
+    if (path[0] != '/') {
+        if (char* resolved = ::realpath(path.c_str(), nullptr)) {
+            path = resolved;
+            ::free(resolved);
+        }
+    }
+    return path;
+#else
+    (void)lib;
+    aWarning(_("当前平台不支持获取动态库路径"));
+    return std::string();
+#endif
+}
 
 
 bool aIsLibrary(StringView fileName)
