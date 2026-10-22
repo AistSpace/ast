@@ -25,8 +25,27 @@
 #include "AstUtil/RTTIAPI.hpp"
 #include "AstUtil/JsonValue.hpp"
 #include "AstUtil/Logger.hpp"
+#include "AstUtil/Library.hpp"
 
 AST_NAMESPACE_BEGIN
+
+
+namespace {
+
+/// @brief 确保Agent相关的领域模块（AstSim）已加载，使其对象类型注册到RTTI系统
+/// @details 场景工具通过类注册表创建对象，而注册发生在共享库的静态初始化中。
+///          AstAgent 不静态依赖 AstSim，因此这里在首次初始化工具时动态加载；
+///          加载失败时工具仍可用，只是类注册表中缺少领域类型。
+void aEnsureAgentDomainLoaded()
+{
+    static Library library(AST_LIB_LINKNAME("AstSim"));
+    if (!library.isLoaded()) {
+        if(library.load() != eNoError)
+            aWarning(_("加载 AstSim 模块失败"));
+    }
+}
+
+} // namespace
 
 
 const char* defaultSystemPrompt = u8R"(
@@ -43,6 +62,7 @@ const char* defaultSystemPrompt = u8R"(
 
 void aInitAgentTools(ChatTools& tools)
 {
+    aEnsureAgentDomainLoaded();
     tools.clearTools();
     // 初始化默认工具
     {
