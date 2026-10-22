@@ -107,6 +107,11 @@ rule("ast.qt")
         end
         target:add("qt.moc.flags", "-DAST_NAMESPACE_BEGIN=namespace ast{")
         target:add("qt.moc.flags", "-DAST_NAMESPACE_END=}")
+        -- MSVC 14.51（VS2026）起 STL 移除了 stdext::make_checked_array_iterator，
+        -- 而 Qt 5.15.2 的 qcompilerdetection.h 仍在使用，实例化 QVector<T>::operator== 会报 C2653
+        -- 这里补一个兼容垫片 AstUtil/MsvcCompat.h
+        -- 通过 forceincludes 强制包含，并能确保其在Qt头文件之前包含
+        target:add("forceincludes", "AstUtil/MsvcCompat.h", {sourcekinds = "cxx"})
     end)
 rule_end()
 
