@@ -9,7 +9,7 @@ target("AstUiAI")
     add_files("**.hpp")
     add_headerfiles("**.hpp", {prefixdir="AstUiAI"})
     add_headerfiles("**.h", {prefixdir="AstUiAI"})
-    add_deps("AstAI", "AstUtil", "AstSim")
+    add_deps("AstHarness", "AstUtil", "AstSim")
     add_defines("AST_BUILD_LIB_UIAI")
     -- set_default(false)
     -- if not has_package("qt") and not is_plat("wasm") then

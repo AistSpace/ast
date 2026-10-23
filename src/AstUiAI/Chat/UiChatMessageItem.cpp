@@ -9,7 +9,7 @@
 /// 本软件基于 Apache 2.0 开源许可证分发。
 
 #include "UiChatMessageItem.hpp"
-#include "AstAI/ChatMessage.hpp"
+#include "AstHarness/ChatMessage.hpp"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QPainter>

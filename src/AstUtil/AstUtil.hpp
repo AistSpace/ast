@@ -99,6 +99,7 @@
 #include "AstUtil/MarkdownTableParser.hpp"
 #include "AstUtil/Math.hpp"
 #include "AstUtil/MathDegree.hpp"
+#include "AstUtil/MsvcCompat.h"
 #include "AstUtil/Network.hpp"
 #include "AstUtil/NetworkCookie.hpp"
 #include "AstUtil/NetworkCookieJar.hpp"

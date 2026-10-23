@@ -9,7 +9,7 @@ target("AstWasm")
     add_headerfiles("**.hpp", {prefixdir="AstWasm"})
     add_headerfiles("**.h", {prefixdir="AstWasm"})
     
-    add_deps("AstUtil", "AstCore", "AstSim", "AstMath", "AstAI")
+    add_deps("AstUtil", "AstCore", "AstSim", "AstMath", "AstAgent")
     add_ldflags("--bind")
     -- add_ldflags("-sEXPORT_ES6=1")        -- es6规范在一些浏览器不支持
     add_ldflags("--emit-tsd AstWasm.d.ts")  -- 需要安装 `npm install -g typescript`

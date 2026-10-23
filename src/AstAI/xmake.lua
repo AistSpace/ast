@@ -1,7 +1,0 @@
-target("AstAI")
-    set_kind("shared")
-    add_files("**.cpp")
-    add_headerfiles("**.hpp", {prefixdir="AstAI"})
-    add_headerfiles("**.h", {prefixdir="AstAI"})
-    add_deps("AstUtil")
-    add_defines("AST_BUILD_LIB_AI")

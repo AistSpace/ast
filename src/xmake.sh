@@ -32,7 +32,8 @@ includes "AstCore"
 includes "AstSim"
 
 # 上层模块
-includes "AstAI"
+includes "AstHarness"
+includes "AstAgent"
 includes "AstFault"
 includes "AstCalc"
 includes "AstPlot"

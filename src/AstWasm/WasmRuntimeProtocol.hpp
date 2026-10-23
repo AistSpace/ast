@@ -22,7 +22,7 @@
 
 #include "AstGlobal.h"
 #include "AstUtil/StringView.hpp"
-#include "AstAI/AgentInit.hpp"
+#include "AstAgent/AgentInit.hpp"
 #include <string>
 #include <string_view>
 #include <optional>

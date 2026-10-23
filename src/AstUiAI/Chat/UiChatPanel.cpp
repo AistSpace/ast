@@ -15,8 +15,8 @@
 #include "UiChatEventHandler.hpp"
 #include "UiChatWorker.hpp"
 #include "UiToolCallTimeline.hpp"
-#include "AstAI/ChatSession.hpp"
-#include "AstAI/ChatMessage.hpp"
+#include "AstHarness/ChatSession.hpp"
+#include "AstHarness/ChatMessage.hpp"
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QTimer>

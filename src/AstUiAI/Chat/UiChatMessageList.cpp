@@ -10,7 +10,7 @@
 
 #include "UiChatMessageList.hpp"
 #include "UiChatMessageItem.hpp"
-#include "AstAI/ChatMessage.hpp"
+#include "AstHarness/ChatMessage.hpp"
 #include <QScrollArea>
 #include <QVBoxLayout>
 #include <QScrollBar>
