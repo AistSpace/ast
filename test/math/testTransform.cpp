@@ -97,7 +97,7 @@ TEST(TransformTest, KinematicTransform_compose)
     KinematicTransform transform_compose1 = transform1.composed(transform2);
     KinematicTransform transform_compose2(transform1);
     transform_compose2.compose(transform2);
-    CartState posvel{3, 5, 7, -7, -12, 2};
+    CartState posvel{{3, 5, 7}, {-7, -12, 2}};
     auto posvel1 = transform_compose1.transformPositionVelocity(posvel);
     auto posvel2 = transform_compose2.transformPositionVelocity(posvel);
     auto posvel3 = transform2.transformPositionVelocity(transform1.transformPositionVelocity(posvel));
@@ -121,7 +121,7 @@ TEST(TransformTest, KinematicTransform_inverse)
 {
     KinematicTransform transform{Vector3d{11, -17, 13}, Vector3d{4, -11, 2},  KinematicRotation(Rotation(30_deg, Vector3d{4, 11, 12}), Vector3d{-11, -4, 7})};
     KinematicTransform transform_inv = transform.inverse();
-    CartState posvel1{3, 5, 7, -7, -12, 2};
+    CartState posvel1{{3, 5, 7}, {-7, -12, 2}};
     auto posvelTrans = transform.transformPositionVelocity(posvel1);
     auto posvel2 = transform_inv.transformPositionVelocity(posvelTrans);
     printf("pos1: %f, %f, %f\n", posvel1.pos().x(), posvel1.pos().y(), posvel1.pos().z());

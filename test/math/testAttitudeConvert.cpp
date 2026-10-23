@@ -45,7 +45,7 @@ void testQuatAndMatrix(const Quaternion& quatInput)
         printf("i=%zu, quat=%.15g, quat2=%.15g\n", i, quat[i], quat2[i]);
         EXPECT_NEAR(quat[i], quat2[i], std::abs(quat2[i]) * 1e-14);
     }
-    for(size_t i=0;i < mtx.size(); i++)
+    for(size_t i=0;i < (size_t)mtx.size(); i++)
     {
         printf("i=%zu, mtx=%.15g, mtx2=%.15g\n", i, mtx(i), mtx2(i));
         EXPECT_NEAR(mtx(i), mtx2(i), std::abs(mtx2(i)) * 1e-14);
@@ -517,7 +517,7 @@ TEST(AttitudeConvertTest, aEuler32)
         Matrix3d mtx2;
         aEuler32ToMatrix({ 0.2, 0.1 }, mtx1);
         aEuler321ToMatrix({ 0.2, 0.1, 0}, mtx2);
-        for (size_t i = 0; i < mtx1.size(); i++)
+        for (size_t i = 0; i < (size_t)mtx1.size(); i++)
         {
             EXPECT_NEAR(mtx1(i), mtx2(i), 1e-14);
         }
@@ -527,7 +527,7 @@ TEST(AttitudeConvertTest, aEuler32)
         Matrix3d mtx2;
         aEuler32ToMatrix({ 0.21, 0.43 }, mtx1);
         aEuler232ToMatrix({ 0, 0.21, 0.43}, mtx2);
-        for (size_t i = 0; i < mtx1.size(); i++)
+        for (size_t i = 0; i < (size_t)mtx1.size(); i++)
         {
             EXPECT_NEAR(mtx1(i), mtx2(i), 1e-14);
         }
@@ -537,7 +537,7 @@ TEST(AttitudeConvertTest, aEuler32)
         Matrix3d mtx2;
         aEuler32ToMatrix({ 0.42, 0.25 }, mtx1);
         aEuler312ToMatrix({ 0.42, 0, 0.25}, mtx2);
-        for (size_t i = 0; i < mtx1.size(); i++)
+        for (size_t i = 0; i < (size_t)mtx1.size(); i++)
         {
             EXPECT_NEAR(mtx1(i), mtx2(i), 1e-14);
         }
@@ -551,7 +551,7 @@ TEST(AttitudeConvertTest, aEuler31)
         Matrix3d mtx2;
         aEuler31ToMatrix({ 0.3, 0.7 }, mtx1);
         aEuler312ToMatrix({ 0.3, 0.7, 0 }, mtx2);
-        for (size_t i = 0; i < mtx1.size(); i++)
+        for (size_t i = 0; i < (size_t)mtx1.size(); i++)
         {
             EXPECT_NEAR(mtx1(i), mtx2(i), 1e-14);
         }
@@ -561,7 +561,7 @@ TEST(AttitudeConvertTest, aEuler31)
         Matrix3d mtx2;
         aEuler31ToMatrix({ 0.15, 0.55 }, mtx1);
         aEuler131ToMatrix({ 0, 0.15, 0.55 }, mtx2);
-        for (size_t i = 0; i < mtx1.size(); i++)
+        for (size_t i = 0; i < (size_t)mtx1.size(); i++)
         {
             EXPECT_NEAR(mtx1(i), mtx2(i), 1e-14);
         }
@@ -571,7 +571,7 @@ TEST(AttitudeConvertTest, aEuler31)
         Matrix3d mtx2;
         aEuler31ToMatrix({ 0.42, 0.88 }, mtx1);
         aEuler321ToMatrix({ 0.42, 0, 0.88 }, mtx2);
-        for (size_t i = 0; i < mtx1.size(); i++)
+        for (size_t i = 0; i < (size_t)mtx1.size(); i++)
         {
             EXPECT_NEAR(mtx1(i), mtx2(i), 1e-14);
         }
@@ -607,12 +607,12 @@ TEST(AttitudeConvertTest, compose)
     // 矩阵乘法:
     Matrix3d mtxA2 = mtx2 * mtx1;
 
-    printf("mtxA : %s\n", mtxA.toString().c_str());
-    printf("mtxA2: %s\n", mtxA2.toString().c_str());
+    printf("mtxA : %s\n", toString(mtxA).c_str());
+    printf("mtxA2: %s\n", toString(mtxA2).c_str());
     
-    for (size_t i = 0; i < mtxA.size(); i++)
+    for (size_t i = 0; i < (size_t)mtxA.size(); i++)
     {
-        EXPECT_NEAR(mtxA[i], mtxA2[i], 1e-14);
+        EXPECT_NEAR(mtxA.data()[i], mtxA2.data()[i], 1e-14);
     }
 }
 
@@ -628,10 +628,10 @@ TEST(AttitudeConvertTest, transformVector)
 
     Quaternion q1 = rot1.getQuaternion();
 
-    printf("v2:     %s\n", v2.toString().c_str());
-    printf("v2_mtx: %s\n", v2_mtx.toString().c_str());
+    printf("v2:     %s\n", toString(v2).c_str());
+    printf("v2_mtx: %s\n", toString(v2_mtx).c_str());
 
-    for (size_t i = 0; i < v2.size(); i++)
+    for (size_t i = 0; i < (size_t)v2.size(); i++)
     {
         EXPECT_NEAR(v2[i], v2_mtx[i], 1e-14);
     }

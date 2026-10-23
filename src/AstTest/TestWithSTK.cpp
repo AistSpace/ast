@@ -135,8 +135,8 @@ errc_t aTestWithEmptyEphemeris(Mover& mover)
             ast_printf("failed to get pos vel in eci\n");
             return rc;
         }
-        ast_printf("posEph: %s, velEph: %s\n", posEph.toString().c_str(), velEph.toString().c_str());
-        ast_printf("posSpc: %s, velSpc: %s\n", posSpc.toString().c_str(), velSpc.toString().c_str());
+        ast_printf("posEph: %s, velEph: %s\n", toString(posEph).c_str(), toString(velEph).c_str());
+        ast_printf("posSpc: %s, velSpc: %s\n", toString(posSpc).c_str(), toString(velSpc).c_str());
     }
 
     return 0;

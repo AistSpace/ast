@@ -23,6 +23,7 @@
 #include "AstMath/AngleAxis.hpp"
 #include "AstMath/Vector.hpp"
 #include "AstMath/MathOperator.hpp"
+#include "AstMath/MathUtil.hpp"
 #include "AstUtil/Constants.hpp"
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/Math.hpp"
@@ -292,11 +293,10 @@ void aEuler32ToMatrix(const array2d& euler, Matrix3d& mtx)
 	double cosa1, sina1, cosa2, sina2;
 	sincos(a1, &sina1, &cosa1);
 	sincos(a2, &sina2, &cosa2);
-	mtx = {
+	aSetMatrix(mtx,
 		cosa1 * cosa2,   sina1 * cosa2,  -sina2,
 		-sina1,          cosa1,          0.,
-		cosa1 * sina2,   sina1 * sina2,  cosa2
-	};
+		cosa1 * sina2,   sina1 * sina2,  cosa2);
 }
 
 void aEuler31ToMatrix(const array2d& euler, Matrix3d& mtx)
@@ -306,11 +306,10 @@ void aEuler31ToMatrix(const array2d& euler, Matrix3d& mtx)
 	double cosa1, sina1, cosa2, sina2;
 	sincos(a1, &sina1, &cosa1);
 	sincos(a2, &sina2, &cosa2);
-	mtx = {
+	aSetMatrix(mtx,
 		cosa1,           sina1,          0,
 		-cosa2 * sina1,  cosa1 * cosa2,  sina2,
-		sina1 * sina2,   - cosa1 * sina2,  cosa2
-	};
+		sina1 * sina2,   - cosa1 * sina2,  cosa2);
 }
 
 
@@ -327,11 +326,10 @@ void aEuler123ToMatrix(const Euler& euler, Matrix3d& mtx)
 	sincos(a2, &sina2, &cosa2);
 	sincos(a3, &sina3, &cosa3);
 	
-	mtx = {
+	aSetMatrix(mtx,
 		cosa2 * cosa3,	cosa1 * sina3 + cosa3 * sina1 * sina2, sina1 * sina3 - cosa1 * cosa3 * sina2,
 		-cosa2 * sina3, cosa1 * cosa3 - sina1 * sina2 * sina3, cosa3 * sina1 + cosa1 * sina2 * sina3,
-		sina2,            -cosa2 * sina1,                              cosa1 * cosa2
-	};
+		sina2,            -cosa2 * sina1,                              cosa1 * cosa2);
 }
 
 void aMatrixToEuler123(const Matrix3d& mtx, Euler& euler)
@@ -359,11 +357,10 @@ void aEuler231ToMatrix(const Euler& euler, Matrix3d& mtx)
 	sincos(a1, &sina1, &cosa1);
 	sincos(a2, &sina2, &cosa2);
 	sincos(a3, &sina3, &cosa3);
-	mtx = {
+	aSetMatrix(mtx,
 		cosa1 * cosa2,					  sina2,           -cosa2 * sina1,
 		sina1 * sina3 - cosa1 * cosa3 * sina2,  cosa2 * cosa3,  cosa1 * sina3 + cosa3 * sina1 * sina2,
-		cosa3 * sina1 + cosa1 * sina2 * sina3, -cosa2 * sina3,  cosa1 * cosa3 - sina1 * sina2 * sina3
-	};
+		cosa3 * sina1 + cosa1 * sina2 * sina3, -cosa2 * sina3,  cosa1 * cosa3 - sina1 * sina2 * sina3);
 }
 
 void aMatrixToEuler231(const Matrix3d& mtx, Euler& euler)
@@ -391,11 +388,10 @@ void aEuler312ToMatrix(const Euler& euler, Matrix3d& mtx)
 	sincos(a1, &sina1, &cosa1);
 	sincos(a2, &sina2, &cosa2);
 	sincos(a3, &sina3, &cosa3);
-	mtx = {
+	aSetMatrix(mtx,
 		cosa1 * cosa3 - sina1 * sina2 * sina3, cosa3 * sina1 + cosa1 * sina2 * sina3, -cosa2 * sina3,
 		-cosa2 * sina1,                           cosa1 * cosa2,          sina2,
-		cosa1 * sina3 + cosa3 * sina1 * sina2, sina1 * sina3 - cosa1 * cosa3 * sina2,  cosa2 * cosa3 
-	};
+		cosa1 * sina3 + cosa3 * sina1 * sina2, sina1 * sina3 - cosa1 * cosa3 * sina2,  cosa2 * cosa3);
 }
 
 
@@ -425,11 +421,10 @@ void aEuler321ToMatrix(const Euler& euler, Matrix3d& mtx)
 	sincos(a1, &sina1, &cosa1);
 	sincos(a2, &sina2, &cosa2);
 	sincos(a3, &sina3, &cosa3);
-	mtx = {
+	aSetMatrix(mtx,
 		cosa1 * cosa2,                           cosa2 * sina1,        -sina2,
 		cosa1 * sina2 * sina3 - cosa3 * sina1, cosa1 * cosa3 + sina1 * sina2 * sina3, cosa2 * sina3,
-		sina1 * sina3 + cosa1 * cosa3 * sina2, cosa3 * sina1 * sina2 - cosa1 * sina3, cosa2 * cosa3
-	};
+		sina1 * sina3 + cosa1 * cosa3 * sina2, cosa3 * sina1 * sina2 - cosa1 * sina3, cosa2 * cosa3);
 }
 
 
@@ -458,11 +453,10 @@ void aEuler213ToMatrix(const Euler& euler, Matrix3d& mtx)
 	sincos(a1, &sina1, &cosa1);
 	sincos(a2, &sina2, &cosa2);
 	sincos(a3, &sina3, &cosa3);
-	mtx = {
+	aSetMatrix(mtx,
 		cosa1 * cosa3 + sina1 * sina2 * sina3, cosa2 * sina3, cosa1 * sina2 * sina3 - cosa3 * sina1,
 		cosa3 * sina1 * sina2 - cosa1 * sina3, cosa2 * cosa3, sina1 * sina3 + cosa1 * cosa3 * sina2,
-		cosa2 * sina1,        -sina2,                           cosa1 * cosa2
-	};
+		cosa2 * sina1,        -sina2,                           cosa1 * cosa2);
 }
 
 
@@ -490,11 +484,10 @@ void aEuler132ToMatrix(const Euler& euler, Matrix3d& mtx)
 	sincos(a1, &sina1, &cosa1);
 	sincos(a2, &sina2, &cosa2);
 	sincos(a3, &sina3, &cosa3);
-	mtx = {
+	aSetMatrix(mtx,
 		cosa2 * cosa3, sina1 * sina3 + cosa1 * cosa3 * sina2, cosa3 * sina1 * sina2 - cosa1 * sina3,
 		-sina2,                           cosa1 * cosa2,                           cosa2 * sina1,
-		cosa2 * sina3, cosa1 * sina2 * sina3 - cosa3 * sina1, cosa1 * cosa3 + sina1 * sina2 * sina3
-	};
+		cosa2 * sina3, cosa1 * sina2 * sina3 - cosa3 * sina1, cosa1 * cosa3 + sina1 * sina2 * sina3);
 }
 
 
@@ -524,11 +517,10 @@ void aEuler121ToMatrix(const Euler& euler, Matrix3d& mtx)
 	sincos(a1, &sina1, &cosa1);
 	sincos(a2, &sina2, &cosa2);
 	sincos(a3, &sina3, &cosa3);
-	mtx = {
+	aSetMatrix(mtx,
 		cosa2,            sina1 * sina2,                               -cosa1 * sina2,
 		sina2 * sina3,  cosa1 * cosa3 - cosa2 * sina1 * sina3,  cosa3 * sina1 + cosa1 * cosa2 * sina3,
-		cosa3 * sina2, -cosa1 * sina3 - cosa2 * cosa3 * sina1,  cosa1 * cosa2 * cosa3 - sina1 * sina3
-	};
+		cosa3 * sina2, -cosa1 * sina3 - cosa2 * cosa3 * sina1,  cosa1 * cosa2 * cosa3 - sina1 * sina3);
 }
 
 
@@ -559,11 +551,10 @@ void aEuler232ToMatrix(const Euler& euler, Matrix3d& mtx)
 	sincos(a1, &sina1, &cosa1);
 	sincos(a2, &sina2, &cosa2);
 	sincos(a3, &sina3, &cosa3);
-	mtx = {
+	aSetMatrix(mtx,
 		cosa1 * cosa2 * cosa3 - sina1 * sina3, cosa3 * sina2, -cosa1 * sina3 - cosa2 * cosa3 * sina1,
 		-cosa1 * sina2,         cosa2,                             sina1 * sina2,
-		cosa3 * sina1 + cosa1 * cosa2 * sina3, sina2 * sina3,   cosa1 * cosa3 - cosa2 * sina1 * sina3
-	};
+		cosa3 * sina1 + cosa1 * cosa2 * sina3, sina2 * sina3,   cosa1 * cosa3 - cosa2 * sina1 * sina3);
 }
 
 
@@ -594,11 +585,10 @@ void aEuler313ToMatrix(const Euler& euler, Matrix3d& mtx)
 	sincos(a1, &sina1, &cosa1);
 	sincos(a2, &sina2, &cosa2);
 	sincos(a3, &sina3, &cosa3);
-	mtx = {
+	aSetMatrix(mtx,
 		cosa1 * cosa3 - cosa2 * sina1 * sina3, cosa3 * sina1 + cosa1 * cosa2 * sina3, sina2 * sina3,
 		-cosa1 * sina3 - cosa2 * cosa3 * sina1, cosa1 * cosa2 * cosa3 - sina1 * sina3, cosa3 * sina2,
-		sina1 * sina2,                          -cosa1 * sina2,         cosa2
-	};
+		sina1 * sina2,                          -cosa1 * sina2,         cosa2);
 }
 
 
@@ -630,11 +620,10 @@ void aEuler131ToMatrix(const Euler& euler, Matrix3d& mtx)
 	sincos(a1, &sina1, &cosa1);
 	sincos(a2, &sina2, &cosa2);
 	sincos(a3, &sina3, &cosa3);
-	mtx = {
+	aSetMatrix(mtx,
 		cosa2,                             cosa1 * sina2,                           sina1 * sina2,
 		-cosa3 * sina2,   cosa1 * cosa2 * cosa3 - sina1 * sina3, cosa1 * sina3 + cosa2 * cosa3 * sina1,
-		sina2 * sina3, -cosa3 * sina1 - cosa1 * cosa2 * sina3, cosa1 * cosa3 - cosa2 * sina1 * sina3
-	};
+		sina2 * sina3, -cosa3 * sina1 - cosa1 * cosa2 * sina3, cosa1 * cosa3 - cosa2 * sina1 * sina3);
 }
 
 void aMatrixToEuler131(const Matrix3d& mtx, Euler& euler)
@@ -665,11 +654,10 @@ void aEuler212ToMatrix(const Euler& euler, Matrix3d& mtx)
 	sincos(a2, &sina2, &cosa2);
 	sincos(a3, &sina3, &cosa3);
 
-	mtx = {
+	aSetMatrix(mtx,
 		cosa1 * cosa3 - cosa2 * sina1 * sina3,  sina2 * sina3, -cosa3 * sina1 - cosa1 * cosa2 * sina3,
 		sina1 * sina2,          cosa2,                             cosa1 * sina2,
-		cosa1 * sina3 + cosa2 * cosa3 * sina1, -cosa3 * sina2,   cosa1 * cosa2 * cosa3 - sina1 * sina3
-	};
+		cosa1 * sina3 + cosa2 * cosa3 * sina1, -cosa3 * sina2,   cosa1 * cosa2 * cosa3 - sina1 * sina3);
 }
 
 void aMatrixToEuler212(const Matrix3d& mtx, Euler& euler)
@@ -703,11 +691,10 @@ void aEuler323ToMatrix(const Euler& euler, Matrix3d& mtx)
 	sincos(a2, &sina2, &cosa2);
 	sincos(a3, &sina3, &cosa3);
 	
-	mtx = {
+	aSetMatrix(mtx,
 		cosa1 * cosa2 * cosa3 - sina1 * sina3, cosa1 * sina3 + cosa2 * cosa3 * sina1, -cosa3 * sina2,
 		-cosa3 * sina1 - cosa1 * cosa2 * sina3, cosa1 * cosa3 - cosa2 * sina1 * sina3,  sina2 * sina3,
-		cosa1 * sina2,                           sina1 * sina2,          cosa2
-	};
+		cosa1 * sina2,                           sina1 * sina2,          cosa2);
 }
 
 errc_t aEulerToQuat(const Euler& euler, int seq, Quaternion& quat)

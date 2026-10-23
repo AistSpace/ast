@@ -184,9 +184,9 @@ A_ALWAYS_INLINE AccelerationRotation AccelerationRotation::composed(const Accele
     */
     Matrix3d mat1 = this->matrix();
     Vector3d angvel1 = this->angvel_;
-    Vector3d angvel2InSource = next.angvel_ * mat1;      // 即 M1ᵀ ω2
+    Vector3d angvel2InSource = mat1.transpose() * next.angvel_;      // 即 M1ᵀ ω2
     Vector3d angvel = angvel1 + angvel2InSource;
-    Vector3d angvelDot = this->angvelDot_ + angvel1.cross(angvel2InSource) + next.angvelDot_ * mat1;
+    Vector3d angvelDot = this->angvelDot_ + angvel1.cross(angvel2InSource) + mat1.transpose() * next.angvelDot_;
     return AccelerationRotation(next.matrix() * mat1, angvel, angvelDot);
 }
 
@@ -243,9 +243,9 @@ A_ALWAYS_INLINE void AccelerationRotation::transformVecVelAccInv(
     Vector3d &positionOut, Vector3d &velocityOut, Vector3d &accelerationOut) const
 {
     // 注意：这里要先计算positionOut，再计算velocityOut，最后计算accelerationOut
-    positionOut = position * this->matrix();
-    velocityOut = velocity * this->matrix() + this->angvel_.cross(positionOut);
-    accelerationOut = acceleration * this->matrix()
+    positionOut = this->matrix().transpose() * position;
+    velocityOut = this->matrix().transpose() * velocity + this->angvel_.cross(positionOut);
+    accelerationOut = this->matrix().transpose() * acceleration
         + this->angvelDot_.cross(positionOut)
         + this->angvel_.cross(velocityOut) * 2.0
         - this->angvel_.cross(this->angvel_.cross(positionOut));

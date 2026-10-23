@@ -20,6 +20,7 @@
 
 #include "InertialFrame.hpp"
 #include "AstMath/Matrix.hpp"
+#include "AstMath/MathUtil.hpp"
 #include "AstMath/AttitudeConvert.hpp"
 #include "AstMath/Rotation.hpp"
 #include "AstUtil/Literals.hpp"
@@ -35,11 +36,12 @@ void aJ2000ToB1950Transform_Vallado(Rotation &rotation)
     参考GMAT代码 (vallado 2001, 227-228)  
     详细请参见：gmat-git/prototype/Navigation/TDRSS_Doppler/utilities/Vallado/fk4i.m
     */
-    rotation.setMatrix({
+    Matrix3d mtx;
+    aSetMatrix(mtx,
          0.9999256794956877,   0.0111814832391717,  0.0048590037723143,
         -0.0111814832204662,   0.9999374848933135, -0.000027170293744,
-	    -0.0048590038153592,  -0.0000271625947142,  0.9999881946043742,
-    });
+	    -0.0048590038153592,  -0.0000271625947142,  0.9999881946043742);
+    rotation.setMatrix(mtx);
 }
 
 void aJ2000ToB1950Transform_SPICE(Rotation &rotation)

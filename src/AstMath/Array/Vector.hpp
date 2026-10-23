@@ -23,6 +23,7 @@
 #include "AstGlobal.h"
 #include "AstMath/MathOperator.hpp"
 #include "AstUtil/Constants.hpp"
+#include "AstUtil/Math.hpp"
 #include <stdlib.h>    // for malloc
 #include <string>      // for std::string
 #include <string.h>    // for memset
@@ -108,12 +109,16 @@ public:
     Self operator-(const Self& other) const{return _ASTMATH operator-(*this, other);}
     Self operator+(const Self& other) const{return _ASTMATH operator+(*this, other);}
     Self& operator+=(const Self& other){return *this = _ASTMATH operator+(*this, other);}
+    Self& transpose(){return *this;}
+    const Self& transpose() const{return *this;}
     std::string toString() const;
     _AST_DEF_VECTOR_METHOD(Scalar);
 public:
     _Scalar x_, y_, z_; // 不要直接访问数据，设为public仅为了实现聚合初始化
 };
 
+
+AST_MATH_API std::string toString(const Vector3d& v);
 
 template<typename _Scalar>
 class VectorX
@@ -142,22 +147,7 @@ private:
 template<typename _Scalar>
 inline double VectorN<_Scalar, 3>::Angle(const Self& v1, const Self & v2)
 {
-    double normProduct = v1.norm() * v2.norm();
-    if (normProduct == 0) {
-        return 0;
-    }
-
-    double dot = v1.dot(v2);
-    double threshold = normProduct * 0.9999;
-    if ((dot < -threshold) || (dot > threshold)) {
-        Self v3 = v1.cross(v2);
-        if (dot >= 0) {
-            return asin(v3.norm() / normProduct);
-        }
-        return kPI - asin(v3.norm() / normProduct);
-    }
-
-    return acos(dot / normProduct);
+    return aAngle(v1, v2);
 }
 
 template<typename _Scalar>

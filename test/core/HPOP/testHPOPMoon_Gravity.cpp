@@ -65,11 +65,11 @@ TEST_F(HPOPMoonGravityTest, GLGM2_20_20)
 
     auto startTime = "2029-10-07 19:25:24"_utc;
     auto stopTime  = "2029-10-12 13:11:44"_utc;
-    CartState initState{-1193.88677_km, 1400.059587_km, 605.2966457_km, 1.2525667_km/s, 0.9161693_km/s, 0.3560754_km/s};
+    CartState initState{{-1193.88677_km, 1400.059587_km, 605.2966457_km}, {1.2525667_km/s, 0.9161693_km/s, 0.3560754_km/s}};
     auto state = initState;
     errc_t rc = hpop.propagate(startTime, stopTime, state.pos(), state.vel());
     EXPECT_EQ(rc, eNoError);
-    CartState expectedState{1695443_m, -914709_m, -399116_m, -795.867_m/s, -1256.948_m/s, -493.587_m/s};
+    CartState expectedState{{1695443_m, -914709_m, -399116_m}, {-795.867_m/s, -1256.948_m/s, -493.587_m/s}};
     EXPECT_NEAR(state.pos().x(), expectedState.pos().x(), 1);
     EXPECT_NEAR(state.pos().y(), expectedState.pos().y(), 1);
     EXPECT_NEAR(state.pos().z(), expectedState.pos().z(), 1);

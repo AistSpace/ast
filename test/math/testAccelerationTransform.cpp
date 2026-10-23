@@ -93,9 +93,9 @@ TEST(AccelerationTransformTest, TransformAgainstFiniteDifference)
 
     auto theta = [=](double t) { return theta0 + omega0 * t + 0.5 * alpha0 * t * t; };
     auto mat = [&](double t) { Matrix3d m; aRotationZMatrix(theta(t), m); return m; };
-    auto translation = [&](double t) { return tran0 + tranVel0 * t + tranAcc0 * (0.5 * t * t); };
+    auto translation = [&](double t) -> Vector3d { return tran0 + tranVel0 * t + tranAcc0 * (0.5 * t * t); };
 
-    auto posInTarget = [&](double t) {
+    auto posInTarget = [&](double t) -> Vector3d {
         Vector3d posInSource = pos + vel * t + acc * (0.5 * t * t);
         return mat(t) * (posInSource - translation(t));
     };
@@ -286,9 +286,9 @@ TEST(AccelerationTransformTest, ZeroAccelerationNotClosedUnderComposition)
 
     const Matrix3d& mat1 = transform1.getRotation().getMatrix();
     Vector3d angvel1 = transform1.getRotationRate();
-    Vector3d tau = transform2.getTranslation() * mat1;      // 即 M₁ᵀ t₂
-    Vector3d velocity2 = transform2.getVelocity() * mat1;   // 即 M₁ᵀ V₂
-    Vector3d angvel2 = transform2.getRotationRate() * mat1; // 即 M₁ᵀ ω₂
+    Vector3d tau = mat1.transpose() * transform2.getTranslation();      // 即 M₁ᵀ t₂
+    Vector3d velocity2 = mat1.transpose() * transform2.getVelocity();   // 即 M₁ᵀ V₂
+    Vector3d angvel2 = mat1.transpose() * transform2.getRotationRate(); // 即 M₁ᵀ ω₂
 
     Vector3d accExpect = angvel1.cross(velocity2) * 2.0 + angvel1.cross(angvel1.cross(tau));
     Vector3d angvelDotExpect = angvel1.cross(angvel2);
@@ -323,7 +323,7 @@ TEST(AccelerationTransformTest, RotatingFrameCentripetal)
 
     AccelerationTransform composed = rotation.composed(translation);
 
-    Vector3d tau = arm * rotation.getRotation().getMatrix();   // 即 M₁ᵀ t₂
+    Vector3d tau = rotation.getRotation().getMatrix().transpose() * arm;   // 即 M₁ᵀ t₂
     Vector3d translationExpect = tau;
     Vector3d velocityExpect = angvel1.cross(tau);
     Vector3d accelerationExpect = angvel1.cross(angvel1.cross(tau)) + angvelDot1.cross(tau);
@@ -351,7 +351,7 @@ TEST(AccelerationTransformTest, PureAngularAcceleration)
 
     AccelerationTransform composed = rotation.composed(translation);
 
-    Vector3d tau = arm * rotation.getRotation().getMatrix();
+    Vector3d tau = rotation.getRotation().getMatrix().transpose() * arm;
     Vector3d accelerationExpect = angvelDot1.cross(tau);
 
     expectVectorNear(composed.getTranslation(), tau, 1e-14, 1e-14);

@@ -58,20 +58,20 @@ TEST(SGP4Test, Propagation)
         TimePoint tp = TimePoint::FromUTC(2021, 3, 25, 0, 0, 0);
         Vector3d posTEME, velTEME;
         sgp4.getPosVel(tp, posTEME, velTEME);  // in TEME of date
-        printf("posTEME  = %s\n", posTEME.toString().c_str());
-        printf("velTEME  = %s\n", velTEME.toString().c_str());
+        printf("posTEME  = %s\n", toString(posTEME).c_str());
+        printf("velTEME  = %s\n", toString(velTEME).c_str());
 
         auto icrf = aFrameEarthICRF();
         Vector3d posICRF, velICRF;
         sgp4.getPosVelIn(icrf, tp, posICRF, velICRF);
-        printf("posICRF  = %s\n", posICRF.toString().c_str());
-        printf("velICRF  = %s\n", velICRF.toString().c_str());
+        printf("posICRF  = %s\n", toString(posICRF).c_str());
+        printf("velICRF  = %s\n", toString(velICRF).c_str());
 
         auto j2000 = aFrameEarthJ2000();
         Vector3d posJ2000, velJ2000;
         sgp4.getPosVelIn(j2000, tp, posJ2000, velJ2000);
-        printf("posJ2000 = %s\n", posJ2000.toString().c_str());
-        printf("velJ2000 = %s\n", velJ2000.toString().c_str());
+        printf("posJ2000 = %s\n", toString(posJ2000).c_str());
+        printf("velJ2000 = %s\n", toString(velJ2000).c_str());
 
         Vector3d posTEMEExpected{-162063.7772662019, -2279555.1101529584, -6681715.2148036920};
         Vector3d velTEMEExpected{-2913.0173871367, 6553.9673083082, -2221.0934965069};

@@ -202,10 +202,10 @@ TEST(LocalOrbitFrame, FrameToVVLHTransform)
     // 与 LVLH 只差一组固定的轴重排
     Matrix3d lvlh;
     EXPECT_EQ(aFrameToLVLHMatrix(pos, vel, lvlh), eNoError);
-    const Matrix3d permutation = {
-        0.0, 1.0, 0.0,
-        0.0, 0.0, -1.0,
-        -1.0, 0.0, 0.0,
+    const Matrix3d permutation{
+        {0.0, 1.0, 0.0},
+        {0.0, 0.0, -1.0},
+        {-1.0, 0.0, 0.0},
     };
     for (int i = 0; i < 3; ++i)
         for (int j = 0; j < 3; ++j)

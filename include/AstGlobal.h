@@ -63,6 +63,7 @@
 
 // #define AST_DISABLE_AUTO_DOWNLOAD_DATA        // 是否禁用自动下载数据功能
 
+// #define AST_USE_EIGEN_MATRIX                  // [影响ABI]是否使用 Eigen 库中的矩阵向量定义，否则使用库中内置的类型
 // #define AST_USE_STD_STRING_VIEW               // [影响ABI]是否使用 std::string_view ，否则使用内置的string_view
 // #define AST_USE_STD_FILESYSTEM                // 是否使用 std::filesystem，如果存在的话，否则使用内置的filesystem
 // #define AST_USE_STD_FILESYSTEM_EXPERIMENTAL   // 是否选择使用 std::experimental::filesystem 的c++实验特性，如果存在的话
@@ -427,6 +428,12 @@
 #define AST_VISVTK_CAPI A_DECL_EXTERN_C AST_VISVTK_API
 
 
+#if defined(AST_USE_EIGEN_MATRIX) && defined(__cplusplus)
+#undef min
+#undef max
+#include <Eigen/Core>
+#include <Eigen/Dense>
+#endif
 
 AST_NAMESPACE_BEGIN
 
@@ -502,12 +509,25 @@ class VectorN;
 template<typename _Scalar, size_t M, size_t N>
 class MatrixMN;
 
+#if defined(AST_USE_EIGEN_MATRIX)
+
+using Vector3d = ::Eigen::Vector3d;
+using Vector6d = ::Eigen::Vector<double, 6>;
+
+using Matrix3d = ::Eigen::Matrix3d;
+using Matrix8d = ::Eigen::Matrix<double, 8, 8>;
+using Matrix6d = ::Eigen::Matrix<double, 6, 6>;
+
+#else
+
 typedef VectorN<double, 3> Vector3d;
 typedef VectorN<double, 6> Vector6d;
 
 typedef MatrixMN<double, 3, 3> Matrix3d;
 typedef MatrixMN<double, 8, 8> Matrix8d;
 typedef MatrixMN<double, 6, 6> Matrix6d;
+
+#endif
 
 
 template<typename _Char>

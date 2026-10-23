@@ -206,9 +206,9 @@ A_ALWAYS_INLINE AccelerationTransform AccelerationTransform::composed(const Acce
     Matrix3d mat1 = this->matrix();
     Vector3d angvel1 = this->rotationRate();
     Vector3d angvelDot1 = this->rotationRateDot();
-    Vector3d tau = next.translation() * mat1;             // 即 M₁ᵀ t₂
-    Vector3d velocity2 = next.velocity() * mat1;          // 即 M₁ᵀ V₂
-    Vector3d acceleration2 = next.acceleration() * mat1;  // 即 M₁ᵀ A₂
+    Vector3d tau = mat1.transpose() * next.translation();             // 即 M₁ᵀ t₂
+    Vector3d velocity2 = mat1.transpose() * next.velocity();          // 即 M₁ᵀ V₂
+    Vector3d acceleration2 = mat1.transpose() * next.acceleration();  // 即 M₁ᵀ A₂
 
     Vector3d translation = this->translation() + tau;
     Vector3d velocity = this->velocity() + velocity2 + angvel1.cross(tau);

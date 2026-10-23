@@ -88,8 +88,8 @@ TEST_F(HPOPTest, TwoBody)
     Vector3d vel{0, 6789.53029, 3686.414173};
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
     EXPECT_NEAR(pos[0],  5596646.758676, 1e-4);
     EXPECT_NEAR(pos[1], -3201966.117956, 1e-4);
     EXPECT_NEAR(pos[2],  -1738525.75573, 1e-4);
@@ -121,8 +121,8 @@ TEST_F(HPOPTest, OnlyGravity_2_0)
     Vector3d vel{0, 6789.53029, 3686.414173};
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
     EXPECT_NEAR(pos[0],  6304667.00836, 1e-4);
     EXPECT_NEAR(pos[1], -2092242.66016, 1e-4);
     EXPECT_NEAR(pos[2],  -678674.87954, 1e-4);
@@ -152,8 +152,8 @@ TEST_F(HPOPTest, OnlyGravity_70_50)
     Vector3d vel{0, 6789.53029, 3686.414173};
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
     EXPECT_NEAR(pos[0],  6302382.63957, 1e-2);
     EXPECT_NEAR(pos[1], -2096352.94648, 1e-1);
     EXPECT_NEAR(pos[2],  -679973.96122, 1e-2);
@@ -190,8 +190,8 @@ TEST_F(HPOPTest, OnlyGravity_20_20)
     Vector3d vel{0, 6789.53029, 3686.414173};
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
     Vector3d posExpect{-3751978.1406987, 5486879.688504, -634647.012079};
     Vector3d velExpect{-5821.980921923, -3557.877945309, 3625.945661598};
     EXPECT_NEAR(pos[0],  posExpect[0], 1e-1);
@@ -231,8 +231,8 @@ TEST_F(HPOPTest, Gravity_SecularVariation)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
 
 
 

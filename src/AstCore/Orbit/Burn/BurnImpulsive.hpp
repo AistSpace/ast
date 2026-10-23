@@ -62,7 +62,7 @@ public:
     void setImpulse(const Vector3d& value) {impulse_ = value;}
 private:
     WeakPtr<Axes> axes_{};
-    Vector3d impulse_{};
+    Vector3d impulse_ = Vector3d::Zero();   ///< 默认零冲量（Vector3d 的默认构造不保证置零）
 };
 
 

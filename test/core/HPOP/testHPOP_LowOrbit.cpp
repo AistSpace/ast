@@ -75,12 +75,12 @@ TEST(HPOPTest, LowOrbit)
         EXPECT_TRUE(!std::isnan(state[5]));
 
         printf("init time  : %s\n", start.toString().c_str());
-        printf("init  pos  : %s\n", initState.pos().toString().c_str());
-        printf("init  vel  : %s\n", initState.vel().toString().c_str());
+        printf("init  pos  : %s\n", toString(initState.pos()).c_str());
+        printf("init  vel  : %s\n", toString(initState.vel()).c_str());
 
         printf("final time1: %s\n", stop.toString(16).c_str());
-        printf("final pos1 : %s\n", state.pos().toString().c_str());
-        printf("final vel1 : %s\n", state.vel().toString().c_str());
+        printf("final pos1 : %s\n", toString(state.pos()).c_str());
+        printf("final vel1 : %s\n", toString(state.vel()).c_str());
 
 
         HPOP hpop2;
@@ -92,8 +92,8 @@ TEST(HPOPTest, LowOrbit)
         rc = hpop2.propagate(start, stop2, state2);
         EXPECT_EQ(rc, eNoError);
         printf("final time2: %s\n", stop2.toString(16).c_str());
-        printf("final pos2 : %s\n", state2.pos().toString().c_str());
-        printf("final vel2 : %s\n", state2.vel().toString().c_str());
+        printf("final pos2 : %s\n", toString(state2.pos()).c_str());
+        printf("final vel2 : %s\n", toString(state2.vel()).c_str());
         printf("alt: %.24g km\n", (state2.pos().norm() - kEarthRadius)/1_km);
         printf("\n");
 

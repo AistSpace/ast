@@ -324,7 +324,7 @@ A_ALWAYS_INLINE void Rotation::transformVector(const Vector3d &vector, Vector3d 
 
 A_ALWAYS_INLINE void Rotation::transformVectorInv(const Vector3d &vector, Vector3d &vectorOut) const
 {
-    vectorOut = vector * this->matrix_;
+    vectorOut = this->matrix_.transpose() * vector;
 }
 
 A_ALWAYS_INLINE Vector3d Rotation::transformVector(const Vector3d& vector) const

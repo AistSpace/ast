@@ -22,20 +22,33 @@
 
 AST_NAMESPACE_BEGIN
 
-template<>
-AST_MATH_API
-std::string Matrix3d::toString() const
+
+template <typename MatrixType>
+std::string MatrixToString(const MatrixType& m)
 {
     // 9 个 %.15g 最坏各占 22 字节
     char buf[256];
     snprintf(
         buf, sizeof(buf), 
-        "\n%.15g, %.15g, %.15g\n%.15g, %.15g, %.15g\n%.15g, %.15g, %.15g\n", 
-        data_[0][0], data_[0][1], data_[0][2], 
-        data_[1][0], data_[1][1], data_[1][2], 
-        data_[2][0], data_[2][1], data_[2][2]
+        "\n%.15g, %.15g, %.15g\n%.15g, %.15g, %.15g\n%.15g, %.15g, %.15g\n",
+        m(0, 0), m(0, 1), m(0, 2),
+        m(1, 0), m(1, 1), m(1, 2),
+        m(2, 0), m(2, 1), m(2, 2)
     );
     return std::string(buf);
+}
+
+
+template<>
+AST_MATH_API
+std::string MatrixMN<double, 3, 3>::toString() const
+{
+    return MatrixToString(*this);
+}
+
+std::string toString(const Matrix3d& m)
+{
+    return MatrixToString(m);
 }
 
 AST_NAMESPACE_END

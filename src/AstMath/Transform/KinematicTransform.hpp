@@ -158,10 +158,10 @@ A_ALWAYS_INLINE KinematicTransform KinematicTransform::composed(const KinematicT
     /*
     也可以通过 getRotation().transformVectorVelocityInv() 来实现。
     */
-    Vector3d vector = next.translation() * this->matrix();
+    Vector3d vector = this->matrix().transpose() * next.translation();
 
     Vector3d translation = this->translation() + vector;
-    Vector3d velocity = this->velocity() + next.velocity() * this->matrix() 
+    Vector3d velocity = this->velocity() + this->matrix().transpose() * next.velocity()
                         + this->rotationRate().cross(vector);
     return KinematicTransform(translation, velocity, rotation);
 }

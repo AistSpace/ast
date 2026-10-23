@@ -133,9 +133,11 @@ int main()
     state.position() = Vector3d{6678137, 0, 0};
     state.velocity() = Vector3d{0, 6789.53029, 3686.414173};
 
+    // 显式置为单位阵：Matrix6d 的默认构造不保证零初始化
     Matrix6d stm{};
     for (int i = 0; i < 6; ++i)
-        stm(i, i) = 1.0;
+        for (int j = 0; j < 6; ++j)
+            stm(i, j) = (i == j) ? 1.0 : 0.0;
 
     Vector6d stateSensWrtDrag{};
     Vector6d stateSensWrtSRP{};
@@ -182,8 +184,8 @@ int main()
     // printCsv(frames);
 
     printf("# frames=%zu\n", frames.size());
-    printf("# final pos:  %s\n", state.position().toString().c_str());
-    printf("# final vel:  %s\n", state.velocity().toString().c_str());
+    printf("# final pos:  %s\n", toString(state.position()).c_str());
+    printf("# final vel:  %s\n", toString(state.velocity()).c_str());
     printf("# final dragSens: [%.6e, %.6e, %.6e, %.6e, %.6e, %.6e]\n",
            stateSensWrtDrag[0], stateSensWrtDrag[1], stateSensWrtDrag[2],
            stateSensWrtDrag[3], stateSensWrtDrag[4], stateSensWrtDrag[5]);

@@ -52,7 +52,7 @@ TEST(J2Analytical, J2PropMars)
 {
     auto mars = aGetMars();
     ModOrbElem modOrbElem;
-    CartState stateMarsInertial{3694_km, 0, 0, 0, 3_km/s, 1.6_km/s};
+    CartState stateMarsInertial{{3694_km, 0, 0}, {0, 3_km/s, 1.6_km/s}};
     aCartToModOrbElem(stateMarsInertial.pos(), stateMarsInertial.vel(), mars->getGM(), modOrbElem);
     printf("modOrbElem: %s\n", modOrbElem.toString().c_str());
     double gm = mars->getGM();

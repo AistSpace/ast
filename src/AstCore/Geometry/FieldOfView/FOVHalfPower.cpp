@@ -27,7 +27,7 @@ double FOVHalfPower::angularMargin(const Vector3d& direction) const
 {
     // 视轴 = +Z
     static const Vector3d kSensorBoresight{0.0, 0.0, 1.0};
-    return halfAngle_ - direction.angle(kSensorBoresight);
+    return halfAngle_ - aAngle(direction, kSensorBoresight);
 }
 
 AST_NAMESPACE_END

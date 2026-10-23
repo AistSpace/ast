@@ -44,8 +44,9 @@ double aJacchiaRoberts(
 )
 {
     height /= 1000.0;
-    auto space_craft_temp = space_craft / 1000;
-    double rho = jac_rob(height, space_craft_temp.data(), sun.normalized().data(), a1_time, tkp, xtemp);
+    Vector3d space_craft_temp = space_craft / 1000;
+    Vector3d sun_dir = sun.normalized();
+    double rho = jac_rob(height, space_craft_temp.data(), sun_dir.data(), a1_time, tkp, xtemp);
     return rho * 1000.0;
 }
 

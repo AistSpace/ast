@@ -63,8 +63,8 @@ TEST(MissionTest, HohmannTransfer)
     printf("tp: %s\n", tp.toString().c_str());
     printf("cartState: %s\n", cartState.toString().c_str());
     CartState expectCartState{
-        -9999.9956695325836336_km, 23.9548574078268430_km, -22.4634031187308558_km,
-        -0.0065201289543048_km/sec, -5.5488192323528542_km/sec, -3.0117026995629019_km/sec 
+        {-9999.9956695325836336_km, 23.9548574078268430_km, -22.4634031187308558_km},
+        {-0.0065201289543048_km/sec, -5.5488192323528542_km/sec, -3.0117026995629019_km/sec}
     };
     TimePoint expectTime = TimePoint::Parse("7 Apr 2026 07:48:46.474  UTC");
     printf("expectTime: %s\n", expectTime.toString().c_str());

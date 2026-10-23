@@ -215,9 +215,12 @@ public:
     Scalar data_[Row][Col];  ///< 矩阵元素；不初始化，确保类型为聚合类型
 };
 
-
+#if !defined(AST_USE_EIGEN_MATRIX)
 typedef MatrixMN<double, 3, 3> Matrix3d;
 typedef MatrixMN<double, 6, 6> Matrix6d;
+#endif
+
+AST_MATH_API std::string toString(const Matrix3d& m);
 
 template <typename _Scalar>
 A_ALWAYS_INLINE typename MatrixMN<_Scalar, 3, 3>::Self MatrixMN<_Scalar, 3, 3>::transpose() const
@@ -244,6 +247,18 @@ A_ALWAYS_INLINE typename MatrixMN<_Scalar, 3, 3>::Self &MatrixMN<_Scalar, 3, 3>:
     *this = operator*(*this, other);
     return *this;
 }
+
+
+template<typename MatrixType>
+class TransposeMatrix
+{
+public:
+    TransposeMatrix(MatrixType& matrix)
+        : matrix_(matrix)
+    {}
+private:
+    MatrixType& matrix_;
+};
 
 /*! @} */
 

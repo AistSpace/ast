@@ -72,8 +72,8 @@ TEST_F(HPOPMarsTest, TwoBody)
     
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
     Vector3d posExpected, velExpected;
     posExpected = {
         5864637.6677002646028996, 
@@ -118,8 +118,8 @@ TEST_F(HPOPMarsTest, OnlyGravity_2_0)
     
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
     Vector3d posExpected, velExpected;
     posExpected = {
         5762406.5368412779644132,
@@ -166,8 +166,8 @@ TEST_F(HPOPMarsTest, OnlyGravity_70_10)
     
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
     Vector3d posExpected, velExpected;
     posExpected = {
         5756936.6053937152028084,

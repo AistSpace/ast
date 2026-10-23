@@ -30,6 +30,7 @@
 #include "AstMath/Euler.hpp"
 #include "AstMath/Quaternion.hpp"
 #include "AstMath/MathOperator.hpp"
+#include "AstMath/MathUtil.hpp"
 #include "AstUtil/Constants.hpp"
 #include "AstUtil/Math.hpp"
 #include "AstUtil/StringView.hpp"
@@ -1055,11 +1056,12 @@ void radrec(double range, double ra, double dec, Vector3d &rectan)
 
 void rav2xf(const Matrix3d &rot, const Vector3d &av, Matrix6d &xform)
 {
-    Matrix3d omegat {
+    Matrix3d omegat;
+    aSetMatrix(omegat,
         0,      av[2], -av[1],
         -av[2], 0,      av[0],
         av[1],  -av[0], 0
-    };
+    );
 
     Matrix3d drdt = rot * omegat;
 

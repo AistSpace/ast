@@ -40,11 +40,12 @@ namespace {
 ///           [-ωy,  ωx,  0 ]]
 A_ALWAYS_INLINE Matrix3d crossMatrix(const Vector3d& w)
 {
-    return Matrix3d{
-         0,   -w(2),  w(1),
-         w(2),  0,   -w(0),
-        -w(1),  w(0),  0
-    };
+    const double wx = w(0), wy = w(1), wz = w(2);
+    Matrix3d m;
+    m(0, 0) = 0;    m(0, 1) = -wz;  m(0, 2) = wy;
+    m(1, 0) = wz;   m(1, 1) = 0;    m(1, 2) = -wx;
+    m(2, 0) = -wy;  m(2, 1) = wx;   m(2, 2) = 0;
+    return m;
 }
 
 } // anonymous namespace

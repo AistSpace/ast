@@ -68,15 +68,15 @@ TEST_F(EphemerisTest, EphemerisLagrangeVar_GetPosVel)
         Vector3d vel_expected = {0, 0, 1};
         errc_t rc = ephem.getPos(tp, pos);
         EXPECT_TRUE(rc == eNoError);
-        printf("pos = %s\n", pos.toString().c_str());
+        printf("pos = %s\n", toString(pos).c_str());
         EXPECT_NEAR(pos[0], pos_expected[0], 1e-2);
         EXPECT_NEAR(pos[1], pos_expected[1], 1e-2);
         EXPECT_NEAR(pos[2], pos_expected[2], 1e-2);
 
         rc = ephem.getPosVel(tp, pos, vel);
         EXPECT_TRUE(rc == eNoError);
-        printf("pos = %s\n", pos.toString().c_str());
-        printf("vel = %s\n", vel.toString().c_str());
+        printf("pos = %s\n", toString(pos).c_str());
+        printf("vel = %s\n", toString(vel).c_str());
         EXPECT_NEAR(pos[0], pos_expected[0], 1e-2);
         EXPECT_NEAR(pos[1], pos_expected[1], 1e-2);
         EXPECT_NEAR(pos[2], pos_expected[2], 1e-2);

@@ -106,8 +106,8 @@ TEST_F(HPOPTest, Earth_Moon_Transfer_Backward_Propagation)
 
     printf("start: %s\n", start.toString().c_str());
     printf("end  : %s\n", end.toString().c_str());
-    printf("pos  : %s\n", earthICRF.pos().toString().c_str());
-    printf("vel  : %s\n", earthICRF.vel().toString().c_str());
+    printf("pos  : %s\n", toString(earthICRF.pos()).c_str());
+    printf("vel  : %s\n", toString(earthICRF.vel()).c_str());
 
     Vector3d posExpected{1574552.8400255216, -5990072.842589266, -2403805.4378060703};
     Vector3d velExpected{10249.204432921466, 1350.1713349226482, 3348.9770740081763};
@@ -164,8 +164,8 @@ TEST_F(HPOPTest, With_Sun_Moon_ThirdBody)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
     Vector3d posExpect{ -5.5995469216931257e+06, -3.0816759444764131e+06, 2.5246500543340887e+06};
     Vector3d velExpect{ 4.2866120729498525e+03, -5.8469115306180220e+03, 2.3388688727148760e+03};
     EXPECT_NEAR(pos[0],  posExpect[0], 1e-3);
@@ -199,8 +199,8 @@ TEST_F(HPOPTest, MoonThirdBody)
     Vector3d vel{ 1746.646187542246, 10168.796191792746, -3704.293552428442};
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
     Vector3d posExpect{ -343181741.5553657, 132364959.4210277, 31096923.2826433145 };
     Vector3d velExpect{ 615.919587695, 1171.545013541995, 749.472303573647 };
     EXPECT_NEAR(pos[0],  posExpect[0], 1e-4);
@@ -233,8 +233,8 @@ TEST_F(HPOPTest, MoonFreeReturn)
     Vector3d vel{ 1742.576871508756, 10169.577066826638, -3704.322833361938};
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
     Vector3d posExpect{ 5533457.951033574529, -3028079.859784354921, -1237950.223206555471 };
     Vector3d velExpect{ 5206.902914248729, 6554.495771193961, 7241.520277290054};
     EXPECT_NEAR(pos[0],  posExpect[0], 1e-2);
@@ -270,8 +270,8 @@ TEST_F(HPOPTest, MoonReturn)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
     Vector3d posExpect{ -7744298.936267, 2645786.33049, 736890.01309 };
     Vector3d velExpect{ 9071.93747, -3461.80637, -920.620795};
     EXPECT_NEAR(pos[0],  posExpect[0], 2e-3);

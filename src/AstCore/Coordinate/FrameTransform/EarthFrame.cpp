@@ -107,7 +107,7 @@ void aJ2000ToECFTransform(const TimePoint & tp, KinematicRotation & rotationOut)
     rotation.getRotation() *= temp.getRotation();
 
     aTODToGTODTransform(tp, temp);
-    rotation.setRotationRate(temp.getRotationRate() * rotation.getRotation().getMatrix());
+    rotation.setRotationRate(rotation.getRotation().getMatrix().transpose() * temp.getRotationRate());
     rotation.getRotation() *= temp.getRotation();
 
     aGTODToECFTransform(tp, temp.getRotation());
@@ -458,7 +458,7 @@ void aICRFToECFTransform(const TimePoint &tp, KinematicRotation &rotationOut)
     aICRFToCIRFTransform(tp, rotation.getRotation());
     
     aCIRFToTIRFTransform(tp, temp);
-    rotation.setRotationRate(temp.getRotationRate() * rotation.getRotation().getMatrix());
+    rotation.setRotationRate(rotation.getRotation().getMatrix().transpose() * temp.getRotationRate());
     rotation.getRotation() *= temp.getRotation();
 
     aTIRFToECFTransform(tp, temp.getRotation());
@@ -490,7 +490,7 @@ void aECFToICRF(const TimePoint &tp, const Vector3d &vecECF, Vector3d &vecICRF)
 {
     Matrix3d matrix;
     aICRFToECFMatrix(tp, matrix);
-    vecICRF = vecECF * matrix;
+    vecICRF = matrix.transpose() * vecECF;
 }
 
 void aICRFToECF(const TimePoint &tp, const Vector3d &vecICRF, const Vector3d &velICRF, Vector3d &vecECF, Vector3d &velECF)

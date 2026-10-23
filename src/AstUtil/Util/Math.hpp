@@ -223,6 +223,28 @@ A_ALWAYS_INLINE double aNormalizeAngleNeg2PiTo0(double angle)
 }
 
 
+template<typename VectorType>
+inline double aAngle(const VectorType& v1, const VectorType & v2)
+{
+    double normProduct = v1.norm() * v2.norm();
+    if (normProduct == 0) {
+        return 0;
+    }
+
+    double dot = v1.dot(v2);
+    double threshold = normProduct * 0.9999;
+    if ((dot < -threshold) || (dot > threshold)) {
+        auto v3 = v1.cross(v2);
+        if (dot >= 0) {
+            return asin(v3.norm() / normProduct);
+        }
+        return kPI - asin(v3.norm() / normProduct);
+    }
+
+    return acos(dot / normProduct);
+}
+
+
 /// @brief 传播 NaN 值的数学工具函数
 namespace propagate_nan
 {

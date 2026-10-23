@@ -66,8 +66,8 @@ std::string OrbElem::toString() const
 std::string CartState::toString() const
 {
     return std::string(
-        "CartState{pos: " + pos_.toString() + 
-        ", vel: " + vel_.toString() + 
+        "CartState{pos: " + _AST toString(pos_) + 
+        ", vel: " + _AST toString(vel_) + 
         "}");
 }
 

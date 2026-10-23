@@ -344,7 +344,7 @@ void GravityCalculator2::computeGradient(const Vector3d &position, Vector3d &gra
         jacobian(2, 2) = -rho / r2;
         
         // 转换为笛卡尔梯度
-        gradient = gradient * jacobian;
+        gradient = jacobian.transpose() * gradient;
     }
 }
 
