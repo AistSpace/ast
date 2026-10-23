@@ -74,7 +74,7 @@ bool aPathIsAbsolute(StringView path)
     #endif
 }
 
-
+#ifdef _WIN32
 std::wstring aMakeWin32Path(StringView path)
 {
     std::wstring wide_path = aUtf8ToWide(path);  // 转换为宽字符
@@ -107,7 +107,7 @@ std::wstring aMakeWin32Path(StringView path)
 
     return LR"(\\?\)" + full_path;
 }
-
+#endif
 
 #ifdef _WIN32
 namespace {

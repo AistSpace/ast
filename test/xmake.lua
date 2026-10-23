@@ -39,7 +39,7 @@ for _, file in ipairs(test_files1) do
     target(basename)
         add_files(file)
         set_kind("binary")
-        add_tests("unittest", {run_timeout=120000})
+        add_tests("unittest")
 end
 local test_files2 = os.files("**/test*.cxx")
 for _, file in ipairs(test_files2) do
@@ -76,7 +76,7 @@ if has_package("benchmark") then
         target(basename)
             add_files(file)
             set_kind("binary")
-            add_tests("benchmark", {run_timeout=120000})
+            add_tests("benchmark")
             -- add_extrafiles("xmake.lua")
     end
 end

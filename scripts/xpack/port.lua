@@ -42,7 +42,7 @@ for _, file in ipairs(files) do
         -- 设置为二进制目标
         set_kind("binary")
         -- 添加到测试组
-        add_tests("example", {run_timeout=120000})
+        add_tests("example")
         -- 设置分组名称
         set_group("example")
     target_end()
@@ -59,7 +59,7 @@ for _, file in ipairs(files) do
         -- 设置为二进制目标
         set_kind("binary")
         -- 添加到测试组
-        add_tests("test", {run_timeout=120000})
+        add_tests("test")
         -- 设置分组名称
         set_group("test")
     target_end()
