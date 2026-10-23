@@ -26,7 +26,7 @@ for _, pattern in ipairs(patterns) do
         target(basename)
             add_files(file)
             set_kind("binary")
-            add_tests("example")
+            add_tests("example", {run_timeout=120000})
             if is_plat("windows") then
                 add_cxflags("/utf-8")
             end

@@ -27,6 +27,7 @@
 #endif
 
 #include "ast/FileSystem.hpp"
+#include "ast/Path.hpp"
 #include "ast/AstTestMacro.h"
 #include <iostream>
 #include <fstream>
@@ -93,9 +94,9 @@ TEST(SimpleFileSystem, PathOperations) {
     EXPECT_EQ(p3.string(), expected);
     
     // 路径分隔符检查
-    EXPECT_TRUE(fs::path::is_separator('/'));
+    EXPECT_TRUE(aIsPathSeparator('/'));
     #ifdef _WIN32
-    EXPECT_TRUE(fs::path::is_separator('\\'));
+    EXPECT_TRUE(aIsPathSeparator('\\'));
     #endif
     
     // 路径比较
@@ -421,6 +422,35 @@ TEST(SimpleFileSystem, Absolute) {
     EXPECT_EQ(fs::absolute(fs::path("a") / "b"), fs::current_path() / "a" / "b");
 }
 
+// 绝对性判定与 std::filesystem::path::is_absolute 保持一致
+TEST(SimpleFileSystem, PathIsAbsolute) {
+    namespace fs = _AST fs_simple;
+
+    EXPECT_FALSE(aPathIsAbsolute(""));
+    EXPECT_FALSE(aPathIsAbsolute("foo"));
+    EXPECT_TRUE(aPathIsRelative("foo"));
+
+#ifdef _WIN32
+    EXPECT_TRUE(aPathIsAbsolute("C:\\Windows"));
+    EXPECT_TRUE(aPathIsAbsolute("c:/Windows"));
+    EXPECT_TRUE(aPathIsAbsolute("\\\\server\\share"));
+    EXPECT_FALSE(aPathIsAbsolute("C:relative"));    // 盘符相对，需要按 C 盘当前目录解析
+    EXPECT_FALSE(aPathIsAbsolute("\\\\"));          // 退化的 UNC 前缀，没有 root_name
+    EXPECT_TRUE(aPathIsAbsolute("\\\\server"));     // 不完整的 UNC，std 仍视为绝对
+    // 只有单个前导分隔符的是"根相对"，std::filesystem 视为相对路径
+    EXPECT_FALSE(aPathIsAbsolute("\\foo"));
+    EXPECT_FALSE(aPathIsAbsolute("/foo"));
+    EXPECT_TRUE(aPathIsRelative("\\foo"));
+    EXPECT_TRUE(fs::path("C:\\Windows").is_absolute());
+    EXPECT_TRUE(fs::path("\\foo").is_relative());
+#else
+    EXPECT_TRUE(aPathIsAbsolute("/etc"));
+    EXPECT_FALSE(aPathIsAbsolute("etc"));
+    EXPECT_TRUE(fs::path("/etc").is_absolute());
+    EXPECT_TRUE(fs::path("etc").is_relative());
+#endif
+}
+
 // 测试系统临时文件夹
 TEST(SimpleFileSystem, TempDirectoryPath) {
     namespace fs = _AST fs_simple;
@@ -565,6 +595,112 @@ TEST(SimpleFileSystem, UnicodeSupport) {
         EXPECT_TRUE(removed > 0);
         EXPECT_FALSE(fs::exists(unicode_dir));
     }
+}
+
+#ifdef _WIN32
+// 目录联接（Junction）只在 Windows/NTFS 上可用
+TEST(SimpleFileSystem, CreateJunction)
+{
+    namespace fs = _AST fs_simple;
+
+    fs::path base = fs::current_path() / "test_create_junction";
+    fs::remove_all(base);
+    ASSERT_TRUE(fs::create_directories(base));
+
+    fs::path target = base / "target";
+    ASSERT_TRUE(fs::create_directories(target));
+    {
+        std::ofstream file((target / "payload.txt").string());
+        ASSERT_TRUE(file.good());
+        file << "junction payload";
+    }
+
+    fs::path link = base / "link";
+    EXPECT_EQ(aCreateJunction(target.string(), ""), eErrorInvalidParam);
+    EXPECT_EQ(aCreateJunction("", link.string()), eErrorInvalidParam);
+    // 联接点不能指向 UNC/网络路径
+    EXPECT_EQ(aCreateJunction("\\\\server\\share", link.string()), eErrorInvalidParam);
+    EXPECT_FALSE(fs::exists(link));
+    EXPECT_EQ(aCreateJunction(target.string(), link.string()), eNoError);
+
+    // 通过联接点应能访问到目标目录里的文件
+    EXPECT_TRUE(fs::is_directory(link));
+    EXPECT_TRUE(fs::exists(link / "payload.txt"));
+    // 目录联接是重解析点，但不是符号链接
+    EXPECT_FALSE(fs::is_symlink(link));
+    EXPECT_EQ(fs::symlink_status(link).type(), fs::file_type::directory);
+
+    // 联接点路径已存在时不能重复创建
+    EXPECT_NE(aCreateJunction(target.string(), link.string()), eNoError);
+
+    // 删除联接点不影响目标目录；remove_all 也不能递归进目标去删内容
+    EXPECT_EQ(fs::remove_all(link), 1);
+    EXPECT_FALSE(fs::exists(link));
+    EXPECT_TRUE(fs::exists(target / "payload.txt"));
+
+    fs::remove_all(base);
+}
+#endif
+
+// 符号链接在所有平台上都可用；Windows 上创建需要管理员权限或开发者模式
+// 注意：测试名不能叫 CreateSymbolicLink，windows.h 会把该标识符宏展开成 CreateSymbolicLinkA/W
+TEST(SimpleFileSystem, SymbolicLink)
+{
+    namespace fs = _AST fs_simple;
+
+    fs::path base = fs::current_path() / "test_create_symlink";
+    fs::remove_all(base);
+    ASSERT_TRUE(fs::create_directories(base));
+
+    fs::path target = base / "target";
+    ASSERT_TRUE(fs::create_directories(target));
+    {
+        std::ofstream file((target / "payload.txt").string());
+        ASSERT_TRUE(file.good());
+        file << "symlink payload";
+    }
+
+    fs::path link = base / "link";
+    EXPECT_EQ(aCreateSymbolicLink(target.string(), "", true), eErrorInvalidParam);
+    EXPECT_EQ(aCreateSymbolicLink("", link.string(), true), eErrorInvalidParam);
+    EXPECT_FALSE(fs::exists(link));
+
+    errc_t rc = aCreateSymbolicLink(target.string(), link.string(), true);
+#ifdef _WIN32
+    if (rc == eError)
+    {
+        // 未开启开发者模式且没有管理员权限时，CreateSymbolicLinkW 返回
+        // ERROR_PRIVILEGE_NOT_HELD，统一映射为 eError
+        fs::remove_all(base);
+        GTEST_SKIP() << "creating a symbolic link requires administrator or developer mode";
+    }
+#endif
+    ASSERT_EQ(rc, eNoError);
+
+    // 通过符号链接应能访问到目标目录里的文件
+    EXPECT_TRUE(fs::is_directory(link));
+    EXPECT_TRUE(fs::exists(link / "payload.txt"));
+
+    // 链接本身是符号链接，目标不是
+    EXPECT_TRUE(fs::is_symlink(link));
+    EXPECT_FALSE(fs::is_symlink(target));
+
+    // 链接路径已存在时不能重复创建
+    EXPECT_NE(aCreateSymbolicLink(target.string(), link.string(), true), eNoError);
+
+    // 删除符号链接不影响目标目录
+    EXPECT_TRUE(fs::remove(link));
+    EXPECT_FALSE(fs::exists(link));
+    EXPECT_TRUE(fs::exists(target / "payload.txt"));
+
+    // remove_all 对符号链接也只删除链接本身，不递归到目标
+    fs::path link2 = base / "link2";
+    ASSERT_EQ(aCreateSymbolicLink(target.string(), link2.string(), true), eNoError);
+    EXPECT_EQ(fs::remove_all(link2), 1);
+    EXPECT_FALSE(fs::exists(link2));
+    EXPECT_TRUE(fs::exists(target / "payload.txt"));
+
+    fs::remove_all(base);
 }
 
 GTEST_MAIN()

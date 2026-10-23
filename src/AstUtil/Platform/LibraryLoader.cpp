@@ -21,6 +21,7 @@
 #include "LibraryLoader.hpp"
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/Encode.hpp"
+#include "AstUtil/Path.hpp"
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -80,22 +81,34 @@ const char* aGetLoadError()
 }
 #else
 
-void* _aLoadLibrary(const char* filepath)
+void* _aLoadLibraryFromName(const char* filename)
 {
 #if defined(_WIN32) || defined(_WIN64)
-	std::wstring widePath;
-	aUtf8ToWide(filepath, widePath);
+	std::wstring wideFilename;
+	aUtf8ToWide(filename, wideFilename);
     static_assert(sizeof(void*) >= sizeof(HMODULE), "void* must be at least as large as HMODULE");
-    return LoadLibraryW(widePath.c_str());
+    return LoadLibraryW(wideFilename.c_str());
 #else
     // Linux/Unix平台
     // RTLD_LAZY: 延迟绑定，只在需要时解析符号
     // RTLD_LOCAL: 符号不与其他模块共享
 	const int flag = RTLD_LAZY | RTLD_LOCAL;
-    return dlopen(filepath, flag);
+    return dlopen(filename, flag);
 #endif
 }
 
+
+void* _aLoadLibraryFromPath(StringView filepath)
+{
+#if defined(_WIN32) || defined(_WIN64)
+	std::wstring widePath = aMakeWin32Path(filepath);
+    static_assert(sizeof(void*) >= sizeof(HMODULE), "void* must be at least as large as HMODULE");
+    return LoadLibraryW(widePath.c_str());
+#else
+    std::string path(filepath);
+    return _aLoadLibraryFromName(path.c_str());
+#endif
+}
 
 
 void* aLoadLibrary(const char* filepath)
@@ -111,7 +124,7 @@ void* aLoadLibrary(StringView filepath)
 
 #if defined(_WIN32) || defined(_WIN64)
 	static const char* kLibSuffix    = ".dll";
-	static const char* kLibPrefixes[] = {"", "lib"};
+	static const char* kLibPrefixes[] = {"", "lib"};  // lib 前缀用于支持 mingw 平台
 #else
 	static const char* kLibSuffix    = ".so";
 	static const char* kLibPrefixes[] = {"", "lib"};
@@ -123,8 +136,7 @@ void* aLoadLibrary(StringView filepath)
 		|| filepath.find('\\') != StringView::npos
 #endif
 	) {
-		std::string path(filepath.data(), filepath.size());
-		return _aLoadLibrary(path.c_str());
+		return _aLoadLibraryFromPath(filepath);
 	}
 
 	// 文件名是否已经以平台扩展名结尾？
@@ -134,12 +146,12 @@ void* aLoadLibrary(StringView filepath)
 	for (const char* prefix : kLibPrefixes) {
 		std::string name = std::string(prefix) + std::string(filepath);
 
-		if (void* h = _aLoadLibrary(name.c_str()))
+		if (void* h = _aLoadLibraryFromName(name.c_str()))
 			return h;                     // 1) 不加后缀
 
 		if (!alreadyHasSuffix) {
 			name += kLibSuffix;
-			if (void* h = _aLoadLibrary(name.c_str()))
+			if (void* h = _aLoadLibraryFromName(name.c_str()))
 				return h;                 // 2) 加平台后缀
 		}
 	}

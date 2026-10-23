@@ -124,6 +124,7 @@
 #include "AstUtil/OrderedMap.hpp"
 #include "AstUtil/PCKParser.hpp"
 #include "AstUtil/ParseFormat.hpp"
+#include "AstUtil/Path.hpp"
 #include "AstUtil/Platform.hpp"
 #include "AstUtil/PluginInterface.hpp"
 #include "AstUtil/PluginLoader.hpp"
