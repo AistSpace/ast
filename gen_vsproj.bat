@@ -69,7 +69,7 @@ echo.
 echo [信息] 开始生成VS工程...
 echo 执行命令: 
 echo xmake f --with_test=y 
-echo xmake project -k vs
+echo xmake project -k vs -m "release,debug"
 echo.
 
 :: 检查当前目录是否有xmake.lua文件
@@ -84,7 +84,7 @@ if not exist "xmake.lua" (
 
 :: 执行xmake命令生成VS工程
 xmake f --with_test=y 
-xmake project -k vs
+xmake project -k vs -m "release,debug"
 
 :: 检查生成结果
 if %errorlevel% equ 0 (
