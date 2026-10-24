@@ -28,6 +28,7 @@
 #include "ast/Environment.hpp"
 #include "ast/KinematicRotation.hpp"
 #include "ast/MathOperator.hpp"
+#include "ast/ParamAdapter.hpp"
 #include "ast/Literals.hpp"
 #include "ast/IO.hpp"
 #include <cmath>
@@ -1801,6 +1802,27 @@ TEST(SpiceZpr, mxmt)
 
 TEST(SpiceZpr, mxm)
 {
+    double m1[3][3] = {
+        {1.0, 2.0, 3.0},
+        {4.0, 5.0, 6.0},
+        {7.0, 8.0, 10.0}
+    };
+    double m2[3][3] = {
+        {10.0, 9.0, 8.0},
+        { 7.0, 6.0, 5.0},
+        { 4.0, 3.0, 2.0}
+    };
+    double mout[3][3];
+    double mout_c[3][3];
+    mxm(m1, m2, mout);
+    mxm_c(m1, m2, mout_c);
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            EXPECT_NEAR(mout[i][j], mout_c[i][j], 1e-12);
+        }
+    }
 }
 
 TEST(SpiceZpr, mxvg)
@@ -2213,7 +2235,7 @@ TEST(SpiceZpr, rav2xf)
         double xformRef[6][6];
 
         axisar(data.axis, data.angle, mtx);
-        rav2xf_c(mtx, data.axis, xform);
+        rav2xf(mtx, data.axis, xform);
         rav2xf_c(mtx, data.axis, xformRef);
         for(int i = 0; i < 6; i++)
         {
@@ -2236,7 +2258,7 @@ TEST(SpiceZpr, rav2xf)
         printf("%12.6f %12.6f %12.6f\n", velOut[0], velOut[1], velOut[2]);
 
         double xform[6][6];
-        rav2xf_c(kr.getRotation().getMatrix().data(), kr.getRotationRate().data(), xform);
+        rav2xf_c(in(kr.getRotation().getMatrix()), kr.getRotationRate().data(), xform);
         double state[6]{pos[0], pos[1], pos[2], vel[0], vel[1], vel[2]};
         double stateOut[6];
         mxvg(xform, state, 6, 6, stateOut);
@@ -2871,7 +2893,13 @@ TEST(SpiceZpr, tipbod)
     tipbod("J2000", jupiter, 0, tipm);
     printMatrix3d(tipm_c);
     printMatrix3d(tipm);
-    // @todo 验证结果是否一致
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            EXPECT_NEAR(tipm[i][j], tipm_c[i][j], 1e-4);
+        }
+    }
 }
 
 TEST(SpiceZpr, tisbod)

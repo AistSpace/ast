@@ -20,6 +20,7 @@
 
 #include "AstMath/Rotation.hpp"
 #include "AstMath/KinematicRotation.hpp"
+#include "AstMath/ParamAdapter.hpp"
 #include "AstMath/AttitudeConvert.hpp"
 #include "AstMath/Euler.hpp"
 #include "AstMath/Vector.hpp"
@@ -683,6 +684,11 @@ void aJ2000ToICRF(
     KinematicRotation rotation;
     aJ2000ToICRFTransform(tp, rotation);
     rotation.transformVectorVelocity(vecJ2000, velJ2000, vecICRF, velICRF);
+}
+
+void aICRFToECFMatrix(const TimePoint& tp, double matrix[3][3])
+{
+    aICRFToECFMatrix(tp, out(matrix));
 }
 
 AST_NAMESPACE_END

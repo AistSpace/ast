@@ -52,6 +52,9 @@ typedef std::array<double, 6> array6d;
 template<typename _Scalar, size_t Row, size_t Col>
 class MatrixMN;
 
+template<typename MatrixType>
+class TransposeMatrix;
+
 /// @ingroup Vector
 /// @brief  提供向量运算相关的函数
 /// @note
@@ -572,7 +575,7 @@ using namespace math;
 #endif
 
 
-
+/// @brief 矩阵乘法
 template<typename _Scalar, size_t I, size_t J, size_t K>
 MatrixMN<_Scalar, I, K> operator* (
     const MatrixMN<_Scalar, I, J>& left,
@@ -594,7 +597,7 @@ MatrixMN<_Scalar, I, K> operator* (
     return retval;
 }
 
-
+/// @brief 矩阵乘向量
 template<typename _Scalar, size_t I, size_t J>
 VectorN<_Scalar, I> operator*(
     const MatrixMN<_Scalar, I, J>& left,
@@ -612,6 +615,7 @@ VectorN<_Scalar, I> operator*(
     return result;
 }
 
+/// @brief 向量乘矩阵
 template<typename _Scalar, size_t I, size_t J>
 VectorN<_Scalar, J> operator*(
     const VectorN<_Scalar, I>& left,
@@ -625,6 +629,34 @@ VectorN<_Scalar, J> operator*(
         }
     }
     return result;
+}
+
+/// @brief 转置矩阵乘向量
+template<typename _Scalar, size_t I, size_t J>
+A_ALWAYS_INLINE VectorN<_Scalar, J> operator*(const TransposeMatrix<MatrixMN<_Scalar, I, J>>& left, const VectorN<_Scalar, I>& right)
+{
+    return right * left.operand();
+}
+
+/// @brief 矩阵乘转置矩阵
+template<typename _Scalar, size_t I, size_t J, size_t K>
+A_ALWAYS_INLINE MatrixMN<_Scalar, I, K> operator*(const MatrixMN<_Scalar, I, J>& left, const TransposeMatrix<MatrixMN<_Scalar, K, J>>& right)
+{
+    return left * right.eval();
+}
+
+/// @brief 转置矩阵乘矩阵
+template<typename _Scalar, size_t I, size_t J, size_t K>
+A_ALWAYS_INLINE MatrixMN<_Scalar, J, K> operator*(const TransposeMatrix<MatrixMN<_Scalar, I, J>>& left, const MatrixMN<_Scalar, I, K>& right)
+{
+    return left.eval() * right;
+}
+
+/// @brief 转置矩阵乘转置矩阵
+template<typename _Scalar, size_t I, size_t J, size_t K>
+A_ALWAYS_INLINE MatrixMN<_Scalar, J, K> operator*(const TransposeMatrix<MatrixMN<_Scalar, I, J>>& left, const TransposeMatrix<MatrixMN<_Scalar, K, I>>& right)
+{
+    return left.eval() * right.eval();
 }
 
 

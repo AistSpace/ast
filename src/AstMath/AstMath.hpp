@@ -40,6 +40,7 @@
 #include "AstMath/ODEWorkspace.hpp"
 #include "AstMath/Optim.hpp"
 #include "AstMath/OrdinaryDifferentialEquation.hpp"
+#include "AstMath/ParamAdapter.hpp"
 #include "AstMath/Quaternion.hpp"
 #include "AstMath/RK4.hpp"
 #include "AstMath/RK8.hpp"

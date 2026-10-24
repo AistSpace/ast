@@ -165,6 +165,7 @@ class MatrixMN
 public:
     typedef MatrixMN< _Scalar, Row, Col> Self;
     typedef _Scalar Scalar;
+    static Self Zero(){return Self{};}
 
     constexpr size_t size() const{return Row*Col;}
     constexpr size_t row() const{return Row;}
@@ -181,6 +182,8 @@ public:
     Scalar data_[Row][Col];
 };
 
+template<typename MatrixType>
+class TransposeMatrix;
 
 template<typename _Scalar>
 class MatrixMN<_Scalar, 3, 3>
@@ -203,7 +206,8 @@ public:
     Scalar operator()(size_t row, size_t col) const {return data_[row][col]; }
     Scalar& operator()(size_t row, size_t col) {return data_[row][col]; }
 
-    Self transpose() const;
+    friend class TransposeMatrix<Self>;
+    TransposeMatrix<Self> transpose() const;
     void transposeInPlace();
     void setIdentity(){*this = Identity();}
     Self& operator*=(const Self& other);
@@ -211,6 +215,8 @@ public:
 public:
     AST_MATH_API
     std::string toString() const;
+protected:
+    Self transposeImpl() const;
 public:
     Scalar data_[Row][Col];  ///< 矩阵元素；不初始化，确保类型为聚合类型
 };
@@ -223,13 +229,19 @@ typedef MatrixMN<double, 6, 6> Matrix6d;
 AST_MATH_API std::string toString(const Matrix3d& m);
 
 template <typename _Scalar>
-A_ALWAYS_INLINE typename MatrixMN<_Scalar, 3, 3>::Self MatrixMN<_Scalar, 3, 3>::transpose() const
+A_ALWAYS_INLINE typename MatrixMN<_Scalar, 3, 3>::Self MatrixMN<_Scalar, 3, 3>::transposeImpl() const
 {
     return Self{
         data_[0][0], data_[1][0], data_[2][0],
         data_[0][1], data_[1][1], data_[2][1],
         data_[0][2], data_[1][2], data_[2][2],
     };
+}
+
+template <typename _Scalar>
+A_ALWAYS_INLINE TransposeMatrix<MatrixMN<_Scalar, 3, 3>> MatrixMN<_Scalar, 3, 3>::transpose() const
+{
+    return TransposeMatrix<Self>(*this);
 }
 
 template <typename _Scalar>
@@ -249,15 +261,29 @@ A_ALWAYS_INLINE typename MatrixMN<_Scalar, 3, 3>::Self &MatrixMN<_Scalar, 3, 3>:
 }
 
 
+/// @brief 转置矩阵视图
+/// @tparam MatrixType 矩阵类型
+/// @details 不存储矩阵数据，只提供矩阵转置的视图
 template<typename MatrixType>
 class TransposeMatrix
 {
 public:
-    TransposeMatrix(MatrixType& matrix)
-        : matrix_(matrix)
+    TransposeMatrix(const MatrixType& operand)
+        : operand_(operand)
     {}
+    operator MatrixType() const
+    {
+        return operand_.transposeImpl();
+    }
+public:
+    MatrixType eval() const
+    {
+        return operand_.transposeImpl();
+    }
+    /// @brief 获取操作数(即原始矩阵)
+    const MatrixType& operand() const { return operand_; }
 private:
-    MatrixType& matrix_;
+    const MatrixType& operand_;     ///< 操作数(原始矩阵)
 };
 
 /*! @} */

@@ -41,7 +41,7 @@ AST_NAMESPACE_BEGIN
 /// @param[in] axis 旋转轴
 /// @param[in] angle 旋转角度（弧度）
 /// @param[out] r 输出旋转矩阵
-AST_SPICE_CAPI void axisar(
+AST_SPICE_API void axisar(
     const Vector3d&  axis,
     double           angle,
     Matrix3d&        r
@@ -534,7 +534,7 @@ AST_SPICE_CAPI double dpr();
 /// @param axis2 旋转轴2（1, 2, 3 分别对应 X, Y, Z 轴）
 /// @param axis1 旋转轴1（1, 2, 3 分别对应 X, Y, Z 轴）
 /// @param r 输出旋转矩阵
-AST_SPICE_CAPI void eul2m(
+AST_SPICE_API void eul2m(
     double     angle3,
     double     angle2,
     double     angle1,
@@ -656,7 +656,7 @@ AST_SPICE_CAPI void eul2m(
 
 /// @brief 获取单位矩阵(Identity Matrix)
 /// @param matrix 输出单位矩阵
-AST_SPICE_CAPI void ident(Matrix3d& matrix);
+AST_SPICE_API void ident(Matrix3d& matrix);
 
 // illumf
 
@@ -817,7 +817,7 @@ void latrec(
 /// @param angle3 输出第3轴的角度（弧度）
 /// @param angle2 输出第2轴的角度（弧度）
 /// @param angle1 输出第1轴的角度（弧度）
-AST_SPICE_CAPI void  m2eul(
+AST_SPICE_API void  m2eul(
     const Matrix3d& r,
     int             axis3,
     int             axis2,
@@ -830,7 +830,7 @@ AST_SPICE_CAPI void  m2eul(
 /// @brief 将旋转矩阵转换为四元数(Matrix to quaternion)
 /// @param r 旋转矩阵
 /// @param q 输出四元数
-AST_SPICE_CAPI void m2q(
+AST_SPICE_API void m2q(
     const Matrix3d&  r,
     Quaternion&      q
 );
@@ -871,10 +871,10 @@ AST_SPICE_CAPI void m2q(
 /// @param m1 矩阵1
 /// @param m2 矩阵2
 /// @param mout 输出矩阵
-AST_SPICE_CAPI void mxm(
+AST_SPICE_API void mxm(
     const Matrix3d&   m1,
     const Matrix3d&   m2,
-    Matrix3d&         mout 
+    Matrix3d&         mout
 );
 
 /// @brief 矩阵向量乘法(Matrix times vector, general dimension)
@@ -1015,7 +1015,7 @@ AST_SPICE_API errc_t pxform(
 /// @brief 将四元数转换为旋转矩阵(Quaternion to matrix)
 /// @param q 四元数
 /// @param r 输出旋转矩阵
-AST_SPICE_CAPI void q2m(
+AST_SPICE_API void q2m(
     const Quaternion&  q,
     Matrix3d&          r 
 );
@@ -1043,7 +1043,7 @@ AST_SPICE_CAPI void radrec(
 
 
 
-AST_SPICE_CAPI void rav2xf( 
+AST_SPICE_API void rav2xf( 
     const Matrix3d&     rot,
     const Vector3d&     av,
     Matrix6d&           xform

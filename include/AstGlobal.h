@@ -509,16 +509,34 @@ class VectorN;
 template<typename _Scalar, size_t M, size_t N>
 class MatrixMN;
 
-#if defined(AST_USE_EIGEN_MATRIX)
+#define _AST_STORAGE_ORDER_COL_MAJOR 0       ///< 列优先存储
+#define _AST_STORAGE_ORDER_ROW_MAJOR 1       ///< 行优先存储
 
-using Vector3d = ::Eigen::Vector3d;
-using Vector6d = ::Eigen::Vector<double, 6>;
+#define _AST_MATRIX_IS_COL_MAJOR (_AST_MATRIX_STORAGE_ORDER == _AST_STORAGE_ORDER_COL_MAJOR)    ///< 矩阵是否为列优先存储
+#define _AST_MATRIX_IS_ROW_MAJOR (_AST_MATRIX_STORAGE_ORDER == _AST_STORAGE_ORDER_ROW_MAJOR)    ///< 矩阵是否为行优先存储
 
-using Matrix3d = ::Eigen::Matrix3d;
-using Matrix8d = ::Eigen::Matrix<double, 8, 8>;
-using Matrix6d = ::Eigen::Matrix<double, 6, 6>;
+#if defined(AST_USE_EIGEN_MATRIX)  // 使用 Eigen 库中的矩阵向量定义
 
-#else
+// 判断 Eigen 库矩阵的默认存储顺序：行优先存储或列优先存储
+#   if defined(EIGEN_DEFAULT_TO_ROW_MAJOR)
+#       define _AST_MATRIX_STORAGE_ORDER _AST_STORAGE_ORDER_ROW_MAJOR
+#       define _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION Eigen::RowMajor
+#   else
+#       define _AST_MATRIX_STORAGE_ORDER _AST_STORAGE_ORDER_COL_MAJOR
+#       define _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION Eigen::ColMajor
+#   endif
+
+using Vector3d = ::Eigen::Matrix<double, 3, 1, _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION>;
+using Vector6d = ::Eigen::Matrix<double, 6, 1, _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION>;
+
+using Matrix3d = ::Eigen::Matrix<double, 3, 3, _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION>;
+using Matrix8d = ::Eigen::Matrix<double, 8, 8, _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION>;
+using Matrix6d = ::Eigen::Matrix<double, 6, 6, _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION>;
+
+#else   // 否则，使用项目内置的矩阵向量定义
+
+// 项目内置的矩阵使用的是行优先存储
+#define _AST_MATRIX_STORAGE_ORDER _AST_STORAGE_ORDER_ROW_MAJOR
 
 typedef VectorN<double, 3> Vector3d;
 typedef VectorN<double, 6> Vector6d;
