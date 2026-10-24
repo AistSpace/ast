@@ -1,0 +1,51 @@
+name: 零依赖构建
+
+# 验证 --packages=none：不下载、不链接任何第三方库的构建与测试
+# 单独作为一个 workflow，避免和主构建的依赖缓存、Qt 下载、打包发布流程耦合
+
+on:
+  pull_request:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: build (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-22.04
+          - windows-2022
+    runs-on: ${{ matrix.os }}
+    concurrency:
+      group: ${{ github.ref }}-${{ github.base_ref }}-${{ github.head_ref }}-nopackages-${{ matrix.os }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: branch@dev
+
+      - name: 配置 release 版本
+        run: xmake f -cy --packages=none -m release
+
+      - name: 编译
+        run: xmake -ay
+
+      - name: 准备测试数据
+        shell: bash
+        run: |
+          cp -r test/archive/* test
+          xmake cpdata
+
+      - name: 测试
+        timeout-minutes: 90
+        run: xmake test --output-on-failure

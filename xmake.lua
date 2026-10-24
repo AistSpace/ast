@@ -40,6 +40,18 @@ option("system_qt")
     set_default(false)
 option_end()
 
+-- 工程配置选项：第三方依赖策略
+--   all（默认）：按需下载/构建/使用第三方库
+--   none：不下载、不链接任何第三方库
+--         此时不会执行任何 add_requires，has_package() 恒为 false，AST_WITH_* 宏均不会被定义
+--         依赖第三方库的代码走内置回退，依赖第三方库的目标（Qt/绘图/可视化/Python 绑定等）自动禁用
+--   用法：xmake f --packages=none -c -m release
+option("packages")
+    set_default("all")
+    set_values("all", "none")
+option_end()
+
+
 -- 设置库文件后缀名
 -- set_suffixname("_")
 -- add_defines([[_AST_LIB_SUFFIX="_"]])
@@ -184,55 +196,63 @@ if is_plat("wasm") then
     set_toolchains("emcc@emscripten")
 end
 
--- 系统内置的库（一般不需要下载和安装）
-add_requires("openmp", {optional = true})                                       -- 可选的OpenMP库，用于并行计算
-add_requires("opengl", {optional = true})                                       -- 可选的OpenGL库，用于图形渲染
-add_requires("glu", {optional = true})                                          -- 可选的GLU库，用于3D模型渲染
 
--- 下载并安装第三方库（可选）
-add_requires("python 3.x", {optional = true, configs = {headeronly = is_plat("linux")}})
-add_requires("swig >=4.3", {optional = true, asan=false})                       -- 可选的SWIG库，用于生成Python绑定代码，必须 >=4.3，见下方说明
--- SWIG 版本要求说明：
---   >=4.2 才支持 `enum class : type` 语法；
---   >=4.3 才能求值本项目枚举中的初值表达式（enum class EDimension : dimension_t 的初值为constexpr 常量，
---         enum EColor : color_t 的初值为 rgb()/rgba() constexpr 函数调用），
---         4.2.0 会对这些初值报 "Error: Type error. Expecting an integral type" 并以非 0 退出。
-add_requires("gtest <=1.12.1", {optional = true, configs = {cmake = false}})    -- 可选的gtest库，用于单元测试，gtest v1.12.1 for c++11
-add_requires("benchmark", {optional = true})                                    -- 可选的benchmark库，用于性能测试
-add_requires("replxx", {optional = true})                                       -- 可选的replxx库，用于命令行交互
--- add_requires("openscenegraph", {optional = true, configs = {shared = true}})    -- 可选的OpenSceneGraph库，共享库版本，用于图形渲染
--- add_requires("openframes", {optional = true})                                   -- 可选的OpenFrames库，用于三维可视化
--- add_requires("vulkanscenegraph", {optional = true, configs = {shared = true}})  -- 可选的VulkanSceneGraph库，共享库版本，用于图形渲染
--- add_requires("vtk", {optional = true, configs = {shared = true}})
--- add_requireconfs("vtk.seacas", {version = "2025.08.28"})
-add_requires("eigen", {optional = true, configs = {headeronly = true}})         -- 可选的Eigen库，头文件版本，用于线性代数计算
-add_requires("fmt", {optional = true})                                          -- 可选的fmt库，用于格式化输出
-add_requires("sofa", {optional = true})                                         -- 可选的iau-sofa库，用于天文计算
-add_requires("agg", {optional = true, configs = {shared = true}})               -- 可选的agg库，用于绘图
-add_requires("matplotplusplus", {optional = true})                              -- 可选的matplot++库，用于绘图
-add_requires("libf2c", {optional = true})                                       -- 可选的libf2c库，用于f2c转换
-add_requires("cminpack", {optional = true, configs = {long_double = true}})     -- 可选的cminpack库，用于求解非线性方程组
-add_requires("cspice", {optional = true})                                       -- 可选的cspice库，用于天文计算
-add_requires("ipopt", {optional = true, configs = {shared = true, debug = is_mode("debug")}}) -- 可选的ipopt库，用于求解非线性优化问题
+if is_config("packages", "none") then
+    add_rules("ast.no_packages")
+else
+    -- 第三方依赖在此统一声明
+    -- --packages=none 时跳过，不下载、不注册任何包
+    
+    -- 系统内置的库（一般不需要下载和安装）
+    add_requires("openmp", {optional = true})                                       -- 可选的OpenMP库，用于并行计算
+    add_requires("opengl", {optional = true})                                       -- 可选的OpenGL库，用于图形渲染
+    add_requires("glu", {optional = true})                                          -- 可选的GLU库，用于3D模型渲染
 
-local qt_sdkver = get_config("qt_sdkver")
-local system_qt = get_config("system_qt")
--- 触发Qt库的自动下载
-local qt_config = {
-    override = true,
-    optional = true,
-    system = system_qt
-}
-if qt_sdkver ~= "auto" then
-    qt_config.version = qt_sdkver
+    -- 下载并安装第三方库（可选）
+    add_requires("python 3.x", {optional = true, configs = {headeronly = is_plat("linux")}})
+    add_requires("swig >=4.3", {optional = true, asan=false})                       -- 可选的SWIG库，用于生成Python绑定代码，必须 >=4.3，见下方说明
+    -- SWIG 版本要求说明：
+    --   >=4.2 才支持 `enum class : type` 语法；
+    --   >=4.3 才能求值本项目枚举中的初值表达式（enum class EDimension : dimension_t 的初值为constexpr 常量，
+    --         enum EColor : color_t 的初值为 rgb()/rgba() constexpr 函数调用），
+    --         4.2.0 会对这些初值报 "Error: Type error. Expecting an integral type" 并以非 0 退出。
+    add_requires("gtest <=1.12.1", {optional = true, configs = {cmake = false}})    -- 可选的gtest库，用于单元测试，gtest v1.12.1 for c++11
+    add_requires("benchmark", {optional = true})                                    -- 可选的benchmark库，用于性能测试
+    add_requires("replxx", {optional = true})                                       -- 可选的replxx库，用于命令行交互
+    -- add_requires("openscenegraph", {optional = true, configs = {shared = true}})    -- 可选的OpenSceneGraph库，共享库版本，用于图形渲染
+    -- add_requires("openframes", {optional = true})                                   -- 可选的OpenFrames库，用于三维可视化
+    -- add_requires("vulkanscenegraph", {optional = true, configs = {shared = true}})  -- 可选的VulkanSceneGraph库，共享库版本，用于图形渲染
+    -- add_requires("vtk", {optional = true, configs = {shared = true}})
+    -- add_requireconfs("vtk.seacas", {version = "2025.08.28"})
+    add_requires("eigen", {optional = true, configs = {headeronly = true}})         -- 可选的Eigen库，头文件版本，用于线性代数计算
+    add_requires("fmt", {optional = true})                                          -- 可选的fmt库，用于格式化输出
+    add_requires("sofa", {optional = true})                                         -- 可选的iau-sofa库，用于天文计算
+    add_requires("agg", {optional = true, configs = {shared = true}})               -- 可选的agg库，用于绘图
+    add_requires("matplotplusplus", {optional = true})                              -- 可选的matplot++库，用于绘图
+    add_requires("libf2c", {optional = true})                                       -- 可选的libf2c库，用于f2c转换
+    add_requires("cminpack", {optional = true, configs = {long_double = true}})     -- 可选的cminpack库，用于求解非线性方程组
+    add_requires("cspice", {optional = true})                                       -- 可选的cspice库，用于天文计算
+    add_requires("ipopt", {optional = true, configs = {shared = true, debug = is_mode("debug")}}) -- 可选的ipopt库，用于求解非线性优化问题
+
+    local qt_sdkver = get_config("qt_sdkver")
+    local system_qt = get_config("system_qt")
+    -- 触发Qt库的自动下载
+    local qt_config = {
+        override = true,
+        optional = true,
+        system = system_qt
+    }
+    if qt_sdkver ~= "auto" then
+        qt_config.version = qt_sdkver
+    end
+
+    add_requires("qt", {optional = true})                                           -- 可选的Qt库，包含基础、窗口部件和GUI模块
+    add_requires("qwt", {optional = true, configs = {shared = true, debug = is_mode("debug")}}) -- 可选的Qwtplot库，用于Qt绘图，共享库版本
+    add_requires("qt-advanced-docking", {optional = true, configs = {shared = true, debug = is_mode("debug")}})
+    add_requireconfs("qt", qt_config)
+    add_requireconfs("qwt.qt", qt_config)
+    add_requireconfs("qt-advanced-docking.qt", qt_config)
 end
-
-add_requires("qt", {optional = true})                                           -- 可选的Qt库，包含基础、窗口部件和GUI模块
-add_requires("qwt", {optional = true, configs = {shared = true, debug = is_mode("debug")}}) -- 可选的Qwtplot库，用于Qt绘图，共享库版本
-add_requires("qt-advanced-docking", {optional = true, configs = {shared = true, debug = is_mode("debug")}})
-add_requireconfs("qt", qt_config)
-add_requireconfs("qwt.qt", qt_config)
-add_requireconfs("qt-advanced-docking.qt", qt_config)
 
 -- add_requires("libintl", {optional = true})                                      -- 可选的libintl库，用于国际化
 -- add_requires("nlohmann_json", {optional = true})                                -- 可选的nlohmann_json库，用于JSON解析
@@ -251,6 +271,12 @@ add_requireconfs("qt-advanced-docking.qt", qt_config)
 --     add_packages("abseil")
 --     add_defines("AST_WITH_ABSEIL")
 -- end
+
+-- 添加openmp库依赖（可选）
+if has_package("openmp") then
+    add_packages("openmp")
+    add_defines("AST_WITH_OPENMP")
+end
 
 -- 添加fmt库依赖（可选）
 if has_package("fmt") then
@@ -280,12 +306,6 @@ end
 if has_package("matplotplusplus") then
     add_packages("matplotplusplus")
     add_defines("AST_WITH_MATPLOT")
-end
-
--- 添加gtest库依赖（可选）
-if has_package("gtest") then
-    add_packages("gtest")
-    add_defines("AST_WITH_GTEST")
 end
 
 -- 添加vtk库依赖（可选）
