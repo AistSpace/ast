@@ -205,6 +205,7 @@
 %include "../AstUtil/Platform/IO.hpp"
 %include "../AstUtil/Platform/Library.hpp"
 %include "../AstUtil/Platform/LibraryLoader.hpp"
+%include "../AstUtil/Platform/Path.hpp"
 %include "../AstUtil/Plugin/PluginInterface.hpp"
 %include "../AstUtil/Quantity/QuantityParser.hpp"
 %include "../AstUtil/Quantity/UnitParser.hpp"

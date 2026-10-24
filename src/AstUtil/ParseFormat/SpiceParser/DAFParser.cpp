@@ -22,6 +22,7 @@
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/StringSplit.hpp"
 #include "AstUtil/ScopedPtr.hpp"
+#include "AstUtil/IO.hpp"
 #include <cstdint>
 #include <iostream>
 #include <limits>
@@ -107,7 +108,7 @@ static_assert(sizeof(DAF_ElementRecords) == 1024, "DAF_ElementRecords size must 
 
 bool _aIsValidDAFFile(StringView filepath, StringView locidw)
 {
-    ScopedPtr<FILE> fp = fopen(std::string(filepath).c_str(), "rb");
+    ScopedPtr<FILE> fp = posix::fopen(std::string(filepath).c_str(), "rb");
     if(fp)
     {
         DAF_FileRecord record{};

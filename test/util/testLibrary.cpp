@@ -1,7 +1,7 @@
 ///
 /// @file      testLibrary.cpp
 /// @brief     Library 类单元测试
-/// @details   测试与 QLibrary 兼容的 Library 类接口
+/// @details   测试 Library 类的加载、卸载与符号解析
 /// @author    axel
 /// @date      2026-07-30
 /// @copyright 版权所有 (C) 2026-present, ast项目.
@@ -28,30 +28,24 @@ TEST(Library, DefaultConstructor)
 {
     Library lib;
     EXPECT_FALSE(lib.isLoaded());
-    EXPECT_TRUE(lib.fileName().empty());
 }
 
-// 测试带文件名构造
+// 测试带文件名构造（构造即加载）
 TEST(Library, ConstructorWithFileName)
 {
-    Library lib("testlib");
-    EXPECT_FALSE(lib.isLoaded());
-    EXPECT_EQ(lib.fileName(), "testlib");
-}
-
-// 测试 setFileName
-TEST(Library, SetFileName)
-{
-    Library lib;
-    lib.setFileName("mylib");
-    EXPECT_EQ(lib.fileName(), "mylib");
+#ifdef _WIN32
+    Library lib("kernel32");
+#else
+    Library lib("c.so.6");
+#endif
+    EXPECT_TRUE(lib.isLoaded());
 }
 
 // 测试加载不存在的库
 TEST(Library, LoadNonexistent)
 {
-    Library lib("nonexistent_library_12345");
-    errc_t rc = lib.load();
+    Library lib;
+    errc_t rc = lib.load("nonexistent_library_12345");
     EXPECT_NE(rc, eNoError);
     EXPECT_FALSE(lib.isLoaded());
 }
@@ -59,12 +53,12 @@ TEST(Library, LoadNonexistent)
 // 测试加载和卸载标准库
 TEST(Library, LoadAndUnload)
 {
+    Library lib;
 #ifdef _WIN32
-    Library lib("kernel32");
+    errc_t rc = lib.load("kernel32");
 #else
-    Library lib("c.so.6");
+    errc_t rc = lib.load("c.so.6");
 #endif
-    errc_t rc = lib.load();
     EXPECT_EQ(rc, eNoError);
     EXPECT_TRUE(lib.isLoaded());
 
@@ -95,18 +89,13 @@ TEST(Library, Resolve)
     EXPECT_NE(proc, nullptr);
 }
 
-// 测试 resolve 自动加载
-TEST(Library, ResolveAutoLoad)
+// 测试未加载时 resolve 不会自动加载
+TEST(Library, ResolveWithoutLoad)
 {
-#ifdef _WIN32
-    Library lib("kernel32");
-    auto proc = lib.resolve("GetLastError");
-#else
-    Library lib("c.so.6");
-    auto proc = lib.resolve("printf");
-#endif
-    EXPECT_NE(proc, nullptr);
-    EXPECT_TRUE(lib.isLoaded());  // resolve 应自动触发 load
+    Library lib;
+    void* proc = lib.resolve("printf");
+    EXPECT_EQ(proc, nullptr);
+    EXPECT_FALSE(lib.isLoaded());
 }
 
 // 测试解析不存在的符号
@@ -117,9 +106,6 @@ TEST(Library, ResolveNonexistentSymbol)
 #else
     Library lib("c.so.6");
 #endif
-    errc_t rc = lib.load();
-    EXPECT_EQ(rc, eNoError);
-
     void* proc = lib.resolve("nonexistent_symbol_xyz");
     EXPECT_EQ(proc, nullptr);
 }
@@ -168,34 +154,44 @@ TEST(Library, StaticResolveNullParams)
     EXPECT_EQ(proc, nullptr);
 }
 
-// 测试 setFileName 在已加载时自动卸载
-TEST(Library, SetFileNameAfterLoad)
+// 测试重复加载会替换旧库
+TEST(Library, Reload)
 {
 #ifdef _WIN32
     Library lib("kernel32");
+    errc_t rc = lib.load("kernel32");
 #else
     Library lib("c.so.6");
+    errc_t rc = lib.load("c.so.6");
 #endif
-    lib.load();
+    EXPECT_EQ(rc, eNoError);
     EXPECT_TRUE(lib.isLoaded());
+}
 
-    // 设置新文件名应卸载旧库
-    lib.setFileName("otherlib");
-    EXPECT_FALSE(lib.isLoaded());
-    EXPECT_EQ(lib.fileName(), "otherlib");
+// 测试获取动态库文件路径
+TEST(Library, FilePath)
+{
+    Library lib;
+    EXPECT_TRUE(lib.filePath().empty());  // 未加载时为空
+
+#ifdef _WIN32
+    lib.load("kernel32");
+#else
+    lib.load("c.so.6");
+#endif
+    EXPECT_TRUE(lib.isLoaded());
+    EXPECT_FALSE(lib.filePath().empty());
 }
 
 // 测试析构函数自动卸载
 TEST(Library, DestructorUnloads)
 {
     // 用指针控制生命周期
-    auto* lib = new Library();
 #ifdef _WIN32
-    lib->setFileName("kernel32");
+    auto* lib = new Library("kernel32");
 #else
-    lib->setFileName("c.so.6");
+    auto* lib = new Library("c.so.6");
 #endif
-    lib->load();
     EXPECT_TRUE(lib->isLoaded());
 
     delete lib;  // 析构应自动卸载，不崩溃

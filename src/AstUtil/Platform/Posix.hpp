@@ -29,9 +29,10 @@
 #include <cstring>
 
 #ifdef _WIN32
-#include <sys/types.h>          
-#include <fcntl.h>              
+#include <sys/types.h>
+#include <fcntl.h>
 #include <io.h>                         // for _isatty, _fileno
+#include <process.h>                    // for _getpid
 #include <sys/stat.h>                   // for fstat
 #include <direct.h>                     // for _rmdir
 #else
@@ -75,7 +76,15 @@ namespace posix
     {
         return ::_isatty(fd);
     }
-    
+
+    /// @brief 获取当前进程 ID
+    /// @return 当前进程 ID
+    A_ALWAYS_INLINE
+    int getpid()
+    {
+        return ::_getpid();
+    }
+
     /// @brief 获取文件状态
     /// @param fd 文件描述符
     /// @param buf 指向stat结构体的指针
@@ -109,6 +118,7 @@ namespace posix
     using ::fileno;
     using ::rmdir;
     using ::isatty;
+    using ::getpid;
     using ::fstat;
     using ::chdir;
     using ::getcwd;

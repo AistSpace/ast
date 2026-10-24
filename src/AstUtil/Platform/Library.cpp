@@ -23,15 +23,9 @@
 
 AST_NAMESPACE_BEGIN
 
-Library::Library()
-    : handle_(nullptr)
-{
-}
-
 Library::Library(StringView fileName)
-    : handle_(nullptr)
-    , fileName_(fileName.data(), fileName.size())
 {
+    load(fileName);
 }
 
 Library::~Library()
@@ -42,15 +36,15 @@ Library::~Library()
     }
 }
 
-errc_t Library::load()
+errc_t Library::load(StringView fileName)
 {
-    if (fileName_.empty()) {
+    if (fileName.empty()) {
         return eErrorNullInput;
     }
 
     // 先加载新库，然后卸载旧库，利用操作系统的库引用计数机制，库始终驻留内存
     // 避免了先卸载再加载时因计数归零导致库被移除，进而可能影响当前正在执行的代码
-    auto newhandle = aLoadLibrary(fileName_.c_str());
+    auto newhandle = aLoadLibrary(fileName);
     if (!newhandle) {
         return eError;
     }
@@ -75,30 +69,14 @@ errc_t Library::unload()
     return rc;
 }
 
-void* Library::resolve(const char* symbol)
+void* Library::resolve(const char* symbol) const
 {
-    if (!symbol) {
-        return nullptr;
-    }
-
-    // 如果尚未加载，自动加载
-    if (!handle_) {
-        errc_t rc = load();
-        if (rc != eNoError) {
-            return nullptr;
-        }
-    }
-
     return aGetProcAddress(handle_, symbol);
 }
 
-void Library::setFileName(StringView fileName)
+std::string Library::filePath() const
 {
-    // 如果已有已加载的库，先卸载
-    if (handle_) {
-        unload();
-    }
-    fileName_.assign(fileName.data(), fileName.size());
+    return aGetModuleFilePath(handle_);
 }
 
 bool Library::IsLibrary(StringView fileName)

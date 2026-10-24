@@ -21,6 +21,7 @@
 #include "AstUtil/Encode.hpp"
 #include "AstUtil/FileLock.hpp"
 #include "AstUtil/FileSystem.hpp"
+#include "AstUtil/Path.hpp"
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/Network.hpp"
 #include "AstUtil/RunTime.hpp"
@@ -59,9 +60,8 @@ static _locale_t _ast_locale_ensure()
 std::FILE* posix::fopen(const char* filepath, const char* mode)
 {
     // support utf8
-    std::wstring wpath;
+    std::wstring wpath = aMakeWin32Path(filepath);
     std::wstring wmode;
-    aUtf8ToWide(filepath, wpath);
     aUtf8ToWide(mode, wmode);
     #ifndef AST_USE_CRT_SAFE
     return ::_wfopen(wpath.c_str(), wmode.c_str());
@@ -78,9 +78,8 @@ std::FILE* posix::fopen(const char* filepath, const char* mode)
 
 FILE *posix::freopen(const char *filepath, const char *mode, FILE *stream)
 {
-    std::wstring wpath;
+    std::wstring wpath = aMakeWin32Path(filepath);
     std::wstring wmode;
-    aUtf8ToWide(filepath, wpath);
     aUtf8ToWide(mode, wmode);
     #ifndef AST_USE_CRT_SAFE
     return ::_wfreopen(wpath.c_str(), wmode.c_str(), stream);

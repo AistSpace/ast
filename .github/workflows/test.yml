@@ -90,3 +90,19 @@ jobs:
         run: |
           xmake cpdata
           xmake test --output-on-failure
+
+      # 用目录联接/符号链接把 data/test-data 挂到超过 MAX_PATH 的目录下
+      # 并将相关路径作为环境变量写入 GITHUB_ENV，供后续 step 使用
+      - name: 准备超长数据目录
+        continue-on-error: true
+        timeout-minutes: 15
+        run: xmake run PrepareLongPathData
+
+      # 环境变量通过 GITHUB_ENV 传给本 step
+      # 先跑一次 --check，确认 aDataDir 等没有静默回退到默认目录
+      - name: 执行超长数据目录测试
+        continue-on-error: true
+        timeout-minutes: 90
+        run: |
+          xmake run PrepareLongPathData --check
+          xmake test --output-on-failure

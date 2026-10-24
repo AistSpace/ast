@@ -22,6 +22,7 @@
  
 #include "AstGlobal.h"
 #include "AstUtil/StringView.hpp"
+#include "AstUtil/Path.hpp"
 
 #include <string>
 #include <vector>
@@ -83,15 +84,7 @@ namespace fs_simple
         // 返回平台相关的字符指针
         const char_type* c_str() const{return path_.c_str();}
 
-        // 辅助函数：判断是否为路径分隔符
-        static bool is_separator(char_type c)
-        {
-            #ifdef _WIN32
-            return c == '/' || c == '\\';
-            #else
-            return c == '/';
-            #endif
-        }
+
 
         static const char_type* separators()
         {
@@ -146,34 +139,12 @@ namespace fs_simple
 
         bool is_absolute() const
         {
-            if (path_.empty()) return false;
-
-        #ifdef _WIN32
-            // UNC 路径 (\\server\share\...)
-            if (path_.size() >= 2 && is_separator(path_[0]) && is_separator(path_[1]))
-                return true;
-
-            // 盘符路径 (C:\... 或 C:/...)
-            if (path_.size() >= 3
-                && ((path_[0] >= 'A' && path_[0] <= 'Z') || (path_[0] >= 'a' && path_[0] <= 'z'))
-                && path_[1] == ':'
-                && is_separator(path_[2]))
-                return true;
-
-            // 仅根目录 (\... 或 /...)
-            if (is_separator(path_[0]))
-                return true;
-
-            return false;
-        #else
-            // POSIX: 以 / 开头即为绝对路径
-            return is_separator(path_[0]);
-        #endif
+            return aPathIsAbsolute(path_);
         }
 
         bool is_relative() const
         {
-            return !is_absolute();
+            return aPathIsRelative(path_);
         }
 
         /// @brief 词法上计算当前路径相对于 base 的相对路径
@@ -193,7 +164,7 @@ namespace fs_simple
             if (other.path_.empty()) return *this;
 
             // 确保路径分隔符正确
-            bool needs_separator = !is_separator(path_.back()) && !is_separator(other.path_.front());
+            bool needs_separator = !aIsPathSeparator(path_.back()) && !aIsPathSeparator(other.path_.front());
             if (needs_separator) {
                 return path_ + preferred_separator() + other.path_;
             }
@@ -314,11 +285,18 @@ namespace fs_simple
     AST_UTIL_API file_status status(const path& p) noexcept;
     AST_UTIL_API file_status status(const path& p, std::error_code& ec) noexcept;
 
+    /// @details 本函数不跟随符号链接，符号链接返回 file_type::symlink
+    AST_UTIL_API file_status symlink_status(const path& p) noexcept;
+    AST_UTIL_API file_status symlink_status(const path& p, std::error_code& ec) noexcept;
+
     A_ALWAYS_INLINE bool is_regular_file(file_status s) noexcept{ return s.type() == file_type::regular; }
     A_ALWAYS_INLINE bool is_directory(file_status s) noexcept{ return s.type() == file_type::directory; }
     A_ALWAYS_INLINE bool is_directory(const path& p) noexcept{ return is_directory(status(p)); }
     AST_UTIL_API bool is_directory(const path& p, std::error_code& ec) noexcept;
     A_ALWAYS_INLINE bool is_regular_file(const path& p) noexcept{ return is_regular_file(status(p)); }
+    A_ALWAYS_INLINE bool is_symlink(file_status s) noexcept{ return s.type() == file_type::symlink; }
+    AST_UTIL_API bool is_symlink(const path& p) noexcept;
+    AST_UTIL_API bool is_symlink(const path& p, std::error_code& ec) noexcept;
 
     // 目录操作
     AST_UTIL_API bool create_directory(const path& p) noexcept;
@@ -374,7 +352,9 @@ namespace fs_simple
     AST_UTIL_API path relative(const path& p, const path& base, std::error_code& ec) noexcept;
 
     /// @brief 获取绝对路径
-    /// @note 纯词法操作：已经是绝对路径时原样返回，否则拼接到 current_path() 上
+    /// @note 已经是绝对路径时原样返回
+    /// Windows 下相对路径交由 GetFullPathNameW 解析（根相对按当前盘、盘符相对按该盘当前目录）；
+    /// 其他平台直接拼接 current_path() 
     AST_UTIL_API path absolute(const path& p);
     AST_UTIL_API path absolute(const path& p, std::error_code& ec) noexcept;
 

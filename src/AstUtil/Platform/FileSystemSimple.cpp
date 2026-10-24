@@ -74,10 +74,8 @@ namespace fs_simple
         }
         bool first()
         {
-            // 使用平台相关的字符串类型
-            string_type search_path = (base_path / "*").native();
-            std::wstring wide_path;
-            aUtf8ToWide(search_path.c_str(), wide_path);  // 转换为宽字符
+            string_type search_path = (base_path / "*").string();
+            std::wstring wide_path = aMakeWin32Path(search_path);
             handle = FindFirstFileW(wide_path.c_str(), &data);
             if (handle == INVALID_HANDLE_VALUE) {
                 data_valid = false;
@@ -272,8 +270,7 @@ namespace fs_simple
     bool exists(const path& p, std::error_code& ec) noexcept
     {
     #ifdef _WIN32
-        std::wstring wide_path;
-        aUtf8ToWide(p.c_str(), wide_path);  // 转换为宽字符
+        std::wstring wide_path = aMakeWin32Path(p.string());
         DWORD attrs = GetFileAttributesW(wide_path.c_str());
         if (attrs != INVALID_FILE_ATTRIBUTES) return true;
         DWORD err = GetLastError();
@@ -308,8 +305,7 @@ namespace fs_simple
     {
         ec.clear();
     #ifdef _WIN32
-        std::wstring wide_path;
-        aUtf8ToWide(p.c_str(), wide_path);  // 转换为宽字符
+        std::wstring wide_path = aMakeWin32Path(p.string());
         HANDLE hFile = CreateFileW(wide_path.c_str(), GENERIC_READ, FILE_SHARE_READ,
             NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
         if (hFile == INVALID_HANDLE_VALUE) {
@@ -368,9 +364,7 @@ namespace fs_simple
         #ifdef _WIN32
             // PathIsDirectoryEmptyW：目录为空返回 TRUE，非空返回 FALSE
             // 注意：已由 status() 确认是存在的目录，故 FALSE 即表示非空
-            // 需加宽路径再调用（不适用于 UNC 路径，常规本地路径足够）
-            std::wstring wide_path;
-            aUtf8ToWide(p.c_str(), wide_path);
+            std::wstring wide_path = aMakeWin32Path(p.string());
             return PathIsDirectoryEmptyW(wide_path.c_str()) != FALSE;
         #else
             // 最后一个条目 == begin(iter)，即目录为空
@@ -397,8 +391,7 @@ namespace fs_simple
     file_status status(const path& p, std::error_code& ec) noexcept
     {
     #ifdef _WIN32
-        std::wstring wide_path;
-        aUtf8ToWide(p.c_str(), wide_path);  // 转换为宽字符
+        std::wstring wide_path = aMakeWin32Path(p.string());
         DWORD attrs = GetFileAttributesW(wide_path.c_str());
         if (attrs == INVALID_FILE_ATTRIBUTES) {
             DWORD err = GetLastError();
@@ -441,12 +434,113 @@ namespace fs_simple
         return status(p, ec);
     }
 
+#ifdef _WIN32
+    namespace {
+
+    /// 路径本身是否为重解析点（不跟随重解析点）
+    bool is_reparse_point(const std::wstring& wide_path)
+    {
+        DWORD attrs = GetFileAttributesW(wide_path.c_str());
+        return attrs != INVALID_FILE_ATTRIBUTES && (attrs & FILE_ATTRIBUTE_REPARSE_POINT) != 0;
+    }
+
+    /// 读取路径自身的重解析点标签（不跟随重解析点）
+    /// @return 路径不是重解析点或读取失败时返回 false
+    bool get_reparse_tag(const std::wstring& wide_path, DWORD& reparse_tag)
+    {
+        HANDLE handle = CreateFileW(
+            wide_path.c_str(),
+            FILE_READ_ATTRIBUTES,
+            FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
+            nullptr,
+            OPEN_EXISTING,
+            FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OPEN_REPARSE_POINT,
+            nullptr
+        );
+        if (handle == INVALID_HANDLE_VALUE)
+            return false;
+
+        FILE_ATTRIBUTE_TAG_INFO info{};
+        BOOL ok = GetFileInformationByHandleEx(handle, FileAttributeTagInfo, &info, sizeof(info));
+        CloseHandle(handle);
+        if (!ok)
+            return false;
+
+        reparse_tag = info.ReparseTag;
+        return true;
+    }
+
+    } // namespace
+#endif
+
+    file_status symlink_status(const path& p, std::error_code& ec) noexcept
+    {
+    #ifdef _WIN32
+        std::wstring wide_path = aMakeWin32Path(p.string());
+        DWORD attrs = GetFileAttributesW(wide_path.c_str());
+        if (attrs == INVALID_FILE_ATTRIBUTES) {
+            DWORD err = GetLastError();
+            if (err != ERROR_FILE_NOT_FOUND && err != ERROR_PATH_NOT_FOUND) {
+                ec = std::error_code(static_cast<int>(err), std::system_category());
+            }
+            return file_status(file_type::not_found);
+        }
+        // 只有 IO_REPARSE_TAG_SYMLINK 才是符号链接，目录联接等其它重解析点按目录/文件处理
+        DWORD tag = 0;
+        if ((attrs & FILE_ATTRIBUTE_REPARSE_POINT) != 0
+            && get_reparse_tag(wide_path, tag) && tag == IO_REPARSE_TAG_SYMLINK) {
+            return file_status(file_type::symlink);
+        }
+        if (attrs & FILE_ATTRIBUTE_DIRECTORY) {
+            return file_status(file_type::directory);
+        }
+        return file_status(file_type::regular);
+    #else
+        struct stat sb;
+        if (lstat(p.c_str(), &sb) == 0) {
+            if (S_ISLNK(sb.st_mode)) {
+                return file_status(file_type::symlink);
+            }
+            else if (S_ISDIR(sb.st_mode)) {
+                return file_status(file_type::directory);
+            }
+            else if (S_ISREG(sb.st_mode)) {
+                return file_status(file_type::regular);
+            }
+            else {
+                return file_status(file_type::unknown);
+            }
+        } else {
+            if (errno != ENOENT && errno != ENOTDIR) {
+                ec = std::error_code(errno, std::system_category());
+            }
+            return file_status(file_type::not_found);
+        }
+    #endif
+    }
+
+    file_status symlink_status(const path& p) noexcept
+    {
+        std::error_code ec;
+        return symlink_status(p, ec);
+    }
+
+    bool is_symlink(const path& p, std::error_code& ec) noexcept
+    {
+        return is_symlink(symlink_status(p, ec));
+    }
+
+    bool is_symlink(const path& p) noexcept
+    {
+        std::error_code ec;
+        return is_symlink(p, ec);
+    }
+
     // 目录操作实现
     bool create_directory(const path& p, std::error_code& ec) noexcept
     {
     #ifdef _WIN32
-        std::wstring wide_path;
-        aUtf8ToWide(p.c_str(), wide_path);  // 转换为宽字符
+        std::wstring wide_path = aMakeWin32Path(p.string());
         if (CreateDirectoryW(wide_path.c_str(), NULL)) return true;
         DWORD err = GetLastError();
         if (err == ERROR_ALREADY_EXISTS) return false;
@@ -494,8 +588,9 @@ namespace fs_simple
     bool remove(const path& p, std::error_code& ec) noexcept
     {
     #ifdef _WIN32
-        std::wstring wide_path;
-        aUtf8ToWide(p.c_str(), wide_path);  // 转换为宽字符
+        std::wstring wide_path = aMakeWin32Path(p.string());
+        // 目录符号链接/联接点用 RemoveDirectoryW 删除，文件链接用 DeleteFileW；
+        // 两者都只删除重解析点本身，不会删除目标
         if (is_directory(p, ec)) {
             if (RemoveDirectoryW(wide_path.c_str())) return true;
         } else {
@@ -506,7 +601,12 @@ namespace fs_simple
         ec = std::error_code(static_cast<int>(err), std::system_category());
         return false;
     #else
-        if (is_directory(p, ec)) {
+        // 符号链接必须先判断：is_directory 在 POSIX 上跟随链接，会把目录链接
+        // 当成目录去 rmdir 而失败；unlink 则只删除链接本身
+        if (is_symlink(p, ec)) {
+            if (unlink(p.c_str()) == 0) return true;
+        }
+        else if (is_directory(p, ec)) {
             if (rmdir(p.c_str()) == 0) return true;
         }
         else {
@@ -526,6 +626,18 @@ namespace fs_simple
 
     uintmax_t remove_all(const path& p) noexcept
     {
+        // 符号链接（包括悬空链接）只删除链接本身，
+        // 否则 is_directory 会跟随链接，把目标目录里的内容一起删掉
+        if (is_symlink(p)) {
+            return remove(p) ? 1 : 0;
+        }
+    #ifdef _WIN32
+        // 目录联接等其它重解析点同样只删链接本身，不递归到目标
+        if (is_reparse_point(aMakeWin32Path(p.string()))) {
+            return remove(p) ? 1 : 0;
+        }
+    #endif
+
         if (!exists(p)) return 0;
 
         uintmax_t count = 0;
@@ -556,9 +668,8 @@ namespace fs_simple
     bool copy_file(const path& from, const path& to) noexcept
     {
     #ifdef _WIN32
-        std::wstring wide_from, wide_to;
-        aUtf8ToWide(from.c_str(), wide_from);  // 转换为宽字符
-        aUtf8ToWide(to.c_str(), wide_to);      // 转换为宽字符
+        std::wstring wide_from = aMakeWin32Path(from.string());
+        std::wstring wide_to = aMakeWin32Path(to.string());
         return CopyFileW(wide_from.c_str(), wide_to.c_str(), FALSE) != 0;
     #else
         // 使用Linux系统调用实现文件复制
@@ -614,9 +725,8 @@ namespace fs_simple
     bool rename(const path& old_p, const path& new_p) noexcept
     {
     #ifdef _WIN32
-        std::wstring wide_old, wide_new;
-        aUtf8ToWide(old_p.c_str(), wide_old);  // 转换为宽字符
-        aUtf8ToWide(new_p.c_str(), wide_new);  // 转换为宽字符
+        std::wstring wide_old = aMakeWin32Path(old_p.string());
+        std::wstring wide_new = aMakeWin32Path(new_p.string());
         return MoveFileW(wide_old.c_str(), wide_new.c_str()) != 0;
     #else
         return ::rename(old_p.c_str(), new_p.c_str()) == 0;
@@ -629,8 +739,7 @@ namespace fs_simple
         space_info info{};
 
     #ifdef _WIN32
-        std::wstring wide_path;
-        aUtf8ToWide(p.c_str(), wide_path);  // 转换为宽字符
+        std::wstring wide_path = aMakeWin32Path(p.string());
         ULARGE_INTEGER free, total, avail;
         if (GetDiskFreeSpaceExW(wide_path.c_str(), &avail, &total, &free)) {
             info.capacity = total.QuadPart;
@@ -653,8 +762,7 @@ namespace fs_simple
     std::time_t last_write_time(const path& p)
     {
     #ifdef _WIN32
-        std::wstring wide_path;
-        aUtf8ToWide(p.c_str(), wide_path);  // 转换为宽字符
+        std::wstring wide_path = aMakeWin32Path(p.string());
         HANDLE hFile = CreateFileW(wide_path.c_str(), GENERIC_READ, FILE_SHARE_READ,
             NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
         if (hFile == INVALID_HANDLE_VALUE) {
@@ -731,8 +839,7 @@ namespace fs_simple
     void current_path(const path& new_path)
     {
     #ifdef _WIN32
-        std::wstring wide_path;
-        aUtf8ToWide(new_path.c_str(), wide_path);  // 转换为宽字符
+        std::wstring wide_path = aMakeWin32Path(new_path.string());
         if (!SetCurrentDirectoryW(wide_path.c_str())) {
             throw filesystem_error("Failed to set current directory");
         }
@@ -774,7 +881,7 @@ namespace
 
 #ifdef _WIN32
         // UNC: \\server\share
-        if (p.size() >= 2 && path::is_separator(p[0]) && path::is_separator(p[1]))
+        if (p.size() >= 2 && aIsPathSeparator(p[0]) && aIsPathSeparator(p[1]))
         {
             size_t pos = p.find_first_of(path::separators(), 2);
             if (pos != std::string::npos)
@@ -795,14 +902,14 @@ namespace
         if (p.size() >= 2 && p[1] == ':')
         {
             rootName = p.substr(0, 2);
-            if (p.size() > 2 && path::is_separator(p[2]))
+            if (p.size() > 2 && aIsPathSeparator(p[2]))
                 rootDir = p.substr(2, 1);
             return;
         }
 #endif
 
         // POSIX 或 Windows 无盘符根
-        if (path::is_separator(p[0]))
+        if (aIsPathSeparator(p[0]))
         {
             rootDir = p.substr(0, 1);
             return;
@@ -817,11 +924,11 @@ namespace
         while (i < p.size())
         {
             // 跳过连续分隔符
-            while (i < p.size() && path::is_separator(p[i])) ++i;
+            while (i < p.size() && aIsPathSeparator(p[i])) ++i;
             if (i >= p.size()) break;
 
             size_t start = i;
-            while (i < p.size() && !path::is_separator(p[i])) ++i;
+            while (i < p.size() && !aIsPathSeparator(p[i])) ++i;
             std::string comp = p.substr(start, i - start);
             if (comp == ".") continue; // 忽略单点
             comps.push_back(comp);
@@ -900,9 +1007,11 @@ path relative(const path& p, const path& base, std::error_code& ec) noexcept
 
 path absolute(const path& p)
 {
-    if (p.is_absolute())
-        return p;
-    return current_path() / p;
+    std::error_code ec;
+    path result = absolute(p, ec);
+    if (ec)
+        throw filesystem_error("absolute", ec);
+    return result;
 }
 
 path absolute(const path& p, std::error_code& ec) noexcept
@@ -912,11 +1021,43 @@ path absolute(const path& p, std::error_code& ec) noexcept
     if (p.is_absolute())
         return p;
 
+#ifdef _WIN32
+    // windows 下直接拼接到 current_path() 上在一些特殊情况下会得到错误结果
+    // 这里通过 GetFullPathNameW 函数进行解析：
+    // 根相对路径（\foo）按当前盘、盘符相对路径（C:foo）按该盘的当前目录
+    // 空路径在这里也会失败（ERROR_INVALID_NAME），与 MSVC STL 的行为一致
+    std::wstring wide_path = aUtf8ToWide(p.native());
+    std::vector<wchar_t> buffer(MAX_PATH);
+    for (;;)
+    {
+        DWORD length = GetFullPathNameW(wide_path.c_str(), static_cast<DWORD>(buffer.size()), buffer.data(), nullptr);
+        if (length == 0)
+        {
+            ec = std::error_code(static_cast<int>(GetLastError()), std::system_category());
+            return path();
+        }
+        if (length < buffer.size())     // 成功：length 不含结尾 '\0'，但 buffer[length] 就是 '\0'
+        {
+            std::string utf8_path;
+            aWideToUtf8(buffer.data(), utf8_path);
+            return path(utf8_path);
+        }
+        buffer.resize(length);          // 不够：length 是含结尾 '\0' 的所需长度
+    }
+#else
+    // 与 libstdc++ 一致：空路径视为无效参数
+    if (p.empty())
+    {
+        ec = std::make_error_code(std::errc::invalid_argument);
+        return path();
+    }
+
     path base = current_path(ec);
     if (ec)
         return path();
 
     return base / p;
+#endif
 }
 
 path temp_directory_path()

@@ -7,6 +7,7 @@ blog
 .xmake
 .vs
 .backup/
+.tmp/
 vs20*
 vsxmake*
 *.asv
@@ -19,6 +20,8 @@ __pycache__
 # doxyfile
 *.gch
 
+*.o
+*.obj
 *.exe
 *.dll
 *.lib
