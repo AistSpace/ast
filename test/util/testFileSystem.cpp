@@ -710,6 +710,8 @@ TEST(SimpleFileSystem, SymbolicLink)
     // 链接本身是符号链接，目标不是
     EXPECT_TRUE(fs::is_symlink(link));
     EXPECT_FALSE(fs::is_symlink(target));
+    EXPECT_EQ(fs::symlink_status(link).type(), fs::file_type::symlink);
+    EXPECT_EQ(fs::symlink_status(target).type(), fs::file_type::directory);
 
     // 链接路径已存在时不能重复创建
     EXPECT_NE(aCreateSymbolicLink(target.string(), link.string(), true), eNoError);

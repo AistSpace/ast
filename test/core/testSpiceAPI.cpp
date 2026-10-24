@@ -22,8 +22,21 @@
 #include "ast/Test.h"
 #include "ast/RunTime.hpp"
 #include "ast/CelestialBody.hpp"
+#include "ast/FileSystem.hpp"
+#include <fstream>
 
 AST_USING_NAMESPACE
+
+namespace {
+
+// 暴露受保护的 makeSpicePath 以便直接做单元测试
+class TestableSpiceAPI : public SpiceAPI
+{
+public:
+    using SpiceAPI::makeSpicePath;
+};
+
+} // namespace
 
 TEST(SpiceAPI, LoadUnload)
 {
@@ -59,6 +72,57 @@ TEST(SpiceAPI, HashBodyEphemeris)
     EXPECT_TRUE(aSpiceHasBodyEphemeris(ESpiceId::eMercury));
     EXPECT_TRUE(aSpiceHasBodyEphemeris(ESpiceId::eGanymede));
     EXPECT_FALSE(aSpiceHasBodyEphemeris(12345678910));
+}
+
+
+// 测试 CSPICE 路径预处理：普通路径原样使用，超长路径映射到临时目录下的短路径别名
+TEST(SpiceAPI, MakeSpicePath)
+{
+    namespace fs = _AST fs_simple;
+
+    TestableSpiceAPI api;
+
+    // 空路径不产生输出
+    std::string spicePath = "not empty";
+    api.makeSpicePath("", spicePath);
+    EXPECT_TRUE(spicePath.empty());
+
+    // 普通短路径直接交给 CSPICE
+    api.makeSpicePath("kernel.tls", spicePath);
+    EXPECT_EQ(spicePath, "kernel.tls");
+
+    // 构造超过 CSPICE FILSIZ(255) 的目录
+    fs::path base = fs::temp_directory_path() / "ast_test_spice_path";
+    fs::remove_all(base);
+    fs::path longDir = base;
+    while (longDir.string().size() < 300)
+    {
+        longDir = longDir / std::string(60, 'd');
+    }
+    ASSERT_TRUE(fs::create_directories(longDir));
+    ASSERT_GT(longDir.string().size(), 255u);
+
+    fs::path longFile = longDir / "kernel.tls";
+    std::string mapped;
+    api.makeSpicePath(longFile.string(), mapped);
+    ASSERT_LE(mapped.size(), 255u);
+    EXPECT_NE(mapped, longFile.string());
+    // 别名目录应指向原目录：往短路径里写文件，能在原长路径下看到
+    EXPECT_TRUE(fs::is_directory(fs::path(mapped).parent_path()));
+    {
+        std::ofstream file(mapped);
+        ASSERT_TRUE(file.good());
+        file << "dummy kernel";
+    }
+    EXPECT_TRUE(fs::exists(longFile));
+
+    // 同一目录下的文件复用同一个别名目录
+    std::string mapped2;
+    api.makeSpicePath((longDir / "kernel2.tls").string(), mapped2);
+    EXPECT_EQ(fs::path(mapped2).parent_path(), fs::path(mapped).parent_path());
+
+    // 析构时清理别名根目录
+    fs::remove_all(base);
 }
 
 
