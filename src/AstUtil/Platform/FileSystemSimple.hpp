@@ -352,7 +352,9 @@ namespace fs_simple
     AST_UTIL_API path relative(const path& p, const path& base, std::error_code& ec) noexcept;
 
     /// @brief 获取绝对路径
-    /// @note 纯词法操作：已经是绝对路径时原样返回，否则拼接到 current_path() 上
+    /// @note 已经是绝对路径时原样返回
+    /// Windows 下相对路径交由 GetFullPathNameW 解析（根相对按当前盘、盘符相对按该盘当前目录）；
+    /// 其他平台直接拼接 current_path() 
     AST_UTIL_API path absolute(const path& p);
     AST_UTIL_API path absolute(const path& p, std::error_code& ec) noexcept;
 

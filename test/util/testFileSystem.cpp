@@ -420,6 +420,32 @@ TEST(SimpleFileSystem, Absolute) {
 
     // 与 current_path() 直接拼接的结果一致
     EXPECT_EQ(fs::absolute(fs::path("a") / "b"), fs::current_path() / "a" / "b");
+
+    // 空路径是错误（与 std::filesystem 一致），不会退化成当前目录
+    std::error_code empty_ec;
+    EXPECT_TRUE(fs::absolute(fs::path(), empty_ec).empty());
+    EXPECT_TRUE(empty_ec);
+    EXPECT_THROW(fs::absolute(fs::path()), fs::filesystem_error);
+
+    #ifdef _WIN32
+    // 根相对路径（\foo）没有盘符，按当前盘解析，而不是拼到 current_path() 后面
+    std::string current_drive = base.native().substr(0, 2);
+    ASSERT_EQ(current_drive.size(), 2u);
+    ASSERT_EQ(current_drive[1], ':');
+
+    std::error_code root_ec;
+    fs::path root_relative = fs::absolute("\\foo", root_ec);
+    EXPECT_FALSE(root_ec);
+    EXPECT_TRUE(root_relative.is_absolute());
+    EXPECT_EQ(root_relative.native(), current_drive + "\\foo");
+
+    // 盘符相对路径（C:foo）按 C 盘的当前目录解析
+    std::error_code drive_ec;
+    fs::path drive_relative = fs::absolute("C:foo", drive_ec);
+    EXPECT_FALSE(drive_ec);
+    EXPECT_TRUE(drive_relative.is_absolute());
+    EXPECT_EQ(drive_relative.native().substr(0, 2), std::string("C:"));
+    #endif
 }
 
 // 绝对性判定与 std::filesystem::path::is_absolute 保持一致

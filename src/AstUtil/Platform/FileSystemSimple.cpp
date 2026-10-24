@@ -1007,9 +1007,11 @@ path relative(const path& p, const path& base, std::error_code& ec) noexcept
 
 path absolute(const path& p)
 {
-    if (p.is_absolute())
-        return p;
-    return current_path() / p;
+    std::error_code ec;
+    path result = absolute(p, ec);
+    if (ec)
+        throw filesystem_error("absolute", ec);
+    return result;
 }
 
 path absolute(const path& p, std::error_code& ec) noexcept
@@ -1019,11 +1021,43 @@ path absolute(const path& p, std::error_code& ec) noexcept
     if (p.is_absolute())
         return p;
 
+#ifdef _WIN32
+    // windows 下直接拼接到 current_path() 上在一些特殊情况下会得到错误结果
+    // 这里通过 GetFullPathNameW 函数进行解析：
+    // 根相对路径（\foo）按当前盘、盘符相对路径（C:foo）按该盘的当前目录
+    // 空路径在这里也会失败（ERROR_INVALID_NAME），与 MSVC STL 的行为一致
+    std::wstring wide_path = aUtf8ToWide(p.native());
+    std::vector<wchar_t> buffer(MAX_PATH);
+    for (;;)
+    {
+        DWORD length = GetFullPathNameW(wide_path.c_str(), static_cast<DWORD>(buffer.size()), buffer.data(), nullptr);
+        if (length == 0)
+        {
+            ec = std::error_code(static_cast<int>(GetLastError()), std::system_category());
+            return path();
+        }
+        if (length < buffer.size())     // 成功：length 不含结尾 '\0'，但 buffer[length] 就是 '\0'
+        {
+            std::string utf8_path;
+            aWideToUtf8(buffer.data(), utf8_path);
+            return path(utf8_path);
+        }
+        buffer.resize(length);          // 不够：length 是含结尾 '\0' 的所需长度
+    }
+#else
+    // 与 libstdc++ 一致：空路径视为无效参数
+    if (p.empty())
+    {
+        ec = std::make_error_code(std::errc::invalid_argument);
+        return path();
+    }
+
     path base = current_path(ec);
     if (ec)
         return path();
 
     return base / p;
+#endif
 }
 
 path temp_directory_path()
