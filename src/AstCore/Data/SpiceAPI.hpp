@@ -195,7 +195,7 @@ protected:
     funcarray functions_{};                                 ///< 函数指针
     std::mutex mutex_{};                                    ///< 互斥锁(CSPICE库的函数不是线程安全的，这里用于保护函数调用的线程安全问题)
     std::map<std::string, std::string> shortPathAliases_{}; ///< 超长父目录 -> 短路径别名目录
-    std::string shortPathRoot_;                             ///< 短路径别名根目录
+    std::string shortPathRoot_{};                           ///< 短路径别名根目录
 };
 
 
