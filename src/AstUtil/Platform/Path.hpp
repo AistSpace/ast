@@ -52,7 +52,8 @@ AST_UTIL_CAPI bool aPathIsAbsolute(StringView path);
 #ifdef _WIN32
 /// @brief 将 UTF-8 路径转换为 Win32 宽字符路径
 /// @details
-/// 路径长度达到 MAX_PATH 时加上 \\?\ 前缀，突破 260 字符的限制
+/// 路径长度达到 MAX_PATH - 12 时加上 \\?\ 前缀，突破 260 字符的限制
+/// （未加前缀时 CreateDirectoryW 等 API 在旧版 SDK 中要求预留 12 个字符给 8.3 文件名）
 /// 长路径先转成规范化的绝对路径（顺带解析 . / .. 和分隔符）
 /// 带 \\?\ 前缀的路径不做规范化，
 /// @param path UTF-8 路径

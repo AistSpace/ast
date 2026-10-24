@@ -80,7 +80,9 @@ std::wstring aMakeWin32Path(StringView path)
     std::wstring wide_path = aUtf8ToWide(path);  // 转换为宽字符
 
     // 空路径和短绝对路径原样交给 Win32，避免多余的转换
-    if (wide_path.empty() || (wide_path.size() < MAX_PATH - 1 && aPathIsAbsolute(path)))
+    // 未加 \\?\ 前缀时，CreateDirectoryW 等 API 在旧版 SDK 中要求路径预留 12 个字符给 8.3 文件名，
+    // 所以长度达到 MAX_PATH - 12 就加前缀
+    if (wide_path.empty() || (wide_path.size() < MAX_PATH - 12 && aPathIsAbsolute(path)))
         return wide_path;
 
     // 已带扩展长度前缀（\\?\ 或 \\.\），直接使用
@@ -98,7 +100,7 @@ std::wstring aMakeWin32Path(StringView path)
         return wide_path;
     full_path.resize(length);
 
-    if (full_path.size() < MAX_PATH - 1)
+    if (full_path.size() < MAX_PATH - 12)
         return full_path;
 
     // UNC 路径（\\server\share\...）需使用 \\?\UNC\ 前缀
