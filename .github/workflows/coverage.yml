@@ -101,22 +101,28 @@ jobs:
           swig -version || true
           xmake -ay
 
-      - name: 执行测试并收集覆盖率信息
+      - name: 执行测试
         timeout-minutes: 90
         run: |
           lcov --directory . --zerocounters
           xmake cpdata
-          xmake r environment_info
-          xmake r sun_geocentric_j2000_case
-          xmake r testLibrary
-          xmake r testSpiceZpr
-          xmake r testState
-          xmake r testGUI
-          xmake r bmRunTime
-          xmake r testHPOPEarth_Drag
-          xmake r testHPOP_StateTransitionMatrix
-          xmake r testExtractor
           xmake test --output-on-failure
+
+      - name: 准备超长数据目录
+        continue-on-error: true
+        timeout-minutes: 15
+        run: xmake run PrepareLongPathData
+
+      # 先跑一次 --check，确认 aDataDir 等没有静默回退到默认目录
+      - name: 执行超长数据目录测试
+        continue-on-error: true
+        timeout-minutes: 90
+        run: |
+          xmake run PrepareLongPathData --check
+          xmake test --output-on-failure
+
+      - name: 收集覆盖率信息
+        run: |
           lcov --directory . --capture --include */src/* --output-file coverage.info 
       
       - name: 上传覆盖率到Codecov

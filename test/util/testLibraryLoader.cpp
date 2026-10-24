@@ -147,4 +147,28 @@ TEST(LibraryLoader, ResolveProcAddress)
 }
 
 
+// 测试从库句柄反查模块文件路径
+TEST(LibraryLoader, ModuleFilePath)
+{
+#ifdef _WIN32
+    void* lib = aLoadLibrary("kernel32");
+#else
+    // 不带路径的文件名会走 dlopen 的搜索路径，反查时要把相对名字还原成绝对路径
+    void* lib = aLoadLibrary("c.so.6");
+#endif
+    ASSERT_NE(lib, nullptr);
+
+    std::string path = aGetModuleFilePath(lib);
+    std::printf("module path: %s\n", path.c_str());
+    EXPECT_FALSE(path.empty());
+#ifndef _WIN32
+    EXPECT_EQ(path[0], '/');
+#endif
+
+    // 空句柄没有模块路径
+    EXPECT_TRUE(aGetModuleFilePath(nullptr).empty());
+
+    EXPECT_EQ(aFreeLibrary(lib), eNoError);
+}
+
 GTEST_MAIN()

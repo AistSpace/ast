@@ -21,7 +21,9 @@
 #include "LibraryLoader.hpp"
 #include "AstUtil/Logger.hpp"
 #include "AstUtil/Encode.hpp"
+#include "AstUtil/Path.hpp"
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <mutex>
 #include <vector>
@@ -32,6 +34,9 @@
 #include <libloaderapi.h>
 #else
 #include <dlfcn.h>
+#if defined(__linux__)
+#include <link.h>   // dlinfo / struct link_map
+#endif
 #endif
  
 AST_NAMESPACE_BEGIN
@@ -76,22 +81,34 @@ const char* aGetLoadError()
 }
 #else
 
-void* _aLoadLibrary(const char* filepath)
+void* _aLoadLibraryFromName(const char* filename)
 {
 #if defined(_WIN32) || defined(_WIN64)
-	std::wstring widePath;
-	aUtf8ToWide(filepath, widePath);
+	std::wstring wideFilename;
+	aUtf8ToWide(filename, wideFilename);
     static_assert(sizeof(void*) >= sizeof(HMODULE), "void* must be at least as large as HMODULE");
-    return LoadLibraryW(widePath.c_str());
+    return LoadLibraryW(wideFilename.c_str());
 #else
     // Linux/Unix平台
     // RTLD_LAZY: 延迟绑定，只在需要时解析符号
     // RTLD_LOCAL: 符号不与其他模块共享
 	const int flag = RTLD_LAZY | RTLD_LOCAL;
-    return dlopen(filepath, flag);
+    return dlopen(filename, flag);
 #endif
 }
 
+
+void* _aLoadLibraryFromPath(StringView filepath)
+{
+#if defined(_WIN32) || defined(_WIN64)
+	std::wstring widePath = aMakeWin32Path(filepath);
+    static_assert(sizeof(void*) >= sizeof(HMODULE), "void* must be at least as large as HMODULE");
+    return LoadLibraryW(widePath.c_str());
+#else
+    std::string path(filepath);
+    return _aLoadLibraryFromName(path.c_str());
+#endif
+}
 
 
 void* aLoadLibrary(const char* filepath)
@@ -107,7 +124,7 @@ void* aLoadLibrary(StringView filepath)
 
 #if defined(_WIN32) || defined(_WIN64)
 	static const char* kLibSuffix    = ".dll";
-	static const char* kLibPrefixes[] = {"", "lib"};
+	static const char* kLibPrefixes[] = {"", "lib"};  // lib 前缀用于支持 mingw 平台
 #else
 	static const char* kLibSuffix    = ".so";
 	static const char* kLibPrefixes[] = {"", "lib"};
@@ -119,8 +136,7 @@ void* aLoadLibrary(StringView filepath)
 		|| filepath.find('\\') != StringView::npos
 #endif
 	) {
-		std::string path(filepath.data(), filepath.size());
-		return _aLoadLibrary(path.c_str());
+		return _aLoadLibraryFromPath(filepath);
 	}
 
 	// 文件名是否已经以平台扩展名结尾？
@@ -130,12 +146,12 @@ void* aLoadLibrary(StringView filepath)
 	for (const char* prefix : kLibPrefixes) {
 		std::string name = std::string(prefix) + std::string(filepath);
 
-		if (void* h = _aLoadLibrary(name.c_str()))
+		if (void* h = _aLoadLibraryFromName(name.c_str()))
 			return h;                     // 1) 不加后缀
 
 		if (!alreadyHasSuffix) {
 			name += kLibSuffix;
-			if (void* h = _aLoadLibrary(name.c_str()))
+			if (void* h = _aLoadLibraryFromName(name.c_str()))
 				return h;                 // 2) 加平台后缀
 		}
 	}
@@ -253,6 +269,61 @@ const char* aGetLoadError()
 }
 
 #endif // A_WASM
+
+
+std::string aGetModuleFilePath(void* lib)
+{
+#ifdef A_WASM
+    (void)lib;
+    return std::string();
+#elif defined(_WIN32) || defined(_WIN64)
+    if (!lib) {
+        return std::string();
+    }
+
+    // GetModuleFileNameW 在缓冲区不足时返回缓冲区大小，需要动态扩容
+    std::wstring buffer(MAX_PATH, L'\0');
+    for (;;) {
+        DWORD len = ::GetModuleFileNameW((HMODULE)lib, &buffer[0], static_cast<DWORD>(buffer.size()));
+        if (len == 0) {
+            return std::string();
+        }
+        if (len < buffer.size()) {
+            buffer.resize(len);
+            break;
+        }
+        if (buffer.size() >= 0x8000) {   // Windows 路径长度上限
+            return std::string();
+        }
+        buffer.resize(buffer.size() * 2);
+    }
+    return aWideToUtf8(buffer.c_str());
+#elif defined(__linux__)
+    if (!lib) {
+        return std::string();
+    }
+
+    // dladdr 只接受符号地址，句柄要用 dlinfo 取 link_map
+    struct link_map* map = nullptr;
+    if (::dlinfo(lib, RTLD_DI_LINKMAP, &map) != 0 || !map || !map->l_name || !map->l_name[0]) {
+        return std::string();
+    }
+
+    std::string path = map->l_name;
+    // dlopen 传入的是不带路径的文件名时，l_name 也只是文件名，尽量还原成绝对路径
+    if (path[0] != '/') {
+        if (char* resolved = ::realpath(path.c_str(), nullptr)) {
+            path = resolved;
+            ::free(resolved);
+        }
+    }
+    return path;
+#else
+    (void)lib;
+    aWarning(_("当前平台不支持获取动态库路径"));
+    return std::string();
+#endif
+}
 
 
 bool aIsLibrary(StringView fileName)

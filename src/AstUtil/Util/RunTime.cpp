@@ -35,9 +35,17 @@ errc_t aDataDirGetDefault(std::string &dataDirOut)
         const char* datadir = getenv(AST_ENV_DATA_DIR);
         std::error_code ec;
         // aDebug("AST_ENV_DATA_DIR: %s\n", datadir?datadir:"(not set)");
-        if (datadir && fs::is_directory(datadir, ec)){
-            dataDirOut = datadir;
-            return eNoError;
+        if (datadir)
+        {
+            if(fs::is_directory(datadir, ec) && !ec)
+            {
+                dataDirOut = datadir;
+                return eNoError;
+            }
+            else
+            {
+                aWarning(_("'%s' 变量对应的路径'%s'不是目录"), AST_ENV_DATA_DIR, datadir);
+            }
         }
     }
 

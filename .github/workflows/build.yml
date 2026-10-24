@@ -292,6 +292,20 @@ jobs:
           xmake cpdata
           xmake test --output-on-failure
 
+      # 超长数据目录测试
+      - name: 准备超长数据目录
+        continue-on-error: true
+        timeout-minutes: 15
+        run: xmake run PrepareLongPathData
+
+      # 先跑一次 --check，确认 aDataDir 等没有静默回退到默认目录
+      - name: 执行超长数据目录测试
+        continue-on-error: true
+        timeout-minutes: 90
+        run: |
+          xmake run PrepareLongPathData --check
+          xmake test --output-on-failure
+
   # Linux 在 manylinux_2_28 容器里构建：AlmaLinux 8 + glibc 2.28
   build-linux:
     needs: nightly-guard
@@ -582,4 +596,18 @@ jobs:
         run: |
           cp -r test/archive/* test
           xmake cpdata
+          xmake test --output-on-failure
+
+      # 超长数据目录测试
+      - name: 准备超长数据目录
+        continue-on-error: true
+        timeout-minutes: 15
+        run: xmake run PrepareLongPathData
+
+      # 先跑一次 --check，确认 aDataDir 等没有静默回退到默认目录
+      - name: 执行超长数据目录测试
+        continue-on-error: true
+        timeout-minutes: 90
+        run: |
+          xmake run PrepareLongPathData --check
           xmake test --output-on-failure

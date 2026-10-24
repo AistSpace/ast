@@ -26,6 +26,7 @@
 #include <string>
 #include <array>
 #include <cstdint>
+#include <map>
 
 AST_NAMESPACE_BEGIN
 
@@ -175,12 +176,26 @@ public: // 包装函数
     void kclear();
 protected:
     errc_t checkerror();
+
+    /// @brief 将路径转换为 CSPICE 可接受的路径
+    /// @details CSPICE 的 FILSIZ 是 256：FURNSH/SPKLEF 在打开文件前就会拒绝
+    ///          超过 255 字符的文件名，与操作系统的长路径支持无关。超长路径
+    ///          的父目录会被映射到一个短路径别名目录下再拼接文件名。
+    /// @param path 原始路径
+    /// @param spicePath 供 CSPICE 使用的路径
+    void makeSpicePath(StringView path, std::string& spicePath);
+
+    /// @brief 删除创建过的短路径别名目录
+    void releaseShortPathAliases();
+
     A_DISABLE_COPY(SpiceAPI);
 protected:
-    void*  library_{nullptr};               ///< 库句柄
-    std::vector<uint32_t> spk_handles_{};   ///< 已加载的SPK内核句柄列表
-    funcarray functions_{};                 ///< 函数指针
-    std::mutex mutex_{};                    ///< 互斥锁(CSPICE库的函数不是线程安全的，这里用于保护函数调用的线程安全问题)
+    void*  library_{nullptr};                               ///< 库句柄
+    std::vector<uint32_t> spk_handles_{};                   ///< 已加载的SPK内核句柄列表
+    funcarray functions_{};                                 ///< 函数指针
+    std::mutex mutex_{};                                    ///< 互斥锁(CSPICE库的函数不是线程安全的，这里用于保护函数调用的线程安全问题)
+    std::map<std::string, std::string> shortPathAliases_{}; ///< 超长父目录 -> 短路径别名目录
+    std::string shortPathRoot_{};                           ///< 短路径别名根目录
 };
 
 

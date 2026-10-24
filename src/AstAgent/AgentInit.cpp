@@ -38,9 +38,9 @@ namespace {
 ///          加载失败时工具仍可用，只是类注册表中缺少领域类型。
 void aEnsureAgentDomainLoaded()
 {
-    static Library library(AST_LIB_LINKNAME("AstSim"));
+    static Library library;
     if (!library.isLoaded()) {
-        if(library.load() != eNoError)
+        if(library.load(AST_LIB_LINKNAME("AstSim")) != eNoError)
             aWarning(_("加载 AstSim 模块失败"));
     }
 }
