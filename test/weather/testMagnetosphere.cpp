@@ -26,7 +26,9 @@ AST_USING_NAMESPACE
 
 TEST(Magnetosphere, igrf13)
 {
-
+    #if !defined(AST_WITH_LIBF2C)
+    GTEST_SKIP();
+    #endif
     printf("igrf13syn test\n");
     {
         double date = 2010.5260273972603;
@@ -70,7 +72,9 @@ TEST(Magnetosphere, igrf13)
 
 TEST(Magnetosphere, aep8)
 {
-
+    #if !defined(AST_WITH_LIBF2C)
+    GTEST_SKIP();
+    #endif
     double flux;
     {
         double e = 20;
@@ -119,7 +123,9 @@ TEST(Magnetosphere, aep8)
 
 TEST(Magnetosphere, igrf)
 {
-
+    #if !defined(AST_WITH_LIBF2C)
+    GTEST_SKIP();
+    #endif
     {
         double lon = 85;
         double lat = 65;
@@ -147,7 +153,9 @@ TEST(Magnetosphere, igrf)
 
 TEST(Magnetosphere, get_flux)
 {
-
+    #if !defined(AST_WITH_LIBF2C)
+    GTEST_SKIP();
+    #endif
     {
         double lon = -45;
         double lat = -30;

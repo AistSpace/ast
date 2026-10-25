@@ -272,6 +272,11 @@ end
 --     add_defines("AST_WITH_ABSEIL")
 -- end
 
+if has_package("libf2c") then
+    -- 这里不直接给所有工程添加依赖，只添加宏定义
+    add_defines("AST_WITH_LIBF2C")
+end
+
 -- 添加openmp库依赖（可选）
 if has_package("openmp") then
     add_packages("openmp")

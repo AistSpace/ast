@@ -40,6 +40,9 @@ public:
 
 TEST(SpiceAPI, LoadUnload)
 {
+    #if !defined(AST_WITH_CSPICE)
+        GTEST_SKIP();
+    #endif
     SpiceAPI api;
     const auto libpaths = aTestGetConfigStringVector("CSPICE_LIBS");
     errc_t rc = api.tryload(libpaths);
@@ -57,6 +60,9 @@ TEST(SpiceAPI, LoadUnload)
 
 TEST(SpiceAPI, Instance)
 {
+    #if !defined(AST_WITH_CSPICE)
+        GTEST_SKIP();
+    #endif
     EXPECT_TRUE(SpiceAPI::Instance()->isLoaded());
     bool failed = SpiceAPI::Instance()->failed();
     EXPECT_FALSE(failed);
@@ -65,8 +71,11 @@ TEST(SpiceAPI, Instance)
 
 TEST(SpiceAPI, HashBodyEphemeris)
 {
+    #if !defined(AST_WITH_CSPICE)
+        GTEST_SKIP();
+    #endif
     if(aIsCI())
-        return;
+        GTEST_SKIP();
     aInitialize();
     EXPECT_TRUE(aSpiceHasBodyEphemeris(ESpiceId::eEarth));
     EXPECT_TRUE(aSpiceHasBodyEphemeris(ESpiceId::eMercury));

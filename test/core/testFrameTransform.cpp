@@ -87,6 +87,7 @@ TEST(FrameTransformTest, Transform_Case2)
     aInitialize();
     auto mars = aGetMars();
     auto jupiter = aGetJupiter();
+    #if defined(AST_WITH_CSPICE)
     {
         auto marsInertial = mars->makeFrameInertial();
         auto jupiterInertial = jupiter->makeFrameInertial();
@@ -123,6 +124,7 @@ TEST(FrameTransformTest, Transform_Case2)
             EXPECT_NEAR(posJupiter[i], posJupiterExpect[i], fabs(posJupiterExpect[i]) * 1e-15);
         }
     }
+    #endif
 }
 
 
