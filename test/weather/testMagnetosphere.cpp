@@ -26,7 +26,6 @@ AST_USING_NAMESPACE
 
 TEST(Magnetosphere, igrf13)
 {
-    if(!aIsGithubCI()) GTEST_SKIP();
 
     printf("igrf13syn test\n");
     {
@@ -71,7 +70,6 @@ TEST(Magnetosphere, igrf13)
 
 TEST(Magnetosphere, aep8)
 {
-    if(!aIsGithubCI()) GTEST_SKIP();
 
     double flux;
     {
@@ -121,7 +119,6 @@ TEST(Magnetosphere, aep8)
 
 TEST(Magnetosphere, igrf)
 {
-    if(!aIsGithubCI()) GTEST_SKIP();
 
     {
         double lon = 85;
@@ -150,7 +147,6 @@ TEST(Magnetosphere, igrf)
 
 TEST(Magnetosphere, get_flux)
 {
-    if(!aIsGithubCI()) GTEST_SKIP();
 
     {
         double lon = -45;
