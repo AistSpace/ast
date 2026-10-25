@@ -87,6 +87,10 @@ bool formatTLEImpliedExp(double value, Span<char, 9> out)
     }
 
     long long mantissa = (long long)std::llround(magnitude * 1e5);
+    // magnitude 已被上面的归一化限制在 [0.1, 1)，这里显式钳下界是为了让
+    // -Wformat-truncation 的取值范围分析确定 mantissa 非负，而不是按 long long 全范围估算
+    if (mantissa < 0)
+        mantissa = 0;
     if (mantissa >= 100000)
     {
         mantissa = 10000;
