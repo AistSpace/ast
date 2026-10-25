@@ -281,7 +281,9 @@ TEST(FileLock, CrossProcessExclusive)
     removeFileQuietly(donePath);
 
     const std::string command = makeChildCommand(exePath, lockPath, readyPath, donePath);
-    std::system(command.c_str());
+    // 子进程的结果通过 flag 文件校验；glibc 把 system() 声明为 warn_unused_result
+    int childResult = std::system(command.c_str());
+    A_UNUSED(childResult);
 
     const bool ready = waitForFlag(readyPath, kWaitReadyMs);
     EXPECT_TRUE(ready);
