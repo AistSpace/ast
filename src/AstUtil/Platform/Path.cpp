@@ -21,6 +21,8 @@
 #include "Path.hpp"
 #include "AstUtil/Encode.hpp"
 #include "AstUtil/Posix.hpp"
+#include "AstUtil/FileSystem.hpp"
+#include "AstUtil/Logger.hpp"
 #include <climits>
 #include <cstddef>
 #include <cstring>
@@ -351,7 +353,7 @@ public:
 protected:
     void releaseShortPathAliases();
 public:
-    std::mutex mutex_;                                      ///< 本类被多个模块共用，需要线程安全
+    std::mutex mutex_{};                                      ///< 本类被多个模块共用，需要线程安全
     std::map<std::string, std::string> shortPathAliases_{}; ///< 超长父目录 -> 短路径别名目录
     std::string shortPathRoot_{};                           ///< 短路径别名根目录
 };
