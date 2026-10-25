@@ -59,7 +59,8 @@ TEST(PlanetPointTest, getPosICRF)
             EXPECT_DOUBLE_EQ(pos1[i], pos2[i]); \
         }\
     }\
-    
+
+    #if defined(AST_WITH_CSPICE)
     _AST_TEST_PLANET_POS_SPK(Mercury);
     _AST_TEST_PLANET_POS_SPK(Venus);
     _AST_TEST_PLANET_POS_DE(Earth);
@@ -71,6 +72,20 @@ TEST(PlanetPointTest, getPosICRF)
     _AST_TEST_PLANET_POS_DE(Moon);
     _AST_TEST_PLANET_POS_DE(Sun);
     _AST_TEST_PLANET_POS_DE(EMBarycenter);
+    #else
+    _AST_TEST_PLANET_POS_DE(Mercury);
+    _AST_TEST_PLANET_POS_DE(Venus);
+    _AST_TEST_PLANET_POS_DE(Earth);
+    _AST_TEST_PLANET_POS_DE(Mars);
+    _AST_TEST_PLANET_POS_DE(Jupiter);
+    _AST_TEST_PLANET_POS_DE(Saturn);
+    _AST_TEST_PLANET_POS_DE(Uranus);
+    _AST_TEST_PLANET_POS_DE(Neptune);
+    _AST_TEST_PLANET_POS_DE(Moon);
+    _AST_TEST_PLANET_POS_DE(Sun);
+    _AST_TEST_PLANET_POS_DE(EMBarycenter);
+    #endif
+
 }
 
 
@@ -110,7 +125,7 @@ TEST(PlanetPointTest, getPosVelICRF)
         }\
     }\
 
-
+#if defined(AST_WITH_CSPICE)
     _AST_TEST_PLANET_POSVEL_SPK(Mercury);
     _AST_TEST_PLANET_POSVEL_SPK(Venus);
     _AST_TEST_PLANET_POSVEL_DE(Earth);
@@ -122,6 +137,20 @@ TEST(PlanetPointTest, getPosVelICRF)
     _AST_TEST_PLANET_POSVEL_DE(Moon);
     _AST_TEST_PLANET_POSVEL_DE(Sun);
     _AST_TEST_PLANET_POSVEL_DE(EMBarycenter);
+#else
+    _AST_TEST_PLANET_POSVEL_DE(Mercury);
+    _AST_TEST_PLANET_POSVEL_DE(Venus);
+    _AST_TEST_PLANET_POSVEL_DE(Earth);
+    _AST_TEST_PLANET_POSVEL_DE(Mars);
+    _AST_TEST_PLANET_POSVEL_DE(Jupiter);
+    _AST_TEST_PLANET_POSVEL_DE(Saturn);
+    _AST_TEST_PLANET_POSVEL_DE(Uranus);
+    _AST_TEST_PLANET_POSVEL_DE(Neptune);
+    _AST_TEST_PLANET_POSVEL_DE(Moon);
+    _AST_TEST_PLANET_POSVEL_DE(Sun);
+    _AST_TEST_PLANET_POSVEL_DE(EMBarycenter);
+
+#endif
 }
 
 GTEST_MAIN()

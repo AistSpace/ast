@@ -3,9 +3,10 @@ target("FreeReturnPlan")
     add_files("**.cpp")
     add_includedirs(".")
     -- add_tests("project")
-    add_packages("cminpack")
-    add_packages("matplotplusplus")
-    if not has_package("cminpack") or not has_package("matplotplusplus") then
+    if has_package("cminpack") and has_package("matplotplusplus") then
+        add_packages("cminpack")
+        add_packages("matplotplusplus")
+    else
         set_enabled(false)
     end
     set_languages("c++14")

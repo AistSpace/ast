@@ -27,8 +27,17 @@ if is_plat("windows") then
     add_cxflags("/utf-8")
 end
 
-add_packages("gtest")
-add_packages("benchmark")
+-- 添加gtest库依赖（可选）
+if has_package("gtest") then
+    add_packages("gtest")
+    add_defines("AST_WITH_GTEST")
+end
+
+-- 添加benchmark库依赖（可选）
+if has_package("benchmark") then
+    add_packages("benchmark")
+    add_defines("AST_WITH_BENCHMARK")
+end
 
 set_warnings("more")
 

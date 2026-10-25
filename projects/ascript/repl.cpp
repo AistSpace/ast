@@ -154,10 +154,13 @@ void Repl::handleCommand(const std::string& input)
             m_replxx->clear_screen();
 #else
 #if defined(_WIN32) || defined(_WIN64)
-            system("cls");
+            const char* clearCommand = "cls";
 #else
-            system("clear");
+            const char* clearCommand = "clear";
 #endif
+            // 清屏失败不影响后续交互；glibc 把 system() 声明为 warn_unused_result
+            int clearResult = system(clearCommand);
+            A_UNUSED(clearResult);
 #endif
         } else {
             ast_printf(aText("未知命令: %s\n"), trimmed.c_str());

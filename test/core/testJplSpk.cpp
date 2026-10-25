@@ -30,6 +30,9 @@ AST_USING_NAMESPACE
 
 TEST(JplSpkTest, open_twice)
 {
+    #if !defined(AST_WITH_CSPICE)
+    GTEST_SKIP();
+    #endif
     if(aIsGithubCI())
         GTEST_SKIP();
     Vector3d pos;
@@ -56,6 +59,9 @@ TEST(JplSpkTest, open_twice)
 
 TEST(JplSpkTest, open)
 {
+    #if !defined(AST_WITH_CSPICE)
+    GTEST_SKIP();
+    #endif
     if(aIsGithubCI())
         GTEST_SKIP();
     TimeInterval interval;

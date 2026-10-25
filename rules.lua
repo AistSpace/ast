@@ -316,3 +316,20 @@ rule("ast.qt.ts")
     end)
 
 rule_end()
+
+-- --packages=none 的校验
+rule("ast.no_packages")
+    on_load(function (target)
+        if not is_config("packages", "none") then
+            return
+        end
+        local packages = target:get("packages")
+        if packages and #table.wrap(packages) > 0 then
+            os.raise(string.format(
+                "target(%s) 在 --packages=none 下仍声明了第三方包: %s",
+                target:name(), table.concat(table.wrap(packages), ", ")
+                )
+            )
+        end
+    end)
+rule_end()

@@ -40,7 +40,9 @@
 #include <thread>
 #include <mutex>
 #include <atomic>
+#ifdef AST_WITH_OPENMP
 #include <omp.h>
+#endif
 
 AST_USING_NAMESPACE
 using namespace _AST literals;
@@ -236,6 +238,7 @@ EphemerisResult generateEphemerisStdThread(
 // ================================================================
 // OpenMP 并行实现
 // ================================================================
+#ifdef AST_WITH_OPENMP
 EphemerisResult generateEphemerisOpenMP(
     std::vector<Mover*>& satellites,
     int progressStep,
@@ -334,6 +337,7 @@ EphemerisResult generateEphemerisOpenMP(
 
     return {successCount, failCount, (double)elapsedMs};
 }
+#endif // AST_WITH_OPENMP
 
 // ================================================================
 // HPOP 力模型工厂函数
@@ -405,7 +409,11 @@ int main()
     // --- 选择运动模型、星历模式和并行方式 ---
     const EMotionModel    MOTION_MODEL     = EMotionModel::TwoBody;
     const EEphemerisMode  EPHEMERIS_MODE   = EEphemerisMode::FileBacked;
+#ifdef AST_WITH_OPENMP
     const EParallelMethod PARALLEL_METHOD  = EParallelMethod::OpenMP;
+#else
+    const EParallelMethod PARALLEL_METHOD  = EParallelMethod::StdThread;  // 未启用 OpenMP 时回退
+#endif
 
     // 初始化运行时环境
     aInitialize();
@@ -574,7 +582,12 @@ int main()
         ephResult = generateEphemerisStdThread(satellites, PROGRESS_STEP, EPHEMERIS_MODE, ephStartTime);
         break;
     case EParallelMethod::OpenMP:
+#ifdef AST_WITH_OPENMP
         ephResult = generateEphemerisOpenMP(satellites, PROGRESS_STEP, EPHEMERIS_MODE, ephStartTime);
+#else
+        std::cout << "警告: 构建未启用 OpenMP，回退到 std::thread 并行" << std::endl;
+        ephResult = generateEphemerisStdThread(satellites, PROGRESS_STEP, EPHEMERIS_MODE, ephStartTime);
+#endif
         break;
     }
 

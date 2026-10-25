@@ -5,7 +5,7 @@ add_deps(
     "AstSPICE", "AstPlot", "AstHarness", "AstAgent", "AstOpt",
     "AstLoader", "AstReport", "AstVisualization"
 )
-add_packages("openmp")
+
 set_warnings("more")
 
 -- 添加 `examples` 和 `docs` 下面的所有cpp文件作为示例

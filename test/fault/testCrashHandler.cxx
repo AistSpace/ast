@@ -66,7 +66,9 @@ static void cleanTestLogDir()
 #else
     std::string cmd = "rm -f \"" + dir + "/crash_*.log\" 2>/dev/null";
 #endif
-    system(cmd.c_str());
+    // 清理失败不影响后续测试；glibc 把 system() 声明为 warn_unused_result
+    int cleanResult = system(cmd.c_str());
+    A_UNUSED(cleanResult);
 
     // 确保目录存在
 #ifdef _WIN32
@@ -74,7 +76,8 @@ static void cleanTestLogDir()
 #else
     cmd = "mkdir -p \"" + dir + "\" 2>/dev/null";
 #endif
-    system(cmd.c_str());
+    int mkdirResult = system(cmd.c_str());
+    A_UNUSED(mkdirResult);
 }
 
 /// @brief 运行子进程触发指定类型的崩溃，返回退出码
