@@ -61,6 +61,8 @@ jobs:
           xmake repo -u
 
       - name: 配置项目
+        # 依赖包安装要从网络取源码并编译，卡住时必须尽快失败，别耗满 6 小时的默认超时
+        timeout-minutes: 60
         run: |
           xmake f -cy --with_test=y --check_warnings=n -m ${{ matrix.mode }} -a ${{ matrix.target.arch }}
           xmake show

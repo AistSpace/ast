@@ -20,10 +20,15 @@
 
 #include "Path.hpp"
 #include "AstUtil/Encode.hpp"
+#include "AstUtil/Posix.hpp"
+#include "AstUtil/FileSystem.hpp"
+#include "AstUtil/Logger.hpp"
 #include <climits>
 #include <cstddef>
 #include <cstring>
 #include <vector>
+#include <map>
+#include <mutex>
 #ifdef _WIN32
 #include <Windows.h>
 #include <winioctl.h>   // FSCTL_SET_REPARSE_POINT
@@ -329,5 +334,125 @@ errc_t aCreateSymbolicLink(StringView targetPath, StringView linkPath, bool isDi
     #endif
 }
 
+// --------------------------------------
+// 目录映射器：用于将超长路径映射为短路径别名
+// --------------------------------------
+
+
+namespace{
+
+/// @brief 目录路径映射器
+class DirectoryMapper
+{
+public:
+    static DirectoryMapper& Instance();
+    DirectoryMapper() = default;
+    ~DirectoryMapper() { releaseShortPathAliases(); }   ///< 进程退出时清理别名目录
+
+    std::string getShortPath(StringView path);
+protected:
+    void releaseShortPathAliases();
+public:
+    std::mutex mutex_{};                                      ///< 本类被多个模块共用，需要线程安全
+    std::map<std::string, std::string> shortPathAliases_{}; ///< 超长父目录 -> 短路径别名目录
+    std::string shortPathRoot_{};                           ///< 短路径别名根目录
+};
+
+DirectoryMapper& DirectoryMapper::Instance()
+{
+    static DirectoryMapper instance;
+    return instance;
+}
+
+std::string DirectoryMapper::getShortPath(StringView dirpath)
+{
+    if(dirpath.empty())
+        return std::string();
+
+    fs::path path(dirpath);
+
+    std::lock_guard<std::mutex> lock(mutex_);
+    auto it = shortPathAliases_.find(path.string());
+    if(it == shortPathAliases_.end())
+    {
+        // 别名根目录：临时目录下按进程 + 本对象地址命名
+        if(shortPathRoot_.empty())
+        {
+            std::error_code ec;
+            fs::path tempDir = fs::temp_directory_path(ec);
+            if(tempDir.empty())
+            {
+                aWarning(_("无法创建短路径别名目录，直接返回超长路径 '%s'"), path.c_str());
+                return path.string();
+            }
+            shortPathRoot_ = (tempDir / (
+                "ast-dirmapper-" + std::to_string(posix::getpid()) + "-"
+                + std::to_string(reinterpret_cast<uintptr_t>(this))
+            )).string();
+            fs::remove_all(shortPathRoot_);     // 清理上次异常退出留下的同名目录
+            fs::create_directories(shortPathRoot_, ec);
+            if(ec)
+            {
+                shortPathRoot_.clear();
+                aWarning(_("无法创建短路径别名目录，直接返回超长路径 '%s'"), path.c_str());
+                return path.string();
+            }
+        }
+        
+        fs::path aliasDir = (fs::path(shortPathRoot_) / std::to_string(shortPathAliases_.size()));
+        std::error_code ec;
+
+        // 创建符号链接时需要使用绝对路径
+        fs::path absDir = fs::absolute(path, ec);
+        if(ec)
+            return path.string();
+
+        // Windows 用目录联接，创建不需要管理员权限；其它平台用符号链接
+        #ifdef _WIN32
+        errc_t rc = aCreateJunction(absDir.string(), aliasDir.string());
+        #else
+        errc_t rc = aCreateSymbolicLink(absDir.string(), aliasDir.string(), true);
+        #endif
+        if(rc != eNoError)
+        {
+            aWarning(_("为超长路径 '%s' 创建短路径别名失败，直接返回超长路径 '%s'"), path.c_str(), path.c_str());
+            return path.string();
+        }
+        it = shortPathAliases_.emplace(path, aliasDir).first;
+    }
+
+    return it->second;
+}
+
+void DirectoryMapper::releaseShortPathAliases()
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    if(shortPathRoot_.empty())
+        return;
+    // 联接点/符号链接只会删除别名本身，不会删除目标目录里的文件
+    fs::remove_all(shortPathRoot_);
+    shortPathRoot_.clear();
+    shortPathAliases_.clear();
+}
+
+}
+
+std::string aTryGetShortDirPath(StringView dirpath)
+{
+    return DirectoryMapper::Instance().getShortPath(dirpath);
+}
+
+
+std::string aTryGetShortPath(StringView path)
+{
+    fs::path p(path);
+    if(fs::is_directory(p))
+        return aTryGetShortDirPath(path);
+    fs::path parent = p.parent_path();
+    fs::path name = p.filename();
+    fs::path newParent = aTryGetShortDirPath(parent.string());
+    fs::path newPath = (newParent / name);
+    return newPath.string();
+}
 
 AST_NAMESPACE_END

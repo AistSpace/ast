@@ -26,6 +26,10 @@
 #include "AstUtil/Literals.hpp"
 #include "AstUtil/Math.hpp"
 
+#ifdef _WIN32
+#include <Windows.h>      // for MAX_PATH
+#endif
+
 #ifdef AST_WITH_LIBF2C
 #include "f2c.h"
 
@@ -77,6 +81,21 @@ void igrf(double lon, double lat, double height, double year, double &xl, double
 #ifdef AST_WITH_LIBF2C
     fs::path datadir = aDataDir();
     datadir /= AST_DEFAULT_DIR_IGRF;
+    #ifdef _WIN32
+    /* 
+    参考 SetCurrentDirectory 函数文档：
+    链接：https://learn.microsoft.com/zh-cn/windows/win32/api/winbase/nf-winbase-setcurrentdirectory
+
+    windows 下工作目录路径长度不能超过 MAX_PATH（只有从 Windows 10 版本 1607 开始才能通过显式启用来支持）
+    
+    null 字符之前的最后一个字符必须是反斜杠 ('\') 。如果未指定反斜杠，则会添加反斜杠 
+    因此，需要为路径指定 >MAX_PATH-2 个字符，除非包含尾随反斜杠
+    */
+    std::error_code ec;
+    fs::path absolute_path = fs::absolute(datadir, ec);
+    if(absolute_path.string().size() > MAX_PATH - 2)
+        datadir = aTryGetShortPath(absolute_path.string());
+    #endif
     // 切换工作目录到 igrf 数据目录（底层 Fortran 代码通过相对路径读取数据文件）
     WorkingDirectory cwd{datadir.string()};
     if(!cwd.isChanged()){
