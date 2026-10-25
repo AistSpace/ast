@@ -116,7 +116,7 @@ A_ALWAYS_INLINE Transform Transform::Identity()
 
 A_ALWAYS_INLINE Transform &Transform::compose(const Transform &next)
 {
-    translation_ += next.translation() * matrix();
+    translation_ += matrix().transpose() * next.translation();
     rotation_ = rotation_.composed(next.rotation());
     return *this;
 }
@@ -127,7 +127,7 @@ A_ALWAYS_INLINE Transform Transform::composed(const Transform &next) const
     也可以通过 getRotation().transformVectorInv() 来实现。
     */
     return Transform(
-        translation_ + next.translation() * matrix(),
+        translation_ + matrix().transpose() * next.translation(),
         rotation_.composed(next.rotation())
     );
 }

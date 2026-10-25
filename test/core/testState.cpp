@@ -58,7 +58,7 @@ TEST_F(StateTest, ChangeFrameBasic)
         
         auto icrfFrame = earth->makeFrame(aAxesICRF());
         auto todFrame = earth->makeFrame(aAxesTOD());
-        rc = cartState->setState(CartState{6678137_m, 0.0, 0.0, 0.0, 6789.5_m/s, 3686.4_m/s});
+        rc = cartState->setState(CartState{{6678137_m, 0.0, 0.0}, {0.0, 6789.5_m/s, 3686.4_m/s}});
         EXPECT_EQ(rc, 0);
         cartState->setStateEpoch(TimePoint::FromUTC(2026, 3, 15, 0, 0, 0));
         cartState->setFrame(icrfFrame);
@@ -68,8 +68,8 @@ TEST_F(StateTest, ChangeFrameBasic)
         rc = cartState->getState(state);
         EXPECT_EQ(rc, 0);
         CartState stateExpect {
-            6677.9993219814050462_km, 39.3297108095184242_km, 17.0885994905810570_km,
-            -0.0494184559469364_km/sec, 6.7891934257351290_km/sec, 3.6866333766957053_km/sec
+            {6677.9993219814050462_km, 39.3297108095184242_km, 17.0885994905810570_km},
+            {-0.0494184559469364_km/sec, 6.7891934257351290_km/sec, 3.6866333766957053_km/sec}
         };
         for(int i = 0; i < 3; i++)
         {
@@ -91,7 +91,10 @@ TEST_F(StateTest, ChangeFrameWithEpoch)
         auto stateEpoch = TimePoint::FromUTC(2026, 3, 15, 0, 0, 0);
         auto toe = earth->makeFrameTOE(coordEpoch);
         auto moe = earth->makeFrameMOE(coordEpoch);
-        CartState state0{6678137_m, 0.0, 0.0, 0.0, 6789.5_m/s, 3686.4_m/s};
+        CartState state0{
+            {6678137_m, 0.0, 0.0},
+            {0.0, 6789.5_m/s, 3686.4_m/s}
+        };
         rc = cartState->setState(state0);
         EXPECT_EQ(rc, 0);
         cartState->setStateEpoch(stateEpoch);
@@ -103,8 +106,8 @@ TEST_F(StateTest, ChangeFrameWithEpoch)
         EXPECT_EQ(rc, 0);
         printf("state1: %f %f %f %f %f %f\n", state1[0], state1[1], state1[2], state1[3], state1[4], state1[5]);
         CartState stateExpect {
-            6678.1369879813173611_km, 0.3675873390982545_km, 0.1593874602611343_km,
-            -0.0004616993065655_km/sec, 6.7893791093392464_km/sec, 3.6866226151454065_km/sec
+            {6678.1369879813173611_km, 0.3675873390982545_km, 0.1593874602611343_km},
+            {-0.0004616993065655_km/sec, 6.7893791093392464_km/sec, 3.6866226151454065_km/sec}
         };
         Rotation rotation;
         aMODToTODTransform(coordEpoch, rotation);
@@ -131,7 +134,10 @@ TEST_F(StateTest, ChangeFrameWithEpoch)
         auto stateEpoch = TimePoint::FromUTC(2026, 3, 15, 0, 0, 0);
         auto toe = earth->makeFrameTOE(coordEpoch);
         auto mod = earth->makeFrameMOD();
-        CartState state0{6678137_m, 0.0, 0.0, 0.0, 6789.5_m/s, 3686.4_m/s};
+        CartState state0{
+            {6678137_m, 0.0, 0.0},
+            {0.0, 6789.5_m/s, 3686.4_m/s}
+        };
         rc = cartState->setState(state0);
         EXPECT_EQ(rc, 0);
         cartState->setStateEpoch(stateEpoch);
@@ -143,8 +149,8 @@ TEST_F(StateTest, ChangeFrameWithEpoch)
         EXPECT_EQ(rc, 0);
         printf("state1: %f %f %f %f %f %f\n", state1[0], state1[1], state1[2], state1[3], state1[4], state1[5]);
         CartState stateExpect {
-            6677.7267929937161171_km, 67.8861414016167259_km, 29.4981475428268247_km,
-            -0.0853012283266688_km/sec, 6.7889455414363677_km/sec, 3.6864342318637973_km/sec
+            {6677.7267929937161171_km, 67.8861414016167259_km, 29.4981475428268247_km},
+            {-0.0853012283266688_km/sec, 6.7889455414363677_km/sec, 3.6864342318637973_km/sec}
         };
 
         for(int i = 0; i < 3; i++)
@@ -174,8 +180,8 @@ TEST_F(StateTest, GetKeplerianStateParams)
         CartState state;
         rc = cartesianState.getState(state);
         CartState stateExpect {
-            4865.7657051977957963_km, 6300.1230393824653220_km, 2796.6565762704854023_km, 
-            -5.6042661463648802_km/sec, 3.3614623498040133_km/sec, 2.4178896606906020_km/sec
+            {4865.7657051977957963_km, 6300.1230393824653220_km, 2796.6565762704854023_km},
+            {-5.6042661463648802_km/sec, 3.3614623498040133_km/sec, 2.4178896606906020_km/sec}
         };
         for(int i = 0; i < 3; i++)
         {

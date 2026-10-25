@@ -770,10 +770,8 @@ AST_CORE_API void aJ2000ToICRF(
 // ----------------
 
 
-A_ALWAYS_INLINE void aICRFToECFMatrix(const TimePoint& tp, double matrix[3][3])
-{
-    return aICRFToECFMatrix(tp, *((Matrix3d*)matrix));
-}
+AST_CORE_API void aICRFToECFMatrix(const TimePoint& tp, double matrix[3][3]);
+
 
 /*! @} */
 

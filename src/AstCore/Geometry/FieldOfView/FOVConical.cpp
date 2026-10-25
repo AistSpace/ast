@@ -32,7 +32,7 @@ double FOVConical::angularMargin(const Vector3d& direction) const
     static const Vector3d kSensorBoresight{0.0, 0.0, 1.0};
 
     // 1. 锥角边界的余量（弧度）
-    double angleRad = direction.angle(kSensorBoresight);
+    double angleRad = aAngle(direction, kSensorBoresight);
     double coneInnerMargin = angleRad - innerConeAngle_;
     double coneOuterMargin = outerConeAngle_ - angleRad;
 

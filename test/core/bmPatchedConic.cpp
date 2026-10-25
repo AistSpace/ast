@@ -63,8 +63,8 @@ namespace
 CartState transferInitState()
 {
     return CartState{
-        6159968.33397138, 2393641.1690744, 922487.447464321,
-        -2872.54217681962, 9257.74498172147, -4877.87739768414};
+        {6159968.33397138, 2393641.1690744, 922487.447464321},
+        {-2872.54217681962, 9257.74498172147, -4877.87739768414}};
 }
 
 /// @brief 用月球在给定时刻的瞬时密切轨道半长轴计算地月影响球半径 [m]
@@ -364,11 +364,11 @@ void printTerminalStateComparison()
     if (aGetMoon()->getPosVelIn(earthFrame, tHP, moonPosHP, moonVelHP) != eNoError)
         return;
 
-    printf("\n终端状态（地心惯性系，时刻 %s）：\n", tHP.toString().c_str());
-    printf("  拼接预报      r = %s\n", scPCInEarth.pos().toString().c_str());
+    printf("\n终端状态（地心惯性系，时刻 %s）：\n", toString(tHP).c_str());
+    printf("  拼接预报      r = %s\n", toString(scPCInEarth.pos()).c_str());
     printf("                到月心距离 = %10.3f km\n",
            (scPCInEarth.pos() - moonPosPC).norm() / 1000.0);
-    printf("  HPOP 点质量   r = %s\n", scHP.pos().toString().c_str());
+    printf("  HPOP 点质量   r = %s\n", toString(scHP.pos()).c_str());
     printf("                到月心距离 = %10.3f km\n",
            (scHP.pos() - moonPosHP).norm() / 1000.0);
     printf("  同一时刻之差  |dr| = %.3f km   |dv| = %.6f km/s\n",

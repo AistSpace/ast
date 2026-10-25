@@ -116,7 +116,7 @@ int FreeRreturnTargetFunction::operator()(const Input& input, Output& output) co
         aLog("--------------------------\n");
         aLog("init orbit state\n");
         aLog("orbitEpoch: %s\n", orbitEpoch.toString().c_str());
-        aLog("currentPos: %s\ncurrentVel: %s\n", currentPos.toString().c_str(), currentVel.toString().c_str());
+        aLog("currentPos: %s\ncurrentVel: %s\n", toString(currentPos).c_str(), toString(currentVel).c_str());
         aLog("--------------------------\n");
     }
     // 施加机动
@@ -126,13 +126,13 @@ int FreeRreturnTargetFunction::operator()(const Input& input, Output& output) co
         Vector3d impulseVNC {this->initImpulse_ + varImpulse, 0.0, 0.0};
         Vector3d impulseCBI = matrixVNCToCBI * impulseVNC;
         currentVel += impulseCBI;
-        aLog("impulseCBI: %s\n", impulseCBI.toString().c_str());
+        aLog("impulseCBI: %s\n", toString(impulseCBI).c_str());
     }
     // 轨道预报到近月点
     {
         aLog("--------------------------\n");
         aLog("Before Propagation:\n");
-        aLog("currentPos: %s\ncurrentVel: %s\n", currentPos.toString().c_str(), currentVel.toString().c_str());
+        aLog("currentPos: %s\ncurrentVel: %s\n", toString(currentPos).c_str(), toString(currentVel).c_str());
         aLog("--------------------------\n");
         HPOP propagator;
         propagator.setForceModel(forceModel);
@@ -166,7 +166,7 @@ int FreeRreturnTargetFunction::operator()(const Input& input, Output& output) co
         }
         aLog("--------------------------\n");
         aLog("After Propagation:\n");
-        aLog("currentPos:  %s\ncurrentVel:  %s\n", currentPos.toString().c_str(), currentVel.toString().c_str());
+        aLog("currentPos:  %s\ncurrentVel:  %s\n", toString(currentPos).c_str(), toString(currentVel).c_str());
         aLog("startTime:   %s\ncurrentTime: %s\n", startTime.toString().c_str(),  currentTime.toString().c_str());
         aLog("--------------------------\n");
         // 计算近月点高度
@@ -197,7 +197,7 @@ int FreeRreturnTargetFunction::operator()(const Input& input, Output& output) co
         }
         aLog("--------------------------\n");
         aLog("After Propagation:\n");
-        aLog("currentPos:  %s\ncurrentVel:  %s\n", currentPos.toString().c_str(), currentVel.toString().c_str());
+        aLog("currentPos:  %s\ncurrentVel:  %s\n", toString(currentPos).c_str(), toString(currentVel).c_str());
         aLog("startTime:   %s\ncurrentTime: %s\n", startTime.toString(15).c_str(),  currentTime.toString(15).c_str());
         aLog("--------------------------\n");
         // 计算近地点高度

@@ -62,8 +62,8 @@ public:
     Vector* constrainedVector() const{return constrainedVector_.get();}
     void setConstrainedVector(Vector* vector){constrainedVector_ = vector;}
 private:
-    Vector3d alignedAxis_{};
-    Vector3d constrainedAxis_{};
+    Vector3d alignedAxis_ = Vector3d::Zero();      ///< 默认零向量（Vector3d 的默认构造不保证置零）
+    Vector3d constrainedAxis_ = Vector3d::Zero();  ///< 默认零向量（Vector3d 的默认构造不保证置零）
     WeakPtr<Vector> alignedVector_{};
     WeakPtr<Vector> constrainedVector_{};
 };

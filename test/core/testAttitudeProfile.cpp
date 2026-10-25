@@ -209,7 +209,7 @@ TEST_F(AttitudeProfileTest, AttitudeECIVVLH)
             Rotation rot(q);
             w = rot.transformVector(w);
             printf("q: %s\n", q.toString().c_str());
-            printf("w: %s\n", w.toString().c_str());
+            printf("w: %s\n", toString(w).c_str());
 
             Quaternion expected_q{-0.0470336889994441, 0.0279821044808127, 0.8581184138735795, -0.5105268080120973 };
             Vector3d expected_w{0.0000000000000000, -0.0011626341030019, 0.0000000000000000};
@@ -230,7 +230,7 @@ TEST_F(AttitudeProfileTest, AttitudeECIVVLH)
             Rotation rot(q);
             w = rot.transformVector(w);
             printf("q: %s\n", q.toString().c_str());
-            printf("w: %s\n", w.toString().c_str());
+            printf("w: %s\n", toString(w).c_str());
             
             Quaternion expected_q{0.7600106309069503, -0.4521588106945666, -0.4012022196327228, 0.2386902381361061};
             Vector3d expected_w{0.0000000000000000, -0.0011961153080119, 0.0000000000000000};
@@ -270,8 +270,8 @@ TEST_F(AttitudeProfileTest, AttitudeECFVVLH)
             aAxesRotationRateByDifference(attitude, *earth->getAxesInertial(), time, w2);
             w2 = rot.transformVector(w2);
             printf("q : %s\n", q.toString().c_str());
-            printf("w : %s\n", w.toString().c_str());
-            printf("w2: %s\n", w2.toString().c_str());
+            printf("w : %s\n", toString(w).c_str());
+            printf("w2: %s\n", toString(w2).c_str());
             Quaternion expected_q{-0.3199066399242105, 0.1789782544788932, 0.8015404017298567, -0.4723976191206197};
             Vector3d expected_w{0.0000249277151808, -0.0011890975123486, 0.0000262655902357};
             for(int i = 0; i < 4; i++)
@@ -312,7 +312,7 @@ TEST_F(AttitudeProfileTest, AttitudeNadirNormal)
 
             printf("q1: %s\n", q1.toString().c_str());
             printf("q2: %s\n", q2.toString().c_str());
-            printf("w: %s\n", w.toString().c_str());
+            printf("w: %s\n", toString(w).c_str());
             
             Quaternion expected_q{ 0.1767765511429616, 0.6846532341017603, -0.4820425466535251, 0.5173344983816410};
             Vector3d expected_w{0.0011327929510306, -0.0000000000000000, 0.0000000000000000};
@@ -355,7 +355,7 @@ TEST_F(AttitudeProfileTest, AttitudeRelSunLH)
 
             printf("q1: %s\n", q1.toString().c_str());
             printf("q2: %s\n", q2.toString().c_str());
-            printf("w: %s\n", w.toString().c_str());
+            printf("w: %s\n", toString(w).c_str());
             
             Quaternion expected_q{ 0.2366623265234935, -0.1502209089802685, 0.8237407032891829, -0.4928243860182566};
             Vector3d expected_w{0.0000191093202203, -0.0011326317600109, -0.0000078975880060};
@@ -397,7 +397,7 @@ TEST_F(AttitudeProfileTest, AttitudeECFVelRadial)
 
             printf("q1: %s\n", q1.toString().c_str());
             printf("q2: %s\n", q2.toString().c_str());
-            printf("w: %s\n", w.toString().c_str());
+            printf("w: %s\n", toString(w).c_str());
             
             Quaternion expected_q{0.3767089342785476, 0.6543249192478061, -0.3245679589716010, -0.5697410981271073};
             Vector3d expected_w{-0.0000365437311113, 0.0011353871757996, 0.0000053706063609};
@@ -440,7 +440,7 @@ TEST_F(AttitudeProfileTest, AttitudeAircraftZDown)
 
             printf("q1: %s\n", q1.toString().c_str());
             printf("q2: %s\n", q2.toString().c_str());
-            printf("w: %s\n", w.toString().c_str());
+            printf("w: %s\n", toString(w).c_str());
             
             Quaternion expected_q{0.7661228590691765, -0.4492756772317785, -0.4005507855093455, 0.2253135568212521};
             Vector3d expected_w{0.0000296023069400, -0.0011746630644052, -0.0000210656400908};
@@ -483,7 +483,7 @@ TEST_F(AttitudeProfileTest, AttitudeMissile)
 
             printf("q1: %s\n", q1.toString().c_str());
             printf("q2: %s\n", q2.toString().c_str());
-            printf("w: %s\n", w.toString().c_str());
+            printf("w: %s\n", toString(w).c_str());
 
             Quaternion expected_q{0.6821727309392761, -0.4058501265195221, -0.5227042617892591, 0.3109763570985482};
             Vector3d expected_w{-0.0000000000000000, -0.0011798586987444, 0.0000000000000000};
@@ -526,7 +526,7 @@ TEST_F(AttitudeProfileTest, AttitudeCbiVelSun)
 
             printf("q1: %s\n", q1.toString().c_str());
             printf("q2: %s\n", q2.toString().c_str());
-            printf("w: %s\n", w.toString().c_str());
+            printf("w: %s\n", toString(w).c_str());
 
             Quaternion expected_q{0.6562725082068822, -0.3831172601134498, -0.5558604536051824, 0.3369669362012423};
             Vector3d expected_w{-0.0000067446028583, -0.0011802552884750, 0.0000195534425498};
@@ -601,7 +601,7 @@ TEST_F(AttitudeProfileTest, SunPointing)
 
             printf("q1: %s\n", q1.toString().c_str());
             printf("q2: %s\n", q2.toString().c_str());
-            printf("w: %s\n", w.toString().c_str());
+            printf("w: %s\n", toString(w).c_str());
 
             Quaternion expected_q{-0.0398732141183855, -0.0795773656314848, 0.6396082886876180, 0.7635304884005085};
             Vector3d expected_w{0.0076166621831724, 0.0000002433829402, -0.0000000624623227};
@@ -747,7 +747,7 @@ TEST_F(AttitudeProfileTest, AttitudeSunPointingEclpNormal)
 
             printf("q1: %s\n", q1.toString().c_str());
             printf("q2: %s\n", q2.toString().c_str());
-            printf("w: %s\n", w.toString().c_str());
+            printf("w: %s\n", toString(w).c_str());
 
             Quaternion expected_q{ -0.0864338683742616, -0.0179206886292524, -0.2023133151411907, 0.9753344851042105};
             Vector3d expected_w{-0.0000000003120273, -0.0000000019138003, 0.0000001694258734};
@@ -863,7 +863,7 @@ TEST_F(AttitudeProfileTest, AttitudeSunPointingCbiZ)
 
             printf("q1: %s\n", q1.toString().c_str());
             printf("q2: %s\n", q2.toString().c_str());
-            printf("w: %s\n", w.toString().c_str());
+            printf("w: %s\n", toString(w).c_str());
 
             Quaternion expected_q{-0.0811663356192398, -0.0349029184530175, -0.0028440759850293, 0.9960851989048921};
             Vector3d expected_w{-0.0000000139399289, 0.0000000873317882, 0.0000001986697525};
@@ -912,7 +912,7 @@ TEST_F(AttitudeProfileTest, AttitudeSpinning)
 
             printf("q1: %s\n", q1.toString().c_str());
             printf("q2: %s\n", q2.toString().c_str());
-            printf("w: %s\n", w.toString().c_str());
+            printf("w: %s\n", toString(w).c_str());
 
             Quaternion expected_q{0.8215948822754436, 0.1291995822775872, 0.5399970234153091, 0.1291995822775874};
             Vector3d expected_w{0.0335851167036829, 0.0671702334073658, 0.1007553501110487};

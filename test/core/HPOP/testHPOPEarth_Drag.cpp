@@ -94,8 +94,8 @@ TEST_F(HPOPTest, Drag_MSIS86)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
 
 
     Vector3d posExpect{ 6.0735523802171685e+06,  1.1177155532492716e+06,  3.0115244635127960e+06 };
@@ -150,8 +150,8 @@ TEST_F(HPOPTest, Drag_MSISE90)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
 
 
     Vector3d posExpect{ 6.0704715211070320e+06,  1.1286418571327669e+06,  3.0136259849788244e+06 };
@@ -207,8 +207,8 @@ TEST_F(HPOPTest, Drag_NRLMSISE2000)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
 
 
     Vector3d posExpect{ 6.0727343209944004e+06,  1.1205317606959976e+06,  3.0120554995662356e+06 };
@@ -268,8 +268,8 @@ TEST_F(HPOPTest, Drag_ApproximateAltitude)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
 
     Vector3d posExpect{ 6.0718101518087089e+06, 1.1238242325263233e+06, 3.0126906601675297e+06};
     Vector3d velExpect{ -2.0190679823240823e+03, 7.2126951799608260e+03, 1.3912689672060314e+03};

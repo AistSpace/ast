@@ -21,6 +21,7 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstMath/Matrix.hpp"
 #include <complex>
 #include <string>
 
@@ -63,6 +64,34 @@ AST_MATH_API int aSolveQuadratic(double a, double b, double c, double& root1, do
 AST_MATH_API void aSolveQuadraticComplex(double a, double b, double c,
                                          std::complex<double>& root1,
                                          std::complex<double>& root2);
+
+
+                                         
+/// @brief 按行优先顺序以 9 个元素填充 3×3 矩阵
+A_ALWAYS_INLINE void aSetMatrix(Matrix3d& matrix,
+    double m00, double m01, double m02,
+    double m10, double m11, double m12,
+    double m20, double m21, double m22
+)
+{
+    matrix(0, 0) = m00; matrix(0, 1) = m01; matrix(0, 2) = m02;
+    matrix(1, 0) = m10; matrix(1, 1) = m11; matrix(1, 2) = m12;
+    matrix(2, 0) = m20; matrix(2, 1) = m21; matrix(2, 2) = m22;
+}
+
+A_ALWAYS_INLINE Matrix3d aMatrix3d(
+    double m00, double m01, double m02,
+    double m10, double m11, double m12,
+    double m20, double m21, double m22
+)
+{
+    Matrix3d matrix;
+    matrix(0, 0) = m00; matrix(0, 1) = m01; matrix(0, 2) = m02;
+    matrix(1, 0) = m10; matrix(1, 1) = m11; matrix(1, 2) = m12;
+    matrix(2, 0) = m20; matrix(2, 1) = m21; matrix(2, 2) = m22;
+    return matrix;
+}
+
 
 
 AST_NAMESPACE_END

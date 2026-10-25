@@ -171,8 +171,8 @@ TEST(Geodetic, GeodeticToCart)
         };
         Vector3d pos{}, vel{};
         ASSERT_EQ(aGeodeticToCart(GeodeticElem, *shape, pos, vel), eNoError);
-        printf("pos: %s\n", pos.toString().c_str());
-        printf("vel: %s\n", vel.toString().c_str());
+        printf("pos: %s\n", toString(pos).c_str());
+        printf("vel: %s\n", toString(vel).c_str());
         Vector3d posExpected{4037581.9709812141954899_m, -5319317.8046476449817419_m, 17371.5200733465462690_m};
         Vector3d velExpected{5008.0776446801501152_m/sec, 3812.2628332697418045_m/sec, 3705.9185959816118157_m/sec};
         for(int i=0;i<3;i++)

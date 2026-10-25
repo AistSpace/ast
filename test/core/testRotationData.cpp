@@ -67,8 +67,8 @@ TEST(RotationalData, MarsAttitude2000)
         data.getInertialToFixedTransform(tp, rotation);
         Vector3d posICRF{3.6961900000000000e+06, 0.0000000000000000e+00, 0.0000000000000000e+00};
         Vector3d posFixed = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posFixed: %s\n", posFixed.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posFixed: %s\n", toString(posFixed).c_str());
         Vector3d posFixedExpect {-992.529459388687883_km, 3560.436011991111627_km, -1.092182414950934_km};
         EXPECT_NEAR(posFixedExpect[0], posFixed[0], 1e-4);
         EXPECT_NEAR(posFixedExpect[1], posFixed[1], 1e-4);
@@ -81,8 +81,8 @@ TEST(RotationalData, MarsAttitude2000)
         data.getICRFToFixedTransform(tp, rotation);
         Vector3d posICRF{1000_km, 3000_km, 4000_km};
         Vector3d posFixed = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posFixed: %s\n", posFixed.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posFixed: %s\n", toString(posFixed).c_str());
         Vector3d posFixedExpect {-2059074.881399545352906, -3990737.457134430315, 2415414.080652357825 };
         EXPECT_NEAR(posFixedExpect[0], posFixed[0], 1e-4);
         EXPECT_NEAR(posFixedExpect[1], posFixed[1], 1e-4);
@@ -97,10 +97,10 @@ TEST(RotationalData, MarsAttitude2000)
         Vector3d velICRF{200_m/s, 300_m/s, 400_m/s};
         Vector3d posFixed, velFixed;
         rotation.transformVectorVelocity(posICRF, velICRF, posFixed, velFixed);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("velICRF: %s\n", velICRF.toString().c_str());
-        printf("posFixed: %s\n", posFixed.toString().c_str());
-        printf("velFixed: %s\n", velFixed.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("velICRF: %s\n", toString(velICRF).c_str());
+        printf("posFixed: %s\n", toString(posFixed).c_str());
+        printf("velFixed: %s\n", toString(velFixed).c_str());
         Vector3d posFixedExpect {-2059074.881399545352906, -3990737.457134430315, 2415414.080652357825 };
         Vector3d velFixedExpect {-567.5069813814213830_m/s, -210.5576407980583724_m/s, 286.1539854124279145_m/s};
         
@@ -119,8 +119,8 @@ TEST(RotationalData, MarsAttitude2000)
         data.getICRFToInertialTransform(tp, rotation);
         Vector3d posICRF{1000_km, 3000_km, 4000_km};
         Vector3d posInertial = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posInertial: %s\n", posInertial.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posInertial: %s\n", toString(posInertial).c_str());
         Vector3d posInertialExpect {2891490.981155287474394, 3434583.120965975013, 2417213.000766226287  };
         EXPECT_NEAR(posInertialExpect[0], posInertial[0], 1e-9);
         EXPECT_NEAR(posInertialExpect[1], posInertial[1], 1e-9);
@@ -133,8 +133,8 @@ TEST(RotationalData, MarsAttitude2000)
         data.getICRFToTODTransform(tp, rotation);
         Vector3d posICRF{1000_km, 3000_km, 4000_km};
         Vector3d posTOD = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posTOD: %s\n", posTOD.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posTOD: %s\n", toString(posTOD).c_str());
         Vector3d posTODExpect {2890870.954200856853276 , 3436.370169982297284_km, 2415.414080652355551_km };
         EXPECT_NEAR(posTODExpect[0], posTOD[0], 1e-9);
         EXPECT_NEAR(posTODExpect[1], posTOD[1], 1e-9);
@@ -147,8 +147,8 @@ TEST(RotationalData, MarsAttitude2000)
         data.getICRFToMODTransform(tp, rotation);
         Vector3d posICRF{1000_km, 3000_km, 4000_km};
         Vector3d posMOD = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posMOD: %s\n", posMOD.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posMOD: %s\n", toString(posMOD).c_str());
         Vector3d posMODExpect {2890870.954200856853276 , 3436.370169982297284_km, 2415.414080652355551_km };
         EXPECT_NEAR(posMODExpect[0], posMOD[0], 1e-9);
         EXPECT_NEAR(posMODExpect[1], posMOD[1], 1e-9);
@@ -171,8 +171,8 @@ TEST(RotationalData, NeptuneAttitude2000)
         data.getICRFToFixedTransform(tp, rotation);
         Vector3d posICRF{5000_km, 4000_km, 3000_km};
         Vector3d posFixed = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posFixed: %s\n", posFixed.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posFixed: %s\n", toString(posFixed).c_str());
         Vector3d posFixedExpect {-5882.733663869602424_km, 3702.339432079606468_km, 1298.509672526069835_km};
         EXPECT_NEAR(posFixedExpect[0], posFixed[0], 1e-4);
         EXPECT_NEAR(posFixedExpect[1], posFixed[1], 1e-4);
@@ -187,10 +187,10 @@ TEST(RotationalData, NeptuneAttitude2000)
         Vector3d velICRF{100_m/s, 200_m/s, 300_m/s};
         Vector3d posFixed, velFixed;
         rotation.transformVectorVelocity(posICRF, velICRF, posFixed, velFixed);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("velICRF: %s\n", velICRF.toString().c_str());
-        printf("posFixed: %s\n", posFixed.toString().c_str());
-        printf("velFixed: %s\n", velFixed.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("velICRF: %s\n", toString(velICRF).c_str());
+        printf("posFixed: %s\n", toString(posFixed).c_str());
+        printf("velFixed: %s\n", toString(velFixed).c_str());
 
         Vector3d posFixedExpect {-5882.733663869602424_km, 3702.339432079606468_km, 1298.509672526069835_km};
         Vector3d velFixedExpect {44.6370476819352007_m/s, 625.4785967611113620_m/s, 113.0941058437464903_m/s};
@@ -210,8 +210,8 @@ TEST(RotationalData, NeptuneAttitude2000)
         data.getICRFToInertialTransform(tp, rotation);
         Vector3d posICRF{5000_km, 4000_km, 3000_km};
         Vector3d posInertial = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posInertial: %s\n", posInertial.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posInertial: %s\n", toString(posInertial).c_str());
         Vector3d posInertialExpect {6318.488287596971531_km, 2902.846898545570184_km, 1284.595517314404333_km};
         EXPECT_NEAR(posInertialExpect[0], posInertial[0], 1e-9);
         EXPECT_NEAR(posInertialExpect[1], posInertial[1], 1e-9);
@@ -224,8 +224,8 @@ TEST(RotationalData, NeptuneAttitude2000)
         data.getICRFToTODTransform(tp, rotation);
         Vector3d posICRF{5000_km, 4000_km, 3000_km};
         Vector3d posTOD = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posTOD: %s\n", posTOD.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posTOD: %s\n", toString(posTOD).c_str());
         Vector3d posTODExpect {6321.470523044497895_km, 2890.135473751319751_km, 1298.509672526065515_km };
         // ubuntu aarch64 上实测差 1.4e-9 
         EXPECT_NEAR(posTODExpect[0], posTOD[0], 1e-8);
@@ -239,8 +239,8 @@ TEST(RotationalData, NeptuneAttitude2000)
         data.getICRFToMODTransform(tp, rotation);
         Vector3d posICRF{5000_km, 4000_km, 3000_km};
         Vector3d posMOD = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posMOD: %s\n", posMOD.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posMOD: %s\n", toString(posMOD).c_str());
         Vector3d posMODExpect {6318.963219494652549_km, 2889.313747884160875_km, 1312.467103192060449_km };
         EXPECT_NEAR(posMODExpect[0], posMOD[0], 1e-9);
         EXPECT_NEAR(posMODExpect[1], posMOD[1], 1e-9);
@@ -265,8 +265,8 @@ TEST(RotationalData, JupiterAttitude2009)
         data.getICRFToFixedTransform(tp, rotation);
         Vector3d posICRF{3000_km, 4000_km, 5000_km};
         Vector3d posFixed = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posFixed: %s\n", posFixed.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posFixed: %s\n", toString(posFixed).c_str());
         Vector3d posFixedExpect {5658.579843367369904_km, -3229.597213573279078_km, 2747.758358065032098_km };
         EXPECT_NEAR(posFixedExpect[0], posFixed[0], 1e-4);
         EXPECT_NEAR(posFixedExpect[1], posFixed[1], 2e-4);
@@ -279,8 +279,8 @@ TEST(RotationalData, JupiterAttitude2009)
         data.getICRFToInertialTransform(tp, rotation);
         Vector3d posICRF{3000_km, 4000_km, 5000_km};
         Vector3d posInertial = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posInertial: %s\n", posInertial.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posInertial: %s\n", toString(posInertial).c_str());
         Vector3d posInertialExpect {2862.668762481611793_km, 5852.819746658852637_km, 2747.658743263475571_km};
         EXPECT_NEAR(posInertialExpect[0], posInertial[0], 1e-9);
         EXPECT_NEAR(posInertialExpect[1], posInertial[1], 1e-8);
@@ -293,8 +293,8 @@ TEST(RotationalData, JupiterAttitude2009)
         data.getICRFToTODTransform(tp, rotation);
         Vector3d posICRF{3000_km, 4000_km, 5000_km};
         Vector3d posTOD = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posTOD: %s\n", posTOD.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posTOD: %s\n", toString(posTOD).c_str());
         Vector3d posTODExpect {2862.703145508322905_km, 5852.756163243137053_km, 2747.758358065032098_km };
         EXPECT_NEAR(posTODExpect[0], posTOD[0], 1e-9);
         EXPECT_NEAR(posTODExpect[1], posTOD[1], 1e-9);
@@ -307,8 +307,8 @@ TEST(RotationalData, JupiterAttitude2009)
         data.getICRFToMODTransform(tp, rotation);
         Vector3d posICRF{3000_km, 4000_km, 5000_km};
         Vector3d posMOD = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posMOD: %s\n", posMOD.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posMOD: %s\n", toString(posMOD).c_str());
         Vector3d posMODExpect {2862.503268078385190_km, 5852.918019026400543_km, 2747.621826743381462_km };
         EXPECT_NEAR(posMODExpect[0], posMOD[0], 1e-9);
         EXPECT_NEAR(posMODExpect[1], posMOD[1], 1e-9);
@@ -332,8 +332,8 @@ TEST(RotationalData, MoonAttitude2000)
         data.getICRFToFixedTransform(tp, rotation);
         Vector3d posICRF{2000_km, 3000_km, 4000_km};
         Vector3d posFixed = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posFixed: %s\n", posFixed.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posFixed: %s\n", toString(posFixed).c_str());
         Vector3d posFixedExpect {-4324.097951102970910_km, -1878.910816636085656_km, 2602.281893338038117_km};
         EXPECT_NEAR(posFixedExpect[0], posFixed[0], 1e-6);
         EXPECT_NEAR(posFixedExpect[1], posFixed[1], 1e-6);
@@ -346,8 +346,8 @@ TEST(RotationalData, MoonAttitude2000)
         data.getICRFToInertialTransform(tp, rotation);
         Vector3d posICRF{2000_km, 3000_km, 4000_km};
         Vector3d posInertial = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posInertial: %s\n", posInertial.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posInertial: %s\n", toString(posInertial).c_str());
         Vector3d posInertialExpect {1832.546782605972339_km, 4478.505910121954003_km, 2363.209068737513462_km};
         EXPECT_NEAR(posInertialExpect[0], posInertial[0], 1e-6);
         EXPECT_NEAR(posInertialExpect[1], posInertial[1], 1e-6);
@@ -360,8 +360,8 @@ TEST(RotationalData, MoonAttitude2000)
         data.getICRFToTODTransform(tp, rotation);
         Vector3d posICRF{2000_km, 3000_km, 4000_km};
         Vector3d posTOD = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posTOD: %s\n", posTOD.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posTOD: %s\n", toString(posTOD).c_str());
         // @todo: 月球的TOD与其他天体的TOD定义有区别
     }
     // test MOD Frame
@@ -371,8 +371,8 @@ TEST(RotationalData, MoonAttitude2000)
         data.getICRFToMODTransform(tp, rotation);
         Vector3d posICRF{2000_km, 3000_km, 4000_km};
         Vector3d posMOD = rotation.transformVector(posICRF);
-        printf("posICRF: %s\n", posICRF.toString().c_str());
-        printf("posMOD: %s\n", posMOD.toString().c_str());
+        printf("posICRF: %s\n", toString(posICRF).c_str());
+        printf("posMOD: %s\n", toString(posMOD).c_str());
         Vector3d posMODExpect {1999.775516607365034_km, 4344.474255799083039_km, 2475.164908420598294_km};
         EXPECT_NEAR(posMODExpect[0], posMOD[0], 1e-6);
         EXPECT_NEAR(posMODExpect[1], posMOD[1], 1e-6);

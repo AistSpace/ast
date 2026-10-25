@@ -81,7 +81,7 @@ TEST(AttitudeUtilTest, AlignConstrain_CircularOrbit)
     aFrameToLVLHTransform(pos, vel, acc, expected);
 
     for(int i=0;i<9;i++)
-        EXPECT_NEAR(rotation.getMatrix()[i], expected.getMatrix()[i], 1e-14);
+        EXPECT_NEAR(rotation.getMatrix().data()[i], expected.getMatrix().data()[i], 1e-14);
 
     for(int i=0;i<3;i++)
         EXPECT_NEAR(rotation.getRotationRate()[i], expected.getRotationRate()[i], 1e-14);
@@ -137,7 +137,7 @@ TEST(AttitudeUtilTest, AlignConstrain_EccentricOrbit)
     aFrameToLVLHTransform(pos, vel, acc, expected);
 
     for(int i=0;i<9;i++)
-        EXPECT_NEAR(rotation.getMatrix()[i], expected.getMatrix()[i], 1e-14);
+        EXPECT_NEAR(rotation.getMatrix().data()[i], expected.getMatrix().data()[i], 1e-14);
 
     for(int i=0;i<3;i++)
         EXPECT_NEAR(rotation.getRotationRate()[i], expected.getRotationRate()[i], 1e-14);
@@ -264,9 +264,9 @@ TEST(AttitudeUtilTest, QuatAverageAngularVelocity)
     aQuatAverageAngularVelocity(quat1, quat2, 0.02, angVel1);
     aAxesRotationRateByDifference(*ecf, *eci, time, angVel2);
     
-    printf("angVelExpected : %s\n", angVelExpected.toString().c_str());
-    printf("angVel1        : %s\n", angVel1.toString().c_str());
-    printf("angVel2        : %s\n", angVel2.toString().c_str());
+    printf("angVelExpected : %s\n", toString(angVelExpected).c_str());
+    printf("angVel1        : %s\n", toString(angVel1).c_str());
+    printf("angVel2        : %s\n", toString(angVel2).c_str());
 
     for (int i = 0; i < 3; ++i)
     {

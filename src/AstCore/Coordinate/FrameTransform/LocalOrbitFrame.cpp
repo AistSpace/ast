@@ -27,6 +27,20 @@
 
 AST_NAMESPACE_BEGIN
 
+using namespace math;
+
+namespace {
+
+/// @brief 以三个轴向量为行填充旋转矩阵
+A_ALWAYS_INLINE void setMatrixRows(Matrix3d& matrix, const Vector3d& x, const Vector3d& y, const Vector3d& z)
+{
+    matrix(0, 0) = x[0]; matrix(0, 1) = x[1]; matrix(0, 2) = x[2];
+    matrix(1, 0) = y[0]; matrix(1, 1) = y[1]; matrix(1, 2) = y[2];
+    matrix(2, 0) = z[0]; matrix(2, 1) = z[1]; matrix(2, 2) = z[2];
+}
+
+} // anonymous namespace
+
 /// @brief     计算局部轨道系相对输入系的角速度（分量在输入系下分解）
 /// @param     posInFrame 位置向量
 /// @param     velInFrame 速度向量
@@ -59,7 +73,7 @@ errc_t aFrameToVVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame
     Vector3d axis_y = velInFrame.cross(posInFrame);
 
 	// pos为0，vel为0，或者pos和vel方向相同
-	if (A_UNLIKELY(axis_y.normalize() == 0))
+	if (A_UNLIKELY(normalize(axis_y) == 0))
 	{
 		matrix.setIdentity();
         return eErrorInvalidParam;
@@ -68,11 +82,7 @@ errc_t aFrameToVVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame
 	{
 		Vector3d axis_x = posInFrame.cross(axis_y).normalized();
         Vector3d axis_z = -posInFrame.normalized();
-		matrix = {
-            axis_x[0], axis_x[1], axis_x[2],
-            axis_y[0], axis_y[1], axis_y[2],
-            axis_z[0], axis_z[1], axis_z[2],
-        };
+		setMatrixRows(matrix, axis_x, axis_y, axis_z);
 		return eNoError;
 	}
 }
@@ -107,7 +117,7 @@ errc_t aVVLHToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame
 errc_t aFrameToLVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame, Matrix3d& matrix)
 {
     Vector3d axis_z = posInFrame.cross(velInFrame);
-    if(A_UNLIKELY(axis_z.normalize() == 0))
+    if(A_UNLIKELY(normalize(axis_z) == 0))
     {
         matrix.setIdentity();
         return eErrorInvalidParam;
@@ -116,11 +126,7 @@ errc_t aFrameToLVLHMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame
     {
         Vector3d axis_y = axis_z.cross(posInFrame).normalized();
         Vector3d axis_x = posInFrame.normalized();
-        matrix = {
-            axis_x[0], axis_x[1], axis_x[2],
-            axis_y[0], axis_y[1], axis_y[2],
-            axis_z[0], axis_z[1], axis_z[2],
-        };
+        setMatrixRows(matrix, axis_x, axis_y, axis_z);
         return eNoError;
     }
 }
@@ -155,18 +161,14 @@ errc_t aLVLHToFrameMatrix(const Vector3d& posInFrame, const Vector3d& velInFrame
 errc_t aFrameToVNCMatrix(const Vector3d &posInFrame, const Vector3d &velInFrame, Matrix3d &matrix)
 {
     Vector3d axis_y = posInFrame.cross(velInFrame);
-    if(A_UNLIKELY(axis_y.normalize() == 0))
+    if(A_UNLIKELY(normalize(axis_y) == 0))
     {
         matrix.setIdentity();
         return eErrorInvalidParam;
     }else{
         Vector3d axis_z = velInFrame.cross(axis_y).normalized();
         Vector3d axis_x = velInFrame.normalized();
-        matrix = {
-            axis_x[0], axis_x[1], axis_x[2],
-            axis_y[0], axis_y[1], axis_y[2],
-            axis_z[0], axis_z[1], axis_z[2],
-        };
+        setMatrixRows(matrix, axis_x, axis_y, axis_z);
         return eNoError;
     }
 }

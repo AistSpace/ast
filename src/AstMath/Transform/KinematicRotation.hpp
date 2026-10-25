@@ -142,14 +142,14 @@ A_ALWAYS_INLINE KinematicRotation::KinematicRotation(const Rotation &rot, const 
 
 A_ALWAYS_INLINE KinematicRotation &KinematicRotation::compose(const KinematicRotation &next)
 {
-    angvel_ = this->angvel_ + next.angvel_ * this->matrix();
+    angvel_ = this->angvel_ + this->matrix().transpose() * next.angvel_;
     matrix() = next.matrix() * this->matrix();
     return *this;
 }
 
 A_ALWAYS_INLINE KinematicRotation KinematicRotation::composed(const KinematicRotation &next) const
 {
-    return KinematicRotation(next.matrix() * this->matrix(), this->angvel_ + next.angvel_ * this->matrix());
+    return KinematicRotation(next.matrix() * this->matrix(), this->angvel_ + this->matrix().transpose() * next.angvel_);
 }
 
 A_ALWAYS_INLINE KinematicRotation KinematicRotation::operator*(const KinematicRotation &next) const
@@ -191,8 +191,8 @@ A_ALWAYS_INLINE CartState KinematicRotation::transformCartState(const CartState 
 
 A_ALWAYS_INLINE void KinematicRotation::transformVectorVelocityInv(const Vector3d &vector, const Vector3d &velocity, Vector3d &vectorOut, Vector3d &velocityOut) const
 {
-    vectorOut = vector * this->matrix();
-    velocityOut = velocity* this->matrix() + this->angvel_.cross(vectorOut);
+    vectorOut = this->matrix().transpose() * vector;
+    velocityOut = this->matrix().transpose() * velocity + this->angvel_.cross(vectorOut);
 }
 
 AST_NAMESPACE_END

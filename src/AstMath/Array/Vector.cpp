@@ -32,13 +32,25 @@
 
 AST_NAMESPACE_BEGIN
 
-template <typename _Scalar>
-std::string VectorN<_Scalar, 3>::toString() const{
+template <typename VectorType>
+std::string VectorToString(const VectorType& v)
+{
 #ifdef AST_WITH_FMT
-    return fmt::format("({}, {}, {})", x_, y_, z_);
+    return fmt::format("({}, {}, {})", v[0], v[1], v[2]);
 #else
-    return "(" + std::to_string(x_) + ", " + std::to_string(y_) + ", " + std::to_string(z_) + ")";
+    return "(" + std::to_string(v[0]) + ", " + std::to_string(v[1]) + ", " + std::to_string(v[2]) + ")";
 #endif
+}
+
+std::string toString(const Vector3d& v)
+{
+    return VectorToString(v);
+}
+
+template <typename _Scalar>
+std::string VectorN<_Scalar, 3>::toString() const
+{
+    return VectorToString(*this);
 }
 
 template AST_MATH_API std::string VectorN<double, 3>::toString() const;

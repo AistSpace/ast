@@ -22,6 +22,8 @@
 
 AST_NAMESPACE_BEGIN
 
+using namespace math;
+
 namespace {
 
 /// @brief 将三轴置为单位三轴
@@ -41,14 +43,14 @@ void setIdentityTriad(Vector3d axis[3])
 errc_t makeTriad(const Vector3d& v1, const Vector3d& v2, Vector3d axis[3])
 {
     axis[0] = v1;
-    if (A_UNLIKELY(axis[0].normalize() == 0))
+    if (A_UNLIKELY(normalize(axis[0]) == 0))
     {
         setIdentityTriad(axis);
         return eErrorInvalidParam;
     }
 
     axis[1] = v2 - axis[0] * v2.dot(axis[0]);
-    if (A_UNLIKELY(axis[1].normalize() == 0))
+    if (A_UNLIKELY(normalize(axis[1]) == 0))
     {
         setIdentityTriad(axis);
         return eErrorInvalidParam;

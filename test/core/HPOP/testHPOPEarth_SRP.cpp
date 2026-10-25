@@ -87,8 +87,8 @@ TEST_F(HPOPTest, SRP_WithCylindricalShadow_TrueSun)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
 
 
     Vector3d posExpect{  1.2117973367595519e+06, 5.8671057852713587e+06, 3.4797049140907731e+06 };
@@ -143,8 +143,8 @@ TEST_F(HPOPTest, SRP_WithConeShadow_TrueSun)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
 
     Vector3d posExpect{  1.2117982390472749e+06, 5.8671055494347895e+06, 3.4797050199101889e+06};
     Vector3d velExpect{  -7.2773053572113140e+03, 1.9899684932434402e+03, -8.1031850638668527e+02};
@@ -201,8 +201,8 @@ TEST_F(HPOPTest, SRP_WithConeShadow_ApparentSunToBody)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
 
     Vector3d posExpect{  1.2117982591632833e+06, 5.8671055414197138e+06, 3.4797050209281933e+06};
     Vector3d velExpect{  -7.2773053560503795e+03, 1.9899685137763549e+03, -8.1031849486451665e+02};
@@ -257,8 +257,8 @@ TEST_F(HPOPTest, SRP_NoShadow_ApparentSun)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
 
 
     Vector3d posExpect{ -4.9951497747736117e+06, -3.5746254555597445e+06, 3.0854579753351789e+06};
@@ -312,8 +312,8 @@ TEST_F(HPOPTest, SRP_NoShadow_ApparentSunToBody)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
 
     Vector3d posExpect{  -4.9951606036705822e+06, -3.5746072424644586e+06, 3.0854615806196616e+06 };
     Vector3d velExpect{  3.8355878481494951e+03, -6.4541968622990571e+03, -1.2740407535364818e+03 };
@@ -367,8 +367,8 @@ TEST_F(HPOPTest, SRP_NoShadow_TrueSun)
     err = propagator.propagate(start, end, pos, vel);
     EXPECT_EQ(err, 0);
     printf("end: %s\n", end.toString().c_str());
-    printf("pos: %s\n", pos.toString().c_str());
-    printf("vel: %s\n", vel.toString().c_str());
+    printf("pos: %s\n", toString(pos).c_str());
+    printf("vel: %s\n", toString(vel).c_str());
 
     Vector3d posExpect{ 6.2333481674869442e+06, 4.2166379211770219e+05, 2.8615712739877473e+06};
     Vector3d velExpect{ -1.2876976995850798e+03, 7.3033485417655947e+03, 1.7416876627816571e+03};

@@ -56,7 +56,7 @@ HPOPForceModel forceModel()
 void analyseLunarTransfer()
 {
     HPOPForceModel fm = forceModel();
-    CartState initState{6159968.33397138, 2393641.1690744, 922487.447464321, -2872.54217681962, 9257.74498172147, -4877.87739768414};
+    CartState initState{{6159968.33397138, 2393641.1690744, 922487.447464321}, {-2872.54217681962, 9257.74498172147, -4877.87739768414}};
     TimePoint initTime = "2017-12-31 20:51:50.678"_utc;
     auto state = initState;
     SpacecraftParam spacecraftParam;

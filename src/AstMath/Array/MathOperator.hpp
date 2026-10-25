@@ -26,7 +26,13 @@
 #include <array>        // for std::array
 #include <iterator>     // for std::size in C++17
 #include <cassert>      // for assert
- 
+
+namespace Eigen
+{
+    template <typename Scalar_, int Rows_, int Cols_, int Options_, int MaxRows_, int MaxCols_>
+    class Matrix;
+}
+
 AST_NAMESPACE_BEGIN
 
 #ifndef A_LIKELY
@@ -45,6 +51,9 @@ typedef std::array<double, 6> array6d;
 
 template<typename _Scalar, size_t Row, size_t Col>
 class MatrixMN;
+
+template<typename MatrixType>
+class TransposeMatrix;
 
 /// @ingroup Vector
 /// @brief  提供向量运算相关的函数
@@ -417,15 +426,18 @@ typename std::enable_if<is_arithmetic_element<T>::value, std::true_type>::type
 arithmeticElementCheck(T);
 
 
-// 定义向量特征：必须要有 size() 和数值型元素的 operator[]
+// 定义向量特征：必须要有 size() 和数值型元素的 operator[]，
+// 且元素为可写左值，支持 += 和 -=
 template<typename T>
 struct is_vector_like {
 private:
     template<typename U>
     static auto test(int) -> decltype(
-        sizeof(std::declval<U>()[0]),                   // 有 operator[] (用 sizeof 取用返回值避免报 unused-result)
-        size(std::declval<U>()),                        // 有 size() 函数
-        arithmeticElementCheck(std::declval<U>()[0])    // 元素类型为数值类型
+        sizeof(std::declval<U>()[0]),                           // 有 operator[] (用 sizeof 取用返回值避免报 unused-result)
+        size(std::declval<U>()),                                // 有 size() 函数
+        sizeof(std::declval<U&>()[0] += std::declval<U>()[0]),  // 元素支持 +=
+        sizeof(std::declval<U&>()[0] -= std::declval<U>()[0]),  // 元素支持 -=
+        arithmeticElementCheck(std::declval<U>()[0])            // 元素类型为数值类型（置于末尾，使推导结果为 std::true_type）
     );
     
     template<typename>
@@ -434,6 +446,12 @@ private:
 public:
     static constexpr bool value = decltype(test<T>(0))::value;
 };
+
+/// @brief Eigen 矩阵类型：只有向量（行数或列数为 1）才参与按元素运算
+/// @details 2 维矩阵不支持 operator[]，且自带矩阵运算符，不参与 math 命名空间的按元素运算
+template<typename Scalar, int Rows, int Cols, int Options, int MaxRows, int MaxCols>
+struct is_vector_like<::Eigen::Matrix<Scalar, Rows, Cols, Options, MaxRows, MaxCols>>
+    : std::integral_constant<bool, Rows == 1 || Cols == 1> {};
 
 
 /// + - * /
@@ -557,7 +575,7 @@ using namespace math;
 #endif
 
 
-
+/// @brief 矩阵乘法
 template<typename _Scalar, size_t I, size_t J, size_t K>
 MatrixMN<_Scalar, I, K> operator* (
     const MatrixMN<_Scalar, I, J>& left,
@@ -579,7 +597,7 @@ MatrixMN<_Scalar, I, K> operator* (
     return retval;
 }
 
-
+/// @brief 矩阵乘向量
 template<typename _Scalar, size_t I, size_t J>
 VectorN<_Scalar, I> operator*(
     const MatrixMN<_Scalar, I, J>& left,
@@ -597,6 +615,7 @@ VectorN<_Scalar, I> operator*(
     return result;
 }
 
+/// @brief 向量乘矩阵
 template<typename _Scalar, size_t I, size_t J>
 VectorN<_Scalar, J> operator*(
     const VectorN<_Scalar, I>& left,
@@ -610,6 +629,34 @@ VectorN<_Scalar, J> operator*(
         }
     }
     return result;
+}
+
+/// @brief 转置矩阵乘向量
+template<typename _Scalar, size_t I, size_t J>
+A_ALWAYS_INLINE VectorN<_Scalar, J> operator*(const TransposeMatrix<MatrixMN<_Scalar, I, J>>& left, const VectorN<_Scalar, I>& right)
+{
+    return right * left.operand();
+}
+
+/// @brief 矩阵乘转置矩阵
+template<typename _Scalar, size_t I, size_t J, size_t K>
+A_ALWAYS_INLINE MatrixMN<_Scalar, I, K> operator*(const MatrixMN<_Scalar, I, J>& left, const TransposeMatrix<MatrixMN<_Scalar, K, J>>& right)
+{
+    return left * right.eval();
+}
+
+/// @brief 转置矩阵乘矩阵
+template<typename _Scalar, size_t I, size_t J, size_t K>
+A_ALWAYS_INLINE MatrixMN<_Scalar, J, K> operator*(const TransposeMatrix<MatrixMN<_Scalar, I, J>>& left, const MatrixMN<_Scalar, I, K>& right)
+{
+    return left.eval() * right;
+}
+
+/// @brief 转置矩阵乘转置矩阵
+template<typename _Scalar, size_t I, size_t J, size_t K>
+A_ALWAYS_INLINE MatrixMN<_Scalar, J, K> operator*(const TransposeMatrix<MatrixMN<_Scalar, I, J>>& left, const TransposeMatrix<MatrixMN<_Scalar, K, I>>& right)
+{
+    return left.eval() * right.eval();
 }
 
 

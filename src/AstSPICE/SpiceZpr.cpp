@@ -30,6 +30,8 @@
 #include "AstMath/Euler.hpp"
 #include "AstMath/Quaternion.hpp"
 #include "AstMath/MathOperator.hpp"
+#include "AstMath/MathUtil.hpp"
+#include "AstMath/ParamAdapter.hpp"
 #include "AstUtil/Constants.hpp"
 #include "AstUtil/Math.hpp"
 #include "AstUtil/StringView.hpp"
@@ -60,6 +62,15 @@ void axisar(const Vector3d & axis, double angle, Matrix3d & r)
     aAngleAxisToMatrix(AngleAxis(-angle, axis), r);
 }
 
+AST_SPICE_CAPI
+void axisar(
+    const double  axis[3],
+    double        angle,
+    double        r[3][3]
+)
+{
+    axisar(in(axis), angle, out(r));
+}
 
 
 // azlcpo
@@ -548,6 +559,20 @@ void eul2m(double angle3, double angle2, double angle1, int axis3, int axis2, in
     A_UNUSED(rc);
 }
 
+AST_SPICE_CAPI 
+void eul2m(
+    double  angle3,
+    double  angle2,
+    double  angle1,
+    int     axis3,
+    int     axis2,
+    int     axis1,
+    double  r [3][3]
+)
+{
+    return eul2m(angle3, angle2, angle1, axis3, axis2, axis1, out(r));
+}
+
 
 // eul2xf
 
@@ -663,6 +688,12 @@ void eul2m(double angle3, double angle2, double angle1, int axis3, int axis2, in
 void ident(Matrix3d &matrix)
 {
     matrix.setIdentity();
+}
+
+AST_SPICE_CAPI
+void ident(double matrix[3][3])
+{
+    ident(out(matrix));
 }
 
 // illumf
@@ -837,10 +868,33 @@ void m2eul(const Matrix3d &r, int axis3, int axis2, int axis1, double &angle3, d
     angle1 = euler.angle1();
 }
 
+AST_SPICE_CAPI
+void m2eul(
+    const double    r[3][3],
+    int             axis3,
+    int             axis2,
+    int             axis1,
+    double        * angle3,
+    double        * angle2,
+    double        * angle1
+)
+{
+    m2eul(in(r), axis3, axis2, axis1, *angle3, *angle2, *angle1);
+}
+
 void m2q(const Matrix3d &r, Quaternion &q)
 {
     // @todo
     aMatrixToQuat(r.transpose(), q);
+}
+
+AST_SPICE_CAPI
+void m2q(
+    const double  r[3][3],
+    double        q[4]
+)
+{
+    m2q(in(r), out(q));
 }
 
 
@@ -881,6 +935,16 @@ void m2q(const Matrix3d &r, Quaternion &q)
 void mxm(const Matrix3d &m1, const Matrix3d &m2, Matrix3d &mout)
 {
     mout = m1 * m2;
+}
+
+AST_SPICE_CAPI
+void mxm(
+    const double m1[3][3],
+    const double m2[3][3],
+    double       mout[3][3]
+)
+{
+    mxm(in(m1), in(m2), out(mout));
 }
 
 void mxvg(const void *m1, const void *v2, int nr1, int nc1r2, void *vout)
@@ -1023,10 +1087,10 @@ errc_t pxform(
     const char   * from,
     const char   * to,
     double         et,
-    Matrix3d&      rotate
+    double         rotate[3][3]
 )
 {
-    return pxform(from, to, aSpiceEtToTimePoint(et), rotate);
+    return pxform(from, to, aSpiceEtToTimePoint(et), out(rotate));
 }
 
 // pxfrm2
@@ -1035,6 +1099,15 @@ void q2m(const Quaternion &q, Matrix3d &r)
 {
     // @todo
     aQuatToMatrix(q.conjugate(), r);
+}
+
+AST_SPICE_CAPI
+void q2m(
+    const double  q[4],
+    double        r[3][3]
+)
+{
+    q2m(in(q), out(r));
 }
 
 
@@ -1055,11 +1128,12 @@ void radrec(double range, double ra, double dec, Vector3d &rectan)
 
 void rav2xf(const Matrix3d &rot, const Vector3d &av, Matrix6d &xform)
 {
-    Matrix3d omegat {
+    Matrix3d omegat;
+    aSetMatrix(omegat,
         0,      av[2], -av[1],
         -av[2], 0,      av[0],
         av[1],  -av[0], 0
-    };
+    );
 
     Matrix3d drdt = rot * omegat;
 
@@ -1073,6 +1147,16 @@ void rav2xf(const Matrix3d &rot, const Vector3d &av, Matrix6d &xform)
             xform(i+3, j)  = drdt(i, j);
         }
     }
+}
+
+AST_SPICE_CAPI
+void rav2xf(
+    const double rot   [3][3],
+    const double av    [3],
+    double       xform [6][6]
+)
+{
+    rav2xf(in(rot), in(av), out(xform));
 }
 
 
@@ -1559,7 +1643,7 @@ errc_t tipbod(
     const char      * ref,
     int               body,
     double            et,
-    Matrix3d&         tipm
+    double            tipm[3][3]
 )
 {
     auto refAxes = aSpiceFindAxes(ref);
@@ -1568,7 +1652,7 @@ errc_t tipbod(
     auto bodyIns = aSpiceFindBody(body);
     if ( bodyIns == nullptr )
         return -1;
-    return tipbod(refAxes, bodyIns, aSpiceEtToTimePoint(et), tipm);
+    return tipbod(refAxes, bodyIns, aSpiceEtToTimePoint(et), out(tipm));
 }
 
 

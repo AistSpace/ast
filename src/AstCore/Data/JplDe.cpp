@@ -644,16 +644,18 @@ errc_t JplDe::getPosVelICRF(
             for (int i = 0; i < 3; ++i)
                 pos[i] = -pos[i] * 1e3;
             if (vel) {
+                Vector3d& v = *vel;
                 for (int i = 0; i < 3; ++i)
-                    vel->at(i) = -vel->at(i) * 1e3;
+                    v[i] = -v[i] * 1e3;
             }
         }
         else {
             for (int i = 0; i < 3; ++i)
                 pos[i] *= 1e3;
             if (vel) {
+                Vector3d& v = *vel;
                 for (int i = 0; i < 3; ++i)
-                    vel->at(i) *= 1e3;
+                    v[i] *= 1e3;
             }
         }
         return eNoError;
@@ -708,8 +710,9 @@ errc_t JplDe::getPosVelICRF(
     for (int i = 0; i < 3; ++i)
         pos[i] = (pv[ntarg][i] - pv[ncent][i]) * 1e3;
     if (vel) {
+        Vector3d& v = *vel;
         for (int i = 0; i < 3; ++i)
-            vel->at(i) = (pv[ntarg][3 + i] - pv[ncent][3 + i]) * 1e3;
+            v[i] = (pv[ntarg][3 + i] - pv[ncent][3 + i]) * 1e3;
     }
     return eNoError;
 }

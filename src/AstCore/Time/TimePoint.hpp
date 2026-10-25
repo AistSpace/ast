@@ -29,6 +29,7 @@
 #include "AstUtil/StringView.hpp"
 #include <stdint.h>                 // for int64_t
 #include <cmath>                    // for std::isnan
+#include <string>
 
 AST_NAMESPACE_BEGIN
 
@@ -318,6 +319,11 @@ protected:
 public:
     LongDuration    duration_;
 };
+
+inline std::string toString(const TimePoint& tp)
+{
+    return tp.toString();
+}
 
 
 /// @brief 从UTC字符串解析时间点

@@ -85,7 +85,7 @@ TEST(AccelerationRotationTest, TransformAgainstFiniteDifference)
     Vector3d vel{1.0e3, 2.0e3, -3.0e3};
     Vector3d acc{-600.0, 500.0, -400.0};
 
-    auto posInTarget = [&](double t) {
+    auto posInTarget = [&](double t) -> Vector3d {
         Vector3d posInSource = pos + vel * t + acc * (0.5 * t * t);
         return mat(t) * posInSource;
     };

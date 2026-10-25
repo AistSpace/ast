@@ -63,6 +63,7 @@
 
 // #define AST_DISABLE_AUTO_DOWNLOAD_DATA        // 是否禁用自动下载数据功能
 
+// #define AST_USE_EIGEN_MATRIX                  // [影响ABI]是否使用 Eigen 库中的矩阵向量定义，否则使用库中内置的类型
 // #define AST_USE_STD_STRING_VIEW               // [影响ABI]是否使用 std::string_view ，否则使用内置的string_view
 // #define AST_USE_STD_FILESYSTEM                // 是否使用 std::filesystem，如果存在的话，否则使用内置的filesystem
 // #define AST_USE_STD_FILESYSTEM_EXPERIMENTAL   // 是否选择使用 std::experimental::filesystem 的c++实验特性，如果存在的话
@@ -427,6 +428,12 @@
 #define AST_VISVTK_CAPI A_DECL_EXTERN_C AST_VISVTK_API
 
 
+#if defined(AST_USE_EIGEN_MATRIX) && defined(__cplusplus)
+#undef min
+#undef max
+#include <Eigen/Core>
+#include <Eigen/Dense>
+#endif
 
 AST_NAMESPACE_BEGIN
 
@@ -502,12 +509,43 @@ class VectorN;
 template<typename _Scalar, size_t M, size_t N>
 class MatrixMN;
 
+#define _AST_STORAGE_ORDER_COL_MAJOR 0       ///< 列优先存储
+#define _AST_STORAGE_ORDER_ROW_MAJOR 1       ///< 行优先存储
+
+#define _AST_MATRIX_IS_COL_MAJOR (_AST_MATRIX_STORAGE_ORDER == _AST_STORAGE_ORDER_COL_MAJOR)    ///< 矩阵是否为列优先存储
+#define _AST_MATRIX_IS_ROW_MAJOR (_AST_MATRIX_STORAGE_ORDER == _AST_STORAGE_ORDER_ROW_MAJOR)    ///< 矩阵是否为行优先存储
+
+#if defined(AST_USE_EIGEN_MATRIX)  // 使用 Eigen 库中的矩阵向量定义
+
+// 判断 Eigen 库矩阵的默认存储顺序：行优先存储或列优先存储
+#   if defined(EIGEN_DEFAULT_TO_ROW_MAJOR)
+#       define _AST_MATRIX_STORAGE_ORDER _AST_STORAGE_ORDER_ROW_MAJOR
+#       define _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION Eigen::RowMajor
+#   else
+#       define _AST_MATRIX_STORAGE_ORDER _AST_STORAGE_ORDER_COL_MAJOR
+#       define _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION Eigen::ColMajor
+#   endif
+
+using Vector3d = ::Eigen::Matrix<double, 3, 1, _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION>;
+using Vector6d = ::Eigen::Matrix<double, 6, 1, _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION>;
+
+using Matrix3d = ::Eigen::Matrix<double, 3, 3, _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION>;
+using Matrix8d = ::Eigen::Matrix<double, 8, 8, _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION>;
+using Matrix6d = ::Eigen::Matrix<double, 6, 6, _AST_EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION>;
+
+#else   // 否则，使用项目内置的矩阵向量定义
+
+// 项目内置的矩阵使用的是行优先存储
+#define _AST_MATRIX_STORAGE_ORDER _AST_STORAGE_ORDER_ROW_MAJOR
+
 typedef VectorN<double, 3> Vector3d;
 typedef VectorN<double, 6> Vector6d;
 
 typedef MatrixMN<double, 3, 3> Matrix3d;
 typedef MatrixMN<double, 8, 8> Matrix8d;
 typedef MatrixMN<double, 6, 6> Matrix6d;
+
+#endif
 
 
 template<typename _Char>
