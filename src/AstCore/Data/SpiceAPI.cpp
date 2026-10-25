@@ -189,84 +189,18 @@ SpiceAPI::~SpiceAPI()
 {
     kclear();   // 清除所有已加载的内核
     unload();   // 卸载库
-    releaseShortPathAliases();
 }
 
 void SpiceAPI::makeSpicePath(StringView filepath, std::string &spicePath)
 {
-    spicePath.clear();
-    if(filepath.empty())
-        return;
-
-    fs::path path(filepath);
-    aUTF8ToCRT(path.c_str(), spicePath);
+    std::string temp(filepath);
+    aUTF8ToCRT(temp.c_str(), spicePath);
     if(spicePath.size() <= kSpiceFilenameMaxLength)
         return;
-
-    // CSPICE 不接受超长路径，只能借道短路径别名：
-    // 把超长的父目录映射到临时目录下的一个短路径，再把文件名接上去
-    fs::path dir = path.parent_path();
-    fs::path name = path.filename();
-
-    auto it = shortPathAliases_.find(dir.string());
-    if(it == shortPathAliases_.end())
-    {
-        // 别名根目录：临时目录下按进程 + 本对象地址命名，
-        // 保证同一进程内的多个 SpiceAPI 实例互不干扰
-        if(shortPathRoot_.empty())
-        {
-            std::error_code ec;
-            fs::path tempDir = fs::temp_directory_path(ec);
-            if(tempDir.empty())
-                tempDir = "./tmp/";
-            shortPathRoot_ = (tempDir / (
-                "ast-spice-" + std::to_string(posix::getpid()) + "-"
-                + std::to_string(reinterpret_cast<uintptr_t>(this))
-            )).string();
-            fs::remove_all(shortPathRoot_);     // 清理上次异常退出留下的同名目录
-            fs::create_directories(shortPathRoot_, ec);
-            if(ec)
-            {
-                shortPathRoot_.clear();
-                aWarning(_("无法创建短路径别名目录，超长路径 '%s' 将直接交给 CSPICE"), dir.c_str());
-                return;
-            }
-        }
-        
-        fs::path aliasDir = (fs::path(shortPathRoot_) / std::to_string(shortPathAliases_.size()));
-        std::error_code ec;
-
-        // 创建符号链接时需要使用绝对路径
-        fs::path absDir = fs::absolute(dir, ec);
-        if(ec)
-            return;
-
-        // Windows 用目录联接，创建不需要管理员权限；其它平台用符号链接
-        #ifdef _WIN32
-        errc_t rc = aCreateJunction(absDir.string(), aliasDir.string());
-        #else
-        errc_t rc = aCreateSymbolicLink(absDir.string(), aliasDir.string(), true);
-        #endif
-        if(rc != eNoError)
-        {
-            aWarning(_("为超长路径 '%s' 创建短路径别名失败，将直接交给 CSPICE"), dir.c_str());
-            return;
-        }
-        it = shortPathAliases_.emplace(dir, aliasDir).first;
-    }
-
-    fs::path aliasPath = fs::path(it->second) / name;
-    aUTF8ToCRT(aliasPath.c_str(), spicePath);
-}
-
-void SpiceAPI::releaseShortPathAliases()
-{
-    if(shortPathRoot_.empty())
-        return;
-    // 联接点/符号链接只会删除别名本身，不会删到目标目录里的内核文件
-    fs::remove_all(shortPathRoot_);
-    shortPathRoot_.clear();
-    shortPathAliases_.clear();
+    std::string shortPath = aTryGetShortPath(filepath);
+    aUTF8ToCRT(shortPath.c_str(), spicePath);
+    if(spicePath.size() > kSpiceFilenameMaxLength)
+        aWarning(_("路径超过 CSPICE 的长度限制且无法映射到短路径，CSPICE 将拒绝该文件 '%s'"), temp.c_str());
 }
 
 errc_t SpiceAPI::load(StringView dirpath)

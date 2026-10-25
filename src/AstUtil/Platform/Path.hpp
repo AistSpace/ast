@@ -83,6 +83,13 @@ AST_UTIL_CAPI errc_t aCreateJunction(StringView targetPath, StringView junctionP
 /// @return 错误码
 AST_UTIL_CAPI errc_t aCreateSymbolicLink(StringView targetPath, StringView linkPath, bool isDirectory);
 
+
+/// @brief 尝试获取短路径
+/// @param path 原始路径
+/// @return 短路径
+AST_UTIL_API std::string aTryGetShortPath(StringView path);
+
+
 /*! @} */
 
 AST_NAMESPACE_END

@@ -162,7 +162,9 @@ private:
 // --- double[6][6] 参数适配器
 // -------------------------
 
-#if _AST_MATRIX_IS_ROW_MAJOR
+// Eigen 对定长矩阵可能带有对齐要求(例如大小为 16 字节整数倍的矩阵)
+// 故不能把裸 double 缓冲区直接当作 Eigen::Matrix6d 对象使用，
+#if _AST_MATRIX_IS_ROW_MAJOR && !defined(AST_USE_EIGEN_MATRIX)
 
 /// @brief 可写 `double[6][6]` 适配器，内存布局与行优先存储的 Matrix6d 一致，直接绑定外部缓冲区
 template <>
