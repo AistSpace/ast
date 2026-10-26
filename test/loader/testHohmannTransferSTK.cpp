@@ -69,6 +69,10 @@ TEST(HohmannTransferSTKTest, Load)
 
 TEST(HohmannTransferSTKTest, execute)
 {
+#ifndef _WIN32
+    // 场景的瞄准序列通过 JScript 脚本工具设置初值，而 JScript 执行器只在 Windows 上提供
+    GTEST_SKIP() << "JScript script executor is only available on Windows";
+#endif
     const char scenarioDir[] = "./STK/Scenarios/testHohmannTransferSTK";
     const std::string path = aTestDataDirGet() + "/" + scenarioDir;
     std::printf("path: %s\n", path.c_str());
