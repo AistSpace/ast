@@ -102,10 +102,44 @@ protected:
         }
     }
 protected:
-    size_t currentDepth_{0};                ///< 当前解析深度，1表示根元素
+    size_t currentDepth_{0};                 ///< 当前解析深度，1表示根元素
     std::vector<ParseContext> stack_{};      ///< 解析上下文栈
     SharedPtr<Value> value_{};               ///< 当前解析到的值
 };
+
+
+/// @brief 解析STK中的数量值
+/// @details 
+/// 例如：
+/// 9976435.623415779 m
+/// 661.3387703572311 m*sec^-1
+/// 2.094416670185218e-10 ""
+/// 
+/// 末尾带有单位的值将解析为 Quantity 类型
+/// 末尾带有 "" 的值将解析为 double 类型
+/// @param text 要解析的文本
+static Value* parseSTKQuantityValue(StringView text)
+{
+    Quantity quantity;
+    errc_t rc = aQuantityParse(text, quantity);
+    // 很奇怪，有些数量值会以""结尾，导致解析数量值时失败，例如： 2.2 ""
+    if(rc){
+        double d = 0.0;
+        text = aStripAsciiWhitespace(text);
+        // 先去掉尾部的""，否则严格解析会失败
+        if(text.ends_with("\"\"")){
+            text = aStripAsciiWhitespace(text.substr(0, text.size() - 2));
+        }
+        rc = aParseDouble(text, d);
+        if(rc != eNoError)
+        {
+            aError(_("解析数量值 '%.*s' 失败"), text.size(), text.data());
+        }
+        return aNewValueDouble(d);
+    }else{
+        return aNewValueQuantity(quantity);
+    }
+}
 
 class ValXMLSax: public ValXMLSaxBase
 {
@@ -130,6 +164,11 @@ public:
                 context.class_ = attrs.get("Class").toString();
             }
             else if(element == "STRING")
+            {
+                ParseContext& context = getCurrentContext();
+                context = {};
+            }
+            else if(element == "REAL")
             {
                 ParseContext& context = getCurrentContext();
                 context = {};
@@ -178,25 +217,7 @@ public:
             }
             else if(context.class_ == "double")
             {
-                Quantity quantity;
-                errc_t rc = aQuantityParse(context.text_, quantity);
-                // 很奇怪，有些数量值会以""结尾，导致解析数量值时失败，例如： 2.2 ""
-                if(rc){
-                    double d = 0.0;
-                    StringView text = aStripAsciiWhitespace(context.text_);
-                    // 先去掉尾部的""，否则严格解析会失败
-                    if(text.ends_with("\"\"")){
-                        text = aStripAsciiWhitespace(text.substr(0, text.size() - 2));
-                    }
-                    rc = aParseDouble(text, d);
-                    if(rc != eNoError)
-                    {
-                        aError(_("解析数量值 '%.*s' 失败"), text.size(), text.data());
-                    }
-                    context.value_ = aNewValueDouble(d);
-                }else{
-                    context.value_ = aNewValueQuantity(quantity);
-                }
+                context.value_ = parseSTKQuantityValue(context.text_);
             }
             else // class 为其他类型，则为对象
             {
@@ -225,6 +246,12 @@ public:
         {
             ParseContext& context = getCurrentContext();
             context.value_ = aNewValueString(aUnquote(context.text_));
+            insertCurrentValueToParentDict();
+        }
+        else if(element == "REAL")
+        {
+            ParseContext& context = getCurrentContext();
+            context.value_ = parseSTKQuantityValue(context.text_);
             insertCurrentValueToParentDict();
         }
         else

@@ -382,6 +382,12 @@ std::basic_ostream<_Char>& operator<<(std::basic_ostream<_Char>& os, const Strin
     return os;
 }
 
+// 比较字符串和字符串视图
+inline bool operator == (const std::string& left, StringView right)
+{
+    return StringView(left) == right;
+}
+
 // 字面量操作符（C++11不支持用户定义字面量用于模板，这里只提供char版本）
 inline StringView operator ""_sv(const char* str, size_t len) noexcept
 {
