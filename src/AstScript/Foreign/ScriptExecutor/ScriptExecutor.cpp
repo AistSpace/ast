@@ -24,6 +24,7 @@
 #include "VBScriptExecutor.hpp"
 #include "JScriptExecutor.hpp"
 #include "PythonExecutor.hpp"
+#include "JavaScriptExecutor.hpp"
 #include "AstUtil/Logger.hpp"
 
 AST_NAMESPACE_BEGIN
@@ -169,6 +170,15 @@ ScriptExecutor* aNewScriptExecutor(EScriptLanguage type)
 #endif
     case EScriptLanguage::ePython:
         return new PythonExecutor();
+#if defined(AST_WITH_DUKTAPE)
+    case EScriptLanguage::eJavaScript:
+        return new JavaScriptExecutor();
+#ifndef _WIN32
+    // 非 Windows 平台没有 Active Scripting，JScript 由可移植的 JavaScript 引擎执行
+    case EScriptLanguage::eJScript:
+        return new JavaScriptExecutor();
+#endif
+#endif
     default:
     {
         aError(_("不支持语言 '%s' 的脚本执行器"), toString(type).c_str());

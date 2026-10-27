@@ -73,9 +73,10 @@ TEST(HohmannTransferSTKTest, Load)
 
 TEST(HohmannTransferSTKTest, execute)
 {
-#ifndef _WIN32
-    // 场景的瞄准序列通过 JScript 脚本工具设置初值，而 JScript 执行器只在 Windows 上提供
-    GTEST_SKIP() << "JScript script executor is only available on Windows";
+#if !defined(_WIN32) && !defined(AST_WITH_DUKTAPE)
+    // 场景的瞄准序列通过 JScript 脚本工具设置初值：Windows 上由 Active Scripting 执行，
+    // 其他平台需要编入可移植的 JavaScript 引擎（Duktape）
+    GTEST_SKIP() << "JScript requires Active Scripting on Windows or Duktape on other platforms";
 #endif
     const char scenarioDir[] = "./STK/Scenarios/testHohmannTransferSTK";
     const std::string path = aTestDataDirGet() + "/" + scenarioDir;

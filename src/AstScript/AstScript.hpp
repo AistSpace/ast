@@ -29,6 +29,7 @@
 #include "AstScript/IteratePredefined.hpp"
 #include "AstScript/JScript.hpp"
 #include "AstScript/JScriptExecutor.hpp"
+#include "AstScript/JavaScriptExecutor.hpp"
 #include "AstScript/Julia.hpp"
 #include "AstScript/JuliaExecutor.hpp"
 #include "AstScript/Lexer.hpp"

@@ -7,6 +7,9 @@ target("AstScript")
     add_defines("AST_BUILD_LIB_SCRIPT")
     -- add_extrafiles("xmake.lua")    
     add_deps("AstUtil")
+    if has_package("duktape") then
+        add_packages("duktape")
+    end
     if is_plat("windows", "mingw") then
         add_syslinks("oleaut32", "ole32", "uuid")
         -- add_deps("AstCOM", {inherit = false})
