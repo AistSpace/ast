@@ -19,6 +19,8 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "ast/Test.hpp"
+#include "ast/PluginRegistry.hpp"
+#include "ast/ScriptExecutorProvider.hpp"
 #include "ast/ScenarioLoader.hpp"
 #include "ast/Scenario.hpp"
 #include "ast/Satellite.hpp"
@@ -27,6 +29,8 @@
 #include "ast/Sequence.hpp"
 #include "ast/Literals.hpp"
 #include "ast/OrbitElement.hpp"
+
+#include <string>
 
 AST_USING_NAMESPACE
 
@@ -73,9 +77,20 @@ TEST(HohmannTransferSTKTest, Load)
 
 TEST(HohmannTransferSTKTest, execute)
 {
-#ifndef _WIN32
-    // 场景的瞄准序列通过 JScript 脚本工具设置初值，而 JScript 执行器只在 Windows 上提供
-    GTEST_SKIP() << "JScript script executor is only available on Windows";
+#if !defined(_WIN32)
+    // 场景的瞄准序列通过 JScript 脚本工具设置初值：Windows 上由 Active Scripting 执行，
+    // 其他平台由 AstPluginJavaScript 运行时插件提供可移植的 JavaScript 引擎
+    EXPECT_EQ(aScanPlugins(), eNoError);
+    auto provider = aPluginRegistry().find<IScriptExecutorProvider>("JavaScript");
+#if defined(AST_WITH_DUKTAPE)
+    EXPECT_NE(provider, nullptr);       // 如果启用了AST_WITH_DUKTAPE，则 Duktape 引擎必须存在
+#else
+    if(provider == nullptr)
+    {
+        GTEST_SKIP() << "JScript requires Active Scripting on Windows or the AstPluginJavaScript plugin on other platforms";
+        return;
+    }
+#endif
 #endif
     const char scenarioDir[] = "./STK/Scenarios/testHohmannTransferSTK";
     const std::string path = aTestDataDirGet() + "/" + scenarioDir;

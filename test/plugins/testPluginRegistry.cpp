@@ -121,6 +121,29 @@ TEST(PluginRegistry, SkipByPrefixAndLoadFailure)
     fs::remove_all(dir2);
 }
 
+TEST(PluginRegistry, MultiPrefixScan)
+{
+    PluginRegistry* registry = PluginRegistry::Instance();
+    const size_t entriesBefore = registry->entryCount();
+    const size_t pluginsBefore = registry->pluginCount();
+
+    // 一次扫描同时接受无前缀与带 lib 前缀的插件名
+    const fs::path dir = makeTempDir("ast_plugin_multi_prefix_dir_9f2a");
+    ASSERT_FALSE(dir.empty());
+    ASSERT_TRUE(createFileWithSuffix(dir, "AstPluginFake"));
+    ASSERT_TRUE(createFileWithSuffix(dir, "libAstPluginFake"));
+    ASSERT_TRUE(createFileWithSuffix(dir, "NotAPlugin"));
+
+    const StringView prefixes[] = {"AstPlugin", "libAstPlugin"};
+    EXPECT_EQ(registry->scanDirectory(dir.string(), prefixes), eNoError);
+
+    // 空文件不是有效插件：加载失败，不产生索引
+    EXPECT_EQ(registry->entryCount(), entriesBefore);
+    EXPECT_EQ(registry->pluginCount(), pluginsBefore);
+
+    fs::remove_all(dir);
+}
+
 TEST(PluginLoader, RejectNonPluginLibrary)
 {
     PluginLoader loader;

@@ -53,6 +53,7 @@
 #include "AstScript/ScriptAPI.hpp"
 #include "AstScript/ScriptContext.hpp"
 #include "AstScript/ScriptExecutor.hpp"
+#include "AstScript/ScriptExecutorProvider.hpp"
 #include "AstScript/StackFrame.hpp"
 #include "AstScript/Symbol.hpp"
 #include "AstScript/SymbolScope.hpp"

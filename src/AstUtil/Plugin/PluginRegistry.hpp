@@ -22,6 +22,7 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstUtil/Span.hpp"
 #include "AstUtil/StringView.hpp"
 #include "PluginInterface.hpp"
 #include "PluginLoader.hpp"
@@ -54,6 +55,13 @@ public:
     /// @return 错误码
     /// @note 同一个目录只会被扫描一次，重复调用是幂等的
     errc_t scanDirectory(StringView dir, StringView namePrefix = StringView());
+
+    /// @brief 扫描目录并建立索引，只处理文件名以任一前缀开头的库
+    /// @param dir 目录路径
+    /// @param namePrefixes 前缀列表；为空表示不筛选。不持有视图指向的存储，调用期间需保持有效
+    /// @return 错误码
+    /// @note 同一目录仍只扫描一次；需要多前缀时必须一次传入，不能分多次调用
+    errc_t scanDirectory(StringView dir, Span<const StringView> namePrefixes);
 
     /// @brief 按 (接口 ID, 索引键) 查找插件根对象
     /// @return 根对象指针；未命中返回 nullptr。命中时才会构造根对象
@@ -114,9 +122,11 @@ A_ALWAYS_INLINE PluginRegistry& aPluginRegistry()
 }
 
 /// @brief 扫描可用插件并建立索引
-/// @details 
+/// @details
 /// 探测顺序：`<可执行文件目录>/plugins`、`<库目录>/plugins`；
-/// 两处都不存在时回退到库目录，只处理文件名以 "AstPlugin" 开头的库
+/// 两处都不存在时回退到库目录，按产物的命名习惯筛选插件：
+/// MSVC 产物没有 lib 前缀，只匹配 "AstPlugin"
+/// GCC / Clang / MinGW 的共享库可能带 lib 前缀，同时接受 "AstPlugin" 与 "libAstPlugin"
 /// @return 错误码
 /// @note 重复调用是幂等的。
 AST_UTIL_API errc_t aScanPlugins();

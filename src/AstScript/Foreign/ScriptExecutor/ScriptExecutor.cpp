@@ -21,10 +21,12 @@
 #include "AstScript/Variable.hpp"
 #include "AstScript/Value.hpp"
 #include "ScriptExecutor.hpp"
+#include "ScriptExecutorProvider.hpp"
 #include "VBScriptExecutor.hpp"
 #include "JScriptExecutor.hpp"
 #include "PythonExecutor.hpp"
 #include "AstUtil/Logger.hpp"
+#include "AstUtil/PluginRegistry.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -87,7 +89,9 @@ errc_t ScriptExecutor::getVariable(Variable* var)
             aInfo(_("获取变量: `%s = %lf`"), var->getName().c_str(), value);
             #endif
 
-            return var->setValue(aNewValueDouble(value));
+            // 绑定变量只是把值转发给表达式，不会接管指针，故用 SharedPtr 管理临时值
+            SharedPtr<Value> val = aNewValueDouble(value);
+            return var->setValue(val.get());
         }
     }
     // 如果double类型转换失败，则尝试获取string类型
@@ -100,7 +104,8 @@ errc_t ScriptExecutor::getVariable(Variable* var)
             aInfo(_("获取变量: `%s = %s`"), var->getName().c_str(), value.c_str());
             #endif
             
-            return var->setValue(aNewValueString(value));
+            SharedPtr<Value> val = aNewValueString(value);
+            return var->setValue(val.get());
         }
     }
     aError(_("获取变量 '%s' 失败"), var->getName().c_str());
@@ -157,6 +162,24 @@ std::string toString(EScriptLanguage type)
     }
 }
 
+ScriptExecutor* aNewScriptExecutorFromPlugin(StringView name)
+{
+    PluginInstance* instance = aPluginRegistry().find(aInterfaceId<IScriptExecutorProvider>(), name);
+    if(!instance)
+    {
+        aError(_("未找到脚本执行器插件 '%.*s', 请先调用 aScanPlugins(), 并确认插件已安装"), (int)name.size(), name.data());
+        return nullptr;
+    }
+
+    IScriptExecutorProvider* provider = aPluginCast<IScriptExecutorProvider>(instance);
+    if(!provider)
+    {
+        aError(_("脚本执行器插件 '%.*s' 不兼容期望接口 IScriptExecutorProvider"), (int)name.size(), name.data());
+        return nullptr;
+    }
+    return provider->create();
+}
+
 ScriptExecutor* aNewScriptExecutor(EScriptLanguage type)
 {
     switch(type)
@@ -169,6 +192,17 @@ ScriptExecutor* aNewScriptExecutor(EScriptLanguage type)
 #endif
     case EScriptLanguage::ePython:
         return new PythonExecutor();
+    case EScriptLanguage::eJavaScript:
+        // JavaScript 引擎由运行时插件提供
+        return aNewScriptExecutorFromPlugin("JavaScript");
+#ifndef _WIN32
+    // 非 Windows 平台没有 Active Scripting，JScript 由可移植的 JavaScript 引擎执行
+    case EScriptLanguage::eJScript:
+    {
+        aInfo(_("JScript 将由可移植的 JavaScript 引擎执行"));
+        return aNewScriptExecutorFromPlugin("JavaScript");
+    }
+#endif
     default:
     {
         aError(_("不支持语言 '%s' 的脚本执行器"), toString(type).c_str());
