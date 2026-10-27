@@ -21,11 +21,12 @@
 #include "AstScript/Variable.hpp"
 #include "AstScript/Value.hpp"
 #include "ScriptExecutor.hpp"
+#include "ScriptExecutorProvider.hpp"
 #include "VBScriptExecutor.hpp"
 #include "JScriptExecutor.hpp"
 #include "PythonExecutor.hpp"
-#include "JavaScriptExecutor.hpp"
 #include "AstUtil/Logger.hpp"
+#include "AstUtil/PluginRegistry.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -158,6 +159,24 @@ std::string toString(EScriptLanguage type)
     }
 }
 
+ScriptExecutor* aNewScriptExecutorFromPlugin(StringView name)
+{
+    PluginInstance* instance = aPluginRegistry().find(aInterfaceId<IScriptExecutorProvider>(), name);
+    if(!instance)
+    {
+        aError(_("未找到脚本执行器插件 '%.*s', 请先调用 aScanPlugins(), 并确认插件已安装"), name.size(), name.data());
+        return nullptr;
+    }
+
+    IScriptExecutorProvider* provider = aPluginCast<IScriptExecutorProvider>(instance);
+    if(!provider)
+    {
+        aError(_("脚本执行器插件 '%.*s' 不兼容期望接口 IScriptExecutorProvider"), name.size(), name.data());
+        return nullptr;
+    }
+    return provider->create();
+}
+
 ScriptExecutor* aNewScriptExecutor(EScriptLanguage type)
 {
     switch(type)
@@ -170,14 +189,16 @@ ScriptExecutor* aNewScriptExecutor(EScriptLanguage type)
 #endif
     case EScriptLanguage::ePython:
         return new PythonExecutor();
-#if defined(AST_WITH_DUKTAPE)
     case EScriptLanguage::eJavaScript:
-        return new JavaScriptExecutor();
+        // JavaScript 引擎由运行时插件提供
+        return aNewScriptExecutorFromPlugin("JavaScript");
 #ifndef _WIN32
     // 非 Windows 平台没有 Active Scripting，JScript 由可移植的 JavaScript 引擎执行
     case EScriptLanguage::eJScript:
-        return new JavaScriptExecutor();
-#endif
+    {
+        aInfo(_("JScript 将由可移植的 JavaScript 引擎执行"));
+        return aNewScriptExecutorFromPlugin("JavaScript");
+    }
 #endif
     default:
     {

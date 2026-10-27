@@ -21,7 +21,8 @@
 #pragma once
 
 #include "AstGlobal.h"
-#include "ScriptExecutor.hpp"
+#include "AstScript/ScriptExecutor.hpp"
+#include "AstPluginJavaScriptGlobal.hpp"
 #include <memory>
 #include <string>
 
@@ -34,7 +35,7 @@ AST_NAMESPACE_BEGIN
 
 /// @brief JavaScript 脚本执行器
 /// @details 每个实例拥有独立的脚本全局命名空间，实例之间变量互不影响
-class AST_SCRIPT_API JavaScriptExecutor : public ScriptExecutor
+class AST_PLUGIN_JAVASCRIPT_API JavaScriptExecutor : public ScriptExecutor
 {
     // 前向声明内部实现类
     class Impl;

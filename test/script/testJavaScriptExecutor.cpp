@@ -19,24 +19,66 @@
 /// 使用本软件所产生的风险，需由您自行承担。
 
 #include "ast/ScriptExecutor.hpp"
+#include "ast/ScriptExecutorProvider.hpp"
+#include "ast/PluginRegistry.hpp"
 #include "ast/Value.hpp"
 #include "ast/Test.h"
 
+#include <algorithm>
 #include <cmath>
 #include <limits>
 #include <memory>
 #include <string>
+#include <vector>
 
 AST_USING_NAMESPACE
+
+namespace {
+
+/// @brief 扫描一次插件目录，再创建 JavaScript 执行器；插件缺失时返回空指针
+/// @details 用显式扫描而不是依赖 aInitialize()，脚本执行器本身不需要其它初始化
+std::unique_ptr<ScriptExecutor> newJavaScriptExecutor()
+{
+    static const errc_t scanResult = aScanPlugins();
+    (void)scanResult;
+    // 先查询接口，避免插件缺失时工厂逐次打印错误日志
+    if(aPluginRegistry().find<IScriptExecutorProvider>("JavaScript") == nullptr)
+        return nullptr;
+    return std::unique_ptr<ScriptExecutor>(aNewScriptExecutor(EScriptLanguage::eJavaScript));
+}
+
+} // namespace
+
+TEST(JavaScriptExecutorTest, PluginProvidesInterface)
+{
+    static const errc_t scanResult = aScanPlugins();
+    (void)scanResult;
+
+    const std::vector<std::string> keys = aPluginRegistry().keys<IScriptExecutorProvider>();
+    if(std::find(keys.begin(), keys.end(), std::string("JavaScript")) == keys.end())
+    {
+        GTEST_SKIP() << "AstPluginJavaScript is not available";
+        return;
+    }
+
+    // 索引里有键却转换失败，说明接口 RTTI 没有跨 DLL 统一，是错误而非插件缺失
+    IScriptExecutorProvider* provider = aPluginRegistry().find<IScriptExecutorProvider>("JavaScript");
+    ASSERT_TRUE(provider != nullptr);
+
+    std::unique_ptr<ScriptExecutor> executor(provider->create());
+    ASSERT_TRUE(executor != nullptr);
+    EXPECT_EQ(executor->initialize(), eNoError);
+}
 
 
 TEST(JavaScriptExecutorTest, VariableRoundTrip)
 {
-#ifndef AST_WITH_DUKTAPE
-    GTEST_SKIP() << "Duktape is not built";
-#endif
-    std::unique_ptr<ScriptExecutor> executor(aNewScriptExecutor(EScriptLanguage::eJavaScript));
-    ASSERT_TRUE(executor != nullptr);
+    std::unique_ptr<ScriptExecutor> executor = newJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
     if(executor->initialize() != eNoError)
         GTEST_SKIP() << "JavaScript engine initialization failed";
 
@@ -67,11 +109,12 @@ TEST(JavaScriptExecutorTest, VariableRoundTrip)
 
 TEST(JavaScriptExecutorTest, RepeatedAssignment)
 {
-#ifndef AST_WITH_DUKTAPE
-    GTEST_SKIP() << "Duktape is not built";
-#endif
-    std::unique_ptr<ScriptExecutor> executor(aNewScriptExecutor(EScriptLanguage::eJavaScript));
-    ASSERT_TRUE(executor != nullptr);
+    std::unique_ptr<ScriptExecutor> executor = newJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
     if(executor->initialize() != eNoError)
         GTEST_SKIP() << "JavaScript engine initialization failed";
 
@@ -95,11 +138,12 @@ TEST(JavaScriptExecutorTest, RepeatedAssignment)
 
 TEST(JavaScriptExecutorTest, ScriptVariableIsGlobal)
 {
-#ifndef AST_WITH_DUKTAPE
-    GTEST_SKIP() << "Duktape is not built";
-#endif
-    std::unique_ptr<ScriptExecutor> executor(aNewScriptExecutor(EScriptLanguage::eJavaScript));
-    ASSERT_TRUE(executor != nullptr);
+    std::unique_ptr<ScriptExecutor> executor = newJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
     if(executor->initialize() != eNoError)
         GTEST_SKIP() << "JavaScript engine initialization failed";
 
@@ -114,11 +158,12 @@ TEST(JavaScriptExecutorTest, ScriptVariableIsGlobal)
 
 TEST(JavaScriptExecutorTest, HohmannScript)
 {
-#ifndef AST_WITH_DUKTAPE
-    GTEST_SKIP() << "Duktape is not built";
-#endif
-    std::unique_ptr<ScriptExecutor> executor(aNewScriptExecutor(EScriptLanguage::eJavaScript));
-    ASSERT_TRUE(executor != nullptr);
+    std::unique_ptr<ScriptExecutor> executor = newJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
     if(executor->initialize() != eNoError)
         GTEST_SKIP() << "JavaScript engine initialization failed";
 
@@ -194,11 +239,12 @@ TEST(JavaScriptExecutorTest, HohmannScript)
 
 TEST(JavaScriptExecutorTest, Evaluate)
 {
-#ifndef AST_WITH_DUKTAPE
-    GTEST_SKIP() << "Duktape is not built";
-#endif
-    std::unique_ptr<ScriptExecutor> executor(aNewScriptExecutor(EScriptLanguage::eJavaScript));
-    ASSERT_TRUE(executor != nullptr);
+    std::unique_ptr<ScriptExecutor> executor = newJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
     if(executor->initialize() != eNoError)
         GTEST_SKIP() << "JavaScript engine initialization failed";
 
@@ -236,11 +282,12 @@ TEST(JavaScriptExecutorTest, Evaluate)
 
 TEST(JavaScriptExecutorTest, ErrorHandlingAndRecovery)
 {
-#ifndef AST_WITH_DUKTAPE
-    GTEST_SKIP() << "Duktape is not built";
-#endif
-    std::unique_ptr<ScriptExecutor> executor(aNewScriptExecutor(EScriptLanguage::eJavaScript));
-    ASSERT_TRUE(executor != nullptr);
+    std::unique_ptr<ScriptExecutor> executor = newJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
     if(executor->initialize() != eNoError)
         GTEST_SKIP() << "JavaScript engine initialization failed";
 
@@ -271,11 +318,12 @@ TEST(JavaScriptExecutorTest, ErrorHandlingAndRecovery)
 
 TEST(JavaScriptExecutorTest, NaNInfinity)
 {
-#ifndef AST_WITH_DUKTAPE
-    GTEST_SKIP() << "Duktape is not built";
-#endif
-    std::unique_ptr<ScriptExecutor> executor(aNewScriptExecutor(EScriptLanguage::eJavaScript));
-    ASSERT_TRUE(executor != nullptr);
+    std::unique_ptr<ScriptExecutor> executor = newJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
     if(executor->initialize() != eNoError)
         GTEST_SKIP() << "JavaScript engine initialization failed";
 
@@ -294,11 +342,12 @@ TEST(JavaScriptExecutorTest, NaNInfinity)
 
 TEST(JavaScriptExecutorTest, IntConversions)
 {
-#ifndef AST_WITH_DUKTAPE
-    GTEST_SKIP() << "Duktape is not built";
-#endif
-    std::unique_ptr<ScriptExecutor> executor(aNewScriptExecutor(EScriptLanguage::eJavaScript));
-    ASSERT_TRUE(executor != nullptr);
+    std::unique_ptr<ScriptExecutor> executor = newJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
     if(executor->initialize() != eNoError)
         GTEST_SKIP() << "JavaScript engine initialization failed";
 
@@ -319,11 +368,12 @@ TEST(JavaScriptExecutorTest, IntConversions)
 
 TEST(JavaScriptExecutorTest, StrictTypeConversions)
 {
-#ifndef AST_WITH_DUKTAPE
-    GTEST_SKIP() << "Duktape is not built";
-#endif
-    std::unique_ptr<ScriptExecutor> executor(aNewScriptExecutor(EScriptLanguage::eJavaScript));
-    ASSERT_TRUE(executor != nullptr);
+    std::unique_ptr<ScriptExecutor> executor = newJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
     if(executor->initialize() != eNoError)
         GTEST_SKIP() << "JavaScript engine initialization failed";
 
@@ -346,13 +396,13 @@ TEST(JavaScriptExecutorTest, StrictTypeConversions)
 
 TEST(JavaScriptExecutorTest, IsolatedInstances)
 {
-#ifndef AST_WITH_DUKTAPE
-    GTEST_SKIP() << "Duktape is not built";
-#endif
-    std::unique_ptr<ScriptExecutor> first(aNewScriptExecutor(EScriptLanguage::eJavaScript));
-    std::unique_ptr<ScriptExecutor> second(aNewScriptExecutor(EScriptLanguage::eJavaScript));
-    ASSERT_TRUE(first != nullptr);
-    ASSERT_TRUE(second != nullptr);
+    std::unique_ptr<ScriptExecutor> first = newJavaScriptExecutor();
+    std::unique_ptr<ScriptExecutor> second = newJavaScriptExecutor();
+    if(!first || !second)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
     if(first->initialize() != eNoError || second->initialize() != eNoError)
         GTEST_SKIP() << "JavaScript engine initialization failed";
 
@@ -373,12 +423,12 @@ TEST(JavaScriptExecutorTest, IsolatedInstances)
 
 TEST(JavaScriptExecutorTest, ExecuteBeforeInitialize)
 {
-#ifndef AST_WITH_DUKTAPE
-    GTEST_SKIP() << "Duktape is not built";
-#endif
-    std::unique_ptr<ScriptExecutor> executor(aNewScriptExecutor(EScriptLanguage::eJavaScript));
+    std::unique_ptr<ScriptExecutor> executor = newJavaScriptExecutor();
     if(!executor)
-        GTEST_SKIP() << "JavaScript executor is not available";
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
 
     EXPECT_EQ(executor->execute("var x = 1;"), eErrorNotInit);
     EXPECT_EQ(executor->evaluate("1 + 1"), eErrorNotInit);

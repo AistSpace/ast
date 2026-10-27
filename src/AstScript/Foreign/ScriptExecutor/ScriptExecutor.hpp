@@ -54,9 +54,17 @@ class Variable;
 
 /// @brief 创建脚本执行器实例
 /// @param type 脚本类型
-/// @return 脚本执行器实例指针
-/// @note 脚本执行器实例的生命周期由调用方负责管理，调用方需要在使用完成后调用析构函数释放资源
+/// @return 脚本执行器实例指针；由插件提供的执行器在插件未安装时返回 nullptr
+/// @note 脚本执行器实例的生命周期由调用方负责管理，调用方需要在使用后释放资源
+/// @note eJavaScript（以及非 Windows 平台的 eJScript）由脚本执行器插件提供，
+///       调用前需先调用 aScanPlugins()（aInitialize() 内部会调用）
 AST_SCRIPT_CAPI ScriptExecutor* aNewScriptExecutor(EScriptLanguage type);
+
+/// @brief 按插件注册名创建脚本执行器
+/// @param name 插件索引键（例如 "JavaScript"）
+/// @return 脚本执行器实例；插件未发现或创建失败返回 nullptr
+/// @note 调用前需先调用 aScanPlugins()（aInitialize() 内部会调用）
+AST_SCRIPT_API ScriptExecutor* aNewScriptExecutorFromPlugin(StringView name);
 
 
 /// @brief 脚本执行结果
