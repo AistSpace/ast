@@ -167,14 +167,14 @@ ScriptExecutor* aNewScriptExecutorFromPlugin(StringView name)
     PluginInstance* instance = aPluginRegistry().find(aInterfaceId<IScriptExecutorProvider>(), name);
     if(!instance)
     {
-        aError(_("未找到脚本执行器插件 '%.*s', 请先调用 aScanPlugins(), 并确认插件已安装"), name.size(), name.data());
+        aError(_("未找到脚本执行器插件 '%.*s', 请先调用 aScanPlugins(), 并确认插件已安装"), (int)name.size(), name.data());
         return nullptr;
     }
 
     IScriptExecutorProvider* provider = aPluginCast<IScriptExecutorProvider>(instance);
     if(!provider)
     {
-        aError(_("脚本执行器插件 '%.*s' 不兼容期望接口 IScriptExecutorProvider"), name.size(), name.data());
+        aError(_("脚本执行器插件 '%.*s' 不兼容期望接口 IScriptExecutorProvider"), (int)name.size(), name.data());
         return nullptr;
     }
     return provider->create();
