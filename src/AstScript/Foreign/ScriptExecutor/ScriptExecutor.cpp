@@ -89,7 +89,9 @@ errc_t ScriptExecutor::getVariable(Variable* var)
             aInfo(_("获取变量: `%s = %lf`"), var->getName().c_str(), value);
             #endif
 
-            return var->setValue(aNewValueDouble(value));
+            // 绑定变量只是把值转发给表达式，不会接管指针，故用 SharedPtr 管理临时值
+            SharedPtr<Value> val = aNewValueDouble(value);
+            return var->setValue(val.get());
         }
     }
     // 如果double类型转换失败，则尝试获取string类型
@@ -102,7 +104,8 @@ errc_t ScriptExecutor::getVariable(Variable* var)
             aInfo(_("获取变量: `%s = %s`"), var->getName().c_str(), value.c_str());
             #endif
             
-            return var->setValue(aNewValueString(value));
+            SharedPtr<Value> val = aNewValueString(value);
+            return var->setValue(val.get());
         }
     }
     aError(_("获取变量 '%s' 失败"), var->getName().c_str());
