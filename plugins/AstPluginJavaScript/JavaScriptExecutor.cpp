@@ -52,6 +52,16 @@ std::string dukExecutorToString(duk_context* ctx, duk_idx_t idx)
     return result;
 }
 
+/// @brief 用于在受保护调用中读取错误对象的 stack 属性
+/// @details 属性读取可能触发 getter 或 Proxy trap 并抛错，
+//  直接读取会让错误进入 fatal handler；返回值类型不定，由调用方判断是否为字符串
+duk_ret_t dukExecutorReadStack(duk_context* ctx, void* /*udata*/)
+{
+    // 实参位于索引 0，即待检查的错误对象
+    duk_get_prop_string(ctx, 0, "stack");
+    return 1;
+}
+
 /// @brief 取出栈顶的异常对象（消息 + stack）并弹出
 std::string dukExecutorTakeError(duk_context* ctx)
 {
@@ -59,26 +69,38 @@ std::string dukExecutorTakeError(duk_context* ctx)
     // duk_safe_to_lstring 会就地替换栈上的值，必须先取出 stack 再转换错误对象
     if(duk_is_object(ctx, -1))
     {
-        if(duk_get_prop_string(ctx, -1, "stack"))
+        duk_dup(ctx, -1); // 保留原始错误值，safe_call 会消费实参
+        
+        /*
+        duk_safe_call(ctx, func, udata, nargs=1, nrets=1)
+        用 safe_call 隔离属性读取：
+        getter 或 Proxy trap 抛错时只丢弃这次读取，原始错误值保持不变，后续照常转换
+        nargs = nrets = 1 时无论成功还是失败，栈顶都恰好是 stack 值或捕获到的错误
+        调用前:  [ ..., error ]                      ← error 在 -1
+        dup 后:  [ ..., error, error ]               ← 实参拷贝
+        safe_call(nargs=1, nrets=1):
+            成功:  [ ..., error, stackString ]       ← func return 1 的值
+            失败:  [ ..., error, thrownValue ]       ← catch 到的错误
+        pop 后:  [ ..., error ]                      ← 原始错误仍在 -1，供后面转换
+        */
+        if(duk_safe_call(ctx, dukExecutorReadStack, nullptr, 1, 1) == 0
+           && duk_is_string(ctx, -1))
         {
-            if(duk_is_string(ctx, -1))
-                stack = dukExecutorToString(ctx, -1);
-            duk_pop(ctx);
+            stack = dukExecutorToString(ctx, -1);
         }
-        else
-        {
-            // 未找到 stack 时 Duktape 会压入 undefined
-            duk_pop(ctx);
-        }
+        duk_pop(ctx);
     }
     std::string message = dukExecutorToString(ctx, -1);
-    if(!stack.empty())
-    {
-        message += "\n";
-        message += stack;
-    }
     duk_pop(ctx);
-    return message;
+
+    // 没有可附加的 stack 时只返回消息
+    if(stack.empty())
+        return message;
+    // Duktape 默认的 stack 首行就是 String(error)，此时 stack 已包含完整消息，直接用
+    else if(StringView(stack).starts_with(message))
+        return stack;
+    // 自定义 stack 不含消息时，消息和 stack 都要保留
+    return message + "\n" + stack;
 }
 
 /// @brief 把栈上 idx 处的值转换为 Value

@@ -655,33 +655,41 @@ TEST(JavaScriptExecutorTest, ErrorValuesWithoutStack)
     std::string error;
     EXPECT_NE(executor->execute("throw 'plain string error';", &error), eNoError);
     EXPECT_EQ(error, "plain string error");
-    std::printf("error: %s\n", error.c_str());
+    std::printf("error1: %s\n", error.c_str());
 
     // Error 对象附带调用栈，错误信息应当是「消息 + 换行 + stack」
     error.clear();
     EXPECT_NE(executor->execute("throw new Error('with stack');", &error), eNoError);
     EXPECT_NE(error.find('\n'), std::string::npos);
-    std::printf("error: %s\n", error.c_str());
+    std::printf("error2: %s\n", error.c_str());
 
     // 抛出没有 stack 属性的普通对象
     error.clear();
     EXPECT_NE(executor->execute("throw {message: 'custom'};", &error), eNoError);
     EXPECT_FALSE(error.empty());
     EXPECT_EQ(error.find('\n'), std::string::npos);
-    std::printf("error: %s\n", error.c_str());
+    std::printf("error3: %s\n", error.c_str());
 
     // stack 存在但不是字符串，只保留错误信息本身
     error.clear();
     EXPECT_NE(executor->execute("var err = new Error('with stack'); err.stack = 42; throw err;", &error), eNoError);
     EXPECT_FALSE(error.empty());
     EXPECT_EQ(error.find('\n'), std::string::npos);
-    std::printf("error: %s\n", error.c_str());
+    std::printf("error4: %s\n", error.c_str());
+
+    // stack 的 getter 抛错时应按无 stack 处理，而不是让错误进入 fatal handler
+    error.clear();
+    EXPECT_NE(executor->execute("throw { get stack() { throw new Error('getter failed'); } };", &error), eNoError);
+    EXPECT_FALSE(error.empty());
+    EXPECT_EQ(error.find("getter failed"), std::string::npos);
+    EXPECT_EQ(error.find('\n'), std::string::npos);
+    std::printf("error5: %s\n", error.c_str());
 
     // evaluate 的错误同样写入 ScriptResult
     ScriptResult result;
     EXPECT_NE(executor->evaluate("throw new Error('eval failed')", &result), eNoError);
     EXPECT_FALSE(result.error_.empty());
-    std::printf("error: %s\n", result.error_.c_str());
+    std::printf("error6: %s\n", result.error_.c_str());
 
     // 出错后引擎状态仍然可用
     EXPECT_EQ(executor->execute("var recoveredAfterThrow = 9;"), eNoError);
