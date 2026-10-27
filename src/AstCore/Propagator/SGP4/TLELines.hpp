@@ -22,6 +22,7 @@
 #pragma once
 
 #include "AstGlobal.h"
+#include "AstUtil/StringView.hpp"
 #include <string>
 
 AST_NAMESPACE_BEGIN
@@ -39,6 +40,21 @@ AST_NAMESPACE_BEGIN
 class TLELines
 {
 public:
+    TLELines() = default;
+    TLELines(StringView name, StringView line1, StringView line2)
+        : name_(name)
+        , line1_(line1)
+        , line2_(line2)
+    {
+    }
+    
+    TLELines(StringView line1, StringView line2)
+        : name_{}
+        , line1_(line1)
+        , line2_(line2)
+    {
+    }
+
     /// 检查是否为空（以 line1 是否为空判断）
     bool empty() const { return line1_.empty(); }
 

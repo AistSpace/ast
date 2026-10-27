@@ -21,7 +21,6 @@
 #include "ForceModelLoader.hpp"
 #include "AstCore/HPOPForceModel.hpp"
 #include "AstScript/Value.hpp"
-#include "AstUtil/FileSystem.hpp"
 
 AST_NAMESPACE_BEGIN
 
@@ -39,10 +38,16 @@ errc_t aLoadGravityForce(const Value& value, GravityForce& gravityForce)
     // 重力场模型
     {
         std::string gravityFile = value["GravityFile"];
-        // 特殊处理一下
+        // 如果该字段的值以 "STKData\CentralBodies\" 开头，则说明是软件的内置模型，需要从中提取模型名称
+        // 场景文件中记录的是 Windows 风格相对路径（如 STKData\CentralBodies\Earth\WGS84_EGM96.grv）
+        // 这里不能使用 fs::path 相关的方法来提取文件名，因为 Linux 下反斜杠不是分隔符，stem() 会返回整个字符串
+        // 所以这里直接使用字符串操作来提取文件名。
         if(StringView(gravityFile).starts_with(R"(STKData\CentralBodies\)"))
         {
-            gravityForce.model_ = fs::path(gravityFile).stem().string();
+            size_t pos = gravityFile.find_last_of("/\\");
+            std::string filename = gravityFile.substr(pos + 1);
+            size_t dot = filename.find_last_of('.');
+            gravityForce.model_ = filename.substr(0, dot);
         }
         else
         {

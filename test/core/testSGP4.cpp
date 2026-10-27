@@ -27,6 +27,7 @@
 #include "ast/RunTime.hpp"
 #include "ast/EOP.hpp"
 #include "ast/BuiltinFrame.hpp"
+#include "ast/Literals.hpp"
 
 // =============================================================================
 // 测试 TLE（NORAD 26661, 太阳同步轨道卫星）
@@ -51,7 +52,7 @@ TEST(SGP4Test, Propagation)
 
     AST_USING_NAMESPACE
     aDataContext_GetEOP()->unload();
-
+    //  SGP4 
     {
         TLE tle = TLE::FromLines(makeTLELines());
         SGP4 sgp4(tle);
@@ -90,6 +91,29 @@ TEST(SGP4Test, Propagation)
         EXPECT_NEAR(velICRF.x(), velICRFExpected.x(), 1e-6);
         EXPECT_NEAR(velICRF.y(), velICRFExpected.y(), 1e-6);
         EXPECT_NEAR(velICRF.z(), velICRFExpected.z(), 1e-6);
+    }
+    // SDP4
+    {
+        const char* line1 = "1 11690U 80011A   19080.80357948  .00000045  00000-0  00000-0 0  9998";
+        const char* line2 = "2 11690  63.3243 130.5698 0462510 197.4223 162.7516  2.00568721300695";
+        TLE tle = TLE::FromLines(TLELines{"", line1, line2});
+        SGP4 sgp4(tle);
+
+        auto tp = "23 Oct 2019 04:00:00.000"_utc;
+        Vector3d posTEME, velTEME;
+        sgp4.getPosVel(tp, posTEME, velTEME);  // in TEME of date
+        printf("posTEME  = %s\n", toString(posTEME).c_str());
+        printf("velTEME  = %s\n", toString(velTEME).c_str());
+
+        Vector3d posTEMEExpected{-12395.933166123259_km,     23889.486152985672_km,     -5991.338005484711_km};
+        Vector3d velTEMEExpected{-1.894871503730_km/s,    -0.066422373191_km/s,     3.211034937954_km/s};
+
+        EXPECT_NEAR(posTEME.x(), posTEMEExpected.x(), 1e-3);
+        EXPECT_NEAR(posTEME.y(), posTEMEExpected.y(), 1e-3);
+        EXPECT_NEAR(posTEME.z(), posTEMEExpected.z(), 1e-3);
+        EXPECT_NEAR(velTEME.x(), velTEMEExpected.x(), 1e-6);
+        EXPECT_NEAR(velTEME.y(), velTEMEExpected.y(), 1e-6);
+        EXPECT_NEAR(velTEME.z(), velTEMEExpected.z(), 1e-6);
     }
 }
 
