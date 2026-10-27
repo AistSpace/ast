@@ -34,8 +34,12 @@ MotionMissionCommand* loadScenarioAndGetMissionCommand(const char* scenarioDir, 
 {
     errc_t rc = aLoadScenario(scenarioDir, scenario);
     EXPECT_EQ(rc, eNoError);
+    if (rc != eNoError)
+        return nullptr;
     Satellite* satellite = aFindChild<Satellite*>(&scenario, satelliteName);
     EXPECT_TRUE(satellite != nullptr);
+    if (satellite == nullptr)
+        return nullptr;
     EXPECT_EQ(satellite->getName(), satelliteName);
 
     MotionProfile* motionProfile = satellite->getMotionProfile();

@@ -30,6 +30,7 @@
 #include "AstUtil/Quantity.hpp"
 #include "AstUtil/QuantityParser.hpp"
 #include "AstUtil/UnitParser.hpp"
+#include "AstUtil/Constants.hpp"
 #include <stack>
 #include <vector>
 
@@ -116,7 +117,7 @@ protected:
 /// 2.094416670185218e-10 ""
 /// 
 /// 末尾带有单位的值将解析为 Quantity 类型
-/// 末尾带有 "" 的值将解析为 double 类型
+/// 末尾带有 "" 或量纲为单位量纲的值将解析为 double 类型
 /// @param text 要解析的文本
 static Value* parseSTKQuantityValue(StringView text)
 {
@@ -134,9 +135,13 @@ static Value* parseSTKQuantityValue(StringView text)
         if(rc != eNoError)
         {
             aError(_("解析数量值 '%.*s' 失败"), text.size(), text.data());
+            return aNewValueDouble(kNaN);
         }
         return aNewValueDouble(d);
     }else{
+        // 单位量纲的值解析为 double
+        if(quantity.dimension() == Dimension::Unit())
+            return aNewValueDouble(quantity.getValueSI());
         return aNewValueQuantity(quantity);
     }
 }
