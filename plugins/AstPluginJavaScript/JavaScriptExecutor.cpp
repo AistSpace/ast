@@ -55,16 +55,14 @@ std::string dukExecutorToString(duk_context* ctx, duk_idx_t idx)
 /// @brief 取出栈顶的异常对象（消息 + stack）并弹出
 std::string dukExecutorTakeError(duk_context* ctx)
 {
-    std::string message = dukExecutorToString(ctx, -1);
+    std::string stack;
+    // duk_safe_to_lstring 会就地替换栈上的值，必须先取出 stack 再转换错误对象
     if(duk_is_object(ctx, -1))
     {
         if(duk_get_prop_string(ctx, -1, "stack"))
         {
             if(duk_is_string(ctx, -1))
-            {
-                message += "\n";
-                message += dukExecutorToString(ctx, -1);
-            }
+                stack = dukExecutorToString(ctx, -1);
             duk_pop(ctx);
         }
         else
@@ -72,6 +70,12 @@ std::string dukExecutorTakeError(duk_context* ctx)
             // 未找到 stack 时 Duktape 会压入 undefined
             duk_pop(ctx);
         }
+    }
+    std::string message = dukExecutorToString(ctx, -1);
+    if(!stack.empty())
+    {
+        message += "\n";
+        message += stack;
     }
     duk_pop(ctx);
     return message;

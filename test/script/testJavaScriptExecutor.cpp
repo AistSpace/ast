@@ -51,6 +51,17 @@ std::unique_ptr<ScriptExecutor> newJavaScriptExecutor()
     return std::unique_ptr<ScriptExecutor>(scriptExecutor);
 }
 
+/// @brief 创建并初始化 JavaScript 执行器；插件或引擎不可用时返回空指针
+std::unique_ptr<ScriptExecutor> newInitializedJavaScriptExecutor()
+{
+    std::unique_ptr<ScriptExecutor> executor = newJavaScriptExecutor();
+    if(!executor)
+        return nullptr;
+    if(executor->initialize() != eNoError)
+        return nullptr;
+    return executor;
+}
+
 } // namespace
 
 TEST(JavaScriptExecutorTest, PluginProvidesInterface)
@@ -439,6 +450,289 @@ TEST(JavaScriptExecutorTest, ExecuteBeforeInitialize)
     EXPECT_EQ(executor->setVariable("x", 1.0), eErrorNotInit);
     double value = 0.0;
     EXPECT_EQ(executor->getVariable("x", value), eErrorNotInit);
+}
+
+
+TEST(JavaScriptExecutorTest, InitializeTwiceAndFinalize)
+{
+    std::unique_ptr<ScriptExecutor> executor = newJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
+
+    // 重复初始化不应重建堆，也不应丢失已有的全局变量
+    EXPECT_EQ(executor->initialize(), eNoError);
+    EXPECT_EQ(executor->execute("var beforeReinit = 1;"), eNoError);
+    EXPECT_EQ(executor->initialize(), eNoError);
+
+    double beforeReinit = 0.0;
+    EXPECT_EQ(executor->getVariable("beforeReinit", beforeReinit), eNoError);
+    EXPECT_DOUBLE_EQ(beforeReinit, 1.0);
+
+    // 先制造一次错误，确认 finalize 会清空最近一次的错误信息
+    EXPECT_NE(executor->execute("var broken = ;"), eNoError);
+    EXPECT_FALSE(executor->getLastError().empty());
+
+    // finalize 之后所有接口都应报告未初始化
+    executor->finalize();
+    EXPECT_TRUE(executor->getLastError().empty());
+
+    EXPECT_EQ(executor->execute("var x = 1;"), eErrorNotInit);
+    EXPECT_EQ(executor->evaluate("1 + 1"), eErrorNotInit);
+    EXPECT_EQ(executor->setVariable("x", "text"), eErrorNotInit);
+    EXPECT_EQ(executor->setVariable("x", 1.0), eErrorNotInit);
+    EXPECT_EQ(executor->setVariable("x", 1), eErrorNotInit);
+    EXPECT_EQ(executor->setVariable("x", true), eErrorNotInit);
+    EXPECT_FALSE(executor->getLastError().empty());
+
+    std::string text;
+    double number = 0.0;
+    int integer = 0;
+    bool flag = false;
+    EXPECT_EQ(executor->getVariable("x", text), eErrorNotInit);
+    EXPECT_EQ(executor->getVariable("x", number), eErrorNotInit);
+    EXPECT_EQ(executor->getVariable("x", integer), eErrorNotInit);
+    EXPECT_EQ(executor->getVariable("x", flag), eErrorNotInit);
+
+    // finalize 后可以重新初始化并继续使用
+    EXPECT_EQ(executor->initialize(), eNoError);
+    EXPECT_EQ(executor->execute("var afterReinit = 2;"), eNoError);
+    double afterReinit = 0.0;
+    EXPECT_EQ(executor->getVariable("afterReinit", afterReinit), eNoError);
+    EXPECT_DOUBLE_EQ(afterReinit, 2.0);
+}
+
+
+TEST(JavaScriptExecutorTest, EmptyVariableName)
+{
+    std::unique_ptr<ScriptExecutor> executor = newInitializedJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
+
+    // 空变量名对每种重载都应被拒绝，而不是退化成给全局对象的空键赋值
+    EXPECT_EQ(executor->setVariable("", "value"), eErrorInvalidParam);
+    EXPECT_EQ(executor->setVariable("", 1.5), eErrorInvalidParam);
+    EXPECT_EQ(executor->setVariable("", 2), eErrorInvalidParam);
+    EXPECT_EQ(executor->setVariable("", true), eErrorInvalidParam);
+    EXPECT_FALSE(executor->getLastError().empty());
+}
+
+
+TEST(JavaScriptExecutorTest, StringVariableConversions)
+{
+    std::unique_ptr<ScriptExecutor> executor = newInitializedJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
+
+    // 数值不能按字符串读取
+    EXPECT_EQ(executor->setVariable("number", 12.5), eNoError);
+    std::string text = "unchanged";
+    EXPECT_EQ(executor->getVariable("number", text), eErrorInvalidType);
+    EXPECT_EQ(text, "unchanged");
+
+    // 布尔按 "true"/"false" 读取
+    EXPECT_EQ(executor->setVariable("enabled", true), eNoError);
+    EXPECT_EQ(executor->getVariable("enabled", text), eNoError);
+    EXPECT_EQ(text, "true");
+
+    EXPECT_EQ(executor->setVariable("disabled", false), eNoError);
+    EXPECT_EQ(executor->getVariable("disabled", text), eNoError);
+    EXPECT_EQ(text, "false");
+
+    // 不存在的变量
+    EXPECT_EQ(executor->getVariable("missing", text), eErrorNotFound);
+}
+
+
+TEST(JavaScriptExecutorTest, IntegerAndBoolConversions)
+{
+    std::unique_ptr<ScriptExecutor> executor = newInitializedJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
+
+    // 布尔可以按 1/0 读取为整数
+    EXPECT_EQ(executor->setVariable("yes", true), eNoError);
+    int integer = -1;
+    EXPECT_EQ(executor->getVariable("yes", integer), eNoError);
+    EXPECT_EQ(integer, 1);
+
+    EXPECT_EQ(executor->setVariable("no", false), eNoError);
+    EXPECT_EQ(executor->getVariable("no", integer), eNoError);
+    EXPECT_EQ(integer, 0);
+
+    // 字符串不能按整数读取
+    EXPECT_EQ(executor->setVariable("text", "abc"), eNoError);
+    EXPECT_EQ(executor->getVariable("text", integer), eErrorInvalidType);
+    EXPECT_EQ(executor->getVariable("missingInt", integer), eErrorNotFound);
+
+    // 数值按 JavaScript 的真值语义转为布尔：0 与 NaN 为假
+    bool flag = true;
+    EXPECT_EQ(executor->setVariable("zero", 0.0), eNoError);
+    EXPECT_EQ(executor->getVariable("zero", flag), eNoError);
+    EXPECT_FALSE(flag);
+
+    EXPECT_EQ(executor->setVariable("nonzero", 2.5), eNoError);
+    EXPECT_EQ(executor->getVariable("nonzero", flag), eNoError);
+    EXPECT_TRUE(flag);
+
+    EXPECT_EQ(executor->setVariable("nanBool", std::numeric_limits<double>::quiet_NaN()), eNoError);
+    EXPECT_EQ(executor->getVariable("nanBool", flag), eNoError);
+    EXPECT_FALSE(flag);
+
+    // 字符串不能按布尔读取
+    EXPECT_EQ(executor->getVariable("text", flag), eErrorInvalidType);
+    EXPECT_EQ(executor->getVariable("missingBool", flag), eErrorNotFound);
+}
+
+
+TEST(JavaScriptExecutorTest, EvaluateNonPrimitiveValues)
+{
+    std::unique_ptr<ScriptExecutor> executor = newInitializedJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
+
+    {
+        // null 与 undefined 都是空值
+        ScriptResult result;
+        EXPECT_EQ(executor->evaluate("null", &result), eNoError);
+        ASSERT_TRUE(result.value_ != nullptr);
+        EXPECT_TRUE(result.value_->isNull());
+    }
+    {
+        ScriptResult result;
+        EXPECT_EQ(executor->evaluate("undefined", &result), eNoError);
+        ASSERT_TRUE(result.value_ != nullptr);
+        EXPECT_TRUE(result.value_->isNull());
+    }
+    {
+        // 对象与数组走字符串回退路径
+        ScriptResult result;
+        EXPECT_EQ(executor->evaluate("({answer: 42})", &result), eNoError);
+        ASSERT_TRUE(result.value_ != nullptr);
+        EXPECT_TRUE(result.value_->isString());
+        EXPECT_EQ(result.value_->toString(), "[object Object]");
+    }
+    {
+        ScriptResult result;
+        EXPECT_EQ(executor->evaluate("[1, 2, 3]", &result), eNoError);
+        ASSERT_TRUE(result.value_ != nullptr);
+        EXPECT_TRUE(result.value_->isString());
+        EXPECT_EQ(result.value_->toString(), "1,2,3");
+    }
+}
+
+
+TEST(JavaScriptExecutorTest, ErrorValuesWithoutStack)
+{
+    std::unique_ptr<ScriptExecutor> executor = newInitializedJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
+
+    // 抛出非对象值：错误信息就是该值本身，没有 stack 可附带
+    std::string error;
+    EXPECT_NE(executor->execute("throw 'plain string error';", &error), eNoError);
+    EXPECT_EQ(error, "plain string error");
+    std::printf("error: %s\n", error.c_str());
+
+    // Error 对象附带调用栈，错误信息应当是「消息 + 换行 + stack」
+    error.clear();
+    EXPECT_NE(executor->execute("throw new Error('with stack');", &error), eNoError);
+    EXPECT_NE(error.find('\n'), std::string::npos);
+    std::printf("error: %s\n", error.c_str());
+
+    // 抛出没有 stack 属性的普通对象
+    error.clear();
+    EXPECT_NE(executor->execute("throw {message: 'custom'};", &error), eNoError);
+    EXPECT_FALSE(error.empty());
+    EXPECT_EQ(error.find('\n'), std::string::npos);
+    std::printf("error: %s\n", error.c_str());
+
+    // stack 存在但不是字符串，只保留错误信息本身
+    error.clear();
+    EXPECT_NE(executor->execute("var err = new Error('with stack'); err.stack = 42; throw err;", &error), eNoError);
+    EXPECT_FALSE(error.empty());
+    EXPECT_EQ(error.find('\n'), std::string::npos);
+    std::printf("error: %s\n", error.c_str());
+
+    // evaluate 的错误同样写入 ScriptResult
+    ScriptResult result;
+    EXPECT_NE(executor->evaluate("throw new Error('eval failed')", &result), eNoError);
+    EXPECT_FALSE(result.error_.empty());
+    std::printf("error: %s\n", result.error_.c_str());
+
+    // 出错后引擎状态仍然可用
+    EXPECT_EQ(executor->execute("var recoveredAfterThrow = 9;"), eNoError);
+    double recovered = 0.0;
+    EXPECT_EQ(executor->getVariable("recoveredAfterThrow", recovered), eNoError);
+    EXPECT_DOUBLE_EQ(recovered, 9.0);
+}
+
+
+TEST(JavaScriptExecutorTest, EmptyScriptAndExpression)
+{
+    std::unique_ptr<ScriptExecutor> executor = newInitializedJavaScriptExecutor();
+    if(!executor)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
+
+    // 默认构造的 StringView 数据指针为空，覆盖空脚本/空表达式的处理
+    EXPECT_EQ(executor->execute(StringView()), eNoError);
+    EXPECT_EQ(executor->execute(StringView("")), eNoError);
+
+    ScriptResult result;
+    EXPECT_EQ(executor->evaluate(StringView(), &result), eNoError);
+    // 空表达式的值等价于 undefined
+    ASSERT_TRUE(result.value_ != nullptr);
+    EXPECT_TRUE(result.value_->isNull());
+
+    // 空值可以作为字符串变量写入
+    EXPECT_EQ(executor->setVariable("empty", StringView()), eNoError);
+    std::string empty = "not empty";
+    EXPECT_EQ(executor->getVariable("empty", empty), eNoError);
+    EXPECT_TRUE(empty.empty());
+}
+
+
+TEST(JavaScriptExecutorTest, FactoryFallbacks)
+{
+    // 不存在的插件名返回空指针并输出错误日志
+    EXPECT_EQ(aNewScriptExecutorFromPlugin("NoSuchScriptExecutor"), nullptr);
+
+#if !defined(_WIN32)
+    // 非 Windows 平台没有 Active Scripting，eJScript 由可移植的 JavaScript 引擎执行
+    std::unique_ptr<ScriptExecutor> probe = newJavaScriptExecutor();
+    if(!probe)
+    {
+        GTEST_SKIP() << "JavaScript engine is not available";
+        return;
+    }
+    std::unique_ptr<ScriptExecutor> jscript(aNewScriptExecutor(EScriptLanguage::eJScript));
+    ASSERT_TRUE(jscript != nullptr);
+    EXPECT_EQ(jscript->initialize(), eNoError);
+    EXPECT_EQ(jscript->execute("var routedToPlugin = 4;"), eNoError);
+    double routedToPlugin = 0.0;
+    EXPECT_EQ(jscript->getVariable("routedToPlugin", routedToPlugin), eNoError);
+    EXPECT_DOUBLE_EQ(routedToPlugin, 4.0);
+#endif
 }
 
 
