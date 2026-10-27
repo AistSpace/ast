@@ -81,8 +81,11 @@ TEST(HohmannTransferSTKTest, execute)
     // 场景的瞄准序列通过 JScript 脚本工具设置初值：Windows 上由 Active Scripting 执行，
     // 其他平台由 AstPluginJavaScript 运行时插件提供可移植的 JavaScript 引擎
     EXPECT_EQ(aScanPlugins(), eNoError);
-#if !defined(AST_WITH_DUKTAPE)
-    if(aPluginRegistry().find<IScriptExecutorProvider>("JavaScript") == nullptr)
+    auto provider = aPluginRegistry().find<IScriptExecutorProvider>("JavaScript");
+#if defined(AST_WITH_DUKTAPE)
+    EXPECT_NE(provider, nullptr);       // 如果启用了AST_WITH_DUKTAPE，则 Duktape 引擎必须存在
+#else
+    if(provider == nullptr)
     {
         GTEST_SKIP() << "JScript requires Active Scripting on Windows or the AstPluginJavaScript plugin on other platforms";
         return;

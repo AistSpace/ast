@@ -36,19 +36,25 @@ AST_USING_NAMESPACE
 namespace {
 
 /// @brief 扫描一次插件目录，再创建 JavaScript 执行器；插件缺失时返回空指针
-/// @details 用显式扫描而不是依赖 aInitialize()，脚本执行器本身不需要其它初始化
+/// @details 用显式扫描而不是依赖 aInitialize()，脚本执行器本身不需要其它初始化；
+///          带 Duktape 的构建必然编出 AstPluginJavaScript，此时插件缺失应判失败而非跳过
 std::unique_ptr<ScriptExecutor> newJavaScriptExecutor()
 {
     static const errc_t scanResult = aScanPlugins();
     (void)scanResult;
     // 先查询接口，避免插件缺失时工厂逐次打印错误日志
-    if(aPluginRegistry().find<IScriptExecutorProvider>("JavaScript") == nullptr)
-        return nullptr;
-    ScriptExecutor* scriptExecutor = aNewScriptExecutor(EScriptLanguage::eJavaScript);
+    IScriptExecutorProvider* provider = aPluginRegistry().find<IScriptExecutorProvider>("JavaScript");
     #if defined(AST_WITH_DUKTAPE)
-    EXPECT_NE(scriptExecutor, nullptr);
+    // 记一次失败：后续 GTEST_SKIP() 不会把它降级成跳过，构建或部署缺插件必须暴露出来
+    EXPECT_NE(provider, nullptr) << "AstPluginJavaScript is missing from an AST_WITH_DUKTAPE build";
     #endif
-    return std::unique_ptr<ScriptExecutor>(scriptExecutor);
+    if(provider == nullptr)
+        return nullptr;
+    std::unique_ptr<ScriptExecutor> executor(aNewScriptExecutor(EScriptLanguage::eJavaScript));
+    #if defined(AST_WITH_DUKTAPE)
+    EXPECT_NE(executor.get(), nullptr);
+    #endif
+    return executor;
 }
 
 /// @brief 创建并初始化 JavaScript 执行器；插件或引擎不可用时返回空指针
