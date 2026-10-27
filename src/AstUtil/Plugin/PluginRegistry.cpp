@@ -33,6 +33,14 @@ PluginRegistry* PluginRegistry::Instance()
 
 errc_t PluginRegistry::scanDirectory(StringView dir, StringView namePrefix)
 {
+    if (namePrefix.empty())
+        return scanDirectory(dir, Span<const StringView>());
+
+    return scanDirectory(dir, Span<const StringView>({namePrefix}));
+}
+
+errc_t PluginRegistry::scanDirectory(StringView dir, Span<const StringView> namePrefixes)
+{
     if (dir.empty())
         return eErrorNullInput;
 
@@ -70,8 +78,21 @@ errc_t PluginRegistry::scanDirectory(StringView dir, StringView namePrefix)
         }
         #endif
 
-        if (!namePrefix.empty() && !StringView(filename.string()).starts_with(namePrefix))
-            continue;
+        if (!namePrefixes.empty())
+        {
+            const std::string& filenameString = filename.string();
+            bool prefixMatched = false;
+            for (const StringView& prefix : namePrefixes)
+            {
+                if (StringView(filenameString).starts_with(prefix))
+                {
+                    prefixMatched = true;
+                    break;
+                }
+            }
+            if (!prefixMatched)
+                continue;
+        }
 
         loadPlugin(entry.path().string());
     }
@@ -176,15 +197,19 @@ errc_t aScanPlugins()
 
     if (!foundPluginsDir)
     {
-        // 回退到库目录，只处理文件名以 "AstPlugin" 开头的库，
+        // 回退到库目录，按产物的命名习惯搜索名称以 AstPlugin 开头的库：
+        //   MSVC 产物没有 lib 前缀，形如 AstPluginXXX.dll
+        //   GCC / Clang / MinGW 的共享库可能带 lib 前缀，
+        //   同时接受 AstPluginXxx 与 libAstPluginXxx（.so / .dylib / .dll）
         const std::string libDir = aLibDir();
         if (!libDir.empty())
         {
-        #if defined(__linux__)
-            registry.scanDirectory(libDir, "libAstPlugin");
-        #else
-            registry.scanDirectory(libDir, "AstPlugin");
-        #endif
+            #if defined(_MSC_VER)
+            const StringView prefixes[] = {"AstPlugin"};
+            #else
+            const StringView prefixes[] = {"AstPlugin", "libAstPlugin"};
+            #endif
+            registry.scanDirectory(libDir, prefixes);
         }
     }
 
