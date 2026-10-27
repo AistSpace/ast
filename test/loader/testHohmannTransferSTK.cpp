@@ -81,11 +81,13 @@ TEST(HohmannTransferSTKTest, execute)
     // 场景的瞄准序列通过 JScript 脚本工具设置初值：Windows 上由 Active Scripting 执行，
     // 其他平台由 AstPluginJavaScript 运行时插件提供可移植的 JavaScript 引擎
     EXPECT_EQ(aScanPlugins(), eNoError);
+#if !defined(AST_WITH_DUKTAPE)
     if(aPluginRegistry().find<IScriptExecutorProvider>("JavaScript") == nullptr)
     {
         GTEST_SKIP() << "JScript requires Active Scripting on Windows or the AstPluginJavaScript plugin on other platforms";
         return;
     }
+#endif
 #endif
     const char scenarioDir[] = "./STK/Scenarios/testHohmannTransferSTK";
     const std::string path = aTestDataDirGet() + "/" + scenarioDir;

@@ -44,7 +44,11 @@ std::unique_ptr<ScriptExecutor> newJavaScriptExecutor()
     // 先查询接口，避免插件缺失时工厂逐次打印错误日志
     if(aPluginRegistry().find<IScriptExecutorProvider>("JavaScript") == nullptr)
         return nullptr;
-    return std::unique_ptr<ScriptExecutor>(aNewScriptExecutor(EScriptLanguage::eJavaScript));
+    ScriptExecutor* scriptExecutor = aNewScriptExecutor(EScriptLanguage::eJavaScript);
+    #if defined(AST_WITH_DUKTAPE)
+    EXPECT_NE(scriptExecutor, nullptr);
+    #endif
+    return std::unique_ptr<ScriptExecutor>(scriptExecutor);
 }
 
 } // namespace

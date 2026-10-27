@@ -278,6 +278,11 @@ if has_package("libf2c") then
     add_defines("AST_WITH_LIBF2C")
 end
 
+if has_package("duktape") then
+    -- 同上：只添加宏定义，避免链接进所有目标
+    add_defines("AST_WITH_DUKTAPE")
+end
+
 -- 添加openmp库依赖（可选）
 if has_package("openmp") then
     add_packages("openmp")
