@@ -10,12 +10,9 @@ set_warnings("more")
 
 -- 添加 `examples` 和 `docs` 下面的所有cpp文件作为示例
 local patterns = {
-        "**/*.cpp",
-        "**/*.c",
-        "../docs/guide/**.cpp",
-        "../docs/examples/**.cpp",
-        "../docs/dev/**.cpp",
-        "../docs/technical/**.cpp"
+    "**/*.cpp",
+    "**/*.c",
+    "../docs/zh/**.cpp"
 }
 
 for _, pattern in ipairs(patterns) do
