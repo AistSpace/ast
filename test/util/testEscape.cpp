@@ -49,6 +49,13 @@ TEST(CEscapeTest, SimpleEscapes)
     EXPECT_EQ(aCEscape("\v"), "\\v");
 }
 
+TEST(CEscapeTest, HeaderDocExample)
+{
+    // 头文件示例中的字符串，转义结果以实际实现为准（\b/\v/\f 用单字母形式）
+    std::string s = "foo\rbar\tbaz\010\011\012\013\014\x0d\n";
+    EXPECT_EQ(aCEscape(s), "foo\\rbar\\tbaz\\b\\t\\n\\v\\f\\r\\n");
+}
+
 TEST(CEscapeTest, WhitespaceIsEscapedAsOctal)
 {
     // 空格属于 ASCII 空白，虽然可打印，但仍按八进制转义

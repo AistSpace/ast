@@ -76,7 +76,7 @@ AST_UTIL_API std::string aCUnescape(StringView source);
 /// @example
 ///   std::string s = "foo\rbar\tbaz\010\011\012\013\014\x0d\n";
 ///   std::string escaped_s = aCEscape(s);
-///   EXPECT_EQ(escaped_s, "foo\\rbar\\tbaz\\010\\t\\n\\013\\014\\r\\n");
+///   EXPECT_EQ(escaped_s, "foo\\rbar\\tbaz\\b\\t\\n\\v\\f\\r\\n");
 AST_UTIL_API std::string aCEscape(StringView src);
 
 
@@ -118,7 +118,7 @@ AST_UTIL_API std::string aQuote(StringView src);
 ///
 ///   // 错误格式示例：
 ///   std::string bad = "foo\" bar";   // 缺少开头引号
-///   EXPECT_EQ(aUnquote(bad), "");    // 返回空字符串
+///   EXPECT_EQ(aUnquote(bad), bad);   // 缺少引号时原样返回
 AST_UTIL_API std::string aUnquote(StringView src);
 
 
