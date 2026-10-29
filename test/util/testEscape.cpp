@@ -79,13 +79,24 @@ TEST(CUnescapeTest, SimpleEscapes)
     EXPECT_EQ(aCUnescape("\\v"), "\v");
 }
 
+TEST(CUnescapeTest, SimpleQuestionMark)
+{
+    // C 标准里 \? 是合法的简单转义（用于三元运算符的历史兼容）
+    EXPECT_EQ(aCUnescape("a\\?b"), "a?b");
+}
+
 TEST(CUnescapeTest, HexEscapes)
 {
     EXPECT_EQ(aCUnescape("\\x41"), "A");
     EXPECT_EQ(aCUnescape("\\x4"), std::string("\x04", 1));
     EXPECT_EQ(aCUnescape("\\xFF"), std::string("\xFF", 1));
-    // 十六进制最多读两位，后面按普通字符处理
-    EXPECT_EQ(aCUnescape("\\x4142"), "A42");
+    // 十六进制转义位数不限，值取低 8 位（与 GCC/Clang 截断行为一致）
+    EXPECT_EQ(aCUnescape("\\x4142"), "B");
+    EXPECT_EQ(aCUnescape("\\x000041"), "A");
+    EXPECT_EQ(aCUnescape("\\x1FF"), std::string("\xFF", 1));
+    EXPECT_EQ(aCUnescape("\\x41bc"), std::string("\xBC", 1));
+    // 遇到非十六进制字符即停止
+    EXPECT_EQ(aCUnescape("\\xAG"), std::string("\nG", 2));
 }
 
 TEST(CUnescapeTest, InvalidHexKeepsLiteralBackslashX)
@@ -107,6 +118,7 @@ TEST(CUnescapeTest, OctalEscapes)
 
 TEST(CUnescapeTest, UnknownEscapeIsKept)
 {
+    // C 标准对未知转义未定义；本函数选择原样保留，避免静默改写路径/配置
     EXPECT_EQ(aCUnescape("\\q"), "\\q");
     EXPECT_EQ(aCUnescape("\\8"), "\\8");
     EXPECT_EQ(aCUnescape("a\\zb"), "a\\zb");
