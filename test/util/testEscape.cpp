@@ -3,7 +3,7 @@
 /// @brief     C 风格转义 / 反转义与 XML 实体解析测试
 /// @details   覆盖 aCEscape、aCUnescape、aQuote/aUnquote 的边界分支，
 ///            以及 aUnescapeXML 的命名实体、十进制/十六进制数字实体和非法实体。
-/// @author    大肥鱼
+/// @author    AistSpace
 /// @date      2026-10-29
 /// @copyright 版权所有 (C) 2026-present, SpaceAST项目.
 ///
